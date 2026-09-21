@@ -1,0 +1,539 @@
+# CHANGE DOCUMENTATION, COMMIT & MAIN-BRANCH FINALIZATION
+
+## Repository
+
+Repository URL:
+
+`[VARIABLE FOR REPO]`
+
+---
+
+## OBJECTIVE
+
+Take the repository from its current state through a complete **change-documentation, technical review, staging, commit, and main-branch synchronization process**.
+
+The primary goal is to ensure that **every legitimate uncommitted change is properly understood, documented, organized, committed, and pushed**, with the repository's documentation accurately reflecting the actual state of the codebase.
+
+Do not generate unnecessary documentation or artificial changes.
+
+Keep everything **standard, technically precise, meaningful, detailed, and maintainable**.
+
+---
+
+# 1. FIRST: INSPECT THE ACTUAL REPOSITORY STATE
+
+Before changing anything, inspect the complete Git state.
+
+Check:
+
+* Current branch
+* Remote configuration
+* Tracking branch
+* Working tree status
+* Modified files
+* Deleted files
+* Newly created/untracked files
+* Renamed files
+* Staged files
+* Existing commits
+* Recent commit history
+* Existing `CHANGELOG.md`
+* All relevant `.md` documentation
+* Repository structure
+* Existing documentation conventions
+* Existing commit-message conventions
+
+Use the actual repository state as the source of truth.
+
+Do not assume what has changed.
+
+---
+
+# 2. FULLY ANALYZE EVERY UNCOMMITTED CHANGE
+
+Inspect every uncommitted change in detail.
+
+For every modified, added, deleted, renamed, or otherwise affected file, determine:
+
+* What changed?
+* Why did it change?
+* What functionality does the change affect?
+* What problem does it solve?
+* What behavior does it introduce, remove, or modify?
+* What components/modules depend on it?
+* Does it affect APIs?
+* Does it affect database behavior?
+* Does it affect frontend behavior?
+* Does it affect backend behavior?
+* Does it affect configuration?
+* Does it affect security?
+* Does it affect performance?
+* Does it affect testing?
+* Does it affect deployment?
+* Does it affect documentation?
+* Does it introduce any compatibility considerations?
+
+Inspect the actual diff rather than relying on filenames or summaries.
+
+Where useful, trace the change through related files so that the documentation describes the **real technical impact**, not merely the visible line modification.
+
+---
+
+# 3. DOCUMENT ALL LEGITIMATE CHANGES
+
+Update `CHANGELOG.md` with the complete set of meaningful changes.
+
+If the existing changelog structure is poor, incomplete, inconsistent, or unsuitable for the current project, **rewrite/reorganize it appropriately while preserving useful historical information**.
+
+Do not blindly append repetitive information.
+
+The changelog should clearly communicate:
+
+* What changed
+* Why it changed
+* Which area/system was affected
+* What functionality was added
+* What functionality was modified
+* What functionality was removed
+* Important bug fixes
+* Important refactors
+* Important configuration changes
+* Important dependency changes
+* Important security changes
+* Important performance changes
+* Important testing changes
+* Important documentation changes
+
+Group related changes logically.
+
+If the project follows a versioned changelog convention, preserve and extend that convention.
+
+If there is no versioning convention, use a sensible date/current-development convention rather than inventing fake release versions.
+
+---
+
+# 4. UPDATE OTHER DOCUMENTATION WHERE REQUIRED
+
+Inspect all relevant Markdown documentation.
+
+Update only documentation that genuinely needs to reflect the current repository state.
+
+Potentially relevant files include:
+
+* `README.md`
+* `CHANGELOG.md`
+* Architecture documentation
+* API documentation
+* Setup/development documentation
+* Deployment documentation
+* Configuration documentation
+* Contributing documentation
+* Testing documentation
+* Security documentation
+* Developer guides
+* Feature documentation
+* Project specifications
+* Other relevant `.md` files
+
+Do not modify unrelated documentation merely to create activity.
+
+Every documentation change must have a clear reason.
+
+If existing documentation is already accurate, leave it unchanged.
+
+---
+
+# 5. MAINTAIN DOCUMENTATION QUALITY
+
+Documentation must be:
+
+* Technically accurate
+* Concise where possible
+* Detailed where necessary
+* Structured
+* Consistent
+* Easy to maintain
+* Consistent with the actual implementation
+
+Do not add:
+
+* Marketing language
+* Empty explanations
+* Repetitive statements
+* Generic AI-generated filler
+* Speculative claims
+* Features that do not exist
+* Unverified test results
+* Unnecessary sections
+* Artificial complexity
+
+**Document facts, not assumptions.**
+
+---
+
+# 6. MAP CHANGES TO COMMITS
+
+After understanding the complete change set, organize changes into **logical commits**.
+
+Do not force everything into one massive commit if the changes represent clearly different engineering phases or concerns.
+
+Likewise, do not create dozens of meaningless micro-commits.
+
+Use the smallest sensible number of commits that preserves a clean and understandable project history.
+
+For example, depending on the actual changes, commits might be separated into areas such as:
+
+* Core implementation
+* Bug fixes
+* Frontend changes
+* Backend changes
+* Database changes
+* Testing
+* Security
+* Configuration
+* Documentation
+* Deployment/infrastructure
+
+However, **do not use these categories automatically**.
+
+Determine the correct commit boundaries from the actual diff.
+
+---
+
+# 7. EVERY COMMIT MUST HAVE A TECHNICALALLY MEANINGFUL MESSAGE
+
+Every commit message must clearly explain:
+
+### WHAT changed?
+
+Identify the actual implementation or documentation change.
+
+### WHY was it changed?
+
+Explain the engineering reason, problem, requirement, or objective.
+
+### EFFECT / IMPACT
+
+Explain what the change affects in the system.
+
+### TECHNICAL BREAKDOWN
+
+Where useful, identify:
+
+* Files affected
+* Components/modules affected
+* APIs affected
+* Data-flow changes
+* Configuration changes
+* Behavior changes
+* Added functionality
+* Removed functionality
+* Refactored functionality
+
+### EXACT CHANGE DETAILS
+
+For significant changes, include precise details such as:
+
+* What was added
+* What was removed
+* What was replaced
+* What behavior changed
+* Relevant file paths
+* Relevant code locations
+* Before → after behavior where meaningful
+
+Do **not** unnecessarily paste entire source files into commit messages.
+
+When an exact line-level description is useful, identify the relevant file and line/location and describe the change accurately.
+
+Do not fabricate line numbers.
+
+If line numbers change during the commit preparation process, use the final verified locations or describe the relevant symbol/function/block instead.
+
+---
+
+# 8. COMMIT MESSAGE STRUCTURE
+
+Use a professional Git commit structure appropriate to the project's conventions.
+
+A good format is:
+
+```text
+<type>(<scope>): <concise summary>
+
+Why:
+<reason for the change>
+
+What changed:
+- <change>
+- <change>
+- <change>
+
+Technical impact:
+- <impact>
+- <impact>
+
+Files/areas:
+- <file or subsystem>
+- <file or subsystem>
+
+Validation:
+- <tests/build/checks performed>
+```
+
+For larger commits, expand the technical breakdown as necessary.
+
+Do not artificially inflate small commits.
+
+The level of detail must correspond to the actual complexity of the change.
+
+---
+
+# 9. VERIFY BEFORE STAGING
+
+Before staging anything:
+
+* Review the complete diff.
+* Confirm that every intended change is present.
+* Confirm that no unrelated change is accidentally included.
+* Confirm that no secrets are being committed.
+* Confirm that no generated files should be excluded.
+* Confirm that no temporary/debug files are included.
+* Confirm that documentation accurately describes the code.
+* Confirm that `.gitignore` behavior is correct.
+* Confirm that no accidental credentials or environment secrets are present.
+
+If suspicious content is found, investigate and handle it appropriately before committing.
+
+---
+
+# 10. STAGE LOGICALLY
+
+Stage changes according to the planned commit boundaries.
+
+For each batch/phase:
+
+1. Stage only the relevant changes.
+2. Inspect the staged diff.
+3. Verify the staged content.
+4. Verify that the commit message accurately describes it.
+5. Commit it.
+6. Verify the resulting commit.
+7. Continue with the next logical batch.
+
+Do not stage the entire repository blindly if that would combine unrelated changes.
+
+---
+
+# 11. VALIDATE EACH COMMIT
+
+After every commit:
+
+* Confirm the commit was created successfully.
+* Inspect the commit summary.
+* Inspect the commit diff.
+* Confirm the working tree state.
+* Ensure the commit contains exactly what it should contain.
+
+If practical, run relevant tests/checks after meaningful implementation commits.
+
+Do not claim successful validation without actually performing it.
+
+---
+
+# 12. FINAL DOCUMENTATION CONSISTENCY CHECK
+
+After all commits are created, perform another documentation review.
+
+Ensure:
+
+`CHANGELOG.md`
+
+and other affected Markdown documentation accurately represent the final repository state.
+
+Check for:
+
+* Contradictions
+* Outdated statements
+* Missing changes
+* Incorrect filenames
+* Incorrect architecture descriptions
+* Incorrect commands
+* Incorrect feature descriptions
+* Duplicate changelog entries
+* Unsupported claims
+
+Correct legitimate inconsistencies.
+
+If correcting documentation creates another meaningful change, handle that change through the appropriate commit process rather than leaving the repository partially documented.
+
+---
+
+# 13. FINAL REPOSITORY VALIDATION
+
+Before pushing, verify:
+
+* Working tree status
+* Current branch
+* Commit history
+* Remote configuration
+* All intended changes committed
+* No accidental changes left behind
+* No secrets exposed
+* Documentation synchronized
+* Relevant tests/checks completed
+* Build status where applicable
+* Repository is in a clean and coherent state
+
+Do not push if there are unresolved accidental changes or obvious repository-integrity problems.
+
+---
+
+# 14. PUSH TO MAIN
+
+Once everything has been reviewed and committed:
+
+1. Confirm the intended remote repository.
+2. Confirm the intended target branch is `main`.
+3. Ensure local history is ready to synchronize.
+4. Push the completed commits to `main`.
+5. Verify that the push succeeded.
+6. Verify the remote branch state if possible.
+7. Confirm the final repository status.
+
+Do not force-push or rewrite existing shared history unless explicitly authorized and genuinely required.
+
+Prefer a normal push that preserves repository history.
+
+---
+
+# 15. IMPORTANT: DO NOT INVENT WORK
+
+The objective is accurate technical documentation, not maximum commit volume.
+
+Do NOT:
+
+* Invent changes
+* Invent reasons
+* Invent features
+* Invent tests
+* Invent line numbers
+* Invent dependencies
+* Invent architecture
+* Create meaningless commits
+* Add unnecessary Markdown files
+* Add unnecessary changelog entries
+* Rewrite accurate documentation without reason
+* Add generic AI-generated filler
+* Split one trivial change into many artificial commits
+
+If ten changes naturally belong together, one well-structured commit may be better.
+
+If the repository contains several genuinely independent phases, use multiple commits.
+
+**Use engineering judgment.**
+
+---
+
+# 16. LINE-LEVEL ACCURACY
+
+When documenting exact code changes:
+
+* Inspect the actual diff.
+* Use verified file paths.
+* Use verified line numbers where stable and useful.
+* Prefer function/class/component/configuration identifiers when line numbers are likely to shift.
+* Describe additions, removals, replacements, and behavioral changes accurately.
+
+Never fabricate an exact "line X changed to line Y" statement.
+
+The commit history and documentation must remain trustworthy for future developers.
+
+---
+
+# 17. IF ADDITIONAL INFORMATION IS REQUIRED
+
+If an external decision or missing piece of information genuinely blocks the work, identify:
+
+1. Exactly what information is missing.
+2. Why it is required.
+3. What cannot safely be determined from the repository.
+4. What you can complete without that information.
+
+Do not stop the entire process merely because one non-critical detail is unavailable.
+
+Continue with everything that can safely be completed.
+
+---
+
+# 18. FINAL REPORT
+
+After everything is complete, provide a concise but technically detailed final report containing:
+
+## Repository
+
+* Repository
+* Final branch
+* Final commit(s)
+* Push status
+
+## Changes
+
+* Major changes documented
+* Major implementation changes
+* Bug fixes
+* Refactors
+* Configuration changes
+* Documentation changes
+
+## Commit Breakdown
+
+For every commit:
+
+* Commit hash
+* Commit message
+* What changed
+* Why it changed
+* Technical impact
+* Files/areas affected
+* Validation performed
+
+## Documentation
+
+* `CHANGELOG.md` status
+* Other Markdown files updated
+* Any documentation intentionally left unchanged
+
+## Validation
+
+* Tests
+* Build
+* Type checking
+* Linting
+* Other relevant checks
+
+## Final State
+
+* Working tree status
+* Remaining issues, if any
+* External actions still required, if any
+
+---
+
+# EXECUTION COMMAND
+
+Now continue with the repository at:
+
+`[VARIABLE FOR REPO]`
+
+**Do not merely describe what should be done.**
+
+Inspect the actual repository and execute the complete workflow:
+
+**INSPECT → ANALYZE DIFF → UNDERSTAND → DOCUMENT → ORGANIZE → STAGE → VERIFY → COMMIT → VALIDATE → DOCUMENTATION REVIEW → FINAL VALIDATION → PUSH TO MAIN → VERIFY**
+
+Work through every legitimate change systematically.
+
+Ensure that the final Git history, `CHANGELOG.md`, other affected documentation, and actual repository state all tell the **same accurate technical story**.
+
+Proceed now.
