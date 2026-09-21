@@ -1,0 +1,1 @@
+i need you to properly format and organize the content of all .md file in this project monorepo so it can be clean and well presented
