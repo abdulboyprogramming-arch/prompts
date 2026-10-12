@@ -73,6 +73,7 @@ prompts/
 | `02-engineering/refactoring/` | Safe Refactoring system (7 stages + orchestrator) | **Operational** |
 | `02-engineering/feature-design-suggestion/` | Feature Design & Suggestion system (7 stages + orchestrator) | **Operational** |
 | `02-engineering/rewriting-migration/` | Rewriting & Language Migration system (8 stages + orchestrator) | **Operational** |
+| `02-engineering/architecture-review/` | Architecture Review system (7 stages + orchestrator) | **Operational** |
 
 ## How to Use
 
