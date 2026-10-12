@@ -69,6 +69,7 @@ prompts/
 |----------|-------------|--------|
 | `01-contribution/open-source/general-agent/` | Complete 16-prompt autonomous open-source contribution agent (P01–P16) | **Production-ready** |
 | `02-engineering/codebase-audit/` | Deep Codebase Audit & Analysis system (9 stages + orchestrator) | **Operational** |
+| `02-engineering/from-scratch/` | From-Scratch Project system (8 stages + orchestrator) | **Operational** |
 
 ## How to Use
 
