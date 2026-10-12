@@ -71,6 +71,7 @@ prompts/
 | `02-engineering/codebase-audit/` | Deep Codebase Audit & Analysis system (9 stages + orchestrator) | **Operational** |
 | `02-engineering/from-scratch/` | From-Scratch Project system (8 stages + orchestrator) | **Operational** |
 | `02-engineering/refactoring/` | Safe Refactoring system (7 stages + orchestrator) | **Operational** |
+| `02-engineering/feature-design-suggestion/` | Feature Design & Suggestion system (7 stages + orchestrator) | **Operational** |
 
 ## How to Use
 
