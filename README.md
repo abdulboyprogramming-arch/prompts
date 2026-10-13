@@ -77,6 +77,7 @@ prompts/
 | `02-engineering/architecture-review/` | Architecture Review system (7 stages + orchestrator) | **Operational** |
 | `02-engineering/patterns-strategies-methods/` | Patterns, Strategies & Methods system (7 stages + orchestrator) | **Operational** |
 | `02-engineering/performance/` | Performance Analysis & Optimization system (7 stages + orchestrator) | **Operational** |
+| `02-engineering/security-hardening/` | Security Hardening system (7 stages + orchestrator) | **Operational** |
 
 ## How to Use
 
