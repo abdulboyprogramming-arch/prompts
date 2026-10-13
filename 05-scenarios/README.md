@@ -1,14 +1,22 @@
-# 05-Scenarios
+# 05-Scenarios — Quick & Situational Prompts
 
-Short-to-medium, high-utility prompts for common situations that arise during real work.
+High-utility, focused prompts for common situations that arise during real software work. These are lighter-weight than the full multi-stage systems in `01-contribution/` and `02-engineering/`, but still professional and evidence-oriented.
 
-Examples of intended content:
-- Debugging stubborn issues
-- Performance investigation
-- Incident response / production firefighting
-- Onboarding to an unfamiliar codebase
-- Legacy code survival
-- Quick targeted fixes
-- Ad-hoc analysis requests
+## Available Scenario Collections
 
-These are lighter-weight than the full multi-stage systems in 01 and 02, but still expected to be professional and evidence-oriented.
+| Folder | Purpose | Status |
+|--------|---------|--------|
+| `debugging/` | Systematic debugging of stubborn bugs | Operational |
+| `onboarding/` | Rapidly understanding an unfamiliar codebase | Operational |
+| `quick-fixes/` | Small, safe, targeted fixes | Operational |
+| `incident-response/` | Production incident / firefighting support | Planned |
+| `legacy-code/` | Working safely with difficult legacy code | Operational |
+| `ad-hoc/` | Catch-all for other situational needs | Planned |
+
+## Design Principles
+
+- Fast to invoke
+- Clear structure and output expectations
+- Encourage evidence over guessing
+- Safe defaults (don’t make things worse)
+- Can be used standalone or as a precursor to a deeper multi-stage system
