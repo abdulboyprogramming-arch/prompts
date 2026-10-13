@@ -69,6 +69,7 @@ prompts/
 |----------|-------------|--------|
 | `01-contribution/open-source/general-agent/` | Complete 16-prompt autonomous open-source contribution agent (P01–P16) | **Production-ready** |
 | `01-contribution/web/general/` | General Web Contribution system (8 stages + orchestrator) | **Operational** |
+| `01-contribution/web3/general/` | General Web3 Contribution system (8 stages + orchestrator) | **Operational** |
 | `02-engineering/codebase-audit/` | Deep Codebase Audit & Analysis system (9 stages + orchestrator) | **Operational** |
 | `02-engineering/from-scratch/` | From-Scratch Project system (8 stages + orchestrator) | **Operational** |
 | `02-engineering/refactoring/` | Safe Refactoring system (7 stages + orchestrator) | **Operational** |
