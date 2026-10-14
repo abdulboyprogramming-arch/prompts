@@ -9,7 +9,7 @@ High-utility, focused prompts for common situations that arise during real softw
 | `debugging/` | Systematic debugging of stubborn bugs | Operational |
 | `onboarding/` | Rapidly understanding an unfamiliar codebase | Operational |
 | `quick-fixes/` | Small, safe, targeted fixes | Operational |
-| `incident-response/` | Production incident / firefighting support | Planned |
+| `incident-response/` | Production incident / firefighting support | Operational |
 | `legacy-code/` | Working safely with difficult legacy code | Operational |
 | `ad-hoc/` | Catch-all for other situational needs | Planned |
 
