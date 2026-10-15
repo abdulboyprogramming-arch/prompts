@@ -11,6 +11,8 @@ High-utility, focused prompts for common situations that arise during real softw
 | `quick-fixes/` | Small, safe, targeted fixes | Operational |
 | `incident-response/` | Production incident / firefighting support | Operational |
 | `legacy-code/` | Working safely with difficult legacy code | Operational |
+| `pr-authoring/` | Writing strong, reviewer-friendly pull requests | Operational |
+| `performance-investigation/` | Fast bottleneck diagnosis before deep optimization | Operational |
 | `ad-hoc/` | Catch-all for other situational needs | Planned |
 
 ## Design Principles
