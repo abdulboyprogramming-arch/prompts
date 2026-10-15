@@ -76,6 +76,7 @@ prompts/
 | `04-process/testing-qa/` | Testing & QA Process system (7 stages + orchestrator) | **Operational** |
 | `04-process/code-review/` | Code Review process system (6 stages + orchestrator) | **Operational** |
 | `04-process/documentation/` | Documentation process system (8 stages + orchestrator) | **Operational** |
+| `04-process/research-and-development/` | Research & Development process system (8 stages + orchestrator) | **Operational** |
 | `06-interactive/` | Interactive Context Collectors & System Selector Wizard | **Operational** |
 | `05-scenarios/` | Scenario & Quick-Prompt collections (Debugging, Onboarding, Quick-Fix, Legacy) | **Operational** |
 | `02-engineering/codebase-audit/` | Deep Codebase Audit & Analysis system (9 stages + orchestrator) | **Operational** |
