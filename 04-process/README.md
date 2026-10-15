@@ -10,10 +10,10 @@ Methodology and process-oriented prompt systems.
 | `code-review/` | Code Review process system (6 stages) | **Operational** |
 | `documentation/` | Documentation process system (8 stages) | **Operational** |
 | `research-and-development/` | Research & Development process system (8 stages) | **Operational** |
+| `systems-building-improvement/` | Systems-Building & Improvement process (8 stages) | **Operational** |
 
 ## Planned / Future
 
 
 - `project-management/` — Planning and execution support
 
-- `systems-building-improvement/` — Systems thinking and improvement cycles
