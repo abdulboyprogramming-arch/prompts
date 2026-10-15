@@ -10,6 +10,7 @@ Prompt systems for adding value to existing projects (open-source or private).
 | `web/general/` | General Web Contribution system (8 stages) | **Operational** |
 | `web3/general/` | General Web3 Contribution system (8 stages) | **Operational** |
 | `packages-libraries/` | Package & Library Contribution system (8 stages) | **Operational** |
+| `language-design/` | Language Design & Invention system (8 stages) | **Operational** |
 
 ## Planned / In Progress
 
