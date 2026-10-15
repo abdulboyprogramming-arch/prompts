@@ -78,6 +78,7 @@ prompts/
 | `04-process/documentation/` | Documentation process system (8 stages + orchestrator) | **Operational** |
 | `04-process/research-and-development/` | Research & Development process system (8 stages + orchestrator) | **Operational** |
 | `06-interactive/` | Interactive Context Collectors & System Selector Wizard | **Operational** |
+| `00-core/` | Core safety, orchestration, system prompts, prompt-engineering primitives | **Operational** |
 | `05-scenarios/` | Scenario & Quick-Prompt collections (Debugging, Onboarding, Quick-Fix, Legacy) | **Operational** |
 | `02-engineering/codebase-audit/` | Deep Codebase Audit & Analysis system (9 stages + orchestrator) | **Operational** |
 | `02-engineering/from-scratch/` | From-Scratch Project system (8 stages + orchestrator) | **Operational** |
