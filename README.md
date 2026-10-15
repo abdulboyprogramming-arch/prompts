@@ -71,6 +71,7 @@ prompts/
 | `01-contribution/web/general/` | General Web Contribution system (8 stages + orchestrator) | **Operational** |
 | `01-contribution/web3/general/` | General Web3 Contribution system (8 stages + orchestrator) | **Operational** |
 | `01-contribution/packages-libraries/` | Package & Library Contribution system (8 stages + orchestrator) | **Operational** |
+| `01-contribution/language-design/` | Language Design & Invention system (8 stages + orchestrator) | **Operational** |
 | `04-process/testing-qa/` | Testing & QA Process system (7 stages + orchestrator) | **Operational** |
 | `04-process/code-review/` | Code Review process system (6 stages + orchestrator) | **Operational** |
 | `04-process/documentation/` | Documentation process system (8 stages + orchestrator) | **Operational** |
