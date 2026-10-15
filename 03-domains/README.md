@@ -4,6 +4,12 @@ Deep, technology-specific prompt systems.
 
 Prefer putting highly specialized domain knowledge here. Cross-cutting engineering activities (audits, refactoring, from-scratch generation) live under `02-engineering/`.
 
+## Current Systems
+
+| Path | Description | Status |
+|------|-------------|--------|
+| `games/` | Game Development system (8 stages) | **Operational** |
+
 ## Areas
 
 - frontend/
