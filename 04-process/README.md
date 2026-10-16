@@ -11,9 +11,9 @@ Methodology and process-oriented prompt systems.
 | `documentation/` | Documentation process system (8 stages) | **Operational** |
 | `research-and-development/` | Research & Development process system (8 stages) | **Operational** |
 | `systems-building-improvement/` | Systems-Building & Improvement process (8 stages) | **Operational** |
+| `project-management/` | Project Management process system (8 stages) | **Operational** |
 
 ## Planned / Future
 
 
-- `project-management/` — Planning and execution support
 
