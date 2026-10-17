@@ -73,6 +73,8 @@ prompts/
 | `01-contribution/packages-libraries/` | Package & Library Contribution system (8 stages + orchestrator) | **Operational** |
 | `01-contribution/language-design/` | Language Design & Invention system (8 stages + orchestrator) | **Operational** |
 | `03-domains/games/` | Game Development system (8 stages + orchestrator) | **Operational** |
+| `03-domains/frontend/` | Frontend domain system (8 stages + orchestrator) | **Operational** |
+| `03-domains/backend/` | Backend domain system (8 stages + orchestrator) | **Operational** |
 | `04-process/testing-qa/` | Testing & QA Process system (7 stages + orchestrator) | **Operational** |
 | `04-process/code-review/` | Code Review process system (6 stages + orchestrator) | **Operational** |
 | `04-process/documentation/` | Documentation process system (8 stages + orchestrator) | **Operational** |

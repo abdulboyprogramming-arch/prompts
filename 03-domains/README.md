@@ -9,6 +9,8 @@ Prefer putting highly specialized domain knowledge here. Cross-cutting engineeri
 | Path | Description | Status |
 |------|-------------|--------|
 | `games/` | Game Development system (8 stages) | **Operational** |
+| `frontend/` | Frontend domain system (8 stages) | **Operational** |
+| `backend/` | Backend domain system (8 stages) | **Operational** |
 
 ## Areas
 
