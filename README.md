@@ -76,6 +76,7 @@ prompts/
 | `03-domains/frontend/` | Frontend domain system (8 stages + orchestrator) | **Operational** |
 | `03-domains/backend/` | Backend domain system (8 stages + orchestrator) | **Operational** |
 | `03-domains/devops-infra/` | DevOps & Infrastructure domain system (8 stages + orchestrator) | **Operational** |
+| `03-domains/data-ml-ai/` | Data / ML / AI domain system (8 stages + orchestrator) | **Operational** |
 | `04-process/testing-qa/` | Testing & QA Process system (7 stages + orchestrator) | **Operational** |
 | `04-process/code-review/` | Code Review process system (6 stages + orchestrator) | **Operational** |
 | `04-process/documentation/` | Documentation process system (8 stages + orchestrator) | **Operational** |

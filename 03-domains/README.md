@@ -12,6 +12,7 @@ Prefer putting highly specialized domain knowledge here. Cross-cutting engineeri
 | `frontend/` | Frontend domain system (8 stages) | **Operational** |
 | `backend/` | Backend domain system (8 stages) | **Operational** |
 | `devops-infra/` | DevOps & Infrastructure domain system (8 stages) | **Operational** |
+| `data-ml-ai/` | Data / ML / AI domain system (8 stages) | **Operational** |
 
 ## Areas
 
