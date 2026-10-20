@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** OBS-P04
 **Produces:** `POSTMORTEM.md`, action register
+**Inputs:** INCIDENT_ID, TARGET_SERVICE (optional: INCIDENT_TIMELINE_FILE)
 **Est. effort:** 45–90 min per incident; 1–2 h per quarterly review
 
 ---
@@ -26,8 +27,8 @@ Out of scope: implementing the actions (route them), disciplinary conclusions, s
 
 | Input | Source | If missing |
 |-------|--------|------------|
-| Incident timeline | incident channel, logs, deploy history | reconstruct from telemetry; state gaps |
-| Signals and SLOs | `SLOS.md` | use available metrics |
+| `{{INCIDENT_TIMELINE_FILE}}` — timeline for `{{INCIDENT_ID}}` | incident channel, logs, deploy history | reconstruct from telemetry; state gaps |
+| Signals and SLOs for `{{TARGET_SERVICE}}` | `SLOS.md` | use available metrics |
 | Responder accounts | humans involved | treat as testimony, not proof |
 
 ## 4. Workflow

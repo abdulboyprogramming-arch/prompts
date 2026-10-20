@@ -8,6 +8,7 @@
 **Risk class:** C
 **Depends on:** none
 **Produces:** service restored, a recorded timeline, and a postmortem ready
+**Inputs:** INCIDENT_ID, TARGET_SERVICE (optional: APPROVER, INCIDENT_START_TIME)
 **Est. effort:** minutes to hours, in real time
 
 ---
@@ -26,10 +27,10 @@ Out of scope: permanent fixes (after stabilisation), feature work, blame.
 
 | Input | Source | If missing |
 |-------|--------|------------|
-| Symptom and first observation time | user/alert | establish immediately |
-| Affected surface (users, regions, features) | telemetry | estimate from the blast radius of recent changes |
+| Symptom and first observation time `{{INCIDENT_START_TIME}}` for `{{INCIDENT_ID}}` | user/alert | establish immediately |
+| Affected surface `{{TARGET_SERVICE}}` (users, regions, features) | telemetry | estimate from the blast radius of recent changes |
 | Recent changes | deploy log, `git log`, flag changes | enumerate before hypothesising |
-| Who can authorise production changes | user | assume none; propose only, do not act |
+| Who can authorise production changes: `{{APPROVER}}` | user | assume none; propose only, do not act |
 
 ## 4. Workflow
 

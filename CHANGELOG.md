@@ -2,6 +2,36 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.9.0] — 2026-10-20
+
+### Changed — input declarations across the operational library (backlog item 25)
+
+Prompts described what they needed in prose ("the repository path", "a named approver"). They now declare it: **109 of 118 operational prompts** carry an `**Inputs:**` line, and every declared name appears as a `{{PLACEHOLDER}}` in the body.
+
+The retrofit used each prompt's own §3 as the source of truth — no invented requirements:
+
+- A value the user supplies became a canonical name and a placeholder: "Repository path" → `{{REPO_PATH}}`; "Named approver for Category C actions" → `{{APPROVER}}`; "Change window for production-affecting changes" → `{{CHANGE_WINDOW}}`.
+- An upstream artifact stayed a dependency, not an input: `.qa/QA_CONTEXT.md`, `SAFETY_NET.md`, `.db/PREFLIGHT.md` are still `Depends on`.
+- Systems retrofitted: code review (6), git operations (5), testing/QA (6), release engineering (4), observability (5), dependency management (5), decommissioning (4), governance (3), privacy (3), audit (4), refactoring (7), security hardening (5), project recovery (5), feature completion (3), database (5), payments (3), cost engineering (4), AI/agentic (5), scenarios (6), workflows (3), general agent (15).
+
+**Nine operational stages deliberately declare no inputs** — `AUDIT-P02..P05`, `AUDIT-P07`, `FC-P02`, `REC-P03`, `SEC-P03`, `QA-P03`. They consume only the previous stage's artifact; a declaration would be unused, which the convention treats as a defect. The decision is recorded in `_meta/prompt-inputs.md` and backlog item 27 so a later reviewer does not "fix" it.
+
+### Added
+
+- `_meta/prompt-inputs.md`: **Canonical names** table, a three-tier taxonomy of the 97 names in use (13 core, 25 cross-system, 59 system-scoped), and a rewritten migration-status section with the exact figures and the list of nine exempt stages.
+- `00-core/inputs/RUN-SHEET.md`: guidance for system-scoped names, and the alias rule.
+- `01-contribution/open-source/general-agent/README.md`: an Inputs table mapping `MY_DETAILS.txt` to declared names, and an honest status line replacing "Complete and ready for use".
+
+### Backlog
+
+- Item 25 → **Implemented**.
+- Item 26 (97 names is a wide vocabulary; consolidation pass) → Discovered, P2.
+- Item 27 (nine artifact-only stages) → Evaluated, justified non-implementation, P3.
+
+### Result
+
+355 Markdown files, 281 prompts: 118 operational, 6 draft, 157 skeleton. Validator 0 errors / 0 warnings. Coverage matrix 67 adequate / 32 partial / 4 missing.
+
 ## [2.8.0] — 2026-10-20
 
 ### Promoted — `04-process/code-review/` (6 stages, operational)

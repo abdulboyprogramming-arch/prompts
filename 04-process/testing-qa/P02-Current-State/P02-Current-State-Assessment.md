@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** QA-P01
 **Produces:** `.qa/CURRENT_STATE.md`
+**Inputs:** REPO_PATH, BASE_REF
 **Est. effort:** 30–60 min
 
 ---
@@ -25,7 +26,7 @@ Out of scope: deciding what to do about it (P03/P04), modifying tests (P05).
 ## 3. Prerequisites and inputs
 
 - `.qa/QA_CONTEXT.md` (risk map, constraints).
-- Repository at a known commit; run commands only if non-destructive.
+- `{{REPO_PATH}}` at a known commit `{{BASE_REF}}`; run commands only if non-destructive.
 
 ## 4. Workflow
 

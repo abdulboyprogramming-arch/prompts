@@ -8,6 +8,7 @@
 **Risk class:** C
 **Depends on:** COST-P02
 **Produces:** `.cost/OPTIMISATION_LOG.md`
+**Inputs:** APPROVER, TARGET_SERVICE (optional: CHANGE_WINDOW)
 **Est. effort:** 30 min – several hours, per change
 
 ---
@@ -26,10 +27,10 @@ Out of scope: new findings (return to P02), architectural redesign, contract neg
 
 | Input | Required | If missing |
 |-------|----------|------------|
-| Approved findings with owners | yes | stop; do not optimise another team's resources unilaterally |
+| Approved findings for `{{TARGET_SERVICE}}`, with owners confirmed by `{{APPROVER}}` | yes | stop; do not optimise another team's resources unilaterally |
 | Metrics baseline for the affected service (latency, errors, utilisation) | yes | you cannot prove you did not break it |
 | Rollback method (previous size, previous policy, restore point) | yes | stop |
-| Change window for production-affecting changes | recommended | schedule one |
+| Change window `{{CHANGE_WINDOW}}` for production-affecting changes | recommended | schedule one |
 
 ## 4. Workflow
 

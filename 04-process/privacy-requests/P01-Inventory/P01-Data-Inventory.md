@@ -8,6 +8,7 @@
 **Risk class:** C
 **Depends on:** none (entry stage)
 **Produces:** `.privacy/DATA_MAP.md`, `.privacy/PRIVACY_LEDGER.md`
+**Inputs:** SUBJECT_IDENTIFIERS (optional: DATA_MAP_FILE)
 **Est. effort:** 45–120 min
 
 ---
@@ -28,10 +29,10 @@ Out of scope: exporting or deleting (P02), legal validity of the request.
 
 | Input | Source | If missing |
 |-------|--------|------------|
-| Subject identifiers (email, user id, tenant, phone) | request | ask the owner; an unmatched identifier is the most common cause of an incomplete result |
+| Subject identifiers: `{{SUBJECT_IDENTIFIERS}}` (email, user id, tenant, phone) | request | ask the owner; an unmatched identifier is the most common cause of an incomplete result |
 | System inventory: services, databases, warehouses, object storage, queues, logs | architecture docs, IaC, repository | enumerate from code — configuration files list the connections |
 | Third-party processors (analytics, support desk, email, payments, CRM) | vendor list, procurement, code | enumerate from integrations in code and DNS/egress logs |
-| Retention rules and legal holds | policy owner | record as unknown; every system without a rule is a finding |
+| Retention rules and legal holds, written into `{{DATA_MAP_FILE}}` | policy owner | record as unknown; every system without a rule is a finding |
 
 ## 4. Workflow
 

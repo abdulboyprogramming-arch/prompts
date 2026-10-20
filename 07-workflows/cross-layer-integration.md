@@ -8,6 +8,7 @@
 **Risk class:** B (may reach C when wiring shared environments)
 **Depends on:** each layer's own completion state
 **Produces:** `INTEGRATION_PLAN.md`, `INTEGRATION_REPORT.md`
+**Inputs:** INTEGRATION_ENV, LAYER_BRANCHES
 **Est. effort:** 1–4 hours per integration
 
 ---
@@ -28,8 +29,8 @@ Out of scope: implementing missing features in a layer (return that layer to its
 
 | Input | If missing |
 |-------|------------|
-| The branches/artefacts from each layer, with their own completion claims | ask what is actually done vs planned; integrate the done parts only |
-| An integration environment (or a documented local composition) | build a local composition and record what it cannot prove |
+| The branches/artefacts `{{LAYER_BRANCHES}}` from each layer, with their own completion claims | ask what is actually done vs planned; integrate the done parts only |
+| An integration environment `{{INTEGRATION_ENV}}` (or a documented local composition) | build a local composition and record what it cannot prove |
 | The agreed contract: API schema, event schema, config keys | derive from the code and **state that it is derived**, then reconcile explicitly |
 | Each layer's own test suite, runnable | integration cannot substitute for unit verification |
 

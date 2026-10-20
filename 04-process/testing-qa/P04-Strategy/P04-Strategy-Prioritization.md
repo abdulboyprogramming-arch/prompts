@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** QA-P03
 **Produces:** `.qa/TEST_STRATEGY.md`
+**Inputs:** REPO_PATH, TIME_BUDGET
 **Est. effort:** 30–45 min
 
 ---
@@ -25,8 +26,8 @@ Out of scope: implementation (P05), final measurement (P06).
 ## 3. Prerequisites and inputs
 
 - `.qa/GAPS.md`, `.qa/CURRENT_STATE.md`, `.qa/QA_CONTEXT.md`.
-- Constraints from P01: PR latency target, CI budget, team size.
-- Existing test conventions (framework, structure, fixture style) — the plan must fit them.
+- Constraints from P01: PR latency target, CI budget, team size (`{{TIME_BUDGET}}` if restated here).
+- Existing test conventions (framework, structure, fixture style) in `{{REPO_PATH}}` — the plan must fit them.
 
 ## 4. Workflow
 

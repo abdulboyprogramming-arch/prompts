@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** AI-P03
 **Produces:** `SAFETY.md`, guardrail implementation
+**Inputs:** TARGET_SERVICE (optional: APPROVER)
 **Est. effort:** 1–3 hours
 
 ---
@@ -26,7 +27,7 @@ Out of scope: model alignment research, network security, conventional app vulne
 
 - `AI_ARCHITECTURE.md` trust boundaries and tool table.
 - `EVAL_PLAN.md` must-never set and adversarial cases.
-- `02-engineering/security-hardening/` output if available.
+- `02-engineering/security-hardening/` output if available; any residual-risk acceptance for `{{TARGET_SERVICE}}` signed by `{{APPROVER}}`.
 
 ## 4. Workflow
 

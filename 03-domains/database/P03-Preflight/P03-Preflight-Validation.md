@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** DB-P02
 **Produces:** `.db/PREFLIGHT.md`
+**Inputs:** PREFLIGHT_ENV (optional: DATABASE_ACCESS)
 **Est. effort:** 45–120 min
 
 ---
@@ -25,7 +26,7 @@ Out of scope: executing against the real environment (P04).
 ## 3. Prerequisites and inputs
 
 - `.db/MIGRATION_PLAN.md` (statements, backfill design).
-- A **staging copy** with realistic data volume. Without volume, timing is meaningless and the drill proves nothing about duration.
+- A **staging copy** in `{{PREFLIGHT_ENV}}` with realistic data volume, reachable via `{{DATABASE_ACCESS}}`. Without volume, timing is meaningless and the drill proves nothing about duration.
 - Permission to create and drop throwaway databases locally or in staging.
 
 ## 4. Workflow

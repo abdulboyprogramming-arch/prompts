@@ -8,6 +8,7 @@
 **Risk class:** A
 **Depends on:** REF-P01 … REF-P06
 **Produces:** `REFACTOR_RUN.md` (stage log, gates, decisions)
+**Inputs:** TARGET_AREA, APPROVER (optional: DEADLINE)
 **Est. effort:** 15 min per cycle
 
 ---
@@ -27,8 +28,8 @@ Out of scope: doing the analysis, taking the decisions the stages own, or approv
 ## 3. Prerequisites and inputs
 
 - A user request, a symptom, or a P01 artifact from a previous cycle.
-- The repository and a runnable test environment.
-- Authorization boundaries: who approves a rewrite, a data migration, or an irreversible deletion.
+- The repository containing `{{TARGET_AREA}}` and a runnable test environment; the deadline `{{DEADLINE}}` if one drives the plan.
+- Authorization boundaries: who approves a rewrite, a data migration, or an irreversible deletion (`{{APPROVER}}`).
 
 ## 4. Workflow
 

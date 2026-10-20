@@ -47,3 +47,11 @@ NOTES:           <anything a new engineer must know before reading the output>
 | Git recovery | `REPO_PATH`, the ref or SHA involved, whether the history is shared, `APPROVER` |
 | Security review | `REPO_PATH`, `TARGET_AREA`, authorisation to assess, `SECRET_` input names |
 | Incident | `TARGET_ENV`, service name, incident start time, `APPROVER`, communication owner |
+
+## When the prompt asks for a name that is not on this sheet
+
+The core sheet covers 13 names. The library declares 97 in total; the rest are **system-scoped** values such as `MIGRATIONS_DIR`, `PREFLIGHT_ENV`, `BILLING_EXPORT_PATH`, or `EVAL_DATASET_PATH`. When a prompt's `**Inputs:**` line names one:
+
+1. Read that prompt's §3 table — every system-scoped input has a "if missing" fallback documented there.
+2. Fill it in the *system's* section of the sheet (append a short block titled with the system path), not in the core block.
+3. If two systems name the same thing differently, use the core name where the meaning matches and note the alias. Aliases are a defect to report, not a preference to keep.

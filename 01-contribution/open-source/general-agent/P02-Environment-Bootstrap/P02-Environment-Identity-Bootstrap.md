@@ -7,6 +7,7 @@
 **Risk class:** B  
 **Depends on:** P01 (System Architecture Blueprint)  
 **Produces:** Validated identity context, tool/permission inventory, initial PROGRESS_LEDGER.md and SESSION_HANDOVER.md entries  
+**Inputs:** REPO_PATH (optional: MY_DETAILS_FILE)
 
 ---
 
@@ -35,7 +36,8 @@ Do **not** begin deep repository analysis, issue triage, or code changes in this
 
 ## 4. Prerequisites
 
-- Ability to read files in the working environment.
+- Ability to read files in the working environment, rooted at `{{REPO_PATH}}`.
+- Optional: the operator details file `{{MY_DETAILS_FILE}}` (name, account, constraints).
 - Ability to run basic shell commands (`pwd`, `ls`, `git`, `gh` if installed, etc.).
 - No prior durable artifacts are required (this stage creates the initial ones).
 

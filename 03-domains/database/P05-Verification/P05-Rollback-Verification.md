@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** DB-P04
 **Produces:** `.db/VERIFICATION.md`
+**Inputs:** TARGET_ENV, PREVIOUS_VERSION
 **Est. effort:** 30–60 min
 
 ---
@@ -26,7 +27,7 @@ Out of scope: re-running the migration (P04), designing follow-up changes (P02).
 
 - `.db/EXECUTION_LOG.md` and `.db/RECONCILIATION.md`.
 - `.db/PREFLIGHT.md` (expected state, invariants, drill results).
-- The application version deployed against the new schema.
+- The application version deployed against the new schema (`{{PREVIOUS_VERSION}}` is the rollback target) on `{{TARGET_ENV}}`.
 
 ## 4. Workflow
 

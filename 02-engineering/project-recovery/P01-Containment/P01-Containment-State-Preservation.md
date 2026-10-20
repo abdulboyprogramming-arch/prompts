@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** none (entry stage — mandatory first)
 **Produces:** `RECOVERY_STATE.md`, preserved branches/tags, `.recovery/` artifacts
+**Inputs:** REPO_PATH (optional: WRITE_AUTHORITY)
 **Est. effort:** 15–30 min
 
 ---
@@ -28,8 +29,8 @@ Out of scope: understanding the project (P02), deciding what is broken (P03/P04)
 
 | Input | Source | If missing |
 |-------|--------|------------|
-| Repository path | user | confirm from working directory |
-| Authority to create branches/commits locally | user | if absent, take a patch export instead and record that no rollback via Git exists |
+| Repository path `{{REPO_PATH}}` | user | confirm from working directory |
+| Authority to create branches/commits locally `{{WRITE_AUTHORITY}}` | user | if absent, take a patch export instead and record that no rollback via Git exists |
 | Any known constraints (no network, shared branch, CI on push) | user | assume standard; record assumptions |
 
 ## 4. Workflow

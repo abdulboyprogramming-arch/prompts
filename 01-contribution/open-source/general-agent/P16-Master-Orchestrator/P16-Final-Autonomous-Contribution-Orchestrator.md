@@ -7,6 +7,7 @@
 **Risk class:** C  
 **Depends on:** Entire prompt library (P01–P15) and the presence of a target repository + MY_DETAILS.txt  
 **Produces:** Coordinated execution of the contribution pipeline, durable artifacts, and a comprehensive final report  
+**Inputs:** REPO_PATH, MY_DETAILS_FILE (optional: APPROVER, BRANCH)
 
 ---
 
@@ -40,9 +41,9 @@ All behavior remains bound by the action categories, security model, and quality
 
 ## 4. Prerequisites
 
-- Ability to read the prompt library and MY_DETAILS.txt.
-- Ability to create and write the `.contribution-agent/` artifact directory.
-- Git and (ideally) GitHub CLI available, with whatever authentication the environment already provides.
+- Ability to read the prompt library and `{{MY_DETAILS_FILE}}`.
+- Ability to create and write the `.contribution-agent/` artifact directory inside `{{REPO_PATH}}`.
+- Git and (ideally) GitHub CLI available, with whatever authentication the environment already provides; publication authority `{{APPROVER}}`, working branch `{{BRANCH}}`.
 
 ## 5. Required Tools and Permissions
 

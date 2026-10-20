@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** none (entry stage)
 **Produces:** `OBS_CURRENT.md`
+**Inputs:** REPO_PATH, TARGET_SERVICE (optional: OBS_DATA_SOURCE)
 **Est. effort:** 30–60 min
 
 ---
@@ -24,8 +25,8 @@ Out of scope: designing new instrumentation (P02), alert rules (P03), runbooks (
 
 ## 3. Prerequisites and inputs
 
-- Repository path; read-only access to observability configuration in the repo.
-- Optional: sample dashboards, alert definitions, or incident records the user can share.
+- `{{REPO_PATH}}` for `{{TARGET_SERVICE}}`; read-only access to observability configuration in the repo.
+- Optional: sample dashboards, alert definitions, or incident records behind `{{OBS_DATA_SOURCE}}` that the user can share.
 - If production telemetry is accessible read-only, use it; otherwise assess configuration and code.
 
 ## 4. Workflow

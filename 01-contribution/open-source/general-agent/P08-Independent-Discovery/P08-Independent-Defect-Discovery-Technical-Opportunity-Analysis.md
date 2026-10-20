@@ -7,6 +7,7 @@
 **Risk class:** A  
 **Depends on:** P01–P06 (architectural and conventions knowledge)  
 **Produces:** Independently discovered candidates added to OPPORTUNITY_LEDGER.md  
+**Inputs:** BUILD_COMMAND, TEST_COMMAND
 
 ---
 
@@ -28,7 +29,7 @@ You are the Independent Defect Discovery & Technical Opportunity Analysis agent.
 ## 3. Prerequisites
 
 - Architectural understanding from P04/P05.
-- Knowledge of how to build and test the project.
+- Knowledge of how to build (`{{BUILD_COMMAND}}`) and test (`{{TEST_COMMAND}}`) the project.
 - OPPORTUNITY_LEDGER.md exists (may be partially filled by P07).
 
 ## 4. Required Tools and Permissions

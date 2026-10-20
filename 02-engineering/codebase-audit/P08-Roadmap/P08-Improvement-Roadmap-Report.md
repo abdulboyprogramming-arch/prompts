@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** AUDIT-P07
 **Produces:** `.audit/ROADMAP.md`, `.audit/AUDIT_REPORT.md`
+**Inputs:** REPOSITORY_OWNER_CONSTRAINTS (optional: TIME_BUDGET)
 **Est. effort:** 45–75 min
 
 ---
@@ -26,7 +27,7 @@ Out of scope: implementing fixes, writing tickets in external trackers, estimati
 
 - `.audit/FINDINGS.md` (authoritative list — do not modify findings here).
 - `.audit/AUDIT_SCOPE.md` (audit questions; report must answer them).
-- Optional from user: team size, appetite for breaking changes, release cadence, deadline. If absent, state the assumptions used.
+- Optional from user: team size, appetite for breaking changes, release cadence and deadline — summarised in `{{REPOSITORY_OWNER_CONSTRAINTS}}`, with a planning horizon of `{{TIME_BUDGET}}`. If absent, state the assumptions used.
 
 ## 4. Workflow
 

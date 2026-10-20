@@ -8,6 +8,7 @@
 **Risk class:** C
 **Depends on:** PAY-P02
 **Produces:** `.payments/RECONCILIATION.md`
+**Inputs:** PROVIDER_NAME, RECONCILIATION_WINDOW
 **Est. effort:** 45–90 min
 
 ---
@@ -25,7 +26,7 @@ Out of scope: accounting policy, tax, and revenue recognition; incident handling
 ## 3. Prerequisites and inputs
 
 - `.payments/MONEY_MODEL.md` (invariants), `.payments/FLOW_ANALYSIS.md` (unknown outcomes, stuck states).
-- Provider settlement reports or ledger API, with API access and the right scopes.
+- `{{PROVIDER_NAME}}` settlement reports or ledger API, with access scopes, covering `{{RECONCILIATION_WINDOW}}`.
 - Access to your own ledger/payment tables, read-only.
 
 ## 4. Workflow

@@ -8,6 +8,7 @@
 **Risk class:** A
 **Depends on:** none (entry stage)
 **Produces:** `.decommission/CONSUMER_MAP.md`, `.decommission/DECOMM_LEDGER.md`
+**Inputs:** TARGET_SERVICE (optional: TARGET_AREA)
 **Est. effort:** 30–90 min
 
 ---
@@ -26,7 +27,7 @@ Out of scope: the deprecation plan (P02), shutting anything down (P03).
 
 | Input | If missing |
 |-------|------------|
-| The artefact's identity: service, endpoint, table, queue topic, bucket, flag, package | pin the exact scope with the owner |
+| The artefact's identity: `{{TARGET_SERVICE}}` — service, endpoint, table, queue topic, bucket, flag, package; search scope `{{TARGET_AREA}}` | pin the exact scope with the owner |
 | Access to telemetry: access logs, gateway metrics, APM traces, queue consumer groups | request access; without it, discovery is partial and must be labelled as such |
 | Repository access for code search | ask for a list of consuming repositories |
 | Contract/registry documentation (API catalogue, service map) | derive from search and label as derived |

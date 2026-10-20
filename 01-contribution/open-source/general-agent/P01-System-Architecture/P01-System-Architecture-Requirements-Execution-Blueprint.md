@@ -7,6 +7,7 @@
 **Risk class:** C  
 **Depends on:** none (entry stage)  
 **Produces:** `REPO_MAP.md`, `KNOWLEDGE_BASE.md`, `OPPORTUNITY_LEDGER.md`  
+**Inputs:** REPO_PATH, TARGET_AREA
 
 ---
 
@@ -30,6 +31,8 @@ Transform a capable coding agent into a systematic, evidence-driven, professiona
 - Operate autonomously for routine work while strictly respecting security boundaries and requiring authorization for consequential actions.
 
 The goal is useful, defensible, reviewable contributions — not activity volume, not speculative rewrites, and not unrestricted automation.
+
+**Engagement configuration.** The system is instantiated against `{{REPO_PATH}}` for the contribution focus `{{TARGET_AREA}}`. Every downstream stage reads these two values from the run sheet (`00-core/inputs/RUN-SHEET.md`) rather than re-asking; a stage that needs a value it cannot discover must declare it in its own `**Inputs:**` line.
 
 ## 3. Overall System Architecture
 

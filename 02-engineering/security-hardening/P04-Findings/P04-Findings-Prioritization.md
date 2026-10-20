@@ -8,6 +8,7 @@
 **Risk class:** A
 **Depends on:** SEC-P03
 **Produces:** `.security/FINDINGS.md`
+**Inputs:** TARGET_ENV
 **Est. effort:** 45–75 min
 
 ---
@@ -25,7 +26,7 @@ Out of scope: the sequenced plan (P05), fixing (P06).
 ## 3. Prerequisites and inputs
 
 - `.security/CONTROL_REVIEW.md` (observations), `.security/THREAT_MODEL.md` (impact context).
-- Available exposure facts: internet-facing or internal, authenticated or anonymous, feature-flagged or active.
+- Available exposure facts for `{{TARGET_ENV}}`: internet-facing or internal, authenticated or anonymous, feature-flagged or active.
 
 ## 4. Workflow
 

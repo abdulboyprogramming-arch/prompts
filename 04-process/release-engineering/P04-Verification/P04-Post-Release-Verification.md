@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** REL-P03
 **Produces:** `POST_RELEASE.md`
+**Inputs:** TARGET_ENV, RELEASE_VERSION
 **Est. effort:** 20–40 min, plus the observation window
 
 ---
@@ -26,7 +27,7 @@ Out of scope: incident response if criteria are breached (`05-scenarios/incident
 
 - `DEPLOYMENT_PLAN.md` verification matrix and abort criteria.
 - `RELEASE_READINESS.md` baseline metrics.
-- Access to dashboards, logs, and a functional check path.
+- Access to dashboards, logs, and a functional check path in `{{TARGET_ENV}}` for `{{RELEASE_VERSION}}`.
 
 ## 4. Workflow
 

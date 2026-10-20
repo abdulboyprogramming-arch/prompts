@@ -8,6 +8,7 @@
 **Risk class:** A
 **Depends on:** GOV-P01
 **Produces:** `.governance/EVIDENCE.md`
+**Inputs:** EVIDENCE_PERIOD, APPLICABLE_FRAMEWORKS
 **Est. effort:** 45–120 min
 
 ---
@@ -26,7 +27,7 @@ Out of scope: fixing failures (P03), assessing design quality beyond what testin
 
 - `.governance/CONTROL_MAP.md`.
 - Access to: repository history and PR metadata, CI run history, IAM/access logs, ticket systems, incident records, backup job history.
-- The **period under test** (e.g. last 6 or 12 months) — state it explicitly; evidence outside the period is not evidence for it.
+- The **period under test** `{{EVIDENCE_PERIOD}}` (e.g. last 6 or 12 months) and the frameworks it must satisfy (`{{APPLICABLE_FRAMEWORKS}}`) — state both explicitly; evidence outside the period is not evidence for it.
 
 ## 4. Workflow
 

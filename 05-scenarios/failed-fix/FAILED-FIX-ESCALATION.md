@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** none
 **Produces:** `.failed-fix/ATTEMPT_LEDGER.md`, a decision: revert, re-scope, or escalate
+**Inputs:** ORIGINAL_SYMPTOM, REPO_PATH (optional: ATTEMPT_LIST)
 **Est. effort:** 20–45 min
 
 ---
@@ -36,9 +37,9 @@ Out of scope: writing more speculative patches.
 
 | Input | Source | If missing |
 |-------|--------|------------|
-| List of attempts (what changed, what happened) | git log, agent history, author | reconstruct from the diff history |
-| The current state of the code | working tree | check whether failed attempts are still applied |
-| The original symptom and reproduction | issue/logs | re-establish before anything else |
+| List of attempts `{{ATTEMPT_LIST}}` (what changed, what happened) | git log, agent history, author | reconstruct from the diff history |
+| The current state of the code in `{{REPO_PATH}}` | working tree | check whether failed attempts are still applied |
+| The original symptom `{{ORIGINAL_SYMPTOM}}` and reproduction | issue/logs | re-establish before anything else |
 
 ## 5. Workflow
 

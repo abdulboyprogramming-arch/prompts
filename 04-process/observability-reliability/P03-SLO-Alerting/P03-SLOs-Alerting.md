@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** OBS-P02
 **Produces:** `SLOS.md`, alert rule definitions
+**Inputs:** SLA_TARGET, APPROVER (optional: ONCALL_ROTA)
 **Est. effort:** 1–2 hours
 
 ---
@@ -25,8 +26,8 @@ Out of scope: dashboards for exploration (P02/P04), incident response procedure 
 ## 3. Prerequisites and inputs
 
 - `SIGNALS.md` (available metric names and business events).
-- User expectations or historical performance if available.
-- Human constraints: who is on call, working hours, escalation path.
+- User expectations or historical performance: target `{{SLA_TARGET}}` (to be confirmed or proposed).
+- Human constraints: who is on call (`{{ONCALL_ROTA}}`), working hours, escalation path, and who approves paging changes (`{{APPROVER}}`).
 
 ## 4. Workflow
 

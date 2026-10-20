@@ -8,6 +8,7 @@
 **Risk class:** C
 **Depends on:** DEC-P02 (timeline reached, monitoring shows migration)
 **Produces:** `.decommission/SHUTDOWN_LOG.md`
+**Inputs:** TARGET_SERVICE, APPROVER (optional: CHANGE_WINDOW)
 **Est. effort:** 30–120 min across the stages
 
 ---
@@ -27,9 +28,9 @@ Out of scope: deleting data or infrastructure (P04), migrating consumers (P02).
 | Input | Required | If missing |
 |-------|----------|------------|
 | Monitoring shows the consumer count has reached the planned threshold | yes | do not proceed; extend the notice period |
-| Named approver for Category C actions | yes | stop |
+| Named approver for Category C actions: `{{APPROVER}}` | yes | stop |
 | A restore path: the artefact can be re-enabled quickly | yes | define one before starting |
-| The escalation path for the "last consumer" case | recommended | stop and get it |
+| The escalation path for the "last consumer" case of `{{TARGET_SERVICE}}`, executed no earlier than `{{CHANGE_WINDOW}}` | recommended | stop and get it |
 
 ## 4. Workflow
 

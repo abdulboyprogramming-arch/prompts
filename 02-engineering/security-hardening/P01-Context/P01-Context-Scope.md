@@ -8,6 +8,7 @@
 **Risk class:** A
 **Depends on:** none (mandatory first stage)
 **Produces:** `.security/SEC_SCOPE.md`, `.security/SEC_LEDGER.md`
+**Inputs:** SECURITY_AUTHORISATION, IN_SCOPE (optional: DISCLOSURE_CONTACT, OUT_OF_SCOPE)
 **Est. effort:** 15–25 min
 
 ---
@@ -28,10 +29,10 @@ Out of scope: threat modelling (P02), code review (P03).
 
 | Input | Required | If missing |
 |-------|----------|------------|
-| Written authorisation (owner, date, scope statement) | yes | **stop** — record the gap; do not proceed to P02+ |
-| Systems in scope (repositories, environments, services) | yes | derive a proposed list from the repository and ask for confirmation |
+| Written authorisation (`{{SECURITY_AUTHORISATION}}`: owner, date, scope statement) | yes | **stop** — record the gap; do not proceed to P02+ |
+| Systems in scope: `{{IN_SCOPE}}` (repositories, environments, services), outside them `{{OUT_OF_SCOPE}}` | yes | derive a proposed list from the repository and ask for confirmation |
 | Permitted techniques | recommended | default to read-only static review only |
-| Disclosure contact and timeline | recommended | default to private channel, 90-day norm, stated as an assumption |
+| Disclosure contact and timeline `{{DISCLOSURE_CONTACT}}` | recommended | default to private channel, 90-day norm, stated as an assumption |
 | Data-handling constraints (PII, regulated data) | recommended | default to no data access, state it |
 
 ## 4. Workflow

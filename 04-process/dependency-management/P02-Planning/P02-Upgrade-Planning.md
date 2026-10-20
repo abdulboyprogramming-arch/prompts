@@ -8,6 +8,7 @@
 **Risk class:** A
 **Depends on:** DEP-P01
 **Produces:** `.deps/UPGRADE_PLAN.md`
+**Inputs:** RISK_TOLERANCE (optional: CHANGE_WINDOW)
 **Est. effort:** 30–60 min
 
 ---
@@ -26,7 +27,7 @@ Out of scope: executing the upgrade (P03), verification mechanics (P04).
 
 - `.deps/DEPENDENCY_MAP.md` (risk ranking, critical few, security findings).
 - Access to release notes / changelogs / migration guides (network, or vendored docs). Without them, upgrades are guesses; say so.
-- Constraints: supported runtime versions, release calendar, freeze periods, appetite for breaking changes.
+- Constraints: supported runtime versions, release calendar, freeze periods `{{CHANGE_WINDOW}}`, and appetite for breaking changes `{{RISK_TOLERANCE}}`.
 
 ## 4. Workflow
 

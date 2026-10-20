@@ -8,6 +8,7 @@
 **Risk class:** A
 **Depends on:** REC-P04
 **Produces:** `RECOVERY_PLAN.md`
+**Inputs:** ACCEPTANCE_FLOW
 **Est. effort:** 30–45 min
 
 ---
@@ -25,7 +26,7 @@ Out of scope: polish, refactoring for elegance, new features, test-suite expansi
 ## 3. Prerequisites and inputs
 
 - `INTENT.md` (what it was meant to do), `COMPLETENESS.md` (what is missing), `INTEGRATION.md` (what blocks running).
-- User input on scope: which flow defines "working" for them? If unavailable, propose one from the requirements and mark it `assumed`.
+- User input on scope: `{{ACCEPTANCE_FLOW}}` defines "working" for them. If unavailable, propose one from the requirements and mark it `assumed`.
 
 ## 4. Workflow
 

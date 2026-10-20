@@ -8,6 +8,7 @@
 **Risk class:** A
 **Depends on:** REC-P01
 **Produces:** `INTENT.md`
+**Inputs:** USER_CONTEXT
 **Est. effort:** 30–60 min
 
 ---
@@ -25,7 +26,7 @@ Out of scope: judging what is broken (P03/P04), planning recovery (P05). Do not 
 ## 3. Prerequisites and inputs
 
 - `RECOVERY_STATE.md` (HEAD, branches, preserved work).
-- Optional user context: who built it, why it was abandoned, what "working" means to them. Ask at most three questions, and only ones the repository cannot answer.
+- Optional user context `{{USER_CONTEXT}}`: who built it, why it was abandoned, what "working" means to them. Ask at most three questions, and only ones the repository cannot answer.
 
 ## 4. Workflow
 

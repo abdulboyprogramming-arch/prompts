@@ -8,6 +8,7 @@
 **Risk class:** D
 **Depends on:** PRIV-P01
 **Produces:** `.privacy/REQUEST_LOG.md`, verified deletion or scoped export
+**Inputs:** SUBJECT_IDENTIFIERS, VERIFICATION_METHOD, REQUEST_ID
 **Est. effort:** 30–120 min
 
 ---
@@ -27,8 +28,8 @@ Out of scope: deciding whether the request is legally valid (owner/legal), inven
 | Input | Required | If missing |
 |-------|----------|------------|
 | `.privacy/DATA_MAP.md` with a completeness statement | yes | return to P01; executing on an incomplete map creates permanent partial deletion |
-| Identity verification of the requester | yes | stop; deleting or exporting on an unverified request is itself a breach |
-| Legal hold check | yes | stop and escalate |
+| Identity verification of the requester `{{SUBJECT_IDENTIFIERS}}` via `{{VERIFICATION_METHOD}}` | yes | stop; deleting or exporting on an unverified request is itself a breach |
+| Legal hold check for request `{{REQUEST_ID}}` | yes | stop and escalate |
 | Deletion authority for each system (owner, runbook, API) | per system | mark that system `blocked`; do not improvise |
 
 ## 4. Workflow

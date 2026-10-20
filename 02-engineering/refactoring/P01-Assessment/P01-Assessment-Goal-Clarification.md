@@ -8,6 +8,7 @@
 **Risk class:** A
 **Depends on:** none (entry stage)
 **Produces:** `REFACTOR_GOAL.md`, `REFACTOR_LEDGER.md`
+**Inputs:** PERCEIVED_PROBLEM, TARGET_AREA (optional: DEADLINE)
 **Est. effort:** 30–60 min
 
 ---
@@ -28,10 +29,10 @@ Out of scope: the refactoring plan, the tests, the code.
 
 | Input | Source | If missing |
 |-------|--------|------------|
-| The perceived problem ("this module is a mess") | user | ask what it blocks: a feature, a bug rate, an onboarding time |
-| The area's location and rough size | repository | locate by the symptom (files changed together, the code behind the slow endpoint) |
+| The perceived problem `{{PERCEIVED_PROBLEM}}` ("this module is a mess") | user | ask what it blocks: a feature, a bug rate, an onboarding time |
+| The area's location and rough size: `{{TARGET_AREA}}` | repository | locate by the symptom (files changed together, the code behind the slow endpoint) |
 | History: churn, defects, incidents in the area | git log, issue tracker | state that history is unavailable; the goal becomes weaker and must say so |
-| Any deadline or forcing event (feature, migration, audit) | user | ask; it determines whether a big refactor is even available |
+| Any deadline or forcing event `{{DEADLINE}}` (feature, migration, audit) | user | ask; it determines whether a big refactor is even available |
 
 ## 4. Workflow
 

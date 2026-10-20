@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** FC-P03
 **Produces:** `.feature/ACCEPTANCE.md`, verdict
+**Inputs:** TARGET_ENV (optional: TEST_ACCOUNTS)
 **Est. effort:** 30–45 min
 
 ---
@@ -25,7 +26,7 @@ Out of scope: fixing what you find (return to P03), release decisions (REL-P01).
 ## 3. Prerequisites and inputs
 
 - `.feature/COMPLETION_CONTRACT.md`, `.feature/LAYER_MAP.md`, `.feature/IMPLEMENTATION_LOG.md`.
-- A clean environment with the feature branch applied; test accounts for each role.
+- A clean environment `{{TARGET_ENV}}` with the feature branch applied; test accounts for each role (`{{TEST_ACCOUNTS}}`).
 
 ## 4. Workflow
 

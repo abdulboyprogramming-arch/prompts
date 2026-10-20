@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** SEC-P05 (approved plan)
 **Produces:** code/config changes, tests, `.security/VERIFICATION.md`
+**Inputs:** BRANCH, APPROVER
 **Est. effort:** 1–4 hours depending on scope
 
 ---
@@ -26,7 +27,7 @@ Out of scope: items not in the approved plan; refactoring for elegance; architec
 
 - Approved `.security/HARDENING_PLAN.md`.
 - `.security/FINDINGS.md` (evidence, preconditions).
-- Ability to run the project's tests; if unavailable, record the limitation before starting.
+- Ability to run the project's tests on branch `{{BRANCH}}`, with remediation authorised by `{{APPROVER}}`; if unavailable, record the limitation before starting.
 
 ## 4. Workflow
 

@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** REL-P02
 **Produces:** `DEPLOYMENT_PLAN.md`
+**Inputs:** TARGET_ENV, RELEASE_VERSION (optional: CHANGE_WINDOW)
 **Est. effort:** 30–60 min
 
 ---
@@ -26,7 +27,7 @@ Out of scope: executing the deployment (Category C, human-authorised), building 
 
 - `RELEASE_READINESS.md` (risk class, rollback viability).
 - `CHANGELOG` breaking changes and migration notes.
-- Deployment topology, traffic routing, and database migration tooling.
+- Deployment target `{{TARGET_ENV}}` for `{{RELEASE_VERSION}}`, including any change window `{{CHANGE_WINDOW}}`; topology, traffic routing, and database migration tooling.
 
 ## 4. Workflow
 

@@ -8,6 +8,7 @@
 **Risk class:** A
 **Depends on:** AUDIT-P05
 **Produces:** `.audit/SECURITY_DOCS.md`
+**Inputs:** SECURITY_REVIEW_AUTHORISATION
 **Est. effort:** 30–60 min
 
 ---
@@ -27,7 +28,7 @@ Out of scope: exploitation, live testing, compliance attestation, third-party ve
 - `ARCHITECTURE.md` (flows, trust boundaries candidates).
 - `TEST_DEPS.md` (dependency vulnerabilities, unprotected auth paths).
 - `REPO_STRUCTURE.md` (entry points, configuration surfaces).
-- Written authorisation to perform a read-only security review. If absent, perform documentation-only audit and state that security review was not authorised.
+- Written authorisation to perform a read-only security review (`{{SECURITY_REVIEW_AUTHORISATION}}`, owner and date). If absent, perform documentation-only audit and state that security review was not authorised.
 
 ## 4. Workflow
 

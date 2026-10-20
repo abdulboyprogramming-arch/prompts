@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** AI-P04
 **Produces:** `AI_OPERATIONS.md`, telemetry config
+**Inputs:** TARGET_SERVICE, TARGET_ENV
 **Est. effort:** 1–2 hours
 
 ---
@@ -25,7 +26,7 @@ Out of scope: infrastructure provisioning (`03-domains/devops-infra/`), initial 
 ## 3. Prerequisites and inputs
 
 - `AI_ARCHITECTURE.md` (contract, degradation), `EVAL_PLAN.md` (harness), `SAFETY.md` (detection signals, residual risks).
-- Access to model provider metrics/billing if available.
+- Access to model provider metrics/billing for `{{TARGET_SERVICE}}` in `{{TARGET_ENV}}` if available.
 
 ## 4. Workflow
 

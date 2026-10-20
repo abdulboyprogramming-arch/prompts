@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** OBS-P01
 **Produces:** instrumentation code/config, `SIGNALS.md`
+**Inputs:** IN_SCOPE
 **Est. effort:** 1–3 hours
 
 ---
@@ -25,7 +26,7 @@ Out of scope: dashboards and alerts (P03), runbooks (P04), performance optimisat
 ## 3. Prerequisites and inputs
 
 - `OBS_CURRENT.md` (blind spots, existing conventions).
-- Approved scope for what may change (instrumentation is usually low-risk, but it touches production code paths).
+- Approved scope for what may change: `{{IN_SCOPE}}` (instrumentation is usually low-risk, but it touches production code paths).
 
 ## 4. Workflow
 

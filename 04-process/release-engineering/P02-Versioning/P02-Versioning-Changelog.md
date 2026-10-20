@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** REL-P01
 **Produces:** version bump, `CHANGELOG.md` entry, release notes
+**Inputs:** LAST_TAG, TARGET_COMMIT
 **Est. effort:** 20–40 min
 
 ---
@@ -25,7 +26,7 @@ Out of scope: readiness assessment (P01), deployment (P03).
 ## 3. Prerequisites and inputs
 
 - `RELEASE_READINESS.md` compatibility classification.
-- Commit range since the last release (`git log <last-tag>..HEAD`), merged PRs, and the existing changelog format.
+- Commit range since the last release (`git log {{LAST_TAG}}..{{TARGET_COMMIT}}`), merged PRs, and the existing changelog format.
 
 ## 4. Workflow
 

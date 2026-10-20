@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** none (entry stage)
 **Produces:** `RELEASE_READINESS.md`, go/no-go verdict
+**Inputs:** REPO_PATH, TARGET_COMMIT, RELEASE_VERSION (optional: LAST_TAG)
 **Est. effort:** 30–45 min
 
 ---
@@ -24,7 +25,7 @@ Out of scope: writing the changelog (P02), executing the deployment (P03), post-
 
 ## 3. Prerequisites and inputs
 
-- Target commit/tag and the intended version.
+- Target commit `{{TARGET_COMMIT}}` (tag since `{{LAST_TAG}}`) and the intended version `{{RELEASE_VERSION}}`, in `{{REPO_PATH}}`.
 - Declared supported consumers (API clients, package users, internal services, end users).
 - Access to CI results for that commit.
 

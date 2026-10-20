@@ -8,6 +8,7 @@
 **Risk class:** A
 **Depends on:** none (entry stage)
 **Produces:** `.governance/CONTROL_MAP.md`, `.governance/GOV_LEDGER.md`
+**Inputs:** CLAIMED_FRAMEWORKS, APPROVER
 **Est. effort:** 45–90 min
 
 ---
@@ -26,9 +27,9 @@ Out of scope: testing whether controls operated (P02), remediation (P03), legal 
 
 | Input | If missing |
 |-------|------------|
-| The claimed obligations: framework (SOC 2, ISO 27001), customer commitments, internal policy, regulatory requirements | ask which claims are being made; a control map without claims is a wish list |
+| The claimed obligations: `{{CLAIMED_FRAMEWORKS}}`, customer commitments, internal policy, regulatory requirements | ask which claims are being made; a control map without claims is a wish list |
 | Access to repository settings, CI configuration, cloud IAM, ticketing | map only what is visible and mark the rest `not observable` |
-| Named owner per domain (security, data, operations) | derive from CODEOWNERS/team docs and mark `inferred` |
+| Named owner per domain (security, data, operations), confirmed by `{{APPROVER}}` | derive from CODEOWNERS/team docs and mark `inferred` |
 
 ## 4. Workflow
 

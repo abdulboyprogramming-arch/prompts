@@ -8,6 +8,7 @@
 **Risk class:** A
 **Depends on:** none (entry stage)
 **Produces:** `.payments/MONEY_MODEL.md`, `.payments/PAYMENT_LEDGER.md`
+**Inputs:** REPO_PATH, SUPPORTED_CURRENCIES (optional: PROVIDER_NAME)
 **Est. effort:** 30–60 min
 
 ---
@@ -29,8 +30,8 @@ Out of scope: idempotency and failure handling (P02), reconciliation (P03).
 | Input | Source | If missing |
 |-------|--------|------------|
 | Schema for money-bearing tables | migrations, ORM models | derive from code and mark `derived` |
-| Provider integration code and API version | repository | note the provider and version, since semantics differ |
-| Supported currencies and their exponents | product/owner | list what the code handles and flag the rest |
+| Provider integration code for `{{PROVIDER_NAME}}` and its API version, in `{{REPO_PATH}}` | repository | note the provider and version, since semantics differ |
+| Supported currencies and their exponents: `{{SUPPORTED_CURRENCIES}}` | product/owner | list what the code handles and flag the rest |
 | Refund, dispute, and partial-capture rules | product/finance owner | record as open questions; do not invent policy |
 
 ## 4. Workflow

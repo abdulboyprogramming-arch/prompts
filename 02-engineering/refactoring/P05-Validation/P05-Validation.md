@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** REF-P04
 **Produces:** `VALIDATION.md`
+**Inputs:** HEAD_REF (optional: BASE_REF)
 **Est. effort:** 30–60 min
 
 ---
@@ -25,7 +26,7 @@ Out of scope: further code changes (return to P04), cleanup (P06).
 ## 3. Prerequisites and inputs
 
 - `REFACTOR_GOAL.md` (target and its evaluation method), `SAFETY_NET.md`, `EXECUTION_LOG.md`.
-- The commit range and a runnable environment; the pre-refactoring commit for comparison.
+- The commit range `{{BASE_REF}}..{{HEAD_REF}}` and a runnable environment; the pre-refactoring commit for comparison.
 
 ## 4. Workflow
 

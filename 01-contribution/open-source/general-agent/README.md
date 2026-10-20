@@ -2,7 +2,7 @@
 
 **Version:** 1.0.0  
 **Generated:** 2026-10-12  
-**Status:** Complete and ready for use
+**Status:** Operational (16 stages). One prompt in this system (`DBG-01`, elsewhere in the library) has been empirically executed; these have been reviewed, not run end to end on a live contribution.
 
 This directory contains a complete, production-grade multi-stage prompt system that turns a capable AI coding agent into a disciplined, evidence-driven open-source contribution partner.
 
@@ -25,6 +25,22 @@ This directory contains a complete, production-grade multi-stage prompt system t
    - The path to `MY_DETAILS.txt`
 
 4. The orchestrator will execute the pipeline, writing durable state into a `.contribution-agent/` directory inside the repository (or a location you configure).
+
+## Inputs
+
+Each stage declares the values it cannot infer in an `**Inputs:**` line. Fill them once and paste the same block into every stage instead of re-explaining:
+
+| Name | Meaning | Where it is used |
+|------|---------|------------------|
+| `REPO_PATH` | Target repository root | P02–P16 |
+| `TARGET_AREA` | Contribution focus (a subsystem), or blank for general | P01, P05 |
+| `BRANCH` | Feature branch for the change | P10–P14 |
+| `MY_DETAILS_FILE` | Path to the operator details file | P02, P03, P16 |
+| `APPROVER` | Who authorises push, PR, and comment actions | P13, P14, P16 |
+| `BUILD_COMMAND` / `TEST_COMMAND` | Project commands discovered in P02 | P08, P12 |
+| `RISK_TOLERANCE` | How much blast radius is acceptable when selecting work | P09 |
+
+`MY_DETAILS.txt` is the file form of these values. It is not a substitute for declaring them: a stage that reads it must still say which value it took from it.
 
 ## Directory Layout
 

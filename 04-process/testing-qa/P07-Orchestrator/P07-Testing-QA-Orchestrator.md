@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** QA-P01 … QA-P06 (invokes them)
 **Produces:** all artifacts under `.qa/`
+**Inputs:** REPO_PATH, TRIGGER (optional: TIME_BUDGET, APPROVER)
 **Est. effort:** 2–6 hours
 
 ---
@@ -26,10 +27,10 @@ Out of scope: refactoring production code, changing branch protection without au
 
 | Input | Required | If missing |
 |-------|----------|------------|
-| Repository path | yes | ask once |
-| Trigger (incident, audit, general concern) | recommended | infer from history; mark assumed |
-| Authority to modify tests and CI config | yes for P05 | stop after P04 and deliver the plan |
-| CI time budget | optional | assume 10-minute PR target and state it |
+| `{{REPO_PATH}}` | yes | ask once |
+| `{{TRIGGER}}` (incident, audit, general concern) | recommended | infer from history; mark assumed |
+| Authority to modify tests and CI config, from `{{APPROVER}}` | yes for P05 | stop after P04 and deliver the plan |
+| `{{TIME_BUDGET}}` — CI time budget | optional | assume 10-minute PR target and state it |
 
 ## 4. Workflow
 

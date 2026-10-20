@@ -8,6 +8,7 @@
 **Risk class:** A (reports only; may apply reversible mutations in a scratch copy to test tests)
 **Depends on:** none (consumes another agent's or engineer's claims)
 **Produces:** `VERIFICATION_REPORT.md` with a verdict and gap list
+**Inputs:** BASE_REF, HEAD_REF (optional: ACCEPTANCE_CLAIM_FILE)
 **Gallery:** An agent or engineer reports work complete: reproduce the claims yourself, probe the tests, and audit the diff for undeclared scope.
 **Est. effort:** 20–60 min per change set
 
@@ -34,8 +35,8 @@ Out of scope: fixing the gaps (report them), redesigning the solution, reviewing
 
 | Input | Source | If missing |
 |-------|--------|------------|
-| The completion report / PR description | author | ask for the claims; verification is against claims, not vibes |
-| The change set (commit range or diff) | `git log`, `git diff` | ask which commits constitute the work |
+| The completion report / PR description at `{{ACCEPTANCE_CLAIM_FILE}}` | author | ask for the claims; verification is against claims, not vibes |
+| The change set `{{BASE_REF}}..{{HEAD_REF}}` | `git log`, `git diff` | ask which commits constitute the work |
 | A runnable environment | local | verify statically and state the limitation loudly |
 | The acceptance criteria | task definition or plan | reconstruct from the claim and mark them `assumed` |
 

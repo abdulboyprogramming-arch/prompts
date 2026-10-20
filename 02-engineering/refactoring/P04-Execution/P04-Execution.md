@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** REF-P03 (safety net demonstrated)
 **Produces:** commits, `EXECUTION_LOG.md`, `REFACTOR_LEDGER.md` updates
+**Inputs:** BRANCH (optional: BASE_REF)
 **Est. effort:** proportional to the slice plan
 
 ---
@@ -29,7 +30,7 @@ Out of scope: new slices, behaviour changes, opportunistic improvements.
 | `SAFETY_NET.md` with a go decision | yes | stop; no execution without a demonstrated net |
 | `REFACTOR_STRATEGY.md` with reversal points | yes | stop |
 | A runnable suite and the commands to run it | yes | P03 incomplete |
-| A branch or worktree isolated from unrelated work | yes | create one |
+| A branch or worktree `{{BRANCH}}` isolated from unrelated work, cut from `{{BASE_REF}}` | yes | create one |
 
 ## 4. Workflow
 

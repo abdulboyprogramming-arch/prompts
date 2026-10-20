@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** REF-P02
 **Produces:** `SAFETY_NET.md`, tests and characterisation artifacts
+**Inputs:** REPO_PATH (optional: PRODUCTION_DATA_SOURCE)
 **Est. effort:** 1–4 hours
 
 ---
@@ -25,8 +26,8 @@ Out of scope: restructuring the code (P04), improving the tests' style, fixing b
 ## 3. Prerequisites and inputs
 
 - `REFACTOR_STRATEGY.md` (slices, seams, verification per slice).
-- A runnable environment; the current test suite and how long it takes.
-- Access to historical inputs/outputs if the system has them (logs, fixtures, sample data) — the best characterisation data is real.
+- A runnable environment for `{{REPO_PATH}}`; the current test suite and how long it takes.
+- Access to historical inputs/outputs if the system has them (`{{PRODUCTION_DATA_SOURCE}}`: logs, fixtures, sample data) — the best characterisation data is real.
 
 ## 4. Workflow
 

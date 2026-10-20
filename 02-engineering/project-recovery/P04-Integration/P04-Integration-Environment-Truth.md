@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** REC-P03
 **Produces:** `INTEGRATION.md`, `.recovery/raw/` command logs
+**Inputs:** TARGET_ENV
 **Est. effort:** 45–120 min
 
 ---
@@ -26,7 +27,7 @@ Out of scope: implementing fixes (P06). Installing dependencies is allowed when 
 
 - `COMPLETENESS.md` (blocking requirements, wiring mismatches).
 - `RECOVERY_STATE.md` (environment capability).
-- Documented setup instructions from the README (treat as claims).
+- Documented setup instructions from the README, exercised on `{{TARGET_ENV}}` (treat as claims).
 
 ## 4. Workflow
 

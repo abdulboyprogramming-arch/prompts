@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** DEP-P03
 **Produces:** `.deps/VERIFICATION.md`
+**Inputs:** REPO_PATH, HEAD_REF (optional: BASE_REF)
 **Est. effort:** 30–60 min
 
 ---
@@ -25,7 +26,7 @@ Out of scope: fixing what you find (return to P03), release (REL-P01).
 ## 3. Prerequisites and inputs
 
 - `.deps/UPGRADE_PLAN.md` (intended changes), `.deps/UPGRADE_LOG.md` (claims).
-- The upgrade branch, plus the pre-upgrade commit for comparison.
+- The upgrade branch `{{HEAD_REF}}` in `{{REPO_PATH}}`, plus the pre-upgrade commit `{{BASE_REF}}` for comparison.
 - A runnable environment.
 
 ## 4. Workflow

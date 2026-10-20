@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** QA-P05
 **Produces:** `.qa/VALIDATION.md`
+**Inputs:** REPO_PATH, HEAD_REF
 **Est. effort:** 30–60 min
 
 ---
@@ -25,7 +26,7 @@ Out of scope: writing new tests (return to P05 if verification reveals a gap), f
 ## 3. Prerequisites and inputs
 
 - `.qa/TEST_STRATEGY.md` (targets), `.qa/IMPLEMENTATION_LOG.md` (claims).
-- The repository at the post-implementation commit.
+- `{{REPO_PATH}}` checked out at the post-implementation commit `{{HEAD_REF}}`.
 
 ## 4. Workflow
 

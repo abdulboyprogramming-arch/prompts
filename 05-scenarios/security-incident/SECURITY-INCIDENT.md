@@ -8,6 +8,7 @@
 **Risk class:** D — actions taken here can destroy evidence or alert an attacker
 **Depends on:** none; runs in parallel with availability recovery
 **Produces:** `.security-incident/INCIDENT_LOG.md`, containment record, evidence index, disclosure decision record
+**Inputs:** INCIDENT_ID, DISCLOSURE_OWNER (optional: DETECTION_SIGNAL)
 **Est. effort:** hours to weeks
 
 ---
@@ -35,10 +36,10 @@ Out of scope: legal advice, regulatory interpretation, law-enforcement liaison (
 
 | Input | If missing |
 |-------|------------|
-| The detection signal (alert, report, anomaly, customer complaint) | Start from the report and treat it as credible until disproven |
+| The detection signal `{{DETECTION_SIGNAL}}` for `{{INCIDENT_ID}}` (alert, report, anomaly, customer complaint) | Start from the report and treat it as credible until disproven |
 | Access inventory: identities, keys, tokens, service accounts, third-party integrations | Cannot scope; begin inventorying immediately — this is the core work |
 | Log retention and audit trails | Preserve what exists now, before it rotates |
-| A named decision owner for disclosure and for taking systems offline | Escalate to get one; the recovery lead cannot also decide disclosure |
+| A named decision owner for disclosure and for taking systems offline: `{{DISCLOSURE_OWNER}}` | Escalate to get one; the recovery lead cannot also decide disclosure |
 
 ## 4. Workflow
 

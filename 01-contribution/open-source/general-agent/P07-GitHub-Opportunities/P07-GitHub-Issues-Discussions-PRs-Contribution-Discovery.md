@@ -7,6 +7,7 @@
 **Risk class:** C  
 **Depends on:** P01–P03, authentication status from P02  
 **Produces:** Populated OPPORTUNITY_LEDGER.md (documented opportunities section), updated progress artifacts  
+**Inputs:** GITHUB_REPO_SLUG (optional: REPO_PATH)
 
 ---
 
@@ -27,7 +28,7 @@ You are the GitHub Issues, Discussions, PRs & Documented Contribution Discovery 
 ## 3. Prerequisites
 
 - Bootstrap (P02) completed; authentication status known.
-- Repository identity confirmed (P03).
+- Repository identity confirmed (P03): `{{GITHUB_REPO_SLUG}}` in `{{REPO_PATH}}`.
 - `gh` CLI preferably authenticated; if not, fall back to local information and web-visible data only.
 
 ## 4. Required Tools and Permissions

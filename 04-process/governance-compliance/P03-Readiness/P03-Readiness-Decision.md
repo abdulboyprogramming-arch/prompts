@@ -8,6 +8,7 @@
 **Risk class:** A
 **Depends on:** GOV-P02
 **Produces:** `.governance/READINESS.md`
+**Inputs:** AUDIT_DATE, APPROVER
 **Est. effort:** 30–60 min
 
 ---
@@ -28,7 +29,7 @@ Out of scope: performing the remediation (route to the owning system), legal att
 
 - `.governance/CONTROL_MAP.md` (what is claimed and what exists).
 - `.governance/EVIDENCE.md` (what operated, with exception rates).
-- The deadline driving this work (audit date, customer commitment, regulatory date), and the accountable owner's identity.
+- The deadline driving this work (`{{AUDIT_DATE}}`), and the accountable owner's identity (`{{APPROVER}}`).
 
 ## 4. Workflow
 

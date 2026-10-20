@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** none
 **Produces:** a classified flake, a fix or a justified quarantine, and a prevention note
+**Inputs:** TEST_IDENTIFIER, REPO_PATH (optional: CI_HISTORY)
 **Est. effort:** 20–60 min
 
 ---
@@ -24,9 +25,9 @@ Out of scope: broad suite redesign (`04-process/testing-qa/` QA-P04), production
 
 ## 3. Prerequisites and inputs
 
-- The test identifier and the failure output(s) — the more distinct failure messages, the better.
-- Reproduction rate if known; CI history of pass/fail for that test.
-- The test code, its fixtures, and the code under test.
+- The test identifier `{{TEST_IDENTIFIER}}` and the failure output(s) — the more distinct failure messages, the better.
+- Reproduction rate if known; CI history `{{CI_HISTORY}}` of pass/fail for that test.
+- The test code in `{{REPO_PATH}}`, its fixtures, and the code under test.
 
 ## 4. Workflow
 

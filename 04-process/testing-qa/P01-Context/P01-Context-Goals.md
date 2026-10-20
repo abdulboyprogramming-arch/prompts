@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** none (entry stage)
 **Produces:** `.qa/QA_CONTEXT.md`, `.qa/QA_LEDGER.md`
+**Inputs:** REPO_PATH, TRIGGER (optional: TIME_BUDGET)
 **Est. effort:** 15–30 min
 
 ---
@@ -26,9 +27,9 @@ Out of scope: test inventory and suite execution (P02), writing tests (P05).
 
 | Input | Source | If missing |
 |-------|--------|------------|
-| Repository path | user | confirm from working directory |
-| Trigger: incident, near-miss, audit finding, or general concern | user | derive from git log/CI/hot spots; mark `assumed` |
-| Team size and CI time budget | user | assume 2–5 engineers and a 10-minute PR feedback target; state the assumption |
+| `{{REPO_PATH}}` | user | confirm from working directory |
+| `{{TRIGGER}}`: incident, near-miss, audit finding, or general concern | user | derive from git log/CI/hot spots; mark `assumed` |
+| `{{TIME_BUDGET}}` — team size and CI time budget | user | assume 2–5 engineers and a 10-minute PR feedback target; state the assumption |
 
 ## 4. Workflow
 

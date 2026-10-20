@@ -8,6 +8,7 @@
 **Risk class:** A
 **Depends on:** SEC-P01
 **Produces:** `.security/THREAT_MODEL.md`
+**Inputs:** TARGET_AREA (optional: DATA_CLASSIFICATION)
 **Est. effort:** 45–75 min
 
 ---
@@ -26,7 +27,7 @@ Out of scope: checking whether controls exist (P03), rating findings (P04).
 
 - `.security/SEC_SCOPE.md` (scope, constraints).
 - Architecture knowledge: `.audit/ARCHITECTURE.md` if an audit exists, otherwise reconstruct from entry points, routes, schema, and deployment config.
-- Business context: what the system is for, who uses it, what data it holds (from user or repository).
+- Business context: what the system is for, who uses `{{TARGET_AREA}}`, and what data it holds (classification `{{DATA_CLASSIFICATION}}`, from user or repository).
 
 ## 4. Workflow
 

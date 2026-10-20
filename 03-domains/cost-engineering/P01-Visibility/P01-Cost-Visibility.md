@@ -8,6 +8,7 @@
 **Risk class:** A
 **Depends on:** none (entry stage)
 **Produces:** `.cost/COST_MAP.md`, `.cost/COST_LEDGER.md`
+**Inputs:** CLOUD_ACCOUNT, BILLING_EXPORT_PATH
 **Est. effort:** 30–60 min
 
 ---
@@ -26,7 +27,7 @@ Out of scope: changing resources, choosing savings (P02).
 
 | Input | Source | If missing |
 |-------|--------|------------|
-| Billing export at resource granularity (daily, line-item) | cloud console/billing API | request it; invoice-level totals cannot support diagnosis |
+| Billing export for `{{CLOUD_ACCOUNT}}` at resource granularity (daily, line-item), at `{{BILLING_EXPORT_PATH}}` | cloud console/billing API | request it; invoice-level totals cannot support diagnosis |
 | Tag/label conventions | infrastructure-as-code, docs | infer from resource names and state that it is inferred |
 | Service catalogue or repository list | repository/org | derive from infrastructure definitions |
 | Traffic/usage data (requests, storage volumes, data transfer) | metrics | unit economics cannot be computed; record as a gap |

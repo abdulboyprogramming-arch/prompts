@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** REC-P06
 **Produces:** `ACCEPTANCE.md`, `HANDOFF.md`
+**Inputs:** TARGET_ENV
 **Est. effort:** 30–60 min
 
 ---
@@ -25,7 +26,7 @@ Out of scope: fixing the remaining issues (return to P06 if the user authorises 
 ## 3. Prerequisites and inputs
 
 - `RECOVERY_PLAN.md` (acceptance flow definition), `RECOVERY_LOG.md` (claims to verify).
-- Recovery branch with commits; safety tag from P01 available.
+- Recovery branch with commits; safety tag from P01 available; acceptance run in `{{TARGET_ENV}}`.
 
 ## 4. Workflow
 

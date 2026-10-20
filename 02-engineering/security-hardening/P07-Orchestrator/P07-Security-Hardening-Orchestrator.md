@@ -8,6 +8,7 @@
 **Risk class:** A/B
 **Depends on:** SEC-P01 … SEC-P06
 **Produces:** all `.security/` artifacts, plus changes when authorised
+**Inputs:** SECURITY_AUTHORISATION, TARGET_COMMIT, APPROVER (optional: DISCLOSURE_CONTACT)
 
 ---
 
@@ -25,10 +26,10 @@ Out of scope: penetration testing, compliance attestation, exploitation, third-p
 
 | Input | Required | If missing |
 |-------|----------|------------|
-| Written authorisation and scope | yes for P02+ | deliver P01 only; offer a static hygiene review of the user's own repository |
-| Repository at a pinned commit | yes | ask |
-| Authority to modify code (for P06) | required only for remediation | stop after P05 with an approved plan |
-| Disclosure contact | recommended | default stated in `SEC_SCOPE.md` |
+| Written authorisation and scope: `{{SECURITY_AUTHORISATION}}` | yes for P02+ | deliver P01 only; offer a static hygiene review of the user's own repository |
+| Repository at a pinned commit `{{TARGET_COMMIT}}` | yes | ask |
+| Authority to modify code (for P06), from `{{APPROVER}}` | required only for remediation | stop after P05 with an approved plan |
+| Disclosure contact `{{DISCLOSURE_CONTACT}}` | recommended | default stated in `SEC_SCOPE.md` |
 
 ## 4. Workflow
 

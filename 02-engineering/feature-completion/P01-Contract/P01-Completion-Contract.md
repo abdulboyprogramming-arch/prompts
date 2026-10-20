@@ -8,6 +8,7 @@
 **Risk class:** A
 **Depends on:** none (entry stage)
 **Produces:** `.feature/COMPLETION_CONTRACT.md`, `.feature/FEATURE_LEDGER.md`
+**Inputs:** FEATURE_REQUEST, TARGET_AREA
 **Est. effort:** 20–40 min
 
 ---
@@ -26,7 +27,7 @@ Out of scope: locating implementation points (P02), writing code (P03).
 
 | Input | Source | If missing |
 |-------|--------|------------|
-| Feature request / ticket | user | ask for one sentence of intent and the user-facing outcome |
+| Feature request / ticket `{{FEATURE_REQUEST}}` landing in `{{TARGET_AREA}}` | user | ask for one sentence of intent and the user-facing outcome |
 | Roles and permissions model | repository | infer from code, mark `assumed` |
 | Existing similar feature | repository | find the nearest analogue to copy conventions from |
 

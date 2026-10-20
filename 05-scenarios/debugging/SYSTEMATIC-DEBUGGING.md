@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** none
 **Produces:** a minimal reproduction, a supported cause, a verified fix, and a regression test
+**Inputs:** OBSERVED_BEHAVIOUR, EXPECTED_BEHAVIOUR (optional: REPRODUCTION_INPUT, REPO_PATH)
 **Est. effort:** 30 min – 3 h
 
 ---
@@ -26,9 +27,9 @@ Out of scope: refactoring the affected area, fixing unrelated defects you notice
 
 | Input | Source | If missing |
 |-------|--------|------------|
-| Observed vs expected behaviour | user | ask exactly once, with a concrete example |
-| Reproduction steps or failing input | user / test / logs | attempt to construct; state assumptions |
-| Environment where it occurs | user | infer from logs; ask if ambiguous |
+| Observed `{{OBSERVED_BEHAVIOUR}}` vs expected `{{EXPECTED_BEHAVIOUR}}` | user | ask exactly once, with a concrete example |
+| Reproduction steps or failing input `{{REPRODUCTION_INPUT}}` | user / test / logs | attempt to construct; state assumptions |
+| Environment where it occurs, in `{{REPO_PATH}}` | user | infer from logs; ask if ambiguous |
 | Recent changes in the area | `git log -20 -- <path>` | proceed without history |
 
 ## 4. Workflow

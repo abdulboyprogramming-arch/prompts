@@ -8,6 +8,7 @@
 **Risk class:** A
 **Depends on:** COST-P01
 **Produces:** `.cost/WASTE_FINDINGS.md`
+**Inputs:** TARGET_SERVICE (optional: BILLING_EXPORT_PATH)
 **Est. effort:** 45–90 min
 
 ---
@@ -25,7 +26,7 @@ Out of scope: implementing savings (P03), judging whether the product is worth i
 ## 3. Prerequisites and inputs
 
 - `.cost/COST_MAP.md` (top items, variable drivers, unattributed spend).
-- Resource-level usage metrics: CPU/memory utilisation percentiles, request counts, storage growth, data transfer paths, query volumes.
+- Resource-level usage metrics for `{{TARGET_SERVICE}}` (feeding from `{{BILLING_EXPORT_PATH}}` if supplied): CPU/memory utilisation percentiles, request counts, storage growth, data transfer paths, query volumes.
 - Architecture knowledge for the affected services (what redundancy is required, what SLAs apply).
 
 ## 4. Workflow

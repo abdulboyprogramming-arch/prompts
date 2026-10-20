@@ -87,17 +87,19 @@ Full detail in `CHANGELOG.md`. Summary:
 4. **Reviews are self-assessments** by the authoring agent, recorded in `_meta/review-log.md`. Independence is not claimed.
 5. **No duplicate/near-duplicate detection** beyond identifiers and titles.
 6. **Workflows are untested compositions**; artifact-name compatibility is maintained by convention.
-7. **`01-contribution/open-source/general-agent` uses bare identifiers** and has no "check ran vs not run" distinction.
+7. **`01-contribution/open-source/general-agent` has no "check ran vs not run" distinction**; its inputs are now declared like the rest of the library, but its stage artifacts are still free-form.
 
 ## 8. Next actions, in order
+
+Completed since this list was written: **input declarations across the operational library** (2.9.0 — 109/118 prompts, nine artifact-only stages exempt), **code review** (2.8.0), **git operations and the inputs convention** (2.7.0), **payments** (2.6.0).
 
 1. **Empirical test harness** — one executed run now exists (`_meta/empirical-evaluation-01.md`: `DBG-01` against a synthetic fixture, three prompt fixes). Next: a fixture set, a scoring sheet, and fixtures authored by someone other than the prompt author. Every other `operational` label remains a structural review.
 2. Promote `03-domains/backend` (8 stages) — highest-value remaining skeleton; it also supplies the home for live-API versioning.
 3. Feature-flag lifecycle — the highest-consequence remaining item in the 2.4.0 backlog (payments now covered).
-4. Retrofit `**Inputs:**` across existing operational prompts, so any prompt can be configured predictably (backlog item 25).
-5. `03-domains/data-engineering/` (ingest, quality, lineage) — the largest remaining missing dimension.
-6. Empirical evaluation of a second prompt, ideally by someone other than its author.
-7. Mobile / embedded / desktop-CLI domain systems, in that order of demand.
+4. `03-domains/data-engineering/` (ingest, quality, lineage) — the largest remaining missing dimension.
+5. Empirical evaluation of a second prompt, ideally by someone other than its author.
+6. Mobile / embedded / desktop-CLI domain systems, in that order of demand.
+7. Consolidate the input vocabulary (97 names; backlog item 26) — cosmetic until a run sheet is reused across systems, then it becomes friction.
 
 ## 9. How to resume
 

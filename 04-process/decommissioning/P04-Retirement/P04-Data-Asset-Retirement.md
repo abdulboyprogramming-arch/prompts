@@ -8,6 +8,7 @@
 **Risk class:** D for data deletion; C for infrastructure
 **Depends on:** DEC-P03 (quiescence observed, deletion authorised)
 **Produces:** `.decommission/RETIREMENT_RECORD.md`
+**Inputs:** TARGET_SERVICE, RETENTION_DAYS (optional: APPROVER)
 **Est. effort:** 30–90 min
 
 ---
@@ -25,7 +26,7 @@ Out of scope: deleting data that a legal hold, retention obligation, or another 
 ## 3. Prerequisites and inputs
 
 - `.decommission/SHUTDOWN_LOG.md` (quiescence evidence, asset inventory).
-- Retention policy, legal holds, contractual data obligations.
+- Retention policy (`{{RETENTION_DAYS}}` for `{{TARGET_SERVICE}}`), legal holds, contractual data obligations, and the approver for irreversible deletion if shorter than policy (`{{APPROVER}}`).
 - Access to infrastructure, storage, DNS, secrets, monitoring, and package registries.
 
 ## 4. Workflow

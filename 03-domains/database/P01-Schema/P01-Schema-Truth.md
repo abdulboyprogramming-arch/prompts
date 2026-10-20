@@ -8,6 +8,7 @@
 **Risk class:** A
 **Depends on:** none (entry stage)
 **Produces:** `.db/SCHEMA_TRUTH.md`, `.db/DB_LEDGER.md`
+**Inputs:** REPO_PATH, MIGRATIONS_DIR (optional: DATABASE_ACCESS)
 **Est. effort:** 30–60 min
 
 ---
@@ -26,8 +27,8 @@ Out of scope: designing the change (P02), running migrations (P04).
 
 | Input | Source | If missing |
 |-------|--------|------------|
-| Migration directory and ORM models | repository | locate by convention and state the assumption |
-| Schema dump or read-only database access | repository or owner | analyse migrations statically and mark conclusions `unverified against live DB` |
+| Migration directory `{{MIGRATIONS_DIR}}` and ORM models in `{{REPO_PATH}}` | repository | locate by convention and state the assumption |
+| Schema dump or read-only database access via `{{DATABASE_ACCESS}}` | repository or owner | analyse migrations statically and mark conclusions `unverified against live DB` |
 | Row counts / volume estimates | owner or metrics | classify as unknown; this changes P03 planning |
 | Environment topology (single DB, replicas, shards) | owner | assume single primary and record the assumption |
 

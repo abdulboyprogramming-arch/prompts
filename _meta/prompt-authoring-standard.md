@@ -53,7 +53,7 @@ Field rules:
 - `Risk class` — the **highest** action category the prompt can reach: `A` read-only, `B` local mutation, `C` external/network side effect, `D` high-risk. See `00-core/safety-and-security/ACTION-CATEGORIES.md`. A read-only audit prompt must be `A` even if the surrounding workflow is `C`.
 - `Depends on` / `Produces` — identifiers and named artifacts. Use `none` when genuinely none.
 - `Est. effort` — optional but encouraged; helps a human decide whether to run the stage now.
-- `Inputs` — optional but required for any prompt that needs configuration before it can run: comma-separated `UPPER_SNAKE_CASE` names, marked `(optional: NAME)`. Each name must appear in the body as `{{NAME}}`; the validator rejects an undeclared placeholder and warns about an unused declaration. See [`prompt-inputs.md`](prompt-inputs.md).
+- `Inputs` — optional but required for any prompt that needs configuration before it can run: comma-separated `UPPER_SNAKE_CASE` names, marked `(optional: NAME)`. Each name must appear in the body as `{{NAME}}`; the validator rejects an undeclared placeholder and warns about an unused declaration. Reuse a name from the canonical list before inventing one; `REPO_PATH`, `TARGET_AREA`, `TARGET_ENV`, `APPROVER`, `RISK_TOLERANCE`, and `TIME_BUDGET` cover most cases. See [`prompt-inputs.md`](prompt-inputs.md).
 - `Gallery` — optional. One sentence describing when to use this prompt, shown in `GALLERY.md`. Without it the gallery uses the first sentence of the objective, which is usually adequate; supply it when the objective is structural ("Sequence the work…") rather than situational.
 
 Files that are neither prompts nor allowed documents (`README.md`, `INDEX.md`, the root docs, `00-core/` references) fail validation, so nothing can silently go missing from the catalog and gallery. If a file is supporting material rather than a prompt, mark it with `<!-- not-a-prompt -->` and state in the file what it is.
@@ -82,7 +82,7 @@ Every prompt at `draft` or above contains these sections, in this order. Heading
 
 1. **Role and mandate** — the specialist stance, in one short paragraph. No empty superlatives.
 2. **Objective and scope** — what this stage is responsible for, and explicitly what it is *not*.
-3. **Prerequisites and inputs** — required prior artifacts, tools, permissions, user-supplied context. Mark which are discovered vs supplied.
+3. **Prerequisites and inputs** — required prior artifacts, tools, permissions, user-supplied context. Mark which are discovered vs supplied, and which are declared inputs (they must appear in the metadata `Inputs` line and as `{{PLACEHOLDER}}`s here). Artifacts from an earlier stage belong in `Depends on`, not in `Inputs`.
 4. **Workflow** — numbered, concrete steps. Each step names what to inspect, what to decide, and what to write.
 5. **Decision rules and evidence standard** — how to choose between options; what counts as sufficient evidence; how to mark uncertainty.
 6. **Verification** — the checks to run or the evidence to produce, and what "passing" means.

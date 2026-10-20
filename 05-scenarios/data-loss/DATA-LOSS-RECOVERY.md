@@ -9,6 +9,7 @@
 **Gallery:** Contain the damage, then recover data from a backup, log replay, or an upstream source — and say precisely what is still gone.
 **Depends on:** none; runs before root-cause analysis
 **Produces:** `.dataloss/RECOVERY_LOG.md`, restored data, a quantified loss statement
+**Inputs:** TARGET_ENV, DATA_LOSS_WINDOW, APPROVER (optional: BACKUP_INVENTORY)
 **Est. effort:** 1–8 hours, in stages
 
 ---
@@ -37,9 +38,9 @@ Out of scope: root-cause analysis, prevention implementation (both follow), and 
 
 | Input | Why it matters | If missing |
 |-------|----------------|------------|
-| Access to freeze writes (revoke credentials, disable the job, put the service in read-only) | The only step that is time-critical | Escalate immediately; without it you are recovering into a moving target |
-| Backup/snapshot inventory with timestamps and retention | Determines the recoverable point | Ask the platform owner; do not assume "we have backups" |
-| Knowledge of the time window in which loss occurred | Bounds the damage | Narrow it with logs, request traces, and the last known-good observation |
+| Access to freeze writes on `{{TARGET_ENV}}` (revoke credentials, disable the job, put the service in read-only), authorised by `{{APPROVER}}` | The only step that is time-critical | Escalate immediately; without it you are recovering into a moving target |
+| Backup/snapshot inventory `{{BACKUP_INVENTORY}}` with timestamps and retention | Determines the recoverable point | Ask the platform owner; do not assume "we have backups" |
+| Knowledge of the loss window `{{DATA_LOSS_WINDOW}}` | Bounds the damage | Narrow it with logs, request traces, and the last known-good observation |
 | Write-ahead/binlog/change-stream availability | Allows replay between restore point and incident | Record as unavailable; it changes the strategy |
 
 ## 4. Workflow

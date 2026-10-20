@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** REF-P05 (behaviour preserved)
 **Produces:** `REFACTOR_SUMMARY.md`, removal commits
+**Inputs:** TARGET_ENV (optional: RETIREMENT_DATE)
 **Est. effort:** 30–90 min
 
 ---
@@ -25,7 +26,7 @@ Out of scope: further structural work, new features, fixing the bugs recorded du
 ## 3. Prerequisites and inputs
 
 - `VALIDATION.md` with behaviour preserved.
-- The coexistence design from P02: what was dual-run, what flag guarded it, and the planned retirement date.
+- The coexistence design from P02: what was dual-run, what flag guarded it, and the planned retirement date `{{RETIREMENT_DATE}}`; traffic evidence from `{{TARGET_ENV}}`.
 - Telemetry showing the old path's usage (zero, or the remaining consumers).
 
 ## 4. Workflow

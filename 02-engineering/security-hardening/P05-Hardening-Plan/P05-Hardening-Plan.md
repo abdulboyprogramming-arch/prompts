@@ -8,6 +8,7 @@
 **Risk class:** A
 **Depends on:** SEC-P04
 **Produces:** `.security/HARDENING_PLAN.md`
+**Inputs:** RISK_TOLERANCE (optional: CHANGE_WINDOW)
 **Est. effort:** 30–60 min
 
 ---
@@ -25,7 +26,7 @@ Out of scope: implementation (P06), long-term security roadmap, compliance progr
 ## 3. Prerequisites and inputs
 
 - `.security/FINDINGS.md` (grouped, severities, release-blocking set).
-- Engineering constraints: release schedule, breaking-change tolerance, team capacity.
+- Engineering constraints: release schedule, breaking-change tolerance `{{RISK_TOLERANCE}}`, change window `{{CHANGE_WINDOW}}`, team capacity.
 - Existing test coverage for the affected areas.
 
 ## 4. Workflow

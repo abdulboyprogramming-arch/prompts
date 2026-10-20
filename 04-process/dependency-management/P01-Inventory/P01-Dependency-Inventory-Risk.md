@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** none (entry stage)
 **Produces:** `.deps/DEPENDENCY_MAP.md`, `.deps/DEP_LEDGER.md`
+**Inputs:** REPO_PATH (optional: LICENCE_POLICY_FILE)
 **Est. effort:** 30–60 min
 
 ---
@@ -24,8 +25,8 @@ Out of scope: choosing upgrades (P02), changing anything.
 
 ## 3. Prerequisites and inputs
 
-- Repository with manifests and (ideally) lockfiles; package manager determinable.
-- Optional: licence policy, supported-runtime policy, security scan output.
+- `{{REPO_PATH}}` with manifests and (ideally) lockfiles; package manager determinable.
+- Optional: `{{LICENCE_POLICY_FILE}}`, supported-runtime policy, security scan output.
 - Network for registry metadata if available; otherwise work from lockfile contents and state the limitation.
 
 ## 4. Workflow

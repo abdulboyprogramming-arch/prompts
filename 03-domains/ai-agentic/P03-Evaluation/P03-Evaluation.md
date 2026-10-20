@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** AI-P02
 **Produces:** `EVAL_PLAN.md`, eval dataset and harness
+**Inputs:** EVAL_BUDGET, EVAL_DATASET_PATH
 **Est. effort:** 1–3 hours
 
 ---
@@ -25,8 +26,8 @@ Out of scope: production monitoring (P05), guardrail design (P04).
 ## 3. Prerequisites and inputs
 
 - `AI_CONTEXT.md` success criteria; `AI_ARCHITECTURE.md` model contract.
-- Sample real inputs (sanitised). Without realistic inputs, the eval measures the author's imagination.
-- Budget for judge calls if using LLM-as-judge.
+- Sample real inputs (sanitised) at `{{EVAL_DATASET_PATH}}`. Without realistic inputs, the eval measures the author's imagination.
+- Budget `{{EVAL_BUDGET}}` for judge calls if using LLM-as-judge.
 
 ## 4. Workflow
 

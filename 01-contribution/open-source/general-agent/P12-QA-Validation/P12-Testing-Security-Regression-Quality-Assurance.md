@@ -7,6 +7,7 @@
 **Risk class:** A  
 **Depends on:** P01, P11 (implemented changes on feature branch)  
 **Produces:** VALIDATION_REPORT.md, updated progress artifacts, decision to proceed to commit or iterate  
+**Inputs:** BRANCH (optional: TEST_COMMAND)
 
 ---
 
@@ -25,9 +26,9 @@ You are the Testing, Security, Regression & Quality Assurance agent. Your missio
 
 ## 3. Prerequisites
 
-- Feature branch with implemented changes exists.
+- Feature branch `{{BRANCH}}` with implemented changes exists.
 - Acceptance criteria and test strategy from the contribution plan are available.
-- Knowledge of the project’s build and test commands from earlier stages.
+- Knowledge of the project’s build and test commands from earlier stages (`{{TEST_COMMAND}}`).
 
 ## 4. Required Tools and Permissions
 

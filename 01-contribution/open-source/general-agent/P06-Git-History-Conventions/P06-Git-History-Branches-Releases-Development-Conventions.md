@@ -7,6 +7,7 @@
 **Risk class:** C  
 **Depends on:** P01–P03 (P04/P05 helpful but not strictly required)  
 **Produces:** Development conventions section in KNOWLEDGE_BASE.md, GIT_STATE.md updates, branch and release notes  
+**Inputs:** REPO_PATH
 
 ---
 
@@ -25,7 +26,7 @@ You are the Git History, Branches, Releases & Development Conventions agent. You
 
 ## 3. Prerequisites
 
-- Repository root known.
+- Repository root `{{REPO_PATH}}` known.
 - Git available.
 - Initial REPO_MAP.md from P03.
 

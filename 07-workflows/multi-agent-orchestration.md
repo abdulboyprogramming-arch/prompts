@@ -8,6 +8,7 @@
 **Risk class:** B (C when agents reach shared or production environments)
 **Depends on:** the systems each agent runs
 **Produces:** `ORCHESTRATION_PLAN.md`, `RUN_LOG.md`, a merged result with per-task verification
+**Inputs:** SHARED_STATE_REF, TASK_PLAN_FILE (optional: APPROVER)
 **Est. effort:** planning 20–40 min; run varies
 
 ---
@@ -28,10 +29,10 @@ Out of scope: doing the work in one agent (often better), and acting as a substi
 
 | Input | If missing |
 |-------|------------|
-| A goal decomposed into tasks with clear interfaces | do not fan out; you will produce conflicts |
-| A single source of truth for shared state (branch, files, plan document) | establish one before starting |
+| A goal decomposed into tasks with clear interfaces, written to `{{TASK_PLAN_FILE}}` | do not fan out; you will produce conflicts |
+| A single source of truth for shared state: `{{SHARED_STATE_REF}}` (branch, files, plan document) | establish one before starting |
 | Verification method per task | the task is not ready to delegate |
-| Authority boundaries: what each agent may do (write files, run tests, open PRs, deploy) | assume the minimum and state it |
+| Authority boundaries: what each agent may do (write files, run tests, open PRs, deploy), granted by `{{APPROVER}}` | assume the minimum and state it |
 
 ## 4. Workflow
 

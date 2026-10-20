@@ -8,6 +8,7 @@
 **Risk class:** A
 **Depends on:** none (entry stage)
 **Produces:** `AI_CONTEXT.md`, `.ai/AI_LEDGER.md`
+**Inputs:** TARGET_SERVICE, WRONG_ANSWER_CONSEQUENCE
 **Est. effort:** 30–45 min
 
 ---
@@ -26,9 +27,9 @@ Out of scope: implementation, architecture (P02), evaluation design (P03).
 
 | Input | Source | If missing |
 |-------|--------|------------|
-| Feature description / user problem | user | derive from repository and mark `assumed` |
+| Feature description / user problem for `{{TARGET_SERVICE}}` | user | derive from repository and mark `assumed` |
 | Data sources the model will see | user or code | list them from code; flag unknowns |
-| Consequence of a wrong answer | user | classify conservatively and state the assumption |
+| Consequence of a wrong answer: `{{WRONG_ANSWER_CONSEQUENCE}}` | user | classify conservatively and state the assumption |
 
 ## 4. Workflow
 

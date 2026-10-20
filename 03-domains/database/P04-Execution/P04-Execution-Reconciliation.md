@@ -8,6 +8,7 @@
 **Risk class:** C
 **Depends on:** DB-P03 (validated)
 **Produces:** `.db/EXECUTION_LOG.md`, `.db/RECONCILIATION.md`
+**Inputs:** APPROVER, TARGET_ENV (optional: CHANGE_WINDOW)
 
 ---
 
@@ -26,9 +27,9 @@ Out of scope: re-designing (return to P02), verification of long-term behaviour 
 | Input | Required | If missing |
 |-------|----------|------------|
 | `.db/PREFLIGHT.md` go/no-go | yes | stop; do not execute |
-| Named approver for Category C/D steps | yes | stop |
+| Named approver for Category C/D steps: `{{APPROVER}}` | yes | stop |
 | Restore point confirmed (snapshot/backup taken and verified) | yes | take it and verify |
-| Monitoring access (locks, replication lag, error rate) | recommended | reduce batch size and increase manual checks |
+| Monitoring access (locks, replication lag, error rate) on `{{TARGET_ENV}}`, inside `{{CHANGE_WINDOW}}` | recommended | reduce batch size and increase manual checks |
 
 ## 4. Workflow
 

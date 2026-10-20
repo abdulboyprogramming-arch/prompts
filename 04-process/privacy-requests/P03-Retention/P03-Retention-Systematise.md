@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** PRIV-P02
 **Produces:** `.privacy/RETENTION.md`
+**Inputs:** RETENTION_DAYS (optional: APPROVER)
 **Est. effort:** 30–60 min
 
 ---
@@ -26,7 +27,7 @@ Out of scope: legal determinations about retention periods (owner/legal), the de
 
 - `.privacy/DATA_MAP.md`, `.privacy/REQUEST_LOG.md` (what was manual, blocked, or repeated).
 - Existing retention rules in code, lifecycle policies, and vendor settings.
-- Contractual or regulatory minimums from the accountable owner — record what you are told; do not invent periods.
+- Contractual or regulatory minimums from the accountable owner (`{{RETENTION_DAYS}}` where fixed, approved by `{{APPROVER}}`) — record what you are told; do not invent periods.
 
 ## 4. Workflow
 

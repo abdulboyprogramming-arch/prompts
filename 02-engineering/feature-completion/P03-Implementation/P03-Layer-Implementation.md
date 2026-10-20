@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** FC-P02
 **Produces:** code changes, tests, `.feature/IMPLEMENTATION_LOG.md`
+**Inputs:** BRANCH
 **Est. effort:** 1–4 hours per feature slice
 
 ---
@@ -26,7 +27,7 @@ Out of scope: deferred gaps, refactoring the analogue, adjacent features.
 
 - `.feature/LAYER_MAP.md` (ranked gaps, conventions, ordering).
 - `.feature/COMPLETION_CONTRACT.md` (acceptance statements).
-- A runnable development environment; if not available, record that verification will be static before starting.
+- A runnable development environment on branch `{{BRANCH}}`; if not available, record that verification will be static before starting.
 
 ## 4. Workflow
 

@@ -179,7 +179,7 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Validation | Partial | `scripts/validate_library.py` (structural) + one recorded empirical run of `DBG-01` in `_meta/empirical-evaluation-01.md`, which produced three prompt fixes; 80 operational prompts remain structurally reviewed only |
 | Versioning | Adequate | per-prompt semver tied to maturity |
 | Maintenance | Adequate | roadmap, review log, continuation checkpoint, CI |
-| Prompt input configuration | Partial | `_meta/prompt-inputs.md` + `**Inputs:**`/`{{NAME}}` validation + `00-core/inputs/RUN-SHEET.md`; new prompts declare inputs, existing prompts still use prose and are retrofitted as touched |
+| Prompt input configuration | **Adequate** | `_meta/prompt-inputs.md` (convention, canonical names, fallbacks), `**Inputs:**`/`{{NAME}}` validator gate, `00-core/inputs/RUN-SHEET.md`. 109/118 operational prompts declare inputs; the 9 that do not are artifact-only stages where a declaration would be unused |
 
 ---
 
@@ -210,14 +210,16 @@ Counts are computed from the tables above; they are not estimates.
 
 | Status | Dimension rows | Workflow rows |
 |--------|---------------:|--------------:|
-| Adequate | 66 | 9 |
-| Partial | 33 | 5 |
+| Adequate | 67 | 9 |
+| Partial | 32 | 5 |
 | Missing | 4 | 0 |
 | Defective | 0 | 0 |
 | Indirect | 0 | 0 |
 | **Total assessed** | **103** | **14** |
 
-**Reading this honestly:** roughly 64% of assessed dimension rows are adequate. The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
+**Reading this honestly:** roughly 65% of assessed dimension rows are adequate. The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
+
+**Closed in 2.9.0:** input retrofit across the operational library.
 
 **Closed in 2.8.0:** code review (`CR-P01..P06`).
 

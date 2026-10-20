@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** COST-P03
 **Produces:** `.cost/GUARDRAILS.md`
+**Inputs:** COST_TARGET, VALUE_METRIC
 **Est. effort:** 30–60 min
 
 ---
@@ -25,7 +26,7 @@ Out of scope: implementing application changes, financial planning, contract neg
 ## 3. Prerequisites and inputs
 
 - `.cost/COST_MAP.md`, `.cost/WASTE_FINDINGS.md`, `.cost/OPTIMISATION_LOG.md`.
-- A usage metric that represents product value (requests, active users, jobs processed, GB stored).
+- A usage metric that represents product value: `{{VALUE_METRIC}}` (requests, active users, jobs processed, GB stored), against a cost ceiling of `{{COST_TARGET}}`.
 - Existing alerting and policy tooling (budgets, quota policies, IaC modules).
 
 ## 4. Workflow

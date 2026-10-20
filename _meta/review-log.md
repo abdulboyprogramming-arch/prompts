@@ -245,3 +245,10 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 - Design: P01 forces intent before judgement and makes depth proportional to risk; P02 reads deletions and renames first and reconciles the diff against the stated intent (extra scope and missing scope both recorded); P03 requires a consequence per finding, reserves "blocker" for harm, probes the tests on the main path, and demands an accepted list so an empty review is still credible; P04 uses observation → consequence → request with nit/question/blocker markers; P05 re-verifies fixes rather than accepting "fixed" and requires every finding to end in a state; P06 triages depth and routes domain-specific changes to the domain systems instead of pretending one review covers a migration and a payment path.
 - Deductions: no platform-specific API usage (review is described, not scripted); tone guidance is principled rather than exemplified.
 - Follow-up: an example review of a 40-line auth change would make the evidence standard concrete.
+
+### Input retrofit — 109 operational prompts
+- **2026-10-20 · metadata · 78/100 · operational**
+- What changed: `**Inputs:**` plus `{{PLACEHOLDER}}` usage in 109 prompts, sourced from each prompt's existing §3 rather than from new requirements.
+- Why it matters: a prompt that says "the repository path" is only runnable by a human reading it. A prompt that declares `{{REPO_PATH}}` can be composed, validated, and replayed.
+- What was deliberately not done: nine artifact-only stages were left without declarations; forcing an input there would have produced unused declarations and taught the wrong lesson.
+- Deductions: 97 names is more vocabulary than the library needs; some names will merge (item 26). No prompt was executed with a filled run sheet, so "declared" is verified and "runnable end to end" is not.

@@ -7,6 +7,7 @@
 **Risk class:** B  
 **Depends on:** P01, P09 (CONTRIBUTION_PLAN.md), P04–P06  
 **Produces:** Detailed implementation plan, isolated feature branch, updated GIT_STATE.md  
+**Inputs:** BRANCH (optional: BASE_REF)
 
 ---
 
@@ -28,7 +29,7 @@ You are the Implementation Planning & Change Isolation agent. Your responsibilit
 - CONTRIBUTION_PLAN.md exists with clear acceptance criteria.
 - Architectural and component understanding available.
 - Development conventions (commit style, branch naming) known from P06.
-- Working tree state known from P02/P06.
+- Working tree state known from P02/P06; the change will be isolated on `{{BRANCH}}`, cut from `{{BASE_REF}}`.
 
 ## 4. Required Tools and Permissions
 

@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** REC-P05 (approved plan)
 **Produces:** code changes on the recovery branch, `RECOVERY_LOG.md`
+**Inputs:** BRANCH
 **Est. effort:** 1–6 hours depending on the critical path
 
 ---
@@ -25,7 +26,7 @@ Out of scope: anything in the plan's stop line — features beyond acceptance, r
 ## 3. Prerequisites and inputs
 
 - Approved `RECOVERY_PLAN.md`, `INTENT.md`, `COMPLETENESS.md`, `INTEGRATION.md`.
-- Safety branch/tag from P01; working tree state known.
+- Safety branch/tag from P01; working tree state known; recovery commits land on `{{BRANCH}}`.
 - Authority to commit locally on the recovery branch.
 
 ## 4. Workflow

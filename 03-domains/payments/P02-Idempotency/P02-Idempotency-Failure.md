@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** PAY-P01
 **Produces:** `.payments/FLOW_ANALYSIS.md`
+**Inputs:** PROVIDER_NAME, API_VERSION
 **Est. effort:** 45–90 min
 
 ---
@@ -25,7 +26,7 @@ Out of scope: reconciliation against the provider (P03), changing the money mode
 ## 3. Prerequisites and inputs
 
 - `.payments/MONEY_MODEL.md` (states, transitions, invariants).
-- The provider's documented retry and idempotency semantics for the API version in use.
+- `{{PROVIDER_NAME}}`'s documented retry and idempotency semantics for API version `{{API_VERSION}}`.
 - Access to the code paths: checkout, capture, refund, payout, webhook handler, and any job that rescans payments.
 
 ## 4. Workflow

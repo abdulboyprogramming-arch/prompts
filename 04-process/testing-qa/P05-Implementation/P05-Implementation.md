@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** QA-P04
 **Produces:** new/modified tests and test configuration, `.qa/IMPLEMENTATION_LOG.md`
+**Inputs:** REPO_PATH, BRANCH
 **Est. effort:** 1–4 hours per work item
 
 ---
@@ -25,7 +26,7 @@ Out of scope: redesigning production code, adding test infrastructure the strate
 ## 3. Prerequisites and inputs
 
 - `.qa/TEST_STRATEGY.md` (ordered items, level decisions, data strategy).
-- A clean working tree or a dedicated branch; record the base commit.
+- `{{REPO_PATH}}` with a clean working tree or a dedicated branch `{{BRANCH}}`; record the base commit.
 - The project's test command and conventions from P02.
 
 ## 4. Workflow

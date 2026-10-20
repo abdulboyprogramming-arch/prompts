@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** none (entry stage)
 **Produces:** `.audit/AUDIT_SCOPE.md`, `.audit/AUDIT_LEDGER.md`
+**Inputs:** REPO_PATH, AUDIT_QUESTIONS (optional: TIME_BUDGET)
 **Est. effort:** 15–30 min
 
 ---
@@ -26,9 +27,9 @@ Out of scope for this stage: architectural judgement, quality findings, security
 
 | Input | Source | If missing |
 |-------|--------|------------|
-| Repository path | user (`[REPOSITORY_PATH]`) | Ask once; if the working directory contains one obvious repository, confirm it and proceed |
-| Audit questions / triggers | user, optional | Derive three to six questions from the triggering context (acquisition, incident, upkeep) and mark them `assumed` |
-| Time/effort budget | user, optional | Assume a single-session audit and say so |
+| Repository path `{{REPO_PATH}}` | user | Ask once; if the working directory contains one obvious repository, confirm it and proceed |
+| Audit questions `{{AUDIT_QUESTIONS}}` / triggers | user, optional | Derive three to six questions from the triggering context (acquisition, incident, upkeep) and mark them `assumed` |
+| Time/effort budget `{{TIME_BUDGET}}` | user, optional | Assume a single-session audit and say so |
 
 Do not ask the user for the stack, test command, or architecture. Discover them.
 

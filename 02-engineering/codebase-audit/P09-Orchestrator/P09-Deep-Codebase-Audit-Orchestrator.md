@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** AUDIT-P01 … AUDIT-P08 (invokes them)
 **Produces:** all audit artifacts under `.audit/`, plus `.audit/AUDIT_LEDGER.md`
+**Inputs:** REPO_PATH, AUDIT_QUESTIONS (optional: TIME_BUDGET, SECURITY_REVIEW_AUTHORISATION)
 **Est. effort:** 3–8 hours depending on repository size
 
 ---
@@ -26,10 +27,10 @@ Out of scope: any modification of application code or configuration; any network
 
 | Input | Required | If missing |
 |-------|----------|------------|
-| Repository path | yes | ask once, then stop |
-| Audit questions/trigger | recommended | derive from the stated trigger and mark `assumed` |
-| Authorisation for security review (P06) | optional | skip security review; record `not assessed` |
-| Time budget | optional | assume one working session; prioritise P01–P03 and P07 |
+| Repository path `{{REPO_PATH}}` | yes | ask once, then stop |
+| Audit questions `{{AUDIT_QUESTIONS}}` / trigger | recommended | derive from the stated trigger and mark `assumed` |
+| Authorisation for security review (P06): `{{SECURITY_REVIEW_AUTHORISATION}}` | optional | skip security review; record `not assessed` |
+| Time budget `{{TIME_BUDGET}}` | optional | assume one working session; prioritise P01–P03 and P07 |
 
 ## 4. Workflow
 

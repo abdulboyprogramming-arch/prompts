@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** OBS-P03
 **Produces:** runbooks per alert, `ONCALL.md`
+**Inputs:** APPROVER (optional: ONCALL_ROTA)
 **Est. effort:** 1–2 hours
 
 ---
@@ -26,7 +27,7 @@ Out of scope: writing alerts (P03), incident command procedure (workflow), postm
 
 - `SLOS.md` and the alert rule set (page alerts are the runbook backlog).
 - `OBS_CURRENT.md` (dashboards, health checks).
-- Access facts: what the responder can do without approval, and who approves what.
+- Access facts: what the responder (`{{ONCALL_ROTA}}`) can do without approval, and who approves what (`{{APPROVER}}`).
 
 ## 4. Workflow
 

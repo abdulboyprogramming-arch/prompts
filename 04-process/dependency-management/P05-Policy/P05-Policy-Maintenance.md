@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** DEP-P04
 **Produces:** `.deps/POLICY.md`, scheduled maintenance notes
+**Inputs:** TIME_BUDGET (optional: APPROVER)
 **Est. effort:** 30–45 min
 
 ---
@@ -25,7 +26,7 @@ Out of scope: performing upgrades (P02–P04), security incident response.
 ## 3. Prerequisites and inputs
 
 - `.deps/DEPENDENCY_MAP.md`, `.deps/UPGRADE_PLAN.md`, `.deps/VERIFICATION.md`.
-- Team size, release cadence, and existing automation (Dependabot/Renovate/`cargo outdated` jobs).
+- Team size and cadence (policy checked against a maintenance budget of `{{TIME_BUDGET}}`), existing automation (Dependabot/Renovate/`cargo outdated` jobs), and the owner who enforces exceptions (`{{APPROVER}}`).
 
 ## 4. Workflow
 

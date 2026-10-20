@@ -8,6 +8,7 @@
 **Risk class:** B
 **Depends on:** DEP-P02 (approved plan)
 **Produces:** commits on an upgrade branch, `.deps/UPGRADE_LOG.md`
+**Inputs:** REPO_PATH, BRANCH
 **Est. effort:** 1–4 hours per family
 
 ---
@@ -25,7 +26,7 @@ Out of scope: unplanned upgrades, refactoring, unrelated fixes (log them), relea
 ## 3. Prerequisites and inputs
 
 - Approved `.deps/UPGRADE_PLAN.md`.
-- Clean tree on a dedicated branch (`upgrade/<family>-<target>`).
+- `{{REPO_PATH}}` with a clean tree on a dedicated branch `{{BRANCH}}` (`upgrade/<family>-<target>`).
 - Runnable build and test suite; where a step cannot be verified locally, record that before starting.
 
 ## 4. Workflow

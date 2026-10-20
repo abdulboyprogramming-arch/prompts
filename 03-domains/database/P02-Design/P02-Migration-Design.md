@@ -8,6 +8,7 @@
 **Risk class:** A
 **Depends on:** DB-P01
 **Produces:** `.db/MIGRATION_PLAN.md`
+**Inputs:** MIGRATIONS_DIR (optional: CHANGE_WINDOW)
 **Est. effort:** 45–90 min
 
 ---
@@ -26,7 +27,7 @@ Out of scope: dry-running it (P03), executing it (P04), verifying afterwards (P0
 
 - `.db/SCHEMA_TRUTH.md` (real schema, drift, volumes, irreversibility).
 - The application change that motivates the migration, and the deployment strategy from `04-process/release-engineering/` if available.
-- Constraints: acceptable downtime, maintenance windows, replication topology, ORM/query patterns.
+- Constraints: acceptable downtime, maintenance window `{{CHANGE_WINDOW}}`, replication topology, ORM/query patterns, and the migrations directory `{{MIGRATIONS_DIR}}`.
 
 ## 4. Workflow
 

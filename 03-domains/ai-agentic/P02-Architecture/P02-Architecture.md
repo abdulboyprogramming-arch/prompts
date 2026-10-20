@@ -8,6 +8,7 @@
 **Risk class:** A
 **Depends on:** AI-P01
 **Produces:** `AI_ARCHITECTURE.md`
+**Inputs:** LATENCY_BUDGET, COST_CEILING (optional: DATA_RESIDENCY)
 **Est. effort:** 45–75 min
 
 ---
@@ -26,7 +27,7 @@ Out of scope: writing prompts (that is implementation, guided by this design), e
 
 - `AI_CONTEXT.md` (task type, risks, oversight, targets).
 - Existing system architecture and constraints (`.audit/ARCHITECTURE.md` (AUDIT-P03) if available).
-- Non-functional constraints: latency budget, cost ceiling, data residency, provider restrictions.
+- Non-functional constraints: latency budget `{{LATENCY_BUDGET}}`, cost ceiling `{{COST_CEILING}}`, data residency `{{DATA_RESIDENCY}}`, provider restrictions.
 
 ## 4. Workflow
 

@@ -8,6 +8,7 @@
 **Risk class:** A
 **Depends on:** REF-P01
 **Produces:** `REFACTOR_STRATEGY.md`
+**Inputs:** TARGET_ENV (optional: CHANGE_WINDOW)
 **Est. effort:** 45–90 min
 
 ---
@@ -26,7 +27,7 @@ Out of scope: building the safety net (P03), executing (P04).
 
 - `REFACTOR_GOAL.md` (target, boundary, stop conditions, safety-net status).
 - The code area, read-only; the test suite as it stands.
-- Deployment model (continuous deploy, release train, mobile clients in the field) — it constrains whether old and new code must coexist.
+- Deployment model for `{{TARGET_ENV}}` (continuous deploy, release train, mobile clients in the field) with the release window `{{CHANGE_WINDOW}}` — it constrains whether old and new code must coexist.
 
 ## 4. Workflow
 

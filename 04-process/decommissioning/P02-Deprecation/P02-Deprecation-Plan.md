@@ -8,6 +8,7 @@
 **Risk class:** A
 **Depends on:** DEC-P01
 **Produces:** `.decommission/DEPRECATION_PLAN.md`
+**Inputs:** TARGET_SERVICE, CHANGE_WINDOW
 **Est. effort:** 30–60 min
 
 ---
@@ -25,7 +26,7 @@ Out of scope: executing shutdown (P03), implementing replacements in consumer sy
 ## 3. Prerequisites and inputs
 
 - `.decommission/CONSUMER_MAP.md` (consumers, difficulty, owners, unobservable areas).
-- Any contractual notice periods; support commitments; the organisation's deprecation policy if one exists.
+- Any contractual notice periods, support commitments, and the organisation's deprecation policy if one exists; the notice must end on or after `{{CHANGE_WINDOW}}` for `{{TARGET_SERVICE}}`.
 - A replacement path: what consumers should use instead, and whether it exists today.
 
 ## 4. Workflow
