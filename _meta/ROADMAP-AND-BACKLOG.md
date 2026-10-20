@@ -48,7 +48,7 @@ Each promotion requires: full required sections, verification that can fail, fai
 | **Data engineering** | `data-ml-ai` conflates pipelines with modelling; ingest/quality/lineage missing | split or extend `03-domains/data-ml-ai` |
 | **Embedded / firmware** | No coverage; safety and hardware constraints are materially different | `03-domains/embedded` |
 | **Desktop & CLI tools** | No coverage; packaging, updates, and terminal UX are distinct | `03-domains/desktop-cli` |
-| **Documentation as engineering** | `04-process/documentation` is a skeleton; README reconstruction, ADRs, and doc-code drift are common | promote existing system |
+| **Documentation as engineering** | README reconstruction, ADRs, doc-code drift, SRS/handbook/PDF deliverables were all uncovered | promoted in 2.11.0 (`DOC-P01..P08`) |
 | **Architecture decision records & governance** | ADRs are referenced but no prompt produces one | `05-scenarios/adr/` |
 | **Multi-agent orchestration** | The library assumes single-agent use; parallel agents need ownership and conflict rules | multi-agent coordination workflow (planned) |
 | **Compliance & enterprise readiness** | Only implied; audit/SBOM/change-management evidence is a real need | `04-process/governance-compliance` |
@@ -156,3 +156,16 @@ Recorded here rather than built immediately, because quality over volume applies
 | 25 | Prompts cannot be composed programmatically because inputs are prose | Fixed by 2.7.0, but only new prompts declared inputs; a retrofit pass makes the whole library machine-runnable | `_meta/prompt-inputs.md` migration | P1 | **Implemented** in 2.9.0 — 109/118 operational prompts declare `Inputs:`; the other 9 are artifact-only stages where an input would be an unused declaration, recorded in `_meta/prompt-inputs.md` |
 | 26 | 97 distinct input names for 118 prompts | The retrofit used each prompt's vocabulary; a flat vocabulary is harder to fill once and reuse. Not a correctness defect — every name is declared and used | `_meta/prompt-inputs.md` consolidation pass | P2 | Discovered |
 | 27 | Nine operational stages declare no inputs | Not a gap: they are artifact-only stages where a declaration would be unused. Listed so a future reviewer does not "fix" them by inventing inputs | `_meta/prompt-inputs.md` § Migration status | P3 | Evaluated (justified non-implementation) |
+
+## Discovered in 2.11.0 — documentation products and external surfaces
+
+| # | Problem | Why existing material is insufficient | Home | Priority | Status |
+|---|---------|---------------------------------------|------|----------|--------|
+| 28 | "We need an SRS / design doc / handbook / a PDF for the client" | `documentation` was 8 outlines; no product contracts, no export discipline, no truth gate | `04-process/documentation/` (8 stages) | P0 | **Implemented** in 2.11.0 |
+| 29 | "Audit this URL — I don't have the source" | Nothing covered black-box assessment; the naive versions are either useless (headers only) or unauthorised testing | `05-scenarios/live-surface-audit/` (`SURFACE-01`) | P1 | **Implemented** in 2.11.0 |
+| 30 | 17 system READMEs claimed "Operational" over skeleton stages | The validator checked prompt overclaims, never system-level ones | `scripts/validate_library.py` `check_system_readmes()` | P0 | **Implemented** in 2.11.0 (fixture-tested) |
+| 31 | Requirements change after approval: who updates the SRS, its traceability, and the tests? | Authoring is now covered; change control and traceability maintenance are not | `04-process/documentation/` new stage or `04-process/governance-compliance/` | P1 | Discovered |
+| 32 | Accessibility is signal-level only, not WCAG conformance | `SURFACE-01` checks alt text, labels, heading order; conformance needs rendering, assistive tech, and a defined level (AA) | `03-domains/frontend/` (skeleton) + a dedicated a11y audit | P2 | Discovered |
+| 33 | Authenticated live-surface testing (staging behind a login) | `SURFACE-01` stops at the login by design; authorised authenticated testing needs its own authorisation model and data-handling rules | `02-engineering/security-hardening/` extension | P2 | Discovered (deliberate exclusion) |
+| 34 | Documentation localisation and multi-version docs | Nothing covers translation workflow, versioned doc sets, or "applies to v1.x only" navigation | `04-process/documentation/` P05/P07 extension | P3 | Discovered |
+| 35 | Doc export toolchain failures (pandoc/LaTeX/DOCX style collapse) have no known-issue catalogue | P07 says "open every page" but not what usually breaks and how to fix it | `04-process/documentation/` appendix | P3 | Discovered |

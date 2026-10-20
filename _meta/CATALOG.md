@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 286 prompts — 0 canonical, 123 operational, 6 draft, 157 skeleton.
+**Totals:** 287 prompts — 0 canonical, 132 operational, 6 draft, 149 skeleton.
 
 ## `01-contribution/language-design`
 
@@ -350,14 +350,14 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
 | ID | Stage | Maturity | Mode | Risk | File |
 |----|-------|----------|------|------|------|
-| `DOC-P01` | PROMPT 01 — Context & Scope | skeleton | implementation | B | [P01-Context-Scope.md](../04-process/documentation/P01-Context/P01-Context-Scope.md) |
-| `DOC-P02` | PROMPT 02 — Documentation Inventory | skeleton | diagnostic | B | [P02-Documentation-Inventory.md](../04-process/documentation/P02-Inventory/P02-Documentation-Inventory.md) |
-| `DOC-P03` | PROMPT 03 — Audience & Goals | skeleton | planning | B | [P03-Audience-Goals.md](../04-process/documentation/P03-Audience-Goals/P03-Audience-Goals.md) |
-| `DOC-P04` | PROMPT 04 — Gap Analysis | skeleton | diagnostic | B | [P04-Gap-Analysis.md](../04-process/documentation/P04-Gap-Analysis/P04-Gap-Analysis.md) |
-| `DOC-P05` | PROMPT 05 — Documentation Plan | skeleton | planning | B | [P05-Documentation-Plan.md](../04-process/documentation/P05-Plan/P05-Documentation-Plan.md) |
-| `DOC-P06` | PROMPT 06 — Writing & Improvement | skeleton | implementation | B | [P06-Writing-Improvement.md](../04-process/documentation/P06-Writing/P06-Writing-Improvement.md) |
-| `DOC-P07` | PROMPT 07 — Review & Validation | skeleton | diagnostic | B | [P07-Review-Validation.md](../04-process/documentation/P07-Review/P07-Review-Validation.md) |
-| `DOC-P08` | PROMPT 08 — Documentation Master Orchestrator | skeleton | orchestration | A | [P08-Documentation-Orchestrator.md](../04-process/documentation/P08-Orchestrator/P08-Documentation-Orchestrator.md) |
+| `DOC-P01` | PROMPT 01 — Context and Document Products | operational | planning | A | [P01-Context-Scope.md](../04-process/documentation/P01-Context/P01-Context-Scope.md) |
+| `DOC-P02` | PROMPT 02 — Documentation Inventory and Truth Audit | operational | diagnostic | A | [P02-Documentation-Inventory.md](../04-process/documentation/P02-Inventory/P02-Documentation-Inventory.md) |
+| `DOC-P03` | PROMPT 03 — Audience, Jobs, and Structure | operational | planning | A | [P03-Audience-Goals.md](../04-process/documentation/P03-Audience-Goals/P03-Audience-Goals.md) |
+| `DOC-P04` | PROMPT 04 — Gap Analysis and Consequence Ranking | operational | diagnostic | A | [P04-Gap-Analysis.md](../04-process/documentation/P04-Gap-Analysis/P04-Gap-Analysis.md) |
+| `DOC-P05` | PROMPT 05 — Documentation Plan | operational | planning | A | [P05-Documentation-Plan.md](../04-process/documentation/P05-Plan/P05-Documentation-Plan.md) |
+| `DOC-P06` | PROMPT 06 — Writing and Improvement | operational | implementation | B | [P06-Writing-Improvement.md](../04-process/documentation/P06-Writing/P06-Writing-Improvement.md) |
+| `DOC-P07` | PROMPT 07 — Review, Export, and Publication | operational | diagnostic | B | [P07-Review-Validation.md](../04-process/documentation/P07-Review/P07-Review-Validation.md) |
+| `DOC-P08` | PROMPT 08 — Documentation Orchestrator | operational | orchestration | B | [P08-Documentation-Orchestrator.md](../04-process/documentation/P08-Orchestrator/P08-Documentation-Orchestrator.md) |
 
 ## `04-process/feature-flags`
 
@@ -475,6 +475,7 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `FLAKE-01` | Flaky Test Triage | operational | diagnostic | B | [FLAKY-TEST-TRIAGE.md](../05-scenarios/flaky-tests/FLAKY-TEST-TRIAGE.md) |
 | `INC-01` | Production Incident Response | operational | specialised | C | [PRODUCTION-INCIDENT.md](../05-scenarios/incident-response/PRODUCTION-INCIDENT.md) |
 | `LEGACY-01` | Working with Legacy Code Prompt | skeleton | specialised | B | [WORKING-WITH-LEGACY.md](../05-scenarios/legacy-code/WORKING-WITH-LEGACY.md) |
+| `SURFACE-01` | Live Surface Audit — a URL, host, or API from the outside | operational | diagnostic | B | [LIVE-SURFACE-AUDIT.md](../05-scenarios/live-surface-audit/LIVE-SURFACE-AUDIT.md) |
 | `ONBOARD-01` | Codebase Onboarding Prompt | skeleton | specialised | B | [CODEBASE-ONBOARDING.md](../05-scenarios/onboarding/CODEBASE-ONBOARDING.md) |
 | `PERF-01` | Performance Investigation Prompt | skeleton | specialised | B | [PERFORMANCE-INVESTIGATION.md](../05-scenarios/performance-investigation/PERFORMANCE-INVESTIGATION.md) |
 | `PR-01` | Write a Strong Pull Request Prompt | skeleton | specialised | B | [WRITE-STRONG-PR.md](../05-scenarios/pr-authoring/WRITE-STRONG-PR.md) |

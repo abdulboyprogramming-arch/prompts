@@ -181,6 +181,40 @@ def check_inputs(doc: Doc) -> tuple[list[str], list[str]]:
     return errors, warnings
 
 
+README_CLAIM = re.compile(r"\*\*Status:\*\*\s*(?:\*\*)?\s*(Operational|Production-ready)", re.IGNORECASE)
+SYSTEM_README = re.compile(r"^(?:[^/]+)/(?:[^/]+)/README\.md$")
+
+
+def check_system_readmes(docs: list[Doc]) -> list[str]:
+    """A system README may not claim more maturity than its own stage prompts have."""
+    errors: list[str] = []
+    by_system: dict[str, list[Doc]] = {}
+    for d in docs:
+        if not d.is_prompt or d.maturity is None:
+            continue
+        parts = d.rel.split(os.sep)
+        if len(parts) < 3:
+            continue
+        by_system.setdefault(os.sep.join(parts[:2]), []).append(d)
+
+    for d in docs:
+        if not SYSTEM_README.match(d.rel):
+            continue
+        claim = README_CLAIM.search(d.text)
+        if not claim:
+            continue
+        system = os.sep.join(d.rel.split(os.sep)[:2])
+        stages = by_system.get(system, [])
+        if not stages:
+            continue
+        weak = [s for s in stages if s.maturity in ("skeleton", "draft")]
+        if weak:
+            errors.append(
+                f"{d.rel}: claims {claim.group(1)} but {len(weak)} of {len(stages)} stage prompts in "
+                f"{system}/ are skeleton/draft (e.g. {weak[0].rel}); the README overclaims"
+            )
+    return errors
+
 def check(docs: list[Doc]) -> tuple[list[str], list[str]]:
     errors: list[str] = []
     warnings: list[str] = []
@@ -413,6 +447,7 @@ def main() -> int:
 
     docs = load(ROOT)
     errors, warnings = check(docs)
+    errors = errors + check_system_readmes(docs)
 
     for e in errors:
         print(f"ERROR   {e}")

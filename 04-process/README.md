@@ -16,7 +16,7 @@ Engineering process as procedure: how work is verified, reviewed, released, oper
 | [`git-operations/`](git-operations/README.md) | State checks before destructive commands, conflict resolution, history repair, recovery, conventions | 5 | **operational** |
 | [`code-review/`](code-review/README.md) | Intent, change understanding, evidenced findings, actionable feedback, verified fixes | 6 | **operational** |
 | [`feature-flags/`](feature-flags/README.md) | Flag inventory and risk, safe defaults, progressive rollout, kill-switch use, retirement | 5 | **operational** |
-| [`documentation/`](documentation/README.md) | Documentation inventory, gaps, writing, validation | 8 | skeleton |
+| [`documentation/`](documentation/README.md) | SRS, design docs, handbooks, runbooks; truth audit, task-first structure, export verification | 8 | **operational** |
 | [`project-management/`](project-management/README.md) | Goals, breakdown, planning, tracking, risk | 8 | skeleton |
 | [`research-and-development/`](research-and-development/README.md) | Question, hypotheses, method, experiment, decision | 8 | skeleton |
 | [`systems-building-improvement/`](systems-building-improvement/README.md) | Diagnose a system, design and evaluate an improvement | 8 | skeleton |

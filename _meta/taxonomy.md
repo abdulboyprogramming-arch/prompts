@@ -63,7 +63,7 @@ Web3 contribution lives in `01-contribution/web3`; there is no `03-domains/web3`
 
 ## 04-process sub-taxonomy
 
-`testing-qa` (operational), `observability-reliability` (operational), `release-engineering` (operational), `code-review`, `documentation`, `project-management`, `research-and-development`, `systems-building-improvement` (skeletons).
+`testing-qa`, `observability-reliability`, `release-engineering`, `code-review`, `documentation`, `feature-flags`, `git-operations`, `dependency-management`, `decommissioning`, `governance-compliance`, `privacy-requests` (all operational); `project-management`, `research-and-development`, `systems-building-improvement` (skeletons).
 
 ## 05-scenarios
 

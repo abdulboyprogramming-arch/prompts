@@ -12,6 +12,7 @@ High-utility prompts for a specific situation, usable in one session. Lighter th
 | [`failed-fix/FAILED-FIX-ESCALATION.md`](failed-fix/FAILED-FIX-ESCALATION.md) | Two or more fix attempts have failed and you need to break the loop | **operational** |
 | [`data-loss/DATA-LOSS-RECOVERY.md`](data-loss/DATA-LOSS-RECOVERY.md) | Data has been deleted, corrupted, or overwritten and you need it back without losing more | **operational** |
 | [`security-incident/SECURITY-INCIDENT.md`](security-incident/SECURITY-INCIDENT.md) | A compromise is suspected or confirmed: preserve evidence, contain, scope, disclose | **operational** |
+| [`live-surface-audit/LIVE-SURFACE-AUDIT.md`](live-surface-audit/LIVE-SURFACE-AUDIT.md) | You can only see a system from outside — a URL, host, or API — and need an evidence-backed assessment | **operational** |
 | [`quick-fixes/SAFE-QUICK-FIX.md`](quick-fixes/SAFE-QUICK-FIX.md) | A small, contained fix with minimal blast radius | skeleton |
 | [`performance-investigation/PERFORMANCE-INVESTIGATION.md`](performance-investigation/PERFORMANCE-INVESTIGATION.md) | Something is slow and you need a diagnosis, not an optimisation project | skeleton |
 | [`legacy-code/WORKING-WITH-LEGACY.md`](legacy-code/WORKING-WITH-LEGACY.md) | Changing code nobody understands, without a rewrite | skeleton |

@@ -22,7 +22,7 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Stage | Status | Evidence / gap |
 |-------|--------|----------------|
 | Discovery / reconnaissance | Adequate | `AUDIT-P01..P03`, `REC-P02`, open-source `P03–P05` |
-| Requirements | Partial | `REC-P02` recovers them; `from-scratch` P01 is a skeleton; no requirements-change prompt |
+| Requirements | Partial | Authoring is covered (`DOC-P01` product contract, `DOC-P06` testable requirements with verification methods); recovery by `REC-P02`. Still missing: requirements **change** management and traceability maintenance across releases |
 | Design / architecture | Partial | `AUDIT-P03` recovers; `AI-P02` designs. `architecture-review`, `feature-design-suggestion` are skeletons |
 | Planning | Adequate | `REC-P05`, `QA-P04`, `SEC-P05`, `AI-P03`, workflow gates |
 | Implementation | Adequate | `REC-P06`, `SEC-P06`, `QA-P05`, `AI-P04/P05`, contribution agent `P11` |
@@ -155,6 +155,7 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Rollback | Adequate | `REL-P03` three layers, `DB-P05` reverse-path status |
 | Access control | Partial | covered in security review, not as a change procedure |
 | Secret protection | Adequate | `00-core/safety-and-security`, `SEC-P03/P06` |
+| External surface audit (live URL, host, API) | **Adequate** | `SURFACE-01`: rules of engagement, baseline, redirect/header/cookie/CORS checks on the final response, sampled error behaviour, evidence per finding, coverage statement, no enumeration or exploitation |
 | Feature flags and progressive delivery | **Adequate** | `FF-P01..P05` (new): inventory reconciled across code/provider/config, purpose-based typing, safe defaults, pre-declared rollout thresholds with sample-size reasoning, kill-switch use with a recorded prediction, retirement that deletes the branch |
 | Destructive actions | Adequate | risk classes A–D; validator flags inconsistencies |
 | Production changes | Adequate | Category C/D gates in workflows |
@@ -163,7 +164,7 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 
 | Element | Status | Evidence / gap |
 |--------|--------|----------------|
-| Documentation | Partial | `documentation` skeleton; `REC-P02` reconstructs |
+| Documentation | **Adequate** | `DOC-P01..P08`: product contract (SRS/design/ADR/handbook/runbook/API), truth audit with executed checks, task-first structure, consequence-ranked gaps, maintenance mechanism, PDF/DOCX export verified page by page |
 | Technical debt | **Adequate** | `REF-P01..P07` (new) turns debt into a measured refactoring with a proven net; audit P04/P08 still quantify it |
 | Dependency management | **Adequate** | `DEP-P01..P05` (new) — inventory, breaking-change assessment, execution, verification, policy |
 | Architecture evolution | Partial | architecture-review skeleton; no ADR prompt |
@@ -211,14 +212,16 @@ Counts are computed from the tables above; they are not estimates.
 
 | Status | Dimension rows | Workflow rows |
 |--------|---------------:|--------------:|
-| Adequate | 68 | 9 |
-| Partial | 32 | 5 |
+| Adequate | 70 | 9 |
+| Partial | 31 | 5 |
 | Missing | 4 | 0 |
 | Defective | 0 | 0 |
 | Indirect | 0 | 0 |
-| **Total assessed** | **104** | **14** |
+| **Total assessed** | **105** | **14** |
 
-**Reading this honestly:** roughly 65% of assessed dimension rows are adequate. The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
+**Reading this honestly:** roughly 67% of assessed dimension rows are adequate. The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
+
+**Closed in 2.11.0:** documentation products and export (`DOC-P01..P08`), live surface audit (`SURFACE-01`).
 
 **Closed in 2.10.0:** feature flags (`FF-P01..P05`).
 

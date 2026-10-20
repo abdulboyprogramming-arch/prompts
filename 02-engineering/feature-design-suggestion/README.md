@@ -1,6 +1,6 @@
 # Feature Design & Suggestion System
 
-**Status:** Operational (v1.0)  
+**Status:** Skeleton — 7 stage outlines (skeleton 7). The stages name a sensible sequence but lack the evidence rules, verification, and failure handling that this library requires of `operational`. Treat the system as a plan, not a procedure; see [`_meta/ROADMAP-AND-BACKLOG.md`](../../_meta/ROADMAP-AND-BACKLOG.md).
 **Entry Point:** [`P07-Orchestrator/P07-Feature-Design-Orchestrator.md`](P07-Orchestrator/P07-Feature-Design-Orchestrator.md)
 
 A structured system for turning vague feature ideas or user needs into clear, well-reasoned, implementable feature proposals.

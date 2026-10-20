@@ -2,6 +2,33 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.11.0] — 2026-10-20
+
+### Promoted — `04-process/documentation/` (8 stages, operational)
+
+The system existed as eight 800-byte outlines and its README claimed "Operational (v1.0)". It now does what the claim said, and covers the document products the library was missing: SRS, technical design/RFC, ADR, engineer handbook, API reference, runbook, quickstart, and PDF/DOCX delivery.
+
+- **DOC-P01 Context & products** — a fixed product vocabulary with, per product, the reader, what must and must not appear, the source of truth, the delivery format, a mechanically checkable completion test, and an owner. Hybrid "spec+design+guide" documents are split, because the client and the engineer cannot approve the same page.
+- **DOC-P02 Inventory & truth audit** — existence is not truth: commands are run, links resolved, endpoints compared to the spec, and every document gets a verdict (*accurate / partially / outdated / misleading / unverifiable*) with the check that produced it. Missing documentation is expressed as a failed reader task.
+- **DOC-P03 Audience & structure** — personas from evidence, jobs with completion tests, task-first structure, one canonical page per instruction, and reading paths that act as the completeness test.
+- **DOC-P04 Gap analysis** — gaps typed (missing/wrong/outdated/unfindable/unusable/duplicated/unsafe) and ranked by consequence, with **S1 reserved for pages that can cause harm when followed**; the high-consequence material (runbooks, security, destructive operations) is reviewed first regardless of the request.
+- **DOC-P05 Plan** — sequence by consequence and path completion, an acceptance test and an owner per deliverable, and a **maintenance mechanism per document class with its blind spot stated** (generated reference cannot catch a stale spec; a doc test cannot catch a manual step).
+- **DOC-P06 Writing** — per-product authoring contracts (an SRS contains no design; a requirement is testable or it is a wish; ADRs are superseded, never edited; runbooks carry expected output and escalation). Every command is executed or explicitly labelled unverified; never document unbuilt behaviour.
+- **DOC-P07 Review, export, publish** — re-execute the author's claims, walk the paths as a reader, build PDF/DOCX **from source** and inspect every page (code wrapping, table overflow, missing images, glyphs, contents/anchors), verify PDF accessibility basics, and record the approval before external publication.
+- **DOC-P08 Orchestrator** — five shapes (broken page, new product, documentation debt, structure problem, delivery problem), the source-of-truth gate, the reader gate, and the publication gate.
+
+### New scenario — `05-scenarios/live-surface-audit/` (`SURFACE-01`)
+
+Auditing something you can only reach over the network: a URL, host, or API. Rules of engagement before the first request; baseline with TLS and headers; redirects traced hop by hop; header/cookie/CORS/disclosure checks **on the final response** (not an intermediate CDN hop); error behaviour sampled for soft-404s and leakage; API contract signals; performance and accessibility/SEO at the signal level with the tool named; every finding carrying a request/response excerpt and a confirmed/suspected label. It explicitly excludes exploitation, enumeration by wordlist, load generation, and third-party targets without permission — and routes those to `02-engineering/security-hardening/`.
+
+### Fixed — 17 system READMEs claimed "Operational (v1.0)" over skeleton stages
+
+The validator checked prompt overclaims but not *system* overclaims. All 17 are corrected to state their real maturity, and a new validator rule fails the build when a system README claims Operational/Production-ready while any of its own stage prompts is skeleton or draft. Verified by reverting one README and confirming the error fires.
+
+### Result
+
+362 Markdown files, 287 prompts: 132 operational, 6 draft, 149 skeleton. Validator 0 errors / 0 warnings.
+
 ## [2.10.0] — 2026-10-20
 
 ### New system — `04-process/feature-flags/` (5 stages, operational)

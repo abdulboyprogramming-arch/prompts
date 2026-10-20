@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE — do not edit by hand. Run: python3 scripts/generate_gallery.py --write -->
 
-Every prompt in the library — **286** of them — with a direct link and the situation it is for, plus **8** foundational reference documents.
+Every prompt in the library — **287** of them — with a direct link and the situation it is for, plus **8** foundational reference documents.
 Generated from the prompt files, so it cannot drift from them; CI fails if this file is stale.
 
 **Reading the columns**
@@ -23,11 +23,11 @@ Generated from the prompt files, so it cannot drift from them; CI fails if this 
 | [02-engineering — building, auditing, and recovering code](#02-engineering--building-auditing-and-recovering-code) | 78 | Work on an existing codebase: audit, repair, complete, upgrade. |
 | [03-domains — domain-specific engineering](#03-domains--domain-specific-engineering) | 57 | Stack-specific practice: data, AI, and the domains still being built out. |
 | [04-process — delivering software responsibly](#04-process--delivering-software-responsibly) | 79 | The lifecycle around code: testing, release, observability, dependency and governance. |
-| [05-scenarios — single-session, high-urgency situations](#05-scenarios--single-session-high-urgency-situations) | 11 | One prompt, one session, one pressing situation. |
+| [05-scenarios — single-session, high-urgency situations](#05-scenarios--single-session-high-urgency-situations) | 12 | One prompt, one session, one pressing situation. |
 | [06-interactive — conversations that clarify a request](#06-interactive--conversations-that-clarify-a-request) | 4 | Use when the request is vague and needs to be scoped first. |
 | [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 9 | Composed sequences that route between systems and stop at human gates. |
 
-*Maturity across the library: 123 operational, 6 draft, 157 skeleton, 286 total.*
+*Maturity across the library: 132 operational, 6 draft, 149 skeleton, 287 total.*
 
 ---
 
@@ -389,14 +389,14 @@ The lifecycle around code: testing, release, observability, dependency and gover
 
 | ID | Prompt | Use it for | Maturity | Risk |
 |---|---|---|---|---|
-| `DOC-P01` | [Context & Scope](04-process/documentation/P01-Context/P01-Context-Scope.md) | Understand the product, its users, and the purpose of the documentation effort. | skeleton | B |
-| `DOC-P02` | [Documentation Inventory](04-process/documentation/P02-Inventory/P02-Documentation-Inventory.md) | Map the current documentation landscape accurately. | skeleton | B |
-| `DOC-P03` | [Audience & Goals](04-process/documentation/P03-Audience-Goals/P03-Audience-Goals.md) | Clarify who the documentation must serve and what jobs it must help them accomplish. | skeleton | B |
-| `DOC-P04` | [Gap Analysis](04-process/documentation/P04-Gap-Analysis/P04-Gap-Analysis.md) | Identify the highest-impact documentation gaps and quality problems. | skeleton | B |
-| `DOC-P05` | [Documentation Plan](04-process/documentation/P05-Plan/P05-Documentation-Plan.md) | Create a practical plan for improving documentation. | skeleton | B |
-| `DOC-P06` | [Writing & Improvement](04-process/documentation/P06-Writing/P06-Writing-Improvement.md) | Create or revise documentation according to the plan. | skeleton | B |
-| `DOC-P07` | [Review & Validation](04-process/documentation/P07-Review/P07-Review-Validation.md) | Validate that the documentation is accurate, clear, and useful. | skeleton | B |
-| `DOC-P08` | [Documentation Master Orchestrator](04-process/documentation/P08-Orchestrator/P08-Documentation-Orchestrator.md) | Runs the documentation system end to end: gates, routing, and final acceptance. | skeleton | A |
+| `DOC-P01` | [Context and Document Products](04-process/documentation/P01-Context/P01-Context-Scope.md) | DOC_CONTEXT.md with the product summary, the document products in scope (each with reader, purpose, format, and definition of done), the source of truth for each… <br>**Inputs:** `REPO_PATH, DOC_PRODUCTS, AUDIENCE, APPROVER` | operational | A |
+| `DOC-P02` | [Documentation Inventory and Truth Audit](04-process/documentation/P02-Inventory/P02-Documentation-Inventory.md) | DOC_INVENTORY.md — every significant document with its location, audience, source of truth, last-verified date, and a truth verdict backed by a check that was… <br>**Inputs:** `REPO_PATH, DOCS_DIR, BUILD_CHECK` | operational | A |
+| `DOC-P03` | [Audience, Jobs, and Structure](04-process/documentation/P03-Audience-Goals/P03-Audience-Goals.md) | AUDIENCE_GOALS.md — personas with evidence, the top jobs per persona, the task-based structure per document product, entry points, success measures, and the… <br>**Inputs:** `DOC_PRODUCTS, REPO_PATH, SUPPORT_EVIDENCE` | operational | A |
+| `DOC-P04` | [Gap Analysis and Consequence Ranking](04-process/documentation/P04-Gap-Analysis/P04-Gap-Analysis.md) | DOC_GAPS.md — each gap with the failed reader task, the evidence, the consequence, a severity class, and the fix's shape (rewrite, split, delete, generate). <br>**Inputs:** `DOC_PRODUCTS, INCIDENT_REF` | operational | A |
+| `DOC-P05` | [Documentation Plan](04-process/documentation/P05-Plan/P05-Documentation-Plan.md) | DOC_PLAN.md — ordered deliverables with acceptance tests, per-item owner and review date, the maintenance mechanism per document class, the export/publish path, and… <br>**Inputs:** `DOC_PRODUCTS, TIME_BUDGET, APPROVER, CHANGE_WINDOW` | operational | A |
+| `DOC-P06` | [Writing and Improvement](04-process/documentation/P06-Writing/P06-Writing-Improvement.md) | The planned documents on ⟨BRANCH⟩ in ⟨REPO_PATH⟩, each meeting its acceptance test, plus a log of what was written, what was verified and how, and what remains… <br>**Inputs:** `REPO_PATH, DOC_PRODUCTS, BRANCH, STYLE_GUIDE` | operational | B |
+| `DOC-P07` | [Review, Export, and Publication](04-process/documentation/P07-Review/P07-Review-Validation.md) | A passed (or honestly failed) review against each acceptance test, verified exports where the product requires them, an approval record where required, and… <br>**Inputs:** `REPO_PATH, DOC_PRODUCTS, EXPORT_TARGET, APPROVER` | operational | B |
+| `DOC-P08` | [Documentation Orchestrator](04-process/documentation/P08-Orchestrator/P08-Documentation-Orchestrator.md) | A routed run with the stages actually used, the gates recorded, and an honest statement of what was not done. <br>**Inputs:** `REPO_PATH, DOC_PRODUCTS, TIME_BUDGET, APPROVER, EXPORT_TARGET` | operational | B |
 
 ### feature-flags · 5 prompts
 
@@ -508,7 +508,7 @@ The lifecycle around code: testing, release, observability, dependency and gover
 
 One prompt, one session, one pressing situation.
 
-### All prompts in this area · 11 prompts
+### All prompts in this area · 12 prompts
 
 | ID | Prompt | Use it for | Maturity | Risk |
 |---|---|---|---|---|
@@ -523,6 +523,7 @@ One prompt, one session, one pressing situation.
 | `PR-01` | [Write a Strong Pull Request](05-scenarios/pr-authoring/WRITE-STRONG-PR.md) | Turn a finished change into a pull request a reviewer can approve quickly: scope, evidence, risk, and rollback. | skeleton | B |
 | `QUICK-01` | [Safe Quick-Fix](05-scenarios/quick-fixes/SAFE-QUICK-FIX.md) | Fix a small, well-understood defect with the smallest correct diff — and know when the "quick" fix is not safe. | skeleton | B |
 | `SECINC-01` | [Security Incident Response](05-scenarios/security-incident/SECURITY-INCIDENT.md) | Detect and confirm → preserve evidence → contain → scope → eradicate → recover → disclose → learn. <br>**Inputs:** `INCIDENT_ID, DISCLOSURE_OWNER, DETECTION_SIGNAL` | operational | D |
+| `SURFACE-01` | [Live Surface Audit — a URL, host, or API from the outside](05-scenarios/live-surface-audit/LIVE-SURFACE-AUDIT.md) | An evidence-backed assessment of the target's externally visible surface — transport, headers, cookies, redirects, error behaviour, discoverability, performance… <br>**Inputs:** `TARGET_URL, AUDIT_AUTHORISATION, PAGE_LIMIT, REPORT_AUDIENCE` | operational | B |
 
 ## 06-interactive — conversations that clarify a request
 

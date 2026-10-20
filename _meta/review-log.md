@@ -259,3 +259,20 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 - Design: P01 forces typing by usage site (a permission gate living in a console is a security finding, not a flag); P02 makes the unreachable-provider default a design decision instead of an accident; P03 requires sample-size arithmetic before exposure, which is where most rollout plans are dishonest; P04 makes the *prediction* the record, so a flip with no effect is evidence rather than a story; P05 treats removal as the stage that reduces complexity and refuses to delete a writer whose readers still exist.
 - Deductions: no provider-specific API detail (evaluation semantics differ per vendor); the interaction between flags and mobile clients pinned to old versions is named as a blocker rather than solved.
 - Follow-up: a worked example of a 3-stage rollout with the arithmetic would make P03's standard concrete.
+
+### `04-process/documentation/` — 8 stages promoted (skeleton → operational)
+- **2026-10-20 · mixed · 88/100 · operational**
+- Reason: the system was eight outlines ~800 bytes each while its README said "Operational (v1.0)" — the exact claim/artifact gap this library exists to close. It also lacked the document products people actually ask for (SRS, design doc, handbook) and any export discipline.
+- Design: truth is a gate (no document without a source of truth, no command unexecuted, no unbuilt behaviour documented); products have separate contracts so an SRS cannot smuggle in design; gaps are ranked by what happens to a reader, with S1 for pages that harm when followed; maintenance mechanisms are named with their blind spots rather than asserted; exports are built from source and every page is opened.
+- Deductions: no localisation or docs-site-specific guidance; the accessibility checks are signal-level, not WCAG conformance, and the prompt says so.
+- Follow-up: a worked SRS example and a pandoc/LaTeX failure catalogue would make P06/P07 concrete.
+
+### `05-scenarios/live-surface-audit/` — new scenario (SURFACE-01)
+- **2026-10-20 · diagnostic · 85/100 · operational**
+- Problem: the library could only audit systems whose source it could read. The common request — "look at this site/API" — had no procedure, while a naive procedure is either useless (headers only) or an unauthorised attack.
+- Design: rules of engagement first; observation-only evidence with reproduction; no enumeration, no exploitation, no load; consequences ranked by exposure; coverage statement separating observed from inferred.
+- Deductions: no vendor-specific tooling detail (Lighthouse, OWASP ZAP stay named, not scripted); authenticated testing is out of scope by design.
+
+### Tooling — system-README overclaim gate
+- **2026-10-20 · tooling · operational**
+- 17 READMEs claimed Operational over skeleton stages. Fixed, and `check_system_readmes()` now fails the build on the class. Fixture-tested by reintroducing the claim in `02-engineering/performance/`.
