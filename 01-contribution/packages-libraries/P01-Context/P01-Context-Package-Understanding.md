@@ -1,6 +1,12 @@
 # PROMPT 01 — Context & Package Understanding
-**Version:** 1.0.0  
 **Identifier:** PKG-P01  
+**System:** 01-contribution/packages-libraries  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
+**Depends on:** none (entry stage)  
+**Produces:** `PACKAGE_CONTEXT.md`  
 
 ---
 

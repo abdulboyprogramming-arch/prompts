@@ -3,6 +3,8 @@
 **Version:** 1.0.0  
 **Type:** Core Safety Primitive  
 
+**Use when:** A task touches credentials, keys, tokens, or personal data and you need the handling rules.
+
 ---
 
 ## Rules

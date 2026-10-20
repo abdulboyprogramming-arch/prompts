@@ -1,6 +1,12 @@
 # PROMPT 01 — Context & Project Understanding
-**Version:** 1.0.0  
 **Identifier:** W3-P01  
+**System:** 01-contribution/web3/general  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
+**Depends on:** none (entry stage)  
+**Produces:** `WEB3_CONTEXT.md`  
 
 ---
 

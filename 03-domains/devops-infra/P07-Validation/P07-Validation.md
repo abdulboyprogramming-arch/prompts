@@ -1,7 +1,12 @@
 # PROMPT 07 — Validation
-**Version:** 1.0.0  
 **Identifier:** DI-P07  
+**System:** 03-domains/devops-infra  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** diagnostic  
+**Risk class:** B  
 **Depends on:** DI-P06  
+**Produces:** `DI_VALIDATION.md`  
 
 ---
 

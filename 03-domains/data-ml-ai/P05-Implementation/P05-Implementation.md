@@ -1,7 +1,12 @@
 # PROMPT 05 — Implementation
-**Version:** 1.0.0  
 **Identifier:** ML-P05  
+**System:** 03-domains/data-ml-ai  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** ML-P04  
+**Produces:** `ML_IMPLEMENTATION_LOG.md`  
 
 ---
 

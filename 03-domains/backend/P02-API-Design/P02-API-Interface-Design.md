@@ -1,7 +1,12 @@
 # PROMPT 02 — API / Interface Design
-**Version:** 1.0.0  
 **Identifier:** BE-P02  
+**System:** 03-domains/backend  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
 **Depends on:** BE-P01  
+**Produces:** `BE_API_DESIGN.md`  
 
 ---
 

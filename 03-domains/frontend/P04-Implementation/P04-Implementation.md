@@ -1,7 +1,12 @@
 # PROMPT 04 — Implementation
-**Version:** 1.0.0  
 **Identifier:** FE-P04  
+**System:** 03-domains/frontend  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** FE-P03  
+**Produces:** `FE_IMPLEMENTATION_LOG.md`  
 
 ---
 

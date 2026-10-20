@@ -1,9 +1,13 @@
 # PROMPT 13 — Git Operations, Atomic Commits & Authorized Remote Publication
-**Version:** 1.0.0  
-**Status:** Operational  
 **Identifier:** P13  
+**System:** 01-contribution/open-source/general-agent  
+**Version:** 1.0.0  
+**Maturity:** operational  
+**Execution mode:** implementation  
+**Risk class:** C  
 **Depends on:** P01, P12 (validation passed), P06 (conventions)  
 **Produces:** Local commit(s) on the feature branch, optional authorized push, updated GIT_STATE.md and progress artifacts  
+**Inputs:** BRANCH, APPROVER (optional: REMOTE_NAME)
 
 ---
 
@@ -22,9 +26,9 @@ You are the Git Operations, Atomic Commits & Authorized Remote Publication agent
 ## 3. Prerequisites
 
 - VALIDATION_REPORT.md shows a “Ready for commit” verdict (or equivalent).
-- Feature branch is checked out and contains the validated changes.
+- Feature branch `{{BRANCH}}` is checked out and contains the validated changes.
 - Commit-message style and branch-naming conventions known from P06.
-- Authorization status for push known from MY_DETAILS.txt / current instructions.
+- Authorization status for push known, granted by `{{APPROVER}}`, targeting remote `{{REMOTE_NAME}}`.
 
 ## 4. Required Tools and Permissions
 

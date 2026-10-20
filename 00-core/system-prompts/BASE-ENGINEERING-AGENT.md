@@ -3,6 +3,8 @@
 **Version:** 1.0.0  
 **Type:** Core System Prompt  
 
+**Use when:** You are configuring an engineering agent and need the default contract every stage prompt inherits.
+
 ---
 
 ## Role

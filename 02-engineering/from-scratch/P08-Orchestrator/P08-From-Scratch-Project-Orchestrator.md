@@ -1,7 +1,12 @@
 # PROMPT 08 — From-Scratch Project Master Orchestrator
-**Version:** 1.0.0  
 **Identifier:** FS-P08  
-**Entry Point:** Yes  
+**System:** 02-engineering/from-scratch  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** orchestration  
+**Risk class:** A  
+**Depends on:** previous stage in system  
+**Produces:** `VISION.md`, `ARCHITECTURE.md`, `STACK.md`  
 
 ---
 

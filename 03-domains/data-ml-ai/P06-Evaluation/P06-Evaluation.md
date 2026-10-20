@@ -1,7 +1,12 @@
 # PROMPT 06 — Evaluation
-**Version:** 1.0.0  
 **Identifier:** ML-P06  
+**System:** 03-domains/data-ml-ai  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** diagnostic  
+**Risk class:** B  
 **Depends on:** ML-P05  
+**Produces:** `ML_EVALUATION.md`  
 
 ---
 

@@ -1,7 +1,12 @@
 # PROMPT 03 — Technical Architecture
-**Version:** 1.0.0  
 **Identifier:** GD-P03  
+**System:** 03-domains/games  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
 **Depends on:** GD-P02  
+**Produces:** `GAME_ARCHITECTURE.md`  
 
 ---
 

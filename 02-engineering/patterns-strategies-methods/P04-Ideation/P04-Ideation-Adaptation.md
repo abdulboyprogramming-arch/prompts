@@ -1,7 +1,12 @@
 # PROMPT 04 — Ideation & Adaptation
-**Version:** 1.0.0  
 **Identifier:** PS-P04  
+**System:** 02-engineering/patterns-strategies-methods  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
 **Depends on:** PS-P03  
+**Produces:** `IDEATION.md`  
 
 ---
 

@@ -1,7 +1,12 @@
 # PROMPT 08 — Systems-Building & Improvement Master Orchestrator
-**Version:** 1.0.0  
 **Identifier:** SB-P08  
-**Entry Point:** Yes  
+**System:** 04-process/systems-building-improvement  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** orchestration  
+**Risk class:** A  
+**Depends on:** previous stage in system  
+**Produces:** see workflow (artifact unspecified)  
 
 ---
 

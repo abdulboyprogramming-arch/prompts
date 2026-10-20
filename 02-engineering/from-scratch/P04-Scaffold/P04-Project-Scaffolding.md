@@ -1,7 +1,12 @@
 # PROMPT 04 — Project Scaffolding
-**Version:** 1.0.0  
 **Identifier:** FS-P04  
+**System:** 02-engineering/from-scratch  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** FS-P03  
+**Produces:** `README.md`, `SCAFFOLD.md`  
 
 ---
 

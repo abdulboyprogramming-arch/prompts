@@ -1,7 +1,12 @@
 # PROMPT 07 — Cleanup & Cutover
-**Version:** 1.0.0  
 **Identifier:** RW-P07  
+**System:** 02-engineering/rewriting-migration  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** RW-P06  
+**Produces:** `CUTOVER_SUMMARY.md`  
 
 ---
 

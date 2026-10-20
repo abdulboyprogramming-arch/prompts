@@ -1,7 +1,12 @@
 # PROMPT 06 — Prototype
-**Version:** 1.0.0  
 **Identifier:** LD-P06  
+**System:** 01-contribution/language-design  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** research  
+**Risk class:** A  
 **Depends on:** LD-P05  
+**Produces:** `PROTOTYPE_NOTES.md`  
 
 ---
 

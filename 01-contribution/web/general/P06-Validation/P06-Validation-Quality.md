@@ -1,7 +1,12 @@
 # PROMPT 06 — Validation & Quality
-**Version:** 1.0.0  
 **Identifier:** WEB-P06  
+**System:** 01-contribution/web/general  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** diagnostic  
+**Risk class:** B  
 **Depends on:** WEB-P05  
+**Produces:** `VALIDATION.md`  
 
 ---
 

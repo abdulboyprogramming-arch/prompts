@@ -1,7 +1,12 @@
 # PROMPT 04 — Design
-**Version:** 1.0.0  
 **Identifier:** FD-P04  
+**System:** 02-engineering/feature-design-suggestion  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** A  
 **Depends on:** FD-P03  
+**Produces:** `DESIGN.md`  
 
 ---
 

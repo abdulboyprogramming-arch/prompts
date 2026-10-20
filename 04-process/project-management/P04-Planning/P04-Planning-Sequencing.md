@@ -1,7 +1,12 @@
 # PROMPT 04 — Planning & Sequencing
-**Version:** 1.0.0  
 **Identifier:** PM-P04  
+**System:** 04-process/project-management  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
 **Depends on:** PM-P03  
+**Produces:** `PROJECT_PLAN.md`  
 
 ---
 

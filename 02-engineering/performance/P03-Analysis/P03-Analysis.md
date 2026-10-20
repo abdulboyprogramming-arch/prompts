@@ -1,7 +1,12 @@
 # PROMPT 03 — Analysis
-**Version:** 1.0.0  
 **Identifier:** PERF-P03  
+**System:** 02-engineering/performance  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** diagnostic  
+**Risk class:** B  
 **Depends on:** PERF-P02  
+**Produces:** `ANALYSIS.md`  
 
 ---
 

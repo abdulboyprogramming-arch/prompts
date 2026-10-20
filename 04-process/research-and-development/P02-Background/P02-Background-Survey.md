@@ -1,7 +1,12 @@
 # PROMPT 02 — Background Survey
-**Version:** 1.0.0  
 **Identifier:** RD-P02  
+**System:** 04-process/research-and-development  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** research  
+**Risk class:** B  
 **Depends on:** RD-P01  
+**Produces:** `BACKGROUND.md`  
 
 ---
 

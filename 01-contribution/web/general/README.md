@@ -1,29 +1,39 @@
 # General Web Contribution System
 
-**Status:** Operational (v1.0)  
-**Entry Point:** [`P08-Orchestrator/P08-Web-Contribution-Orchestrator.md`](P08-Orchestrator/P08-Web-Contribution-Orchestrator.md)
+**Maturity: skeleton (v0.1.0).** The eight stage files here are structural outlines. They identify a defensible contribution sequence and name the artifacts, but they do not yet contain the evidence rules, verification steps, or failure handling required to run them unsupervised. Do not present this system as operational.
 
-A practical multi-stage system for making high-quality contributions to web projects (frontend, backend, or fullstack). Designed to work across common web stacks while remaining adaptable.
+**Intended use today:** as a human-supervised checklist for contributing to a web project.
+**Not yet ready for:** unattended autonomous contribution.
 
 ## Stages
 
-| ID | Prompt | Purpose |
-|----|--------|---------|
-| WEB-P01 | Context & Project Understanding | Understand the web project, stack, and contribution norms |
-| WEB-P02 | Discovery & Opportunity Identification | Find valuable, suitable contribution opportunities |
-| WEB-P03 | Opportunity Selection & Framing | Choose and clearly frame the work |
-| WEB-P04 | Planning & Design | Plan the change with web-specific considerations |
-| WEB-P05 | Implementation | Execute the change following project conventions |
-| WEB-P06 | Validation & Quality | Test, lint, accessibility, performance, and visual checks |
-| WEB-P07 | PR & Communication | Prepare and submit a professional pull request |
-| WEB-P08 | Master Orchestrator | Coordinates the full contribution flow |
+| ID | Stage | Purpose | Maturity |
+|----|-------|---------|----------|
+| WEB-P01 | [Context & Project Understanding](P01-Context/P01-Context-Project-Understanding.md) | Stack, build, data flow, conventions | skeleton |
+| WEB-P02 | [Discovery & Opportunity Identification](P02-Discovery/P02-Discovery-Opportunity-Identification.md) | Find defects and improvements worth doing | skeleton |
+| WEB-P03 | [Opportunity Selection & Framing](P03-Opportunity/P03-Opportunity-Selection-Framing.md) | Pick one, define the acceptance bar | skeleton |
+| WEB-P04 | [Planning & Design](P04-Planning/P04-Planning-Design.md) | Design the change against existing patterns | skeleton |
+| WEB-P05 | [Implementation](P05-Implementation/P05-Implementation.md) | Build it within the project's conventions | skeleton |
+| WEB-P06 | [Validation & Quality](P06-Validation/P06-Validation-Quality.md) | Tests, a11y, browser checks, regression | skeleton |
+| WEB-P07 | [PR & Communication](P07-PR-Communication/P07-PR-Communication.md) | Reviewer-friendly change description | skeleton |
+| WEB-P08 | [Orchestrator](P08-Orchestrator/P08-Web-Contribution-Orchestrator.md) | Sequences the stages, tracks state | skeleton |
 
-## Web-Specific Considerations Built In
+## Preconditions this system assumes
 
-- Component structure and design-system alignment (frontend)
-- API contracts, data fetching, and error handling
-- Accessibility (a11y) and responsive behavior
-- Performance implications (bundle size, rendering, network)
-- Security basics (XSS, CSRF, auth handling, secrets)
-- Testing patterns common in web projects (unit, component, e2e)
-- CI, preview deployments, and visual regression signals
+- You can run the project's build and test commands locally.
+- You have read the repository's contribution guide and code of conduct.
+- Network publication (push/PR) is authorised separately — see `00-core/safety-and-security/ACTION-CATEGORIES.md` Category C.
+
+## Known gaps before promotion to `operational`
+
+1. No stage defines what counts as evidence that a UI change is correct (visual diff, DOM assertion, manual steps).
+2. Accessibility is mentioned but has no pass criteria.
+3. The orchestrator does not define behaviour when a stage is blocked.
+4. No regression-protection or rollback section in the implementation stages.
+
+Tracked in `_meta/ROADMAP-AND-BACKLOG.md`.
+
+## Related
+
+- Deep frontend engineering: `03-domains/frontend/`
+- Full autonomous contribution (the developed system): `01-contribution/open-source/general-agent/`

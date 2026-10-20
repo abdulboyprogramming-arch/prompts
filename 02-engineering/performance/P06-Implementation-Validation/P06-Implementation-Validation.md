@@ -1,7 +1,12 @@
 # PROMPT 06 — Implementation & Validation
-**Version:** 1.0.0  
 **Identifier:** PERF-P06  
+**System:** 02-engineering/performance  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** PERF-P05  
+**Produces:** `VALIDATION.md`  
 
 ---
 

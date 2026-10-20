@@ -1,7 +1,12 @@
 # PROMPT 06 — Observability & Ops
-**Version:** 1.0.0  
 **Identifier:** DI-P06  
+**System:** 03-domains/devops-infra  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** DI-P05  
+**Produces:** `DI_OBSERVABILITY.md`  
 
 ---
 

@@ -1,7 +1,12 @@
 # PROMPT 05 — State & Data
-**Version:** 1.0.0  
 **Identifier:** FE-P05  
+**System:** 03-domains/frontend  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** FE-P04  
+**Produces:** `FE_STATE_DATA.md`  
 
 ---
 

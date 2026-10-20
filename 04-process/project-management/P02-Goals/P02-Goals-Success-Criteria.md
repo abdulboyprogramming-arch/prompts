@@ -1,7 +1,12 @@
 # PROMPT 02 — Goals & Success Criteria
-**Version:** 1.0.0  
 **Identifier:** PM-P02  
+**System:** 04-process/project-management  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
 **Depends on:** PM-P01  
+**Produces:** `PROJECT_GOALS.md`  
 
 ---
 

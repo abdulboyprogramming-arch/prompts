@@ -1,7 +1,12 @@
 # PROMPT 03 — Opportunity Selection & Framing
-**Version:** 1.0.0  
 **Identifier:** W3-P03  
+**System:** 01-contribution/web3/general  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
 **Depends on:** W3-P02  
+**Produces:** `SELECTED_WORK.md`  
 
 ---
 

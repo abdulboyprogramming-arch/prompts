@@ -1,6 +1,6 @@
 # Language Design & Invention System
 
-**Status:** Operational (v1.0)  
+**Status:** Skeleton — 8 stage outlines (skeleton 8). The stages name a sensible sequence but lack the evidence rules, verification, and failure handling that this library requires of `operational`. Treat the system as a plan, not a procedure; see [`_meta/ROADMAP-AND-BACKLOG.md`](../../_meta/ROADMAP-AND-BACKLOG.md).
 **Entry Point:** [`P08-Orchestrator/P08-Language-Design-Orchestrator.md`](P08-Orchestrator/P08-Language-Design-Orchestrator.md)
 
 A multi-stage system for designing new programming languages, DSLs, or major language extensions — and for contributing thoughtfully to existing language projects.

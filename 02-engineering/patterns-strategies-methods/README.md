@@ -1,6 +1,6 @@
 # Patterns, Strategies & Methods System
 
-**Status:** Operational (v1.0)  
+**Status:** Skeleton — 7 stage outlines (skeleton 7). The stages name a sensible sequence but lack the evidence rules, verification, and failure handling that this library requires of `operational`. Treat the system as a plan, not a procedure; see [`_meta/ROADMAP-AND-BACKLOG.md`](../../_meta/ROADMAP-AND-BACKLOG.md).
 **Entry Point:** [`P07-Orchestrator/P07-Patterns-Strategies-Orchestrator.md`](P07-Orchestrator/P07-Patterns-Strategies-Orchestrator.md)
 
 A structured system for discovering, evaluating, improving, or inventing software design patterns, architectural strategies, and development methods.

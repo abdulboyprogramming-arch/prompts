@@ -1,8 +1,13 @@
 # System Selector Wizard
-
-**Version:** 1.0.0  
-**Type:** Interactive / Multi-step Wizard  
-**Use when:** The user has a goal but is unsure which prompt system in the archive to use.
+**Identifier:** WIZ-P01  
+**System:** 06-interactive  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** A  
+**Depends on:** none  
+**Produces:** System selector wizard brief  
+**Gallery:** You do not know which system applies: answer a short question set and get routed to the right prompt sequence.
 
 ---
 

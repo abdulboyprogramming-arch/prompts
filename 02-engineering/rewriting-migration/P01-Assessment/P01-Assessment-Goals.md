@@ -1,6 +1,12 @@
 # PROMPT 01 — Assessment & Goals
-**Version:** 1.0.0  
 **Identifier:** RW-P01  
+**System:** 02-engineering/rewriting-migration  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** diagnostic  
+**Risk class:** B  
+**Depends on:** none (entry stage)  
+**Produces:** `MIGRATION_GOALS.md`  
 
 ---
 

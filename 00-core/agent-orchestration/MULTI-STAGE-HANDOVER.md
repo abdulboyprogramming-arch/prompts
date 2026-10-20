@@ -3,6 +3,8 @@
 **Version:** 1.0.0  
 **Type:** Core Orchestration Primitive  
 
+**Use when:** A workflow spans more than one session and the next agent must continue without re-deriving context.
+
 ---
 
 ## Purpose

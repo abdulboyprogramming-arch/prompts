@@ -1,7 +1,12 @@
 # PROMPT 03 — Desired Outcomes
-**Version:** 1.0.0  
 **Identifier:** SB-P03  
+**System:** 04-process/systems-building-improvement  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** SB-P01  
+**Produces:** `DESIRED_OUTCOMES.md`  
 
 ---
 

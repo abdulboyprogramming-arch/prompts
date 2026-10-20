@@ -1,66 +1,90 @@
 # Prompt Archive Taxonomy
 
-This document defines the living classification system for the entire archive.
+**Version:** 2.0.0
+**Status:** current. Changes require updating this file and `_meta/CATALOG.md`.
 
-## Primary Axes
+## Primary axes
 
-1. **Purpose / Activity** (what the user is trying to accomplish)
-2. **Domain / Technology** (the technical context)
-3. **Scope** (single file → whole system → multi-repo / organization)
-4. **Maturity of Target** (greenfield, existing mature, legacy, experimental)
-5. **Interaction Style** (one-shot, multi-stage autonomous, interactive context-gathering)
+Every prompt has a **stable identity** (its `Identifier`) and five attributes that locate it without relying on the folder name alone:
 
-## Top-Level Categories (Stable)
+1. **Purpose / activity** — what the user is trying to accomplish.
+2. **Technical domain** — the system or technology context.
+3. **Execution mode** — diagnostic, planning, implementation, audit-remediation, autonomous-completion, research, continuous-improvement, orchestration, specialised.
+4. **Risk class** — A read-only, B local mutation, C external side effect, D high-risk.
+5. **Maturity** — skeleton, draft, operational, canonical.
 
-| Code | Name | Description |
-|------|------|-------------|
-| 00-core | Core & Meta | System prompts, orchestration patterns, safety, prompt engineering itself |
-| 01-contribution | Contribution | Adding value to existing projects (OSS or private) |
-| 02-engineering | Engineering | Analysis, design, transformation, and construction of software |
-| 03-domains | Domains | Deep, technology-specific prompt systems |
-| 04-process | Process | Methodology, research, QA, documentation, project management |
-| 05-scenarios | Scenarios | Short, high-utility prompts for common situations |
-| 06-interactive | Interactive | Prompts designed to gather missing context from the user |
-| 99-misc | Miscellaneous | Temporary or uncategorized |
-| archive | Archive | Deprecated or historical content |
+Purpose and domain determine the folder; mode, risk, and maturity are declared in the file's metadata block and aggregated in the catalog. This keeps the directory tree navigable without creating a folder per combination.
 
-## Contribution Sub-taxonomy (01-contribution)
+## Top-level categories
 
-- open-source/general-agent
-- open-source/language-specific
-- language-design (inventing or extending languages)
-- packages-libraries
-- web/frontend, web/backend, web/fullstack, web/infra-devops
-- web3/frontend, web3/backend, web3/smart-contracts, web3/infra
-- mobile
-- docs-and-content
-- games (contribution to existing game projects)
+| Code | Name | Contains | Maturity expectation |
+|------|------|----------|----------------------|
+| `00-core` | Core primitives | Safety, orchestration, base system prompt, prompt-engineering references | Operational (reference material) |
+| `01-contribution` | Contribution | Adding value to existing projects: open source, packages, web, web3, language design | One operational system; others skeleton |
+| `02-engineering` | Engineering | Audits, architecture, refactoring, migration, performance, security, project recovery, from-scratch | Mixed |
+| `03-domains` | Domains | Deep technology systems: backend, frontend, devops, data/ML, games, AI/agentic | Mixed; backend/frontend/devops/data/games are skeleton |
+| `04-process` | Process | Testing, code review, documentation, project management, research, observability, release engineering | Mixed |
+| `05-scenarios` | Scenarios | Single-purpose prompts for common situations | Operational for debugging, incident, flaky tests; others draft/skeleton |
+| `06-interactive` | Interactive | Intake prompts and wizards that collect context | Draft |
+| `07-workflows` | Workflows | Composed multi-system sequences with gates and handoff contracts | Draft |
+| `_meta` | Library standards | Authoring standard, rubric, templates, catalog, roadmap, review log | Operational |
+| `archive` | Archive | Superseded source material (legacy .txt) | Retained, not maintained |
+| `scripts` | Tooling | Validator and catalog generator | Operational |
 
-## Engineering Sub-taxonomy (02-engineering)
+## 01-contribution sub-taxonomy
 
-- codebase-audit
-- architecture-review
-- refactoring
-- rewriting-migration (language or paradigm)
-- feature-design-suggestion
-- from-scratch
-- patterns-strategies-methods (inventing or improving)
-- performance
-- security-hardening
+- `open-source/general-agent` — the developed 16-stage autonomous contribution system.
+- `packages-libraries` — API/compatibility-sensitive contribution.
+- `web/general`, `web3/general` — framework-family contribution (skeleton).
+- `language-design` — designing or extending a language (skeleton).
 
-## Domain Sub-taxonomy (03-domains)
+Rule: if the work is about *understanding or changing an existing system you own*, it belongs in `02-engineering`, not here. `01-contribution` is for contributing to someone else's project under their governance.
 
-Mirror common technology areas. Prefer putting *deep* domain systems here and *contribution* or *engineering* systems that happen to be in a domain under 01 or 02.
+## 02-engineering sub-taxonomy
 
-## Naming Conventions
+| Folder | Purpose | Maturity |
+|--------|---------|----------|
+| `codebase-audit` | Evidence-based audit: structure → architecture → quality → tests/deps → security/docs → findings → roadmap | Operational |
+| `project-recovery` | Preserve, reconstruct, complete, and accept an inherited or interrupted project | Operational |
+| `architecture-review` | Focused architectural evaluation and recommendations | Skeleton |
+| `refactoring` | Safe incremental restructuring | Skeleton |
+| `rewriting-migration` | Language/paradigm migration and rewrite planning | Skeleton |
+| `feature-design-suggestion` | Designing new features for existing systems | Skeleton |
+| `from-scratch` | Greenfield construction | Skeleton |
+| `patterns-strategies-methods` | Inventing or improving patterns and methods | Skeleton |
+| `performance` | Performance analysis and optimisation | Skeleton |
+| `security-hardening` | Security assessment and hardening | Skeleton |
 
-- Folders: kebab-case
-- Prompt files: `PXX-Short-Descriptive-Name.md` or `NN-descriptive-name.md`
-- Multi-stage systems live in their own subfolder with a local README and INDEX
-- Every major system should have a clear entry-point file (usually an Orchestrator)
+## 03-domains sub-taxonomy
 
-## Evolution Rules
+`backend`, `frontend`, `devops-infra`, `data-ml-ai`, `games`, `ai-agentic` (operational). Domain systems hold technology-specific practice; cross-cutting activities stay in `02-engineering` or `04-process`.
 
-- Prefer deepening an existing category over creating a new top-level category.
-- When a new major activity appears repeatedly, promote it to its own subfolder under the appropriate top-level.
-- Keep 99-misc small; migrate content quickly.
+Web3 contribution lives in `01-contribution/web3`; there is no `03-domains/web3` until a deep domain system exists. Do not create an empty folder in advance.
+
+## 04-process sub-taxonomy
+
+`testing-qa`, `observability-reliability`, `release-engineering`, `code-review`, `documentation`, `feature-flags`, `git-operations`, `dependency-management`, `decommissioning`, `governance-compliance`, `privacy-requests` (all operational); `project-management`, `research-and-development`, `systems-building-improvement` (skeletons).
+
+## 05-scenarios
+
+Single-file, high-utility prompts: debugging, incident response, flaky tests, legacy code, onboarding, performance investigation, PR authoring, quick fixes. Scenario prompts may be promoted into a system if they grow stage structure.
+
+## 07-workflows
+
+Composed sequences referencing systems across folders. Each workflow declares stages, gates, failure routing, and acceptance criteria, and uses `HANDOFF-CONTRACT.md`. Workflows do not duplicate prompt content.
+
+## Naming conventions
+
+- Folders: `kebab-case`; stage folders `P<NN>-Short-Name`.
+- Prompt files: `P<NN>-Descriptive-Name.md`; standalone scenario prompts `UPPER-KEBAB-CASE.md`.
+- Every multi-stage system has `README.md` with a stage table showing **actual maturity**.
+- Identifiers: `<SYSTEM-PREFIX>-P<NN>`, globally unique, retired rather than reused.
+
+## Evolution rules
+
+1. Prefer deepening an existing system to creating a new one.
+2. A new system must justify a gap that no existing system covers, and must ship at `operational` or be labelled `skeleton` from the start.
+3. Never add a stage stub without adding it to the system README with maturity `skeleton`.
+4. Promote maturity only with a review record in `_meta/review-log.md`.
+5. When restructuring, update: system README, catalog, affected workflows, and this file — in the same change.
+6. Retire, do not delete, material that carries historical intent; move it to `archive/` with a note.

@@ -1,7 +1,12 @@
 # PROMPT 02 — Measurement Setup
-**Version:** 1.0.0  
 **Identifier:** PERF-P02  
+**System:** 02-engineering/performance  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** PERF-P01  
+**Produces:** `MEASUREMENT.md`  
 
 ---
 

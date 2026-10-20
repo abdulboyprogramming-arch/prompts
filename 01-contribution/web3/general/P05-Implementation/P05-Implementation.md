@@ -1,7 +1,12 @@
 # PROMPT 05 — Implementation
-**Version:** 1.0.0  
 **Identifier:** W3-P05  
+**System:** 01-contribution/web3/general  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** W3-P04  
+**Produces:** see workflow (artifact unspecified)  
 
 ---
 

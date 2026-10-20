@@ -3,6 +3,8 @@
 **Version:** 1.0.0  
 **Type:** Core Orchestration Primitive  
 
+**Use when:** A stage fails, stalls, or produces something unverifiable, and the workflow must decide whether to retry, escalate, or stop.
+
 ---
 
 ## Purpose

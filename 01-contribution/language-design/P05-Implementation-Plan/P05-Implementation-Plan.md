@@ -1,7 +1,12 @@
 # PROMPT 05 — Implementation Plan
-**Version:** 1.0.0  
 **Identifier:** LD-P05  
+**System:** 01-contribution/language-design  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
 **Depends on:** LD-P04  
+**Produces:** `IMPLEMENTATION_PLAN.md`  
 
 ---
 

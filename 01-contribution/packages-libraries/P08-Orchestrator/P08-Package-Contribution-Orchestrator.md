@@ -1,7 +1,12 @@
 # PROMPT 08 — Package & Library Contribution Master Orchestrator
-**Version:** 1.0.0  
 **Identifier:** PKG-P08  
-**Entry Point:** Yes  
+**System:** 01-contribution/packages-libraries  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** orchestration  
+**Risk class:** A  
+**Depends on:** previous stage in system  
+**Produces:** see workflow (artifact unspecified)  
 
 ---
 

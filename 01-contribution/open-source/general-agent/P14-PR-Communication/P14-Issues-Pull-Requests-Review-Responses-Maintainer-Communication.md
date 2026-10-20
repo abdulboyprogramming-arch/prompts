@@ -1,9 +1,13 @@
 # PROMPT 14 — Issues, Pull Requests, Review Responses & Maintainer Communication
-**Version:** 1.0.0  
-**Status:** Operational  
 **Identifier:** P14  
+**System:** 01-contribution/open-source/general-agent  
+**Version:** 1.0.0  
+**Maturity:** operational  
+**Execution mode:** diagnostic  
+**Risk class:** C  
 **Depends on:** P01, P13 (committed and preferably published branch), P06 (PR conventions)  
 **Produces:** Open or updated pull request, issue comments if authorized, updated progress artifacts  
+**Inputs:** PR_REF (optional: BRANCH, APPROVER)
 
 ---
 
@@ -22,10 +26,10 @@ You are the Issues, Pull Requests, Review Responses & Maintainer Communication a
 
 ## 3. Prerequisites
 
-- Feature branch exists and has been committed (and preferably pushed).
+- Feature branch `{{BRANCH}}` exists and has been committed (and preferably pushed), with PR `{{PR_REF}}` open or to be opened.
 - VALIDATION_REPORT.md supports readiness.
 - PR title/body conventions known from P06.
-- Category C authorization for creating/updating PRs and posting comments.
+- Category C authorization for creating/updating PRs and posting comments, from `{{APPROVER}}`.
 
 ## 4. Required Tools and Permissions
 

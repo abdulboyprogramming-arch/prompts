@@ -1,7 +1,12 @@
 # PROMPT 02 — Current Architecture
-**Version:** 1.0.0  
 **Identifier:** AR-P02  
+**System:** 02-engineering/architecture-review  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** C  
 **Depends on:** AR-P01  
+**Produces:** `CURRENT_ARCHITECTURE.md`  
 
 ---
 

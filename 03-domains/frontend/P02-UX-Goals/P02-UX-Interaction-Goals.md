@@ -1,7 +1,12 @@
 # PROMPT 02 — UX & Interaction Goals
-**Version:** 1.0.0  
 **Identifier:** FE-P02  
+**System:** 03-domains/frontend  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
 **Depends on:** FE-P01  
+**Produces:** `FE_UX_GOALS.md`  
 
 ---
 
