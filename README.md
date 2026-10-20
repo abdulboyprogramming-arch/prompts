@@ -32,6 +32,7 @@ Pick the row that matches your situation. Do not read the whole repository first
 | A customer or auditor asks for evidence of our controls | [`04-process/governance-compliance/`](04-process/governance-compliance/README.md) | Audit |
 | I need to retire a service or endpoint safely | [`04-process/decommissioning/`](04-process/decommissioning/README.md) | Staged, reversible |
 | The frontend and backend were built separately | [`07-workflows/cross-layer-integration.md`](07-workflows/cross-layer-integration.md) | Specialised |
+| I need to restructure code without changing behaviour | [`02-engineering/refactoring/`](02-engineering/refactoring/README.md) | Diagnostic → implementation |
 | A feature "works" but only in the UI | [`02-engineering/feature-completion/`](02-engineering/feature-completion/README.md) | Implementation |
 | My request is vague and needs intake | [`06-interactive/`](06-interactive/README.md) | Interactive |
 
@@ -66,10 +67,11 @@ Maturity is enforced, not decorative: `scripts/validate_library.py` fails if a p
 | [`04-process/decommissioning/`](04-process/decommissioning/README.md) | 4 | operational |
 | [`04-process/governance-compliance/`](04-process/governance-compliance/README.md) | 3 | operational |
 | [`02-engineering/feature-completion/`](02-engineering/feature-completion/README.md) | 4 | operational |
+| [`02-engineering/refactoring/`](02-engineering/refactoring/README.md) | 7 | operational |
 | [`07-workflows/`](07-workflows/README.md) | 9 | mixed (3 operational: verification, integration, multi-agent) |
 | [`05-scenarios/`](05-scenarios/README.md) | 11 | mixed (6 operational, 5 skeleton) |
 
-Everything else — backend, frontend, devops-infra, data-ml-ai, games, refactoring, architecture-review, migration, code review, documentation, project management, language design, packages, web/web3 contribution — is a **skeleton**: a defensible sequence of stages with outline prompts. Those folders are useful for structuring a human-led session today; they are not yet safe to hand to an autonomous agent. Promotion order is in [`_meta/ROADMAP-AND-BACKLOG.md`](_meta/ROADMAP-AND-BACKLOG.md); per-scenario coverage with evidence is in [`_meta/coverage-matrix.md`](_meta/coverage-matrix.md).
+Everything else — backend, frontend, devops-infra, data-ml-ai, games, architecture-review, migration, code review, documentation, project management, language design, packages, web/web3 contribution — is a **skeleton**: a defensible sequence of stages with outline prompts. Those folders are useful for structuring a human-led session today; they are not yet safe to hand to an autonomous agent. Promotion order is in [`_meta/ROADMAP-AND-BACKLOG.md`](_meta/ROADMAP-AND-BACKLOG.md); per-scenario coverage with evidence is in [`_meta/coverage-matrix.md`](_meta/coverage-matrix.md).
 
 ## Structure
 

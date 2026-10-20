@@ -193,3 +193,10 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 - Extraction is deliberately conservative: `Gallery:` metadata wins; otherwise the first usable objective line, skipping role prose ("You are…") and prohibitions ("Do not…"), then the first bullet, then `Produces:`, then a title-based fallback for orchestrator prompts. Two prompts needed an explicit `Gallery:` line because their objectives are structural rather than situational (`DATALOSS-01`, `WF-IMPROVE`).
 - **Found and fixed while building it:** five scenario skeleton prompts had no identifier and were therefore absent from both the catalog and the gallery. They now carry standard metadata, and the validator fails on any future unindexed Markdown file, so the gap cannot reopen silently.
 - Known limitation: the extracted sentence is the prompt's own wording, so rows vary in tone; authors who want better wording add a `Gallery:` line.
+
+### `02-engineering/refactoring/` — 7 stages promoted (skeleton → operational)
+- **2026-10-20 · mixed · 88/100 · operational**
+- Reason: the most frequently performed risky change in software was the largest remaining skeleton, and the old outlines had no defensible verification. The system now refuses the work without a measurable target (P01), forces a technique chosen against the deployment constraint rather than taste (P02), and treats the safety net as unproven until a mutation probe shows it catches breakage (P03).
+- Distinctive decisions: behaviour change is banned from refactoring commits and must be separated; P05 measures the *target*, so a clean refactor that missed its purpose is reported as a failure; P06 forbids leaving two structures in place and requires the observation window before removal.
+- Deductions: language-agnostic, so the mechanical-refactoring catalogue is named rather than tool-specific; no automated codemod integration.
+- Follow-up: a worked example (extract-a-service or replace-conditional) would help reviewers recognise a good slice plan.

@@ -10,7 +10,7 @@ Engineering activities that apply across technologies: understanding a system, c
 | [`project-recovery/`](project-recovery/README.md) | Preserve, reconstruct, complete, and accept an inherited or interrupted project | 7 | **operational** |
 | [`feature-completion/`](feature-completion/README.md) | Finish a feature across every layer: authorisation, persistence, side effects, states, tests | 4 | **operational** |
 | [`architecture-review/`](architecture-review/README.md) | Architectural evaluation and recommendations | 7 | skeleton |
-| [`refactoring/`](refactoring/README.md) | Safe incremental restructuring | 7 | skeleton |
+| [`refactoring/`](refactoring/README.md) | Measurable target, mutation-proven net, mechanical slices, equivalence evidence, old path removed | 7 | **operational** |
 | [`rewriting-migration/`](rewriting-migration/README.md) | Language/paradigm migration and rewrite planning | 8 | skeleton |
 | [`feature-design-suggestion/`](feature-design-suggestion/README.md) | Designing features for existing systems | 7 | skeleton |
 | [`from-scratch/`](from-scratch/README.md) | Greenfield construction | 8 | skeleton |

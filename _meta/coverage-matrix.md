@@ -29,7 +29,7 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Verification | Adequate | `QA-P06`, `SEC-P06`, `REL-P04`, `WF-VERIFY` |
 | Release | Adequate | `REL-P01..P04` |
 | Operation | Adequate | `OBS-P01..P05`, `INC-01` |
-| Maintenance / improvement | Partial | `WF-IMPROVE` (draft), `systems-building-improvement` skeleton |
+| Maintenance / improvement | Adequate | `REF-P01..P07` for structural work, `WF-IMPROVE` (draft) for the loop itself |
 | Modernisation | Partial | `rewriting-migration` skeleton; DB change covered by `DB-P01..P05`, but no language/platform modernisation procedure |
 | Retirement / decommissioning | **Adequate** | `DEC-P01..P04` (new) — consumer discovery by class with positive evidence, derived notice period, staged reversible shutdown with a quiescence window, asset-by-asset retirement decisions |
 
@@ -159,7 +159,7 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Element | Status | Evidence / gap |
 |--------|--------|----------------|
 | Documentation | Partial | `documentation` skeleton; `REC-P02` reconstructs |
-| Technical debt | Partial | audit P04/P08 quantify; no debt-repayment workflow |
+| Technical debt | **Adequate** | `REF-P01..P07` (new) turns debt into a measured refactoring with a proven net; audit P04/P08 still quantify it |
 | Dependency management | **Adequate** | `DEP-P01..P05` (new) — inventory, breaking-change assessment, execution, verification, policy |
 | Architecture evolution | Partial | architecture-review skeleton; no ADR prompt |
 | Knowledge preservation | Partial | handoff contract + status checkpoint; no onboarding-maintenance loop |
@@ -205,14 +205,16 @@ Counts are computed from the tables above; they are not estimates.
 
 | Status | Dimension rows | Workflow rows |
 |--------|---------------:|--------------:|
-| Adequate | 59 | 9 |
-| Partial | 35 | 5 |
+| Adequate | 61 | 9 |
+| Partial | 33 | 5 |
 | Missing | 4 | 0 |
 | Defective | 0 | 0 |
 | Indirect | 0 | 0 |
 | **Total assessed** | **98** | **14** |
 
-**Reading this honestly:** roughly 60% of assessed dimension rows are adequate. The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
+**Reading this honestly:** roughly 62% of assessed dimension rows are adequate. The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
+
+**Closed in 2.3.0:** refactoring (`REF-P01..P07`).
 
 **Closed in 2.1.x:** enterprise readiness (`GOV-P01..P03`), multi-agent orchestration (`WF-MULTIAGENT`), cross-layer integration (`WF-INTEGRATE`), decommissioning (`DEC-P01..P04`), and database engineering (`DB-P01..P05`), dependency/framework upgrades (`DEP-P01..P05`), vertical feature completion (`FC-P01..P04`), independent verification (`WF-VERIFY`), failed-fix escalation (`FIXFAIL-01`), data-loss recovery (`DATALOSS-01`), security incident response (`SECINC-01`).
 

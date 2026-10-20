@@ -27,7 +27,7 @@ Generated from the prompt files, so it cannot drift from them; CI fails if this 
 | [06-interactive — conversations that clarify a request](#06-interactive--conversations-that-clarify-a-request) | 4 | Use when the request is vague and needs to be scoped first. |
 | [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 9 | Composed sequences that route between systems and stop at human gates. |
 
-*Maturity across the library: 90 operational, 6 draft, 170 skeleton, 266 total.*
+*Maturity across the library: 97 operational, 6 draft, 163 skeleton, 266 total.*
 
 ---
 
@@ -212,13 +212,13 @@ Work on an existing codebase: audit, repair, complete, upgrade.
 
 | ID | Prompt | Use it for | Maturity | Risk |
 |---|---|---|---|---|
-| `REF-P01` | [Assessment & Goal Clarification](02-engineering/refactoring/P01-Assessment/P01-Assessment-Goal-Clarification.md) | Understand the current problems (pain points, smells, change friction, defects related to structure). | skeleton | C |
-| `REF-P02` | [Refactoring Strategy](02-engineering/refactoring/P02-Strategy/P02-Refactoring-Strategy.md) | Choose the most appropriate refactoring techniques. | skeleton | A |
-| `REF-P03` | [Safety Net](02-engineering/refactoring/P03-Safety-Net/P03-Safety-Net.md) | Verify or create characterization tests and critical path tests that lock current behavior. | skeleton | B |
-| `REF-P04` | [Execution](02-engineering/refactoring/P04-Execution/P04-Execution.md) | Execute the strategy one small step at a time. | skeleton | B |
-| `REF-P05` | [Validation](02-engineering/refactoring/P05-Validation/P05-Validation.md) | Confirm behavior is preserved. | skeleton | B |
-| `REF-P06` | [Cleanup & Documentation](02-engineering/refactoring/P06-Cleanup/P06-Cleanup-Documentation.md) | Remove temporary scaffolding, dead code, or transitional artifacts left from the refactoring. | skeleton | B |
-| `REF-P07` | [Safe Refactoring Master Orchestrator](02-engineering/refactoring/P07-Orchestrator/P07-Safe-Refactoring-Orchestrator.md) | Runs the refactoring system end to end: gates, routing, and final acceptance. | skeleton | A |
+| `REF-P01` | [Assessment & Goal Clarification](02-engineering/refactoring/P01-Assessment/P01-Assessment-Goal-Clarification.md) | Answers: what pain does this area cause today, what measurable outcome would justify the work, which parts must change, and what would make us stop? | operational | A |
+| `REF-P02` | [Refactoring Strategy](02-engineering/refactoring/P02-Strategy/P02-Refactoring-Strategy.md) | Produce a strategy: the technique, the slice sequence, the seams, the reversal points, and the estimate — sized against the stop conditions from P01. | operational | A |
+| `REF-P03` | [Safety Net](02-engineering/refactoring/P03-Safety-Net/P03-Safety-Net.md) | Produce a safety net sufficient for the slices in the strategy: characterisation tests of current behaviour (including the odd parts), contract tests at seams, and… | operational | B |
+| `REF-P04` | [Execution](02-engineering/refactoring/P04-Execution/P04-Execution.md) | Execute the strategy's slices in order, keeping the trunk green, logging each step, and stopping when the stop conditions are reached. | operational | B |
+| `REF-P05` | [Validation](02-engineering/refactoring/P05-Validation/P05-Validation.md) | Behaviour equivalence for the refactored area, no regression elsewhere, and movement on the P01 target — or state precisely which of these is not established. | operational | B |
+| `REF-P06` | [Cleanup & Documentation](02-engineering/refactoring/P06-Cleanup/P06-Cleanup-Documentation.md) | Complete the change: remove the old path once telemetry proves it is unused, delete dead code with evidence, update documentation and diagrams, and write the… | operational | B |
+| `REF-P07` | [Safe Refactoring Master Orchestrator](02-engineering/refactoring/P07-Orchestrator/P07-Safe-Refactoring-Orchestrator.md) | Run the stages in order, enforce the gates, route failures, and produce a final record of what was done, what changed, and what remains. | operational | A |
 
 ### rewriting-migration · 8 prompts
 

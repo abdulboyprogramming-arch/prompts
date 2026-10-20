@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 266 prompts — 0 canonical, 90 operational, 6 draft, 170 skeleton.
+**Totals:** 266 prompts — 0 canonical, 97 operational, 6 draft, 163 skeleton.
 
 ## `01-contribution/language-design`
 
@@ -181,13 +181,13 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
 | ID | Stage | Maturity | Mode | Risk | File |
 |----|-------|----------|------|------|------|
-| `REF-P01` | PROMPT 01 — Assessment & Goal Clarification | skeleton | diagnostic | C | [P01-Assessment-Goal-Clarification.md](../02-engineering/refactoring/P01-Assessment/P01-Assessment-Goal-Clarification.md) |
-| `REF-P02` | PROMPT 02 — Refactoring Strategy | skeleton | planning | A | [P02-Refactoring-Strategy.md](../02-engineering/refactoring/P02-Strategy/P02-Refactoring-Strategy.md) |
-| `REF-P03` | PROMPT 03 — Safety Net | skeleton | implementation | B | [P03-Safety-Net.md](../02-engineering/refactoring/P03-Safety-Net/P03-Safety-Net.md) |
-| `REF-P04` | PROMPT 04 — Execution | skeleton | implementation | B | [P04-Execution.md](../02-engineering/refactoring/P04-Execution/P04-Execution.md) |
-| `REF-P05` | PROMPT 05 — Validation | skeleton | diagnostic | B | [P05-Validation.md](../02-engineering/refactoring/P05-Validation/P05-Validation.md) |
-| `REF-P06` | PROMPT 06 — Cleanup & Documentation | skeleton | implementation | B | [P06-Cleanup-Documentation.md](../02-engineering/refactoring/P06-Cleanup/P06-Cleanup-Documentation.md) |
-| `REF-P07` | PROMPT 07 — Safe Refactoring Master Orchestrator | skeleton | orchestration | A | [P07-Safe-Refactoring-Orchestrator.md](../02-engineering/refactoring/P07-Orchestrator/P07-Safe-Refactoring-Orchestrator.md) |
+| `REF-P01` | PROMPT 01 — Assessment & Goal Clarification | operational | diagnostic | A | [P01-Assessment-Goal-Clarification.md](../02-engineering/refactoring/P01-Assessment/P01-Assessment-Goal-Clarification.md) |
+| `REF-P02` | PROMPT 02 — Refactoring Strategy | operational | planning | A | [P02-Refactoring-Strategy.md](../02-engineering/refactoring/P02-Strategy/P02-Refactoring-Strategy.md) |
+| `REF-P03` | PROMPT 03 — Safety Net | operational | implementation | B | [P03-Safety-Net.md](../02-engineering/refactoring/P03-Safety-Net/P03-Safety-Net.md) |
+| `REF-P04` | PROMPT 04 — Execution | operational | implementation | B | [P04-Execution.md](../02-engineering/refactoring/P04-Execution/P04-Execution.md) |
+| `REF-P05` | PROMPT 05 — Validation | operational | diagnostic | B | [P05-Validation.md](../02-engineering/refactoring/P05-Validation/P05-Validation.md) |
+| `REF-P06` | PROMPT 06 — Cleanup & Documentation | operational | implementation | B | [P06-Cleanup-Documentation.md](../02-engineering/refactoring/P06-Cleanup/P06-Cleanup-Documentation.md) |
+| `REF-P07` | PROMPT 07 — Safe Refactoring Master Orchestrator | operational | orchestration | A | [P07-Safe-Refactoring-Orchestrator.md](../02-engineering/refactoring/P07-Orchestrator/P07-Safe-Refactoring-Orchestrator.md) |
 
 ## `02-engineering/rewriting-migration`
 

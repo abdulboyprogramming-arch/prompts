@@ -2,6 +2,29 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.3.0] — 2026-10-20
+
+### Added / promoted — safe refactoring (7 stages, operational)
+
+`02-engineering/refactoring/` was the largest remaining skeleton and covers the most frequently performed risky change in software.
+
+- **REF-P01 Assessment** — refuses to start without a measurable target ("one place to change the tax rule instead of four"), classifies the request as refactor / rewrite / repair / optimisation / feature-in-disguise, and records stop conditions before any code moves.
+- **REF-P02 Strategy** — technique chosen against the deployment constraint (preparatory, branch-by-abstraction, strangler, parallel run, or explicitly-treated-as-rewrite), slices that keep the trunk green, seams introduced before moves, reversal points, and an estimate sized against the stop conditions.
+- **REF-P03 Safety net** — characterisation tests that assert current behaviour (including behaviour that looks wrong), golden-master corpora, contract tests at seams, and a **mutation probe per important test**; a net that has not been shown to catch breakage blocks execution.
+- **REF-P04 Execution** — one mechanical transformation per commit, green after each, diff size checked against the budget, behaviour changes excluded and logged.
+- **REF-P05 Validation** — golden-master diff including hold-out inputs, contract-surface diff, post-move mutation probe, differential or shadow comparison, performance delta, and a measurement of the P01 target.
+- **REF-P06 Cleanup** — observation window before removal, three-signal evidence of non-use, removal in dependency order (flag last), documentation and diagrams updated, follow-ups routed.
+- **REF-P07 Orchestrator** — gates with artifacts, failure routing (red net → revert slice; behaviour change → separate; target unmet → reassess, not re-execute), and scope-drift protection.
+
+### Changed
+
+- Coverage matrix: technical debt and maintenance rows move to adequate; dimension totals now 61 adequate / 33 partial / 4 missing.
+- Roadmap marks refactoring complete; backend is now the highest-value remaining skeleton.
+
+### Result
+
+266 prompts: 97 operational, 6 draft, 163 skeleton. Validator 0 errors / 0 warnings.
+
 ## [2.2.0] — 2026-10-20
 
 ### Added
