@@ -64,7 +64,7 @@ The library is deliberately honest about how developed each system is.
 
 Maturity is enforced, not decorative: `scripts/validate_library.py` fails if a prompt's label exceeds its content, or if a system README advertises more maturity than its stages have.
 
-### Where the depth actually is (v2.1.0)
+### Where the depth actually is
 
 | System | Prompts | Maturity |
 |--------|--------:|----------|

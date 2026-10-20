@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security report
+    url: https://github.com/abdulboyprogramming-arch/prompts/security/advisories/new
+    about: Report a security issue privately. Do not open a public issue.
+  - name: How to contribute
+    url: https://github.com/abdulboyprogramming-arch/prompts/blob/main/CONTRIBUTING.md
+    about: Standards, validation commands, and the promotion bar.

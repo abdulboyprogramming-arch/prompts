@@ -1,6 +1,6 @@
 # Project Status — Continuation Checkpoint
 
-**As of:** 2026-10-20 · **Library version:** 2.1.0 · **Branch:** `arena/d745d222-prompts`
+**As of:** 2026-10-20 · **Library version:** 2.12.0 · **Branch:** `main` (work delivered in a feature branch, merged by pull request)
 **Read this first** if you are continuing work on this repository. It replaces guesswork about what exists and what was intended.
 
 ---
@@ -113,7 +113,7 @@ Never regenerate a skeleton by copy-pasting another system's prose: the value of
 
 ## 10. Environment and repository facts
 
-- Git: branch `arena/d745d222-prompts`, branched from `main` at `a7aa3e0` ("chore: archived my previous prompts set"). History contains one commit before this cycle, so there is no earlier agent transcript to recover — the prior state is the working tree itself, which has been preserved and is recorded in `CHANGELOG.md`.
+- Git: the history before this cycle contains a single commit (`a7aa3e0`), so there is no earlier transcript to recover; the prior state is the working tree itself, preserved and recorded in `CHANGELOG.md`. Work from this cycle reached `main` through one reviewed pull request.
 - No `AGENTS.md`/`CLAUDE.md`/editor instruction files existed before this cycle; `AGENTS.md` now exists.
 - No build system and no tests. CI (`.github/workflows/validate-library.yml`) runs the validator and the catalog freshness check. The only executable artifact is `scripts/validate_library.py` (stdlib-only, Python 3.9+).
 - `archive/legacy-txt-files/` contains 214 KB of original .txt prompt material. It is source material, not maintained content; do not treat it as canonical.

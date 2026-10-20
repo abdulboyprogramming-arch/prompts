@@ -90,7 +90,7 @@ Use these names rather than inventing a synonym per prompt. A synonym is a defec
 | `REPO_PATH` | Root of the repository under work | absolute path, `.` for the current directory |
 | `BASE_REF` | Ref the work starts from | branch, tag, or SHA |
 | `HEAD_REF` | Ref produced or under review | branch or SHA |
-| `BRANCH` | Working branch the agent may commit to | `arena/…`, `fix/…` |
+| `BRANCH` | Working branch the agent may commit to | `feat/…`, `fix/…` |
 | `TARGET_COMMIT` | Commit being released, audited, or reviewed | SHA or tag |
 | `LAST_TAG` | Previous release tag, for changelogs and ranges | `v2.7.0` |
 | `TARGET_AREA` | Subtree, module, or component in scope | path or component name |

@@ -39,5 +39,5 @@ Then execute the system named below, following its stage order and completion cr
 
 ## Gaps
 
-- No primitive yet for **multi-agent coordination** (ownership, conflict resolution, integration). Tracked in the backlog.
+- Multi-agent coordination is covered by [`agent-orchestration/MULTI-STAGE-HANDOVER.md`](agent-orchestration/MULTI-STAGE-HANDOVER.md) for state passing, and by `07-workflows/multi-agent-orchestration.md` for decomposition and integration. Neither is a `00-core` primitive yet; the gap is the primitive, not the guidance.
 - No primitive for **long-session context compaction** beyond the ledger pattern.

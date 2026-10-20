@@ -1,6 +1,6 @@
 # Coverage Matrix
 
-**Version:** 1.1.0 · **Last assessed:** 2026-10-20 (post-2.1.0 reassessment) · **Method:** evidence review of every prompt file; a scenario counts as covered only when an existing prompt addresses its distinctive requirements, constraints, and verification — not because a related prompt exists.
+**Version:** 1.1.0 · **Last assessed:** 2026-10-20 (post-2.12.0 reassessment) · **Method:** evidence review of every prompt file; a scenario counts as covered only when an existing prompt addresses its distinctive requirements, constraints, and verification — not because a related prompt exists.
 
 **Status vocabulary**
 
