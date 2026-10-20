@@ -129,3 +129,20 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 - Coverage matrix created with 12 dimensions, 97 dimension rows and 14 workflow rows, each with an evidence pointer. Current honest totals: 52 adequate / 38 partial / 7 missing (dimensions), 7 adequate / 5 partial / 2 missing (workflows).
 - Nine new opportunities discovered this cycle are recorded in `_meta/ROADMAP-AND-BACKLOG.md` §"Discovered in 2.1.0", including three rejected ideas with reasons.
 - **Still not done:** no empirical execution of any prompt against a real repository. This remains the single largest credibility gap and is now item P0 in the backlog.
+
+### `05-scenarios/data-loss/DATA-LOSS-RECOVERY.md`
+- **2026-10-20 · specialised · 89/100 · operational**
+- Reason: the highest-consequence scenario in the matrix. Enforces containment before diagnosis, evidence preservation before cleanup, restore to a side instance instead of over live data, merge that preserves post-incident legitimate writes, and a loss statement that separates recovered / lost / uncertain. Distinguishes loss types (deletion, overwrite, corruption, migration damage, hardware, malicious) because each has a different route.
+- Deductions: engine-neutral, so PITR mechanics are described procedurally rather than as commands; legal notification is flagged, not resolved (correctly out of scope).
+- Follow-up: pair with an engine-specific appendix if demand appears.
+
+### `05-scenarios/security-incident/SECURITY-INCIDENT.md`
+- **2026-10-20 · specialised · 90/100 · operational**
+- Reason: closes a real gap — the library had assessment/remediation (`SEC-P01..P07`) but nothing for an active compromise, where the correct first move (preserve evidence) is the opposite of the availability playbook. Includes the containment-strategy trade-off table, persistence search, access-vs-exfiltration discipline, eradication against a known-good baseline, rotation verification, and a disclosure decision record that stops short of legal advice.
+- Deductions: no forensic tooling detail by design (tool-specific depth ages badly); insider case handled as an escalation, not a procedure.
+- Follow-up: add an evidence-collection appendix per platform if the library gains platform appendices.
+
+### Coverage movement (2.1.x)
+- Dimension rows: 55 adequate / 36 partial / 6 missing (from 52/38/7 at the start of the cycle).
+- Workflows: 7 adequate / 5 partial / 2 missing — unchanged by this batch.
+- Remaining missing: decommissioning, enterprise readiness, data engineering, mobile, embedded, desktop/CLI, cross-layer integration, prototype discipline, and (outside the table) the empirical test harness.

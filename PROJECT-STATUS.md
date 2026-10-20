@@ -32,9 +32,9 @@ archive/         Legacy .txt source material, retained for provenance
 Run `python3 scripts/validate_library.py` for live numbers. At the time of writing:
 
 - **299 Markdown files**, **235 prompt files**, ~780 KB of content.
-- Maturity: **79 operational**, **7 draft**, **165 skeleton**.
+- Maturity: **81 operational**, **7 draft**, **165 skeleton**.
 - **0 validation errors**; warnings are advisory (6).
-- Operational systems: open-source contribution agent (16), codebase audit (9), project recovery (7), security hardening (7), testing & QA (7), database (5), dependency management (5), observability & reliability (5), release engineering (4), AI/agentic (5), feature completion (4), independent verification (1), plus debugging, incident response, flaky-test triage, and failed-fix escalation.
+- Operational systems: open-source contribution agent (16), codebase audit (9), project recovery (7), security hardening (7), testing & QA (7), database (5), dependency management (5), observability & reliability (5), release engineering (4), AI/agentic (5), feature completion (4), independent verification (1), plus debugging, incident response, flaky-test triage, failed-fix escalation, data-loss recovery, and security incident response.
 - Every prompt declares identifier, system, version, maturity, execution mode, and risk class.
 
 **The honest summary:** one sixth of the library is developed; five sixths are outlines that name a sensible stage sequence but lack verification, evidence rules, and failure handling. That ratio is stated everywhere it matters, and the validator fails the build if a README over-claims.
@@ -92,13 +92,11 @@ Full detail in `CHANGELOG.md`. Summary:
 ## 8. Next actions, in order
 
 1. **Empirical test harness** — run one operational prompt against a fixture repository and record the outcome in `_meta/review-log.md`. This is the largest credibility gap: every `operational` label is currently a structural review.
-2. **Data-loss recovery** (`05-scenarios/data-loss/`) — highest-consequence missing scenario: stop writes, scope loss, restore vs reconstruct, communicate.
-3. **Security incident response** (`05-scenarios/security-incident/`) — containment, evidence preservation, disclosure; distinct from the existing assessment system.
-4. Promote `02-engineering/refactoring` (7 stages) — highest-value remaining skeleton.
-5. Promote `03-domains/backend` (8 stages).
-6. **Integration workflow** (`07-workflows/`) for merging independently developed frontend/backend/infra work.
-7. `04-process/decommissioning/` and `03-domains/data-engineering/`.
-8. Multi-agent orchestration workflow.
+2. Promote `02-engineering/refactoring` (7 stages) — highest-value remaining skeleton.
+3. Promote `03-domains/backend` (8 stages).
+4. **Integration workflow** (`07-workflows/`) for merging independently developed frontend/backend/infra work.
+5. `04-process/decommissioning/` and `03-domains/data-engineering/`.
+6. Multi-agent orchestration workflow.
 
 ## 9. How to resume
 

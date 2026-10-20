@@ -14,6 +14,8 @@ Gap-discovery cycle driven by a new coverage matrix rather than the existing roa
 - `02-engineering/feature-completion/` (4 stages) — a 14-layer completion checklist, layer gap map against an analogue, end-to-end implementation, and acceptance tested per role with direct endpoint access.
 - `07-workflows/independent-verification.md` — adversarial verification of another agent's completion claims: claim extraction, clean-state reproduction, mutation probing, diff audit for undeclared scope and weakened tests.
 - `05-scenarios/failed-fix/FAILED-FIX-ESCALATION.md` — attempt ledger, failure classification, and a decision to revert, re-scope, narrow, or escalate instead of patching again.
+- `05-scenarios/data-loss/DATA-LOSS-RECOVERY.md` — freeze writes, preserve evidence, bound the window, restore to a side instance and merge, with a loss statement separating recovered / lost / uncertain.
+- `05-scenarios/security-incident/SECURITY-INCIDENT.md` — evidence-first response for an active compromise: containment strategy trade-offs, persistence search, verified eradication against a baseline, disclosure decision record.
 
 ### Changed
 
@@ -30,7 +32,7 @@ Gap-discovery cycle driven by a new coverage matrix rather than the existing roa
 
 - 165 prompts remain `skeleton`.
 - No prompt has been empirically executed against a real repository; structural validation is not empirical validation.
-- 7 dimension scenarios and 2 workflows remain missing, listed by priority in the coverage matrix.
+- 6 dimension scenarios and 2 workflows remain missing, listed by priority in the coverage matrix.
 
 ## [2.0.0] — 2026-10-20
 

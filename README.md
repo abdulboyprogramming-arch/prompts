@@ -21,6 +21,8 @@ Pick the row that matches your situation. Do not read the whole repository first
 | I am building an LLM feature or agent | [`03-domains/ai-agentic/`](03-domains/ai-agentic/README.md) | Architecture → eval → safety |
 | I am starting from nothing | [`02-engineering/from-scratch/`](02-engineering/from-scratch/README.md) + workflow [`greenfield-delivery`](07-workflows/greenfield-delivery.md) | Structural only (skeleton) |
 | An agent says the work is complete and I need to trust it | [`07-workflows/independent-verification.md`](07-workflows/independent-verification.md) | Diagnostic |
+| Data was deleted or corrupted and I need it back | [`05-scenarios/data-loss/`](05-scenarios/data-loss/DATA-LOSS-RECOVERY.md) | Containment first |
+| I think we have been compromised | [`05-scenarios/security-incident/`](05-scenarios/security-incident/SECURITY-INCIDENT.md) | Preserve, contain, scope |
 | Two fix attempts have failed and the bug is still there | [`05-scenarios/failed-fix/`](05-scenarios/failed-fix/FAILED-FIX-ESCALATION.md) | Diagnostic |
 | I need to change a database schema without losing data | [`03-domains/database/`](03-domains/database/README.md) | Audit → drill → execute |
 | I need to upgrade a framework or dependency safely | [`04-process/dependency-management/`](04-process/dependency-management/README.md) | Audit → plan → verify |
@@ -58,7 +60,7 @@ Maturity is enforced, not decorative: `scripts/validate_library.py` fails if a p
 | [`02-engineering/feature-completion/`](02-engineering/feature-completion/README.md) | 4 | operational |
 | [`07-workflows/independent-verification.md`](07-workflows/independent-verification.md) | 1 | operational |
 | [`07-workflows/`](07-workflows/README.md) | 6 | draft |
-| [`05-scenarios/`](05-scenarios/README.md) | 9 | mixed (4 operational, 5 skeleton) |
+| [`05-scenarios/`](05-scenarios/README.md) | 11 | mixed (6 operational, 5 skeleton) |
 
 Everything else — backend, frontend, devops-infra, data-ml-ai, games, refactoring, architecture-review, migration, code review, documentation, project management, language design, packages, web/web3 contribution — is a **skeleton**: a defensible sequence of stages with outline prompts. Those folders are useful for structuring a human-led session today; they are not yet safe to hand to an autonomous agent. Promotion order is in [`_meta/ROADMAP-AND-BACKLOG.md`](_meta/ROADMAP-AND-BACKLOG.md).
 

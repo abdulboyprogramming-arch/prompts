@@ -83,9 +83,9 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Routine defect | Adequate | `DBG-01`, `FLAKE-01` |
 | Regression | Adequate | `QA-P06` mutation checks, `REL-P04` |
 | Service outage | Adequate | `INC-01`, `OBS-P05` |
-| Security incident | Partial | `SEC-P07` covers assessment; no incident-specific security response (forensics, containment, disclosure) |
-| Data integrity failure | Partial | `DB-P04/P05` cover migration-caused damage; no general data-corruption recovery prompt |
-| Data loss | **Missing** | No prompt for post-loss recovery: stop the writes, assess scope, restore vs reconstruct, communicate |
+| Security incident | **Adequate** | `SECINC-01` (new) — evidence preservation before remediation, verified containment, access-vs-exfiltration scoping, baseline eradication, disclosure decision record |
+| Data integrity failure | **Adequate** | `DB-P04/P05` for migration-caused damage; `DATALOSS-01` for corruption and overwrites of any origin |
+| Data loss | **Adequate** | `DATALOSS-01` (new) — freeze writes, preserve evidence, bound the window, restore to a side instance, merge and reconcile, quantify what is gone |
 | Cascading/multi-service failure | Partial | `INC-01` mentions shared dependencies; no distributed-systems incident procedure |
 
 ## 6. Technical breadth
@@ -205,35 +205,34 @@ Counts are computed from the tables above; they are not estimates.
 
 | Status | Dimension rows | Workflow rows |
 |--------|---------------:|--------------:|
-| Adequate | 52 | 7 |
-| Partial | 38 | 5 |
-| Missing | 7 | 2 |
+| Adequate | 55 | 7 |
+| Partial | 36 | 5 |
+| Missing | 6 | 2 |
 | Defective | 0 | 0 |
 | Indirect | 0 | 0 |
 | **Total assessed** | **97** | **14** |
 
-**Reading this honestly:** roughly 54% of assessed dimension rows are adequate. The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
+**Reading this honestly:** roughly 57% of assessed dimension rows are adequate. The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
 
-**Closed in 2.1.0:** dependency/framework upgrades (`DEP-P01..P05`), vertical feature completion (`FC-P01..P04`), independent verification (`WF-VERIFY`), failed-fix escalation (`FIXFAIL-01`), database engineering (`DB-P01..P05`).
+**Closed in 2.1.x:** database engineering (`DB-P01..P05`), dependency/framework upgrades (`DEP-P01..P05`), vertical feature completion (`FC-P01..P04`), independent verification (`WF-VERIFY`), failed-fix escalation (`FIXFAIL-01`), data-loss recovery (`DATALOSS-01`), security incident response (`SECINC-01`).
 
 **Missing scenarios still open**, in priority order:
 
-*Dimension rows marked Missing (7):*
+*Dimension rows marked Missing (6):*
 
-1. **Data-loss recovery** — highest consequence of the set: stop writes, scope the loss, choose restore vs reconstruct, communicate.
-2. **Retirement / decommissioning** — consumer discovery, deprecation window, data retention, teardown verification.
-3. **Enterprise system readiness / governance** — control evidence, change management, auditability.
-4. **Data engineering** (ingest, quality, lineage, backfills at scale).
-5. **Mobile** domain system.
-6. **Embedded / firmware** domain system.
-7. **Desktop / CLI** domain system.
+1. **Retirement / decommissioning** — consumer discovery, deprecation window, data retention, teardown verification.
+2. **Enterprise system readiness / governance** — control evidence, change management, auditability.
+3. **Data engineering** (ingest, quality, lineage, backfills at scale).
+4. **Mobile** domain system.
+5. **Embedded / firmware** domain system.
+6. **Desktop / CLI** domain system.
 
 *Workflow rows marked Missing (2):*
 
-8. **Integrating independently developed frontend/backend/infra work.**
-9. **Enterprise readiness** end-to-end (depends on item 3).
+7. **Integrating independently developed frontend/backend/infra work.**
+8. **Enterprise readiness** end-to-end (depends on item 2).
 
-*Also missing but not a row above:* security incident response as a distinct procedure (currently Partial — assessment exists, containment/forensics/disclosure do not), prototype/spike discipline, and near-duplicate detection tooling for the library itself.
+*Also missing but not a row above:* prototype/spike discipline and near-duplicate detection tooling for the library itself.
 
 ## Maintenance of this matrix
 
