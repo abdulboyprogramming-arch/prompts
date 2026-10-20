@@ -1,7 +1,15 @@
 # Safe Quick-Fix Prompt
 
-**Version:** 1.0.0  
-**Type:** Scenario / Standalone  
+**Identifier:** QUICK-01  
+**System:** 05-scenarios/quick-fixes  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** specialised  
+**Risk class:** B  
+**Depends on:** none  
+**Produces:** a minimal fix, a verification step, and a note on what was deliberately not touched  
+**Gallery:** Fix a small, well-understood defect with the smallest correct diff — and know when the "quick" fix is not safe.  
+
 **Use when:** You need a small, low-risk fix and want to avoid over-engineering or accidental breakage.
 
 ---

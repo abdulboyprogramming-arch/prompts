@@ -1,7 +1,15 @@
 # Performance Investigation Prompt
 
-**Version:** 1.0.0  
-**Type:** Scenario / Standalone  
+**Identifier:** PERF-01  
+**System:** 05-scenarios/performance-investigation  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** specialised  
+**Risk class:** B  
+**Depends on:** none  
+**Produces:** a measured bottleneck, a ranked cause, and a fix or an explicit decision not to fix  
+**Gallery:** Something is slow: measure before optimising, find the bottleneck, and decide whether to fix, budget, or accept it.  
+
 **Use when:** Something is slow and you need a focused investigation before a full optimization program.
 
 ---

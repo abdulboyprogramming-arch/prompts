@@ -1,7 +1,15 @@
 # Working with Legacy Code Prompt
 
-**Version:** 1.0.0  
-**Type:** Scenario / Standalone  
+**Identifier:** LEGACY-01  
+**System:** 05-scenarios/legacy-code  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** specialised  
+**Risk class:** B  
+**Depends on:** none  
+**Produces:** a characterised legacy area, a safe change strategy, and tests around the seam  
+**Gallery:** Change code nobody understands and nobody tested, without turning a small fix into a rewrite.  
+
 **Use when:** You must make changes in difficult, poorly tested, or poorly understood legacy code.
 
 ---

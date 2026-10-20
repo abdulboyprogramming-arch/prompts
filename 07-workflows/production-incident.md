@@ -8,6 +8,7 @@
 **Risk class:** C (read access to production signals; changes gated)
 **Depends on:** `05-scenarios/incident-response/`, `05-scenarios/debugging/`, `04-process/observability-reliability/`
 **Produces:** service restored, a causal explanation, and prevention work
+**Gallery:** Production is broken now: restore service, keep evidence, communicate, then run the postmortem — in that order.
 
 ---
 

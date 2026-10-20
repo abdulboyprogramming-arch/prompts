@@ -6,6 +6,7 @@
 **Maturity:** draft
 **Execution mode:** continuous-improvement
 **Risk class:** B
+**Gallery:** Turn recurring pain into a measured improvement loop when nothing is currently on fire but the team keeps hitting the same problems.
 **Depends on:** `04-process/systems-building-improvement/`, `02-engineering/performance/`, `04-process/testing-qa/`
 **Produces:** a measured improvement cycle with a new baseline
 

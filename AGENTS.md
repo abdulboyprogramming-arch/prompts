@@ -25,11 +25,12 @@ This repository is a library of engineering prompts. Changes are content changes
 
 1. `python3 scripts/validate_library.py` — zero errors.
 2. `python3 scripts/validate_library.py --catalog` — regenerate `_meta/CATALOG.md`.
-3. Update the owning system's `README.md` stage table (with true maturity).
-4. Update `README.md`'s status table if a system's maturity changed.
-5. Add a `CHANGELOG.md` entry.
-6. Add a review record to `_meta/review-log.md` if you changed a maturity label.
-7. Update `PROJECT-STATUS.md` if the state, decisions, or next actions changed.
+3. `python3 scripts/generate_gallery.py --write` — regenerate `GALLERY.md` (CI fails if it is stale).
+4. Update the owning system's `README.md` stage table (with true maturity).
+5. Update `README.md`'s status table if a system's maturity changed.
+6. Add a `CHANGELOG.md` entry.
+7. Add a review record to `_meta/review-log.md` if you changed a maturity label.
+8. Update `PROJECT-STATUS.md` if the state, decisions, or next actions changed.
 
 ## Do not
 

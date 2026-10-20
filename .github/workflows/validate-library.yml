@@ -30,3 +30,10 @@ jobs:
             git diff --stat -- _meta/CATALOG.md
             exit 1
           fi
+
+      - name: Verify the prompt gallery is current
+        run: |
+          if ! python3 scripts/generate_gallery.py --check; then
+            echo "::error::GALLERY.md is stale. Run: python3 scripts/generate_gallery.py --write"
+            exit 1
+          fi

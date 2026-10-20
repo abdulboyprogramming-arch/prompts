@@ -186,3 +186,10 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 ### Coverage movement (integration, decommissioning, governance, orchestration)
 - Dimension rows: 59 adequate / 35 partial / 4 missing. Workflow rows: 9 adequate / 5 partial / 0 missing.
 - Remaining missing dimensions: data engineering, mobile, embedded, desktop/CLI. Every critical workflow now has a procedure.
+
+### Prompt gallery (`GALLERY.md`, `scripts/generate_gallery.py`)
+- **2026-10-20 · library capability · generated index**
+- Reason: the catalog lists metadata for tooling; nothing answered "which prompt do I want for this situation?" without opening files. The gallery adds a purpose line per prompt, extracted from the prompt's own objective so it cannot go stale.
+- Extraction is deliberately conservative: `Gallery:` metadata wins; otherwise the first usable objective line, skipping role prose ("You are…") and prohibitions ("Do not…"), then the first bullet, then `Produces:`, then a title-based fallback for orchestrator prompts. Two prompts needed an explicit `Gallery:` line because their objectives are structural rather than situational (`DATALOSS-01`, `WF-IMPROVE`).
+- **Found and fixed while building it:** five scenario skeleton prompts had no identifier and were therefore absent from both the catalog and the gallery. They now carry standard metadata, and the validator fails on any future unindexed Markdown file, so the gap cannot reopen silently.
+- Known limitation: the extracted sentence is the prompt's own wording, so rows vary in tone; authors who want better wording add a `Gallery:` line.

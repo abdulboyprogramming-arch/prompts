@@ -4,6 +4,8 @@ A structured collection of prompts for AI coding agents, organised across the en
 
 Every prompt declares what it does, what it may change, how much it can be trusted, and what it will not do. Nothing here claims a capability its files do not have — the repository is validated against that rule on every change.
 
+**Browse everything:** [`GALLERY.md`](GALLERY.md) lists all 266 prompts with a direct link and one line on when to use each. It is generated from the prompts themselves and CI fails if it falls out of date, so it cannot drift from the library.
+
 ## Start here
 
 Pick the row that matches your situation. Do not read the whole repository first.

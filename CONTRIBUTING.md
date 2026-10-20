@@ -19,7 +19,7 @@ This repository is a curated library, not a collection bin. Contributions are ju
 | Verification that can fail | Without it the prompt cannot be trusted |
 | Failure handling | Real sessions get stuck; the prompt must say what to do |
 | Risk class honesty | A read-only prompt must not carry hidden `C`/`D` actions |
-| Discovery updated | System `README.md`, root `README.md` table, `_meta/CATALOG.md` |
+| Discovery updated | System `README.md`, root `README.md` table, `_meta/CATALOG.md`, `GALLERY.md` |
 
 ## Adding a multi-stage system
 
@@ -50,6 +50,8 @@ This repository is a curated library, not a collection bin. Contributions are ju
 ```bash
 python3 scripts/validate_library.py            # must exit 0
 python3 scripts/validate_library.py --catalog  # regenerate the catalog
+python3 scripts/generate_gallery.py --write    # regenerate GALLERY.md
+python3 scripts/generate_gallery.py --check    # what CI runs
 ```
 
 A pull request that raises the validator's error count will not be merged. Warnings should be justified in the PR description.

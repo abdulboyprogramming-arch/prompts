@@ -36,6 +36,7 @@ from dataclasses import dataclass, field
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SKIP_DIRS = {".git", "node_modules", "archive", "__pycache__", ".github"}
 ARCHIVE_DIRS = {"archive"}
+TOOLING_DIRS = {"_meta"}  # standards, templates, and generated indexes — not prompts
 
 MATURITY = {"skeleton", "draft", "operational", "canonical"}
 MODES = {
@@ -133,6 +134,9 @@ def load(root: str) -> list[Doc]:
 
 def is_archive(rel: str) -> bool:
     return rel.split(os.sep)[0] in ARCHIVE_DIRS
+
+
+TOP_LEVEL_DOCS = {"README.md", "AGENTS.md", "CHANGELOG.md", "CONTRIBUTING.md", "PROJECT-STATUS.md", "GALLERY.md"}
 
 
 def check(docs: list[Doc]) -> tuple[list[str], list[str]]:
@@ -286,13 +290,31 @@ def check(docs: list[Doc]) -> tuple[list[str], list[str]]:
                 f"{len(stages)} stages are skeleton"
             )
 
+    for d in docs:
+        if is_archive(d.rel) or d.is_prompt:
+            continue
+        parts = d.rel.split(os.sep)
+        if parts[0] in TOOLING_DIRS:
+            continue
+        if os.path.basename(d.rel) in {"README.md", "INDEX.md"} or d.rel in TOP_LEVEL_DOCS:
+            continue
+        if parts[0] == "00-core":
+            continue  # reference documents, listed in the gallery's 00-core section
+        if "<!-- not-a-prompt -->" in d.text:
+            continue
+        errors.append(
+            f"{d.rel}: not a prompt (no Identifier) and not an allowed document — "
+            "it will be missing from the catalog and gallery. Add a metadata block, "
+            "or mark it `<!-- not-a-prompt -->` if it is supporting material."
+        )
+
     return errors, warnings
 
 
 def build_catalog(docs: list[Doc]) -> str:
     systems: dict[str, list[Doc]] = defaultdict(list)
     for d in docs:
-        if not d.is_prompt or is_archive(d.rel):
+        if not d.is_prompt or is_archive(d.rel) or d.rel.split(os.sep)[0] in TOOLING_DIRS:
             continue
         parts = d.rel.split(os.sep)
         key = os.sep.join(parts[:-2]) if len(parts) >= 3 else parts[0]
@@ -350,7 +372,10 @@ def main() -> int:
         for w in warnings:
             print(f"WARNING {w}")
 
-    prompts = [d for d in docs if d.is_prompt and not is_archive(d.rel)]
+    prompts = [
+        d for d in docs
+        if d.is_prompt and not is_archive(d.rel) and d.rel.split(os.sep)[0] not in TOOLING_DIRS
+    ]
     by_mat = defaultdict(int)
     for d in prompts:
         by_mat[d.maturity or "unlabelled"] += 1

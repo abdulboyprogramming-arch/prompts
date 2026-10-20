@@ -1,7 +1,15 @@
 # Codebase Onboarding Prompt
 
-**Version:** 1.0.0  
-**Type:** Scenario / Standalone  
+**Identifier:** ONBOARD-01  
+**System:** 05-scenarios/onboarding  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** specialised  
+**Risk class:** B  
+**Depends on:** none  
+**Produces:** an onboarding map with run commands, architecture sketch, and a first safe change  
+**Gallery:** Join an unfamiliar codebase and need to become useful quickly: entry points, build, data flow, where the traps are.  
+
 **Use when:** You need to rapidly understand an unfamiliar codebase.
 
 ---

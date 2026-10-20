@@ -7,6 +7,7 @@
 **Risk class:** A  
 **Depends on:** none  
 **Produces:** Project intake brief  
+**Gallery:** Start a project engagement: collect goals, constraints, stack, existing assets, and success criteria before choosing a system.
 
 ---
 

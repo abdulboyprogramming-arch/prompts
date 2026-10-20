@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 262 prompts — 0 canonical, 90 operational, 7 draft, 165 skeleton.
+**Totals:** 266 prompts — 0 canonical, 90 operational, 6 draft, 170 skeleton.
 
 ## `01-contribution/language-design`
 
@@ -429,6 +429,11 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `FIXFAIL-01` | Failed Fix Escalation | operational | diagnostic | B | [FAILED-FIX-ESCALATION.md](../05-scenarios/failed-fix/FAILED-FIX-ESCALATION.md) |
 | `FLAKE-01` | Flaky Test Triage | operational | diagnostic | B | [FLAKY-TEST-TRIAGE.md](../05-scenarios/flaky-tests/FLAKY-TEST-TRIAGE.md) |
 | `INC-01` | Production Incident Response | operational | specialised | C | [PRODUCTION-INCIDENT.md](../05-scenarios/incident-response/PRODUCTION-INCIDENT.md) |
+| `LEGACY-01` | Working with Legacy Code Prompt | skeleton | specialised | B | [WORKING-WITH-LEGACY.md](../05-scenarios/legacy-code/WORKING-WITH-LEGACY.md) |
+| `ONBOARD-01` | Codebase Onboarding Prompt | skeleton | specialised | B | [CODEBASE-ONBOARDING.md](../05-scenarios/onboarding/CODEBASE-ONBOARDING.md) |
+| `PERF-01` | Performance Investigation Prompt | skeleton | specialised | B | [PERFORMANCE-INVESTIGATION.md](../05-scenarios/performance-investigation/PERFORMANCE-INVESTIGATION.md) |
+| `PR-01` | Write a Strong Pull Request Prompt | skeleton | specialised | B | [WRITE-STRONG-PR.md](../05-scenarios/pr-authoring/WRITE-STRONG-PR.md) |
+| `QUICK-01` | Safe Quick-Fix Prompt | skeleton | specialised | B | [SAFE-QUICK-FIX.md](../05-scenarios/quick-fixes/SAFE-QUICK-FIX.md) |
 | `SECINC-01` | Security Incident Response | operational | specialised | D | [SECURITY-INCIDENT.md](../05-scenarios/security-incident/SECURITY-INCIDENT.md) |
 
 ## `06-interactive`
@@ -453,10 +458,4 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `WF-MULTIAGENT` | Workflow — Multi-Agent Orchestration | operational | orchestration | B | [multi-agent-orchestration.md](../07-workflows/multi-agent-orchestration.md) |
 | `WF-INCIDENT` | Workflow — Production Incident | draft | specialised | C | [production-incident.md](../07-workflows/production-incident.md) |
 | `WF-RECOVER` | Workflow — Recover an Abandoned or Broken Project | draft | autonomous-completion | B | [recover-abandoned-project.md](../07-workflows/recover-abandoned-project.md) |
-
-## `_meta`
-
-| ID | Stage | Maturity | Mode | Risk | File |
-|----|-------|----------|------|------|------|
-| `META-TEMPLATE` | Prompt Template | draft | planning | A | [prompt-template.md](../_meta/prompt-template.md) |
 

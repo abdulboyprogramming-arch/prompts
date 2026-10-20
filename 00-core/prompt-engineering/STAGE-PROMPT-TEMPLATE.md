@@ -3,6 +3,8 @@
 **Version:** 2.0.0
 **Status:** Pointer — do not add new material here.
 
+**Use when:** You need the legacy stage-prompt skeleton for reference. Superseded by `_meta/prompt-template.md`.
+
 The canonical authoring standard is [`_meta/prompt-authoring-standard.md`](../../_meta/prompt-authoring-standard.md), with a filled example in [`_meta/prompt-template.md`](../../_meta/prompt-template.md) and the scoring model in [`_meta/quality-rubric.md`](../../_meta/quality-rubric.md).
 
 This file is kept because existing systems reference it. It no longer defines its own format; maintaining two templates produced exactly the inconsistency the audit removed.

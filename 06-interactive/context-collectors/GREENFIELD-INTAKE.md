@@ -7,6 +7,7 @@
 **Risk class:** A  
 **Depends on:** none  
 **Produces:** Greenfield intake brief  
+**Gallery:** Starting from nothing: collect the product intent, constraints, and non-goals needed to pick a build strategy.
 
 ---
 

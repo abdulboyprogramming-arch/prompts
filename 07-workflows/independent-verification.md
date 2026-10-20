@@ -8,6 +8,7 @@
 **Risk class:** A (reports only; may apply reversible mutations in a scratch copy to test tests)
 **Depends on:** none (consumes another agent's or engineer's claims)
 **Produces:** `VERIFICATION_REPORT.md` with a verdict and gap list
+**Gallery:** An agent or engineer reports work complete: reproduce the claims yourself, probe the tests, and audit the diff for undeclared scope.
 **Est. effort:** 20–60 min per change set
 
 ---

@@ -2,6 +2,24 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.2.0] — 2026-10-20
+
+### Added
+
+- **`GALLERY.md`** — a single index of every prompt (266) with a direct link and one line describing when to use it, grouped by area and system, with maturity and risk class per row, plus the seven `00-core` reference documents. Generated from the prompt files, so it cannot drift from them.
+- **`scripts/generate_gallery.py`** — builds the gallery. Purpose text comes from the prompt's `Gallery:` metadata line if present, otherwise from the first usable line of its objective (role prose and prohibitions are skipped), otherwise its `Produces:` value. `--write` regenerates; `--check` fails when the file is stale.
+- **CI gate**: the workflow now runs `--check`, so adding or renaming a prompt without regenerating the gallery fails the build.
+
+### Changed
+
+- Five scenario skeletons (`quick-fixes`, `performance-investigation`, `legacy-code`, `onboarding`, `pr-authoring`) had ad-hoc headers (`**Version:**`, `**Type:**`, `**Use when:**`) and were invisible to the catalog and gallery. They now carry standard metadata with identifiers `QUICK-01`, `PERF-01`, `LEGACY-01`, `ONBOARD-01`, `PR-01`, maturity `skeleton`, version `0.1.0`.
+- Validator: `_meta/` is no longer counted as prompts (the template is tooling, not a prompt), and any new Markdown file that is neither a prompt nor an allowed document now fails validation with an actionable message — closing the hole that hid those five files.
+- `AGENTS.md`, `CONTRIBUTING.md`, and `_meta/prompt-authoring-standard.md` document the gallery step, the optional `Gallery:` field, and the `<!-- not-a-prompt -->` marker.
+
+### Result
+
+334 Markdown files, 266 prompts: 90 operational, 6 draft, 170 skeleton. Validator 0 errors / 0 warnings.
+
 ## [2.1.0] — 2026-10-20
 
 Gap-discovery cycle driven by a new coverage matrix rather than the existing roadmap. Five systems and one workflow were added; three missing scenarios in the previous audit are closed.

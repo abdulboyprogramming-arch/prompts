@@ -3,6 +3,8 @@
 **Version:** 1.0.0  
 **Type:** Core Prompt-Engineering Primitive  
 
+**Use when:** You are writing or reviewing a prompt and need the minimum bar it must clear before anyone uses it.
+
 ---
 
 ## Every production prompt in this archive should

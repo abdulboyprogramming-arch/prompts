@@ -6,6 +6,7 @@
 **Maturity:** operational
 **Execution mode:** specialised
 **Risk class:** D — any action here can convert a recoverable loss into a permanent one
+**Gallery:** Contain the damage, then recover data from a backup, log replay, or an upstream source — and say precisely what is still gone.
 **Depends on:** none; runs before root-cause analysis
 **Produces:** `.dataloss/RECOVERY_LOG.md`, restored data, a quantified loss statement
 **Est. effort:** 1–8 hours, in stages

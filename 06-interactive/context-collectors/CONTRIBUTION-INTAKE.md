@@ -7,6 +7,7 @@
 **Risk class:** A  
 **Depends on:** none  
 **Produces:** Contribution intake brief  
+**Gallery:** Before contributing to someone else's project: collect the repository, the maintainers' expectations, and the candidate tasks.
 
 ---
 

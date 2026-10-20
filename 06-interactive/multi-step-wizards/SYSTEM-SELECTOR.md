@@ -7,6 +7,7 @@
 **Risk class:** A  
 **Depends on:** none  
 **Produces:** System selector wizard brief  
+**Gallery:** You do not know which system applies: answer a short question set and get routed to the right prompt sequence.
 
 ---
 
