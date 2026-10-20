@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 325 prompts — 0 canonical, 171 operational, 5 draft, 149 skeleton.
+**Totals:** 336 prompts — 0 canonical, 182 operational, 5 draft, 149 skeleton.
 
 ## `00-core`
 
@@ -94,6 +94,7 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 |----|-------|----------|------|------|------|
 | `SEC-ROT-01` | PROMPT 01 — Secret Rotation: drill it before you need it | operational | implementation | C | [SECRETS-ROTATION.md](../02-engineering/secrets-rotation/SECRETS-ROTATION.md) |
 | `TENANCY-01` | PROMPT 01 — Tenant Isolation Audit | operational | diagnostic | A | [TENANCY-AUDIT.md](../02-engineering/tenancy-audit/TENANCY-AUDIT.md) |
+| `TIME-01` | PROMPT 01 — Time and Date Correctness Audit | operational | diagnostic | A | [TIME-CORRECTNESS.md](../02-engineering/time-correctness/TIME-CORRECTNESS.md) |
 
 ## `02-engineering/architecture-review`
 
@@ -252,6 +253,7 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `BE-P06` | PROMPT 06 — Reliability & Operability | skeleton | implementation | B | [P06-Reliability-Operability.md](../03-domains/backend/P06-Reliability/P06-Reliability-Operability.md) |
 | `BE-P07` | PROMPT 07 — Validation | skeleton | diagnostic | C | [P07-Validation.md](../03-domains/backend/P07-Validation/P07-Validation.md) |
 | `BE-P08` | PROMPT 08 — Backend Master Orchestrator | skeleton | orchestration | A | [P08-Backend-Orchestrator.md](../03-domains/backend/P08-Orchestrator/P08-Backend-Orchestrator.md) |
+| `API-VER-01` | PROMPT 01 — API Versioning and Consumer Contracts | operational | planning | B | [P09-API-Versioning.md](../03-domains/backend/P09-API-Versioning/P09-API-Versioning.md) |
 
 ## `03-domains/cost-engineering`
 
@@ -291,6 +293,13 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `DB-P03` | PROMPT 03 — Pre-Flight Validation | operational | diagnostic | B | [P03-Preflight-Validation.md](../03-domains/database/P03-Preflight/P03-Preflight-Validation.md) |
 | `DB-P04` | PROMPT 04 — Execution & Reconciliation | operational | specialised | C | [P04-Execution-Reconciliation.md](../03-domains/database/P04-Execution/P04-Execution-Reconciliation.md) |
 | `DB-P05` | PROMPT 05 — Rollback & Post-Verification | operational | diagnostic | B | [P05-Rollback-Verification.md](../03-domains/database/P05-Verification/P05-Rollback-Verification.md) |
+
+## `03-domains/desktop-cli`
+
+| ID | Stage | Maturity | Mode | Risk | File |
+|----|-------|----------|------|------|------|
+| `DESK-P01` | PROMPT 01 — CLI Distribution and Updates | operational | implementation | C | [P01-CLI-Distribution.md](../03-domains/desktop-cli/P01-Distribution/P01-CLI-Distribution.md) |
+| `DESK-P02` | PROMPT 02 — Terminal UX, Signals, and Exit Codes | operational | implementation | A | [P02-Terminal-UX.md](../03-domains/desktop-cli/P02-Terminal-UX/P02-Terminal-UX.md) |
 
 ## `03-domains/devops-infra`
 
@@ -548,20 +557,27 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `DBG-01` | Systematic Debugging | operational | diagnostic | B | [SYSTEMATIC-DEBUGGING.md](../05-scenarios/debugging/SYSTEMATIC-DEBUGGING.md) |
 | `DEPLOY-01` | Deploy to a Managed Platform | operational | implementation | C | [DEPLOY-TO-PLATFORM.md](../05-scenarios/deployment-target/DEPLOY-TO-PLATFORM.md) |
 | `DEVENV-01` | Reproducible Dev Environment — one command, every editor, an | operational | implementation | B | [DEV-ENVIRONMENT.md](../05-scenarios/dev-environment/DEV-ENVIRONMENT.md) |
+| `DR-01` | PROMPT 01 — Disaster Recovery: prove the restore, not the ba | operational | implementation | C | [DISASTER-RECOVERY.md](../05-scenarios/disaster-recovery/DISASTER-RECOVERY.md) |
 | `EMAIL-01` | PROMPT 01 — Email Deliverability: it is not in the spam fold | operational | diagnostic | B | [EMAIL-DELIVERABILITY.md](../05-scenarios/email-deliverability/EMAIL-DELIVERABILITY.md) |
 | `FIXFAIL-01` | Failed Fix Escalation | operational | diagnostic | B | [FAILED-FIX-ESCALATION.md](../05-scenarios/failed-fix/FAILED-FIX-ESCALATION.md) |
+| `UPLOAD-01` | PROMPT 01 — File Uploads and Object Storage | operational | implementation | B | [FILE-UPLOADS.md](../05-scenarios/file-uploads/FILE-UPLOADS.md) |
 | `FLAKE-01` | Flaky Test Triage | operational | diagnostic | B | [FLAKY-TEST-TRIAGE.md](../05-scenarios/flaky-tests/FLAKY-TEST-TRIAGE.md) |
 | `HACK-01` | Hackathon Sprint — build the demo that gets judged | operational | autonomous-completion | B | [HACKATHON-SPRINT.md](../05-scenarios/hackathon-sprint/HACKATHON-SPRINT.md) |
 | `INC-01` | Production Incident Response | operational | specialised | C | [PRODUCTION-INCIDENT.md](../05-scenarios/incident-response/PRODUCTION-INCIDENT.md) |
+| `IAC-01` | PROMPT 01 — Infrastructure as Code: adopting it, or proving  | operational | audit-remediation | C | [INFRA-AS-CODE.md](../05-scenarios/infrastructure-as-code/INFRA-AS-CODE.md) |
 | `LEGACY-01` | Working with Legacy Code Prompt | skeleton | specialised | B | [WORKING-WITH-LEGACY.md](../05-scenarios/legacy-code/WORKING-WITH-LEGACY.md) |
 | `SURFACE-01` | Live Surface Audit — a URL, host, or API from the outside | operational | diagnostic | B | [LIVE-SURFACE-AUDIT.md](../05-scenarios/live-surface-audit/LIVE-SURFACE-AUDIT.md) |
+| `I18N-01` | PROMPT 01 — Localisation Correctness | operational | implementation | B | [LOCALIZATION.md](../05-scenarios/localization/LOCALIZATION.md) |
+| `MONO-01` | PROMPT 01 — Monorepo Health: builds, boundaries, and ownersh | operational | audit-remediation | B | [MONOREPO.md](../05-scenarios/monorepo/MONOREPO.md) |
 | `ONCALL-01` | On-Call Shift Handover | operational | specialised | B | [ONCALL-HANDOVER.md](../05-scenarios/on-call-handover/ONCALL-HANDOVER.md) |
 | `ONBOARD-01` | Codebase Onboarding Prompt | skeleton | specialised | B | [CODEBASE-ONBOARDING.md](../05-scenarios/onboarding/CODEBASE-ONBOARDING.md) |
+| `PERF-BUDGET-01` | PROMPT 01 — Performance Budgets and Core Web Vitals | operational | implementation | B | [PERFORMANCE-BUDGET.md](../05-scenarios/performance-budget/PERFORMANCE-BUDGET.md) |
 | `PERF-01` | Performance Investigation Prompt | skeleton | specialised | B | [PERFORMANCE-INVESTIGATION.md](../05-scenarios/performance-investigation/PERFORMANCE-INVESTIGATION.md) |
 | `HOSTMIG-01` | Move a Running Service to Another Platform | operational | implementation | D | [PLATFORM-MIGRATION.md](../05-scenarios/platform-migration/PLATFORM-MIGRATION.md) |
 | `PR-01` | Write a Strong Pull Request Prompt | skeleton | specialised | B | [WRITE-STRONG-PR.md](../05-scenarios/pr-authoring/WRITE-STRONG-PR.md) |
 | `QUICK-01` | Safe Quick-Fix Prompt | skeleton | specialised | B | [SAFE-QUICK-FIX.md](../05-scenarios/quick-fixes/SAFE-QUICK-FIX.md) |
 | `SECINC-01` | Security Incident Response | operational | specialised | D | [SECURITY-INCIDENT.md](../05-scenarios/security-incident/SECURITY-INCIDENT.md) |
+| `INTEG-01` | PROMPT 01 — Third-Party Integration That Survives the Vendor | operational | implementation | B | [THIRD-PARTY-INTEGRATION.md](../05-scenarios/third-party-integration/THIRD-PARTY-INTEGRATION.md) |
 
 ## `06-interactive`
 

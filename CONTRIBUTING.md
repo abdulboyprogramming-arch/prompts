@@ -49,6 +49,7 @@ This repository is a curated library, not a collection bin. Contributions are ju
 ## Validation
 
 ```bash
+python3 scripts/test_validator.py              # the validator's own rules, must pass
 python3 scripts/validate_library.py            # must exit 0
 python3 scripts/validate_library.py --catalog  # regenerate the catalog
 python3 scripts/generate_gallery.py --write    # regenerate GALLERY.md
@@ -57,7 +58,7 @@ python3 scripts/find_overlaps.py --top 10      # is this prompt already written?
 python3 scripts/new_prompt.py --system <dir> --identifier <ID> --title "<Title>"  # scaffold
 ```
 
-A pull request that raises the validator's error count will not be merged. Warnings should be justified in the PR description.
+A pull request that raises the validator's error count will not be merged. If you change a rule in `scripts/validate_library.py`, add or update a fixture in `scripts/test_validator.py` — a rule verified only against today's repository is one edit away from silently checking nothing. Warnings should be justified in the PR description.
 
 ## Review criteria
 

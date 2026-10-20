@@ -2,6 +2,51 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.17.0] — 2026-10-20
+
+### New — completing the map: the last missing domain, the last untested assumption
+
+Nine prompts and one tooling change that close the remaining gaps a reader of the coverage matrix could still find: desktop/CLI (the last "Missing" row), disaster recovery (**zero** mentions before this), time correctness, third-party integration, file uploads, localisation, infrastructure as code, performance budgets, monorepo health, and API versioning.
+
+**`DR-01` — Disaster Recovery** (`05-scenarios/disaster-recovery/`)
+`disaster recovery` appeared in no file. Six disaster classes (corruption, service loss, region loss, account loss, backup-system loss, deliberate destruction), the six silent backup failures, a restore drilled in an isolated environment, phase-by-phase RTO measurement, and verification of the *application* against restored data — sequences, extensions, migrations — because a restore whose exit code is zero proves only that a command ran.
+
+**`TIME-01` — Time and Date Correctness** (`02-engineering/time-correctness/`)
+Instants vs wall-clock vs dates; eight anti-patterns including `BETWEEN` on timestamps, `now - N*24h` for calendar days, and `setMonth()` overflow; DST, month-end, leap-day and year-boundary tests; frozen clocks so results are reproducible.
+
+**`INTEG-01` — Third-Party Integration** (`05-scenarios/third-party-integration/`)
+Eight failure modes (slow, down, wrong, duplicate, out of order, changed, rate limited, partial) with defined handling; body validation over status codes; idempotency keys stable across retries; the timeout-is-not-failure rule; webhook signatures verified on the raw body.
+
+**`UPLOAD-01` — File Uploads** (`05-scenarios/file-uploads/`)
+Limits enforced at three layers, magic-byte validation, re-encoding to strip payloads and EXIF, generated keys, private bucket with short-lived signed URLs, SSRF refusal, multipart idempotency, orphan lifecycle, and object keys tied to owning entities so deletion actually deletes.
+
+**`I18N-01` — Localisation Correctness** (`05-scenarios/localization/`)
+No fragment concatenation, ICU plural categories instead of `count === 1`, pseudo-localisation before translation, logical CSS properties and correct icon mirroring for RTL, locale-aware sorting and search.
+
+**`IAC-01` — Infrastructure as Code** (`05-scenarios/infrastructure-as-code/`)
+Provider API as ground truth, provenance per resource, every plan `destroy`/`replace` as a decision, state posture (encrypted, locked, versioned), import-verify-no-change adoption loop, pipeline as the only path, scheduled drift tickets.
+
+**`PERF-BUDGET-01` — Performance Budgets** (`05-scenarios/performance-budget/`)
+p75 baselines on mid-tier mobile, budgets from perceptible thresholds plus a separate regression ceiling for existing debt, a deterministic CI gate, per-route size attribution on pull requests, and a budget for third-party scripts.
+
+**`MONO-01` — Monorepo Health** (`05-scenarios/monorepo/`)
+Import-level graph over manifests, deep imports and globals as boundary violations, tasks that declare inputs to be cacheable, affected-only demonstrated by changing a leaf, CI time broken down before any intervention.
+
+**`API-VER-01` — API Versioning** (`03-domains/backend/P09`)
+Consumer inventory before scheme, a change-classification table (additive is only safe if clients tolerate unknown fields), schema artifact with contract tests, deprecation with traffic thresholds, and a ceiling of two concurrent majors.
+
+**`DESK-P01`, `DESK-P02` — Desktop & CLI** (`03-domains/desktop-cli/`, new domain)
+Distribution as a trust boundary: pinned and verified install scripts, signed artifacts, an updater that verifies signatures, channels and pinning, clean-machine install evidence. Terminal contract: exit codes as an API, stdout/stderr separation, TTY detection, `NO_COLOR`, SIGINT/SIGTERM cleanup, SIGPIPE, and no prompt without a terminal.
+
+### Library capability
+
+- **`scripts/test_validator.py`** — six fixtures for the system-README maturity rules, wired into CI before validation.
+- **A real defect found by writing the tests:** the 2.16.0 regex matched `**Status:** Operational` but not `**Maturity: operational (v1.0.0).**` — the form used by most READMEs here. The check was silently matching almost nothing. Fixed, and both forms are now pinned by fixtures.
+
+### Result
+
+426 Markdown files, 336 prompts: 182 operational, 5 draft, 149 skeleton. Validator 0 errors / 0 warnings; validator self-tests 6/6. Coverage **97 adequate / 30 partial / 0 missing**. Backlog #84–#91 added; #52, #53, #54, #57, #75–#79, #81, #82 closed.
+
 ## [2.16.0] — 2026-10-20
 
 ### New — the failures nobody wrote a prompt for
