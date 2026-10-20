@@ -14,6 +14,7 @@ Engineering process as procedure: how work is verified, reviewed, released, oper
 | [`governance-compliance/`](governance-compliance/README.md) | Control mapping, evidence testing, readiness decision for enterprise obligations | 3 | **operational** |
 | [`privacy-requests/`](privacy-requests/README.md) | Locate a subject's data everywhere, export or delete with verification, retention that keeps it gone | 3 | **operational** |
 | [`git-operations/`](git-operations/README.md) | State checks before destructive commands, conflict resolution, history repair, recovery, conventions | 5 | **operational** |
+| [`code-review/`](code-review/README.md) | Intent, change understanding, evidenced findings, actionable feedback, verified fixes | 6 | **operational** |
 | [`code-review/`](code-review/README.md) | Structured review, feedback, follow-up | 6 | skeleton |
 | [`documentation/`](documentation/README.md) | Documentation inventory, gaps, writing, validation | 8 | skeleton |
 | [`project-management/`](project-management/README.md) | Goals, breakdown, planning, tracking, risk | 8 | skeleton |

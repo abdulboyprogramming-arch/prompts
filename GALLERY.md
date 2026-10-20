@@ -27,7 +27,7 @@ Generated from the prompt files, so it cannot drift from them; CI fails if this 
 | [06-interactive — conversations that clarify a request](#06-interactive--conversations-that-clarify-a-request) | 4 | Use when the request is vague and needs to be scoped first. |
 | [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 9 | Composed sequences that route between systems and stop at human gates. |
 
-*Maturity across the library: 112 operational, 6 draft, 163 skeleton, 281 total.*
+*Maturity across the library: 118 operational, 6 draft, 157 skeleton, 281 total.*
 
 ---
 
@@ -359,12 +359,12 @@ The lifecycle around code: testing, release, observability, dependency and gover
 
 | ID | Prompt | Use it for | Maturity | Risk |
 |---|---|---|---|---|
-| `CR-P01` | [Context & Goals](04-process/code-review/P01-Context/P01-Context-Goals.md) | Understand what the change is trying to achieve and the standards against which it should be reviewed. | skeleton | B |
-| `CR-P02` | [Change Understanding](04-process/code-review/P02-Change-Understanding/P02-Change-Understanding.md) | Build an accurate mental model of what the diff actually does before judging it. | skeleton | B |
-| `CR-P03` | [Structured Review](04-process/code-review/P03-Review/P03-Structured-Review.md) | Evaluate the change rigorously across the dimensions that matter. | skeleton | B |
-| `CR-P04` | [Feedback Crafting](04-process/code-review/P04-Feedback/P04-Feedback-Crafting.md) | Turn findings into clear, respectful, actionable review comments. | skeleton | B |
-| `CR-P05` | [Follow-up Support](04-process/code-review/P05-Follow-up/P05-Follow-up-Support.md) | Help move the review to a clean resolution. | skeleton | B |
-| `CR-P06` | [Code Review Master Orchestrator](04-process/code-review/P06-Orchestrator/P06-Code-Review-Orchestrator.md) | Runs the code review system end to end: gates, routing, and final acceptance. | skeleton | A |
+| `CR-P01` | [Context & Goals](04-process/code-review/P01-Context/P01-Context-Goals.md) | Answers: what is this change trying to achieve, what does it touch, what risk does it carry, and what must this review establish to be worth the author's time? <br>**Inputs:** `BASE_REF, HEAD_REF, PR_DESCRIPTION, AUTHOR_INTENT` | operational | A |
+| `CR-P02` | [Change Understanding](04-process/code-review/P02-Change-Understanding/P02-Change-Understanding.md) | Answers: what does this diff actually do — mechanically, semantically, and behaviourally — including the parts the description does not mention? <br>**Inputs:** `BASE_REF, HEAD_REF` | operational | A |
+| `CR-P03` | [Structured Review](04-process/code-review/P03-Review/P03-Structured-Review.md) | A ranked set of findings, each with location, evidence, consequence, and a suggested direction; plus an explicit list of what was checked and found acceptable. <br>**Inputs:** `HEAD_REF, REPO_PATH` | operational | A |
+| `CR-P04` | [Feedback Crafting](04-process/code-review/P04-Feedback/P04-Feedback-Crafting.md) | Produce review comments that state the problem, the evidence, and the requested change, ordered so the author knows what matters; plus a summary comment that makes… <br>**Inputs:** `REVIEW_FINDINGS_FILE, AUTHOR_CONTEXT` | operational | A |
+| `CR-P05` | [Follow-up Support](04-process/code-review/P05-Follow-up/P05-Follow-up-Support.md) | A resolution for every finding, a re-verification of the fixes, and a tracked disposition for anything deferred. <br>**Inputs:** `PR_REF, AUTHOR_RESPONSES` | operational | A |
+| `CR-P06` | [Code Review Master Orchestrator](04-process/code-review/P06-Orchestrator/P06-Code-Review-Orchestrator.md) | Run the stages, enforce the gates, decide when depth should increase or decrease, and produce a review record with a defensible decision. <br>**Inputs:** `BASE_REF, HEAD_REF, PR_REF, AUTHOR_CONTEXT` | operational | A |
 
 ### decommissioning · 4 prompts
 

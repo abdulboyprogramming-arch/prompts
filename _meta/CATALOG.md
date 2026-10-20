@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 281 prompts — 0 canonical, 112 operational, 6 draft, 163 skeleton.
+**Totals:** 281 prompts — 0 canonical, 118 operational, 6 draft, 157 skeleton.
 
 ## `01-contribution/language-design`
 
@@ -320,12 +320,12 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
 | ID | Stage | Maturity | Mode | Risk | File |
 |----|-------|----------|------|------|------|
-| `CR-P01` | PROMPT 01 — Context & Goals | skeleton | planning | B | [P01-Context-Goals.md](../04-process/code-review/P01-Context/P01-Context-Goals.md) |
-| `CR-P02` | PROMPT 02 — Change Understanding | skeleton | implementation | B | [P02-Change-Understanding.md](../04-process/code-review/P02-Change-Understanding/P02-Change-Understanding.md) |
-| `CR-P03` | PROMPT 03 — Structured Review | skeleton | diagnostic | B | [P03-Structured-Review.md](../04-process/code-review/P03-Review/P03-Structured-Review.md) |
-| `CR-P04` | PROMPT 04 — Feedback Crafting | skeleton | implementation | B | [P04-Feedback-Crafting.md](../04-process/code-review/P04-Feedback/P04-Feedback-Crafting.md) |
-| `CR-P05` | PROMPT 05 — Follow-up Support | skeleton | implementation | B | [P05-Follow-up-Support.md](../04-process/code-review/P05-Follow-up/P05-Follow-up-Support.md) |
-| `CR-P06` | PROMPT 06 — Code Review Master Orchestrator | skeleton | orchestration | A | [P06-Code-Review-Orchestrator.md](../04-process/code-review/P06-Orchestrator/P06-Code-Review-Orchestrator.md) |
+| `CR-P01` | PROMPT 01 — Context & Goals | operational | diagnostic | A | [P01-Context-Goals.md](../04-process/code-review/P01-Context/P01-Context-Goals.md) |
+| `CR-P02` | PROMPT 02 — Change Understanding | operational | diagnostic | A | [P02-Change-Understanding.md](../04-process/code-review/P02-Change-Understanding/P02-Change-Understanding.md) |
+| `CR-P03` | PROMPT 03 — Structured Review | operational | diagnostic | A | [P03-Structured-Review.md](../04-process/code-review/P03-Review/P03-Structured-Review.md) |
+| `CR-P04` | PROMPT 04 — Feedback Crafting | operational | implementation | A | [P04-Feedback-Crafting.md](../04-process/code-review/P04-Feedback/P04-Feedback-Crafting.md) |
+| `CR-P05` | PROMPT 05 — Follow-up Support | operational | specialised | A | [P05-Follow-up-Support.md](../04-process/code-review/P05-Follow-up/P05-Follow-up-Support.md) |
+| `CR-P06` | PROMPT 06 — Code Review Master Orchestrator | operational | orchestration | A | [P06-Code-Review-Orchestrator.md](../04-process/code-review/P06-Orchestrator/P06-Code-Review-Orchestrator.md) |
 
 ## `04-process/decommissioning`
 

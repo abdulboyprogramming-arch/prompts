@@ -2,6 +2,28 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.8.0] — 2026-10-20
+
+### Promoted — `04-process/code-review/` (6 stages, operational)
+
+The highest-frequency engineering activity in the library was a skeleton: stage names with no evidence rule, no severity vocabulary, and no way to distinguish a review from a list of opinions.
+
+- **CR-P01 Context** — intent before judgement; scope metrics; change-type taxonomy; risk surface named before reading; review depth proportional to risk.
+- **CR-P02 Understanding** — three passes (structure, semantics, detail) with deletions and renames read first; diff reconciled against stated intent, recording both extra and missing scope; one real path traced; untested areas and unknowns listed.
+- **CR-P03 Findings** — every finding carries a consequence and evidence; `blocker` reserved for harm (data loss, security, broken behaviour, unverifiable claims); the category checklist covers authorisation, boundaries, error paths, concurrency, data, secrets, tests, contracts, operations; tests probed by mutation; an explicit accepted list so a clean review is still credible.
+- **CR-P04 Feedback** — observation → consequence → request, with nit/question/blocker markers, findings ordered by consequence, duplicates consolidated, specific praise, and a summary that states an explicit decision.
+- **CR-P05 Follow-up** — fixes re-verified rather than accepted; regressions reopened; every finding ends in a state; deferrals need an owner and a ticket; reviewers concede explicitly when the author is right.
+- **CR-P06 Orchestrator** — triage into trivial/standard/high-risk/unreviewable, five gates, domain routing to `SEC-*`, `PAY-*`, `DB-*`, `DEP-*`, and disclosure of unreviewed areas.
+
+### Changed
+
+- Coverage matrix: review row moves from partial to adequate; totals 66 adequate / 33 partial / 4 missing.
+- Root routing table, `04-process/README.md`, review log updated.
+
+### Result
+
+281 prompts: 118 operational, 6 draft, 157 skeleton. Validator 0 errors / 0 warnings.
+
 ## [2.7.0] — 2026-10-20
 
 Two gaps found by asking questions the library could not answer: "what do I do when a merge conflicts?" and "which repository is 'the target area'?"

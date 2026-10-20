@@ -39,7 +39,7 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 |------|--------|----------------|
 | Creation | Partial | `from-scratch` skeleton; `WF-GREENFIELD` (draft) |
 | Completion of incomplete work | Adequate | `project-recovery` whole system |
-| Review | Partial | `WF-VERIFY` (adequate for claims); `code-review` skeleton |
+| Review | **Adequate** | `CR-P01..P06` (new) for code review; `WF-VERIFY` for verifying claims. Different jobs, both covered |
 | Diagnosis | Adequate | `DBG-01`, `FIXFAIL-01`, `AUDIT-*`, `FLAKE-01` |
 | Correction | Adequate | `SEC-P06`, `REC-P06`, debugging fix stage |
 | Optimisation | Partial | `performance` skeleton |
@@ -210,14 +210,16 @@ Counts are computed from the tables above; they are not estimates.
 
 | Status | Dimension rows | Workflow rows |
 |--------|---------------:|--------------:|
-| Adequate | 65 | 9 |
-| Partial | 34 | 5 |
+| Adequate | 66 | 9 |
+| Partial | 33 | 5 |
 | Missing | 4 | 0 |
 | Defective | 0 | 0 |
 | Indirect | 0 | 0 |
 | **Total assessed** | **103** | **14** |
 
-**Reading this honestly:** roughly 63% of assessed dimension rows are adequate. The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
+**Reading this honestly:** roughly 64% of assessed dimension rows are adequate. The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
+
+**Closed in 2.8.0:** code review (`CR-P01..P06`).
 
 **Closed in 2.7.0:** git operations (`GIT-P01..P05`), prompt inputs and variables (`_meta/prompt-inputs.md`).
 

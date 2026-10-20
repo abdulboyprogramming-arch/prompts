@@ -28,6 +28,7 @@ Pick the row that matches your situation. Do not read the whole repository first
 | Two fix attempts have failed and the bug is still there | [`05-scenarios/failed-fix/`](05-scenarios/failed-fix/FAILED-FIX-ESCALATION.md) | Diagnostic |
 | I need to change a database schema without losing data | [`03-domains/database/`](03-domains/database/README.md) | Audit → drill → execute |
 | I need to upgrade a framework or dependency safely | [`04-process/dependency-management/`](04-process/dependency-management/README.md) | Audit → plan → verify |
+| Someone needs to review my change (or I need to review theirs) | [`04-process/code-review/`](04-process/code-review/README.md) | Proportional to risk |
 | A merge or rebase stopped with conflicts | [`04-process/git-operations/`](04-process/git-operations/README.md) | Conflicts first, then verify |
 | Commits, a branch, or a stash just vanished | [`04-process/git-operations/P04-Recovery`](04-process/git-operations/P04-Recovery/P04-Recovery.md) | Time-critical |
 | I need to rewrite history or clean a secret out of it | [`04-process/git-operations/P03-History`](04-process/git-operations/P03-History/P03-History-Repair.md) | Category D if shared |
@@ -78,6 +79,7 @@ Maturity is enforced, not decorative: `scripts/validate_library.py` fails if a p
 | [`03-domains/payments/`](03-domains/payments/README.md) | 3 | operational |
 | [`04-process/privacy-requests/`](04-process/privacy-requests/README.md) | 3 | operational |
 | [`04-process/git-operations/`](04-process/git-operations/README.md) | 5 | operational |
+| [`04-process/code-review/`](04-process/code-review/README.md) | 6 | operational |
 | [`07-workflows/`](07-workflows/README.md) | 9 | mixed (3 operational: verification, integration, multi-agent) |
 | [`05-scenarios/`](05-scenarios/README.md) | 11 | mixed (6 operational, 5 skeleton) |
 
