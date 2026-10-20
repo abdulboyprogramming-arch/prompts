@@ -2,6 +2,37 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.15.0] — 2026-10-20
+
+### New — prompt generation, prompt evaluation, and five specialized domains
+
+A batch that started with one question ("can I generate a prompt from a description?") and one instruction ("go deeper on specialized fields"). The audit found both gaps real — `meta-prompt` returned zero files, and `reentrancy`, `gas fee`, `EVM`, `Unity`, `Godot`, `iOS`, `Android`, `firmware` appeared in no prompt — and the work itself exposed eleven more gaps (backlog 61–74).
+
+**`GEN-P01` — The Prompt Forge** (`00-core/prompt-engineering/PROMPT-FORGE.md`)
+Turn a description into a runnable prompt. Five modes with distinct exit conditions: **compose** (description → prompt), **interview** (ask only what changes the output), **improve** (rubric-scored critique + rewrite), **decompose** (one ask → ordered stages with I/O contracts), **port** (retarget to another agent). It routes against existing coverage *before* drafting, derives the risk class from consequence rather than phrasing, requires a verification table a person can actually execute, self-scores and names its two weakest dimensions, and emits the prompt plus a variables table, three test cases, and a provenance line marking the output `draft`. Generated is never counted as validated.
+
+**`GEN-P02` — Prompt Regression** (`PROMPT-REGRESSION.md`)
+The protocol the library lacked: fixtures frozen before results, two runs per case in fresh sessions, trace-level grading, separate design score and behavioural grade, and defect classification (missing / ambiguous / ignored / fixture / tool limitation) that determines whether the fix is prose or a machine check.
+
+**`03-domains/web3/` — `CHAIN-P01..P04` (new domain)**
+Threat model with exploit-path ranking by profit-to-attacker (access control, reentrancy, accounting, oracle, arithmetic, signature/replay, upgradeability, MEV, DoS), key custody as a design object (tiers, thresholds, timelocked authority, drilled rotation), upgrades with storage-layout diff, append-only rule, fork rehearsal and a declared rollback position, and exploit response that contains before it explains.
+
+**`03-domains/mobile/` — `MOB-P01..P03` (new domain)**
+Store release with a halt criterion written *before* the rollout and rollback levers tested because unpublishing is impossible; crash triage that symbolication-gates every conclusion and ranks by affected users and critical path; client-version compatibility with per-version fixtures, a deprecation schedule, and forced-upgrade escape hatches.
+
+**`03-domains/embedded-iot/` — `IOT-P01..P02` (new domain)**
+Firmware OTA with atomic slot writes, hash readback, trial boot with automatic confirmation, automatic rollback, repeated power-cut testing, and cohort rollout with pre-declared abandonment. Fleet health that treats silence as a signal, classifies it by cohort, checks the server before the device, and gates mass commands behind one proven path.
+
+**`03-domains/games/` — `GD-P09`, `GD-P10` (2 of 8 stages now operational)**
+Save migration with versioned schemas, forward-only chains over the whole support window, real historical saves as fixtures, atomic writes and a failure path that preserves the original. Netcode diagnosis aligning server tick, client tick and input timestamp, measured against a budget, with determinism verified by replay rather than argument.
+
+**`03-domains/ai-agentic/` — `AI-P06`, `AI-P07`**
+Grounded retrieval: ≥30% unanswerable questions, recall before groundedness, citation correctness scored separately, abstention and false-abstention both measured, and ACL leakage tested as a security case. Agent permissions: capability over intent across six axes, supply-chain review of MCP servers (including unpinned `npx`), remote-fetched rule files as an instruction channel, and a tightened configuration that must still survive the daily workflow.
+
+### Result
+
+404 Markdown files, 317 prompts: 163 operational, 5 draft, 149 skeleton. Validator 0 errors / 0 warnings. Coverage 82 adequate / 30 partial / 2 missing dimensions. Overlap maximum 0.11 against the 0.55 gate.
+
 ## [2.14.0] — 2026-10-20
 
 ### New — deployment targets, host migration, dev environments, agent context, on-call handover
