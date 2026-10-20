@@ -18,6 +18,7 @@ Engineering process as procedure: how work is verified, reviewed, released, oper
 | [`feature-flags/`](feature-flags/README.md) | Flag inventory and risk, safe defaults, progressive rollout, kill-switch use, retirement | 5 | **operational** |
 | [`documentation/`](documentation/README.md) | SRS, design docs, handbooks, runbooks; truth audit, task-first structure, export verification | 8 | **operational** |
 | [`handover/`](handover/README.md) | Ownership transfer: scope, state capture, access and revocation, capability verification, acceptance | 5 | **operational** |
+| [`agent-context/`](agent-context/README.md) | AGENTS.md/CLAUDE.md/.cursor rules: one canonical source, adherence testing, drift checks | 4 | **operational** |
 | [`project-management/`](project-management/README.md) | Goals, breakdown, planning, tracking, risk | 8 | skeleton |
 | [`research-and-development/`](research-and-development/README.md) | Question, hypotheses, method, experiment, decision | 8 | skeleton |
 | [`systems-building-improvement/`](systems-building-improvement/README.md) | Diagnose a system, design and evaluate an improvement | 8 | skeleton |

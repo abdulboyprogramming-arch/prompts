@@ -130,7 +130,7 @@ Recorded here rather than built immediately, because quality over volume applies
 | 9 | "Translations break layouts and plural forms are wrong" | No coverage of i18n/l10n mechanics: string extraction, pluralisation, locale formats, RTL | `03-domains/frontend/` appendix or its own stage | P3 | Discovered |
 | 10 | "Estimates are always wrong and nobody trusts the plan" | `project-management` is a skeleton; no calibration, reference-class forecasting, or uncertainty ranges | `04-process/project-management/` P02 | P2 | Discovered |
 | 11 | "Every incident postmortem produces actions nobody completes" | `INC-01` and `OBS-P05` produce actions; nothing tracks completion or verifies the fix prevented recurrence | `04-process/observability-reliability/` P05 extension | P1 | Discovered |
-| 12 | "On-call handover loses all context" | `WF-HANDOFF` covers stage handoffs; no on-call-specific shift handover artifact | `05-scenarios/on-call/` | P2 | Discovered |
+| 12 | "On-call handover loses all context" | `WF-HANDOFF` covers stage handoffs; no on-call-specific shift handover artifact | `05-scenarios/on-call/` | P2 | **Implemented** in 2.14.0 (`ONCALL-01`) |
 | 13 | "We cannot tell whether the new prompt version is actually better" | The empirical harness has one run; no A/B evaluation, scoring sheet, or fixture set | `scripts/` + `_meta/empirical-evaluation-*` | P0 | Under investigation |
 | 14 | "Three contribution systems say the same thing" | Overlap detection now quantifies it: web, web3, and packages skeletons share up to 18% of their shingles; they are near-variants rather than distinct systems | merge or differentiate when promoted | P2 | Discovered |
 
@@ -177,7 +177,7 @@ Recorded here rather than built immediately, because quality over volume applies
 | 36 | "The contractor left and still has production access" | Nothing covered revocation as part of a transfer; `WF-HANDOFF` is a state block, not an access procedure | `04-process/handover/P03` (class D) | P0 | **Implemented** in 2.12.0 |
 | 37 | "I inherited a system and cannot deploy it" | Handover meant documents; no capability test existed anywhere in the library | `HAND-P04` receiver-performed exercises | P0 | **Implemented** in 2.12.0 |
 | 38 | A long-running project resumes under a different agent | `WF-HANDOFF` was draft and had no machine-readable form or authority-boundary field | `WF-HANDOFF` v1.1.0 + `HAND-P02` | P1 | **Implemented** in 2.12.0 |
-| 39 | On-call shift handover loses context | Backlog item 12; `HAND-P02`'s operational brief is a partial answer only | `05-scenarios/on-call/` | P2 | Discovered (unchanged) |
+| 39 | On-call shift handover loses context | Backlog item 12; `HAND-P02`'s operational brief is a partial answer only | `05-scenarios/on-call/` | P2 | **Implemented** in 2.14.0 (`ONCALL-01`); `HAND-P02` still links to it |
 | 40 | Legal/contract assignment on agency→client transfers | Handover records the blocker but cannot assign a contract; needs a legal-obligations checklist owned by the client | `04-process/handover/` appendix + `governance-compliance` | P2 | Discovered |
 | 41 | Handover of a *portfolio* (many systems in one transfer) | P01 forces a boundary; no procedure for batching several systems with a shared receiver and a staged cutover | `04-process/handover/` P01 extension | P3 | Discovered |
 
@@ -189,3 +189,25 @@ Recorded here rather than built immediately, because quality over volume applies
 | 43 | Team coordination inside a 24–48 hour event | `HACK-01` freezes scope but does not divide work, resolve merge conflicts between teammates under time pressure, or handle one member becoming unavailable | `05-scenarios/hackathon-sprint/` extension or `07-workflows/multi-agent-orchestration.md` | P2 | Discovered |
 | 44 | No licence meant no legal permission to reuse | Default copyright is "all rights reserved"; nothing in the repository addressed it | `LICENSE` (MIT) + `LICENSE-CONTENT` (CC BY 4.0) | P0 | **Implemented** in 2.13.0 |
 
+## Discovered in 2.14.0 — deployment targets, agent surfaces, environments
+
+The batch began with two user questions and surfaced nine more gaps than it closed.
+
+| # | Problem | Why existing material is insufficient | Home | Priority | Status |
+|---|---------|---------------------------------------|------|----------|--------|
+| 45 | "We deploy to Vercel — does the library know that?" | `vercel`, `netlify`, `railway`, `fly.io`, `heroku`, `cloud run`: **zero** mentions. Release engineering ended at the artifact; nobody provisioned a target, and the three env-var scopes (build / runtime / preview) that cause most "works locally" incidents were undocumented | `05-scenarios/deployment-target/` (`DEPLOY-01` + `PLATFORM-PROFILES.md`) | P0 | **Implemented**, Integrated |
+| 46 | "Does it adapt to Cursor / VS Code / my assistant?" | `AGENTS.md` was something to read, never something to author, reconcile, or test. `CLAUDE.md` and `.cursor/rules` were unmentioned as a *set*; adherence was assumed | `04-process/agent-context/` (`CTX-P01..P04`) | P0 | **Implemented**, Integrated |
+| 47 | "We are leaving Heroku for Render" | Deploy and decommission existed; the move between them did not. MX records, OAuth callbacks, egress allowlists, and duplicate cron are discovered mid-outage | `05-scenarios/platform-migration/` (`HOSTMIG-01`, class D) | P0 | **Implemented** |
+| 48 | "Clone and run" is false | Setup was prose in `CONTRIBUTING.md`; nothing pinned runtimes, removed global installs, or checked case-sensitivity across OSes | `05-scenarios/dev-environment/` (`DEVENV-01`) | P1 | **Implemented** |
+| 49 | On-call shift handover (items 12, 39) | Closed by `ONCALL-01`; operational state now has an artifact of its own, distinct from task handoff | `05-scenarios/on-call-handover/` | P1 | **Implemented** |
+| 50 | Preview deployments do not match production | `DEPLOY-01` names preview scopes, but nothing covers *preview parity* as a review input: data shape, feature flags on in preview, auth differences, third-party sandboxes | `05-scenarios/deployment-target/` extension | P1 | Discovered |
+| 51 | Secrets rotate on a schedule nobody executes | Rotation appears only as an incident response. There is no drill, no "who holds this key", no verification that the old key stopped working | `02-engineering/security-hardening/` new stage | P1 | Discovered |
+| 52 | Performance is never a gate, only an opinion | No performance budget, no Core Web Vitals baseline, no "this PR regressed LCP by 400 ms" check | `03-domains/frontend/` promotion + a budget stage | P2 | Discovered |
+| 53 | API changes break consumers silently | Contract testing and breaking-change detection are absent; the library reviews code, not interfaces | new stage under `02-engineering/` or `04-process/testing-qa/` | P2 | Discovered |
+| 54 | Monorepo tooling (task graphs, affected-only builds, package boundaries) | Mentioned nowhere; large repositories get advice designed for single-package projects | new `05-scenarios/monorepo/` | P2 | Discovered |
+| 55 | SLO definition and error budgets | `observability-reliability` covers dashboards and alerts, not the target the alerts are measured against | `04-process/observability-reliability/` new stage | P2 | Discovered |
+| 56 | Prompt injection through third-party agent configs (MCP servers, shared rules) | `CTX-P01` flags permission grants, but not the case where a fetched rule file or tool description carries instructions that redirect the agent | `04-process/agent-context/` extension + `03-domains/ai-agentic/` | P1 | Discovered |
+| 57 | Infrastructure is hand-built and undocumented | `DEPLOY-01` provisions through a platform UI or CLI; nothing covers describing it as code, or adopting IaC for an existing estate | new `05-scenarios/infrastructure-as-code/` | P2 | Discovered |
+| 58 | Cost of AI-assisted workflow itself (tokens, latency, retries) | `03-domains/cost-engineering/` optimises the product's cloud bill, not the engineering process's model spend | `03-domains/ai-agentic/` extension | P3 | Discovered |
+| 59 | Mobile app store release (review, signing, staged rollout) | Release engineering is web/backend shaped; store review queues and phased rollouts have different failure modes | `04-process/release-engineering/` extension | P3 | Discovered |
+| 60 | A model's answers drift between runs, so "it worked yesterday" is unverifiable | `_meta/empirical-evaluation` has one executed prompt; no regression suite for prompts themselves | `scripts/` + `_meta/` | P2 | Discovered (same problem as item 13, different angle) |

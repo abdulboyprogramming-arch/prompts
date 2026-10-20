@@ -2,6 +2,31 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.14.0] — 2026-10-20
+
+### New — deployment targets, host migration, dev environments, agent context, on-call handover
+
+A batch driven by two questions ("does it cover deployment to Render/Vercel?", "does it cover IDE/agent adaptability?") and by the gaps those questions exposed. Five capability areas, seven prompts.
+
+**`05-scenarios/deployment-target/` — `DEPLOY-01` + `PLATFORM-PROFILES.md`**
+The platform is an input (`{{DEPLOY_PLATFORM}}`), the guarantees are not. Covers app-shape classification (static/SSR/serverful/worker/functions/db-backed), the **three configuration scopes** that break deployments (build-time inlined, runtime, preview-inherited), ephemeral filesystems, request/execution timeouts, cold starts, region and residency, egress IP allowlists, one project per environment, end-to-end verification of the deployed URL (not `GET /` returning 200), cost metering with a budget alert, an exercised rollback, and a documented exit route. The profiles file carries per-platform traps for Vercel, Netlify, Cloudflare, Render, Railway, Fly.io, Heroku, AWS, Cloud Run, App Service, VPS+Docker, and Kubernetes — plus the universal six (port binding, env scope, filesystem, timeouts, region, rollback) and the cost-trap table.
+
+**`05-scenarios/platform-migration/` — `HOSTMIG-01` (class D)**
+Moving a live service between hosts. Peripheral inventory (DNS incl. MX/SPF/DMARC and verification TXT, cookies, OAuth callbacks, webhook registrations, egress allowlists, cron syntax, email reputation), TTL lowered 24–48 h ahead so the window equals the TTL, dual running with a proxy or DNS cutover, pre-declared abort criteria with a named decision-maker, data verified by counts and checksums, **old host's cron disabled at cutover** (duplicate jobs are an incident), old host retained past the TTL, and a real decommission step.
+
+**`04-process/agent-context/` — `CTX-P01..P04` (new system)**
+The instructions a team gives its AI assistant are a second, unreconciled specification. P01 inventories by *tool* (AGENTS.md, CLAUDE.md, `.cursor/rules`, Copilot instructions, Windsurf/Cline, MCP configs, editor settings, devcontainers) and verifies a sample of claims; P02 writes one canonical `AGENTS.md` (five-element first screen, commands executed before written, concrete prohibitions with alternatives, "when stuck") and reduces every other file to a ≤15-line adapter; P03 **tests adherence** with probes across command/convention/boundary/ambiguity in fresh sessions, diagnoses violations into missing/ambiguous/ignored/tool-limitation, and re-tests; P04 mechanises the checkable claims, binds updates to triggers, names owners, and measures decay.
+
+**`05-scenarios/dev-environment/` — `DEVENV-01`**
+"Clone and run" is usually false. Baseline the gap on a clean machine, pin runtimes in tool-readable files, remove global installs, provide one entry point (container + idempotent script), reproducible services with synthetic seeds, committed editor config, `.gitattributes` and case-sensitivity checks, CI parity, and per-OS verification where only tested OSes are claimed.
+
+**`05-scenarios/on-call-handover/` — `ONCALL-01`** (backlog items 12/39, open since the first cycle)
+Shift handover as an evidence artifact: state from the alerting system rather than memory, every silence with an owner and expiry, changes including config and infrastructure, about-to-break dates (certs, quotas, storage), known-noise alerts named, "if this pages you tonight" with the first diagnostic step, follow-ups owned, a read-back, and explicit authority transfer.
+
+### Result
+
+386 Markdown files, 301 prompts: 147 operational, 5 draft, 149 skeleton. Validator 0 errors / 0 warnings. Coverage 78 adequate / 30 partial / 4 missing.
+
 ## [2.13.1] — 2026-10-20
 
 ### Fixed — licence detection
