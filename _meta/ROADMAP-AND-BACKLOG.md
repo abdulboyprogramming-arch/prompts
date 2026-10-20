@@ -67,7 +67,7 @@ Each promotion requires: full required sections, verification that can fail, fai
 | Near-duplicate detection across prompts | Currently only exact identifier/link checks; overlapping prompts will accumulate as the library grows |
 | Maturity-promotion checklist automation | Rubric scoring is manual and recorded in a log; a script could enforce presence of sections per mode |
 | Link validation for backticked paths | Implemented as a warning; promote to error once existing references are clean |
-| CI workflow running the validator | Not yet present; would prevent regressions on PRs |
+| ~~CI workflow running the validator~~ | Done — `.github/workflows/validate-library.yml` |
 | Empirical test log | No prompt has been exercised against a real repository in a recorded way; this is the largest credibility gap |
 
 ## Deliberately not planned

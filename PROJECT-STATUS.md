@@ -77,7 +77,7 @@ Full detail in `CHANGELOG.md`. Summary:
 | Add project-recovery as a new family | The most common real-world starting condition (inherited/interrupted project) had no coverage. |
 | Keep identifiers global and system-prefixed | Bare `P03`-style IDs (used in the contribution agent) do not collide today but will; new systems use prefixes. Existing ones are flagged, not renamed, to avoid breaking references. |
 | Vendor-neutral observability and release guidance | Stack-specific content dates quickly; the system teaches transferable procedure and leaves tooling to appendices. |
-| No CI workflow yet | No pipeline exists in the repository; adding one is in the backlog rather than inventing infrastructure prematurely. |
+| CI validates structure, not quality | A workflow now runs the validator and catalog freshness check; empirical prompt testing remains an open gap. |
 
 ## 7. Known weaknesses (do not paper over)
 
@@ -95,8 +95,7 @@ Full detail in `CHANGELOG.md`. Summary:
 2. Promote `03-domains/backend` (8 stages).
 3. Run one workflow end to end on a real repository and record the result in `_meta/review-log.md`; this is the single highest-value credibility improvement available.
 4. Add `03-domains/mobile` and `04-process/dependency-management`.
-5. Add a CI workflow that runs `python3 scripts/validate_library.py`.
-6. Add multi-agent orchestration workflow.
+5. Add multi-agent orchestration workflow.
 
 ## 9. How to resume
 
@@ -113,5 +112,5 @@ Never regenerate a skeleton by copy-pasting another system's prose: the value of
 
 - Git: branch `arena/d745d222-prompts`, branched from `main` at `a7aa3e0` ("chore: archived my previous prompts set"). History contains one commit before this cycle, so there is no earlier agent transcript to recover — the prior state is the working tree itself, which has been preserved and is recorded in `CHANGELOG.md`.
 - No `AGENTS.md`/`CLAUDE.md`/editor instruction files existed before this cycle; `AGENTS.md` now exists.
-- No build system, no tests, no CI. The only executable artifact is `scripts/validate_library.py` (stdlib-only, Python 3.9+).
+- No build system and no tests. CI (`.github/workflows/validate-library.yml`) runs the validator and the catalog freshness check. The only executable artifact is `scripts/validate_library.py` (stdlib-only, Python 3.9+).
 - `archive/legacy-txt-files/` contains 214 KB of original .txt prompt material. It is source material, not maintained content; do not treat it as canonical.

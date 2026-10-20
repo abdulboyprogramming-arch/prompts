@@ -120,7 +120,7 @@ python3 scripts/validate_library.py            # must report 0 errors
 python3 scripts/validate_library.py --catalog  # regenerate _meta/CATALOG.md
 ```
 
-The validator checks metadata completeness, identifier uniqueness, version/maturity consistency, required sections, broken links (Markdown and backticked paths), empty sections, risk-class honesty, and README status overclaims.
+The validator checks metadata completeness, identifier uniqueness, version/maturity consistency, required sections, broken links (Markdown and backticked paths), empty sections, risk-class honesty, and README status overclaims. CI runs it on every pull request and fails if `_meta/CATALOG.md` is stale (`.github/workflows/validate-library.yml`).
 
 Read [`CONTRIBUTING.md`](CONTRIBUTING.md) before adding a system, and [`AGENTS.md`](AGENTS.md) if you are an AI agent working in this repository.
 
@@ -130,6 +130,6 @@ Read [`CONTRIBUTING.md`](CONTRIBUTING.md) before adding a system, and [`AGENTS.m
 - **No prompt has been empirically tested against a real repository and recorded.** `operational` means structurally complete and reviewed, not proven in practice.
 - **Mobile, database, embedded, desktop/CLI, dependency management, governance, and multi-agent orchestration have no dedicated systems yet.** They are prioritised in the backlog.
 - **Reviews are self-assessments** recorded in [`_meta/review-log.md`](_meta/review-log.md); independent verification has not been performed.
-- **No CI** runs the validator yet; it is run manually.
+- CI validates the library on pull requests; it does not test prompts empirically (no such harness exists).
 
 Current state, decisions, and next actions: [`PROJECT-STATUS.md`](PROJECT-STATUS.md). Change history: [`CHANGELOG.md`](CHANGELOG.md).

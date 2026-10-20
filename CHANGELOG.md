@@ -17,6 +17,7 @@ This release reconciles the library's claims with its artifacts, establishes enf
 - `04-process/release-engineering/` — four stages: readiness, versioning/changelog, deployment/rollback, post-release verification.
 - `03-domains/ai-agentic/` — five stages: context/risk, architecture, evaluation, safety/guardrails, production operations.
 - `05-scenarios/flaky-tests/FLAKY-TEST-TRIAGE.md`.
+- `.github/workflows/validate-library.yml` — runs the validator and fails if the generated catalog is stale.
 - `PROJECT-STATUS.md` — continuation checkpoint.
 - `AGENTS.md` — repository-level instructions for AI agents working in this repository.
 
@@ -51,4 +52,3 @@ This release reconciles the library's claims with its artifacts, establishes enf
 
 - 165 prompts remain `skeleton`. They outline a defensible sequence but cannot run unsupervised. See the backlog.
 - No prompt in this library has been empirically tested against a real repository and recorded. All `operational` labels are structural reviews.
-- No CI workflow runs the validator yet.
