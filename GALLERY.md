@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE — do not edit by hand. Run: python3 scripts/generate_gallery.py --write -->
 
-Every prompt in the library — **293** of them — with a direct link and the situation it is for, plus **8** foundational reference documents.
+Every prompt in the library — **301** of them — with a direct link and the situation it is for, plus **8** foundational reference documents.
 Generated from the prompt files, so it cannot drift from them; CI fails if this file is stale.
 
 **Reading the columns**
@@ -22,12 +22,12 @@ Generated from the prompt files, so it cannot drift from them; CI fails if this 
 | [01-contribution — contributing to open source](#01-contribution--contributing-to-open-source) | 48 | Stage systems for contributing to an unfamiliar project. |
 | [02-engineering — building, auditing, and recovering code](#02-engineering--building-auditing-and-recovering-code) | 78 | Work on an existing codebase: audit, repair, complete, upgrade. |
 | [03-domains — domain-specific engineering](#03-domains--domain-specific-engineering) | 57 | Stack-specific practice: data, AI, and the domains still being built out. |
-| [04-process — delivering software responsibly](#04-process--delivering-software-responsibly) | 84 | The lifecycle around code: testing, release, observability, dependency and governance. |
-| [05-scenarios — single-session, high-urgency situations](#05-scenarios--single-session-high-urgency-situations) | 13 | One prompt, one session, one pressing situation. |
+| [04-process — delivering software responsibly](#04-process--delivering-software-responsibly) | 88 | The lifecycle around code: testing, release, observability, dependency and governance. |
+| [05-scenarios — single-session, high-urgency situations](#05-scenarios--single-session-high-urgency-situations) | 17 | One prompt, one session, one pressing situation. |
 | [06-interactive — conversations that clarify a request](#06-interactive--conversations-that-clarify-a-request) | 4 | Use when the request is vague and needs to be scoped first. |
 | [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 9 | Composed sequences that route between systems and stop at human gates. |
 
-*Maturity across the library: 139 operational, 5 draft, 149 skeleton, 293 total.*
+*Maturity across the library: 147 operational, 5 draft, 149 skeleton, 301 total.*
 
 ---
 
@@ -355,6 +355,15 @@ Stack-specific practice: data, AI, and the domains still being built out.
 
 The lifecycle around code: testing, release, observability, dependency and governance.
 
+### agent-context · 4 prompts
+
+| ID | Prompt | Use it for | Maturity | Risk |
+|---|---|---|---|---|
+| `CTX-P01` | [Agent and Editor Surfaces](04-process/agent-context/P01-Surfaces/P01-Agent-Surfaces.md) | .agent-context/SURFACES.md — the tools in use, the files each one reads, what those files claim, which claims are true, where they conflict or duplicate, and which… <br>**Inputs:** `REPO_PATH, AGENT_TOOLS, TEAM_SIZE` | operational | A |
+| `CTX-P02` | [Authoring the Canonical Context](04-process/agent-context/P02-Authoring/P02-Authoring-Canonical-Context.md) | A canonical AGENTS.md at the repository root (plus nested AGENTS.md only where a subtree genuinely differs), minimal per-tool adapters for ⟨AGENT_TOOLS⟩, and a… <br>**Inputs:** `REPO_PATH, AGENT_TOOLS, BRANCH, TEAM_SIZE` | operational | B |
+| `CTX-P03` | [Adherence Testing](04-process/agent-context/P03-Adherence/P03-Adherence-Testing.md) | .agent-context/ADHERENCE.md — a set of probes, the observed behaviour per tool, the failures with their causes (missing instruction, ambiguous instruction, ignored… <br>**Inputs:** `REPO_PATH, AGENT_TOOLS, BRANCH, PROBE_BUDGET` | operational | B |
+| `CTX-P04` | [Maintenance and Drift Control](04-process/agent-context/P04-Maintenance/P04-Context-Maintenance.md) | Automated checks that fail when the context is stale, an updating convention tied to real triggers, an ownership record, and a review cadence with a defined scope. <br>**Inputs:** `REPO_PATH, BRANCH, APPROVER, REVIEW_CADENCE` | operational | B |
+
 ### code-review · 6 prompts
 
 | ID | Prompt | Use it for | Maturity | Risk |
@@ -518,18 +527,22 @@ The lifecycle around code: testing, release, observability, dependency and gover
 
 One prompt, one session, one pressing situation.
 
-### All prompts in this area · 13 prompts
+### All prompts in this area · 17 prompts
 
 | ID | Prompt | Use it for | Maturity | Risk |
 |---|---|---|---|---|
 | `DATALOSS-01` | [Data-Loss Recovery](05-scenarios/data-loss/DATA-LOSS-RECOVERY.md) | Contain the damage, then recover data from a backup, log replay, or an upstream source — and say precisely what is still gone. <br>**Inputs:** `TARGET_ENV, DATA_LOSS_WINDOW, APPROVER, BACKUP_INVENTORY` | operational | D |
 | `DBG-01` | [Systematic Debugging](05-scenarios/debugging/SYSTEMATIC-DEBUGGING.md) | Establish the minimal conditions that produce the defect, the causal mechanism, and a fix that is verified against both the defect and the surrounding behaviour. <br>**Inputs:** `OBSERVED_BEHAVIOUR, EXPECTED_BEHAVIOUR, REPRODUCTION_INPUT, REPO_PATH` | operational | B |
+| `DEPLOY-01` | [Deploy to a Managed Platform](05-scenarios/deployment-target/DEPLOY-TO-PLATFORM.md) | A documented target profile (runtime shape, build, config classes, limits, cost), a deployment that passes a real end-to-end check, and a rollback path that was… <br>**Inputs:** `DEPLOY_PLATFORM, REPO_PATH, TARGET_ENV, TARGET_SERVICE, DOMAIN_NAME, SPEND_LIMIT, APPROVER` | operational | C |
+| `DEVENV-01` | [Reproducible Dev Environment — one command, every editor, any machine](05-scenarios/dev-environment/DEV-ENVIRONMENT.md) | A documented, reproducible environment path (container or scripted), pinned runtimes, editor-agnostic configuration, and a verification that was run on at least one… <br>**Inputs:** `REPO_PATH, TARGET_OS, EDITORS, RUNTIME_VERSION, TEAM_SIZE` | operational | B |
 | `FIXFAIL-01` | [Failed Fix Escalation](05-scenarios/failed-fix/FAILED-FIX-ESCALATION.md) | An accurate record of what was tried and what it proved, an explicit statement of the current model of the defect and why it is probably wrong, and a decision —… <br>**Inputs:** `ORIGINAL_SYMPTOM, REPO_PATH, ATTEMPT_LIST` | operational | B |
 | `FLAKE-01` | [Flaky Test Triage](05-scenarios/flaky-tests/FLAKY-TEST-TRIAGE.md) | Answers: which non-determinism the test depends on, and how to make it deterministic without weakening its coverage. <br>**Inputs:** `TEST_IDENTIFIER, REPO_PATH, CI_HISTORY` | operational | B |
 | `HACK-01` | [Hackathon Sprint — build the demo that gets judged](05-scenarios/hackathon-sprint/HACKATHON-SPRINT.md) | A plan that fixes the demo path and the cut lines, a build that follows it, a rehearsed demo with fallbacks, and a submission that a judge can run without you. <br>**Inputs:** `HACKATHON_DEADLINE, JUDGING_CRITERIA, DEMO_FORMAT, TEAM_SIZE, TARGET_ENV` | operational | B |
+| `HOSTMIG-01` | [Move a Running Service to Another Platform](05-scenarios/platform-migration/PLATFORM-MIGRATION.md) | A staged plan where both platforms serve traffic simultaneously, a verified cutover with a rollback that stays available for days, and a decommission step that only… <br>**Inputs:** `SOURCE_PLATFORM, TARGET_PLATFORM, DOMAIN_NAME, TARGET_ENV, APPROVER, CHANGE_WINDOW` | operational | D |
 | `INC-01` | [Production Incident Response](05-scenarios/incident-response/PRODUCTION-INCIDENT.md) | Support stabilisation, diagnosis, and communication during an active incident, producing a timeline that can be used for a postmortem without reconstruction from… <br>**Inputs:** `INCIDENT_ID, TARGET_SERVICE, APPROVER, INCIDENT_START_TIME` | operational | C |
 | `LEGACY-01` | [Working with Legacy Code](05-scenarios/legacy-code/WORKING-WITH-LEGACY.md) | Change code nobody understands and nobody tested, without turning a small fix into a rewrite. | skeleton | B |
 | `ONBOARD-01` | [Codebase Onboarding](05-scenarios/onboarding/CODEBASE-ONBOARDING.md) | Join an unfamiliar codebase and need to become useful quickly: entry points, build, data flow, where the traps are. | skeleton | B |
+| `ONCALL-01` | [On-Call Shift Handover](05-scenarios/on-call-handover/ONCALL-HANDOVER.md) | SHIFT_HANDOVER.md for the window — open and recent incidents, silences and their expiry, changes and deployments in flight, expiring certificates/tokens/quota… <br>**Inputs:** `TARGET_SERVICE, SHIFT_WINDOW, TARGET_ENV, INCIDENT_REF, ONCALL_ROTA` | operational | B |
 | `PERF-01` | [Performance Investigation](05-scenarios/performance-investigation/PERFORMANCE-INVESTIGATION.md) | Something is slow: measure before optimising, find the bottleneck, and decide whether to fix, budget, or accept it. | skeleton | B |
 | `PR-01` | [Write a Strong Pull Request](05-scenarios/pr-authoring/WRITE-STRONG-PR.md) | Turn a finished change into a pull request a reviewer can approve quickly: scope, evidence, risk, and rollback. | skeleton | B |
 | `QUICK-01` | [Safe Quick-Fix](05-scenarios/quick-fixes/SAFE-QUICK-FIX.md) | Fix a small, well-understood defect with the smallest correct diff — and know when the "quick" fix is not safe. | skeleton | B |

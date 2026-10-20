@@ -297,3 +297,31 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 
 ### Licensing
 - **2026-10-20 · meta · operational** — MIT for code, CC BY 4.0 for content, with the endorsement boundary stated. Resolves the blocking decision in `_meta/publication-checklist.md`.
+
+### `05-scenarios/deployment-target/` — DEPLOY-01 + platform profiles
+- **2026-10-20 · implementation · 87/100 · operational**
+- Problem: the library covered release process but never *provisioning a target*. Vercel/Netlify/Railway/Fly/Cloud Run appeared zero times; the provider was invisible, so every platform-specific trap was rediscovered by the user.
+- Design: the platform is `{{DEPLOY_PLATFORM}}` and its specifics live in a referenced profile, so the prompt stays honest across providers. The three-scope env-var split is the core insight — most "works locally, fails deployed" incidents are a build-time secret or a missing runtime var.
+- Deductions: no IaC (Terraform/Pulumi) guidance; profiles are hand-maintained and will drift with provider changes — the file says so and tells the reader to verify.
+
+### `05-scenarios/platform-migration/` — HOSTMIG-01
+- **2026-10-20 · implementation · 88/100 · operational (class D)**
+- Problem: host moves are where teams discover MX records, OAuth callbacks, and duplicate cron the hard way. The library had nothing between "deploy" and "decommission".
+- Design: reversibility first; TTL lowering as the defining constraint; the old host's jobs disabled at cutover; retention past the TTL rather than same-day teardown.
+- Deductions: no provider-specific DNS API commands (registrars differ too much); database engine moves are routed to `03-domains/database/`.
+
+### `04-process/agent-context/` — CTX-P01..P04 (new system)
+- **2026-10-20 · mixed · 86/100 · operational**
+- Problem: `AGENTS.md` mentioned in the repo only as something to *read*; nothing taught authoring, reconciling, or testing it. Teams now maintain a second specification without version control discipline.
+- Design: P03 is the differentiator — adherence probes with a four-cause diagnosis, and the rule that an ignored clear instruction needs a machine check rather than more prose. P02's size budget and adapter pattern prevent the common failure of five drifting files.
+- Deductions: per-vendor format details change fast; the system teaches conservative adapters and verification against current docs rather than memorising formats.
+
+### `05-scenarios/dev-environment/` — DEVENV-01
+- **2026-10-20 · implementation · 85/100 · operational**
+- Problem: setup instructions are prose claims; nothing measured whether a clean machine could follow them. Onboarding cost and CI drift both trace here.
+- Design: baseline-first (measure the gap before fixing), pinned runtimes over documented ones, one entry point, and per-OS claims only where tested.
+
+### `05-scenarios/on-call-handover/` — ONCALL-01
+- **2026-10-20 · specialised · 87/100 · operational**
+- Problem: backlog item 12 since 2.1.0. Shift handover was covered only indirectly by the stage handoff block, which carries task state, not operational state.
+- Design: state from systems, silences as decisions with owners and expiry, known-noise named, and the "if this pages you tonight" section that survives contact with 03:00.

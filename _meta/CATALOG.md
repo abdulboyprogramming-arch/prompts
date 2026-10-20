@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 293 prompts — 0 canonical, 139 operational, 5 draft, 149 skeleton.
+**Totals:** 301 prompts — 0 canonical, 147 operational, 5 draft, 149 skeleton.
 
 ## `01-contribution/language-design`
 
@@ -316,6 +316,15 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `PAY-P02` | PROMPT 02 — Idempotency & Unknown Outcomes | operational | diagnostic | B | [P02-Idempotency-Failure.md](../03-domains/payments/P02-Idempotency/P02-Idempotency-Failure.md) |
 | `PAY-P03` | PROMPT 03 — Reconciliation & Change Safety | operational | specialised | C | [P03-Reconciliation-Change-Safety.md](../03-domains/payments/P03-Reconciliation/P03-Reconciliation-Change-Safety.md) |
 
+## `04-process/agent-context`
+
+| ID | Stage | Maturity | Mode | Risk | File |
+|----|-------|----------|------|------|------|
+| `CTX-P01` | PROMPT 01 — Agent and Editor Surfaces | operational | diagnostic | A | [P01-Agent-Surfaces.md](../04-process/agent-context/P01-Surfaces/P01-Agent-Surfaces.md) |
+| `CTX-P02` | PROMPT 02 — Authoring the Canonical Context | operational | implementation | B | [P02-Authoring-Canonical-Context.md](../04-process/agent-context/P02-Authoring/P02-Authoring-Canonical-Context.md) |
+| `CTX-P03` | PROMPT 03 — Adherence Testing | operational | diagnostic | B | [P03-Adherence-Testing.md](../04-process/agent-context/P03-Adherence/P03-Adherence-Testing.md) |
+| `CTX-P04` | PROMPT 04 — Maintenance and Drift Control | operational | continuous-improvement | B | [P04-Context-Maintenance.md](../04-process/agent-context/P04-Maintenance/P04-Context-Maintenance.md) |
+
 ## `04-process/code-review`
 
 | ID | Stage | Maturity | Mode | Risk | File |
@@ -481,14 +490,18 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 |----|-------|----------|------|------|------|
 | `DATALOSS-01` | Data-Loss Recovery | operational | specialised | D | [DATA-LOSS-RECOVERY.md](../05-scenarios/data-loss/DATA-LOSS-RECOVERY.md) |
 | `DBG-01` | Systematic Debugging | operational | diagnostic | B | [SYSTEMATIC-DEBUGGING.md](../05-scenarios/debugging/SYSTEMATIC-DEBUGGING.md) |
+| `DEPLOY-01` | Deploy to a Managed Platform | operational | implementation | C | [DEPLOY-TO-PLATFORM.md](../05-scenarios/deployment-target/DEPLOY-TO-PLATFORM.md) |
+| `DEVENV-01` | Reproducible Dev Environment — one command, every editor, an | operational | implementation | B | [DEV-ENVIRONMENT.md](../05-scenarios/dev-environment/DEV-ENVIRONMENT.md) |
 | `FIXFAIL-01` | Failed Fix Escalation | operational | diagnostic | B | [FAILED-FIX-ESCALATION.md](../05-scenarios/failed-fix/FAILED-FIX-ESCALATION.md) |
 | `FLAKE-01` | Flaky Test Triage | operational | diagnostic | B | [FLAKY-TEST-TRIAGE.md](../05-scenarios/flaky-tests/FLAKY-TEST-TRIAGE.md) |
 | `HACK-01` | Hackathon Sprint — build the demo that gets judged | operational | autonomous-completion | B | [HACKATHON-SPRINT.md](../05-scenarios/hackathon-sprint/HACKATHON-SPRINT.md) |
 | `INC-01` | Production Incident Response | operational | specialised | C | [PRODUCTION-INCIDENT.md](../05-scenarios/incident-response/PRODUCTION-INCIDENT.md) |
 | `LEGACY-01` | Working with Legacy Code Prompt | skeleton | specialised | B | [WORKING-WITH-LEGACY.md](../05-scenarios/legacy-code/WORKING-WITH-LEGACY.md) |
 | `SURFACE-01` | Live Surface Audit — a URL, host, or API from the outside | operational | diagnostic | B | [LIVE-SURFACE-AUDIT.md](../05-scenarios/live-surface-audit/LIVE-SURFACE-AUDIT.md) |
+| `ONCALL-01` | On-Call Shift Handover | operational | specialised | B | [ONCALL-HANDOVER.md](../05-scenarios/on-call-handover/ONCALL-HANDOVER.md) |
 | `ONBOARD-01` | Codebase Onboarding Prompt | skeleton | specialised | B | [CODEBASE-ONBOARDING.md](../05-scenarios/onboarding/CODEBASE-ONBOARDING.md) |
 | `PERF-01` | Performance Investigation Prompt | skeleton | specialised | B | [PERFORMANCE-INVESTIGATION.md](../05-scenarios/performance-investigation/PERFORMANCE-INVESTIGATION.md) |
+| `HOSTMIG-01` | Move a Running Service to Another Platform | operational | implementation | D | [PLATFORM-MIGRATION.md](../05-scenarios/platform-migration/PLATFORM-MIGRATION.md) |
 | `PR-01` | Write a Strong Pull Request Prompt | skeleton | specialised | B | [WRITE-STRONG-PR.md](../05-scenarios/pr-authoring/WRITE-STRONG-PR.md) |
 | `QUICK-01` | Safe Quick-Fix Prompt | skeleton | specialised | B | [SAFE-QUICK-FIX.md](../05-scenarios/quick-fixes/SAFE-QUICK-FIX.md) |
 | `SECINC-01` | Security Incident Response | operational | specialised | D | [SECURITY-INCIDENT.md](../05-scenarios/security-incident/SECURITY-INCIDENT.md) |
