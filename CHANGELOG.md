@@ -2,6 +2,32 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.4.0] — 2026-10-20
+
+Two capabilities that had no coverage at all, both chosen because they cost real money or create legal exposure when improvised.
+
+### Added — `03-domains/cost-engineering/` (4 stages)
+
+- **COST-P01 Visibility** — period, currency, and discount treatment stated; spend broken down by service, environment, owner, and cost type; the unattributed percentage reported as a headline figure rather than a footnote.
+- **COST-P02 Waste diagnosis** — findings classified by mechanism (idle, over-provisioned, always-on non-production, egress topology, storage growth, log ingestion, query scans, duplication, licensing, chatty calls), each sized in money with its calculation and its protecting dependency named.
+- **COST-P03 Optimisation** — one change at a time per service, reliability tolerance agreed beforehand, health metrics and cost signal both verified, and a saving not treated as real until a billing cycle confirms it.
+- **COST-P04 Guardrails** — unit economics with a three-month trend, thresholds with owners and responses, tagging enforced in IaC, lifecycle and scheduling controls, and standing exemptions for reliability and security.
+
+### Added — `04-process/privacy-requests/` (3 stages)
+
+- **PRIV-P01 Data inventory** — identifier variants, ten system classes including the ones usually forgotten (warehouse, search index, queues, APM payloads, vendor copies, backups), per-system queries and hit counts, and an explicit completeness statement.
+- **PRIV-P02 Execution** — identity verification, legal-hold clearance, export scoped and redacted, deletion in dependency order verified by fresh queries, backups described honestly with an age-out date, blocked systems escalated rather than skipped.
+- **PRIV-P03 Retention** — data classes with a stated basis and period, deletion enforced by mechanism (TTL, lifecycle, rotation) rather than intention, a request path sized to volume, and a verification job that alerts when deletion silently stops working.
+
+### Changed
+
+- Coverage matrix: two new dimension rows (cost / FinOps, privacy / subject rights); totals now 63 adequate / 33 partial / 4 missing.
+- Root routing table, section READMEs, roadmap, and gallery updated.
+
+### Result
+
+343 Markdown files, 273 prompts: 104 operational, 6 draft, 163 skeleton. Validator 0 errors / 0 warnings.
+
 ## [2.3.0] — 2026-10-20
 
 ### Added / promoted — safe refactoring (7 stages, operational)

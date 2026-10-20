@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 266 prompts — 0 canonical, 97 operational, 6 draft, 163 skeleton.
+**Totals:** 273 prompts — 0 canonical, 104 operational, 6 draft, 163 skeleton.
 
 ## `01-contribution/language-design`
 
@@ -237,6 +237,15 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `BE-P07` | PROMPT 07 — Validation | skeleton | diagnostic | C | [P07-Validation.md](../03-domains/backend/P07-Validation/P07-Validation.md) |
 | `BE-P08` | PROMPT 08 — Backend Master Orchestrator | skeleton | orchestration | A | [P08-Backend-Orchestrator.md](../03-domains/backend/P08-Orchestrator/P08-Backend-Orchestrator.md) |
 
+## `03-domains/cost-engineering`
+
+| ID | Stage | Maturity | Mode | Risk | File |
+|----|-------|----------|------|------|------|
+| `COST-P01` | PROMPT 01 — Cost Visibility & Attribution | operational | diagnostic | A | [P01-Cost-Visibility.md](../03-domains/cost-engineering/P01-Visibility/P01-Cost-Visibility.md) |
+| `COST-P02` | PROMPT 02 — Waste Diagnosis | operational | diagnostic | A | [P02-Waste-Diagnosis.md](../03-domains/cost-engineering/P02-Diagnosis/P02-Waste-Diagnosis.md) |
+| `COST-P03` | PROMPT 03 — Optimisation | operational | implementation | C | [P03-Optimisation.md](../03-domains/cost-engineering/P03-Optimisation/P03-Optimisation.md) |
+| `COST-P04` | PROMPT 04 — Guardrails & Unit Economics | operational | planning | B | [P04-Guardrails-Unit-Economics.md](../03-domains/cost-engineering/P04-Guardrails/P04-Guardrails-Unit-Economics.md) |
+
 ## `03-domains/data-ml-ai`
 
 | ID | Stage | Maturity | Mode | Risk | File |
@@ -359,6 +368,14 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `OBS-P03` | PROMPT 03 — SLOs and Alerting | operational | planning | B | [P03-SLOs-Alerting.md](../04-process/observability-reliability/P03-SLO-Alerting/P03-SLOs-Alerting.md) |
 | `OBS-P04` | PROMPT 04 — On-Call Readiness and Runbooks | operational | implementation | B | [P04-Oncall-Runbooks.md](../04-process/observability-reliability/P04-Oncall-Runbooks/P04-Oncall-Runbooks.md) |
 | `OBS-P05` | PROMPT 05 — Postmortem and Reliability Review | operational | audit-remediation | B | [P05-Postmortem-Reliability-Review.md](../04-process/observability-reliability/P05-Postmortem/P05-Postmortem-Reliability-Review.md) |
+
+## `04-process/privacy-requests`
+
+| ID | Stage | Maturity | Mode | Risk | File |
+|----|-------|----------|------|------|------|
+| `PRIV-P01` | PROMPT 01 — Subject Data Inventory | operational | diagnostic | C | [P01-Data-Inventory.md](../04-process/privacy-requests/P01-Inventory/P01-Data-Inventory.md) |
+| `PRIV-P02` | PROMPT 02 — Request Execution | operational | specialised | D | [P02-Request-Execution.md](../04-process/privacy-requests/P02-Execution/P02-Request-Execution.md) |
+| `PRIV-P03` | PROMPT 03 — Retention & Systematisation | operational | planning | B | [P03-Retention-Systematise.md](../04-process/privacy-requests/P03-Retention/P03-Retention-Systematise.md) |
 
 ## `04-process/project-management`
 

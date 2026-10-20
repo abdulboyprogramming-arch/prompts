@@ -200,3 +200,15 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 - Distinctive decisions: behaviour change is banned from refactoring commits and must be separated; P05 measures the *target*, so a clean refactor that missed its purpose is reported as a failure; P06 forbids leaving two structures in place and requires the observation window before removal.
 - Deductions: language-agnostic, so the mechanical-refactoring catalogue is named rather than tool-specific; no automated codemod integration.
 - Follow-up: a worked example (extract-a-service or replace-conditional) would help reviewers recognise a good slice plan.
+
+### `03-domains/cost-engineering/` — 4 stages (new)
+- **2026-10-20 · audit-remediation · 86/100 · operational**
+- Reason: cloud spend was the largest engineering metric with no coverage at all. The system refuses to recommend anything unquantified (P02 requires unit × quantity × time), separates mechanical savings from decisions that trade reliability, and treats a saving as unreal until a billing cycle confirms it (P03). P04 converts the win into guardrails, because optimisation without enforcement decays within a quarter.
+- Deductions: no provider-specific pricing or tooling (ages badly, and prices are per-contract); commitments/reserved capacity are treated as financial decisions, not engineering fixes.
+- Follow-up: a worked example of `unit cost` for a request-driven service.
+
+### `04-process/privacy-requests/` — 3 stages (new)
+- **2026-10-20 · specialised · 88/100 · operational**
+- Reason: subject access and deletion requests are recurring, legally bounded, and fail predictably — the warehouse copy, the APM payload, the support ticket, the backup. P01 forces an explicit inventory with queries and a completeness statement; P02 forbids executing on an incomplete map, verifies per system, and refuses to pretend backups were edited. P03 makes retention structural and verifies that deletions actually happen.
+- Deductions: legal validity, exemptions, and notification obligations are escalated, not decided; no vendor-specific deletion procedures.
+- Follow-up: a self-service design appendix for teams handling high request volume.

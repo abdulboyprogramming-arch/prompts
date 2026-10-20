@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE — do not edit by hand. Run: python3 scripts/generate_gallery.py --write -->
 
-Every prompt in the library — **266** of them — with a direct link and the situation it is for, plus **7** foundational reference documents.
+Every prompt in the library — **273** of them — with a direct link and the situation it is for, plus **7** foundational reference documents.
 Generated from the prompt files, so it cannot drift from them; CI fails if this file is stale.
 
 **Reading the columns**
@@ -21,13 +21,13 @@ Generated from the prompt files, so it cannot drift from them; CI fails if this 
 |---|---:|---|
 | [01-contribution — contributing to open source](#01-contribution--contributing-to-open-source) | 48 | Stage systems for contributing to an unfamiliar project. |
 | [02-engineering — building, auditing, and recovering code](#02-engineering--building-auditing-and-recovering-code) | 78 | Work on an existing codebase: audit, repair, complete, upgrade. |
-| [03-domains — domain-specific engineering](#03-domains--domain-specific-engineering) | 50 | Stack-specific practice: data, AI, and the domains still being built out. |
-| [04-process — delivering software responsibly](#04-process--delivering-software-responsibly) | 66 | The lifecycle around code: testing, release, observability, dependency and governance. |
+| [03-domains — domain-specific engineering](#03-domains--domain-specific-engineering) | 54 | Stack-specific practice: data, AI, and the domains still being built out. |
+| [04-process — delivering software responsibly](#04-process--delivering-software-responsibly) | 69 | The lifecycle around code: testing, release, observability, dependency and governance. |
 | [05-scenarios — single-session, high-urgency situations](#05-scenarios--single-session-high-urgency-situations) | 11 | One prompt, one session, one pressing situation. |
 | [06-interactive — conversations that clarify a request](#06-interactive--conversations-that-clarify-a-request) | 4 | Use when the request is vague and needs to be scoped first. |
 | [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 9 | Composed sequences that route between systems and stop at human gates. |
 
-*Maturity across the library: 97 operational, 6 draft, 163 skeleton, 266 total.*
+*Maturity across the library: 104 operational, 6 draft, 163 skeleton, 273 total.*
 
 ---
 
@@ -272,6 +272,15 @@ Stack-specific practice: data, AI, and the domains still being built out.
 | `BE-P07` | [Validation](03-domains/backend/P07-Validation/P07-Validation.md) | Verify correctness, contract fidelity, and release readiness. | skeleton | C |
 | `BE-P08` | [Backend Master Orchestrator](03-domains/backend/P08-Orchestrator/P08-Backend-Orchestrator.md) | Runs the backend system end to end: gates, routing, and final acceptance. | skeleton | A |
 
+### cost-engineering · 4 prompts
+
+| ID | Prompt | Use it for | Maturity | Risk |
+|---|---|---|---|---|
+| `COST-P01` | [Cost Visibility & Attribution](03-domains/cost-engineering/P01-Visibility/P01-Cost-Visibility.md) | Answers: what did we spend, on what, attributed to whom, and what fraction is unattributable? | operational | A |
+| `COST-P02` | [Waste Diagnosis](03-domains/cost-engineering/P02-Diagnosis/P02-Waste-Diagnosis.md) | Answers: for the top cost centres, what specific mechanism generates the spend, how much would removing it save, and what would break? | operational | A |
+| `COST-P03` | [Optimisation](03-domains/cost-engineering/P03-Optimisation/P03-Optimisation.md) | Execute the approved, quantified findings from P02 in order of value, each with a verification and a rollback. | operational | C |
+| `COST-P04` | [Guardrails & Unit Economics](03-domains/cost-engineering/P04-Guardrails/P04-Guardrails-Unit-Economics.md) | Produce guardrails (tagging, budgets, alerts, policies) and unit economics (cost per request, per tenant, per job) with owners and thresholds. | operational | B |
+
 ### data-ml-ai · 8 prompts
 
 | ID | Prompt | Use it for | Maturity | Risk |
@@ -398,6 +407,14 @@ The lifecycle around code: testing, release, observability, dependency and gover
 | `OBS-P03` | [SLOs and Alerting](04-process/observability-reliability/P03-SLO-Alerting/P03-SLOs-Alerting.md) | Produce a small set of user-centred SLIs/SLOs with error budgets, and alert rules that fire on budget burn and hard failure — not on causes. | operational | B |
 | `OBS-P04` | [On-Call Readiness and Runbooks](04-process/observability-reliability/P04-Oncall-Runbooks/P04-Oncall-Runbooks.md) | Produce a runbook for every paging alert, plus an on-call guide covering escalation, access, and the top failure modes. | operational | B |
 | `OBS-P05` | [Postmortem and Reliability Review](04-process/observability-reliability/P05-Postmortem/P05-Postmortem-Reliability-Review.md) | Produce a factual postmortem with owned actions, or a periodic reliability review that identifies systemic weakness across incidents. | operational | B |
+
+### privacy-requests · 3 prompts
+
+| ID | Prompt | Use it for | Maturity | Risk |
+|---|---|---|---|---|
+| `PRIV-P01` | [Subject Data Inventory](04-process/privacy-requests/P01-Inventory/P01-Data-Inventory.md) | Answers: in which systems does this subject's data exist, in what form, under what retention rule, and what did you *not* search? | operational | C |
+| `PRIV-P02` | [Request Execution](04-process/privacy-requests/P02-Execution/P02-Request-Execution.md) | Export the subject's data, or delete it, with per-system verification and a complete record. | operational | D |
+| `PRIV-P03` | [Retention & Systematisation](04-process/privacy-requests/P03-Retention/P03-Retention-Systematise.md) | A per-data-class retention schedule with enforcement, a self-service or documented request path, and the monitoring that proves deletions actually happen. | operational | B |
 
 ### project-management · 8 prompts
 

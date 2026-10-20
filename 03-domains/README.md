@@ -8,6 +8,7 @@ Deep, technology-specific prompt systems. Cross-cutting activities (audits, refa
 |------|-------------|-------:|----------|
 | [`ai-agentic/`](ai-agentic/README.md) | LLM features and agents: risk, architecture, evaluation, guardrails, production operations | 5 | **operational** |
 | [`database/`](database/README.md) | Schema truth, migration design, pre-flight drills, safe execution, rollback and integrity verification | 5 | **operational** |
+| [`cost-engineering/`](cost-engineering/README.md) | Cost attribution, waste diagnosis, safe optimisation, guardrails and unit economics | 4 | **operational** |
 | [`backend/`](backend/README.md) | Service implementation, API design, data, reliability | 8 | skeleton |
 | [`frontend/`](frontend/README.md) | UI architecture, state, accessibility, polish | 8 | skeleton |
 | [`devops-infra/`](devops-infra/README.md) | Infrastructure, IaC, pipelines, observability setup | 8 | skeleton |
