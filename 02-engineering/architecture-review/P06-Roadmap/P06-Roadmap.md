@@ -1,7 +1,12 @@
 # PROMPT 06 — Roadmap
-**Version:** 1.0.0  
 **Identifier:** AR-P06  
+**System:** 02-engineering/architecture-review  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
 **Depends on:** AR-P05  
+**Produces:** `ARCHITECTURE_ROADMAP.md`  
 
 ---
 

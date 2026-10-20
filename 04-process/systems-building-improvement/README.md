@@ -1,6 +1,6 @@
 # Systems-Building & Improvement Process
 
-**Status:** Operational (v1.0)  
+**Status:** Skeleton — 8 stage outlines (skeleton 8). The stages name a sensible sequence but lack the evidence rules, verification, and failure handling that this library requires of `operational`. Treat the system as a plan, not a procedure; see [`_meta/ROADMAP-AND-BACKLOG.md`](../../_meta/ROADMAP-AND-BACKLOG.md).
 **Entry Point:** [`P08-Orchestrator/P08-Systems-Building-Orchestrator.md`](P08-Orchestrator/P08-Systems-Building-Orchestrator.md)
 
 A multi-stage system for improving or building socio-technical systems: engineering workflows, delivery pipelines, operational processes, internal platforms, and similar “systems of work.”

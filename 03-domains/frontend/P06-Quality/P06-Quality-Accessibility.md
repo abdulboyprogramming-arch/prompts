@@ -1,7 +1,12 @@
 # PROMPT 06 — Quality & Accessibility
-**Version:** 1.0.0  
 **Identifier:** FE-P06  
+**System:** 03-domains/frontend  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** FE-P05  
+**Produces:** `FE_QUALITY.md`  
 
 ---
 

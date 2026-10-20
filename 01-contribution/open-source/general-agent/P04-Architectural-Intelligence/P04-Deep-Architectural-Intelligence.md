@@ -1,9 +1,13 @@
 # PROMPT 04 — Deep Architectural Intelligence
-**Version:** 1.0.0  
-**Status:** Operational  
 **Identifier:** P04  
+**System:** 01-contribution/open-source/general-agent  
+**Version:** 1.0.0  
+**Maturity:** operational  
+**Execution mode:** implementation  
+**Risk class:** C  
 **Depends on:** P01, P02, P03  
 **Produces:** Deepened REPO_MAP.md, substantially populated KNOWLEDGE_BASE.md, subsystem inventory, dependency and entry-point maps  
+**Inputs:** REPO_PATH, BASE_REF
 
 ---
 
@@ -27,7 +31,7 @@ Do **not** hunt for defects or opportunities yet (P07/P08). Do **not** modify so
 ## 3. Prerequisites
 
 - P03 completed; initial REPO_MAP.md and contribution policy summary exist.
-- Repository root and default branch known.
+- Repository root `{{REPO_PATH}}` and default branch `{{BASE_REF}}` known.
 - Working tree state known (prefer clean for analysis, but do not alter user changes).
 
 ## 4. Required Tools and Permissions

@@ -1,7 +1,12 @@
 # PROMPT 05 — Execution Tracking
-**Version:** 1.0.0  
 **Identifier:** PM-P05  
+**System:** 04-process/project-management  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** PM-P04  
+**Produces:** `STATUS.md`  
 
 ---
 

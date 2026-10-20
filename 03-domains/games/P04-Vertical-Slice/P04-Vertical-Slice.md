@@ -1,7 +1,12 @@
 # PROMPT 04 — Vertical Slice
-**Version:** 1.0.0  
 **Identifier:** GD-P04  
+**System:** 03-domains/games  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** GD-P03  
+**Produces:** `VERTICAL_SLICE.md`  
 
 ---
 

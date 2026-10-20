@@ -1,7 +1,12 @@
 # PROMPT 07 — Validation
-**Version:** 1.0.0  
 **Identifier:** BE-P07  
+**System:** 03-domains/backend  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** diagnostic  
+**Risk class:** C  
 **Depends on:** BE-P06  
+**Produces:** `BE_VALIDATION.md`  
 
 ---
 

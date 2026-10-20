@@ -1,7 +1,12 @@
 # PROMPT 04 — Specification
-**Version:** 1.0.0  
 **Identifier:** LD-P04  
+**System:** 01-contribution/language-design  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
 **Depends on:** LD-P03  
+**Produces:** `LANGUAGE_SPEC.md`  
 
 ---
 

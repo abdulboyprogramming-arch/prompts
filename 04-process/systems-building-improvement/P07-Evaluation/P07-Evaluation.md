@@ -1,7 +1,12 @@
 # PROMPT 07 — Evaluation
-**Version:** 1.0.0  
 **Identifier:** SB-P07  
+**System:** 04-process/systems-building-improvement  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** diagnostic  
+**Risk class:** B  
 **Depends on:** SB-P06  
+**Produces:** `EVALUATION.md`  
 
 ---
 

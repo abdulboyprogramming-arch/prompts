@@ -1,7 +1,12 @@
 # PROMPT 05 — Optimization Design
-**Version:** 1.0.0  
 **Identifier:** PERF-P05  
+**System:** 02-engineering/performance  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
 **Depends on:** PERF-P04  
+**Produces:** `OPTIMIZATION_PLAN.md`  
 
 ---
 

@@ -1,8 +1,13 @@
 # Greenfield / From-Scratch Intake Context Collector
-
-**Version:** 1.0.0  
-**Type:** Interactive / Context Collector  
-**Use when:** Starting a new project from zero and requirements are incomplete.
+**Identifier:** INT-P03  
+**System:** 06-interactive  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** A  
+**Depends on:** none  
+**Produces:** Greenfield intake brief  
+**Gallery:** Starting from nothing: collect the product intent, constraints, and non-goals needed to pick a build strategy.
 
 ---
 

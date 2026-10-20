@@ -3,6 +3,8 @@
 **Version:** 1.0.0  
 **Type:** Core Safety Primitive  
 
+**Use when:** You must classify an action as read-only, a local mutation, an external side effect, or high-risk before authorising it.
+
 ---
 
 ## Purpose

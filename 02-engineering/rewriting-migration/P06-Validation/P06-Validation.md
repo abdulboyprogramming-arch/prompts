@@ -1,7 +1,12 @@
 # PROMPT 06 — Validation
-**Version:** 1.0.0  
 **Identifier:** RW-P06  
+**System:** 02-engineering/rewriting-migration  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** diagnostic  
+**Risk class:** B  
 **Depends on:** RW-P05  
+**Produces:** `VALIDATION.md`  
 
 ---
 

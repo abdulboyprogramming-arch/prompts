@@ -1,7 +1,12 @@
 # PROMPT 02 — Game Design
-**Version:** 1.0.0  
 **Identifier:** GD-P02  
+**System:** 03-domains/games  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
 **Depends on:** GD-P01  
+**Produces:** `GAME_DESIGN.md`  
 
 ---
 

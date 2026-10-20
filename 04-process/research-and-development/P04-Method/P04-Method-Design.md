@@ -1,7 +1,12 @@
 # PROMPT 04 — Method Design
-**Version:** 1.0.0  
 **Identifier:** RD-P04  
+**System:** 04-process/research-and-development  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
 **Depends on:** RD-P03  
+**Produces:** `METHOD.md`  
 
 ---
 

@@ -1,7 +1,15 @@
 # Write a Strong Pull Request Prompt
 
-**Version:** 1.0.0  
-**Type:** Scenario / Standalone  
+**Identifier:** PR-01  
+**System:** 05-scenarios/pr-authoring  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** specialised  
+**Risk class:** B  
+**Depends on:** none  
+**Produces:** a PR description that states intent, evidence, risk, and what a reviewer should scrutinise  
+**Gallery:** Turn a finished change into a pull request a reviewer can approve quickly: scope, evidence, risk, and rollback.  
+
 **Use when:** You have a completed change and need a clear, reviewer-friendly pull request.
 
 ---

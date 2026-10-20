@@ -1,7 +1,12 @@
 # PROMPT 03 — Architecture
-**Version:** 1.0.0  
 **Identifier:** DI-P03  
+**System:** 03-domains/devops-infra  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** C  
 **Depends on:** DI-P02  
+**Produces:** `DI_ARCHITECTURE.md`  
 
 ---
 

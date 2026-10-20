@@ -1,6 +1,6 @@
 # Rewriting & Language Migration System
 
-**Status:** Operational (v1.0)  
+**Status:** Skeleton — 8 stage outlines (skeleton 8). The stages name a sensible sequence but lack the evidence rules, verification, and failure handling that this library requires of `operational`. Treat the system as a plan, not a procedure; see [`_meta/ROADMAP-AND-BACKLOG.md`](../../_meta/ROADMAP-AND-BACKLOG.md).
 **Entry Point:** [`P08-Orchestrator/P08-Rewriting-Migration-Orchestrator.md`](P08-Orchestrator/P08-Rewriting-Migration-Orchestrator.md)
 
 A disciplined multi-stage system for safely rewriting systems or migrating them to a new language, framework, or major paradigm.

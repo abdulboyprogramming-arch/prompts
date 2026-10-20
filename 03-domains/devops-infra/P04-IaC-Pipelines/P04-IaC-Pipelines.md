@@ -1,7 +1,12 @@
 # PROMPT 04 — IaC & Pipelines
-**Version:** 1.0.0  
 **Identifier:** DI-P04  
+**System:** 03-domains/devops-infra  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** C  
 **Depends on:** DI-P03  
+**Produces:** `DI_IAC_PIPELINES.md`  
 
 ---
 

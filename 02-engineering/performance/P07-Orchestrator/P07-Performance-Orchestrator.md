@@ -1,7 +1,12 @@
 # PROMPT 07 — Performance Analysis & Optimization Master Orchestrator
-**Version:** 1.0.0  
 **Identifier:** PERF-P07  
-**Entry Point:** Yes  
+**System:** 02-engineering/performance  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** orchestration  
+**Risk class:** A  
+**Depends on:** previous stage in system  
+**Produces:** see workflow (artifact unspecified)  
 
 ---
 

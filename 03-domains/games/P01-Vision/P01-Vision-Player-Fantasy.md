@@ -1,6 +1,12 @@
 # PROMPT 01 — Vision & Player Fantasy
-**Version:** 1.0.0  
 **Identifier:** GD-P01  
+**System:** 03-domains/games  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
+**Depends on:** none (entry stage)  
+**Produces:** `GAME_VISION.md`  
 
 ---
 

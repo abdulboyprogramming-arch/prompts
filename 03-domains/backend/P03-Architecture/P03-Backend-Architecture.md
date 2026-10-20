@@ -1,7 +1,12 @@
 # PROMPT 03 — Architecture
-**Version:** 1.0.0  
 **Identifier:** BE-P03  
+**System:** 03-domains/backend  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
 **Depends on:** BE-P02  
+**Produces:** `BE_ARCHITECTURE.md`  
 
 ---
 

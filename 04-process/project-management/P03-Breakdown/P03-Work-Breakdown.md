@@ -1,7 +1,12 @@
 # PROMPT 03 — Work Breakdown
-**Version:** 1.0.0  
 **Identifier:** PM-P03  
+**System:** 04-process/project-management  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** PM-P02  
+**Produces:** `WORK_BREAKDOWN.md`  
 
 ---
 

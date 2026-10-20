@@ -1,7 +1,12 @@
 # PROMPT 07 — PR & Communication
-**Version:** 1.0.0  
 **Identifier:** WEB-P07  
+**System:** 01-contribution/web/general  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** WEB-P06  
+**Produces:** see workflow (artifact unspecified)  
 
 ---
 

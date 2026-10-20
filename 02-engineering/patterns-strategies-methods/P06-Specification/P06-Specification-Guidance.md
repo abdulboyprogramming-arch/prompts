@@ -1,7 +1,12 @@
 # PROMPT 06 — Specification & Guidance
-**Version:** 1.0.0  
 **Identifier:** PS-P06  
+**System:** 02-engineering/patterns-strategies-methods  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
 **Depends on:** PS-P05  
+**Produces:** `PATTERN_SPEC.md`, `STRATEGY_SPEC.md`, `METHOD_SPEC.md`  
 
 ---
 

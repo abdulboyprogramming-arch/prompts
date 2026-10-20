@@ -1,6 +1,12 @@
 # PROMPT 01 — Context & Scope
-**Version:** 1.0.0  
 **Identifier:** SB-P01  
+**System:** 04-process/systems-building-improvement  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** C  
+**Depends on:** none (entry stage)  
+**Produces:** `SYSTEM_CONTEXT.md`  
 
 ---
 

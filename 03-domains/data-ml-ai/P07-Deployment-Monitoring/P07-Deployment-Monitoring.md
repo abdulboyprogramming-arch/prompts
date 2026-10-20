@@ -1,7 +1,12 @@
 # PROMPT 07 — Deployment & Monitoring
-**Version:** 1.0.0  
 **Identifier:** ML-P07  
+**System:** 03-domains/data-ml-ai  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** C  
 **Depends on:** ML-P06  
+**Produces:** `ML_DEPLOYMENT.md`  
 
 ---
 

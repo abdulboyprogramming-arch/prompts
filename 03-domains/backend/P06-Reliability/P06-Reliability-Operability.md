@@ -1,7 +1,12 @@
 # PROMPT 06 — Reliability & Operability
-**Version:** 1.0.0  
 **Identifier:** BE-P06  
+**System:** 03-domains/backend  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** BE-P05  
+**Produces:** `BE_RELIABILITY.md`  
 
 ---
 

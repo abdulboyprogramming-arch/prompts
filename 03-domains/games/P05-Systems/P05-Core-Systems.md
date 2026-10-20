@@ -1,7 +1,12 @@
 # PROMPT 05 — Core Systems
-**Version:** 1.0.0  
 **Identifier:** GD-P05  
+**System:** 03-domains/games  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** GD-P04  
+**Produces:** `SYSTEMS_LOG.md`  
 
 ---
 

@@ -1,7 +1,12 @@
 # PROMPT 07 — Feature Design Master Orchestrator
-**Version:** 1.0.0  
 **Identifier:** FD-P07  
-**Entry Point:** Yes  
+**System:** 02-engineering/feature-design-suggestion  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** orchestration  
+**Risk class:** A  
+**Depends on:** previous stage in system  
+**Produces:** see workflow (artifact unspecified)  
 
 ---
 

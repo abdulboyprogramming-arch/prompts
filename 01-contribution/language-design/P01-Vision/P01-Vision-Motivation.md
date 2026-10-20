@@ -1,6 +1,12 @@
 # PROMPT 01 — Vision & Motivation
-**Version:** 1.0.0  
 **Identifier:** LD-P01  
+**System:** 01-contribution/language-design  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
+**Depends on:** none (entry stage)  
+**Produces:** `LANGUAGE_VISION.md`  
 
 ---
 

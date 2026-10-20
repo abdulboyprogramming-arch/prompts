@@ -1,7 +1,12 @@
 # PROMPT 02 — Requirements & SLOs
-**Version:** 1.0.0  
 **Identifier:** DI-P02  
+**System:** 03-domains/devops-infra  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** C  
 **Depends on:** DI-P01  
+**Produces:** `DI_REQUIREMENTS.md`  
 
 ---
 

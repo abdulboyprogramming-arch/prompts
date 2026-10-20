@@ -1,7 +1,12 @@
 # PROMPT 03 — Data Assessment
-**Version:** 1.0.0  
 **Identifier:** ML-P03  
+**System:** 03-domains/data-ml-ai  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** diagnostic  
+**Risk class:** B  
 **Depends on:** ML-P02  
+**Produces:** `ML_DATA.md`  
 
 ---
 

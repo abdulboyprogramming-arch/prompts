@@ -1,7 +1,12 @@
 # PROMPT 04 — Approach Design
-**Version:** 1.0.0  
 **Identifier:** ML-P04  
+**System:** 03-domains/data-ml-ai  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
 **Depends on:** ML-P03  
+**Produces:** `ML_APPROACH.md`  
 
 ---
 

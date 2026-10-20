@@ -1,6 +1,12 @@
 # PROMPT 01 — Context & Stack
-**Version:** 1.0.0  
 **Identifier:** FE-P01  
+**System:** 03-domains/frontend  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** C  
+**Depends on:** none (entry stage)  
+**Produces:** `FE_CONTEXT.md`  
 
 ---
 

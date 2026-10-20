@@ -1,7 +1,12 @@
 # PROMPT 03 — Hypotheses
-**Version:** 1.0.0  
 **Identifier:** RD-P03  
+**System:** 04-process/research-and-development  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** research  
+**Risk class:** B  
 **Depends on:** RD-P02  
+**Produces:** `HYPOTHESES.md`  
 
 ---
 

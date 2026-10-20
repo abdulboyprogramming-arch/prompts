@@ -1,7 +1,12 @@
 # PROMPT 05 — Evaluation
-**Version:** 1.0.0  
 **Identifier:** PS-P05  
+**System:** 02-engineering/patterns-strategies-methods  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** diagnostic  
+**Risk class:** B  
 **Depends on:** PS-P04  
+**Produces:** `EVALUATION.md`  
 
 ---
 

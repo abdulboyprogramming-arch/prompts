@@ -1,7 +1,12 @@
 # PROMPT 02 — Discovery & Opportunity Identification
-**Version:** 1.0.0  
 **Identifier:** WEB-P02  
+**System:** 01-contribution/web/general  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** diagnostic  
+**Risk class:** A  
 **Depends on:** WEB-P01  
+**Produces:** `OPPORTUNITIES.md`  
 
 ---
 

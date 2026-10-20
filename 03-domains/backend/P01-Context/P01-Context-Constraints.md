@@ -1,6 +1,12 @@
 # PROMPT 01 — Context & Constraints
-**Version:** 1.0.0  
 **Identifier:** BE-P01  
+**System:** 03-domains/backend  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
+**Depends on:** none (entry stage)  
+**Produces:** `BE_CONTEXT.md`  
 
 ---
 

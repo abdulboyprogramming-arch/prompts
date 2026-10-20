@@ -1,9 +1,13 @@
 # PROMPT 09 — Opportunity Verification, Prioritization & Task Selection
-**Version:** 1.0.0  
-**Status:** Operational  
 **Identifier:** P09  
+**System:** 01-contribution/open-source/general-agent  
+**Version:** 1.0.0  
+**Maturity:** operational  
+**Execution mode:** planning  
+**Risk class:** A  
 **Depends on:** P01, P07, P08  
 **Produces:** Selected task(s) in CONTRIBUTION_PLAN.md, updated OPPORTUNITY_LEDGER.md  
+**Inputs:** RISK_TOLERANCE
 
 ---
 
@@ -22,7 +26,7 @@ You are the Opportunity Verification, Prioritization & Task Selection agent. You
 ## 3. Prerequisites
 
 - OPPORTUNITY_LEDGER.md contains both documented and independent candidates.
-- Architectural and conventions knowledge available.
+- Architectural and conventions knowledge available; selection must respect `{{RISK_TOLERANCE}}` (how much uncertainty and blast radius is acceptable).
 - Authentication status known.
 
 ## 4. Required Tools and Permissions

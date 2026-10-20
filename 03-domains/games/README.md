@@ -1,6 +1,6 @@
 # Game Development System
 
-**Status:** Operational (v1.0)  
+**Status:** Skeleton — 8 stage outlines (skeleton 8). The stages name a sensible sequence but lack the evidence rules, verification, and failure handling that this library requires of `operational`. Treat the system as a plan, not a procedure; see [`_meta/ROADMAP-AND-BACKLOG.md`](../../_meta/ROADMAP-AND-BACKLOG.md).
 **Entry Point:** [`P08-Orchestrator/P08-Game-Development-Orchestrator.md`](P08-Orchestrator/P08-Game-Development-Orchestrator.md)
 
 A multi-stage system for designing and building games (or major game features) with a strong emphasis on fun, clarity, and vertical slices over premature scope expansion.

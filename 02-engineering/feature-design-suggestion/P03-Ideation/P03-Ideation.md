@@ -1,7 +1,12 @@
 # PROMPT 03 — Ideation
-**Version:** 1.0.0  
 **Identifier:** FD-P03  
+**System:** 02-engineering/feature-design-suggestion  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
 **Depends on:** FD-P02  
+**Produces:** `IDEATION.md`  
 
 ---
 

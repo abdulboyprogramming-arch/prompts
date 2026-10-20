@@ -1,7 +1,12 @@
 # PROMPT 02 — High-Level Architecture
-**Version:** 1.0.0  
 **Identifier:** FS-P02  
+**System:** 02-engineering/from-scratch  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** A  
 **Depends on:** FS-P01  
+**Produces:** `VISION.md`, `ARCHITECTURE.md`  
 
 ---
 

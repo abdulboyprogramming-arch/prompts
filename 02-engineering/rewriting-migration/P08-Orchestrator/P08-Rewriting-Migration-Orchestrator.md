@@ -1,7 +1,12 @@
 # PROMPT 08 — Rewriting & Migration Master Orchestrator
-**Version:** 1.0.0  
 **Identifier:** RW-P08  
-**Entry Point:** Yes  
+**System:** 02-engineering/rewriting-migration  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** orchestration  
+**Risk class:** A  
+**Depends on:** previous stage in system  
+**Produces:** see workflow (artifact unspecified)  
 
 ---
 

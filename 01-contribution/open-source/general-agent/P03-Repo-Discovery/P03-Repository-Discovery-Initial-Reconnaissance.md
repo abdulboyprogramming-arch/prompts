@@ -1,9 +1,13 @@
 # PROMPT 03 — Repository Discovery & Initial Reconnaissance
-**Version:** 1.0.0  
-**Status:** Operational  
 **Identifier:** P03  
+**System:** 01-contribution/open-source/general-agent  
+**Version:** 1.0.0  
+**Maturity:** operational  
+**Execution mode:** diagnostic  
+**Risk class:** C  
 **Depends on:** P01, P02 (successful bootstrap)  
 **Produces:** Initial REPO_MAP.md, updated KNOWLEDGE_BASE.md and PROGRESS_LEDGER.md  
+**Inputs:** REPO_PATH, BASE_REF (optional: MY_DETAILS_FILE)
 
 ---
 
@@ -26,9 +30,9 @@ Do **not** perform deep module-level analysis (that is P04/P05), issue triage (P
 ## 3. Prerequisites
 
 - P02 has completed and written its bootstrap report.
-- Working directory is known.
+- Working directory `{{REPO_PATH}}` and its default branch `{{BASE_REF}}` are known.
 - `.contribution-agent/` exists.
-- MY_DETAILS.txt has been parsed (or its absence recorded).
+- `{{MY_DETAILS_FILE}}` has been parsed (or its absence recorded).
 
 ## 4. Required Tools and Permissions
 

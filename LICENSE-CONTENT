@@ -1,0 +1,42 @@
+# Content licence — CC BY 4.0
+
+The written material in this repository is licensed under the **Creative Commons Attribution 4.0 International License (CC BY 4.0)**.
+
+**Canonical legal code:** https://creativecommons.org/licenses/by/4.0/legalcode
+**Human-readable summary:** https://creativecommons.org/licenses/by/4.0/
+
+The canonical legal code at the URL above governs; this file is the notice that applies it to this repository.
+
+## What this covers
+
+- Every prompt file (`*.md` with an `Identifier` in its metadata)
+- Every system `README.md`, standard, template, checklist, and guide under `00-core/`, `_meta/`, `01-contribution/` … `07-workflows/`
+- `GALLERY.md`, `_meta/CATALOG.md`, `CHANGELOG.md`, `PROJECT-STATUS.md`, and this repository's documentation
+
+It does **not** cover the Python code in `scripts/`, which is MIT licensed — see `LICENSE`.
+
+## What you may do
+
+Use, copy, adapt, translate, and redistribute the material — including commercially and inside your own products — provided you give appropriate credit.
+
+## How to attribute
+
+A practical form, sufficient for the licence:
+
+> Based on the Software Engineering Prompt Library by Abdulrahman Adeeyo
+> (https://github.com/abdulboyprogramming-arch/prompts), licensed under CC BY 4.0.
+> Changes were made.
+
+Requirements that actually matter:
+
+1. **Name the source** and, where reasonable, link to this repository.
+2. **Indicate changes** if you modified the material — "adapted from", not "by".
+3. **Do not imply endorsement** by the original author of your modifications or of any system you audit or build with it.
+4. **Do not apply a more restrictive licence** to the original material itself (your own additions may be licensed however you like).
+
+## A note on the prompts' intent
+
+The licence grants broad rights. The prompts themselves carry expectations that a licence cannot enforce, and that attribution should not be read as waiving:
+
+- A prompt labelled `operational` claims structural completeness, not proven effectiveness. See `PROJECT-STATUS.md` § limitations.
+- Risk classes (A–D) and authorisation gates are part of the material, not decoration. Removing them and redistributing the result under this project's name misrepresents it — and the attribution requirement is there so readers can check.

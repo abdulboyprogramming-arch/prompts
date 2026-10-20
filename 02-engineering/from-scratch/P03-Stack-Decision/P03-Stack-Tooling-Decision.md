@@ -1,7 +1,12 @@
 # PROMPT 03 — Stack & Tooling Decision
-**Version:** 1.0.0  
 **Identifier:** FS-P03  
+**System:** 02-engineering/from-scratch  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** C  
 **Depends on:** FS-P01, FS-P02  
+**Produces:** `STACK.md`  
 
 ---
 

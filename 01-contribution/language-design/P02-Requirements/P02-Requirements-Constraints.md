@@ -1,7 +1,12 @@
 # PROMPT 02 — Requirements & Constraints
-**Version:** 1.0.0  
 **Identifier:** LD-P02  
+**System:** 01-contribution/language-design  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
 **Depends on:** LD-P01  
+**Produces:** `LANGUAGE_REQUIREMENTS.md`  
 
 ---
 

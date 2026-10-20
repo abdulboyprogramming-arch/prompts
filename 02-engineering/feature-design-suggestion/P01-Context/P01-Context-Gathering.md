@@ -1,6 +1,12 @@
 # PROMPT 01 — Context Gathering
-**Version:** 1.0.0  
 **Identifier:** FD-P01  
+**System:** 02-engineering/feature-design-suggestion  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
+**Depends on:** none (entry stage)  
+**Produces:** `CONTEXT.md`  
 
 ---
 

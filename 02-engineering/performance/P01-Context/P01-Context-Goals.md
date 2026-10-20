@@ -1,6 +1,12 @@
 # PROMPT 01 — Context & Goals
-**Version:** 1.0.0  
 **Identifier:** PERF-P01  
+**System:** 02-engineering/performance  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
+**Depends on:** none (entry stage)  
+**Produces:** `PERF_CONTEXT.md`  
 
 ---
 

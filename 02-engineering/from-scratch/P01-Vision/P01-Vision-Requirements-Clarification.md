@@ -1,7 +1,12 @@
 # PROMPT 01 — Vision & Requirements Clarification
-**Version:** 1.0.0  
 **Identifier:** FS-P01  
-**System:** From-Scratch Project  
+**System:** 02-engineering/from-scratch  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
+**Depends on:** none (entry stage)  
+**Produces:** `VISION.md`  
 
 ---
 
