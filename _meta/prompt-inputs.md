@@ -131,7 +131,7 @@ Two rules keep this from growing without limit:
 
 ## Migration status (honest)
 
-**109 of 118 operational prompts declare `Inputs:`.** The retrofit was done system by system in 2.9.0, using each prompt's own §3 as the source of truth: where §3 already named a value ("Repository path", "Named approver for Category C actions"), that value became a canonical name and a placeholder; where §3 named an upstream artifact (`.qa/QA_CONTEXT.md`), it stayed in `Depends on`.
+**109 of the 118 operational prompts assessed declare `Inputs:`.** The retrofit was done system by system in 2.9.0, using each prompt's own §3 as the source of truth: where §3 already named a value ("Repository path", "Named approver for Category C actions"), that value became a canonical name and a placeholder; where §3 named an upstream artifact (`.qa/QA_CONTEXT.md`), it stayed in `Depends on`.
 
 Nine operational prompts deliberately declare **no** inputs, because they consume only artifacts from the previous stage and would otherwise carry an unused declaration:
 

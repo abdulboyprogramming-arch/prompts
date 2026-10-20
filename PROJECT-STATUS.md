@@ -31,7 +31,7 @@ archive/         Legacy .txt source material, retained for provenance
 
 Run `python3 scripts/validate_library.py` for live numbers. At the time of writing:
 
-- **355 Markdown files**, **281 prompt files**.
+- **361 Markdown files**, **286 prompt files**.
 - Maturity: **123 operational**, **6 draft**, **157 skeleton**.
 - **0 validation errors, 0 warnings**.
 - Operational systems: open-source contribution agent (16), codebase audit (9), project recovery (7), security hardening (7), testing & QA (7), refactoring (7), database (5), cost engineering (4), privacy requests (3), payments (3), git operations (5), code review (6), feature flags (5), dependency management (5), decommissioning (4), governance and compliance (3), observability & reliability (5), release engineering (4), AI/agentic (5), feature completion (4), independent verification (1), plus debugging, incident response, flaky-test triage, failed-fix escalation, data-loss recovery, and security incident response.
