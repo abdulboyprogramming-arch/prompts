@@ -1,6 +1,6 @@
 # Coverage Matrix
 
-**Version:** 1.1.0 · **Last assessed:** 2026-10-20 (post-2.14.0 reassessment) · **Method:** evidence review of every prompt file; a scenario counts as covered only when an existing prompt addresses its distinctive requirements, constraints, and verification — not because a related prompt exists.
+**Version:** 1.1.0 · **Last assessed:** 2026-10-20 (post-2.15.0 reassessment) · **Method:** evidence review of every prompt file; a scenario counts as covered only when an existing prompt addresses its distinctive requirements, constraints, and verification — not because a related prompt exists.
 
 **Status vocabulary**
 
@@ -98,17 +98,18 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Infrastructure | Partial | `devops-infra` skeleton |
 | Security | Adequate | `security-hardening` (assessment/remediation) |
 | Testing | Adequate | `testing-qa` |
-| AI / LLM | Adequate | `ai-agentic` |
+| AI / LLM | Adequate | `ai-agentic` `AI-P01..P07`; P06 adds grounded retrieval with ACL-leakage and abstention measurement, P07 adds the engineering agent's own permission surface (MCP servers, shell, egress, credential inheritance) |
 | Data engineering | **Missing** | `data-ml-ai` conflates pipelines with modelling; no ingest/quality/lineage |
 | Cost / FinOps | **Adequate** | `COST-P01..P04` (new) — attribution, waste diagnosis sized in money, safe optimisation, guardrails and unit economics |
 | Privacy / subject rights | **Adequate** | `PRIV-P01..P03` (new) — cross-system subject data inventory, verified export/deletion, enforced retention |
 | Money correctness | **Adequate** | `PAY-P01..P03` (new) — representation and invariants, idempotency and unknown outcomes, provider reconciliation and change-safety checklist |
 | Version control operations | **Adequate** | `GIT-P01..P05` (new) — state check before destructive commands, conflict resolution by intent, history repair with a shared-history gate, reflog-based recovery, written conventions. Previously only prohibitions existed |
 | Distributed systems | Partial | architecture/audit cover analysis; no design or failure-mode prompt |
-| Mobile | **Missing** | No system; `03-domains/README` states the gap |
-| Embedded / firmware | **Missing** | No system |
+| Mobile | **Adequate** | `MOB-P01..P03` (new) — store release with a pre-declared halt criterion, crash triage with symbolication and consequence ranking, client-version compatibility and deprecation schedule |
+| Embedded / firmware | **Adequate** | `IOT-P01..P02` (new) — atomic OTA with trial boot and automatic rollback, power-cut testing, fleet silence classification and bounded recovery ladder |
 | Desktop / CLI | **Missing** | No system |
-| Games | Partial | `games` skeleton (vertical-slice stage is sound) |
+| Games | Partial | 7 game-design stages remain skeleton; `GD-P09` (save migration) and `GD-P10` (netcode/determinism) are operational |
+| Blockchain / smart contracts | **Adequate** | `CHAIN-P01..P04` (new) — threat model with exploit-path ranking, key custody tiers and drilled rotation, upgrade with storage-layout diff and fork rehearsal, exploit response with containment-first ordering |
 | Performance | Partial | audit and incident touch it; `performance` skeleton |
 
 ## 7. Execution mode
@@ -160,6 +161,7 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Reproducible dev environment and editor parity | **Adequate** | `DEVENV-01`: pinned runtimes, no global installs, one entry point, container + script, `.gitattributes` and case-sensitivity checks, CI parity, time-to-green measured |
 | AI-assistant context and IDE adaptability | **Adequate** | `CTX-P01..P04`: surface inventory by tool, one canonical `AGENTS.md` with thin adapters, adherence probes (command/convention/boundary/ambiguity), machine checks and drift triggers |
 | On-call shift handover | **Adequate** | `ONCALL-01`: state from systems (alerts, silences, deploys), about-to-break dates, known-noise, "if this pages you tonight", read-back, authority transfer |
+| Prompt generation from a description | **Adequate** | `GEN-P01`: five modes (compose / interview / improve / decompose / port), routing against existing coverage, risk-class derivation, runnable verification table, self-score, provenance marked `draft`. Companion `GEN-P02` supplies the evaluation protocol |
 | Timeboxed delivery with a demo deadline | **Adequate** | `HACK-01`: rubric mapped to demo moments, demo script as the build order, pre-declared cut lines, reserved freeze/rehearsal/submission time, stage-failure fallbacks, disclosed mocks. Scope coverage only — not team coordination under a 24-hour clock |
 | Ownership handover (person, team, or agent) | **Adequate** | `HAND-P01..P05`: capability-based acceptance criteria, dual-control for lockout-risk accounts, revocation with proof, receiver-performed exercises, conditions with owners, review point. Excluded by design: recovery with no counterpart (`project-recovery`) |
 | External surface audit (live URL, host, API) | **Adequate** | `SURFACE-01`: rules of engagement, baseline, redirect/header/cookie/CORS checks on the final response, sampled error behaviour, evidence per finding, coverage statement, no enumeration or exploitation |
@@ -181,11 +183,11 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 
 | Element | Status | Evidence / gap |
 |--------|--------|----------------|
-| Discoverability | Adequate | root README routing table, catalog, system READMEs, workflows |
+| Discoverability | Adequate | root README routing table, catalog, system READMEs, workflows, and `GEN-P01` which routes a new request to existing coverage before writing anything |
 | Consistency | Adequate | one authoring standard, validator-enforced metadata |
-| Uniqueness | Partial | identifiers unique; no near-duplicate detection |
+| Uniqueness | Partial | identifiers unique (validator); `scripts/find_overlaps.py` measures shingle containment in CI at a 0.55 gate. Current maximum pair is 0.11, so the check has not yet been exercised by a real conflict |
 | Metadata | Adequate | required keys, validator-enforced |
-| Validation | Partial | `scripts/validate_library.py` (structural) + one recorded empirical run of `DBG-01` in `_meta/empirical-evaluation-01.md`, which produced three prompt fixes; 80 operational prompts remain structurally reviewed only |
+| Validation | Partial | `scripts/validate_library.py` (structural) + one recorded empirical run of `DBG-01`. `GEN-P02` now defines the missing empirical protocol (frozen fixtures, two runs, trace grading, defect classification), but only `DBG-01` has been executed; every other operational prompt remains structurally reviewed only |
 | Versioning | Adequate | per-prompt semver tied to maturity |
 | Maintenance | Adequate | roadmap, review log, continuation checkpoint, CI |
 | Prompt input configuration | **Adequate** | `_meta/prompt-inputs.md` (convention, canonical names, fallbacks), `**Inputs:**`/`{{NAME}}` validator gate, `00-core/inputs/RUN-SHEET.md`. 109/118 prompts at the time of the audit (the library has since grown to 123 operational) declare inputs; the 9 that do not are artifact-only stages where a declaration would be unused |
@@ -219,14 +221,16 @@ Counts are computed from the tables above; they are not estimates.
 
 | Status | Dimension rows | Workflow rows |
 |--------|---------------:|--------------:|
-| Adequate | 78 | 9 |
+| Adequate | 82 | 9 |
 | Partial | 30 | 5 |
-| Missing | 4 | 0 |
+| Missing | 2 | 0 |
 | Defective | 0 | 0 |
 | Indirect | 0 | 0 |
-| **Total assessed** | **112** | **14** |
+| **Total assessed** | **114** | **14** |
 
-**Reading this honestly:** roughly 70% of assessed dimension rows are adequate. The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
+**Reading this honestly:** roughly 72% of assessed dimension rows are adequate. The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
+
+**Closed in 2.15.0:** prompt generation and prompt evaluation (`GEN-P01`, `GEN-P02`); blockchain (`CHAIN-P01..P04`); mobile (`MOB-P01..P03`); embedded/IoT (`IOT-P01..P02`); games save data and netcode (`GD-P09`, `GD-P10`); agent tool permissions and RAG groundedness (`AI-P06`, `AI-P07`).
 
 **Closed in 2.14.0:** deployment targets (`DEPLOY-01`), host migration (`HOSTMIG-01`), dev environment (`DEVENV-01`), agent context/IDE (`CTX-P01..P04`), on-call handover (`ONCALL-01`).
 

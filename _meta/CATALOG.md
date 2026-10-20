@@ -6,7 +6,14 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 301 prompts — 0 canonical, 147 operational, 5 draft, 149 skeleton.
+**Totals:** 317 prompts — 0 canonical, 163 operational, 5 draft, 149 skeleton.
+
+## `00-core`
+
+| ID | Stage | Maturity | Mode | Risk | File |
+|----|-------|----------|------|------|------|
+| `GEN-P01` | PROMPT 01 — The Prompt Forge: build a runnable prompt from a | operational | specialised | A | [PROMPT-FORGE.md](../00-core/prompt-engineering/PROMPT-FORGE.md) |
+| `GEN-P02` | PROMPT 02 — Prompt Regression: prove a prompt change is an i | operational | continuous-improvement | A | [PROMPT-REGRESSION.md](../00-core/prompt-engineering/PROMPT-REGRESSION.md) |
 
 ## `01-contribution/language-design`
 
@@ -223,6 +230,8 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `AI-P03` | PROMPT 03 — Evaluation-Driven Development | operational | implementation | B | [P03-Evaluation.md](../03-domains/ai-agentic/P03-Evaluation/P03-Evaluation.md) |
 | `AI-P04` | PROMPT 04 — Safety, Guardrails & Prompt-Injection Defence | operational | implementation | B | [P04-Safety-Guardrails.md](../03-domains/ai-agentic/P04-Safety/P04-Safety-Guardrails.md) |
 | `AI-P05` | PROMPT 05 — AI Production Operations | operational | implementation | B | [P05-Production-Operations.md](../03-domains/ai-agentic/P05-Production/P05-Production-Operations.md) |
+| `AI-P06` | PROMPT 06 — Grounded Retrieval: does the system answer from  | operational | audit-remediation | B | [P06-Grounded-Retrieval.md](../03-domains/ai-agentic/P06-Retrieval/P06-Grounded-Retrieval.md) |
+| `AI-P07` | PROMPT 07 — Agent Permissions and Tool Supply Chain | operational | audit-remediation | B | [P07-Agent-Permissions.md](../03-domains/ai-agentic/P07-Permissions/P07-Agent-Permissions.md) |
 
 ## `03-domains/backend`
 
@@ -282,6 +291,13 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `DI-P07` | PROMPT 07 — Validation | skeleton | diagnostic | B | [P07-Validation.md](../03-domains/devops-infra/P07-Validation/P07-Validation.md) |
 | `DI-P08` | PROMPT 08 — DevOps & Infrastructure Master Orchestrator | skeleton | orchestration | A | [P08-DevOps-Infra-Orchestrator.md](../03-domains/devops-infra/P08-Orchestrator/P08-DevOps-Infra-Orchestrator.md) |
 
+## `03-domains/embedded-iot`
+
+| ID | Stage | Maturity | Mode | Risk | File |
+|----|-------|----------|------|------|------|
+| `IOT-P01` | PROMPT 01 — Firmware OTA with Rollback | operational | implementation | D | [P01-Firmware-OTA.md](../03-domains/embedded-iot/P01-OTA/P01-Firmware-OTA.md) |
+| `IOT-P02` | PROMPT 02 — Fleet Health and Remote Recovery | operational | diagnostic | B | [P02-Fleet-Health.md](../03-domains/embedded-iot/P02-Fleet/P02-Fleet-Health.md) |
+
 ## `03-domains/frontend`
 
 | ID | Stage | Maturity | Mode | Risk | File |
@@ -307,6 +323,16 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `GD-P06` | PROMPT 06 — Content & Polish | skeleton | implementation | B | [P06-Content-Polish.md](../03-domains/games/P06-Content-Polish/P06-Content-Polish.md) |
 | `GD-P07` | PROMPT 07 — Playtest & Validate | skeleton | diagnostic | B | [P07-Playtest-Validate.md](../03-domains/games/P07-Playtest-Validate/P07-Playtest-Validate.md) |
 | `GD-P08` | PROMPT 08 — Game Development Master Orchestrator | skeleton | orchestration | A | [P08-Game-Development-Orchestrator.md](../03-domains/games/P08-Orchestrator/P08-Game-Development-Orchestrator.md) |
+| `GD-P09` | PROMPT 09 — Save Data Migration and Compatibility | operational | implementation | C | [P09-Save-Migration.md](../03-domains/games/P09-Save-Migration/P09-Save-Migration.md) |
+| `GD-P10` | PROMPT 10 — Multiplayer Netcode and Determinism | operational | diagnostic | B | [P10-Netcode.md](../03-domains/games/P10-Netcode/P10-Netcode.md) |
+
+## `03-domains/mobile`
+
+| ID | Stage | Maturity | Mode | Risk | File |
+|----|-------|----------|------|------|------|
+| `MOB-P01` | PROMPT 01 — Store Release and Phased Rollout | operational | implementation | C | [P01-Store-Release.md](../03-domains/mobile/P01-Release/P01-Store-Release.md) |
+| `MOB-P02` | PROMPT 02 — Crash Triage and Symbolication | operational | diagnostic | A | [P02-Crash-Triage.md](../03-domains/mobile/P02-Crashes/P02-Crash-Triage.md) |
+| `MOB-P03` | PROMPT 03 — API Compatibility with Shipped Clients | operational | planning | B | [P03-Client-Compatibility.md](../03-domains/mobile/P03-Compatibility/P03-Client-Compatibility.md) |
 
 ## `03-domains/payments`
 
@@ -315,6 +341,15 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `PAY-P01` | PROMPT 01 — Money Model & Invariants | operational | diagnostic | A | [P01-Money-Model-Invariants.md](../03-domains/payments/P01-Model/P01-Money-Model-Invariants.md) |
 | `PAY-P02` | PROMPT 02 — Idempotency & Unknown Outcomes | operational | diagnostic | B | [P02-Idempotency-Failure.md](../03-domains/payments/P02-Idempotency/P02-Idempotency-Failure.md) |
 | `PAY-P03` | PROMPT 03 — Reconciliation & Change Safety | operational | specialised | C | [P03-Reconciliation-Change-Safety.md](../03-domains/payments/P03-Reconciliation/P03-Reconciliation-Change-Safety.md) |
+
+## `03-domains/web3`
+
+| ID | Stage | Maturity | Mode | Risk | File |
+|----|-------|----------|------|------|------|
+| `CHAIN-P01` | PROMPT 01 — Smart Contract Threat Model and Review | operational | diagnostic | A | [P01-Contract-Threat-Model.md](../03-domains/web3/P01-Review/P01-Contract-Threat-Model.md) |
+| `CHAIN-P02` | PROMPT 02 — Key Custody and Deployment Authority | operational | planning | C | [P02-Key-Custody.md](../03-domains/web3/P02-Custody/P02-Key-Custody.md) |
+| `CHAIN-P03` | PROMPT 03 — Contract Upgrade and Storage Migration | operational | implementation | D | [P03-Upgrade-Migration.md](../03-domains/web3/P03-Upgrade/P03-Upgrade-Migration.md) |
+| `CHAIN-P04` | PROMPT 04 — Exploit Response: funds are leaving right now | operational | specialised | D | [P04-Exploit-Response.md](../03-domains/web3/P04-Exploit/P04-Exploit-Response.md) |
 
 ## `04-process/agent-context`
 
@@ -527,5 +562,6 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `WF-VERIFY` | Workflow — Independent Verification of Completed Work | operational | diagnostic | A | [independent-verification.md](../07-workflows/independent-verification.md) |
 | `WF-MULTIAGENT` | Workflow — Multi-Agent Orchestration | operational | orchestration | B | [multi-agent-orchestration.md](../07-workflows/multi-agent-orchestration.md) |
 | `WF-INCIDENT` | Workflow — Production Incident | draft | specialised | C | [production-incident.md](../07-workflows/production-incident.md) |
+| `WF-PROMPTAUTH` | Workflow — Describe it, generate it, prove it, integrate it | operational | orchestration | A | [prompt-authoring-pipeline.md](../07-workflows/prompt-authoring-pipeline.md) |
 | `WF-RECOVER` | Workflow — Recover an Abandoned or Broken Project | draft | autonomous-completion | B | [recover-abandoned-project.md](../07-workflows/recover-abandoned-project.md) |
 

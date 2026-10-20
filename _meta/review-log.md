@@ -325,3 +325,45 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 - **2026-10-20 · specialised · 87/100 · operational**
 - Problem: backlog item 12 since 2.1.0. Shift handover was covered only indirectly by the stage handoff block, which carries task state, not operational state.
 - Design: state from systems, silences as decisions with owners and expiry, known-noise named, and the "if this pages you tonight" section that survives contact with 03:00.
+
+### `00-core/prompt-engineering/PROMPT-FORGE.md` — GEN-P01
+- **2026-10-20 · specialised · 91/100 · operational**
+- Problem: the library could judge a prompt but not generate one. The scaffolder emits an empty skeleton; the rubric scores; neither converts "I want something that audits my Terraform" into a runnable artifact.
+- Design: five modes with distinct exit conditions; routing against existing coverage *before* drafting (prevents a competing source of truth); risk class derived from consequence rather than phrasing; verification must be a table a person can execute; self-score with the two weakest dimensions named; provenance marks output `draft` so generation is never mistaken for validation.
+- Deductions: quality still depends on the operator's answer to the interview questions; the self-score is self-assessment, not evidence (GEN-P02 is the evidence path).
+
+### `00-core/prompt-engineering/PROMPT-REGRESSION.md` — GEN-P02
+- **2026-10-20 · continuous-improvement · 86/100 · operational**
+- Problem: only one prompt in the library had ever been executed (`DBG-01`). Prose review cannot detect a rewrite that reads better and behaves worse.
+- Design: fixtures frozen before results; two runs per case; trace-level grading; separate design score and behavioural grade; defect classification (missing / ambiguous / ignored / fixture / tool limitation) that determines the fix rather than inviting more prose.
+- Deductions: small-n by nature; no automated runner yet — the protocol is manual first, tooled later.
+
+### `03-domains/web3/` — CHAIN-P01..P04
+- **2026-10-20 · mixed · 88/100 · operational**
+- Problem: zero coverage. `reentrancy`, `gas fee`, `EVM` appeared nowhere; the only Web3 material was a contribution skeleton. Value-moving code with no review, custody, upgrade, or incident procedure.
+- Design: P01 ranks by profit-to-attacker rather than cleverness; P02 makes authority the design object (tiers, thresholds, drilled rotation); P03 enforces append-only storage with a fork rehearsal and a declared rollback position; P04 orders containment before explanation, and adds "re-review before resume" because exploits cluster.
+- Deductions: no formal verification, no MEV strategy, no token-economics review; the fork rehearsal depends on archive RPC access the user must supply.
+
+### `03-domains/mobile/` — MOB-P01..P03
+- **2026-10-20 · mixed · 85/100 · operational (new domain)**
+- Problem: no system at all. Store review, staged rollout, symbolication, and version skew were absent while `mobile` was flagged missing in the coverage matrix since 2.9.0.
+- Design: halt criterion written before rollout; rollback levers enumerated and tested because unpublishing is impossible; crash ranking by affected users and critical path; compatibility as a contract with per-version fixtures.
+- Deductions: platform-specific console details age quickly; device-farm testing is assumed, not provided.
+
+### `03-domains/embedded-iot/` — IOT-P01..P02
+- **2026-10-20 · mixed · 87/100 · operational (new domain)**
+- Problem: `firmware` appeared only in a backlog row. OTA without rollback is the classic fleet-bricking mistake, and silence-as-failure had no procedure.
+- Design: power-cut as the default test; atomic slot write with readback; trial boot with automatic confirmation (no human in the loop); cohort rollout with pre-declared abandonment; fleet triage that checks the server before the device and classifies silence by cohort.
+- Deductions: no RTOS/safety-critical certification coverage; recovery cost is quantified but not solved.
+
+### `03-domains/games/P09`, `P10` — GD-P09, GD-P10
+- **2026-10-20 · implementation / diagnostic · 84/100 · operational**
+- Problem: 8 design skeletons and nothing about the two failures that generate refunds: destroyed saves and unfair-feeling multiplayer.
+- Design: forward-only versioned saves with real historical fixtures and atomic writes; netcode diagnosis aligning three clocks and measuring against a budget before changing code.
+- Deductions: the remaining seven stages are still skeletons, so the system is mixed, not operational.
+
+### `03-domains/ai-agentic/P06`, `P07` — AI-P06, AI-P07
+- **2026-10-20 · audit-remediation · 88/100 · operational**
+- Problem: retrieval was chosen but never measured; the engineering agent's permissions were never audited as a whole.
+- Design: P06 separates retrieval metrics from groundedness, mandates ≥30% unanswerable questions, and tests ACL leakage as a security case. P07 judges capability rather than intent across six axes, treats unpinned `npx` as a supply-chain gap, and requires the tightened configuration to survive daily use.
+- Deductions: neither covers model selection or hosting; both assume the operator can read their own configuration files.
