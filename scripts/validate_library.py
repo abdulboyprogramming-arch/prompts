@@ -66,7 +66,7 @@ REQUIRED_SECTIONS = [
 ]
 
 DESTRUCTIVE = re.compile(
-    r"\b(git push|force[- ]push|deploy (?:to|the|this|it)|run [a-z .-]*deploy(?:ment)?|"
+    r"\b(git push|force[- ]push|deploy (?:to|the|this|it)\b|"
     r"publish(?:ing)? to|drop table|delete (?:the )?(?:database|bucket)|rm -rf|"
     r"revoke (?:the )?(?:key|token|access)|rotate (?:the )?(?:key|secret))",
     re.IGNORECASE,

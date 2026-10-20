@@ -88,3 +88,44 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 - Reason: authorisation gate precedes assessment; threat model requires concrete abuse cases with expected controls; P03 builds an ingress enforcement matrix so a missing control on one route is visible; P04 permits S1/S2 only for `confirmed` findings and forbids payloads; P06 requires a failing-before test and a route × role authorisation matrix, and forbids weakening controls to make tests pass.
 - Deductions: framework-specific examples are absent; supply-chain review is one section rather than a stage; compliance mapping is out of scope by design.
 - Follow-up: add worked examples for one ORM and one middleware framework; add SBOM/signing guidance.
+
+---
+
+## 2026-10-20 — Addendum cycle (2.1.0)
+
+**Trigger:** independent gap-discovery pass against a 12-dimension coverage matrix (`_meta/coverage-matrix.md`), not against the existing roadmap.
+
+### `03-domains/database` — 5 stages
+- **2026-10-20 · audit-remediation · 90/100 · operational**
+- Reason: the only routine change that can destroy unrecoverable value. P01 establishes schema truth (live vs migrations vs models) before anything is designed; P02 requires a compatibility matrix proving both old and new code run against every phase; P03 makes the migration fail on a staged copy, demands a *performed* restore drill, and measures lock duration under load; P04 enforces reconciliation with numbers; P05 states when rollback stops being possible.
+- Deductions: engine-neutral, so PostgreSQL/MySQL specifics are notes rather than procedures; no drift-detection tooling ships with it.
+- Follow-up: add per-engine appendices; add a data-corruption recovery prompt (identified as a missing scenario).
+
+### `04-process/dependency-management` — 5 stages
+- **2026-10-20 · audit-remediation · 87/100 · operational**
+- Reason: closes the highest-frequency missing workflow. Distinguishes security/unsupported/blocking/planned upgrades; requires each breaking change to be matched to code usage with counts; forbids hand-edited lockfiles and one-commit-everything upgrades; verification includes mutation probing and an independent lockfile audit; P05 converts episodic upgrades into policy with owners and dates.
+- Deductions: no per-ecosystem codemod catalogue; supply-chain integrity measures are listed but not fully procedural (no SBOM stage).
+- Follow-up: add SBOM/signing guidance when the release system gains provenance support.
+
+### `02-engineering/feature-completion` — 4 stages
+- **2026-10-20 · implementation · 88/100 · operational**
+- Reason: targets a specific, observable failure mode — features finished at the visible layer only. The 14-layer checklist makes "not applicable" an explicit decision, the layer map requires an analogue and evidence of absence, and acceptance requires testing as each role with direct endpoint access rather than through the UI.
+- Deductions: assumes the design intent exists; a genuinely ambiguous feature stops at P01 (by design, but it means the system cannot resolve product questions).
+- Follow-up: add a worked example using a CRUD feature.
+
+### `07-workflows/independent-verification.md`
+- **2026-10-20 · diagnostic · 90/100 · operational**
+- Reason: the library previously asked agents to grade their own work. This workflow makes verification adversarial in a useful way: claims extraction including implicit claims, clean-state reproduction, mutation probing of new tests, and a diff audit for undeclared scope, weakened tests, and dependency changes. It is the missing control for an ecosystem where agents report completion.
+- Deductions: cannot verify what it cannot run; verdict ceiling is `verified with gaps` in that case (stated).
+- Follow-up: pair it with the empirical test harness when that exists.
+
+### `05-scenarios/failed-fix/FAILED-FIX-ESCALATION.md`
+- **2026-10-20 · diagnostic · 87/100 · operational**
+- Reason: addresses the repeated-patching spiral with an attempt ledger, a failure classification (wrong model / wrong reproduction / wrong layer / untested assumption / incomplete / regression), and a decision to revert, re-scope, narrow, or escalate. Reverting is legitimised, which is the behaviour most agents lack.
+- Deductions: depends on an accurate attempt history; when that is missing, the ledger is reconstructed from git and is partial.
+- Follow-up: none urgent.
+
+### Library-level reassessment
+- Coverage matrix created with 12 dimensions, 97 dimension rows and 14 workflow rows, each with an evidence pointer. Current honest totals: 52 adequate / 38 partial / 7 missing (dimensions), 7 adequate / 5 partial / 2 missing (workflows).
+- Nine new opportunities discovered this cycle are recorded in `_meta/ROADMAP-AND-BACKLOG.md` §"Discovered in 2.1.0", including three rejected ideas with reasons.
+- **Still not done:** no empirical execution of any prompt against a real repository. This remains the single largest credibility gap and is now item P0 in the backlog.

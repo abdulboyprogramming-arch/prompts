@@ -2,6 +2,36 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.1.0] — 2026-10-20
+
+Gap-discovery cycle driven by a new coverage matrix rather than the existing roadmap. Five systems and one workflow were added; three missing scenarios in the previous audit are closed.
+
+### Added
+
+- `_meta/coverage-matrix.md` — 12-dimension coverage assessment (97 dimension rows, 14 workflow rows) with a status and evidence pointer per row, an end-to-end assessment of 14 critical workflows, and a computed summary. A scenario counts as adequate only when a prompt addresses its distinctive verification and failure handling.
+- `03-domains/database/` (5 stages) — schema truth, migration design with an old/new code compatibility matrix, pre-flight validation on a realistic copy with a performed restore drill, execution with reconciliation, rollback and post-verification.
+- `04-process/dependency-management/` (5 stages) — dependency inventory and risk, breaking-change assessment matched to actual code usage, one-family-per-commit execution with lockfile discipline, verification with mutation probing, and a written update policy.
+- `02-engineering/feature-completion/` (4 stages) — a 14-layer completion checklist, layer gap map against an analogue, end-to-end implementation, and acceptance tested per role with direct endpoint access.
+- `07-workflows/independent-verification.md` — adversarial verification of another agent's completion claims: claim extraction, clean-state reproduction, mutation probing, diff audit for undeclared scope and weakened tests.
+- `05-scenarios/failed-fix/FAILED-FIX-ESCALATION.md` — attempt ledger, failure classification, and a decision to revert, re-scope, narrow, or escalate instead of patching again.
+
+### Changed
+
+- Root README routing table extended with verification, failed-fix, database, dependency, and feature-completion entries.
+- `_meta/ROADMAP-AND-BACKLOG.md` restructured: completed items marked, and a new "Discovered in 2.1.0" section with nine opportunities, their priority, and five rejected/deferred ideas with reasons.
+- `_meta/coverage-matrix.md` summary counts are computed from the tables, not estimated.
+- Validator: risk-class heuristic no longer flags descriptive mentions of deployment; backticked repository paths are checked for existence.
+
+### Fixed
+
+- Four `06-interactive` prompts had no metadata block and were invisible to the catalog; migrated.
+
+### Known limitations
+
+- 165 prompts remain `skeleton`.
+- No prompt has been empirically executed against a real repository; structural validation is not empirical validation.
+- 7 dimension scenarios and 2 workflows remain missing, listed by priority in the coverage matrix.
+
 ## [2.0.0] — 2026-10-20
 
 This release reconciles the library's claims with its artifacts, establishes enforceable standards, and adds the systems that were most conspicuously missing. It is a breaking change for anyone who trusted the previous status tables: most systems are now labelled `skeleton` because that is what they are.

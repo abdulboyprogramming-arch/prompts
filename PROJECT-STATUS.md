@@ -1,6 +1,6 @@
 # Project Status — Continuation Checkpoint
 
-**As of:** 2026-10-20 · **Library version:** 2.0.0 · **Branch:** `arena/d745d222-prompts`
+**As of:** 2026-10-20 · **Library version:** 2.1.0 · **Branch:** `arena/d745d222-prompts`
 **Read this first** if you are continuing work on this repository. It replaces guesswork about what exists and what was intended.
 
 ---
@@ -32,9 +32,9 @@ archive/         Legacy .txt source material, retained for provenance
 Run `python3 scripts/validate_library.py` for live numbers. At the time of writing:
 
 - **299 Markdown files**, **235 prompt files**, ~780 KB of content.
-- Maturity: **63 operational**, **7 draft**, **165 skeleton**.
+- Maturity: **79 operational**, **7 draft**, **165 skeleton**.
 - **0 validation errors**; warnings are advisory (6).
-- Operational systems: open-source contribution agent (16), codebase audit (9), project recovery (7), security hardening (7), testing & QA (7), observability & reliability (5), release engineering (4), AI/agentic (5), workflows (6, draft), plus debugging, incident response, and flaky-test triage.
+- Operational systems: open-source contribution agent (16), codebase audit (9), project recovery (7), security hardening (7), testing & QA (7), database (5), dependency management (5), observability & reliability (5), release engineering (4), AI/agentic (5), feature completion (4), independent verification (1), plus debugging, incident response, flaky-test triage, and failed-fix escalation.
 - Every prompt declares identifier, system, version, maturity, execution mode, and risk class.
 
 **The honest summary:** one sixth of the library is developed; five sixths are outlines that name a sensible stage sequence but lack verification, evidence rules, and failure handling. That ratio is stated everywhere it matters, and the validator fails the build if a README over-claims.
@@ -91,11 +91,14 @@ Full detail in `CHANGELOG.md`. Summary:
 
 ## 8. Next actions, in order
 
-1. Promote `02-engineering/refactoring` (7 stages) — highest remaining consequence gap.
-2. Promote `03-domains/backend` (8 stages).
-3. Run one workflow end to end on a real repository and record the result in `_meta/review-log.md`; this is the single highest-value credibility improvement available.
-4. Add `03-domains/mobile` and `04-process/dependency-management`.
-5. Add multi-agent orchestration workflow.
+1. **Empirical test harness** — run one operational prompt against a fixture repository and record the outcome in `_meta/review-log.md`. This is the largest credibility gap: every `operational` label is currently a structural review.
+2. **Data-loss recovery** (`05-scenarios/data-loss/`) — highest-consequence missing scenario: stop writes, scope loss, restore vs reconstruct, communicate.
+3. **Security incident response** (`05-scenarios/security-incident/`) — containment, evidence preservation, disclosure; distinct from the existing assessment system.
+4. Promote `02-engineering/refactoring` (7 stages) — highest-value remaining skeleton.
+5. Promote `03-domains/backend` (8 stages).
+6. **Integration workflow** (`07-workflows/`) for merging independently developed frontend/backend/infra work.
+7. `04-process/decommissioning/` and `03-domains/data-engineering/`.
+8. Multi-agent orchestration workflow.
 
 ## 9. How to resume
 

@@ -20,6 +20,11 @@ Pick the row that matches your situation. Do not read the whole repository first
 | I need to ship a release without breaking production | [`04-process/release-engineering/`](04-process/release-engineering/README.md) | Audit → plan |
 | I am building an LLM feature or agent | [`03-domains/ai-agentic/`](03-domains/ai-agentic/README.md) | Architecture → eval → safety |
 | I am starting from nothing | [`02-engineering/from-scratch/`](02-engineering/from-scratch/README.md) + workflow [`greenfield-delivery`](07-workflows/greenfield-delivery.md) | Structural only (skeleton) |
+| An agent says the work is complete and I need to trust it | [`07-workflows/independent-verification.md`](07-workflows/independent-verification.md) | Diagnostic |
+| Two fix attempts have failed and the bug is still there | [`05-scenarios/failed-fix/`](05-scenarios/failed-fix/FAILED-FIX-ESCALATION.md) | Diagnostic |
+| I need to change a database schema without losing data | [`03-domains/database/`](03-domains/database/README.md) | Audit → drill → execute |
+| I need to upgrade a framework or dependency safely | [`04-process/dependency-management/`](04-process/dependency-management/README.md) | Audit → plan → verify |
+| A feature "works" but only in the UI | [`02-engineering/feature-completion/`](02-engineering/feature-completion/README.md) | Implementation |
 | My request is vague and needs intake | [`06-interactive/`](06-interactive/README.md) | Interactive |
 
 Full inventory, with maturity per prompt: [`_meta/CATALOG.md`](_meta/CATALOG.md).
@@ -48,8 +53,12 @@ Maturity is enforced, not decorative: `scripts/validate_library.py` fails if a p
 | [`04-process/observability-reliability/`](04-process/observability-reliability/README.md) | 5 | operational |
 | [`04-process/release-engineering/`](04-process/release-engineering/README.md) | 4 | operational |
 | [`03-domains/ai-agentic/`](03-domains/ai-agentic/README.md) | 5 | operational |
+| [`03-domains/database/`](03-domains/database/README.md) | 5 | operational |
+| [`04-process/dependency-management/`](04-process/dependency-management/README.md) | 5 | operational |
+| [`02-engineering/feature-completion/`](02-engineering/feature-completion/README.md) | 4 | operational |
+| [`07-workflows/independent-verification.md`](07-workflows/independent-verification.md) | 1 | operational |
 | [`07-workflows/`](07-workflows/README.md) | 6 | draft |
-| [`05-scenarios/`](05-scenarios/README.md) | 8 | mixed (3 operational, 5 skeleton) |
+| [`05-scenarios/`](05-scenarios/README.md) | 9 | mixed (4 operational, 5 skeleton) |
 
 Everything else — backend, frontend, devops-infra, data-ml-ai, games, refactoring, architecture-review, migration, code review, documentation, project management, language design, packages, web/web3 contribution — is a **skeleton**: a defensible sequence of stages with outline prompts. Those folders are useful for structuring a human-led session today; they are not yet safe to hand to an autonomous agent. Promotion order is in [`_meta/ROADMAP-AND-BACKLOG.md`](_meta/ROADMAP-AND-BACKLOG.md).
 
@@ -131,5 +140,7 @@ Read [`CONTRIBUTING.md`](CONTRIBUTING.md) before adding a system, and [`AGENTS.m
 - **Mobile, database, embedded, desktop/CLI, dependency management, governance, and multi-agent orchestration have no dedicated systems yet.** They are prioritised in the backlog.
 - **Reviews are self-assessments** recorded in [`_meta/review-log.md`](_meta/review-log.md); independent verification has not been performed.
 - CI validates the library on pull requests; it does not test prompts empirically (no such harness exists).
+
+Coverage per engineering scenario, with an honest status for each: [`_meta/coverage-matrix.md`](_meta/coverage-matrix.md).
 
 Current state, decisions, and next actions: [`PROJECT-STATUS.md`](PROJECT-STATUS.md). Change history: [`CHANGELOG.md`](CHANGELOG.md).

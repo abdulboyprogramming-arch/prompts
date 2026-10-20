@@ -8,6 +8,7 @@ Engineering activities that apply across technologies: understanding a system, c
 |--------|---------|-------:|----------|
 | [`codebase-audit/`](codebase-audit/README.md) | Evidence-based audit → validated findings → roadmap and report | 9 | **operational** |
 | [`project-recovery/`](project-recovery/README.md) | Preserve, reconstruct, complete, and accept an inherited or interrupted project | 7 | **operational** |
+| [`feature-completion/`](feature-completion/README.md) | Finish a feature across every layer: authorisation, persistence, side effects, states, tests | 4 | **operational** |
 | [`architecture-review/`](architecture-review/README.md) | Architectural evaluation and recommendations | 7 | skeleton |
 | [`refactoring/`](refactoring/README.md) | Safe incremental restructuring | 7 | skeleton |
 | [`rewriting-migration/`](rewriting-migration/README.md) | Language/paradigm migration and rewrite planning | 8 | skeleton |

@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 235 prompts — 0 canonical, 63 operational, 7 draft, 165 skeleton.
+**Totals:** 251 prompts — 0 canonical, 79 operational, 7 draft, 165 skeleton.
 
 ## `01-contribution/language-design`
 
@@ -106,6 +106,15 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `AUDIT-P07` | PROMPT 07 — Findings Synthesis & Prioritisation | operational | diagnostic | B | [P07-Findings-Synthesis-Prioritization.md](../02-engineering/codebase-audit/P07-Findings/P07-Findings-Synthesis-Prioritization.md) |
 | `AUDIT-P08` | PROMPT 08 — Improvement Roadmap & Final Report | operational | planning | B | [P08-Improvement-Roadmap-Report.md](../02-engineering/codebase-audit/P08-Roadmap/P08-Improvement-Roadmap-Report.md) |
 | `AUDIT-P09` | PROMPT 09 — Deep Codebase Audit Master Orchestrator | operational | orchestration | B | [P09-Deep-Codebase-Audit-Orchestrator.md](../02-engineering/codebase-audit/P09-Orchestrator/P09-Deep-Codebase-Audit-Orchestrator.md) |
+
+## `02-engineering/feature-completion`
+
+| ID | Stage | Maturity | Mode | Risk | File |
+|----|-------|----------|------|------|------|
+| `FC-P01` | PROMPT 01 — Completion Contract | operational | planning | A | [P01-Completion-Contract.md](../02-engineering/feature-completion/P01-Contract/P01-Completion-Contract.md) |
+| `FC-P02` | PROMPT 02 — Layer Inventory & Gap Map | operational | diagnostic | A | [P02-Layer-Gap-Map.md](../02-engineering/feature-completion/P02-Layer-Map/P02-Layer-Gap-Map.md) |
+| `FC-P03` | PROMPT 03 — Layer Implementation | operational | implementation | B | [P03-Layer-Implementation.md](../02-engineering/feature-completion/P03-Implementation/P03-Layer-Implementation.md) |
+| `FC-P04` | PROMPT 04 — End-to-End Acceptance | operational | diagnostic | B | [P04-End-to-End-Acceptance.md](../02-engineering/feature-completion/P04-Acceptance/P04-End-to-End-Acceptance.md) |
 
 ## `02-engineering/feature-design-suggestion`
 
@@ -241,6 +250,16 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `ML-P07` | PROMPT 07 — Deployment & Monitoring | skeleton | implementation | C | [P07-Deployment-Monitoring.md](../03-domains/data-ml-ai/P07-Deployment-Monitoring/P07-Deployment-Monitoring.md) |
 | `ML-P08` | PROMPT 08 — Data / ML / AI Master Orchestrator | skeleton | orchestration | C | [P08-Data-ML-AI-Orchestrator.md](../03-domains/data-ml-ai/P08-Orchestrator/P08-Data-ML-AI-Orchestrator.md) |
 
+## `03-domains/database`
+
+| ID | Stage | Maturity | Mode | Risk | File |
+|----|-------|----------|------|------|------|
+| `DB-P01` | PROMPT 01 — Schema Truth | operational | diagnostic | A | [P01-Schema-Truth.md](../03-domains/database/P01-Schema/P01-Schema-Truth.md) |
+| `DB-P02` | PROMPT 02 — Migration Design | operational | planning | A | [P02-Migration-Design.md](../03-domains/database/P02-Design/P02-Migration-Design.md) |
+| `DB-P03` | PROMPT 03 — Pre-Flight Validation | operational | diagnostic | B | [P03-Preflight-Validation.md](../03-domains/database/P03-Preflight/P03-Preflight-Validation.md) |
+| `DB-P04` | PROMPT 04 — Execution & Reconciliation | operational | specialised | C | [P04-Execution-Reconciliation.md](../03-domains/database/P04-Execution/P04-Execution-Reconciliation.md) |
+| `DB-P05` | PROMPT 05 — Rollback & Post-Verification | operational | diagnostic | B | [P05-Rollback-Verification.md](../03-domains/database/P05-Verification/P05-Rollback-Verification.md) |
+
 ## `03-domains/devops-infra`
 
 | ID | Stage | Maturity | Mode | Risk | File |
@@ -290,6 +309,16 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `CR-P04` | PROMPT 04 — Feedback Crafting | skeleton | implementation | B | [P04-Feedback-Crafting.md](../04-process/code-review/P04-Feedback/P04-Feedback-Crafting.md) |
 | `CR-P05` | PROMPT 05 — Follow-up Support | skeleton | implementation | B | [P05-Follow-up-Support.md](../04-process/code-review/P05-Follow-up/P05-Follow-up-Support.md) |
 | `CR-P06` | PROMPT 06 — Code Review Master Orchestrator | skeleton | orchestration | A | [P06-Code-Review-Orchestrator.md](../04-process/code-review/P06-Orchestrator/P06-Code-Review-Orchestrator.md) |
+
+## `04-process/dependency-management`
+
+| ID | Stage | Maturity | Mode | Risk | File |
+|----|-------|----------|------|------|------|
+| `DEP-P01` | PROMPT 01 — Dependency Inventory & Risk | operational | diagnostic | B | [P01-Dependency-Inventory-Risk.md](../04-process/dependency-management/P01-Inventory/P01-Dependency-Inventory-Risk.md) |
+| `DEP-P02` | PROMPT 02 — Upgrade Planning & Breaking-Change Assessment | operational | planning | A | [P02-Upgrade-Planning.md](../04-process/dependency-management/P02-Planning/P02-Upgrade-Planning.md) |
+| `DEP-P03` | PROMPT 03 — Upgrade Execution | operational | implementation | B | [P03-Upgrade-Execution.md](../04-process/dependency-management/P03-Execution/P03-Upgrade-Execution.md) |
+| `DEP-P04` | PROMPT 04 — Upgrade Verification | operational | diagnostic | B | [P04-Verification.md](../04-process/dependency-management/P04-Verification/P04-Verification.md) |
+| `DEP-P05` | PROMPT 05 — Dependency Policy & Ongoing Maintenance | operational | planning | B | [P05-Policy-Maintenance.md](../04-process/dependency-management/P05-Policy/P05-Policy-Maintenance.md) |
 
 ## `04-process/documentation`
 
@@ -379,6 +408,7 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | ID | Stage | Maturity | Mode | Risk | File |
 |----|-------|----------|------|------|------|
 | `DBG-01` | Systematic Debugging | operational | diagnostic | B | [SYSTEMATIC-DEBUGGING.md](../05-scenarios/debugging/SYSTEMATIC-DEBUGGING.md) |
+| `FIXFAIL-01` | Failed Fix Escalation | operational | diagnostic | B | [FAILED-FIX-ESCALATION.md](../05-scenarios/failed-fix/FAILED-FIX-ESCALATION.md) |
 | `FLAKE-01` | Flaky Test Triage | operational | diagnostic | B | [FLAKY-TEST-TRIAGE.md](../05-scenarios/flaky-tests/FLAKY-TEST-TRIAGE.md) |
 | `INC-01` | Production Incident Response | operational | specialised | C | [PRODUCTION-INCIDENT.md](../05-scenarios/incident-response/PRODUCTION-INCIDENT.md) |
 
@@ -399,6 +429,7 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `WF-AUDIT-REMEDIATE` | Workflow — Audit → Remediate | draft | audit-remediation | B | [audit-to-remediation.md](../07-workflows/audit-to-remediation.md) |
 | `WF-IMPROVE` | Workflow — Continuous Improvement | draft | continuous-improvement | B | [continuous-improvement.md](../07-workflows/continuous-improvement.md) |
 | `WF-GREENFIELD` | Workflow — Greenfield Delivery | draft | autonomous-completion | B | [greenfield-delivery.md](../07-workflows/greenfield-delivery.md) |
+| `WF-VERIFY` | Workflow — Independent Verification of Completed Work | operational | diagnostic | A | [independent-verification.md](../07-workflows/independent-verification.md) |
 | `WF-INCIDENT` | Workflow — Production Incident | draft | specialised | C | [production-incident.md](../07-workflows/production-incident.md) |
 | `WF-RECOVER` | Workflow — Recover an Abandoned or Broken Project | draft | autonomous-completion | B | [recover-abandoned-project.md](../07-workflows/recover-abandoned-project.md) |
 

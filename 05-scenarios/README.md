@@ -9,6 +9,7 @@ High-utility prompts for a specific situation, usable in one session. Lighter th
 | [`debugging/SYSTEMATIC-DEBUGGING.md`](debugging/SYSTEMATIC-DEBUGGING.md) | A defect resists normal debugging; you want reproduction, hypotheses, and a proven cause | **operational** |
 | [`incident-response/PRODUCTION-INCIDENT.md`](incident-response/PRODUCTION-INCIDENT.md) | Production is broken now; restore first, understand second | **operational** |
 | [`flaky-tests/FLAKY-TEST-TRIAGE.md`](flaky-tests/FLAKY-TEST-TRIAGE.md) | A test passes and fails without code changes | **operational** |
+| [`failed-fix/FAILED-FIX-ESCALATION.md`](failed-fix/FAILED-FIX-ESCALATION.md) | Two or more fix attempts have failed and you need to break the loop | **operational** |
 | [`quick-fixes/SAFE-QUICK-FIX.md`](quick-fixes/SAFE-QUICK-FIX.md) | A small, contained fix with minimal blast radius | skeleton |
 | [`performance-investigation/PERFORMANCE-INVESTIGATION.md`](performance-investigation/PERFORMANCE-INVESTIGATION.md) | Something is slow and you need a diagnosis, not an optimisation project | skeleton |
 | [`legacy-code/WORKING-WITH-LEGACY.md`](legacy-code/WORKING-WITH-LEGACY.md) | Changing code nobody understands, without a rewrite | skeleton |

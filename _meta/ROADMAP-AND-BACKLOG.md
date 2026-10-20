@@ -1,7 +1,9 @@
 # Roadmap & Backlog
 
-**Version:** 1.0.0
+**Version:** 1.1.0
 **Last updated:** 2026-10-20
+
+Coverage status per scenario lives in `_meta/coverage-matrix.md`; this file is the work queue derived from it.
 
 Priority is by **practical usefulness × frequency × severity of the gap**, not by ease. Every item states what exists today, so nothing here pretends to be an absence when a partial implementation exists.
 
@@ -39,9 +41,9 @@ Each promotion requires: full required sections, verification that can fail, fai
 | Gap | Why it is missing from the library today | Proposed system |
 |-----|------------------------------------------|-----------------|
 | **Mobile (native + cross-platform)** | No coverage at all, despite `03-domains` listing it as an "area". Offline sync, store review, permissions, and lifecycle differ enough to need dedicated prompts | `03-domains/mobile` (6 stages) |
-| **Database engineering** | Schema design, migration safety, indexing, and query tuning are scattered across backend/performance stubs | `03-domains/database` (6 stages) |
+| ~~**Database engineering**~~ | **Done in 2.1.0** as `03-domains/database` (5 stages: schema truth, migration design, pre-flight, execution, rollback) | — |
 | **API design & evolution** | Backend P02 exists as an outline; versioning, idempotency, pagination, and error contracts need depth | fold into backend, or `03-domains/api-design` |
-| **Dependency & toolchain management** | Referenced by audit P05 as a future system; upgrades, lockfile integrity, and breaking-change assessment have no home | `04-process/dependency-management` (5 stages) |
+| ~~**Dependency & toolchain management**~~ | **Done in 2.1.0** as `04-process/dependency-management` (5 stages) | — |
 | **Accessibility & i18n** | Mentioned in frontend skeleton without criteria; WCAG conformance and localisation are engineering disciplines | `03-domains/frontend` sub-system or `05-scenarios/accessibility-audit` |
 | **Data engineering** | `data-ml-ai` conflates pipelines with modelling; ingest/quality/lineage missing | split or extend `03-domains/data-ml-ai` |
 | **Embedded / firmware** | No coverage; safety and hardware constraints are materially different | `03-domains/embedded` |
@@ -83,3 +85,30 @@ Each promotion requires: full required sections, verification that can fail, fai
 3. Follow `_meta/prompt-authoring-standard.md`; copy structure from an operational system (`02-engineering/codebase-audit`, `02-engineering/project-recovery`, `04-process/testing-qa`).
 4. Run `python3 scripts/validate_library.py`.
 5. Add a review record to `_meta/review-log.md`, update the system README and the root README status table, and add a `CHANGELOG.md` entry.
+
+## Discovered in 2.1.0 (new, not previously recorded)
+
+| Opportunity | Problem it solves | Why existing material is insufficient | Priority | Status |
+|-------------|-------------------|----------------------------------------|----------|--------|
+| **Data-loss recovery** (`05-scenarios/data-loss/`) | After accidental deletion, bad migration, or restore failure: what to do in the first hour | `DB-P04/P05` cover migration-caused damage only; nothing addresses scoping the loss, freezing writes, choosing restore vs reconstruct, or communicating | P0 | Discovered |
+| **Decommissioning** (`04-process/decommissioning/`) | Retiring a service safely: finding consumers, deprecation window, data retention, teardown verification | Nothing exists; `REL-*` assumes the system continues | P1 | Discovered |
+| **Security incident response** (`05-scenarios/security-incident/`) | Containment, evidence preservation, scoping an active compromise, disclosure obligations | `SEC-*` is assessment/remediation of code; `INC-01` is availability-focused and says "involve security" without a procedure | P0 | Discovered |
+| **Integration workflow** (planned, in `07-workflows/`; file not yet written) | Merging independently developed frontend/backend/infra work | `REC-P04` verifies seams only; no merge/contract reconciliation procedure | P1 | Discovered |
+| **Enterprise readiness** (`04-process/governance-compliance/`) | Control evidence, change management auditability, separation of duties | Only implied; audit produces findings, not control evidence | P2 | Discovered |
+| **Data engineering** (`03-domains/data-engineering/`) | Ingest, quality checks, lineage, large backfills | `data-ml-ai` is a skeleton that conflates pipelines with modelling | P1 | Discovered |
+| **Mobile / embedded / desktop-CLI domain systems** | Entire technology families with distinct constraints (offline, permissions, hardware, packaging) | No coverage at all | P2 | Discovered |
+| **Prototype/spike discipline** (`05-scenarios/prototype/`) | Time-boxed throwaway work that must not leak into production | `from-scratch` assumes the artifact is kept | P3 | Discovered |
+| **Failure-path test harness for prompts** | Empirically test prompts against a fixture repository and record outcomes | No harness; all `operational` labels are structural reviews | P0 (credibility) | Discovered |
+| **Near-duplicate detection** | Detect overlapping prompts before they accumulate | Validator checks identifiers and links only | P2 | Discovered |
+| **"Agent handoff" protocol as a reusable component** | Passing a half-finished task between agents without losing state | `WF-HANDOFF` covers stage handoff; not mid-task transfer with uncommitted work | P3 | Discovered |
+| **Cost/latency engineering for AI features as its own stage** | Token spend and latency regressions ship silently | `AI-P05` treats it as one section | P3 | Discovered |
+
+### Rejected or deliberately deferred
+
+| Idea | Decision | Reason |
+|------|----------|--------|
+| A prompt per framework (Next.js, Django, Rails, Spring) | Rejected | Version churn creates maintenance debt and teaches nothing transferable; appendices inside domain systems are the right level |
+| Auto-generated prompt variants | Rejected | Volume without differentiation is the failure mode this library exists to avoid |
+| Separate "advanced" and "beginner" versions of every system | Rejected | Complexity for the maintainer, marginal benefit; the maturity labels already communicate readiness |
+| Per-language prompt families | Deferred | Useful for idioms and tooling, but 5 skeleton systems need depth first |
+| Hosted web UI for the catalog | Deferred | Files are the product; a generated catalog plus GitHub navigation is sufficient |
