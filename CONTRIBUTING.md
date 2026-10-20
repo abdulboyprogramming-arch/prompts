@@ -51,7 +51,9 @@ This repository is a curated library, not a collection bin. Contributions are ju
 python3 scripts/validate_library.py            # must exit 0
 python3 scripts/validate_library.py --catalog  # regenerate the catalog
 python3 scripts/generate_gallery.py --write    # regenerate GALLERY.md
-python3 scripts/generate_gallery.py --check    # what CI runs
+python3 scripts/generate_gallery.py --check     # what CI runs
+python3 scripts/find_overlaps.py --top 10      # is this prompt already written?
+python3 scripts/new_prompt.py --system <dir> --identifier <ID> --title "<Title>"  # scaffold
 ```
 
 A pull request that raises the validator's error count will not be merged. Warnings should be justified in the PR description.

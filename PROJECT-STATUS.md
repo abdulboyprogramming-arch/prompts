@@ -92,10 +92,11 @@ Full detail in `CHANGELOG.md`. Summary:
 ## 8. Next actions, in order
 
 1. **Empirical test harness** — one executed run now exists (`_meta/empirical-evaluation-01.md`: `DBG-01` against a synthetic fixture, three prompt fixes). Next: a fixture set, a scoring sheet, and fixtures authored by someone other than the prompt author. Every other `operational` label remains a structural review.
-2. Promote `03-domains/backend` (8 stages) — now the highest-value remaining skeleton.
-3. `03-domains/data-engineering/` (ingest, quality, lineage) — the largest remaining missing dimension.
-4. Empirical evaluation of a second prompt, ideally by someone other than its author.
-5. Mobile / embedded / desktop-CLI domain systems, in that order of demand.
+2. Promote `03-domains/backend` (8 stages) — highest-value remaining skeleton; it also supplies the home for live-API versioning.
+3. Payments correctness and feature-flag lifecycle — the two highest-consequence items in the 2.4.0 backlog.
+4. `03-domains/data-engineering/` (ingest, quality, lineage) — the largest remaining missing dimension.
+5. Empirical evaluation of a second prompt, ideally by someone other than its author.
+6. Mobile / embedded / desktop-CLI domain systems, in that order of demand.
 
 ## 9. How to resume
 

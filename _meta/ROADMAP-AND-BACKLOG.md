@@ -112,3 +112,29 @@ Each promotion requires: full required sections, verification that can fail, fai
 | Separate "advanced" and "beginner" versions of every system | Rejected | Complexity for the maintainer, marginal benefit; the maturity labels already communicate readiness |
 | Per-language prompt families | Deferred | Useful for idioms and tooling, but 5 skeleton systems need depth first |
 | Hosted web UI for the catalog | Deferred | Files are the product; a generated catalog plus GitHub navigation is sufficient |
+
+## Discovered in 2.4.0 — engineer problems still unrepresented
+
+Recorded here rather than built immediately, because quality over volume applies to the backlog too. Each entry names the problem in the engineer's words, why the existing material does not solve it, and where it would live.
+
+| # | Problem (as engineers describe it) | Why existing content is insufficient | Likely home | Priority | Status |
+|---|-------------------------------------|---------------------------------------|-------------|----------|--------|
+| 1 | "Feature flags never get removed and the code has three paths for everything" | `REF-P06` removes *a refactor's* old path; nothing governs flag lifecycle, ownership, or expiry across the product | `04-process/release-engineering/` P05 or a `feature-flags/` stage | P1 | Discovered |
+| 2 | "We broke a client's integration with an API change" | `decommissioning` covers external consumers of a *retired* service; nothing covers versioning, deprecation windows, and consumer tests for a *live* API | `03-domains/backend/` (when promoted) | P1 | Discovered |
+| 3 | "The queue backs up at peak and nobody notices until customers do" | `observability` covers signals/SLOs; nothing covers backpressure, consumer lag, poison messages, or load shedding | `04-process/observability-reliability/` P06 | P1 | Discovered |
+| 4 | "Tests pass locally and fail in CI" / "works on my machine" | `REC-P04` detects environment drift in recovery; no procedure for parity, containers, or CI-vs-local diagnosis | `05-scenarios/environment-parity/` | P1 | Discovered |
+| 5 | "Nobody can reproduce the bug without production data" | `privacy-requests` forbids copying personal data; no procedure for synthetic, masked, or subset test data | `04-process/testing-qa/` P08 (test data) | P2 | Discovered |
+| 6 | "Our build takes 25 minutes and CI is the bottleneck" | Nothing covers build-graph analysis, caching, or monorepo task orchestration | `03-domains/devops-infra/` (build systems) | P2 | Discovered |
+| 7 | "A refund path double-charged a customer" | Money correctness has no dedicated treatment: idempotency keys, ledger invariants, reconciliation against the provider | `03-domains/payments/` | P1 | Discovered |
+| 8 | "The screen reader cannot use our checkout" | `frontend` skeleton names accessibility; there is no audit procedure, criteria set, or verification method | `03-domains/frontend/` (when promoted) | P2 | Discovered |
+| 9 | "Translations break layouts and plural forms are wrong" | No coverage of i18n/l10n mechanics: string extraction, pluralisation, locale formats, RTL | `03-domains/frontend/` appendix or its own stage | P3 | Discovered |
+| 10 | "Estimates are always wrong and nobody trusts the plan" | `project-management` is a skeleton; no calibration, reference-class forecasting, or uncertainty ranges | `04-process/project-management/` P02 | P2 | Discovered |
+| 11 | "Every incident postmortem produces actions nobody completes" | `INC-01` and `OBS-P05` produce actions; nothing tracks completion or verifies the fix prevented recurrence | `04-process/observability-reliability/` P05 extension | P1 | Discovered |
+| 12 | "On-call handover loses all context" | `WF-HANDOFF` covers stage handoffs; no on-call-specific shift handover artifact | `05-scenarios/on-call/` | P2 | Discovered |
+| 13 | "We cannot tell whether the new prompt version is actually better" | The empirical harness has one run; no A/B evaluation, scoring sheet, or fixture set | `scripts/` + `_meta/empirical-evaluation-*` | P0 | Under investigation |
+| 14 | "Three contribution systems say the same thing" | Overlap detection now quantifies it: web, web3, and packages skeletons share up to 18% of their shingles; they are near-variants rather than distinct systems | merge or differentiate when promoted | P2 | Discovered |
+
+### Tools added this cycle
+
+- `scripts/find_overlaps.py` — 5-word shingle containment + Jaccard across all prompts; CI fails above 0.55 containment (currently nothing is close; the highest pair is 0.18 inside the templated contribution skeletons).
+- `scripts/new_prompt.py` — scaffolds a prompt with correct metadata and all ten sections, refusing overwrites and printing the index-regeneration commands.

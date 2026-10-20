@@ -212,3 +212,10 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 - Reason: subject access and deletion requests are recurring, legally bounded, and fail predictably — the warehouse copy, the APM payload, the support ticket, the backup. P01 forces an explicit inventory with queries and a completeness statement; P02 forbids executing on an incomplete map, verifies per system, and refuses to pretend backups were edited. P03 makes retention structural and verifies that deletions actually happen.
 - Deductions: legal validity, exemptions, and notification obligations are escalated, not decided; no vendor-specific deletion procedures.
 - Follow-up: a self-service design appendix for teams handling high request volume.
+
+### Tooling — overlap detection and scaffolding
+- **2026-10-20 · library capability · measured, not asserted**
+- `find_overlaps.py` compares every prompt with 5-word shingles after stripping metadata, code fences, and the boilerplate sections all prompts share. It reports containment (share of the smaller prompt found in the larger) and Jaccard.
+- **Finding:** no duplicated content exists today. The highest containment is 0.18, between `packages-libraries` and `web3` P02 discovery prompts; the next five pairs are all within the web/web3/packages contribution skeletons. That is a real but mild signal: those three systems are near-variants of one template, and promoting them without differentiation would produce three copies of the same advice. Recorded in the backlog.
+- CI runs `--check` at a 0.55 containment bar so genuine duplication fails the build while shared vocabulary does not.
+- `new_prompt.py` writes the metadata block plus all ten sections, choosing `0.1.0` for skeletons and `1.0.0` otherwise, refusing to overwrite, and printing the three regeneration commands. Verified by scaffolding a throwaway prompt, validating it cleanly, then removing it.

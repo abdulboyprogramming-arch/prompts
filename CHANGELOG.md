@@ -2,6 +2,23 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.5.0] — 2026-10-20
+
+### Added — library tooling
+
+- **`scripts/find_overlaps.py`** — near-duplicate detection across all prompts using 5-word shingles after stripping metadata, code fences, and shared boilerplate sections. Reports containment (how much of the smaller prompt appears in the larger) and Jaccard similarity; `--check` fails CI at 0.55 containment. First run: no duplicated content, highest containment 0.18 inside the templated contribution skeletons (recorded as a backlog item).
+- **`scripts/new_prompt.py`** — scaffolds a prompt with the correct metadata block and all ten required sections, picks the version from the requested maturity, refuses to overwrite, and prints the catalog/gallery/overlap commands.
+
+### Changed
+
+- CI now runs the overlap gate.
+- `AGENTS.md` and `CONTRIBUTING.md` document the scaffolder and the overlap check; the authoring standard remains the reference for content.
+- Backlog records fourteen newly identified engineer problems with priority and home (feature-flag lifecycle, live-API versioning, queue backpressure, environment parity, test data, build performance, payment correctness, accessibility, i18n, estimation, incident follow-through, on-call handover, prompt A/B evaluation, contribution-system overlap).
+
+### Result
+
+273 prompts: 104 operational, 6 draft, 163 skeleton. Validator 0 errors / 0 warnings; overlap check clean.
+
 ## [2.4.0] — 2026-10-20
 
 Two capabilities that had no coverage at all, both chosen because they cost real money or create legal exposure when improvised.

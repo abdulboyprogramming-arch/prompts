@@ -17,6 +17,7 @@ This repository is a library of engineering prompts. Changes are content changes
 - **Do not delete unexplained material.** Deprecate into `archive/` with a note; retire identifiers rather than reusing them.
 - **Preserve existing work.** If the working tree has changes you did not make, inspect them before editing; never revert them.
 - **No empty folders, no placeholder-only files.** A folder earns its place with content at `draft` or above.
+- **Scaffold rather than copy.** `python3 scripts/new_prompt.py --system <dir> --identifier <ID> --title "<Title>"` writes the metadata block and all ten sections with the right version for the maturity you choose; it never overwrites.
 - **Keep identifiers unique and system-prefixed** (`AUDIT-P03`, `REC-P01`), matching `^[A-Z][A-Z0-9]*(-[A-Z0-9]+)*$`.
 - **Risk class must be honest.** Read-only work is `A`, even when the surrounding system is `B`. Do not describe destructive actions in an `A` prompt unless they are explicitly gated.
 - **Do not restate core safety rules.** Reference `00-core/safety-and-security/`.
@@ -26,11 +27,12 @@ This repository is a library of engineering prompts. Changes are content changes
 1. `python3 scripts/validate_library.py` — zero errors.
 2. `python3 scripts/validate_library.py --catalog` — regenerate `_meta/CATALOG.md`.
 3. `python3 scripts/generate_gallery.py --write` — regenerate `GALLERY.md` (CI fails if it is stale).
-4. Update the owning system's `README.md` stage table (with true maturity).
-5. Update `README.md`'s status table if a system's maturity changed.
-6. Add a `CHANGELOG.md` entry.
-7. Add a review record to `_meta/review-log.md` if you changed a maturity label.
-8. Update `PROJECT-STATUS.md` if the state, decisions, or next actions changed.
+4. `python3 scripts/find_overlaps.py --top 10` — check you have not re-created an existing prompt.
+5. Update the owning system's `README.md` stage table (with true maturity).
+6. Update `README.md`'s status table if a system's maturity changed.
+7. Add a `CHANGELOG.md` entry.
+8. Add a review record to `_meta/review-log.md` if you changed a maturity label.
+9. Update `PROJECT-STATUS.md` if the state, decisions, or next actions changed.
 
 ## Do not
 

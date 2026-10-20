@@ -37,3 +37,6 @@ jobs:
             echo "::error::GALLERY.md is stale. Run: python3 scripts/generate_gallery.py --write"
             exit 1
           fi
+
+      - name: Check for near-duplicate prompts
+        run: python3 scripts/find_overlaps.py --check --top 5
