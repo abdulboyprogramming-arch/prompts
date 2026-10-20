@@ -102,6 +102,7 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Data engineering | **Missing** | `data-ml-ai` conflates pipelines with modelling; no ingest/quality/lineage |
 | Cost / FinOps | **Adequate** | `COST-P01..P04` (new) — attribution, waste diagnosis sized in money, safe optimisation, guardrails and unit economics |
 | Privacy / subject rights | **Adequate** | `PRIV-P01..P03` (new) — cross-system subject data inventory, verified export/deletion, enforced retention |
+| Money correctness | **Adequate** | `PAY-P01..P03` (new) — representation and invariants, idempotency and unknown outcomes, provider reconciliation and change-safety checklist |
 | Distributed systems | Partial | architecture/audit cover analysis; no design or failure-mode prompt |
 | Mobile | **Missing** | No system; `03-domains/README` states the gap |
 | Embedded / firmware | **Missing** | No system |
@@ -207,14 +208,16 @@ Counts are computed from the tables above; they are not estimates.
 
 | Status | Dimension rows | Workflow rows |
 |--------|---------------:|--------------:|
-| Adequate | 63 | 9 |
+| Adequate | 64 | 9 |
 | Partial | 33 | 5 |
 | Missing | 4 | 0 |
 | Defective | 0 | 0 |
 | Indirect | 0 | 0 |
-| **Total assessed** | **100** | **14** |
+| **Total assessed** | **101** | **14** |
 
 **Reading this honestly:** roughly 63% of assessed dimension rows are adequate. The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
+
+**Closed in 2.6.0:** money correctness (`PAY-P01..P03`).
 
 **Closed in 2.4.0:** cost engineering (`COST-P01..P04`), privacy requests (`PRIV-P01..P03`).
 

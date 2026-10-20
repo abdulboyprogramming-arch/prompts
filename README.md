@@ -32,6 +32,7 @@ Pick the row that matches your situation. Do not read the whole repository first
 | A customer or auditor asks for evidence of our controls | [`04-process/governance-compliance/`](04-process/governance-compliance/README.md) | Audit |
 | I need to retire a service or endpoint safely | [`04-process/decommissioning/`](04-process/decommissioning/README.md) | Staged, reversible |
 | The frontend and backend were built separately | [`07-workflows/cross-layer-integration.md`](07-workflows/cross-layer-integration.md) | Specialised |
+| We charge money and cannot prove the books balance | [`03-domains/payments/`](03-domains/payments/README.md) | Specialised, money is Category C/D |
 | The cloud bill doubled and nobody knows why | [`03-domains/cost-engineering/`](03-domains/cost-engineering/README.md) | Audit → change → guardrails |
 | Someone asks us to delete or export their data | [`04-process/privacy-requests/`](04-process/privacy-requests/README.md) | Specialised, deletion is Category D |
 | I need to restructure code without changing behaviour | [`02-engineering/refactoring/`](02-engineering/refactoring/README.md) | Diagnostic → implementation |
@@ -71,6 +72,7 @@ Maturity is enforced, not decorative: `scripts/validate_library.py` fails if a p
 | [`02-engineering/feature-completion/`](02-engineering/feature-completion/README.md) | 4 | operational |
 | [`02-engineering/refactoring/`](02-engineering/refactoring/README.md) | 7 | operational |
 | [`03-domains/cost-engineering/`](03-domains/cost-engineering/README.md) | 4 | operational |
+| [`03-domains/payments/`](03-domains/payments/README.md) | 3 | operational |
 | [`04-process/privacy-requests/`](04-process/privacy-requests/README.md) | 3 | operational |
 | [`07-workflows/`](07-workflows/README.md) | 9 | mixed (3 operational: verification, integration, multi-agent) |
 | [`05-scenarios/`](05-scenarios/README.md) | 11 | mixed (6 operational, 5 skeleton) |

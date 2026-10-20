@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 273 prompts — 0 canonical, 104 operational, 6 draft, 163 skeleton.
+**Totals:** 276 prompts — 0 canonical, 107 operational, 6 draft, 163 skeleton.
 
 ## `01-contribution/language-design`
 
@@ -307,6 +307,14 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `GD-P06` | PROMPT 06 — Content & Polish | skeleton | implementation | B | [P06-Content-Polish.md](../03-domains/games/P06-Content-Polish/P06-Content-Polish.md) |
 | `GD-P07` | PROMPT 07 — Playtest & Validate | skeleton | diagnostic | B | [P07-Playtest-Validate.md](../03-domains/games/P07-Playtest-Validate/P07-Playtest-Validate.md) |
 | `GD-P08` | PROMPT 08 — Game Development Master Orchestrator | skeleton | orchestration | A | [P08-Game-Development-Orchestrator.md](../03-domains/games/P08-Orchestrator/P08-Game-Development-Orchestrator.md) |
+
+## `03-domains/payments`
+
+| ID | Stage | Maturity | Mode | Risk | File |
+|----|-------|----------|------|------|------|
+| `PAY-P01` | PROMPT 01 — Money Model & Invariants | operational | diagnostic | A | [P01-Money-Model-Invariants.md](../03-domains/payments/P01-Model/P01-Money-Model-Invariants.md) |
+| `PAY-P02` | PROMPT 02 — Idempotency & Unknown Outcomes | operational | diagnostic | B | [P02-Idempotency-Failure.md](../03-domains/payments/P02-Idempotency/P02-Idempotency-Failure.md) |
+| `PAY-P03` | PROMPT 03 — Reconciliation & Change Safety | operational | specialised | C | [P03-Reconciliation-Change-Safety.md](../03-domains/payments/P03-Reconciliation/P03-Reconciliation-Change-Safety.md) |
 
 ## `04-process/code-review`
 

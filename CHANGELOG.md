@@ -2,6 +2,25 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.6.0] — 2026-10-20
+
+### Added — `03-domains/payments/` (3 stages)
+
+Money is the one domain where a defect is a financial loss rather than a bad experience, and it had no coverage.
+
+- **PAY-P01 Money model** — representation inventory that flags floats and missing currency dimensions, rounding and allocation rules where the parts must sum exactly to the whole, the payment state machine including out-of-order provider events, and invariants written as runnable checks.
+- **PAY-P02 Idempotency & unknown outcomes** — a failure table per money-moving flow (lost response, delayed webhook, duplicate delivery, crash mid-write), idempotency keys persisted before the call and reused on retry, webhook replay and ordering safety, concurrency guards at the database level, and the rule that "unknown" is its own state rather than being treated as failure.
+- **PAY-P03 Reconciliation & change safety** — per-transaction and aggregate comparison against provider settlement, a six-class difference taxonomy (timing, missing locally, phantom success, amount, duplicate, state), repairs that never re-charge, automated daily reconciliation with alerts, fee/FX treatment, and an eight-item checklist for every future money change.
+
+### Changed
+
+- Coverage matrix gains a money-correctness row; totals 64 adequate / 33 partial / 4 missing.
+- Root routing table and `03-domains/README.md` updated.
+
+### Result
+
+347 Markdown files, 276 prompts: 107 operational, 6 draft, 163 skeleton. Validator 0 errors / 0 warnings.
+
 ## [2.5.0] — 2026-10-20
 
 ### Added — library tooling

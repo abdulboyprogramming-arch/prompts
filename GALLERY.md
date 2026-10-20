@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE — do not edit by hand. Run: python3 scripts/generate_gallery.py --write -->
 
-Every prompt in the library — **273** of them — with a direct link and the situation it is for, plus **7** foundational reference documents.
+Every prompt in the library — **276** of them — with a direct link and the situation it is for, plus **7** foundational reference documents.
 Generated from the prompt files, so it cannot drift from them; CI fails if this file is stale.
 
 **Reading the columns**
@@ -21,13 +21,13 @@ Generated from the prompt files, so it cannot drift from them; CI fails if this 
 |---|---:|---|
 | [01-contribution — contributing to open source](#01-contribution--contributing-to-open-source) | 48 | Stage systems for contributing to an unfamiliar project. |
 | [02-engineering — building, auditing, and recovering code](#02-engineering--building-auditing-and-recovering-code) | 78 | Work on an existing codebase: audit, repair, complete, upgrade. |
-| [03-domains — domain-specific engineering](#03-domains--domain-specific-engineering) | 54 | Stack-specific practice: data, AI, and the domains still being built out. |
+| [03-domains — domain-specific engineering](#03-domains--domain-specific-engineering) | 57 | Stack-specific practice: data, AI, and the domains still being built out. |
 | [04-process — delivering software responsibly](#04-process--delivering-software-responsibly) | 69 | The lifecycle around code: testing, release, observability, dependency and governance. |
 | [05-scenarios — single-session, high-urgency situations](#05-scenarios--single-session-high-urgency-situations) | 11 | One prompt, one session, one pressing situation. |
 | [06-interactive — conversations that clarify a request](#06-interactive--conversations-that-clarify-a-request) | 4 | Use when the request is vague and needs to be scoped first. |
 | [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 9 | Composed sequences that route between systems and stop at human gates. |
 
-*Maturity across the library: 104 operational, 6 draft, 163 skeleton, 273 total.*
+*Maturity across the library: 107 operational, 6 draft, 163 skeleton, 276 total.*
 
 ---
 
@@ -342,6 +342,14 @@ Stack-specific practice: data, AI, and the domains still being built out.
 | `GD-P06` | [Content & Polish](03-domains/games/P06-Content-Polish/P06-Content-Polish.md) | Improve playability through focused content, UX, and feedback work. | skeleton | B |
 | `GD-P07` | [Playtest & Validate](03-domains/games/P07-Playtest-Validate/P07-Playtest-Validate.md) | Evaluate whether the game (or feature) delivers on its vision and is technically healthy enough to continue. | skeleton | B |
 | `GD-P08` | [Game Development Master Orchestrator](03-domains/games/P08-Orchestrator/P08-Game-Development-Orchestrator.md) | Runs the games system end to end: gates, routing, and final acceptance. | skeleton | A |
+
+### payments · 3 prompts
+
+| ID | Prompt | Use it for | Maturity | Risk |
+|---|---|---|---|---|
+| `PAY-P01` | [Money Model & Invariants](03-domains/payments/P01-Model/P01-Money-Model-Invariants.md) | Answers: how is money stored, computed, and rounded; what states can a payment take; and which invariants must hold across every operation? | operational | A |
+| `PAY-P02` | [Idempotency & Unknown Outcomes](03-domains/payments/P02-Idempotency/P02-Idempotency-Failure.md) | Prove or disprove that each money-moving flow is idempotent, that unknown outcomes are handled as a state, and that no failure path can double-charge, silently… | operational | B |
+| `PAY-P03` | [Reconciliation & Change Safety](03-domains/payments/P03-Reconciliation/P03-Reconciliation-Change-Safety.md) | A working reconciliation between your records and the provider's, a drift classification with owners, and a change-safety checklist for every future money change. | operational | C |
 
 ## 04-process — delivering software responsibly
 
