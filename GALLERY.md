@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE — do not edit by hand. Run: python3 scripts/generate_gallery.py --write -->
 
-Every prompt in the library — **287** of them — with a direct link and the situation it is for, plus **8** foundational reference documents.
+Every prompt in the library — **292** of them — with a direct link and the situation it is for, plus **8** foundational reference documents.
 Generated from the prompt files, so it cannot drift from them; CI fails if this file is stale.
 
 **Reading the columns**
@@ -22,12 +22,12 @@ Generated from the prompt files, so it cannot drift from them; CI fails if this 
 | [01-contribution — contributing to open source](#01-contribution--contributing-to-open-source) | 48 | Stage systems for contributing to an unfamiliar project. |
 | [02-engineering — building, auditing, and recovering code](#02-engineering--building-auditing-and-recovering-code) | 78 | Work on an existing codebase: audit, repair, complete, upgrade. |
 | [03-domains — domain-specific engineering](#03-domains--domain-specific-engineering) | 57 | Stack-specific practice: data, AI, and the domains still being built out. |
-| [04-process — delivering software responsibly](#04-process--delivering-software-responsibly) | 79 | The lifecycle around code: testing, release, observability, dependency and governance. |
+| [04-process — delivering software responsibly](#04-process--delivering-software-responsibly) | 84 | The lifecycle around code: testing, release, observability, dependency and governance. |
 | [05-scenarios — single-session, high-urgency situations](#05-scenarios--single-session-high-urgency-situations) | 12 | One prompt, one session, one pressing situation. |
 | [06-interactive — conversations that clarify a request](#06-interactive--conversations-that-clarify-a-request) | 4 | Use when the request is vague and needs to be scoped first. |
 | [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 9 | Composed sequences that route between systems and stop at human gates. |
 
-*Maturity across the library: 132 operational, 6 draft, 149 skeleton, 287 total.*
+*Maturity across the library: 138 operational, 5 draft, 149 skeleton, 292 total.*
 
 ---
 
@@ -426,6 +426,16 @@ The lifecycle around code: testing, release, observability, dependency and gover
 | `GOV-P02` | [Evidence Collection & Control Testing](04-process/governance-compliance/P02-Evidence/P02-Evidence-Testing.md) | Prove or disprove that each evidenced/weak control from P01 operated over a defined period. <br>**Inputs:** `EVIDENCE_PERIOD, APPLICABLE_FRAMEWORKS` | operational | A |
 | `GOV-P03` | [Gap Remediation & Readiness Decision](04-process/governance-compliance/P03-Readiness/P03-Readiness-Decision.md) | A remediation plan ordered by consequence, a risk-acceptance register with named owners, and a readiness statement per claim that an auditor or customer question… <br>**Inputs:** `AUDIT_DATE, APPROVER` | operational | A |
 
+### handover · 5 prompts
+
+| ID | Prompt | Use it for | Maturity | Risk |
+|---|---|---|---|---|
+| `HAND-P01` | [Scope, Receiver, and Terms](04-process/handover/P01-Scope/P01-Handover-Scope.md) | HANDOVER_SCOPE.md — the handover type, the receiver and their starting competence, the transfer inventory (assets, obligations, accesses, knowledge), what is… <br>**Inputs:** `TARGET_SERVICE, HANDOVER_RECEIVER, HANDOVER_DATE, APPROVER` | operational | A |
+| `HAND-P02` | [State and Knowledge Capture](04-process/handover/P02-State/P02-State-and-Knowledge-Capture.md) | HANDOVER_STATE.md — what works and how that was proven, what is broken and what is at risk, open work with its exact position, decisions with their reasons… <br>**Inputs:** `REPO_PATH, TARGET_SERVICE, TARGET_ENV, HANDOVER_RECEIVER` | operational | B |
+| `HAND-P03` | [Access, Credentials, and Revocation](04-process/handover/P03-Access/P03-Access-and-Credential-Transfer.md) | ACCESS_TRANSFER.md — every identity, role, and secret relevant to the system, its before/after holder, the transfer mechanism, the revocation performed, the… <br>**Inputs:** `TARGET_SERVICE, HANDOVER_RECEIVER, APPROVER, CHANGE_WINDOW` | operational | D |
+| `HAND-P04` | [Capability Verification by the Receiver](04-process/handover/P04-Competence/P04-Capability-Verification.md) | CAPABILITY_REPORT.md — the exercise list, who performed what, evidence of success or the exact point of failure, the assistance given (and by whom), and the… <br>**Inputs:** `TARGET_ENV, HANDOVER_RECEIVER, REPO_PATH, APPROVER, CHANGE_WINDOW` | operational | C |
+| `HAND-P05` | [Acceptance and Closeout](04-process/handover/P05-Acceptance/P05-Acceptance-Closeout.md) | HANDOVER_ACCEPTANCE.md — the verdict against the P01 acceptance criteria, the condition list with owners and dates, confirmation that access and obligations moved… <br>**Inputs:** `HANDOVER_RECEIVER, APPROVER, HANDOVER_DATE` | operational | B |
+
 ### observability-reliability · 5 prompts
 
 | ID | Prompt | Use it for | Maturity | Risk |
@@ -548,7 +558,7 @@ Composed sequences that route between systems and stop at human gates.
 |---|---|---|---|---|
 | `WF-AUDIT-REMEDIATE` | [Workflow — Audit → Remediate](07-workflows/audit-to-remediation.md) | You need a defensible assessment of an existing codebase and then want the important parts fixed — without the audit becoming a permanent report nobody acts on, and… | draft | B |
 | `WF-GREENFIELD` | [Workflow — Greenfield Delivery](07-workflows/greenfield-delivery.md) | Produces a running, tested, documented, deployable initial version | draft | B |
-| `WF-HANDOFF` | [Handoff Contract](07-workflows/HANDOFF-CONTRACT.md) | Define one compact block that carries: what was done, what is true now, what is uncertain, what is next, and what authority exists. | draft | A |
+| `WF-HANDOFF` | [Handoff Contract](07-workflows/HANDOFF-CONTRACT.md) | Define one compact block that carries: what was done, what is true now, what is uncertain, what is next, and what authority exists. | operational | A |
 | `WF-IMPROVE` | [Workflow — Continuous Improvement](07-workflows/continuous-improvement.md) | Turn recurring pain into a measured improvement loop when nothing is currently on fire but the team keeps hitting the same problems. | draft | B |
 | `WF-INCIDENT` | [Workflow — Production Incident](07-workflows/production-incident.md) | Production is broken now: restore service, keep evidence, communicate, then run the postmortem — in that order. | draft | C |
 | `WF-INTEGRATE` | [Workflow — Cross-Layer Integration](07-workflows/cross-layer-integration.md) | Prove that the layers interoperate: contracts match, configuration is coherent, identity propagates, failures degrade as designed, and deployment order does not… <br>**Inputs:** `INTEGRATION_ENV, LAYER_BRANCHES` | operational | B |

@@ -276,3 +276,14 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 ### Tooling — system-README overclaim gate
 - **2026-10-20 · tooling · operational**
 - 17 READMEs claimed Operational over skeleton stages. Fixed, and `check_system_readmes()` now fails the build on the class. Fixture-tested by reintroducing the claim in `02-engineering/performance/`.
+
+### `04-process/handover/` — 5 stages (new, operational)
+- **2026-10-20 · mixed · 87/100 · operational**
+- Problem: the library had an excellent *stage* handoff contract and no procedure for handing a whole project to another owner. That gap is where production access stays with leavers and where a receiver inherits a system they cannot deploy.
+- Design: acceptance criteria are capabilities, not documents; P03 is class D because ownership plus revocation is the highest-consequence operation outside data deletion, and it demands proof of denial rather than a checkbox; P04 is performed by the receiver, so the documentation is tested by use rather than by review; P05 refuses "accepted with issues" without conditions, owners, and dates.
+- Deductions: legal assignment of contracts is out of scope (recorded as a blocking dependency); on-call shift handover is still backlog item 12 and P02's operational brief is only a partial answer.
+- Follow-up: a worked example of an agency→client transfer, including the vendor-console ownership matrix, would make P03 concrete.
+
+### `07-workflows/HANDOFF-CONTRACT.md` — draft → operational (v1.1.0)
+- **2026-10-20 · process · 88/100 · operational**
+- The contract was already substantive (84 lines, all ten sections) but carried a draft label that made every stage's handover provisional. Promoted after adding the four-failure table, receiver verification duty, repository-based staleness rule, and the machine-readable form for agent receivers.

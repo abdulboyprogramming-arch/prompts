@@ -155,6 +155,7 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Rollback | Adequate | `REL-P03` three layers, `DB-P05` reverse-path status |
 | Access control | Partial | covered in security review, not as a change procedure |
 | Secret protection | Adequate | `00-core/safety-and-security`, `SEC-P03/P06` |
+| Ownership handover (person, team, or agent) | **Adequate** | `HAND-P01..P05`: capability-based acceptance criteria, dual-control for lockout-risk accounts, revocation with proof, receiver-performed exercises, conditions with owners, review point. Excluded by design: recovery with no counterpart (`project-recovery`) |
 | External surface audit (live URL, host, API) | **Adequate** | `SURFACE-01`: rules of engagement, baseline, redirect/header/cookie/CORS checks on the final response, sampled error behaviour, evidence per finding, coverage statement, no enumeration or exploitation |
 | Feature flags and progressive delivery | **Adequate** | `FF-P01..P05` (new): inventory reconciled across code/provider/config, purpose-based typing, safe defaults, pre-declared rollout thresholds with sample-size reasoning, kill-switch use with a recorded prediction, retirement that deletes the branch |
 | Destructive actions | Adequate | risk classes A–D; validator flags inconsistencies |
@@ -168,7 +169,7 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Technical debt | **Adequate** | `REF-P01..P07` (new) turns debt into a measured refactoring with a proven net; audit P04/P08 still quantify it |
 | Dependency management | **Adequate** | `DEP-P01..P05` (new) — inventory, breaking-change assessment, execution, verification, policy |
 | Architecture evolution | Partial | architecture-review skeleton; no ADR prompt |
-| Knowledge preservation | Partial | handoff contract + status checkpoint; no onboarding-maintenance loop |
+| Knowledge preservation | **Adequate** | `WF-HANDOFF` (promoted: four failure modes, receiver-verifies-dependencies, machine-readable form) + `HAND-P02` state capture (proven vs believed, 3 a.m. brief) + `PROJECT-STATUS.md` checkpoint. Still partial on the on-call shift loop (backlog 12) |
 
 ## 12. Prompt ecosystem quality
 
@@ -212,14 +213,16 @@ Counts are computed from the tables above; they are not estimates.
 
 | Status | Dimension rows | Workflow rows |
 |--------|---------------:|--------------:|
-| Adequate | 70 | 9 |
-| Partial | 31 | 5 |
+| Adequate | 72 | 9 |
+| Partial | 30 | 5 |
 | Missing | 4 | 0 |
 | Defective | 0 | 0 |
 | Indirect | 0 | 0 |
-| **Total assessed** | **105** | **14** |
+| **Total assessed** | **106** | **14** |
 
-**Reading this honestly:** roughly 67% of assessed dimension rows are adequate. The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
+**Reading this honestly:** roughly 68% of assessed dimension rows are adequate. The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
+
+**Closed in 2.12.0:** project handover (`HAND-P01..P05`), stage handoff contract promoted (`WF-HANDOFF`).
 
 **Closed in 2.11.0:** documentation products and export (`DOC-P01..P08`), live surface audit (`SURFACE-01`).
 

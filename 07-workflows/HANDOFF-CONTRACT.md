@@ -2,8 +2,8 @@
 
 **Identifier:** WF-HANDOFF
 **System:** 07-workflows
-**Version:** 1.0.0
-**Maturity:** draft
+**Version:** 1.1.0
+**Maturity:** operational
 **Execution mode:** planning
 **Risk class:** A
 **Depends on:** none
@@ -14,6 +14,8 @@
 ## 1. Role and mandate
 
 This is the shared format every stage of every workflow uses to pass state forward. It exists so a later stage — or a later session, or a different agent — can continue without re-reading the whole conversation.
+
+**Scope boundary:** this contract moves state *between stages of one engagement*. Moving ownership of a whole project between people, teams, or agents over time is `04-process/handover/`, which consumes this block and adds access transfer, capability verification, and acceptance.
 
 ## 2. Objective and scope
 
@@ -50,6 +52,19 @@ Append this block to the stage artifact, filled in factually:
 - **"Not done" is mandatory and may not be empty without a reason.** Write `none` only when the stage's completion criteria were fully met.
 - **Carry constraints forward verbatim.** A later stage that needs more authority must ask; it cannot inherit it silently.
 - **Point, do not duplicate.** Reference artifacts by path; do not restate their content.
+- **A handoff is a claim, not a fact.** The receiving stage verifies the two or three facts it depends on before acting on them; a wrong handoff propagates silently otherwise.
+- **Staleness is decided by the repository, not the document.** If the handoff's commit is not the commit you are on, re-establish state before trusting anything else in the block.
+
+## 5a. The four failures this contract exists to prevent
+
+| Failure | What it looks like | The field that prevents it |
+|---------|--------------------|----------------------------|
+| Phantom completion | "Done" for work that only compiled | Status compared to the stage's completion criteria |
+| Inherited assumptions | The next stage treats a guess as an established fact | Assumptions with their impact if wrong |
+| Lost prohibitions | A later stage takes an action an earlier stage forbade | Constraints in force, carried verbatim |
+| Silent scope widening | Each stage adds a little, none records it | Decisions + not-done list |
+
+**Machine-readable form.** When the receiver is an agent, the same block may be emitted as YAML with these keys: `stage`, `status`, `repo{commit, branch, clean}`, `artifacts[]`, `facts[]`, `decisions[]{decision, reason}`, `assumptions[]{assumption, impact_if_wrong}`, `open_questions[]{question, owner, blocks}`, `not_done[]`, `constraints{risk_class, prohibitions[]}`, `next_stage{id, reason}`, `blocked{action_needed}`. The content must match the prose block — a machine copy that says more than the human one is a bug.
 
 ## 6. Verification
 
@@ -60,6 +75,8 @@ Append this block to the stage artifact, filled in factually:
 | Status honest | compare to stage completion criteria | matches |
 | Next stage exists | check identifier | real and appropriate |
 | Constraints listed | inspect | prohibitions carried forward |
+| Receiver verified dependencies | spot-check 2 facts | each confirmed against the artifact or repository |
+| Machine form matches prose | diff | no field contradicts |
 
 ## 7. Failure handling
 

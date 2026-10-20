@@ -31,13 +31,13 @@ archive/         Legacy .txt source material, retained for provenance
 
 Run `python3 scripts/validate_library.py` for live numbers. At the time of writing:
 
-- **362 Markdown files**, **287 prompt files**.
-- Maturity: **132 operational**, **6 draft**, **149 skeleton**.
+- **368 Markdown files**, **292 prompt files**.
+- Maturity: **138 operational**, **5 draft**, **149 skeleton**.
 - **0 validation errors, 0 warnings**.
-- Operational systems: open-source contribution agent (16), codebase audit (9), project recovery (7), security hardening (7), testing & QA (7), refactoring (7), database (5), cost engineering (4), privacy requests (3), payments (3), git operations (5), code review (6), feature flags (5), documentation (8), dependency management (5), decommissioning (4), governance and compliance (3), observability & reliability (5), release engineering (4), AI/agentic (5), feature completion (4), independent verification (1), plus debugging, incident response, flaky-test triage, failed-fix escalation, data-loss recovery, and security incident response.
+- Operational systems: open-source contribution agent (16), codebase audit (9), project recovery (7), security hardening (7), testing & QA (7), refactoring (7), database (5), cost engineering (4), privacy requests (3), payments (3), git operations (5), code review (6), feature flags (5), documentation (8), handover (5), dependency management (5), decommissioning (4), governance and compliance (3), observability & reliability (5), release engineering (4), AI/agentic (5), feature completion (4), independent verification (1), plus debugging, incident response, flaky-test triage, failed-fix escalation, data-loss recovery, and security incident response.
 - Every prompt declares identifier, system, version, maturity, execution mode, and risk class.
 
-**The honest summary:** roughly two fifths of the prompt files are developed to the standard (132 operational); the rest are outlines that name a sensible stage sequence but lack verification, evidence rules, and failure handling. One prompt has been empirically executed. That ratio is stated everywhere it matters, and the validator fails the build if a README over-claims.
+**The honest summary:** roughly two fifths of the prompt files are developed to the standard (138 operational); the rest are outlines that name a sensible stage sequence but lack verification, evidence rules, and failure handling. One prompt has been empirically executed. That ratio is stated everywhere it matters, and the validator fails the build if a README over-claims.
 
 ## 4. Standards that now govern the repository
 
@@ -91,7 +91,7 @@ Full detail in `CHANGELOG.md`. Summary:
 
 ## 8. Next actions, in order
 
-Completed since this list was written: **documentation products and live surface audit** (2.11.0), **feature flags** (2.10.0), **input declarations across the operational library** (2.9.0 — 109/118 prompts, nine artifact-only stages exempt), **code review** (2.8.0), **git operations and the inputs convention** (2.7.0), **payments** (2.6.0).
+Completed since this list was written: **project handover** (2.12.0), **documentation products and live surface audit** (2.11.0), **feature flags** (2.10.0), **input declarations across the operational library** (2.9.0 — 109/118 prompts, nine artifact-only stages exempt), **code review** (2.8.0), **git operations and the inputs convention** (2.7.0), **payments** (2.6.0).
 
 1. **Empirical test harness** — one executed run now exists (`_meta/empirical-evaluation-01.md`: `DBG-01` against a synthetic fixture, three prompt fixes). Next: a fixture set, a scoring sheet, and fixtures authored by someone other than the prompt author. Every other `operational` label remains a structural review.
 2. Promote `03-domains/backend` (8 stages) — highest-value remaining skeleton; it also supplies the home for live-API versioning.

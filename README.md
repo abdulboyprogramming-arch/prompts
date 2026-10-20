@@ -4,7 +4,7 @@ A structured collection of prompts for AI coding agents, organised across the en
 
 Every prompt declares what it does, what it may change, how much it can be trusted, and what it will not do. Nothing here claims a capability its files do not have — the repository is validated against that rule on every change.
 
-**Browse everything:** [`GALLERY.md`](GALLERY.md) lists all 287 prompts with a direct link and one line on when to use each. It is generated from the prompts themselves and CI fails if it falls out of date, so it cannot drift from the library.
+**Browse everything:** [`GALLERY.md`](GALLERY.md) lists all 292 prompts with a direct link and one line on when to use each. It is generated from the prompts themselves and CI fails if it falls out of date, so it cannot drift from the library.
 
 ## Start here
 
@@ -28,6 +28,8 @@ Pick the row that matches your situation. Do not read the whole repository first
 | Two fix attempts have failed and the bug is still there | [`05-scenarios/failed-fix/`](05-scenarios/failed-fix/FAILED-FIX-ESCALATION.md) | Diagnostic |
 | I need to change a database schema without losing data | [`03-domains/database/`](03-domains/database/README.md) | Audit → drill → execute |
 | I need to upgrade a framework or dependency safely | [`04-process/dependency-management/`](04-process/dependency-management/README.md) | Audit → plan → verify |
+| I am taking over someone else's project (or handing mine over) | [`04-process/handover/`](04-process/handover/README.md) | Access transfer + capability test |
+| A contractor or teammate is leaving and owns production | [`04-process/handover/P03`](04-process/handover/P03-Access/P03-Access-and-Credential-Transfer.md) | Class D: ownership + revocation |
 | I need an SRS, a design doc, an engineer handbook, or a PDF/DOCX deliverable | [`04-process/documentation/`](04-process/documentation/README.md) | Source of truth gate |
 | The docs are stale or nobody trusts them | [`04-process/documentation/P02`](04-process/documentation/P02-Inventory/P02-Documentation-Inventory.md) | Truth audit first |
 | Audit a live URL, site, or API I do not have the source for | [`05-scenarios/live-surface-audit/`](05-scenarios/live-surface-audit/LIVE-SURFACE-AUDIT.md) | Read-only; authorisation first |
@@ -87,6 +89,7 @@ Maturity is enforced, not decorative: `scripts/validate_library.py` fails if a p
 | [`04-process/code-review/`](04-process/code-review/README.md) | 6 | operational |
 | [`04-process/feature-flags/`](04-process/feature-flags/README.md) | 5 | operational |
 | [`04-process/documentation/`](04-process/documentation/README.md) | 8 | operational |
+| [`04-process/handover/`](04-process/handover/README.md) | 5 | operational |
 | [`07-workflows/`](07-workflows/README.md) | 9 | mixed (3 operational: verification, integration, multi-agent) |
 | [`05-scenarios/`](05-scenarios/README.md) | 12 | mixed (7 operational, 5 skeleton) |
 

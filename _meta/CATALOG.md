@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 287 prompts — 0 canonical, 132 operational, 6 draft, 149 skeleton.
+**Totals:** 292 prompts — 0 canonical, 138 operational, 5 draft, 149 skeleton.
 
 ## `01-contribution/language-design`
 
@@ -387,6 +387,16 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `GOV-P02` | PROMPT 02 — Evidence Collection & Control Testing | operational | diagnostic | A | [P02-Evidence-Testing.md](../04-process/governance-compliance/P02-Evidence/P02-Evidence-Testing.md) |
 | `GOV-P03` | PROMPT 03 — Gap Remediation & Readiness Decision | operational | planning | A | [P03-Readiness-Decision.md](../04-process/governance-compliance/P03-Readiness/P03-Readiness-Decision.md) |
 
+## `04-process/handover`
+
+| ID | Stage | Maturity | Mode | Risk | File |
+|----|-------|----------|------|------|------|
+| `HAND-P01` | PROMPT 01 — Scope, Receiver, and Terms | operational | planning | A | [P01-Handover-Scope.md](../04-process/handover/P01-Scope/P01-Handover-Scope.md) |
+| `HAND-P02` | PROMPT 02 — State and Knowledge Capture | operational | diagnostic | B | [P02-State-and-Knowledge-Capture.md](../04-process/handover/P02-State/P02-State-and-Knowledge-Capture.md) |
+| `HAND-P03` | PROMPT 03 — Access, Credentials, and Revocation | operational | implementation | D | [P03-Access-and-Credential-Transfer.md](../04-process/handover/P03-Access/P03-Access-and-Credential-Transfer.md) |
+| `HAND-P04` | PROMPT 04 — Capability Verification by the Receiver | operational | diagnostic | C | [P04-Capability-Verification.md](../04-process/handover/P04-Competence/P04-Capability-Verification.md) |
+| `HAND-P05` | PROMPT 05 — Acceptance and Closeout | operational | implementation | B | [P05-Acceptance-Closeout.md](../04-process/handover/P05-Acceptance/P05-Acceptance-Closeout.md) |
+
 ## `04-process/observability-reliability`
 
 | ID | Stage | Maturity | Mode | Risk | File |
@@ -495,7 +505,7 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
 | ID | Stage | Maturity | Mode | Risk | File |
 |----|-------|----------|------|------|------|
-| `WF-HANDOFF` | Handoff Contract | draft | planning | A | [HANDOFF-CONTRACT.md](../07-workflows/HANDOFF-CONTRACT.md) |
+| `WF-HANDOFF` | Handoff Contract | operational | planning | A | [HANDOFF-CONTRACT.md](../07-workflows/HANDOFF-CONTRACT.md) |
 | `WF-AUDIT-REMEDIATE` | Workflow — Audit → Remediate | draft | audit-remediation | B | [audit-to-remediation.md](../07-workflows/audit-to-remediation.md) |
 | `WF-IMPROVE` | Workflow — Continuous Improvement | draft | continuous-improvement | B | [continuous-improvement.md](../07-workflows/continuous-improvement.md) |
 | `WF-INTEGRATE` | Workflow — Cross-Layer Integration | operational | specialised | B | [cross-layer-integration.md](../07-workflows/cross-layer-integration.md) |

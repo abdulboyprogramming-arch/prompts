@@ -169,3 +169,14 @@ Recorded here rather than built immediately, because quality over volume applies
 | 33 | Authenticated live-surface testing (staging behind a login) | `SURFACE-01` stops at the login by design; authorised authenticated testing needs its own authorisation model and data-handling rules | `02-engineering/security-hardening/` extension | P2 | Discovered (deliberate exclusion) |
 | 34 | Documentation localisation and multi-version docs | Nothing covers translation workflow, versioned doc sets, or "applies to v1.x only" navigation | `04-process/documentation/` P05/P07 extension | P3 | Discovered |
 | 35 | Doc export toolchain failures (pandoc/LaTeX/DOCX style collapse) have no known-issue catalogue | P07 says "open every page" but not what usually breaks and how to fix it | `04-process/documentation/` appendix | P3 | Discovered |
+
+## Discovered in 2.12.0 — ownership handover
+
+| # | Problem | Why existing material is insufficient | Home | Priority | Status |
+|---|---------|---------------------------------------|------|----------|--------|
+| 36 | "The contractor left and still has production access" | Nothing covered revocation as part of a transfer; `WF-HANDOFF` is a state block, not an access procedure | `04-process/handover/P03` (class D) | P0 | **Implemented** in 2.12.0 |
+| 37 | "I inherited a system and cannot deploy it" | Handover meant documents; no capability test existed anywhere in the library | `HAND-P04` receiver-performed exercises | P0 | **Implemented** in 2.12.0 |
+| 38 | A long-running project resumes under a different agent | `WF-HANDOFF` was draft and had no machine-readable form or authority-boundary field | `WF-HANDOFF` v1.1.0 + `HAND-P02` | P1 | **Implemented** in 2.12.0 |
+| 39 | On-call shift handover loses context | Backlog item 12; `HAND-P02`'s operational brief is a partial answer only | `05-scenarios/on-call/` | P2 | Discovered (unchanged) |
+| 40 | Legal/contract assignment on agency→client transfers | Handover records the blocker but cannot assign a contract; needs a legal-obligations checklist owned by the client | `04-process/handover/` appendix + `governance-compliance` | P2 | Discovered |
+| 41 | Handover of a *portfolio* (many systems in one transfer) | P01 forces a boundary; no procedure for batching several systems with a shared receiver and a staged cutover | `04-process/handover/` P01 extension | P3 | Discovered |

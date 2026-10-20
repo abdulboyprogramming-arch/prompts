@@ -2,6 +2,30 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.12.0] — 2026-10-20
+
+### New system — `04-process/handover/` (5 stages, operational)
+
+The library covered handing *state between stages* and had nothing for handing *ownership of a project to another person or agent*: no access transfer, no revocation, no proof that the receiver could operate the thing. "Handover" appeared 146 times, all of it the per-stage block.
+
+- **HAND-P01 Scope** — five handover types (person→person, team→team, agency→client, human→agent, agent→human), each with its characteristic failure; a transfer inventory across code, running system, access, obligations, and knowledge; what is explicitly *not* transferring; acceptance criteria written as capabilities ("the receiver can restore staging unaided"), not document deliveries; a bounded support window and a failure path.
+- **HAND-P02 State** — proven vs believed as separate lists with pointers; deployed reality per environment including drift and leftover flags; open work at its exact position with the risk of leaving it; decisions with the *reasons* (so a successor does not undo a deliberate choice); obligations; and the 3 a.m. brief — alerts, escalation, rollback, irreversible actions.
+- **HAND-P03 Access and revocation (class D)** — identity inventory including vendor and billing consoles; lockout-risk accounts (domain, cloud root, sole vendor admin) get dual control; order is add → verify → remove, never the reverse; **rotate everything the sender could read**; revocation must be *proven* by a failed access attempt; retained access is time-boxed with a named revoker; recovery path documented.
+- **HAND-P04 Capability verification (class C)** — the receiver performs and the sender observes: build, deploy, roll back, mitigate a known alert under time pressure, make a small end-to-end change, and find the people. Failures are classified as documentation, access, or **system defect** — and the last is the most valuable thing a handover can find.
+- **HAND-P05 Acceptance** — verdict per criterion against capability evidence; every gap becomes a condition with an owner, a date, and a consequence; obligations confirmed moved *in the systems that enforce them* (rota, routing, billing); residual sender roles time-boxed and access-free; a 30–90 day review point; refusal recorded honestly when warranted.
+
+### Promoted — `WF-HANDOFF` (draft → operational, v1.1.0)
+
+The stage-handoff contract every workflow depends on was marked draft. It now names the four failures it exists to prevent (phantom completion, inherited assumptions, lost prohibitions, silent scope widening), requires the receiving stage to verify the two or three facts it depends on, decides staleness by repository state rather than document date, and defines a machine-readable form for agent receivers — with the rule that the machine copy must not say more than the prose.
+
+### Scope clarity
+
+The two are now explicitly different jobs in both READMEs: `WF-HANDOFF` moves state between stages of one engagement; `handover/` moves ownership across people, teams, or agents over time, and consumes the handoff block as its state input.
+
+### Result
+
+368 Markdown files, 292 prompts: 138 operational, 5 draft, 149 skeleton. Validator 0 errors / 0 warnings.
+
 ## [2.11.0] — 2026-10-20
 
 ### Promoted — `04-process/documentation/` (8 stages, operational)
