@@ -146,3 +146,10 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 - Dimension rows: 55 adequate / 36 partial / 6 missing (from 52/38/7 at the start of the cycle).
 - Workflows: 7 adequate / 5 partial / 2 missing — unchanged by this batch.
 - Remaining missing: decommissioning, enterprise readiness, data engineering, mobile, embedded, desktop/CLI, cross-layer integration, prototype discipline, and (outside the table) the empirical test harness.
+
+### Empirical evaluation 01 (`DBG-01`, v1.1.0 → v1.2.0)
+- **2026-10-20 · first executed prompt · 20 min · synthetic fixture · evaluator = prompt author**
+- Method: fixture with a mutable-default-argument state leak and a green test suite; protocol followed step by step; every step produced something.
+- Outcome: defect reproduced in 2 min, cause proven by instrumentation (not code reading), fix verified by reverting it, regression test red→green. Three weaknesses found and fixed: (1) a green suite while a defect exists is now treated as evidence that the tests encode the buggy behaviour; (2) localisation now requires varying invocation context, and step 5 gains an ordered hypothesis-class list led by shared mutable state; (3) a new step requires explaining why the existing tests missed the defect.
+- Honest limits: one defect, one language, one evaluator who knew the fixture. Not a validation study, and no claim of superiority over unprompted debugging.
+- Follow-up: fixture set + scoring sheet; fixtures authored by someone other than the prompt author.

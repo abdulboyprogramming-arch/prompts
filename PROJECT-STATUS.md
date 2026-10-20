@@ -91,7 +91,7 @@ Full detail in `CHANGELOG.md`. Summary:
 
 ## 8. Next actions, in order
 
-1. **Empirical test harness** — run one operational prompt against a fixture repository and record the outcome in `_meta/review-log.md`. This is the largest credibility gap: every `operational` label is currently a structural review.
+1. **Empirical test harness** — one executed run now exists (`_meta/empirical-evaluation-01.md`: `DBG-01` against a synthetic fixture, three prompt fixes). Next: a fixture set, a scoring sheet, and fixtures authored by someone other than the prompt author. Every other `operational` label remains a structural review.
 2. Promote `02-engineering/refactoring` (7 stages) — highest-value remaining skeleton.
 3. Promote `03-domains/backend` (8 stages).
 4. **Integration workflow** (`07-workflows/`) for merging independently developed frontend/backend/infra work.

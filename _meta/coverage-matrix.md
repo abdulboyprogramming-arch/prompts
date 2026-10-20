@@ -172,7 +172,7 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Consistency | Adequate | one authoring standard, validator-enforced metadata |
 | Uniqueness | Partial | identifiers unique; no near-duplicate detection |
 | Metadata | Adequate | required keys, validator-enforced |
-| Validation | Adequate structurally; **Missing** empirically | `scripts/validate_library.py`; no recorded real-world runs |
+| Validation | Partial | `scripts/validate_library.py` (structural) + one recorded empirical run of `DBG-01` in `_meta/empirical-evaluation-01.md`, which produced three prompt fixes; 80 operational prompts remain structurally reviewed only |
 | Versioning | Adequate | per-prompt semver tied to maturity |
 | Maintenance | Adequate | roadmap, review log, continuation checkpoint, CI |
 
@@ -206,13 +206,13 @@ Counts are computed from the tables above; they are not estimates.
 | Status | Dimension rows | Workflow rows |
 |--------|---------------:|--------------:|
 | Adequate | 55 | 7 |
-| Partial | 36 | 5 |
+| Partial | 37 | 5 |
 | Missing | 6 | 2 |
 | Defective | 0 | 0 |
 | Indirect | 0 | 0 |
-| **Total assessed** | **97** | **14** |
+| **Total assessed** | **98** | **14** |
 
-**Reading this honestly:** roughly 57% of assessed dimension rows are adequate. The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
+**Reading this honestly:** roughly 56% of assessed dimension rows are adequate. The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
 
 **Closed in 2.1.x:** database engineering (`DB-P01..P05`), dependency/framework upgrades (`DEP-P01..P05`), vertical feature completion (`FC-P01..P04`), independent verification (`WF-VERIFY`), failed-fix escalation (`FIXFAIL-01`), data-loss recovery (`DATALOSS-01`), security incident response (`SECINC-01`).
 

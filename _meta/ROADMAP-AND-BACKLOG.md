@@ -98,7 +98,7 @@ Each promotion requires: full required sections, verification that can fail, fai
 | **Data engineering** (`03-domains/data-engineering/`) | Ingest, quality checks, lineage, large backfills | `data-ml-ai` is a skeleton that conflates pipelines with modelling | P1 | Discovered |
 | **Mobile / embedded / desktop-CLI domain systems** | Entire technology families with distinct constraints (offline, permissions, hardware, packaging) | No coverage at all | P2 | Discovered |
 | **Prototype/spike discipline** (`05-scenarios/prototype/`) | Time-boxed throwaway work that must not leak into production | `from-scratch` assumes the artifact is kept | P3 | Discovered |
-| **Failure-path test harness for prompts** | Empirically test prompts against a fixture repository and record outcomes | No harness; all `operational` labels are structural reviews | P0 (credibility) | Discovered |
+| **Failure-path test harness for prompts** | Empirically test prompts against a fixture repository and record outcomes | One run now exists (`_meta/empirical-evaluation-01.md`, `DBG-01`, 3 prompt fixes) but there is no fixture set, scoring sheet, or second-party authorship | P0 (credibility) | Under investigation |
 | **Near-duplicate detection** | Detect overlapping prompts before they accumulate | Validator checks identifiers and links only | P2 | Discovered |
 | **"Agent handoff" protocol as a reusable component** | Passing a half-finished task between agents without losing state | `WF-HANDOFF` covers stage handoff; not mid-task transfer with uncommitted work | P3 | Discovered |
 | **Cost/latency engineering for AI features as its own stage** | Token spend and latency regressions ship silently | `AI-P05` treats it as one section | P3 | Discovered |

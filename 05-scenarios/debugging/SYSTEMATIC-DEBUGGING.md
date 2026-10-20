@@ -2,7 +2,7 @@
 
 **Identifier:** DBG-01
 **System:** 05-scenarios/debugging
-**Version:** 1.1.0
+**Version:** 1.2.0
 **Maturity:** operational
 **Execution mode:** diagnostic
 **Risk class:** B
@@ -36,8 +36,10 @@ Out of scope: refactoring the affected area, fixing unrelated defects you notice
 1. **Write the defect statement in one sentence:** "When <conditions>, <system> does <observed> instead of <expected>." If you cannot fill this in, your first task is to obtain the missing observation, not to read code.
 2. **Reproduce it.** Get a failing test, a script, or exact manual steps. Record the command and the output. A bug you cannot reproduce is a bug you cannot verify. If reproduction fails, the difference matters: environment, data, timing, version, configuration — enumerate and test them.
 3. **Minimise.** Reduce to the smallest input and the fewest steps that still fail. Minimisation often reveals the cause and always shrinks the search space.
-4. **Localise.** Use `git bisect` (with an automated pass/fail script) when the regression window is known; otherwise use trace/bisect-by-elimination: disable inputs, bypass layers, stub dependencies. Record every elimination and its result — this list is the real progress.
+4. **Localise.** Use `git bisect` (with an automated pass/fail script) when the regression window is known; otherwise use trace/bisect-by-elimination: disable inputs, bypass layers, stub dependencies. **Also vary the invocation context**, which code reading cannot reveal: call the operation twice, in a different order, from two threads, in a long-lived process versus a fresh one, and after a restart. State-leak defects only appear when the call sequence changes. Record every elimination and its result — this list is the real progress.
 5. **Form hypotheses explicitly.** For each: the mechanism, the prediction it makes, and the observation that would falsify it. Rank by likelihood and cheapness to test. Write them down; unstated hypotheses become invisible assumptions.
+
+   Hypothesis classes worth checking in order, because they account for most real defects: shared mutable state (default arguments, module-level caches, singletons, class attributes, request-scoped objects reused across requests); stale or incorrectly scoped caches; ordering and iteration assumptions; timezone and naive/aware datetime mixing; type coercion and precision loss; error paths that swallow failure; concurrency and locking; and configuration differences between environments. A defect that appears only on the *second* invocation is almost always the first item in this list.
 6. **Instrument, don't guess.** Add the minimum temporary logging/breakpoints needed to observe the actual value at the boundary you suspect. Remove instrumentation afterwards. Reading code tells you what should happen; instrumentation tells you what did.
 7. **Identify the cause, not just the symptom.** Ask "why" until you reach a condition that, if changed, prevents the defect. If the cause is a missing assumption (null, empty, ordering, time zone, concurrency), state what must hold.
 8. **Fix minimally.** Change the smallest thing that addresses the cause. Do not fix adjacent issues in the same change.
@@ -46,7 +48,8 @@ Out of scope: refactoring the affected area, fixing unrelated defects you notice
    - The previously passing suite still passes.
    - The fix fails if reverted (proving it is the cause, not a coincidence).
 10. **Add a regression test** that fails on the pre-fix commit and passes after, at the lowest level that captures the defect.
-11. **Record:** cause, evidence, fix, verification, and the conditions under which the defect could recur.
+11. **Explain why the tests missed it.** Name the assumption the suite made (single call, single user, single timezone, mocked dependency) and state whether a new test closes it or the whole suite needs that axis added. A fix without this leaves the same class of defect undetected elsewhere.
+12. **Record:** cause, evidence, fix, verification, why the suite missed it, and the conditions under which the defect could recur.
 
 ## 5. Decision rules and evidence standard
 
@@ -55,6 +58,7 @@ Out of scope: refactoring the affected area, fixing unrelated defects you notice
 - **Bisect beats speculation** when history exists and the pass/fail check is automatable.
 - **One variable at a time.** Changing two things and observing success teaches nothing.
 - **Distinguish environment from code**: "works on my machine" means at least one environmental factor is load-bearing; find it, because it will cause incidents in production.
+- **A green suite is not evidence of correctness.** It is evidence that the suite's assumptions hold. When a real defect exists, the suite is part of the problem.
 - **Timebox the search:** if three hypotheses fail, stop and re-read the evidence from the beginning; repeated guessing in the same direction is the main failure mode of debugging.
 
 ## 6. Verification
@@ -67,6 +71,7 @@ Out of scope: refactoring the affected area, fixing unrelated defects you notice
 | Surrounding behaviour intact | full relevant suite | no new failures |
 | Fix minimal | diff review | only the causal change |
 | Instrumentation removed | diff review | no debug leftovers |
+| Why the suite missed it | inspect | assumption named, not "tests were weak" |
 
 ## 7. Failure handling
 
@@ -89,6 +94,7 @@ Risk class B: code changes on a branch, local commands. Do not debug against pro
 - [ ] Cause stated with evidence and the invariant it violates.
 - [ ] Minimal fix applied; instrumentation removed.
 - [ ] Reproduction passes; regression test fails pre-fix; suite green.
+- [ ] Explanation of why the existing tests missed the defect.
 - [ ] Recurrence conditions noted.
 
 ## 10. Deliverables and handover

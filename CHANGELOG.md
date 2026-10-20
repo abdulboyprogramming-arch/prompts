@@ -19,6 +19,8 @@ Gap-discovery cycle driven by a new coverage matrix rather than the existing roa
 
 ### Changed
 
+- `05-scenarios/debugging/SYSTEMATIC-DEBUGGING.md` → v1.2.0, after the library's first empirical execution (`_meta/empirical-evaluation-01.md`): treat a green suite as evidence it encodes the bug, vary invocation context when localising, ordered hypothesis classes led by shared mutable state, and a required explanation of why the existing tests missed the defect.
+
 - Root README routing table extended with verification, failed-fix, database, dependency, and feature-completion entries.
 - `_meta/ROADMAP-AND-BACKLOG.md` restructured: completed items marked, and a new "Discovered in 2.1.0" section with nine opportunities, their priority, and five rejected/deferred ideas with reasons.
 - `_meta/coverage-matrix.md` summary counts are computed from the tables, not estimated.
