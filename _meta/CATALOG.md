@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 317 prompts — 0 canonical, 163 operational, 5 draft, 149 skeleton.
+**Totals:** 325 prompts — 0 canonical, 171 operational, 5 draft, 149 skeleton.
 
 ## `00-core`
 
@@ -87,6 +87,13 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `W3-P06` | PROMPT 06 — Validation & Security Checks | skeleton | diagnostic | B | [P06-Validation-Security.md](../01-contribution/web3/general/P06-Validation/P06-Validation-Security.md) |
 | `W3-P07` | PROMPT 07 — PR & Communication | skeleton | implementation | B | [P07-PR-Communication.md](../01-contribution/web3/general/P07-PR/P07-PR-Communication.md) |
 | `W3-P08` | PROMPT 08 — Web3 Contribution Master Orchestrator | skeleton | orchestration | A | [P08-Web3-Contribution-Orchestrator.md](../01-contribution/web3/general/P08-Orchestrator/P08-Web3-Contribution-Orchestrator.md) |
+
+## `02-engineering`
+
+| ID | Stage | Maturity | Mode | Risk | File |
+|----|-------|----------|------|------|------|
+| `SEC-ROT-01` | PROMPT 01 — Secret Rotation: drill it before you need it | operational | implementation | C | [SECRETS-ROTATION.md](../02-engineering/secrets-rotation/SECRETS-ROTATION.md) |
+| `TENANCY-01` | PROMPT 01 — Tenant Isolation Audit | operational | diagnostic | A | [TENANCY-AUDIT.md](../02-engineering/tenancy-audit/TENANCY-AUDIT.md) |
 
 ## `02-engineering/architecture-review`
 
@@ -255,6 +262,13 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `COST-P03` | PROMPT 03 — Optimisation | operational | implementation | C | [P03-Optimisation.md](../03-domains/cost-engineering/P03-Optimisation/P03-Optimisation.md) |
 | `COST-P04` | PROMPT 04 — Guardrails & Unit Economics | operational | planning | B | [P04-Guardrails-Unit-Economics.md](../03-domains/cost-engineering/P04-Guardrails/P04-Guardrails-Unit-Economics.md) |
 
+## `03-domains/data-engineering`
+
+| ID | Stage | Maturity | Mode | Risk | File |
+|----|-------|----------|------|------|------|
+| `DE-P01` | PROMPT 01 — Pipeline Reliability: make the data trustworthy  | operational | audit-remediation | B | [P01-Pipeline-Reliability.md](../03-domains/data-engineering/P01-Pipelines/P01-Pipeline-Reliability.md) |
+| `DE-P02` | PROMPT 02 — Backfill and Reconciliation | operational | implementation | C | [P02-Backfill-Reconciliation.md](../03-domains/data-engineering/P02-Backfills/P02-Backfill-Reconciliation.md) |
+
 ## `03-domains/data-ml-ai`
 
 | ID | Stage | Maturity | Mode | Risk | File |
@@ -350,6 +364,12 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `CHAIN-P02` | PROMPT 02 — Key Custody and Deployment Authority | operational | planning | C | [P02-Key-Custody.md](../03-domains/web3/P02-Custody/P02-Key-Custody.md) |
 | `CHAIN-P03` | PROMPT 03 — Contract Upgrade and Storage Migration | operational | implementation | D | [P03-Upgrade-Migration.md](../03-domains/web3/P03-Upgrade/P03-Upgrade-Migration.md) |
 | `CHAIN-P04` | PROMPT 04 — Exploit Response: funds are leaving right now | operational | specialised | D | [P04-Exploit-Response.md](../03-domains/web3/P04-Exploit/P04-Exploit-Response.md) |
+
+## `04-process`
+
+| ID | Stage | Maturity | Mode | Risk | File |
+|----|-------|----------|------|------|------|
+| `A11Y-01` | PROMPT 01 — Accessibility Conformance Audit (WCAG 2.2 AA) | operational | diagnostic | A | [ACCESSIBILITY-AUDIT.md](../04-process/accessibility-audit/ACCESSIBILITY-AUDIT.md) |
 
 ## `04-process/agent-context`
 
@@ -523,10 +543,12 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
 | ID | Stage | Maturity | Mode | Risk | File |
 |----|-------|----------|------|------|------|
+| `JOBS-01` | PROMPT 01 — Background Jobs That Stop Doing Damage | operational | diagnostic | B | [BACKGROUND-JOBS.md](../05-scenarios/background-jobs/BACKGROUND-JOBS.md) |
 | `DATALOSS-01` | Data-Loss Recovery | operational | specialised | D | [DATA-LOSS-RECOVERY.md](../05-scenarios/data-loss/DATA-LOSS-RECOVERY.md) |
 | `DBG-01` | Systematic Debugging | operational | diagnostic | B | [SYSTEMATIC-DEBUGGING.md](../05-scenarios/debugging/SYSTEMATIC-DEBUGGING.md) |
 | `DEPLOY-01` | Deploy to a Managed Platform | operational | implementation | C | [DEPLOY-TO-PLATFORM.md](../05-scenarios/deployment-target/DEPLOY-TO-PLATFORM.md) |
 | `DEVENV-01` | Reproducible Dev Environment — one command, every editor, an | operational | implementation | B | [DEV-ENVIRONMENT.md](../05-scenarios/dev-environment/DEV-ENVIRONMENT.md) |
+| `EMAIL-01` | PROMPT 01 — Email Deliverability: it is not in the spam fold | operational | diagnostic | B | [EMAIL-DELIVERABILITY.md](../05-scenarios/email-deliverability/EMAIL-DELIVERABILITY.md) |
 | `FIXFAIL-01` | Failed Fix Escalation | operational | diagnostic | B | [FAILED-FIX-ESCALATION.md](../05-scenarios/failed-fix/FAILED-FIX-ESCALATION.md) |
 | `FLAKE-01` | Flaky Test Triage | operational | diagnostic | B | [FLAKY-TEST-TRIAGE.md](../05-scenarios/flaky-tests/FLAKY-TEST-TRIAGE.md) |
 | `HACK-01` | Hackathon Sprint — build the demo that gets judged | operational | autonomous-completion | B | [HACKATHON-SPRINT.md](../05-scenarios/hackathon-sprint/HACKATHON-SPRINT.md) |
@@ -555,6 +577,7 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | ID | Stage | Maturity | Mode | Risk | File |
 |----|-------|----------|------|------|------|
 | `WF-HANDOFF` | Handoff Contract | operational | planning | A | [HANDOFF-CONTRACT.md](../07-workflows/HANDOFF-CONTRACT.md) |
+| `WF-AGENTADOPT` | Workflow — Adopting Coding Agents Without Losing Control | operational | orchestration | B | [agent-adoption.md](../07-workflows/agent-adoption.md) |
 | `WF-AUDIT-REMEDIATE` | Workflow — Audit → Remediate | draft | audit-remediation | B | [audit-to-remediation.md](../07-workflows/audit-to-remediation.md) |
 | `WF-IMPROVE` | Workflow — Continuous Improvement | draft | continuous-improvement | B | [continuous-improvement.md](../07-workflows/continuous-improvement.md) |
 | `WF-INTEGRATE` | Workflow — Cross-Layer Integration | operational | specialised | B | [cross-layer-integration.md](../07-workflows/cross-layer-integration.md) |

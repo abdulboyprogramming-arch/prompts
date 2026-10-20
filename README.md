@@ -4,7 +4,7 @@ A structured collection of prompts for AI coding agents, organised across the en
 
 Every prompt declares what it does, what it may change, how much it can be trusted, and what it will not do. Nothing here claims a capability its files do not have — the repository is validated against that rule on every change.
 
-**Browse everything:** [`GALLERY.md`](GALLERY.md) lists all 317 prompts with a direct link and one line on when to use each. It is generated from the prompts themselves and CI fails if it falls out of date, so it cannot drift from the library.
+**Browse everything:** [`GALLERY.md`](GALLERY.md) lists all 325 prompts with a direct link and one line on when to use each. It is generated from the prompts themselves and CI fails if it falls out of date, so it cannot drift from the library.
 
 ## Start here
 
@@ -25,6 +25,7 @@ Pick the row that matches your situation. Do not read the whole repository first
 | I need to know what my coding agent can actually do | [`03-domains/ai-agentic/P07`](03-domains/ai-agentic/P07-Permissions/P07-Agent-Permissions.md) | MCP servers, shell, egress, credentials |
 | I want to generate a new prompt from a description | [`00-core/prompt-engineering/PROMPT-FORGE.md`](00-core/prompt-engineering/PROMPT-FORGE.md) | Compose / improve / decompose |
 | I need to know whether a prompt change is better | [`00-core/prompt-engineering/PROMPT-REGRESSION.md`](00-core/prompt-engineering/PROMPT-REGRESSION.md) | Fixtures, runs, score, decision |
+| My team is adopting coding agents and I need guardrails | [`07-workflows/agent-adoption.md`](07-workflows/agent-adoption.md) | Evidence, permissions, oversight, rollback |
 | I want to build and validate a whole prompt family | workflow [`prompt-authoring-pipeline`](07-workflows/prompt-authoring-pipeline.md) | Describe → generate → prove → integrate |
 | I am shipping a smart contract or reviewing one | [`03-domains/web3/`](03-domains/web3/README.md) | Threat model → custody → upgrade |
 | Funds are leaving a contract right now | [`03-domains/web3/P04`](03-domains/web3/P04-Exploit/P04-Exploit-Response.md) | Class D: contain first |
@@ -33,6 +34,12 @@ Pick the row that matches your situation. Do not read the whole repository first
 | I am pushing firmware to devices in the field | [`03-domains/embedded-iot/P01`](03-domains/embedded-iot/P01-OTA/P01-Firmware-OTA.md) | Class D: rollback or nothing |
 | Devices stopped reporting and I cannot reach them | [`03-domains/embedded-iot/P02`](03-domains/embedded-iot/P02-Fleet/P02-Fleet-Health.md) | Cohorts before dispatch |
 | A save file or a game's multiplayer is broken | [`03-domains/games/`](03-domains/games/README.md) | GD-P09 saves, GD-P10 netcode |
+| I suspect one customer can see another's data | [`02-engineering/tenancy-audit/`](02-engineering/tenancy-audit/TENANCY-AUDIT.md) | Two synthetic tenants, every store |
+| A job fired twice, or never | [`05-scenarios/background-jobs/`](05-scenarios/background-jobs/BACKGROUND-JOBS.md) | Idempotency, overlap, retries |
+| Password resets and receipts are not arriving | [`05-scenarios/email-deliverability/`](05-scenarios/email-deliverability/EMAIL-DELIVERABILITY.md) | SPF/DKIM/DMARC alignment, streams |
+| I need WCAG 2.2 AA conformance, not a scanner report | [`04-process/accessibility-audit/`](04-process/accessibility-audit/ACCESSIBILITY-AUDIT.md) | Keyboard + screen reader first |
+| A dashboard is wrong, empty, or stale | [`03-domains/data-engineering/`](03-domains/data-engineering/README.md) | Tests, contracts, backfills |
+| A key may be exposed and rotation is untested | [`02-engineering/secrets-rotation/`](02-engineering/secrets-rotation/SECRETS-ROTATION.md) | Inventory, runbook, drill |
 | I am starting from nothing | [`02-engineering/from-scratch/`](02-engineering/from-scratch/README.md) + workflow [`greenfield-delivery`](07-workflows/greenfield-delivery.md) | Structural only (skeleton) |
 | An agent says the work is complete and I need to trust it | [`07-workflows/independent-verification.md`](07-workflows/independent-verification.md) | Diagnostic |
 | Data was deleted or corrupted and I need it back | [`05-scenarios/data-loss/`](05-scenarios/data-loss/DATA-LOSS-RECOVERY.md) | Containment first |
@@ -114,6 +121,10 @@ In short: take it, change it, ship it — say where it came from, and do not pre
 | [`03-domains/web3/`](03-domains/web3/README.md) | 4 | operational |
 | [`03-domains/mobile/`](03-domains/mobile/README.md) | 3 | operational |
 | [`03-domains/embedded-iot/`](03-domains/embedded-iot/README.md) | 2 | operational |
+| [`03-domains/data-engineering/`](03-domains/data-engineering/README.md) | 2 | operational |
+| [`02-engineering/tenancy-audit/`](02-engineering/tenancy-audit/TENANCY-AUDIT.md) | 1 | operational |
+| [`02-engineering/secrets-rotation/`](02-engineering/secrets-rotation/SECRETS-ROTATION.md) | 1 | operational |
+| [`04-process/accessibility-audit/`](04-process/accessibility-audit/ACCESSIBILITY-AUDIT.md) | 1 | operational |
 | [`00-core/prompt-engineering/`](00-core/prompt-engineering/PROMPT-FORGE.md) | 2 | operational (GEN-P01, GEN-P02) |
 | [`04-process/privacy-requests/`](04-process/privacy-requests/README.md) | 3 | operational |
 | [`04-process/git-operations/`](04-process/git-operations/README.md) | 5 | operational |
@@ -123,9 +134,9 @@ In short: take it, change it, ship it — say where it came from, and do not pre
 | [`04-process/handover/`](04-process/handover/README.md) | 5 | operational |
 | [`04-process/agent-context/`](04-process/agent-context/README.md) | 4 | operational |
 | [`07-workflows/`](07-workflows/README.md) | 9 | mixed (3 operational: verification, integration, multi-agent) |
-| [`05-scenarios/`](05-scenarios/README.md) | 17 | mixed (12 operational, 5 skeleton) |
+| [`05-scenarios/`](05-scenarios/README.md) | 19 | mixed (14 operational, 5 skeleton) |
 
-Everything else — backend, frontend, devops-infra, data-ml-ai, the seven game-design stages, architecture-review, from-scratch, migration, project management, research, systems improvement, language design, packages, web/web3 contribution — is a **skeleton**: a defensible sequence of stages with outline prompts. Those folders are useful for structuring a human-led session today; they are not yet safe to hand to an autonomous agent. Promotion order is in [`_meta/ROADMAP-AND-BACKLOG.md`](_meta/ROADMAP-AND-BACKLOG.md); per-scenario coverage with evidence is in [`_meta/coverage-matrix.md`](_meta/coverage-matrix.md).
+Everything else — backend, frontend, devops-infra, data-ml-ai, the eight game-design stages, architecture-review, from-scratch, migration, project management, research, systems improvement, language design, packages, web/web3 contribution — is a **skeleton**: a defensible sequence of stages with outline prompts. Those folders are useful for structuring a human-led session today; they are not yet safe to hand to an autonomous agent. Promotion order is in [`_meta/ROADMAP-AND-BACKLOG.md`](_meta/ROADMAP-AND-BACKLOG.md); per-scenario coverage with evidence is in [`_meta/coverage-matrix.md`](_meta/coverage-matrix.md).
 
 ## Structure
 

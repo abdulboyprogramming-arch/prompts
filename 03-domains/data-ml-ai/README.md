@@ -1,5 +1,7 @@
 # Data / ML / AI Domain System
 
+> **Boundary.** Everything upstream of feature engineering — ingestion, freshness, idempotent loads, backfills, reconciliation — belongs to [`03-domains/data-engineering/`](../data-engineering/README.md) (`DE-P01..P02`). This system starts where the data is already trustworthy and asks what to do with it.
+
 **Status:** Skeleton — 8 stage outlines (skeleton 8). The stages name a sensible sequence but lack the evidence rules, verification, and failure handling that this library requires of `operational`. Treat the system as a plan, not a procedure; see [`_meta/ROADMAP-AND-BACKLOG.md`](../../_meta/ROADMAP-AND-BACKLOG.md).
 **Entry Point:** [`P08-Orchestrator/P08-Data-ML-AI-Orchestrator.md`](P08-Orchestrator/P08-Data-ML-AI-Orchestrator.md)
 

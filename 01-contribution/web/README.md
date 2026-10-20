@@ -14,4 +14,4 @@ Prompt systems specialized for contributing to web projects (frontend, backend, 
 
 ## Currently Available
 
-- **general/** — Operational multi-stage Web Contribution system (entry point for most web contribution work)
+- **general/** — Skeleton multi-stage Web contribution system: 8 stage outlines with sound sequencing but no evidence rules, verification, or failure handling yet. Useful for structuring a human-led session; not safe for unsupervised agent execution (entry point for most web contribution work)

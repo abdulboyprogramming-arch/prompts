@@ -2,6 +2,44 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.16.0] — 2026-10-20
+
+### New — the failures nobody wrote a prompt for
+
+This batch was driven by one question: *what breaks in production that no prompt in this repository would catch?* Each of the six was absent by keyword search, and each is common enough that most teams will meet it.
+
+**`TENANCY-01` — Tenant Isolation Audit** (`02-engineering/tenancy-audit/`)
+Cross-customer leakage is the highest-severity defect class in B2B software, and it had no coverage at all. Store inventory before code review; enforcement classified as database / query-layer / convention (with a count of the surfaces relying on the weakest); seven named leak patterns including cache keys, background-job scope, search filters, object storage keys, and logs; a two-synthetic-tenant regression suite; and existence-disclosure (404 vs 403) as its own finding class.
+
+**`SEC-ROT-01` — Secret Rotation** (`02-engineering/secrets-rotation/`)
+Rotation existed only as "rotate first" inside incident remediation. This treats it as a **capability proven by a drill**: inventory by consumer rather than by store, four classes (compromise, signing, outbound API, infrastructure), overlap-versus-cutover chosen explicitly per class, and the verification that matters — the old credential is *rejected*, not just that the new one works. The 03:00 cron is the test.
+
+**`JOBS-01` — Background Jobs** (`05-scenarios/background-jobs/`)
+Duplicate charges, double emails, stale locks, jobs that quietly stopped. Organising rule: every job eventually runs twice, late, or concurrently with itself. Covers idempotency by constraint rather than check-then-insert, overlap locks with expiry, visibility timeout versus p99 runtime, cursor-based resume, UTC scheduling with an explicit DST test, and dead-letter queues that someone actually watches.
+
+**`EMAIL-01` — Email Deliverability** (`05-scenarios/email-deliverability/`)
+The provider returns `202 Accepted` and the message disappears. DNS-verified SPF (one record, ten-lookup budget), DKIM selectors and key length, and DMARC **alignment** — the distinction most teams miss. Plus transactional/marketing reputation separation, bounce and suppression handling, warm-up, and a rule that no configuration changes before an SMTP response code arrives.
+
+**`A11Y-01` — Accessibility Conformance Audit** (`04-process/accessibility-audit/`)
+Closes backlog #32. WCAG 2.2 AA by testing rather than scanning: keyboard before screen reader before scanner, contrast measured on rendered output, reflow at 320 px and 200% zoom, and the four 2.2 additions (focus not obscured, dragging alternatives, target size, redundant entry). Requires an explicit statement of what was *not* tested.
+
+**`DE-P01`, `DE-P02` — Data Engineering** (`03-domains/data-engineering/`, new domain)
+Closes the coverage matrix's "Data engineering: Missing — `data-ml-ai` conflates pipelines with modelling". P01 asserts on output, not task status, and treats a 90% volume drop as a failure; P02 treats a backfill as a migration with consumers — snapshot, full-scale dry run, atomic per-partition writes, value-level reconciliation, and a delta communicated to whoever used the old numbers. `data-ml-ai` now starts after trustworthy data.
+
+### Library capability
+
+- **Validator:** system READMEs claiming operational no longer escape detection. `README_CLAIM` now matches `**Maturity: operational`; a second rule catches prose "Operational" claims when most stages are outlines and the README does not declare itself mixed. It found two genuine overclaims (`01-contribution/web`, `/web3`, both rewritten to skeleton) and one false positive (`games`, exempted by its "Mixed" declaration).
+- **Deduplication:** a draft SLO stage (`OBS-P06`) was written, compared against `OBS-P03` (which already defines SLIs, error budgets and burn-rate alerting), and **deleted**. Backlog #55 is recorded as rejected-as-duplicate rather than implemented.
+
+### Result
+
+**`WF-AGENTADOPT` — Adopting Coding Agents** (`07-workflows/agent-adoption.md`)
+The addendum named "introducing AI agents into engineering workflows with appropriate evaluation, permissions, oversight, and rollback" as a critical workflow. The library had the parts (`CTX-P01..P04`, `AI-P07`, `WF-VERIFY`) but no procedure that sequences them: measurable objective and baseline, reduced permissions, an oversight model per risk class, a pre-registered pilot, independent verification, the four failure signatures (weakened tests, undeclared refactors, deleted assertions, unexecuted claims), an audit trail, and a drilled rollback that does not depend on the tool's cooperation.
+
+### Result
+
+414 Markdown files, 325 prompts: 171 operational, 5 draft, 149 skeleton. Validator 0 errors / 0 warnings. Coverage **88 adequate / 30 partial / 1 missing** dimensions. Backlog #75–#83 added.
+
 ## [2.15.0] — 2026-10-20
 
 ### New — prompt generation, prompt evaluation, and five specialized domains

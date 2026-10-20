@@ -16,4 +16,4 @@ Prompt systems for contributing to Web3 / blockchain projects (smart contracts, 
 
 ## Currently Available
 
-- **general/** — Operational multi-stage Web3 Contribution system
+- **general/** — Skeleton multi-stage Web3 contribution system: 8 stage outlines with sound sequencing but no evidence rules, verification, or failure handling yet. Useful for structuring a human-led session; not safe for unsupervised agent execution

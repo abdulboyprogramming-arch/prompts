@@ -8,6 +8,7 @@ Engineering process as procedure: how work is verified, reviewed, released, oper
 |------|-------------|-------:|----------|
 | [`testing-qa/`](testing-qa/README.md) | Risk-based test strategy, gap analysis, test implementation, independent verification | 7 | **operational** |
 | [`observability-reliability/`](observability-reliability/README.md) | Signals, SLOs, alerting, runbooks, postmortems | 5 | **operational** |
+| [`accessibility-audit/`](accessibility-audit/ACCESSIBILITY-AUDIT.md) | WCAG 2.2 AA conformance by testing: keyboard, screen reader, contrast, reflow, 2.2 additions | 1 | **operational** |
 | [`release-engineering/`](release-engineering/README.md) | Readiness, versioning, deployment strategy, rollback, post-release verification | 4 | **operational** |
 | [`dependency-management/`](dependency-management/README.md) | Dependency inventory, breaking-change assessment, upgrade execution, verification, policy | 5 | **operational** |
 | [`decommissioning/`](decommissioning/README.md) | Consumer discovery, deprecation, staged shutdown, data and asset retirement | 4 | **operational** |
