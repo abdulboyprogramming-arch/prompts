@@ -36,7 +36,7 @@ TEMPLATE = """# PROMPT {nn} — {title}
 **Execution mode:** {mode}
 **Risk class:** {risk}
 **Depends on:** {depends}
-**Produces:** {produces}
+**Produces:** {produces}{inputs_line}
 **Est. effort:** {effort}
 
 ---
@@ -154,6 +154,7 @@ def main() -> int:
     ap.add_argument("--produces", default="a written record of this stage's output")
     ap.add_argument("--depends", default="the previous stage in this system")
     ap.add_argument("--effort", default="30–60 min")
+    ap.add_argument("--inputs", default="", help="comma-separated UPPER_SNAKE inputs; must be used as {{NAME}} in the body")
     ap.add_argument("--list-systems", action="store_true", help="show systems that already contain prompts")
     ap.add_argument("--force-path", help="override the computed directory (relative to the repository root)")
     args = ap.parse_args()
@@ -199,6 +200,7 @@ def main() -> int:
     version = "0.1.0" if args.maturity == "skeleton" else "1.0.0"
     artifact = f".{slug(args.system.split('/')[-1])}/{args.identifier}.md"
 
+    inputs_line = f"\n**Inputs:** {args.inputs}" if args.inputs else ""
     content = TEMPLATE.format(
         nn=nn,
         title=args.title,
@@ -211,6 +213,7 @@ def main() -> int:
         depends=args.depends,
         produces=args.produces,
         effort=args.effort,
+        inputs_line=inputs_line,
         artifact=artifact,
         **DEFAULTS,
     )

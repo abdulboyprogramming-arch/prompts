@@ -53,6 +53,7 @@ Field rules:
 - `Risk class` — the **highest** action category the prompt can reach: `A` read-only, `B` local mutation, `C` external/network side effect, `D` high-risk. See `00-core/safety-and-security/ACTION-CATEGORIES.md`. A read-only audit prompt must be `A` even if the surrounding workflow is `C`.
 - `Depends on` / `Produces` — identifiers and named artifacts. Use `none` when genuinely none.
 - `Est. effort` — optional but encouraged; helps a human decide whether to run the stage now.
+- `Inputs` — optional but required for any prompt that needs configuration before it can run: comma-separated `UPPER_SNAKE_CASE` names, marked `(optional: NAME)`. Each name must appear in the body as `{{NAME}}`; the validator rejects an undeclared placeholder and warns about an unused declaration. See [`prompt-inputs.md`](prompt-inputs.md).
 - `Gallery` — optional. One sentence describing when to use this prompt, shown in `GALLERY.md`. Without it the gallery uses the first sentence of the objective, which is usually adequate; supply it when the objective is structural ("Sequence the work…") rather than situational.
 
 Files that are neither prompts nor allowed documents (`README.md`, `INDEX.md`, the root docs, `00-core/` references) fail validation, so nothing can silently go missing from the catalog and gallery. If a file is supporting material rather than a prompt, mark it with `<!-- not-a-prompt -->` and state in the file what it is.

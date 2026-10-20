@@ -138,3 +138,19 @@ Recorded here rather than built immediately, because quality over volume applies
 
 - `scripts/find_overlaps.py` — 5-word shingle containment + Jaccard across all prompts; CI fails above 0.55 containment (currently nothing is close; the highest pair is 0.18 inside the templated contribution skeletons).
 - `scripts/new_prompt.py` — scaffolds a prompt with correct metadata and all ten sections, refusing overwrites and printing the index-regeneration commands.
+
+## Discovered in 2.7.0 — prompt inputs and version control
+
+| # | Problem | Why existing material is insufficient | Home | Priority | Status |
+|---|---------|---------------------------------------|------|----------|--------|
+| 15 | "The prompt says 'the target area' — which area?" | No prompt declared what it needed; `{{}}` placeholders: 0 occurrences, `**Inputs:**`: 0. Agents guessed scope, and multi-stage runs drifted stage to stage | `_meta/prompt-inputs.md`, `00-core/inputs/RUN-SHEET.md`, validator rule | P0 | **Implemented** (convention, validator, run sheet; retrofit of existing prompts is incremental) |
+| 16 | "A merge conflict and the agent took 'ours' for 40 files" | Git appeared only as a prohibition and a push prompt; no resolution procedure, no intent analysis | `04-process/git-operations/P02` | P0 | **Implemented** |
+| 17 | "I rewrote history on a shared branch and erased a colleague's work" | "Never rewrite history" was the whole guidance; no shared-vs-local gate, no lease, no coordination protocol | `GIT-P03` | P0 | **Implemented** |
+| 18 | "My commits vanished after a bad rebase" | `reflog` appeared in zero prompts; recovery was undocumented and therefore unused | `GIT-P04` | P0 | **Implemented** |
+| 19 | "Deleting a secret in a new commit does not remove it" | `00-core` covers handling secrets, not purging them from history, and not the rotate-first rule | `GIT-P03` §6 | P0 | **Implemented** |
+| 20 | "We re-argue branch and merge policy every quarter" | No recorded convention, so no decision could be referenced | `GIT-P05` | P1 | **Implemented** |
+| 21 | Lockfiles conflict on every branch merge | Mentioned nowhere; causes routine merge pain and broken installs | `GIT-P05` hazard checklist + `GIT-P02` regeneration rule | P1 | **Implemented** (as procedure, not a dedicated prompt) |
+| 22 | CI clones the full history of a large monorepo | Not covered; shallow/partial clones and sparse checkout change what history-based prompts can do | `GIT-P05` appendix | P2 | Discovered |
+| 23 | Large binaries bloat the repository and cannot be merged | LFS: 0 mentions; binary conflict handling exists, migration does not | `GIT-P05` / a future LFS migration stage | P2 | Discovered |
+| 24 | Signed commits and provenance requirements | 0 mentions; increasingly required by enterprise buyers (`GOV-*` will ask for it) | `GIT-P05` + `GOV-P02` evidence | P2 | Discovered |
+| 25 | Prompts cannot be composed programmatically because inputs are prose | Fixed by 2.7.0, but only new prompts declare inputs; a retrofit pass would make the whole library machine-runnable | `_meta/prompt-inputs.md` migration | P1 | Under investigation |

@@ -103,6 +103,7 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Cost / FinOps | **Adequate** | `COST-P01..P04` (new) — attribution, waste diagnosis sized in money, safe optimisation, guardrails and unit economics |
 | Privacy / subject rights | **Adequate** | `PRIV-P01..P03` (new) — cross-system subject data inventory, verified export/deletion, enforced retention |
 | Money correctness | **Adequate** | `PAY-P01..P03` (new) — representation and invariants, idempotency and unknown outcomes, provider reconciliation and change-safety checklist |
+| Version control operations | **Adequate** | `GIT-P01..P05` (new) — state check before destructive commands, conflict resolution by intent, history repair with a shared-history gate, reflog-based recovery, written conventions. Previously only prohibitions existed |
 | Distributed systems | Partial | architecture/audit cover analysis; no design or failure-mode prompt |
 | Mobile | **Missing** | No system; `03-domains/README` states the gap |
 | Embedded / firmware | **Missing** | No system |
@@ -178,6 +179,7 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Validation | Partial | `scripts/validate_library.py` (structural) + one recorded empirical run of `DBG-01` in `_meta/empirical-evaluation-01.md`, which produced three prompt fixes; 80 operational prompts remain structurally reviewed only |
 | Versioning | Adequate | per-prompt semver tied to maturity |
 | Maintenance | Adequate | roadmap, review log, continuation checkpoint, CI |
+| Prompt input configuration | Partial | `_meta/prompt-inputs.md` + `**Inputs:**`/`{{NAME}}` validation + `00-core/inputs/RUN-SHEET.md`; new prompts declare inputs, existing prompts still use prose and are retrofitted as touched |
 
 ---
 
@@ -208,14 +210,16 @@ Counts are computed from the tables above; they are not estimates.
 
 | Status | Dimension rows | Workflow rows |
 |--------|---------------:|--------------:|
-| Adequate | 64 | 9 |
-| Partial | 33 | 5 |
+| Adequate | 65 | 9 |
+| Partial | 34 | 5 |
 | Missing | 4 | 0 |
 | Defective | 0 | 0 |
 | Indirect | 0 | 0 |
-| **Total assessed** | **101** | **14** |
+| **Total assessed** | **103** | **14** |
 
 **Reading this honestly:** roughly 63% of assessed dimension rows are adequate. The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
+
+**Closed in 2.7.0:** git operations (`GIT-P01..P05`), prompt inputs and variables (`_meta/prompt-inputs.md`).
 
 **Closed in 2.6.0:** money correctness (`PAY-P01..P03`).
 

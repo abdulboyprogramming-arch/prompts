@@ -17,6 +17,7 @@ This repository is a library of engineering prompts. Changes are content changes
 - **Do not delete unexplained material.** Deprecate into `archive/` with a note; retire identifiers rather than reusing them.
 - **Preserve existing work.** If the working tree has changes you did not make, inspect them before editing; never revert them.
 - **No empty folders, no placeholder-only files.** A folder earns its place with content at `draft` or above.
+- **Declare inputs, not prose.** A prompt that needs a path, environment, tolerance, or approval declares `**Inputs:**` and uses `{{NAME}}` in the body; see `_meta/prompt-inputs.md`. The validator enforces agreement between the two.
 - **Scaffold rather than copy.** `python3 scripts/new_prompt.py --system <dir> --identifier <ID> --title "<Title>"` writes the metadata block and all ten sections with the right version for the maturity you choose; it never overwrites.
 - **Keep identifiers unique and system-prefixed** (`AUDIT-P03`, `REC-P01`), matching `^[A-Z][A-Z0-9]*(-[A-Z0-9]+)*$`.
 - **Risk class must be honest.** Read-only work is `A`, even when the surrounding system is `B`. Do not describe destructive actions in an `A` prompt unless they are explicitly gated.

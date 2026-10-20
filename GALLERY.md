@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE — do not edit by hand. Run: python3 scripts/generate_gallery.py --write -->
 
-Every prompt in the library — **276** of them — with a direct link and the situation it is for, plus **7** foundational reference documents.
+Every prompt in the library — **281** of them — with a direct link and the situation it is for, plus **8** foundational reference documents.
 Generated from the prompt files, so it cannot drift from them; CI fails if this file is stale.
 
 **Reading the columns**
@@ -22,12 +22,12 @@ Generated from the prompt files, so it cannot drift from them; CI fails if this 
 | [01-contribution — contributing to open source](#01-contribution--contributing-to-open-source) | 48 | Stage systems for contributing to an unfamiliar project. |
 | [02-engineering — building, auditing, and recovering code](#02-engineering--building-auditing-and-recovering-code) | 78 | Work on an existing codebase: audit, repair, complete, upgrade. |
 | [03-domains — domain-specific engineering](#03-domains--domain-specific-engineering) | 57 | Stack-specific practice: data, AI, and the domains still being built out. |
-| [04-process — delivering software responsibly](#04-process--delivering-software-responsibly) | 69 | The lifecycle around code: testing, release, observability, dependency and governance. |
+| [04-process — delivering software responsibly](#04-process--delivering-software-responsibly) | 74 | The lifecycle around code: testing, release, observability, dependency and governance. |
 | [05-scenarios — single-session, high-urgency situations](#05-scenarios--single-session-high-urgency-situations) | 11 | One prompt, one session, one pressing situation. |
 | [06-interactive — conversations that clarify a request](#06-interactive--conversations-that-clarify-a-request) | 4 | Use when the request is vague and needs to be scoped first. |
 | [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 9 | Composed sequences that route between systems and stop at human gates. |
 
-*Maturity across the library: 107 operational, 6 draft, 163 skeleton, 276 total.*
+*Maturity across the library: 112 operational, 6 draft, 163 skeleton, 281 total.*
 
 ---
 
@@ -398,6 +398,16 @@ The lifecycle around code: testing, release, observability, dependency and gover
 | `DOC-P07` | [Review & Validation](04-process/documentation/P07-Review/P07-Review-Validation.md) | Validate that the documentation is accurate, clear, and useful. | skeleton | B |
 | `DOC-P08` | [Documentation Master Orchestrator](04-process/documentation/P08-Orchestrator/P08-Documentation-Orchestrator.md) | Runs the documentation system end to end: gates, routing, and final acceptance. | skeleton | A |
 
+### git-operations · 5 prompts
+
+| ID | Prompt | Use it for | Maturity | Risk |
+|---|---|---|---|---|
+| `GIT-P01` | [State & Safety Check](04-process/git-operations/P01-State/P01-State-Safety-Check.md) | Answers: what is uncommitted, unpushed, in progress, recoverable, and shared — for ⟨REPO_PATH⟩ on ⟨BRANCH⟩. <br>**Inputs:** `REPO_PATH, BRANCH, BASE_REF` | operational | A |
+| `GIT-P02` | [Conflict Resolution](04-process/git-operations/P02-Conflicts/P02-Conflict-Resolution.md) | Resolve every conflict with a justified decision per hunk, then prove the result preserves both intents by building and testing. <br>**Inputs:** `REPO_PATH, BRANCH, BASE_REF` | operational | B |
+| `GIT-P03` | [History Repair](04-process/git-operations/P03-History/P03-History-Repair.md) | Produce the intended history with the least destructive method, on a branch whose safety has been established. <br>**Inputs:** `REPO_PATH, BRANCH, BASE_REF, SHARED_HISTORY, APPROVER` | operational | D |
+| `GIT-P04` | [Recovery](04-process/git-operations/P04-Recovery/P04-Recovery.md) | Restore the lost commit, branch, or file, using git's own records, without disturbing unrelated work. <br>**Inputs:** `REPO_PATH, LOST_REF, BRANCH` | operational | B |
+| `GIT-P05` | [Hygiene & Collaboration](04-process/git-operations/P05-Hygiene/P05-Hygiene-Collaboration.md) | Produce a short, enforceable convention covering branch model, commit granularity, merge strategy, review gates, tags, and the repository hazards specific to this… <br>**Inputs:** `REPO_PATH, TEAM_SIZE, RELEASE_CADENCE` | operational | A |
+
 ### governance-compliance · 3 prompts
 
 | ID | Prompt | Use it for | Maturity | Risk |
@@ -544,6 +554,7 @@ documents rather than staged prompts, so they carry no identifier or maturity la
 |---|---|---|
 | [Multi-Stage Handover Protocol](00-core/agent-orchestration/MULTI-STAGE-HANDOVER.md) | A workflow spans more than one session and the next agent must continue without re-deriving context. | A |
 | [Recovery & Failure Handling](00-core/agent-orchestration/RECOVERY-AND-FAILURE.md) | A stage fails, stalls, or produces something unverifiable, and the workflow must decide whether to retry, escalate, or stop. | A |
+| [Run Sheet — fill this in once per engagement](00-core/inputs/RUN-SHEET.md) | REPO_PATH: BASE_REF: BRANCH: TARGET_AREA: OUT_OF_SCOPE | A |
 | [Prompt Quality Bar](00-core/prompt-engineering/QUALITY-BAR.md) | You are writing or reviewing a prompt and need the minimum bar it must clear before anyone uses it. | A |
 | [Stage Prompt Template (superseded)](00-core/prompt-engineering/STAGE-PROMPT-TEMPLATE.md) | You need the legacy stage-prompt skeleton for reference. Superseded by _meta/prompt-template.md. | A |
 | [Action Categories & Authorization Boundaries](00-core/safety-and-security/ACTION-CATEGORIES.md) | You must classify an action as read-only, a local mutation, an external side effect, or high-risk before authorising it. | A |

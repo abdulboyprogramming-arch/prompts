@@ -15,6 +15,7 @@ This repository is a curated library, not a collection bin. Contributions are ju
 |-------------|-----|
 | A real gap, stated | Duplicates dilute the library; near-duplicates are worse than one strong prompt |
 | Complete metadata block | Enables the catalog, validation, and safety review |
+| Declared inputs | `**Inputs:**` + `{{NAME}}` placeholders wherever the prompt needs configuration — see `_meta/prompt-inputs.md` |
 | Maturity label that matches the content | A `skeleton` contribution is welcome; a dishonest `operational` one is not |
 | Verification that can fail | Without it the prompt cannot be trusted |
 | Failure handling | Real sessions get stuck; the prompt must say what to do |

@@ -2,6 +2,36 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.7.0] — 2026-10-20
+
+Two gaps found by asking questions the library could not answer: "what do I do when a merge conflicts?" and "which repository is 'the target area'?"
+
+### Added — `04-process/git-operations/` (5 stages)
+
+Git had only ever appeared as a prohibition ("never force-push") and a publication step. The situations themselves had no procedure.
+
+- **GIT-P01 State check** — read-only, mandatory before any destructive command: detects the five in-progress operation markers (merge, rebase, cherry-pick, bisect, revert), inventories uncommitted and unpushed work, stashes and worktrees, records a reflog snapshot with its expiry, assesses whether the branch is shared, and takes three-way backups of work at risk.
+- **GIT-P02 Conflicts** — classifies conflicts by type (textual, modify/delete, both-added, rename, binary, submodule, lockfile), requires each side's intent to be stated before editing, forbids wholesale `--ours`, regenerates lockfiles rather than merging them, and searches for semantic conflicts the merge cannot see.
+- **GIT-P03 History repair** — gates on whether history is shared and who authorised it; prefers a corrective commit over a rewrite; backs up before the first rebase command; uses `--force-with-lease` only; mandates **rotate the secret before purging it**, and records the old→new SHA map so dropped commits are named rather than lost.
+- **GIT-P04 Recovery** — preserve evidence (`reflog` dump, `.git` copy) before diagnosing; a symptom→cause→mechanism table covering reset, deleted branch, rebase drop, stash loss, force push, detached HEAD, committed deletion; recovers to a *new* ref so recovery cannot create a second casualty; forbids `gc`/`prune` mid-recovery.
+- **GIT-P05 Hygiene** — observes current practice before prescribing, picks one merge strategy, sets review gates with an enforcement mechanism per rule (or an honest "convention only"), and covers lockfiles, binaries, submodules, line endings, and secret scanning.
+
+### Added — prompt inputs and variables
+
+- `_meta/prompt-inputs.md` — normative convention: `**Inputs:** NAME, NAME` in metadata, `{{NAME}}` in the body, defaults and fallbacks stated in §3, `SECRET_` naming for sensitive values, and the anti-patterns ("ask the user for anything you need", inputs that duplicate what the repo already states).
+- `00-core/inputs/RUN-SHEET.md` — a fill-in sheet per engagement, with a mandatory `OUT_OF_SCOPE` line, minimal sheets for six common situations, and the rule that prompts echo the sheet into their output.
+- Validator: an undeclared `{{PLACEHOLDER}}` is an error, an unused declaration is a warning, malformed or lowercase names are errors, and fenced blocks are ignored so examples are never validated.
+- `scripts/new_prompt.py --inputs` writes the declaration; the authoring standard, template, `AGENTS.md`, and `CONTRIBUTING.md` document the convention.
+
+### Changed
+
+- Coverage matrix gains two rows (version control operations: adequate; prompt input configuration: partial, because only new prompts declare inputs).
+- Backlog gains eleven entries, including the inputs retrofit (P1), shallow/partial clone support (P2), LFS migration (P2), and signed-commit provenance (P2).
+
+### Result
+
+355 Markdown files, 281 prompts: 112 operational, 6 draft, 163 skeleton. Validator 0 errors / 0 warnings.
+
 ## [2.6.0] — 2026-10-20
 
 ### Added — `03-domains/payments/` (3 stages)

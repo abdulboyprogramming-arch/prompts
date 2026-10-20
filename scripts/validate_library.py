@@ -72,6 +72,8 @@ DESTRUCTIVE = re.compile(
     r"revoke (?:the )?(?:key|token|access)|rotate (?:the )?(?:key|secret))",
     re.IGNORECASE,
 )
+INPUT_NAME = re.compile(r"\b[A-Z][A-Z0-9]*(?:_[A-Z0-9]+)*\b")
+PLACEHOLDER = re.compile(r"\{\{\s*([^{}]*?)\s*\}\}")
 STATUS_OVERCLAIM = re.compile(r"(production-ready|status:\s*\**\s*operational|complete and ready)", re.IGNORECASE)
 
 
@@ -137,6 +139,46 @@ def is_archive(rel: str) -> bool:
 
 
 TOP_LEVEL_DOCS = {"README.md", "AGENTS.md", "CHANGELOG.md", "CONTRIBUTING.md", "PROJECT-STATUS.md", "GALLERY.md"}
+
+
+def strip_fences(text: str) -> str:
+    """Drop fenced code blocks so example placeholders are never validated."""
+    out, in_fence = [], False
+    for line in text.splitlines():
+        if line.lstrip().startswith("```"):
+            in_fence = not in_fence
+            continue
+        if not in_fence:
+            out.append(line)
+    return "\n".join(out)
+
+
+def check_inputs(doc: Doc) -> tuple[list[str], list[str]]:
+    """A declared `Inputs:` list must agree with the {{PLACEHOLDER}}s in the body."""
+    errors: list[str] = []
+    warnings: list[str] = []
+    declared_raw = doc.meta.get("Inputs")
+    body = strip_fences(doc.text)
+
+    used = set()
+    for raw in PLACEHOLDER.findall(body):
+        if not re.fullmatch(r"[A-Z][A-Z0-9]*(?:_[A-Z0-9]+)*", raw):
+            errors.append(f"{doc.rel}: malformed placeholder '{{{{{raw}}}}}' — use UPPER_SNAKE_CASE")
+            continue
+        used.add(raw)
+
+    declared = set(INPUT_NAME.findall(declared_raw)) if declared_raw else set()
+    if declared_raw:
+        for token in re.split(r"[,\n]", declared_raw.replace("(", ",").replace(")", ",")):
+            token = re.sub(r"^\s*optional\s*:\s*", "", token).strip()
+            if token and re.fullmatch(r"[a-z][a-z0-9_]*", token):
+                errors.append(f"{doc.rel}: input '{token}' should be UPPER_SNAKE_CASE")
+
+    for name in sorted(used - declared):
+        errors.append(f"{doc.rel}: placeholder {{{{{name}}}}} is not declared in `**Inputs:**`")
+    for name in sorted(declared - used):
+        warnings.append(f"{doc.rel}: input {name} is declared but never used as a placeholder")
+    return errors, warnings
 
 
 def check(docs: list[Doc]) -> tuple[list[str], list[str]]:
@@ -289,6 +331,12 @@ def check(docs: list[Doc]) -> tuple[list[str], list[str]]:
                 f"{readme.rel}: advertises '{word}' while all "
                 f"{len(stages)} stages are skeleton"
             )
+
+    for d in docs:
+        if d.is_prompt and d.rel.split(os.sep)[0] not in TOOLING_DIRS:
+            e, w = check_inputs(d)
+            errors.extend(e)
+            warnings.extend(w)
 
     for d in docs:
         if is_archive(d.rel) or d.is_prompt:

@@ -2,7 +2,7 @@
 
 **Identifier:** META-TEMPLATE
 **System:** _meta
-**Version:** 2.0.0
+**Version:** 2.1.0
 **Maturity:** draft
 **Execution mode:** planning
 **Risk class:** A
@@ -10,6 +10,10 @@
 **Produces:** a new prompt file that satisfies `_meta/prompt-authoring-standard.md`
 
 Copy the block below into a new file, replace every `ANGLE-BRACKET` field, delete sections that genuinely do not apply (and say why in a one-line note), then run `python3 scripts/validate_library.py`.
+
+**Or scaffold it:** `python3 scripts/new_prompt.py --system <dir> --identifier <ID> --title "<Title>"` writes this structure with the right version for the maturity you choose, including the `Inputs` line.
+
+**Inputs:** if the prompt needs anything the agent cannot safely infer — a path, an environment, a tolerance, an approver — declare it in `**Inputs:**` and use `{{NAME}}` in the body. The validator fails when the two disagree. See `_meta/prompt-inputs.md`.
 
 The metadata block must be the first thing after the H1 — the validator parses it and the catalog is generated from it.
 
@@ -26,6 +30,7 @@ The metadata block must be the first thing after the H1 — the validator parses
 **Risk class:** A
 **Depends on:** SYS-P02
 **Produces:** `SYS_STRUCTURE.md`
+**Inputs:** REPO_PATH, TARGET_AREA (optional: BASE_REF)
 **Est. effort:** 15–30 min
 
 ---

@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 276 prompts — 0 canonical, 107 operational, 6 draft, 163 skeleton.
+**Totals:** 281 prompts — 0 canonical, 112 operational, 6 draft, 163 skeleton.
 
 ## `01-contribution/language-design`
 
@@ -358,6 +358,16 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `DOC-P06` | PROMPT 06 — Writing & Improvement | skeleton | implementation | B | [P06-Writing-Improvement.md](../04-process/documentation/P06-Writing/P06-Writing-Improvement.md) |
 | `DOC-P07` | PROMPT 07 — Review & Validation | skeleton | diagnostic | B | [P07-Review-Validation.md](../04-process/documentation/P07-Review/P07-Review-Validation.md) |
 | `DOC-P08` | PROMPT 08 — Documentation Master Orchestrator | skeleton | orchestration | A | [P08-Documentation-Orchestrator.md](../04-process/documentation/P08-Orchestrator/P08-Documentation-Orchestrator.md) |
+
+## `04-process/git-operations`
+
+| ID | Stage | Maturity | Mode | Risk | File |
+|----|-------|----------|------|------|------|
+| `GIT-P01` | PROMPT 01 — State & Safety Check | operational | diagnostic | A | [P01-State-Safety-Check.md](../04-process/git-operations/P01-State/P01-State-Safety-Check.md) |
+| `GIT-P02` | PROMPT 02 — Conflict Resolution | operational | implementation | B | [P02-Conflict-Resolution.md](../04-process/git-operations/P02-Conflicts/P02-Conflict-Resolution.md) |
+| `GIT-P03` | PROMPT 03 — History Repair | operational | implementation | D | [P03-History-Repair.md](../04-process/git-operations/P03-History/P03-History-Repair.md) |
+| `GIT-P04` | PROMPT 04 — Recovery | operational | specialised | B | [P04-Recovery.md](../04-process/git-operations/P04-Recovery/P04-Recovery.md) |
+| `GIT-P05` | PROMPT 05 — Hygiene & Collaboration | operational | planning | A | [P05-Hygiene-Collaboration.md](../04-process/git-operations/P05-Hygiene/P05-Hygiene-Collaboration.md) |
 
 ## `04-process/governance-compliance`
 

@@ -190,6 +190,7 @@ def purpose(doc: Doc) -> str:
             text = f"Runs the {system.replace('-', ' ')} system end to end: gates, routing, and final acceptance." if system else "Runs the system end to end: gates, routing, and final acceptance."
     text = re.sub(r"\s*\bthat can:\s*$", "", text)
     text = text.rstrip(":;, ")
+    text = re.sub(r"\{\{([A-Z0-9_]+)\}\}", lambda m: "\u27e8" + m.group(1) + "\u27e9", text)
     if len(text) > MAX_PURPOSE:
         cut = text[:MAX_PURPOSE].rsplit(" ", 1)[0]
         text = cut.rstrip(",;:") + "…"
@@ -326,6 +327,10 @@ def build_gallery(docs: list[Doc]) -> str:
                 mat = d.maturity or "—"
                 risk = (d.meta.get("Risk class") or "—").strip()[:1]
                 p = purpose(d) or "—"
+                inputs = (d.meta.get("Inputs") or "").strip()
+                if inputs:
+                    shown = ", ".join(re.findall(r"[A-Z][A-Z0-9_]+", inputs))
+                    p = f"{p} <br>**Inputs:** `{shown}`"
                 out.append(
                     f"| `{ident}` | [{_title(d)}]({d.rel}) | {p} | {mat} | {risk} |"
                 )
