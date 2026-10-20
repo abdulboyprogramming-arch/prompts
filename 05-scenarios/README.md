@@ -14,6 +14,10 @@ High-utility prompts for a specific situation, usable in one session. Lighter th
 | [`security-incident/SECURITY-INCIDENT.md`](security-incident/SECURITY-INCIDENT.md) | A compromise is suspected or confirmed: preserve evidence, contain, scope, disclose | **operational** |
 | [`live-surface-audit/LIVE-SURFACE-AUDIT.md`](live-surface-audit/LIVE-SURFACE-AUDIT.md) | You can only see a system from outside — a URL, host, or API — and need an evidence-backed assessment | **operational** |
 | [`hackathon-sprint/HACKATHON-SPRINT.md`](hackathon-sprint/HACKATHON-SPRINT.md) | A hard deadline, judges, and a demo — build backwards from the four minutes | **operational** |
+| [`deployment-target/DEPLOY-TO-PLATFORM.md`](deployment-target/DEPLOY-TO-PLATFORM.md) | Put an app on Vercel, Netlify, Render, Railway, Fly, Cloud Run, or a VPS — without the classic misconfigurations | **operational** |
+| [`platform-migration/PLATFORM-MIGRATION.md`](platform-migration/PLATFORM-MIGRATION.md) | Move a running service between hosts without an outage you cannot undo | **operational** |
+| [`dev-environment/DEV-ENVIRONMENT.md`](dev-environment/DEV-ENVIRONMENT.md) | "Clone and run" is false — make one command work on every machine and editor | **operational** |
+| [`on-call-handover/ONCALL-HANDOVER.md`](on-call-handover/ONCALL-HANDOVER.md) | Shift change, and the next responder must inherit the real state of the system | **operational** |
 | [`quick-fixes/SAFE-QUICK-FIX.md`](quick-fixes/SAFE-QUICK-FIX.md) | A small, contained fix with minimal blast radius | skeleton |
 | [`performance-investigation/PERFORMANCE-INVESTIGATION.md`](performance-investigation/PERFORMANCE-INVESTIGATION.md) | Something is slow and you need a diagnosis, not an optimisation project | skeleton |
 | [`legacy-code/WORKING-WITH-LEGACY.md`](legacy-code/WORKING-WITH-LEGACY.md) | Changing code nobody understands, without a rewrite | skeleton |

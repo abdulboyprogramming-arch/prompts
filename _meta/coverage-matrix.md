@@ -1,6 +1,6 @@
 # Coverage Matrix
 
-**Version:** 1.1.0 · **Last assessed:** 2026-10-20 (post-2.13.0 reassessment) · **Method:** evidence review of every prompt file; a scenario counts as covered only when an existing prompt addresses its distinctive requirements, constraints, and verification — not because a related prompt exists.
+**Version:** 1.1.0 · **Last assessed:** 2026-10-20 (post-2.14.0 reassessment) · **Method:** evidence review of every prompt file; a scenario counts as covered only when an existing prompt addresses its distinctive requirements, constraints, and verification — not because a related prompt exists.
 
 **Status vocabulary**
 
@@ -155,6 +155,11 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Rollback | Adequate | `REL-P03` three layers, `DB-P05` reverse-path status |
 | Access control | Partial | covered in security review, not as a change procedure |
 | Secret protection | Adequate | `00-core/safety-and-security`, `SEC-P03/P06` |
+| Deployment target provisioning (managed PaaS/serverless/VPS) | **Adequate** | `DEPLOY-01` + `PLATFORM-PROFILES.md`: app-shape classification, build/runtime/preview variable scopes, ephemeral disk, timeouts, cold starts, region/residency, cost metering, tested rollback, exit route. Provider is an input, not an assumption |
+| Host migration (changing platform without an outage) | **Adequate** | `HOSTMIG-01`: peripheral inventory (DNS, MX/TXT, cookies, callbacks, egress IPs, cron), TTL lowered ahead, dual running, pre-declared abort, data checksums, old host retained past TTL, decommission checklist |
+| Reproducible dev environment and editor parity | **Adequate** | `DEVENV-01`: pinned runtimes, no global installs, one entry point, container + script, `.gitattributes` and case-sensitivity checks, CI parity, time-to-green measured |
+| AI-assistant context and IDE adaptability | **Adequate** | `CTX-P01..P04`: surface inventory by tool, one canonical `AGENTS.md` with thin adapters, adherence probes (command/convention/boundary/ambiguity), machine checks and drift triggers |
+| On-call shift handover | **Adequate** | `ONCALL-01`: state from systems (alerts, silences, deploys), about-to-break dates, known-noise, "if this pages you tonight", read-back, authority transfer |
 | Timeboxed delivery with a demo deadline | **Adequate** | `HACK-01`: rubric mapped to demo moments, demo script as the build order, pre-declared cut lines, reserved freeze/rehearsal/submission time, stage-failure fallbacks, disclosed mocks. Scope coverage only — not team coordination under a 24-hour clock |
 | Ownership handover (person, team, or agent) | **Adequate** | `HAND-P01..P05`: capability-based acceptance criteria, dual-control for lockout-risk accounts, revocation with proof, receiver-performed exercises, conditions with owners, review point. Excluded by design: recovery with no counterpart (`project-recovery`) |
 | External surface audit (live URL, host, API) | **Adequate** | `SURFACE-01`: rules of engagement, baseline, redirect/header/cookie/CORS checks on the final response, sampled error behaviour, evidence per finding, coverage statement, no enumeration or exploitation |
@@ -214,14 +219,16 @@ Counts are computed from the tables above; they are not estimates.
 
 | Status | Dimension rows | Workflow rows |
 |--------|---------------:|--------------:|
-| Adequate | 72 | 9 |
+| Adequate | 78 | 9 |
 | Partial | 30 | 5 |
 | Missing | 4 | 0 |
 | Defective | 0 | 0 |
 | Indirect | 0 | 0 |
-| **Total assessed** | **106** | **14** |
+| **Total assessed** | **112** | **14** |
 
-**Reading this honestly:** roughly 68% of assessed dimension rows are adequate. The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
+**Reading this honestly:** roughly 70% of assessed dimension rows are adequate. The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
+
+**Closed in 2.14.0:** deployment targets (`DEPLOY-01`), host migration (`HOSTMIG-01`), dev environment (`DEVENV-01`), agent context/IDE (`CTX-P01..P04`), on-call handover (`ONCALL-01`).
 
 **Closed in 2.13.0:** hackathon and demo-deadline delivery (`HACK-01`); licensing.
 
