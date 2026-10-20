@@ -180,3 +180,12 @@ Recorded here rather than built immediately, because quality over volume applies
 | 39 | On-call shift handover loses context | Backlog item 12; `HAND-P02`'s operational brief is a partial answer only | `05-scenarios/on-call/` | P2 | Discovered (unchanged) |
 | 40 | Legal/contract assignment on agency→client transfers | Handover records the blocker but cannot assign a contract; needs a legal-obligations checklist owned by the client | `04-process/handover/` appendix + `governance-compliance` | P2 | Discovered |
 | 41 | Handover of a *portfolio* (many systems in one transfer) | P01 forces a boundary; no procedure for batching several systems with a shared receiver and a staged cutover | `04-process/handover/` P01 extension | P3 | Discovered |
+
+## Discovered in 2.13.0 — timeboxed delivery
+
+| # | Problem | Why existing material is insufficient | Home | Priority | Status |
+|---|---------|---------------------------------------|------|----------|--------|
+| 42 | A hackathon deadline with judges and a demo | `from-scratch` is a skeleton with no time bound; `quick-fixes` is for defects. Nothing mapped a judging rubric to a demo path, or reserved time for submission | `05-scenarios/hackathon-sprint/` (`HACK-01`) | P1 | **Implemented** in 2.13.0 |
+| 43 | Team coordination inside a 24–48 hour event | `HACK-01` freezes scope but does not divide work, resolve merge conflicts between teammates under time pressure, or handle one member becoming unavailable | `05-scenarios/hackathon-sprint/` extension or `07-workflows/multi-agent-orchestration.md` | P2 | Discovered |
+| 44 | No licence meant no legal permission to reuse | Default copyright is "all rights reserved"; nothing in the repository addressed it | `LICENSE` (MIT) + `LICENSE-CONTENT` (CC BY 4.0) | P0 | **Implemented** in 2.13.0 |
+

@@ -1,6 +1,6 @@
 # Coverage Matrix
 
-**Version:** 1.1.0 · **Last assessed:** 2026-10-20 (post-2.12.0 reassessment) · **Method:** evidence review of every prompt file; a scenario counts as covered only when an existing prompt addresses its distinctive requirements, constraints, and verification — not because a related prompt exists.
+**Version:** 1.1.0 · **Last assessed:** 2026-10-20 (post-2.13.0 reassessment) · **Method:** evidence review of every prompt file; a scenario counts as covered only when an existing prompt addresses its distinctive requirements, constraints, and verification — not because a related prompt exists.
 
 **Status vocabulary**
 
@@ -155,6 +155,7 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Rollback | Adequate | `REL-P03` three layers, `DB-P05` reverse-path status |
 | Access control | Partial | covered in security review, not as a change procedure |
 | Secret protection | Adequate | `00-core/safety-and-security`, `SEC-P03/P06` |
+| Timeboxed delivery with a demo deadline | **Adequate** | `HACK-01`: rubric mapped to demo moments, demo script as the build order, pre-declared cut lines, reserved freeze/rehearsal/submission time, stage-failure fallbacks, disclosed mocks. Scope coverage only — not team coordination under a 24-hour clock |
 | Ownership handover (person, team, or agent) | **Adequate** | `HAND-P01..P05`: capability-based acceptance criteria, dual-control for lockout-risk accounts, revocation with proof, receiver-performed exercises, conditions with owners, review point. Excluded by design: recovery with no counterpart (`project-recovery`) |
 | External surface audit (live URL, host, API) | **Adequate** | `SURFACE-01`: rules of engagement, baseline, redirect/header/cookie/CORS checks on the final response, sampled error behaviour, evidence per finding, coverage statement, no enumeration or exploitation |
 | Feature flags and progressive delivery | **Adequate** | `FF-P01..P05` (new): inventory reconciled across code/provider/config, purpose-based typing, safe defaults, pre-declared rollout thresholds with sample-size reasoning, kill-switch use with a recorded prediction, retirement that deletes the branch |
@@ -221,6 +222,8 @@ Counts are computed from the tables above; they are not estimates.
 | **Total assessed** | **106** | **14** |
 
 **Reading this honestly:** roughly 68% of assessed dimension rows are adequate. The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
+
+**Closed in 2.13.0:** hackathon and demo-deadline delivery (`HACK-01`); licensing.
 
 **Closed in 2.12.0:** project handover (`HAND-P01..P05`), stage handoff contract promoted (`WF-HANDOFF`).
 

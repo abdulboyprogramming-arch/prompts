@@ -2,6 +2,33 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.13.0] — 2026-10-20
+
+### Added — licensing (blocking item for publication)
+
+The repository had no licence, which under default copyright means "all rights reserved" — the opposite of why it exists.
+
+- **`LICENSE`** — MIT for the executable code (`scripts/` and code samples).
+- **`LICENSE-CONTENT`** — CC BY 4.0 for every prompt, standard, README, and guide, with a practical attribution form, the "indicate changes" requirement, and an explicit note that attribution does not imply endorsement of a modified system.
+- README gains a short licence section explaining the split in one paragraph.
+
+### Added — `05-scenarios/hackathon-sprint/` (`HACK-01`)
+
+The library's own origin story had no coverage: a hard deadline, a judging rubric, and four minutes on stage. `hackathon` appeared in zero prompts. This is not `from-scratch` (a skeleton, and unbounded in time) and not `quick-fixes` (a defect, not a demo).
+
+- **Rubric as specification** — every criterion mapped to a visible demo moment, with the time share it deserves; a criterion without a demo moment is declared not competed for.
+- **Demo script first** — 5–8 numbered, visibly obvious steps; the build works backwards from them, and anything off the path is out of scope by definition.
+- **Cut lines declared in advance** — trigger, fallback, and time, so scope is decided at T‑12h rather than at the deadline.
+- **The last 15% is reserved** — freeze at T‑3h, rehearsed twice at T‑2h, submission at T‑1h (portals fail; submit early).
+- **Stage-failure plan** — venue internet assumed hostile: local run, seeded state, a recording on the presenting machine, fonts verified at projector resolution.
+- **Honest mocks** — mocked, hardcoded, and demo-only behaviour disclosed in the README; never a faked security control, payment, medical or legal claim, or "real users".
+- **Credential discipline under time pressure** — the single most common hackathon defect gets its own section: nothing in commits, `.env.example` only, scan the log, rotate anything that was exposed rather than rewriting history mid-event.
+- **Post-event honesty note** — what is real, what is theatre, what the next 48 hours need, so a winning demo does not become a false claim of production readiness.
+
+### Result
+
+370 Markdown files, 293 prompts: 139 operational, 5 draft, 149 skeleton. Validator 0 errors / 0 warnings.
+
 ## [2.12.0] — 2026-10-20
 
 ### New system — `04-process/handover/` (5 stages, operational)

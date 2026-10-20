@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 292 prompts — 0 canonical, 138 operational, 5 draft, 149 skeleton.
+**Totals:** 293 prompts — 0 canonical, 139 operational, 5 draft, 149 skeleton.
 
 ## `01-contribution/language-design`
 
@@ -483,6 +483,7 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `DBG-01` | Systematic Debugging | operational | diagnostic | B | [SYSTEMATIC-DEBUGGING.md](../05-scenarios/debugging/SYSTEMATIC-DEBUGGING.md) |
 | `FIXFAIL-01` | Failed Fix Escalation | operational | diagnostic | B | [FAILED-FIX-ESCALATION.md](../05-scenarios/failed-fix/FAILED-FIX-ESCALATION.md) |
 | `FLAKE-01` | Flaky Test Triage | operational | diagnostic | B | [FLAKY-TEST-TRIAGE.md](../05-scenarios/flaky-tests/FLAKY-TEST-TRIAGE.md) |
+| `HACK-01` | Hackathon Sprint — build the demo that gets judged | operational | autonomous-completion | B | [HACKATHON-SPRINT.md](../05-scenarios/hackathon-sprint/HACKATHON-SPRINT.md) |
 | `INC-01` | Production Incident Response | operational | specialised | C | [PRODUCTION-INCIDENT.md](../05-scenarios/incident-response/PRODUCTION-INCIDENT.md) |
 | `LEGACY-01` | Working with Legacy Code Prompt | skeleton | specialised | B | [WORKING-WITH-LEGACY.md](../05-scenarios/legacy-code/WORKING-WITH-LEGACY.md) |
 | `SURFACE-01` | Live Surface Audit — a URL, host, or API from the outside | operational | diagnostic | B | [LIVE-SURFACE-AUDIT.md](../05-scenarios/live-surface-audit/LIVE-SURFACE-AUDIT.md) |

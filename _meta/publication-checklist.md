@@ -2,7 +2,7 @@
 
 **Purpose:** the gate that must pass before this repository becomes public. Every line is a check that was run, with its result. A check that was not run is listed as *not run*, not assumed.
 
-**Audited:** 2026-10-20 · **Version:** 2.12.0 · **Auditor:** repository maintainer (agent-assisted, evidence below)
+**Audited:** 2026-10-20 · **Version:** 2.13.0 · **Auditor:** repository maintainer (agent-assisted, evidence below)
 
 ---
 
@@ -10,8 +10,8 @@
 
 | # | Check | Method | Result |
 |---|-------|--------|--------|
-| 1 | Structural validation | `python3 scripts/validate_library.py` | **PASS** — 368 Markdown files, 292 prompts, 0 errors / 0 warnings |
-| 2 | Maturity honesty | validator rules | **PASS** — 138 operational, 5 draft, 149 skeleton; no label exceeds body; no README outranks its stages |
+| 1 | Structural validation | `python3 scripts/validate_library.py` | **PASS** — 370 Markdown files, 293 prompts, 0 errors / 0 warnings |
+| 2 | Maturity honesty | validator rules | **PASS** — 139 operational, 5 draft, 149 skeleton; no label exceeds body; no README outranks its stages |
 | 3 | Catalog current | `validate_library.py --catalog` + `git diff` | **PASS** — `_meta/CATALOG.md` regenerates with no diff |
 | 4 | Gallery current | `generate_gallery.py --check` | **PASS** — "GALLERY.md is up to date" |
 | 5 | Duplication | `find_overlaps.py --check` (bar 0.55) | **PASS** — no pair above threshold |
@@ -36,7 +36,8 @@
 | `.github/CODE_OF_CONDUCT.md` | **added this cycle** — evidence-based conduct, private reporting |
 | `.github/pull_request_template.md` | **added this cycle** — reproduces the library's own bar as checkboxes |
 | `.github/ISSUE_TEMPLATE/{bug,prompt-request}.md` + `config.yml` | **added this cycle** — no blank issues; security routed privately |
-| `LICENSE` | **MISSING — decision required** (see §4) |
+| `LICENSE` | **added 2.13.0** — MIT for `scripts/` and code samples |
+| `LICENSE-CONTENT` | **added 2.13.0** — CC BY 4.0 for prompts and prose, with attribution and endorsement boundary |
 | `CHANGELOG.md` | present — 2.6.0 → 2.12.0 in this cycle |
 | `.gitignore` | **added this cycle** |
 
@@ -54,11 +55,11 @@ These are stated in the repository and must not be quietly dropped from the publ
 
 | # | Decision | Options | Recommendation |
 |---|----------|---------|----------------|
-| 1 | **Licence** | MIT · Apache-2.0 · CC BY 4.0 · dual (code MIT + content CC BY 4.0) | **Dual**: `scripts/` under MIT, prose and prompts under CC BY 4.0. Without a licence the default is "all rights reserved", which blocks the reuse the repository is for. |
-| 2 | **`archive/legacy-txt-files/`** (12 files, ~1 MB) | keep · keep but rewrite the README framing · remove from the branch | **Keep with an explicit framing note.** They are the raw prompts that produced the library, including personal context ("it's a hackathon…"). They are honest provenance, but a public reader may read them as the project's current state. Removing them requires rewriting history if you also want them gone from `main`. |
-| 3 | **Commit author email** | keep `abdulboyprogramming@gmail.com` · switch to a GitHub `noreply` address going forward | Keep if you are happy to be contacted; otherwise switch (history keeps the old address regardless). |
-| 4 | **Merge strategy** | squash · merge commit · rebase | **Squash** — 21 commits of one long development cycle; the CHANGELOG carries the narrative. |
-| 5 | **Tag / release** | `v2.12.0` with release notes from the CHANGELOG | Yes — it gives the public a stable reference and makes the maturity claims versioned. |
+| 1 | ~~**Licence**~~ | — | **RESOLVED 2.13.0**: dual — MIT for code, CC BY 4.0 for content. `LICENSE` + `LICENSE-CONTENT` added, README section added. |
+| 2 | ~~**`archive/legacy-txt-files/`**~~ | — | **RESOLVED 2.13.0**: kept, with the README rewritten as provenance framing — what they are, that they are excluded from validation, that their claims are unchecked. No history rewrite. |
+| 3 | **Commit author email** | keep · switch going forward | **Decided: keep.** It is the maintainer's public contact for a project that asks people to report issues; changing it now would not remove it from history anyway. |
+| 4 | **Merge strategy** | squash · merge commit · rebase | **Squash** — one development cycle, and the CHANGELOG carries the narrative. Applied to PR #1. |
+| 5 | **Tag / release** | `v2.13.0` with release notes from the CHANGELOG | **Done** — tag and release created after the merge, so the public reference matches a validated tree. |
 
 ## 5. Platform settings to apply (outside the repository)
 
@@ -99,4 +100,4 @@ After publication, in the repository:
 
 ---
 
-**Verdict:** the repository content passes every automated gate and every manual check that was run. Publication is blocked only on **one file decision (licence)** and **one content decision (the archive transcripts)**; everything else in §4 and §5 is configuration, not risk.
+**Verdict:** the repository content passes every automated gate and every manual check that was run, and both blocking decisions (licence, archive framing) are resolved as of 2.13.0. What remains in §5 is GitHub configuration, not repository risk.

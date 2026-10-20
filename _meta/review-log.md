@@ -287,3 +287,13 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 ### `07-workflows/HANDOFF-CONTRACT.md` — draft → operational (v1.1.0)
 - **2026-10-20 · process · 88/100 · operational**
 - The contract was already substantive (84 lines, all ten sections) but carried a draft label that made every stage's handover provisional. Promoted after adding the four-failure table, receiver verification duty, repository-based staleness rule, and the machine-readable form for agent receivers.
+
+### `05-scenarios/hackathon-sprint/` — new scenario (HACK-01)
+- **2026-10-20 · autonomous-completion · 86/100 · operational**
+- Problem: the library assumed time to be careful. A hackathon inverts the constraint — the deliverable is four minutes in front of judges, and the failure mode is a beautiful unfinished thing that cannot be demoed or submitted.
+- Design: the rubric is the specification, the demo script is the build order, cut lines are declared before they are needed, the last 15% of time is reserved for freeze/rehearsal/submission, and every mock is disclosed. The credential section exists because a public repo plus a rushed `git commit -a` is the most common security incident in student and startup hackathons.
+- Deductions: no team-coordination guidance beyond a freeze rule (parallel work in a 24-hour event is its own problem); judging-rubric inference is named but not modelled.
+- Follow-up: a worked example of a rubric-to-demo-moment table would make step 1 concrete.
+
+### Licensing
+- **2026-10-20 · meta · operational** — MIT for code, CC BY 4.0 for content, with the endorsement boundary stated. Resolves the blocking decision in `_meta/publication-checklist.md`.

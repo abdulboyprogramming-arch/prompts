@@ -4,7 +4,7 @@ A structured collection of prompts for AI coding agents, organised across the en
 
 Every prompt declares what it does, what it may change, how much it can be trusted, and what it will not do. Nothing here claims a capability its files do not have — the repository is validated against that rule on every change.
 
-**Browse everything:** [`GALLERY.md`](GALLERY.md) lists all 292 prompts with a direct link and one line on when to use each. It is generated from the prompts themselves and CI fails if it falls out of date, so it cannot drift from the library.
+**Browse everything:** [`GALLERY.md`](GALLERY.md) lists all 293 prompts with a direct link and one line on when to use each. It is generated from the prompts themselves and CI fails if it falls out of date, so it cannot drift from the library.
 
 ## Start here
 
@@ -28,6 +28,7 @@ Pick the row that matches your situation. Do not read the whole repository first
 | Two fix attempts have failed and the bug is still there | [`05-scenarios/failed-fix/`](05-scenarios/failed-fix/FAILED-FIX-ESCALATION.md) | Diagnostic |
 | I need to change a database schema without losing data | [`03-domains/database/`](03-domains/database/README.md) | Audit → drill → execute |
 | I need to upgrade a framework or dependency safely | [`04-process/dependency-management/`](04-process/dependency-management/README.md) | Audit → plan → verify |
+| A hackathon or demo deadline is close and I need it to work on stage | [`05-scenarios/hackathon-sprint/`](05-scenarios/hackathon-sprint/HACKATHON-SPRINT.md) | Build backwards from the demo |
 | I am taking over someone else's project (or handing mine over) | [`04-process/handover/`](04-process/handover/README.md) | Access transfer + capability test |
 | A contractor or teammate is leaving and owns production | [`04-process/handover/P03`](04-process/handover/P03-Access/P03-Access-and-Credential-Transfer.md) | Class D: ownership + revocation |
 | I need an SRS, a design doc, an engineer handbook, or a PDF/DOCX deliverable | [`04-process/documentation/`](04-process/documentation/README.md) | Source of truth gate |
@@ -64,6 +65,15 @@ The library is deliberately honest about how developed each system is.
 
 Maturity is enforced, not decorative: `scripts/validate_library.py` fails if a prompt's label exceeds its content, or if a system README advertises more maturity than its stages have.
 
+### Licence
+
+Two licences, because the repository holds two kinds of thing:
+
+- **Code** (`scripts/`, code samples) — MIT. See [`LICENSE`](LICENSE).
+- **Prompts and prose** — [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/): use, adapt, and redistribute commercially, with attribution and an indication of changes. See [`LICENSE-CONTENT`](LICENSE-CONTENT).
+
+In short: take it, change it, ship it — say where it came from, and do not present modified prompts as this project's work.
+
 ### Where the depth actually is
 
 | System | Prompts | Maturity |
@@ -91,7 +101,7 @@ Maturity is enforced, not decorative: `scripts/validate_library.py` fails if a p
 | [`04-process/documentation/`](04-process/documentation/README.md) | 8 | operational |
 | [`04-process/handover/`](04-process/handover/README.md) | 5 | operational |
 | [`07-workflows/`](07-workflows/README.md) | 9 | mixed (3 operational: verification, integration, multi-agent) |
-| [`05-scenarios/`](05-scenarios/README.md) | 12 | mixed (7 operational, 5 skeleton) |
+| [`05-scenarios/`](05-scenarios/README.md) | 13 | mixed (8 operational, 5 skeleton) |
 
 Everything else — backend, frontend, devops-infra, data-ml-ai, games, architecture-review, from-scratch, migration, project management, research, systems improvement, language design, packages, web/web3 contribution — is a **skeleton**: a defensible sequence of stages with outline prompts. Those folders are useful for structuring a human-led session today; they are not yet safe to hand to an autonomous agent. Promotion order is in [`_meta/ROADMAP-AND-BACKLOG.md`](_meta/ROADMAP-AND-BACKLOG.md); per-scenario coverage with evidence is in [`_meta/coverage-matrix.md`](_meta/coverage-matrix.md).
 
