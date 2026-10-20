@@ -1,7 +1,12 @@
 # PROMPT 02 — Problem Framing
-**Version:** 1.0.0  
 **Identifier:** FD-P02  
+**System:** 02-engineering/feature-design-suggestion  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
 **Depends on:** FD-P01  
+**Produces:** `PROBLEM.md`  
 
 ---
 

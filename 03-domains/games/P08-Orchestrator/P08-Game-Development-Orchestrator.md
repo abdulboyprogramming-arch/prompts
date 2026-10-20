@@ -1,7 +1,12 @@
 # PROMPT 08 — Game Development Master Orchestrator
-**Version:** 1.0.0  
 **Identifier:** GD-P08  
-**Entry Point:** Yes  
+**System:** 03-domains/games  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** orchestration  
+**Risk class:** A  
+**Depends on:** previous stage in system  
+**Produces:** see workflow (artifact unspecified)  
 
 ---
 

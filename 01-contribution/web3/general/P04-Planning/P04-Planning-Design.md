@@ -1,7 +1,12 @@
 # PROMPT 04 — Planning & Design
-**Version:** 1.0.0  
 **Identifier:** W3-P04  
+**System:** 01-contribution/web3/general  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
 **Depends on:** W3-P03  
+**Produces:** `PLAN.md`  
 
 ---
 

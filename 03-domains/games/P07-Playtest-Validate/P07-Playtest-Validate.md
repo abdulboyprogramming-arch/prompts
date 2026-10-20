@@ -1,7 +1,12 @@
 # PROMPT 07 — Playtest & Validate
-**Version:** 1.0.0  
 **Identifier:** GD-P07  
+**System:** 03-domains/games  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** diagnostic  
+**Risk class:** B  
 **Depends on:** GD-P06  
+**Produces:** `PLAYTEST_REPORT.md`  
 
 ---
 

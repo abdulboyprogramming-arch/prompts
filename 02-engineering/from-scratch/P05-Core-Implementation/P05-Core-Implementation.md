@@ -1,7 +1,12 @@
 # PROMPT 05 — Core Implementation
-**Version:** 1.0.0  
 **Identifier:** FS-P05  
+**System:** 02-engineering/from-scratch  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** FS-P04  
+**Produces:** `IMPLEMENTATION_LOG.md`  
 
 ---
 

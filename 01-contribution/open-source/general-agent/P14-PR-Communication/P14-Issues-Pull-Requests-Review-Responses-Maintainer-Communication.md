@@ -1,7 +1,10 @@
 # PROMPT 14 — Issues, Pull Requests, Review Responses & Maintainer Communication
-**Version:** 1.0.0  
-**Status:** Operational  
 **Identifier:** P14  
+**System:** 01-contribution/open-source/general-agent  
+**Version:** 1.0.0  
+**Maturity:** operational  
+**Execution mode:** diagnostic  
+**Risk class:** C  
 **Depends on:** P01, P13 (committed and preferably published branch), P06 (PR conventions)  
 **Produces:** Open or updated pull request, issue comments if authorized, updated progress artifacts  
 

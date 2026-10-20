@@ -1,6 +1,12 @@
 # PROMPT 01 — Research Question
-**Version:** 1.0.0  
 **Identifier:** RD-P01  
+**System:** 04-process/research-and-development  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** research  
+**Risk class:** B  
+**Depends on:** none (entry stage)  
+**Produces:** `RESEARCH_QUESTION.md`  
 
 ---
 

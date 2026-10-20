@@ -1,7 +1,12 @@
 # PROMPT 08 — Web3 Contribution Master Orchestrator
-**Version:** 1.0.0  
 **Identifier:** W3-P08  
-**Entry Point:** Yes  
+**System:** 01-contribution/web3/general  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** orchestration  
+**Risk class:** A  
+**Depends on:** previous stage in system  
+**Produces:** see workflow (artifact unspecified)  
 
 ---
 

@@ -1,7 +1,12 @@
 # PROMPT 05 — Implementation
-**Version:** 1.0.0  
 **Identifier:** BE-P05  
+**System:** 03-domains/backend  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** BE-P04  
+**Produces:** `BE_IMPLEMENTATION_LOG.md`  
 
 ---
 

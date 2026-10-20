@@ -1,7 +1,12 @@
 # PROMPT 02 — Documentation Inventory
-**Version:** 1.0.0  
 **Identifier:** DOC-P02  
+**System:** 04-process/documentation  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** diagnostic  
+**Risk class:** B  
 **Depends on:** DOC-P01  
+**Produces:** `DOC_INVENTORY.md`  
 
 ---
 

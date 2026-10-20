@@ -1,7 +1,12 @@
 # PROMPT 05 — Validation
-**Version:** 1.0.0  
 **Identifier:** REF-P05  
+**System:** 02-engineering/refactoring  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** diagnostic  
+**Risk class:** B  
 **Depends on:** REF-P04  
+**Produces:** `VALIDATION.md`  
 
 ---
 

@@ -1,7 +1,12 @@
 # PROMPT 03 — Structured Review
-**Version:** 1.0.0  
 **Identifier:** CR-P03  
+**System:** 04-process/code-review  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** diagnostic  
+**Risk class:** B  
 **Depends on:** CR-P02  
+**Produces:** `REVIEW_FINDINGS.md`  
 
 ---
 

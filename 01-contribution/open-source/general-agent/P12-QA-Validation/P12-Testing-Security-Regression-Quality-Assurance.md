@@ -1,7 +1,10 @@
 # PROMPT 12 — Testing, Security, Regression Analysis & Quality Assurance
-**Version:** 1.0.0  
-**Status:** Operational  
 **Identifier:** P12  
+**System:** 01-contribution/open-source/general-agent  
+**Version:** 1.0.0  
+**Maturity:** operational  
+**Execution mode:** diagnostic  
+**Risk class:** A  
 **Depends on:** P01, P11 (implemented changes on feature branch)  
 **Produces:** VALIDATION_REPORT.md, updated progress artifacts, decision to proceed to commit or iterate  
 

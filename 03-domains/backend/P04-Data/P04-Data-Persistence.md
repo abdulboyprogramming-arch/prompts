@@ -1,7 +1,12 @@
 # PROMPT 04 — Data & Persistence
-**Version:** 1.0.0  
 **Identifier:** BE-P04  
+**System:** 03-domains/backend  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** BE-P03  
+**Produces:** `BE_DATA.md`  
 
 ---
 

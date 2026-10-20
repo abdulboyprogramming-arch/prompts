@@ -1,7 +1,10 @@
 # PROMPT 05 — File, Module, Dependency & Component Understanding
-**Version:** 1.0.0  
-**Status:** Operational  
 **Identifier:** P05  
+**System:** 01-contribution/open-source/general-agent  
+**Version:** 1.0.0  
+**Maturity:** operational  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** P01–P04  
 **Produces:** Detailed component notes in KNOWLEDGE_BASE.md, targeted file relationship maps, updated REPO_MAP.md  
 

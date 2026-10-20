@@ -1,7 +1,12 @@
 # PROMPT 07 — Documentation & Polish
-**Version:** 1.0.0  
 **Identifier:** FS-P07  
+**System:** 02-engineering/from-scratch  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** FS-P06  
+**Produces:** `README.md`, `FINAL_NOTES.md`  
 
 ---
 

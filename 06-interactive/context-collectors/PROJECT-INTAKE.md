@@ -1,8 +1,12 @@
 # Project Intake Context Collector
-
-**Version:** 1.0.0  
-**Type:** Interactive / Context Collector  
-**Use when:** Starting any major piece of work on a project and key context is missing.
+**Identifier:** INT-P01  
+**System:** 06-interactive  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** A  
+**Depends on:** none  
+**Produces:** Project intake brief  
 
 ---
 

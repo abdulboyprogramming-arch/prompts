@@ -1,7 +1,10 @@
 # PROMPT 13 — Git Operations, Atomic Commits & Authorized Remote Publication
-**Version:** 1.0.0  
-**Status:** Operational  
 **Identifier:** P13  
+**System:** 01-contribution/open-source/general-agent  
+**Version:** 1.0.0  
+**Maturity:** operational  
+**Execution mode:** implementation  
+**Risk class:** C  
 **Depends on:** P01, P12 (validation passed), P06 (conventions)  
 **Produces:** Local commit(s) on the feature branch, optional authorized push, updated GIT_STATE.md and progress artifacts  
 

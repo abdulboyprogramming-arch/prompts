@@ -1,7 +1,10 @@
 # PROMPT 02 — Environment & Identity Bootstrap
-**Version:** 1.0.0  
-**Status:** Operational  
 **Identifier:** P02  
+**System:** 01-contribution/open-source/general-agent  
+**Version:** 1.0.0  
+**Maturity:** operational  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** P01 (System Architecture Blueprint)  
 **Produces:** Validated identity context, tool/permission inventory, initial PROGRESS_LEDGER.md and SESSION_HANDOVER.md entries  
 

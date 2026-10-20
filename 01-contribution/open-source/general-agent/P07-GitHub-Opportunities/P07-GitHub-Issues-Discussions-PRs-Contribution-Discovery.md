@@ -1,7 +1,10 @@
 # PROMPT 07 — GitHub Issues, Discussions, PRs & Documented Contribution Discovery
-**Version:** 1.0.0  
-**Status:** Operational  
 **Identifier:** P07  
+**System:** 01-contribution/open-source/general-agent  
+**Version:** 1.0.0  
+**Maturity:** operational  
+**Execution mode:** diagnostic  
+**Risk class:** C  
 **Depends on:** P01–P03, authentication status from P02  
 **Produces:** Populated OPPORTUNITY_LEDGER.md (documented opportunities section), updated progress artifacts  
 

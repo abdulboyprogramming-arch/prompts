@@ -1,8 +1,12 @@
 # PROMPT 01 — System Architecture, Requirements & Execution Blueprint
-**Version:** 1.0.0  
-**Status:** Canonical Foundation (Reference for all subsequent prompts)  
 **Identifier:** P01  
-**Last Updated:** 2026-10-12  
+**System:** 01-contribution/open-source/general-agent  
+**Version:** 1.0.0  
+**Maturity:** operational  
+**Execution mode:** planning  
+**Risk class:** C  
+**Depends on:** none (entry stage)  
+**Produces:** `REPO_MAP.md`, `KNOWLEDGE_BASE.md`, `OPPORTUNITY_LEDGER.md`  
 
 ---
 

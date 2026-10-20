@@ -1,7 +1,12 @@
 # PROMPT 02 — Discovery & Opportunity Identification
-**Version:** 1.0.0  
 **Identifier:** PKG-P02  
+**System:** 01-contribution/packages-libraries  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** diagnostic  
+**Risk class:** A  
 **Depends on:** PKG-P01  
+**Produces:** `OPPORTUNITIES.md`  
 
 ---
 

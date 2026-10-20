@@ -1,8 +1,12 @@
 # Contribution Intake Context Collector
-
-**Version:** 1.0.0  
-**Type:** Interactive / Context Collector  
-**Use when:** Preparing to contribute to an existing project and key details are missing.
+**Identifier:** INT-P02  
+**System:** 06-interactive  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** A  
+**Depends on:** none  
+**Produces:** Contribution intake brief  
 
 ---
 

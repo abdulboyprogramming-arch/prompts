@@ -1,7 +1,10 @@
 # PROMPT 10 — Implementation Planning & Change Isolation
-**Version:** 1.0.0  
-**Status:** Operational  
 **Identifier:** P10  
+**System:** 01-contribution/open-source/general-agent  
+**Version:** 1.0.0  
+**Maturity:** operational  
+**Execution mode:** planning  
+**Risk class:** B  
 **Depends on:** P01, P09 (CONTRIBUTION_PLAN.md), P04–P06  
 **Produces:** Detailed implementation plan, isolated feature branch, updated GIT_STATE.md  
 

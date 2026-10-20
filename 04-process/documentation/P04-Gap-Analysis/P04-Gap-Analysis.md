@@ -1,7 +1,12 @@
 # PROMPT 04 — Gap Analysis
-**Version:** 1.0.0  
 **Identifier:** DOC-P04  
+**System:** 04-process/documentation  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** diagnostic  
+**Risk class:** B  
 **Depends on:** DOC-P02, DOC-P03  
+**Produces:** `DOC_GAPS.md`  
 
 ---
 

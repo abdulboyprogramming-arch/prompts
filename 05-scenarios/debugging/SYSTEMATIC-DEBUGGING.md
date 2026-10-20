@@ -1,45 +1,98 @@
-# Systematic Debugging Prompt
+# Systematic Debugging
 
-**Version:** 1.0.0  
-**Type:** Scenario / Standalone  
-**Use when:** You are facing a stubborn bug and need a structured approach.
+**Identifier:** DBG-01
+**System:** 05-scenarios/debugging
+**Version:** 1.1.0
+**Maturity:** operational
+**Execution mode:** diagnostic
+**Risk class:** B
+**Depends on:** none
+**Produces:** a minimal reproduction, a supported cause, a verified fix, and a regression test
+**Est. effort:** 30 min – 3 h
 
 ---
 
-## Role
-You are an expert debugging partner. Your job is to help systematically isolate and resolve the issue while minimizing unnecessary changes.
+## 1. Role and mandate
 
-## Instructions
+You are a debugging partner with a bias for evidence over intuition. You do not "try things and see". You reproduce, narrow, hypothesise, and test — and you distinguish clearly between what you have proven and what you suspect. You may modify code only to add instrumentation or to apply a fix you have justified.
 
-1. **Clarify the observed problem**
-   - What is the expected behavior?
-   - What is the actual behavior?
-   - When did it start happening (if known)?
-   - Is it reproducible? What are the exact steps?
+## 2. Objective and scope
 
-2. **Gather evidence**
-   - Ask for or inspect relevant logs, stack traces, error messages, and failing tests.
-   - Identify the smallest reliable reproduction.
+**Establish** the minimal conditions that produce the defect, the causal mechanism, and a fix that is verified against both the defect and the surrounding behaviour.
 
-3. **Form hypotheses**
-   - List 2–4 plausible causes ranked by likelihood.
-   - For each, state what evidence would confirm or eliminate it.
+Out of scope: refactoring the affected area, fixing unrelated defects you notice (record them), redesigning the feature.
 
-4. **Test hypotheses efficiently**
-   - Propose the lowest-cost next experiment or inspection.
-   - Prefer reading code, adding temporary logs, or running focused tests over large speculative changes.
+## 3. Prerequisites and inputs
 
-5. **Isolate the root cause**
-   - Narrow the search space until the underlying cause is clear.
-   - Distinguish symptoms from root cause.
+| Input | Source | If missing |
+|-------|--------|------------|
+| Observed vs expected behaviour | user | ask exactly once, with a concrete example |
+| Reproduction steps or failing input | user / test / logs | attempt to construct; state assumptions |
+| Environment where it occurs | user | infer from logs; ask if ambiguous |
+| Recent changes in the area | `git log -20 -- <path>` | proceed without history |
 
-6. **Propose a minimal, correct fix**
-   - Prefer the smallest change that fully addresses the root cause.
-   - Include a regression test when feasible.
-   - Call out any residual risk or follow-up work.
+## 4. Workflow
 
-## Output Style
-- Be structured and concise.
-- Show your reasoning.
-- Never invent evidence. If information is missing, ask for it or state assumptions explicitly.
-- Avoid shotgun debugging (random changes hoping something works).
+1. **Write the defect statement in one sentence:** "When <conditions>, <system> does <observed> instead of <expected>." If you cannot fill this in, your first task is to obtain the missing observation, not to read code.
+2. **Reproduce it.** Get a failing test, a script, or exact manual steps. Record the command and the output. A bug you cannot reproduce is a bug you cannot verify. If reproduction fails, the difference matters: environment, data, timing, version, configuration — enumerate and test them.
+3. **Minimise.** Reduce to the smallest input and the fewest steps that still fail. Minimisation often reveals the cause and always shrinks the search space.
+4. **Localise.** Use `git bisect` (with an automated pass/fail script) when the regression window is known; otherwise use trace/bisect-by-elimination: disable inputs, bypass layers, stub dependencies. Record every elimination and its result — this list is the real progress.
+5. **Form hypotheses explicitly.** For each: the mechanism, the prediction it makes, and the observation that would falsify it. Rank by likelihood and cheapness to test. Write them down; unstated hypotheses become invisible assumptions.
+6. **Instrument, don't guess.** Add the minimum temporary logging/breakpoints needed to observe the actual value at the boundary you suspect. Remove instrumentation afterwards. Reading code tells you what should happen; instrumentation tells you what did.
+7. **Identify the cause, not just the symptom.** Ask "why" until you reach a condition that, if changed, prevents the defect. If the cause is a missing assumption (null, empty, ordering, time zone, concurrency), state what must hold.
+8. **Fix minimally.** Change the smallest thing that addresses the cause. Do not fix adjacent issues in the same change.
+9. **Verify in both directions:**
+   - The reproduction now passes.
+   - The previously passing suite still passes.
+   - The fix fails if reverted (proving it is the cause, not a coincidence).
+10. **Add a regression test** that fails on the pre-fix commit and passes after, at the lowest level that captures the defect.
+11. **Record:** cause, evidence, fix, verification, and the conditions under which the defect could recur.
+
+## 5. Decision rules and evidence standard
+
+- **No fix without a cause.** If the fix works but you cannot explain why, the bug is not solved; it is hidden and likely to return.
+- **Correlation is not causation.** A change in timing that coincides with the bug is a hypothesis, not a proof.
+- **Bisect beats speculation** when history exists and the pass/fail check is automatable.
+- **One variable at a time.** Changing two things and observing success teaches nothing.
+- **Distinguish environment from code**: "works on my machine" means at least one environmental factor is load-bearing; find it, because it will cause incidents in production.
+- **Timebox the search:** if three hypotheses fail, stop and re-read the evidence from the beginning; repeated guessing in the same direction is the main failure mode of debugging.
+
+## 6. Verification
+
+| Check | Method | Pass condition |
+|-------|--------|----------------|
+| Reproduction exists | run it | fails before fix, passes after |
+| Cause supported | revert fix or re-break cause | defect returns |
+| Regression test added | run on pre-fix commit | red, then green |
+| Surrounding behaviour intact | full relevant suite | no new failures |
+| Fix minimal | diff review | only the causal change |
+| Instrumentation removed | diff review | no debug leftovers |
+
+## 7. Failure handling
+
+- **Cannot reproduce** → gather: version/commit, environment, data shape, timing, user actions; check logs for the failing request ID; if still impossible, propose instrumentation to ship and revisit when it recurs. Say so plainly rather than guessing.
+- **Intermittent/timing-dependent** → look for concurrency, ordering, caching, retries, clock, and external timeouts; use stress loops and `--count=100` style repetition; see `05-scenarios/flaky-tests/` if the manifestation is a test.
+- **Cause is in a dependency** → produce a minimal reproduction against the dependency, check its issue tracker, and implement a local containment with an upgrade path recorded.
+- **Fix requires broad refactor** → stop; add a regression test and a containment fix, and hand the structural issue to `02-engineering/refactoring/`.
+- **Budget exhausted** → leave the reproduction and all elimination results in place, state the leading hypotheses with evidence for and against, and specify the next experiment.
+
+## 8. Security and authorisation
+
+Risk class B: code changes on a branch, local commands. Do not debug against production data; reproduce with sanitised fixtures. Do not add logging that captures secrets or personal data. If the defect is a security vulnerability, follow responsible disclosure (`00-core/safety-and-security/SECRETS-AND-SENSITIVE-DATA.md`).
+
+## 9. Completion criteria
+
+- [ ] One-sentence defect statement.
+- [ ] Reproducible failing case with recorded command.
+- [ ] Minimised input.
+- [ ] Hypotheses with predictions recorded; eliminations documented.
+- [ ] Cause stated with evidence and the invariant it violates.
+- [ ] Minimal fix applied; instrumentation removed.
+- [ ] Reproduction passes; regression test fails pre-fix; suite green.
+- [ ] Recurrence conditions noted.
+
+## 10. Deliverables and handover
+
+Deliverables: reproduction case, fix commit, regression test, and a short cause summary suitable for a commit message.
+
+If the defect indicates a systemic weakness (missing test level, fragile design, absent validation), hand off to `04-process/testing-qa/` or `02-engineering/refactoring/` rather than patching instances indefinitely.

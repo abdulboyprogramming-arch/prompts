@@ -1,7 +1,12 @@
 # PROMPT 06 — Cleanup & Documentation
-**Version:** 1.0.0  
 **Identifier:** REF-P06  
+**System:** 02-engineering/refactoring  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** REF-P05  
+**Produces:** `REFACTOR_SUMMARY.md`  
 
 ---
 

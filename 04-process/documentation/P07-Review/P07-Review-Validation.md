@@ -1,7 +1,12 @@
 # PROMPT 07 — Review & Validation
-**Version:** 1.0.0  
 **Identifier:** DOC-P07  
+**System:** 04-process/documentation  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** diagnostic  
+**Risk class:** B  
 **Depends on:** DOC-P06  
+**Produces:** `DOC_REVIEW.md`  
 
 ---
 

@@ -1,7 +1,12 @@
 # PROMPT 06 — Validation & Compatibility
-**Version:** 1.0.0  
 **Identifier:** PKG-P06  
+**System:** 01-contribution/packages-libraries  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** diagnostic  
+**Risk class:** C  
 **Depends on:** PKG-P05  
+**Produces:** `VALIDATION.md`  
 
 ---
 

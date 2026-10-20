@@ -1,7 +1,12 @@
 # PROMPT 07 — Evaluation
-**Version:** 1.0.0  
 **Identifier:** LD-P07  
+**System:** 01-contribution/language-design  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** diagnostic  
+**Risk class:** B  
 **Depends on:** LD-P06  
+**Produces:** `LANGUAGE_EVALUATION.md`  
 
 ---
 

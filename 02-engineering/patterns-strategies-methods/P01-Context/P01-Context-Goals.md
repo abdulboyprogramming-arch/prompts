@@ -1,6 +1,12 @@
 # PROMPT 01 — Context & Goals
-**Version:** 1.0.0  
 **Identifier:** PS-P01  
+**System:** 02-engineering/patterns-strategies-methods  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
+**Depends on:** none (entry stage)  
+**Produces:** `CONTEXT.md`  
 
 ---
 

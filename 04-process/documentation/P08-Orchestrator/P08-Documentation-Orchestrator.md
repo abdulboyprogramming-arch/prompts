@@ -1,7 +1,12 @@
 # PROMPT 08 — Documentation Master Orchestrator
-**Version:** 1.0.0  
 **Identifier:** DOC-P08  
-**Entry Point:** Yes  
+**System:** 04-process/documentation  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** orchestration  
+**Risk class:** A  
+**Depends on:** previous stage in system  
+**Produces:** see workflow (artifact unspecified)  
 
 ---
 

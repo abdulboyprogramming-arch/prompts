@@ -1,7 +1,12 @@
 # PROMPT 03 — Safety Net
-**Version:** 1.0.0  
 **Identifier:** REF-P03  
+**System:** 02-engineering/refactoring  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** REF-P02  
+**Produces:** `SAFETY_NET.md`  
 
 ---
 

@@ -1,6 +1,12 @@
 # PROMPT 01 — Context & Constraints
-**Version:** 1.0.0  
 **Identifier:** PM-P01  
+**System:** 04-process/project-management  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** C  
+**Depends on:** none (entry stage)  
+**Produces:** `PROJECT_CONTEXT.md`  
 
 ---
 

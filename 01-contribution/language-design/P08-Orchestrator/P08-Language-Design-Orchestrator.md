@@ -1,7 +1,12 @@
 # PROMPT 08 — Language Design Master Orchestrator
-**Version:** 1.0.0  
 **Identifier:** LD-P08  
-**Entry Point:** Yes  
+**System:** 01-contribution/language-design  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** orchestration  
+**Risk class:** A  
+**Depends on:** previous stage in system  
+**Produces:** see workflow (artifact unspecified)  
 
 ---
 

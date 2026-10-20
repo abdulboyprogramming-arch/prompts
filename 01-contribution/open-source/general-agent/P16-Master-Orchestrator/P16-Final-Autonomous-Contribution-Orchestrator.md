@@ -1,7 +1,10 @@
 # PROMPT 16 — Final Autonomous Contribution Orchestrator
-**Version:** 1.0.0  
-**Status:** Master Entry Point  
 **Identifier:** P16  
+**System:** 01-contribution/open-source/general-agent  
+**Version:** 1.0.0  
+**Maturity:** operational  
+**Execution mode:** orchestration  
+**Risk class:** C  
 **Depends on:** Entire prompt library (P01–P15) and the presence of a target repository + MY_DETAILS.txt  
 **Produces:** Coordinated execution of the contribution pipeline, durable artifacts, and a comprehensive final report  
 

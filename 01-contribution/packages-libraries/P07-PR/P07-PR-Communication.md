@@ -1,7 +1,12 @@
 # PROMPT 07 — PR & Communication
-**Version:** 1.0.0  
 **Identifier:** PKG-P07  
+**System:** 01-contribution/packages-libraries  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** PKG-P06  
+**Produces:** see workflow (artifact unspecified)  
 
 ---
 

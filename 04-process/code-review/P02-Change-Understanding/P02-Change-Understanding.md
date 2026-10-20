@@ -1,7 +1,12 @@
 # PROMPT 02 — Change Understanding
-**Version:** 1.0.0  
 **Identifier:** CR-P02  
+**System:** 04-process/code-review  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** CR-P01  
+**Produces:** `CHANGE_SUMMARY.md`  
 
 ---
 

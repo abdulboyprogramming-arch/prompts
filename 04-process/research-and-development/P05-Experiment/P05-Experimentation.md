@@ -1,7 +1,12 @@
 # PROMPT 05 — Experimentation
-**Version:** 1.0.0  
 **Identifier:** RD-P05  
+**System:** 04-process/research-and-development  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** research  
+**Risk class:** B  
 **Depends on:** RD-P04  
+**Produces:** `EXPERIMENT_LOG.md`  
 
 ---
 

@@ -1,7 +1,12 @@
 # PROMPT 02 — Target Design
-**Version:** 1.0.0  
 **Identifier:** RW-P02  
+**System:** 02-engineering/rewriting-migration  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
 **Depends on:** RW-P01  
+**Produces:** `TARGET_DESIGN.md`  
 
 ---
 

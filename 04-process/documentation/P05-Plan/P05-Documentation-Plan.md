@@ -1,7 +1,12 @@
 # PROMPT 05 — Documentation Plan
-**Version:** 1.0.0  
 **Identifier:** DOC-P05  
+**System:** 04-process/documentation  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
 **Depends on:** DOC-P04  
+**Produces:** `DOC_PLAN.md`  
 
 ---
 

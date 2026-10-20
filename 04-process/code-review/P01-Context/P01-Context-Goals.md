@@ -1,6 +1,12 @@
 # PROMPT 01 — Context & Goals
-**Version:** 1.0.0  
 **Identifier:** CR-P01  
+**System:** 04-process/code-review  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
+**Depends on:** none (entry stage)  
+**Produces:** `REVIEW_CONTEXT.md`  
 
 ---
 

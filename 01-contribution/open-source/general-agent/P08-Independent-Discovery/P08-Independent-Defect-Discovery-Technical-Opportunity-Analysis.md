@@ -1,7 +1,10 @@
 # PROMPT 08 — Independent Defect Discovery & Technical Opportunity Analysis
-**Version:** 1.0.0  
-**Status:** Operational  
 **Identifier:** P08  
+**System:** 01-contribution/open-source/general-agent  
+**Version:** 1.0.0  
+**Maturity:** operational  
+**Execution mode:** diagnostic  
+**Risk class:** A  
 **Depends on:** P01–P06 (architectural and conventions knowledge)  
 **Produces:** Independently discovered candidates added to OPPORTUNITY_LEDGER.md  
 

@@ -1,7 +1,12 @@
 # PROMPT 06 — Content & Polish
-**Version:** 1.0.0  
 **Identifier:** GD-P06  
+**System:** 03-domains/games  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** GD-P05  
+**Produces:** `POLISH_NOTES.md`  
 
 ---
 

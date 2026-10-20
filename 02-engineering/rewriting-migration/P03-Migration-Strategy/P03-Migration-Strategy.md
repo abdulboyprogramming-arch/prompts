@@ -1,7 +1,12 @@
 # PROMPT 03 — Migration Strategy
-**Version:** 1.0.0  
 **Identifier:** RW-P03  
+**System:** 02-engineering/rewriting-migration  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
 **Depends on:** RW-P01, RW-P02  
+**Produces:** `MIGRATION_STRATEGY.md`  
 
 ---
 

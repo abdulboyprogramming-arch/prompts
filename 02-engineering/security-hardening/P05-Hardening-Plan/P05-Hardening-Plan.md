@@ -1,7 +1,12 @@
 # PROMPT 05 — Hardening Plan
-**Version:** 1.0.0  
 **Identifier:** SEC-P05  
+**System:** 02-engineering/security-hardening  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
 **Depends on:** SEC-P04  
+**Produces:** `HARDENING_PLAN.md`  
 
 ---
 

@@ -1,7 +1,12 @@
 # PROMPT 07 — Polish & Handoff
-**Version:** 1.0.0  
 **Identifier:** FE-P07  
+**System:** 03-domains/frontend  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** FE-P06  
+**Produces:** `FE_HANDOFF.md`  
 
 ---
 

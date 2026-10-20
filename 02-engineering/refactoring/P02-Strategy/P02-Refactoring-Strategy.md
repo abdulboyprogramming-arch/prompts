@@ -1,7 +1,12 @@
 # PROMPT 02 — Refactoring Strategy
-**Version:** 1.0.0  
 **Identifier:** REF-P02  
+**System:** 02-engineering/refactoring  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** A  
 **Depends on:** REF-P01  
+**Produces:** `REFACTOR_STRATEGY.md`  
 
 ---
 

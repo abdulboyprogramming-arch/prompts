@@ -1,6 +1,12 @@
 # PROMPT 01 — Context & Project Understanding
-**Version:** 1.0.0  
 **Identifier:** WEB-P01  
+**System:** 01-contribution/web/general  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
+**Depends on:** none (entry stage)  
+**Produces:** `WEB_CONTEXT.md`  
 
 ---
 

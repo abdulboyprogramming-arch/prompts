@@ -1,7 +1,12 @@
 # PROMPT 06 — Writing & Improvement
-**Version:** 1.0.0  
 **Identifier:** DOC-P06  
+**System:** 04-process/documentation  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** DOC-P05  
+**Produces:** `DOC_IMPLEMENTATION_LOG.md`  
 
 ---
 

@@ -1,7 +1,10 @@
 # PROMPT 15 — Continuous Contribution Management, Monitoring & Recovery
-**Version:** 1.0.0  
-**Status:** Operational  
 **Identifier:** P15  
+**System:** 01-contribution/open-source/general-agent  
+**Version:** 1.0.0  
+**Maturity:** operational  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** P01 and all prior operational stages  
 **Produces:** Continuously updated PROGRESS_LEDGER.md, SESSION_HANDOVER.md, recovery actions, decision to continue or conclude  
 

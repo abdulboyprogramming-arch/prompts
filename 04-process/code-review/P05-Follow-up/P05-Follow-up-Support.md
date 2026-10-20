@@ -1,7 +1,12 @@
 # PROMPT 05 — Follow-up Support
-**Version:** 1.0.0  
 **Identifier:** CR-P05  
+**System:** 04-process/code-review  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** CR-P04  
+**Produces:** `FOLLOW_UP.md`  
 
 ---
 

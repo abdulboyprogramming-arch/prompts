@@ -1,130 +1,134 @@
-# Supercharged Prompt Archive
+# Software Engineering Prompt Library
 
-**The most complete, organized, and powerful collection of professional software-engineering prompt systems.**
+A structured collection of prompts for AI coding agents, organised across the engineering lifecycle: understanding a codebase, deciding what to build, implementing it safely, verifying it, shipping it, and running it in production.
 
-This monorepo is designed to become the definitive archive of high-quality, multi-stage, production-grade prompt sets that software professionals can use across virtually any situation they encounter:
+Every prompt declares what it does, what it may change, how much it can be trusted, and what it will not do. Nothing here claims a capability its files do not have — the repository is validated against that rule on every change.
 
-- Contributing to open-source or private projects
-- Designing or extending programming languages
-- Building or improving web, web3, game, mobile, systems, and infrastructure projects
-- Deep codebase audits, architecture reviews, and rewrites
-- Research & development, pattern invention, and systems thinking
-- Full project creation from scratch
-- Day-to-day scenario prompts (debugging, performance, security, migrations, etc.)
-- Interactive prompts that intelligently gather missing context
+## Start here
 
-## Philosophy
+Pick the row that matches your situation. Do not read the whole repository first.
 
-1. **Depth over shallowness** — Prefer complete multi-stage systems with clear handovers, validation gates, and recovery logic over one-shot prompts.
-2. **Evidence and professionalism** — Prompts must produce work that a competent human engineer would be proud to submit.
-3. **Safety and authorization boundaries** — Clear action categories, secret handling, and respect for project governance.
-4. **Durable state** — Multi-stage systems maintain artifacts so work can be resumed across sessions.
-5. **Extensibility** — The taxonomy is designed to grow to hundreds of thousands of prompts without becoming chaotic.
-6. **Practicality** — Every prompt set should be immediately usable by a capable coding agent.
+| Your situation | Start with | Mode |
+|----------------|-----------|------|
+| Something is broken in production **right now** | [`05-scenarios/incident-response/`](05-scenarios/incident-response/PRODUCTION-INCIDENT.md) | Restore service first |
+| A bug resists normal debugging | [`05-scenarios/debugging/`](05-scenarios/debugging/SYSTEMATIC-DEBUGGING.md) | Diagnostic |
+| I inherited / abandoned project that half-works | [`02-engineering/project-recovery/`](02-engineering/project-recovery/README.md) → workflow [`recover-abandoned-project`](07-workflows/recover-abandoned-project.md) | Autonomous, containment first |
+| I need to know what is wrong with this codebase | [`02-engineering/codebase-audit/`](02-engineering/codebase-audit/README.md) | Diagnostic (read-only) |
+| My tests are slow, flaky, or absent where it matters | [`04-process/testing-qa/`](04-process/testing-qa/README.md) | Audit → write tests |
+| I need to contribute to someone else's repository | [`01-contribution/open-source/general-agent/`](01-contribution/open-source/general-agent/README.md) | Autonomous |
+| My alerts and runbooks are not useful | [`04-process/observability-reliability/`](04-process/observability-reliability/README.md) | Audit → implement |
+| I need to ship a release without breaking production | [`04-process/release-engineering/`](04-process/release-engineering/README.md) | Audit → plan |
+| I am building an LLM feature or agent | [`03-domains/ai-agentic/`](03-domains/ai-agentic/README.md) | Architecture → eval → safety |
+| I am starting from nothing | [`02-engineering/from-scratch/`](02-engineering/from-scratch/README.md) + workflow [`greenfield-delivery`](07-workflows/greenfield-delivery.md) | Structural only (skeleton) |
+| My request is vague and needs intake | [`06-interactive/`](06-interactive/README.md) | Interactive |
 
-## Top-Level Structure
+Full inventory, with maturity per prompt: [`_meta/CATALOG.md`](_meta/CATALOG.md).
+
+## Maturity legend — read this before using anything
+
+The library is deliberately honest about how developed each system is.
+
+| Label | Meaning | Safe to use |
+|-------|---------|-------------|
+| **operational** | Full workflow, evidence rules, verification, failure handling, completion criteria; structurally reviewed | Yes, with a capable agent and normal supervision |
+| **draft** | Substantive but not yet reviewed against the rubric; gaps are listed in the file | Yes, expect to fill gaps |
+| **skeleton** | A stage sequence with a short outline. Names the artifact and a few steps; no verification or failure handling | As a **human checklist**, not for unsupervised autonomy |
+
+Maturity is enforced, not decorative: `scripts/validate_library.py` fails if a prompt's label exceeds its content, or if a system README advertises more maturity than its stages have.
+
+### Where the depth actually is (v2.0.0)
+
+| System | Prompts | Maturity |
+|--------|--------:|----------|
+| [`01-contribution/open-source/general-agent/`](01-contribution/open-source/general-agent/README.md) | 16 | operational |
+| [`02-engineering/codebase-audit/`](02-engineering/codebase-audit/README.md) | 9 | operational |
+| [`02-engineering/project-recovery/`](02-engineering/project-recovery/README.md) | 7 | operational |
+| [`04-process/testing-qa/`](04-process/testing-qa/README.md) | 7 | operational |
+| [`04-process/observability-reliability/`](04-process/observability-reliability/README.md) | 5 | operational |
+| [`04-process/release-engineering/`](04-process/release-engineering/README.md) | 4 | operational |
+| [`03-domains/ai-agentic/`](03-domains/ai-agentic/README.md) | 5 | operational |
+| [`07-workflows/`](07-workflows/README.md) | 6 | draft |
+| [`05-scenarios/`](05-scenarios/README.md) | 8 | mixed (3 operational, 5 skeleton) |
+
+Everything else — backend, frontend, devops-infra, data-ml-ai, games, security-hardening, refactoring, architecture-review, migration, code review, documentation, project management, language design, packages, web/web3 contribution — is a **skeleton**: a defensible sequence of stages with outline prompts. Those folders are useful for structuring a human-led session today; they are not yet safe to hand to an autonomous agent. Promotion order is in [`_meta/ROADMAP-AND-BACKLOG.md`](_meta/ROADMAP-AND-BACKLOG.md).
+
+## Structure
 
 ```
-prompts/
-├── _meta/                          # Taxonomy, templates, quality standards
-├── 00-core/                        # Foundational system & orchestration prompts
-├── 01-contribution/                # All contribution workflows
-│   ├── open-source/
-│   │   └── general-agent/          # ← Full 16-prompt Open-Source Contribution Agent (ready)
-│   ├── language-design/
-│   ├── packages-libraries/
-│   ├── web/
-│   ├── web3/
-│   └── ...
-├── 02-engineering/                 # Core engineering activities
-│   ├── codebase-audit/
-│   ├── architecture-review/
-│   ├── refactoring/
-│   ├── rewriting-migration/
-│   ├── feature-design-suggestion/
-│   ├── from-scratch/
-│   ├── patterns-strategies-methods/
-│   └── ...
-├── 03-domains/                     # Domain-specific deep prompts
-│   ├── frontend/
-│   ├── backend/
-│   ├── devops-infra/
-│   ├── web3/
-│   ├── games/
-│   └── ...
-├── 04-process/                     # Methodology & process
-│   ├── research-and-development/
-│   ├── systems-building-improvement/
-│   ├── testing-qa/
-│   └── ...
-├── 05-scenarios/                   # Quick / situational prompts
-├── 06-interactive/                 # Prompts that collect extra user context
-├── 99-misc/                        # Temporary holding area
-└── archive/                        # Historical / legacy content
+00-core/          Safety categories, orchestration primitives, base agent contract
+01-contribution/  Contributing to existing projects (OSS, packages, web, web3, languages)
+02-engineering/   Audits, project recovery, architecture, refactoring, migration, performance, security
+03-domains/       Backend, frontend, devops, data/ML, games, AI-agentic
+04-process/       Testing, review, documentation, PM, research, observability, release
+05-scenarios/     Single-purpose prompts for common situations
+06-interactive/   Context collectors and intake wizards
+07-workflows/     Composed multi-system sequences with gates and handoff contracts
+_meta/            Authoring standard, rubric, taxonomy, catalog, roadmap, review log
+scripts/          Validator and catalog generator
+archive/          Legacy source material (not maintained)
 ```
 
-## Currently Available High-Quality Systems
+## How prompts are written
 
-| Location | Description | Status |
-|----------|-------------|--------|
-| `01-contribution/open-source/general-agent/` | Complete 16-prompt autonomous open-source contribution agent (P01–P16) | **Production-ready** |
-| `01-contribution/web/general/` | General Web Contribution system (8 stages + orchestrator) | **Operational** |
-| `01-contribution/web3/general/` | General Web3 Contribution system (8 stages + orchestrator) | **Operational** |
-| `01-contribution/packages-libraries/` | Package & Library Contribution system (8 stages + orchestrator) | **Operational** |
-| `01-contribution/language-design/` | Language Design & Invention system (8 stages + orchestrator) | **Operational** |
-| `03-domains/games/` | Game Development system (8 stages + orchestrator) | **Operational** |
-| `03-domains/frontend/` | Frontend domain system (8 stages + orchestrator) | **Operational** |
-| `03-domains/backend/` | Backend domain system (8 stages + orchestrator) | **Operational** |
-| `03-domains/devops-infra/` | DevOps & Infrastructure domain system (8 stages + orchestrator) | **Operational** |
-| `03-domains/data-ml-ai/` | Data / ML / AI domain system (8 stages + orchestrator) | **Operational** |
-| `04-process/testing-qa/` | Testing & QA Process system (7 stages + orchestrator) | **Operational** |
-| `04-process/code-review/` | Code Review process system (6 stages + orchestrator) | **Operational** |
-| `04-process/documentation/` | Documentation process system (8 stages + orchestrator) | **Operational** |
-| `04-process/research-and-development/` | Research & Development process system (8 stages + orchestrator) | **Operational** |
-| `04-process/systems-building-improvement/` | Systems-Building \& Improvement process (8 stages + orchestrator) | **Operational** |
-| `04-process/project-management/` | Project Management process system (8 stages + orchestrator) | **Operational** |
-| `06-interactive/` | Interactive Context Collectors & System Selector Wizard | **Operational** |
-| `00-core/` | Core safety, orchestration, system prompts, prompt-engineering primitives | **Operational** |
-| `05-scenarios/` | Scenario & Quick-Prompt collections (Debugging, Onboarding, Quick-Fix, Legacy, Incident, PR, Perf) | **Operational** |
-| `02-engineering/codebase-audit/` | Deep Codebase Audit & Analysis system (9 stages + orchestrator) | **Operational** |
-| `02-engineering/from-scratch/` | From-Scratch Project system (8 stages + orchestrator) | **Operational** |
-| `02-engineering/refactoring/` | Safe Refactoring system (7 stages + orchestrator) | **Operational** |
-| `02-engineering/feature-design-suggestion/` | Feature Design & Suggestion system (7 stages + orchestrator) | **Operational** |
-| `02-engineering/rewriting-migration/` | Rewriting & Language Migration system (8 stages + orchestrator) | **Operational** |
-| `02-engineering/architecture-review/` | Architecture Review system (7 stages + orchestrator) | **Operational** |
-| `02-engineering/patterns-strategies-methods/` | Patterns, Strategies & Methods system (7 stages + orchestrator) | **Operational** |
-| `02-engineering/performance/` | Performance Analysis & Optimization system (7 stages + orchestrator) | **Operational** |
-| `02-engineering/security-hardening/` | Security Hardening system (7 stages + orchestrator) | **Operational** |
+Every prompt follows [`_meta/prompt-authoring-standard.md`](_meta/prompt-authoring-standard.md) and carries a metadata block:
 
-## How to Use
+```markdown
+**Identifier:** AUDIT-P03
+**System:** 02-engineering/codebase-audit
+**Version:** 1.1.0
+**Maturity:** operational
+**Execution mode:** diagnostic
+**Risk class:** A
+**Depends on:** AUDIT-P02
+**Produces:** `.audit/ARCHITECTURE.md`
+```
 
-1. Choose the prompt system that matches your situation.
-2. Start with the highest-level orchestrator prompt in that folder (usually named `...-Orchestrator.md` or `README.md`).
-3. Provide the required context (repository, `MY_DETAILS.txt`, project description, etc.).
-4. Let the agent follow the staged process, maintaining the durable artifacts it creates.
+- **Execution mode** sets the stopping rule: a `diagnostic` prompt reports, an `implementation` prompt ships verified changes, an `autonomous-completion` prompt runs the full loop with gates.
+- **Risk class** is the highest action category the prompt can reach: `A` read-only, `B` local mutation, `C` external side effect, `D` high-risk. Publishing, deploying, and pushing are always `C` and always require explicit authorisation.
+- **Evidence labels** (`verified` / `inferred` / `unknown`) are used rather than confident prose.
 
-## Adding New Prompt Sets
+Quality is scored with [`_meta/quality-rubric.md`](_meta/quality-rubric.md) — 100 points, anchors per band, nine critical failure conditions that block the `operational` label.
 
-See `_meta/` for templates and quality standards. Every major prompt set should include:
+## Composing systems
 
-- Clear identity and version
-- Role definition
-- Prerequisites and required tools
-- Explicit workflow with decision gates
-- Validation and failure handling
-- Security / authorization constraints
-- Completion criteria and handover notes
+Individual prompts solve a task. Real work is a sequence with handoffs and decisions. [`07-workflows/`](07-workflows/README.md) defines five such sequences, each with explicit gates where a human must decide, failure routing, and acceptance criteria for the whole chain:
 
-## Roadmap (High Level)
+- [Recover an abandoned or broken project](07-workflows/recover-abandoned-project.md)
+- [Audit → remediate](07-workflows/audit-to-remediation.md)
+- [Production incident](07-workflows/production-incident.md)
+- [Greenfield delivery](07-workflows/greenfield-delivery.md)
+- [Continuous improvement](07-workflows/continuous-improvement.md)
 
-- Expand contribution systems for languages, packages, web, and web3
-- Full codebase audit & architecture review systems
-- From-scratch project generation systems (multiple stacks)
-- Game development prompt systems
-- Interactive context-collection wizards
-- Large library of scenario-specific quick prompts
-- Continuous quality improvement of existing systems
+Stages exchange state using the [handoff contract](07-workflows/HANDOFF-CONTRACT.md), so a second session or a different agent can continue without replaying the conversation.
 
----
+## The safety floor
 
-**This is the beginning of the widest, deepest, and most professional prompt archive for software work.**
+All systems inherit [`00-core/safety-and-security/ACTION-CATEGORIES.md`](00-core/safety-and-security/ACTION-CATEGORIES.md):
+
+- **A — read-only**: reading, searching, non-destructive checks.
+- **B — local mutation**: edits, commits, test runs, artifacts.
+- **C — external side effects**: push, publish, deploy, comment, paid APIs. Requires explicit authorisation.
+- **D — high-risk**: production secrets, destructive data operations, irreversible infrastructure. Requires specific approval.
+
+No prompt may silently escalate its own category. [`00-core/safety-and-security/SECRETS-AND-SENSITIVE-DATA.md`](00-core/safety-and-security/SECRETS-AND-SENSITIVE-DATA.md) covers secret handling and responsible disclosure.
+
+## Contributing and validating
+
+```bash
+python3 scripts/validate_library.py            # must report 0 errors
+python3 scripts/validate_library.py --catalog  # regenerate _meta/CATALOG.md
+```
+
+The validator checks metadata completeness, identifier uniqueness, version/maturity consistency, required sections, broken links (Markdown and backticked paths), empty sections, risk-class honesty, and README status overclaims.
+
+Read [`CONTRIBUTING.md`](CONTRIBUTING.md) before adding a system, and [`AGENTS.md`](AGENTS.md) if you are an AI agent working in this repository.
+
+## Known limitations
+
+- **172 of 235 prompts are skeleton outlines.** They are labelled as such everywhere.
+- **No prompt has been empirically tested against a real repository and recorded.** `operational` means structurally complete and reviewed, not proven in practice.
+- **Mobile, database, embedded, desktop/CLI, dependency management, governance, and multi-agent orchestration have no dedicated systems yet.** They are prioritised in the backlog.
+- **Reviews are self-assessments** recorded in [`_meta/review-log.md`](_meta/review-log.md); independent verification has not been performed.
+- **No CI** runs the validator yet; it is run manually.
+
+Current state, decisions, and next actions: [`PROJECT-STATUS.md`](PROJECT-STATUS.md). Change history: [`CHANGELOG.md`](CHANGELOG.md).

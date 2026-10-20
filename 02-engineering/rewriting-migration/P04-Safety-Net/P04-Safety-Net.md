@@ -1,7 +1,12 @@
 # PROMPT 04 — Safety Net
-**Version:** 1.0.0  
 **Identifier:** RW-P04  
+**System:** 02-engineering/rewriting-migration  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** RW-P03  
+**Produces:** `SAFETY_NET.md`  
 
 ---
 

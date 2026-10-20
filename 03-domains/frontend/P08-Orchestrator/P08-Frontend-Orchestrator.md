@@ -1,7 +1,12 @@
 # PROMPT 08 — Frontend Master Orchestrator
-**Version:** 1.0.0  
 **Identifier:** FE-P08  
-**Entry Point:** Yes  
+**System:** 03-domains/frontend  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** orchestration  
+**Risk class:** A  
+**Depends on:** previous stage in system  
+**Produces:** see workflow (artifact unspecified)  
 
 ---
 

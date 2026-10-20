@@ -1,7 +1,12 @@
 # PROMPT 03 — Frontend Architecture
-**Version:** 1.0.0  
 **Identifier:** FE-P03  
+**System:** 03-domains/frontend  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
 **Depends on:** FE-P02  
+**Produces:** `FE_ARCHITECTURE.md`  
 
 ---
 

@@ -1,7 +1,10 @@
 # PROMPT 04 — Deep Architectural Intelligence
-**Version:** 1.0.0  
-**Status:** Operational  
 **Identifier:** P04  
+**System:** 01-contribution/open-source/general-agent  
+**Version:** 1.0.0  
+**Maturity:** operational  
+**Execution mode:** implementation  
+**Risk class:** C  
 **Depends on:** P01, P02, P03  
 **Produces:** Deepened REPO_MAP.md, substantially populated KNOWLEDGE_BASE.md, subsystem inventory, dependency and entry-point maps  
 

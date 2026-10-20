@@ -1,7 +1,12 @@
 # PROMPT 08 — Data / ML / AI Master Orchestrator
-**Version:** 1.0.0  
 **Identifier:** ML-P08  
-**Entry Point:** Yes  
+**System:** 03-domains/data-ml-ai  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** orchestration  
+**Risk class:** C  
+**Depends on:** previous stage in system  
+**Produces:** see workflow (artifact unspecified)  
 
 ---
 

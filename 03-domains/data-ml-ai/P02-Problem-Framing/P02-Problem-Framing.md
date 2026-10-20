@@ -1,7 +1,12 @@
 # PROMPT 02 — Problem Framing
-**Version:** 1.0.0  
 **Identifier:** ML-P02  
+**System:** 03-domains/data-ml-ai  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
 **Depends on:** ML-P01  
+**Produces:** `ML_PROBLEM.md`  
 
 ---
 

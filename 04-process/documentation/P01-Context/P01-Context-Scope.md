@@ -1,6 +1,12 @@
 # PROMPT 01 — Context & Scope
-**Version:** 1.0.0  
 **Identifier:** DOC-P01  
+**System:** 04-process/documentation  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
+**Depends on:** none (entry stage)  
+**Produces:** `DOC_CONTEXT.md`  
 
 ---
 

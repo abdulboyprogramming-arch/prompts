@@ -1,7 +1,12 @@
 # PROMPT 06 — Implementation & Validation
-**Version:** 1.0.0  
 **Identifier:** SEC-P06  
+**System:** 02-engineering/security-hardening  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** SEC-P05  
+**Produces:** `VALIDATION.md`  
 
 ---
 

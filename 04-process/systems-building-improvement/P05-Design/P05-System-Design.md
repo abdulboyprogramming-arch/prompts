@@ -1,7 +1,12 @@
 # PROMPT 05 — System Design
-**Version:** 1.0.0  
 **Identifier:** SB-P05  
+**System:** 04-process/systems-building-improvement  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
 **Depends on:** SB-P04  
+**Produces:** `SYSTEM_DESIGN.md`  
 
 ---
 

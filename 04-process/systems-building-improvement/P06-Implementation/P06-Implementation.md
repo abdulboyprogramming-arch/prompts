@@ -1,7 +1,12 @@
 # PROMPT 06 — Implementation
-**Version:** 1.0.0  
 **Identifier:** SB-P06  
+**System:** 04-process/systems-building-improvement  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** SB-P05  
+**Produces:** `IMPLEMENTATION_LOG.md`  
 
 ---
 

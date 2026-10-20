@@ -1,7 +1,10 @@
 # PROMPT 11 — Engineering Execution & Code Modification
-**Version:** 1.0.0  
-**Status:** Operational  
 **Identifier:** P11  
+**System:** 01-contribution/open-source/general-agent  
+**Version:** 1.0.0  
+**Maturity:** operational  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** P01, P10 (implementation checklist and feature branch)  
 **Produces:** Modified source/test/doc files on the feature branch, updated CONTRIBUTION_PLAN.md with actual changes  
 

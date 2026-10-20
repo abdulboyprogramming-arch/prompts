@@ -1,7 +1,12 @@
 # PROMPT 03 — Audience & Goals
-**Version:** 1.0.0  
 **Identifier:** DOC-P03  
+**System:** 04-process/documentation  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** planning  
+**Risk class:** B  
 **Depends on:** DOC-P01  
+**Produces:** `AUDIENCE_GOALS.md`  
 
 ---
 

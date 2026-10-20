@@ -1,7 +1,12 @@
 # PROMPT 04 — Diagnosis
-**Version:** 1.0.0  
 **Identifier:** SB-P04  
+**System:** 04-process/systems-building-improvement  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** diagnostic  
+**Risk class:** B  
 **Depends on:** SB-P02, SB-P03  
+**Produces:** `DIAGNOSIS.md`  
 
 ---
 

@@ -1,7 +1,12 @@
 # PROMPT 07 — Review & Closeout
-**Version:** 1.0.0  
 **Identifier:** PM-P07  
+**System:** 04-process/project-management  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** diagnostic  
+**Risk class:** B  
 **Depends on:** PM-P05  
+**Produces:** `PROJECT_REVIEW.md`  
 
 ---
 

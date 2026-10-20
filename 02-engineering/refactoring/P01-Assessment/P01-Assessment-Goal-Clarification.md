@@ -1,7 +1,12 @@
 # PROMPT 01 — Assessment & Goal Clarification
-**Version:** 1.0.0  
 **Identifier:** REF-P01  
-**System:** Safe Refactoring  
+**System:** 02-engineering/refactoring  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** diagnostic  
+**Risk class:** C  
+**Depends on:** none (entry stage)  
+**Produces:** `REFACTOR_GOAL.md`  
 
 ---
 

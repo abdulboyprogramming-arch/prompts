@@ -1,7 +1,12 @@
 # PROMPT 08 — DevOps & Infrastructure Master Orchestrator
-**Version:** 1.0.0  
 **Identifier:** DI-P08  
-**Entry Point:** Yes  
+**System:** 03-domains/devops-infra  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** orchestration  
+**Risk class:** A  
+**Depends on:** previous stage in system  
+**Produces:** see workflow (artifact unspecified)  
 
 ---
 

@@ -1,7 +1,12 @@
 # PROMPT 06 — Code Review Master Orchestrator
-**Version:** 1.0.0  
 **Identifier:** CR-P06  
-**Entry Point:** Yes  
+**System:** 04-process/code-review  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** orchestration  
+**Risk class:** A  
+**Depends on:** previous stage in system  
+**Produces:** see workflow (artifact unspecified)  
 
 ---
 

@@ -1,7 +1,12 @@
 # PROMPT 06 — Testing & Quality
-**Version:** 1.0.0  
 **Identifier:** FS-P06  
+**System:** 02-engineering/from-scratch  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** FS-P05  
+**Produces:** `QUALITY.md`  
 
 ---
 

@@ -1,7 +1,12 @@
 # PROMPT 03 — Existing Patterns Survey
-**Version:** 1.0.0  
 **Identifier:** PS-P03  
+**System:** 02-engineering/patterns-strategies-methods  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** PS-P02  
+**Produces:** `EXISTING_PATTERNS.md`  
 
 ---
 

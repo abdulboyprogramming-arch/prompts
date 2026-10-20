@@ -1,27 +1,38 @@
 # 03-Domains
 
-Deep, technology-specific prompt systems.
+Deep, technology-specific prompt systems. Cross-cutting activities (audits, refactoring, recovery, from-scratch construction) live in `02-engineering/`.
 
-Prefer putting highly specialized domain knowledge here. Cross-cutting engineering activities (audits, refactoring, from-scratch generation) live under `02-engineering/`.
+## Systems
 
-## Current Systems
+| Path | Description | Stages | Maturity |
+|------|-------------|-------:|----------|
+| [`ai-agentic/`](ai-agentic/README.md) | LLM features and agents: risk, architecture, evaluation, guardrails, production operations | 5 | **operational** |
+| [`backend/`](backend/README.md) | Service implementation, API design, data, reliability | 8 | skeleton |
+| [`frontend/`](frontend/README.md) | UI architecture, state, accessibility, polish | 8 | skeleton |
+| [`devops-infra/`](devops-infra/README.md) | Infrastructure, IaC, pipelines, observability setup | 8 | skeleton |
+| [`data-ml-ai/`](data-ml-ai/README.md) | Data pipelines, ML problem framing, evaluation, deployment | 8 | skeleton |
+| [`games/`](games/README.md) | Game design, architecture, vertical slice, playtest | 8 | skeleton |
 
-| Path | Description | Status |
-|------|-------------|--------|
-| `games/` | Game Development system (8 stages) | **Operational** |
-| `frontend/` | Frontend domain system (8 stages) | **Operational** |
-| `backend/` | Backend domain system (8 stages) | **Operational** |
-| `devops-infra/` | DevOps & Infrastructure domain system (8 stages) | **Operational** |
-| `data-ml-ai/` | Data / ML / AI domain system (8 stages) | **Operational** |
+## Why only one domain system is developed
 
-## Areas
+The previous state of this repository consisted of plausible stage outlines for five domains, each about 5 KB in total. Depth requires domain judgement — the specific traps, verification methods, and trade-offs an experienced practitioner would recognise — and that is slow to write well. `ai-agentic/` was developed first because the failure modes there are least covered by general engineering intuition (non-determinism, prompt injection, fluent-but-wrong output).
 
-- frontend/
-- backend/
-- devops-infra/
-- web3/
-- games/
-- data-ml-ai/
-- mobile/
-- cli-tools/
-- embedded-systems/
+The promotion order for the remaining domains is in [`_meta/ROADMAP-AND-BACKLOG.md`](../_meta/ROADMAP-AND-BACKLOG.md): security-hardening and backend first, then frontend, then data/ML.
+
+## What these skeletons are good for today
+
+- Structuring a human-led design session (the stage sequence is sound).
+- Ensuring a review covers the areas that domain tends to skip (e.g. frontend skeleton's accessibility stage, backend's idempotency stage).
+- As a checklist before using a deeper system from another folder.
+
+They are not safe for unsupervised agent execution: they lack verification, evidence rules, and failure handling, and the validator marks them accordingly.
+
+## Missing domains
+
+Mobile (native and cross-platform), database engineering, embedded/firmware, desktop and CLI tooling, and data engineering have **no system at all**. These are real gaps, not omissions by accident; creating a folder with three-line prompts would make the library look more complete and be less useful. See the backlog.
+
+## Boundaries
+
+- Contributing to someone else's web/web3/package project → `01-contribution/`.
+- Auditing or recovering your own system → `02-engineering/`.
+- Release, observability, and testing practice → `04-process/`.

@@ -1,7 +1,12 @@
 # PROMPT 07 — Decision & Next Steps
-**Version:** 1.0.0  
 **Identifier:** RD-P07  
+**System:** 04-process/research-and-development  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** RD-P06  
+**Produces:** `DECISION.md`  
 
 ---
 

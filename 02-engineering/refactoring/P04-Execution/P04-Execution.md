@@ -1,7 +1,12 @@
 # PROMPT 04 — Execution
-**Version:** 1.0.0  
 **Identifier:** REF-P04  
+**System:** 02-engineering/refactoring  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** REF-P03  
+**Produces:** `EXECUTION_LOG.md`  
 
 ---
 

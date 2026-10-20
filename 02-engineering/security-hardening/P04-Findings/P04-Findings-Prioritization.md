@@ -1,7 +1,12 @@
 # PROMPT 04 — Findings & Risk Prioritization
-**Version:** 1.0.0  
 **Identifier:** SEC-P04  
+**System:** 02-engineering/security-hardening  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** diagnostic  
+**Risk class:** B  
 **Depends on:** SEC-P03  
+**Produces:** `FINDINGS.md`  
 
 ---
 

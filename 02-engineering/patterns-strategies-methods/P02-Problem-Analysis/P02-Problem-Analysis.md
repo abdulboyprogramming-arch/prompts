@@ -1,7 +1,12 @@
 # PROMPT 02 — Problem Analysis
-**Version:** 1.0.0  
 **Identifier:** PS-P02  
+**System:** 02-engineering/patterns-strategies-methods  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** diagnostic  
+**Risk class:** B  
 **Depends on:** PS-P01  
+**Produces:** `PROBLEM.md`  
 
 ---
 

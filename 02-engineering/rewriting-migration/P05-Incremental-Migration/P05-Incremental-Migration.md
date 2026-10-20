@@ -1,7 +1,12 @@
 # PROMPT 05 — Incremental Migration
-**Version:** 1.0.0  
 **Identifier:** RW-P05  
+**System:** 02-engineering/rewriting-migration  
+**Version:** 0.1.0  
+**Maturity:** skeleton  
+**Execution mode:** implementation  
+**Risk class:** B  
 **Depends on:** RW-P04  
+**Produces:** `MIGRATION_LOG.md`  
 
 ---
 
