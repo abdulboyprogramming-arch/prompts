@@ -22,6 +22,7 @@ This release reconciles the library's claims with its artifacts, establishes enf
 
 ### Rewritten to operational depth
 
+- `02-engineering/security-hardening/` — all seven stages rebuilt around an authorisation gate, concrete abuse cases, an ingress-by-ingress enforcement matrix, triage that admits only confirmed S1/S2 findings, and remediation proven by failing-before tests and a route × role matrix.
 - `02-engineering/codebase-audit/` — all nine stages rebuilt with a shared evidence standard, severity model with required evidence per level, finding schema, adversarial synthesis gate, and a report structure that includes risk of inaction and coverage limits.
 - `04-process/testing-qa/` — all seven stages rebuilt with R1–R4 risk prioritisation, a coverage rule that rejects percentage-chasing, mutation spot checks, and a mandatory plan checkpoint.
 - `05-scenarios/debugging/SYSTEMATIC-DEBUGGING.md` — reproduction, minimisation, explicit hypotheses, fix-proven-by-revert, regression test.
@@ -48,6 +49,6 @@ This release reconciles the library's claims with its artifacts, establishes enf
 
 ### Known limitations
 
-- 172 prompts remain `skeleton`. They outline a defensible sequence but cannot run unsupervised. See the backlog.
+- 165 prompts remain `skeleton`. They outline a defensible sequence but cannot run unsupervised. See the backlog.
 - No prompt in this library has been empirically tested against a real repository and recorded. All `operational` labels are structural reviews.
 - No CI workflow runs the validator yet.

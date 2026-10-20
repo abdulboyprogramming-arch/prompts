@@ -202,8 +202,9 @@ def check(docs: list[Doc]) -> tuple[list[str], list[str]]:
             elif code == "A":
                 hit = None
                 for m in DESTRUCTIVE.finditer(d.text):
-                    window = d.text[max(0, m.start() - 30):m.start()].lower()
-                    if not re.search(r"(do not|never|no |without|not )\s*$", window):
+                    sent_start = d.text.rfind(". ", 0, m.start())
+                    sentence = d.text[max(0, sent_start):m.end()].lower()
+                    if not re.search(r"\b(do not|never|must not|avoid|without|not)\b", sentence):
                         hit = m
                         break
                 if hit:

@@ -22,7 +22,7 @@ These systems are referenced from the root README and workflows but consist of 2
 
 | System | Stages | Why it matters | Target |
 |--------|-------:|----------------|--------|
-| `02-engineering/security-hardening` | 7 | Security claims are the highest-consequence; the current prompts cannot produce defensible findings | operational |
+| ~~`02-engineering/security-hardening`~~ | 7 | **Done in 2.0.0** — authorisation gate, threat model, enforcement matrix, triage, proven remediation | operational |
 | `02-engineering/refactoring` | 7 | The most common engineering activity, and the most likely to break things | operational |
 | `03-domains/backend` | 8 | Largest domain by usage; API/data/reliability practice is thin | operational |
 | `03-domains/frontend` | 8 | Accessibility and state management are named but have no pass criteria | operational |

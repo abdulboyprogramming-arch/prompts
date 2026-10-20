@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 235 prompts — 0 canonical, 56 operational, 7 draft, 172 skeleton.
+**Totals:** 235 prompts — 0 canonical, 63 operational, 7 draft, 165 skeleton.
 
 ## `01-contribution/language-design`
 
@@ -197,13 +197,13 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
 | ID | Stage | Maturity | Mode | Risk | File |
 |----|-------|----------|------|------|------|
-| `SEC-P01` | PROMPT 01 — Context & Scope | skeleton | implementation | C | [P01-Context-Scope.md](../02-engineering/security-hardening/P01-Context/P01-Context-Scope.md) |
-| `SEC-P02` | PROMPT 02 — Lightweight Threat Modeling | skeleton | implementation | B | [P02-Threat-Model.md](../02-engineering/security-hardening/P02-Threat-Model/P02-Threat-Model.md) |
-| `SEC-P03` | PROMPT 03 — Security Surface Analysis | skeleton | diagnostic | B | [P03-Surface-Analysis.md](../02-engineering/security-hardening/P03-Surface-Analysis/P03-Surface-Analysis.md) |
-| `SEC-P04` | PROMPT 04 — Findings & Risk Prioritization | skeleton | diagnostic | B | [P04-Findings-Prioritization.md](../02-engineering/security-hardening/P04-Findings/P04-Findings-Prioritization.md) |
-| `SEC-P05` | PROMPT 05 — Hardening Plan | skeleton | planning | B | [P05-Hardening-Plan.md](../02-engineering/security-hardening/P05-Hardening-Plan/P05-Hardening-Plan.md) |
-| `SEC-P06` | PROMPT 06 — Implementation & Validation | skeleton | implementation | B | [P06-Implementation-Validation.md](../02-engineering/security-hardening/P06-Implementation-Validation/P06-Implementation-Validation.md) |
-| `SEC-P07` | PROMPT 07 — Security Hardening Master Orchestrator | skeleton | orchestration | A | [P07-Security-Hardening-Orchestrator.md](../02-engineering/security-hardening/P07-Orchestrator/P07-Security-Hardening-Orchestrator.md) |
+| `SEC-P01` | PROMPT 01 — Authorisation, Scope & Rules of Engagement | operational | planning | A | [P01-Context-Scope.md](../02-engineering/security-hardening/P01-Context/P01-Context-Scope.md) |
+| `SEC-P02` | PROMPT 02 — Assets & Threat Model | operational | diagnostic | A | [P02-Threat-Model.md](../02-engineering/security-hardening/P02-Threat-Model/P02-Threat-Model.md) |
+| `SEC-P03` | PROMPT 03 — Control Review (Attack Surface Analysis) | operational | diagnostic | A | [P03-Surface-Analysis.md](../02-engineering/security-hardening/P03-Surface-Analysis/P03-Surface-Analysis.md) |
+| `SEC-P04` | PROMPT 04 — Findings & Triage | operational | diagnostic | A | [P04-Findings-Prioritization.md](../02-engineering/security-hardening/P04-Findings/P04-Findings-Prioritization.md) |
+| `SEC-P05` | PROMPT 05 — Hardening Plan | operational | planning | A | [P05-Hardening-Plan.md](../02-engineering/security-hardening/P05-Hardening-Plan/P05-Hardening-Plan.md) |
+| `SEC-P06` | PROMPT 06 — Hardening Implementation & Verification | operational | implementation | B | [P06-Implementation-Validation.md](../02-engineering/security-hardening/P06-Implementation-Validation/P06-Implementation-Validation.md) |
+| `SEC-P07` | PROMPT 07 — Security Hardening Orchestrator | operational | orchestration | A | [P07-Security-Hardening-Orchestrator.md](../02-engineering/security-hardening/P07-Orchestrator/P07-Security-Hardening-Orchestrator.md) |
 
 ## `03-domains/ai-agentic`
 

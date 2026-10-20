@@ -82,3 +82,9 @@ Notable findings:
 ## Pending reviews
 
 All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review order follows `_meta/ROADMAP-AND-BACKLOG.md` P1.
+
+### `02-engineering/security-hardening` — 7 stages
+- **2026-10-20 · audit-remediation · 88/100 · operational**
+- Reason: authorisation gate precedes assessment; threat model requires concrete abuse cases with expected controls; P03 builds an ingress enforcement matrix so a missing control on one route is visible; P04 permits S1/S2 only for `confirmed` findings and forbids payloads; P06 requires a failing-before test and a route × role authorisation matrix, and forbids weakening controls to make tests pass.
+- Deductions: framework-specific examples are absent; supply-chain review is one section rather than a stage; compliance mapping is out of scope by design.
+- Follow-up: add worked examples for one ORM and one middleware framework; add SBOM/signing guidance.

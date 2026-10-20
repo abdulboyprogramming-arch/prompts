@@ -32,9 +32,9 @@ archive/         Legacy .txt source material, retained for provenance
 Run `python3 scripts/validate_library.py` for live numbers. At the time of writing:
 
 - **299 Markdown files**, **235 prompt files**, ~780 KB of content.
-- Maturity: **56 operational**, **7 draft**, **172 skeleton**.
+- Maturity: **63 operational**, **7 draft**, **165 skeleton**.
 - **0 validation errors**; warnings are advisory (6).
-- 10 operational multi-stage systems or scenario prompts: open-source contribution agent (16), codebase audit (9), project recovery (7), testing & QA (7), observability & reliability (5), release engineering (4), AI/agentic (5), workflows (6), plus debugging, incident response, and flaky-test triage.
+- Operational systems: open-source contribution agent (16), codebase audit (9), project recovery (7), security hardening (7), testing & QA (7), observability & reliability (5), release engineering (4), AI/agentic (5), workflows (6, draft), plus debugging, incident response, and flaky-test triage.
 - Every prompt declares identifier, system, version, maturity, execution mode, and risk class.
 
 **The honest summary:** one sixth of the library is developed; five sixths are outlines that name a sensible stage sequence but lack verification, evidence rules, and failure handling. That ratio is stated everywhere it matters, and the validator fails the build if a README over-claims.
@@ -82,7 +82,7 @@ Full detail in `CHANGELOG.md`. Summary:
 ## 7. Known weaknesses (do not paper over)
 
 1. **No empirical testing.** No prompt has a recorded run against a real repository. `operational` means structurally reviewed, not proven.
-2. **172 skeletons.** Domains most affected: backend, frontend, devops-infra, data-ml-ai, games, security-hardening, refactoring, architecture-review, migration, PM, documentation, code review.
+2. **165 skeletons.** Domains most affected: backend, frontend, devops-infra, data-ml-ai, games, security-hardening, refactoring, architecture-review, migration, PM, documentation, code review.
 3. **Missing families:** mobile, database, embedded, desktop/CLI, dependency management, governance/compliance, multi-agent orchestration, accessibility/i18n depth.
 4. **Reviews are self-assessments** by the authoring agent, recorded in `_meta/review-log.md`. Independence is not claimed.
 5. **No duplicate/near-duplicate detection** beyond identifiers and titles.
@@ -91,13 +91,12 @@ Full detail in `CHANGELOG.md`. Summary:
 
 ## 8. Next actions, in order
 
-1. Promote `02-engineering/security-hardening` (7 stages) — highest consequence gap.
-2. Promote `02-engineering/refactoring` (7 stages).
-3. Promote `03-domains/backend` (8 stages).
+1. Promote `02-engineering/refactoring` (7 stages) — highest remaining consequence gap.
+2. Promote `03-domains/backend` (8 stages).
+3. Run one workflow end to end on a real repository and record the result in `_meta/review-log.md`; this is the single highest-value credibility improvement available.
 4. Add `03-domains/mobile` and `04-process/dependency-management`.
-5. Run one workflow end to end on a real repository and record the result in `_meta/review-log.md`; this is the single highest-value credibility improvement available.
-6. Add a CI workflow that runs `python3 scripts/validate_library.py`.
-7. Add multi-agent orchestration workflow.
+5. Add a CI workflow that runs `python3 scripts/validate_library.py`.
+6. Add multi-agent orchestration workflow.
 
 ## 9. How to resume
 

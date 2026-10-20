@@ -43,6 +43,7 @@ Maturity is enforced, not decorative: `scripts/validate_library.py` fails if a p
 | [`01-contribution/open-source/general-agent/`](01-contribution/open-source/general-agent/README.md) | 16 | operational |
 | [`02-engineering/codebase-audit/`](02-engineering/codebase-audit/README.md) | 9 | operational |
 | [`02-engineering/project-recovery/`](02-engineering/project-recovery/README.md) | 7 | operational |
+| [`02-engineering/security-hardening/`](02-engineering/security-hardening/README.md) | 7 | operational |
 | [`04-process/testing-qa/`](04-process/testing-qa/README.md) | 7 | operational |
 | [`04-process/observability-reliability/`](04-process/observability-reliability/README.md) | 5 | operational |
 | [`04-process/release-engineering/`](04-process/release-engineering/README.md) | 4 | operational |
@@ -50,7 +51,7 @@ Maturity is enforced, not decorative: `scripts/validate_library.py` fails if a p
 | [`07-workflows/`](07-workflows/README.md) | 6 | draft |
 | [`05-scenarios/`](05-scenarios/README.md) | 8 | mixed (3 operational, 5 skeleton) |
 
-Everything else — backend, frontend, devops-infra, data-ml-ai, games, security-hardening, refactoring, architecture-review, migration, code review, documentation, project management, language design, packages, web/web3 contribution — is a **skeleton**: a defensible sequence of stages with outline prompts. Those folders are useful for structuring a human-led session today; they are not yet safe to hand to an autonomous agent. Promotion order is in [`_meta/ROADMAP-AND-BACKLOG.md`](_meta/ROADMAP-AND-BACKLOG.md).
+Everything else — backend, frontend, devops-infra, data-ml-ai, games, refactoring, architecture-review, migration, code review, documentation, project management, language design, packages, web/web3 contribution — is a **skeleton**: a defensible sequence of stages with outline prompts. Those folders are useful for structuring a human-led session today; they are not yet safe to hand to an autonomous agent. Promotion order is in [`_meta/ROADMAP-AND-BACKLOG.md`](_meta/ROADMAP-AND-BACKLOG.md).
 
 ## Structure
 
@@ -125,7 +126,7 @@ Read [`CONTRIBUTING.md`](CONTRIBUTING.md) before adding a system, and [`AGENTS.m
 
 ## Known limitations
 
-- **172 of 235 prompts are skeleton outlines.** They are labelled as such everywhere.
+- **165 of 235 prompts are skeleton outlines.** They are labelled as such everywhere.
 - **No prompt has been empirically tested against a real repository and recorded.** `operational` means structurally complete and reviewed, not proven in practice.
 - **Mobile, database, embedded, desktop/CLI, dependency management, governance, and multi-agent orchestration have no dedicated systems yet.** They are prioritised in the backlog.
 - **Reviews are self-assessments** recorded in [`_meta/review-log.md`](_meta/review-log.md); independent verification has not been performed.

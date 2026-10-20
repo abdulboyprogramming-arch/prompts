@@ -15,7 +15,7 @@ Engineering activities that apply across technologies: understanding a system, c
 | [`from-scratch/`](from-scratch/README.md) | Greenfield construction | 8 | skeleton |
 | [`patterns-strategies-methods/`](patterns-strategies-methods/README.md) | Inventing or improving patterns and methods | 7 | skeleton |
 | [`performance/`](performance/README.md) | Performance analysis and optimisation | 7 | skeleton |
-| [`security-hardening/`](security-hardening/README.md) | Security assessment and hardening | 7 | skeleton |
+| [`security-hardening/`](security-hardening/README.md) | Authorised review, triaged findings, proven remediation | 7 | **operational** |
 
 ## What "skeleton" means here
 
