@@ -16,6 +16,7 @@ A workflow is not a new prompt to paste. It is an operating procedure for a sess
 | [Greenfield delivery](greenfield-delivery.md) | A new project that must reach a working, shippable state | `02-engineering/from-scratch/` | draft |
 | [Continuous improvement](continuous-improvement.md) | A healthy project that should keep getting better | `05-scenarios/README.md` + baselines | draft |
 | [Independent verification](independent-verification.md) | An agent or engineer says the work is complete; you need to know if that is true | any completed change set | operational |
+| [Cross-layer integration](cross-layer-integration.md) | Frontend, backend, infra, and data were built separately and must work together | each layer complete on its own | operational |
 
 ## The handoff contract
 

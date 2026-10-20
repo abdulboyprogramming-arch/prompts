@@ -31,7 +31,7 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Operation | Adequate | `OBS-P01..P05`, `INC-01` |
 | Maintenance / improvement | Partial | `WF-IMPROVE` (draft), `systems-building-improvement` skeleton |
 | Modernisation | Partial | `rewriting-migration` skeleton; DB change covered by `DB-P01..P05`, but no language/platform modernisation procedure |
-| Retirement / decommissioning | **Missing** | No prompt covers service sunset: consumer discovery, deprecation notice, data retention, teardown verification |
+| Retirement / decommissioning | **Adequate** | `DEC-P01..P04` (new) — consumer discovery by class with positive evidence, derived notice period, staged reversible shutdown with a quiescence window, asset-by-asset retirement decisions |
 
 ## 2. Task coverage
 
@@ -46,7 +46,7 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Migration (code) | Partial | `rewriting-migration` skeleton |
 | Migration (data/schema) | Adequate | `DB-P01..P05` (new) |
 | Recovery | Adequate | `project-recovery`, `INC-01`, `DB-P05` |
-| Integration | Partial | `REC-P04` covers environment/integration truth; no prompt for merging independently developed frontend/backend/infra work |
+| Integration | **Adequate** | `WF-INTEGRATE` (new) — contract reconciliation before wiring, seam table, transport and config diffs, end-to-end journey, failure paths per seam |
 | Feature completion across layers | **Adequate** | `FC-P01..P04` (new) — contract, layer map, implementation, acceptance |
 | Independent verification of others' work | **Adequate** | `WF-VERIFY` (new) — claims audit, clean-state reproduction, mutation probing, undeclared-change audit |
 | Failed-fix escalation | **Adequate** | `FIXFAIL-01` (new) — attempt ledger, failure classification, decision to revert/re-scope/escalate |
@@ -188,7 +188,7 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Safe DB migration (`DB-P01..P05`) | Yes | Yes | Yes | Yes | Yes | Yes | Yes | **Adequate** |
 | Security discovery → remediation → independent verification (`SEC-P01..P07` + `WF-VERIFY`) | Yes | Yes | Yes | Yes | Yes | Yes | Yes | **Adequate** |
 | Legacy modernisation | **Partial** — design/strategy stages are skeletons; no cutover verification | Partial | Unknown | Partial | Partial | Partial | Partial | **Partial** |
-| Frontend/backend/infra integration | **Missing** as a workflow; `REC-P04` verifies seams only | — | — | — | — | — | — | **Missing** |
+| Frontend/backend/infra integration (`WF-INTEGRATE`) | Yes | Yes | Yes | Yes | Yes | Yes | Yes | **Adequate** |
 | Dependency/framework upgrades (`DEP-P01..P05`) | Yes | Yes | Yes | Yes | Yes | Yes | Yes | **Adequate** |
 | Failed deployment / corrupted config / failed migration recovery | Partial — `REL-P03` rollback + `DB-P05` reverse path; still no single combined runbook for a failed deploy with a half-applied migration | Partial | Partial | Partial | Partial | Yes | Partial | **Partial** |
 | Feature completed across all layers (`FC-P01..P04`) | Yes | Yes | Yes | Yes | Yes | Yes | Yes | **Adequate** |
@@ -205,32 +205,30 @@ Counts are computed from the tables above; they are not estimates.
 
 | Status | Dimension rows | Workflow rows |
 |--------|---------------:|--------------:|
-| Adequate | 55 | 7 |
-| Partial | 37 | 5 |
-| Missing | 6 | 2 |
+| Adequate | 57 | 8 |
+| Partial | 36 | 5 |
+| Missing | 5 | 1 |
 | Defective | 0 | 0 |
 | Indirect | 0 | 0 |
 | **Total assessed** | **98** | **14** |
 
-**Reading this honestly:** roughly 56% of assessed dimension rows are adequate. The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
+**Reading this honestly:** roughly 58% of assessed dimension rows are adequate. The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
 
-**Closed in 2.1.x:** database engineering (`DB-P01..P05`), dependency/framework upgrades (`DEP-P01..P05`), vertical feature completion (`FC-P01..P04`), independent verification (`WF-VERIFY`), failed-fix escalation (`FIXFAIL-01`), data-loss recovery (`DATALOSS-01`), security incident response (`SECINC-01`).
+**Closed in 2.1.x:** cross-layer integration (`WF-INTEGRATE`), decommissioning (`DEC-P01..P04`), and database engineering (`DB-P01..P05`), dependency/framework upgrades (`DEP-P01..P05`), vertical feature completion (`FC-P01..P04`), independent verification (`WF-VERIFY`), failed-fix escalation (`FIXFAIL-01`), data-loss recovery (`DATALOSS-01`), security incident response (`SECINC-01`).
 
 **Missing scenarios still open**, in priority order:
 
-*Dimension rows marked Missing (6):*
+*Dimension rows marked Missing (5):*
 
-1. **Retirement / decommissioning** — consumer discovery, deprecation window, data retention, teardown verification.
-2. **Enterprise system readiness / governance** — control evidence, change management, auditability.
-3. **Data engineering** (ingest, quality, lineage, backfills at scale).
-4. **Mobile** domain system.
-5. **Embedded / firmware** domain system.
-6. **Desktop / CLI** domain system.
+1. **Enterprise system readiness / governance** — control evidence, change management, auditability.
+2. **Data engineering** (ingest, quality, lineage, backfills at scale).
+3. **Mobile** domain system.
+4. **Embedded / firmware** domain system.
+5. **Desktop / CLI** domain system.
 
-*Workflow rows marked Missing (2):*
+*Workflow rows marked Missing (1):*
 
-7. **Integrating independently developed frontend/backend/infra work.**
-8. **Enterprise readiness** end-to-end (depends on item 2).
+6. **Enterprise readiness** end-to-end (depends on item 1).
 
 *Also missing but not a row above:* prototype/spike discipline and near-duplicate detection tooling for the library itself.
 

@@ -10,6 +10,7 @@ Engineering process as procedure: how work is verified, reviewed, released, oper
 | [`observability-reliability/`](observability-reliability/README.md) | Signals, SLOs, alerting, runbooks, postmortems | 5 | **operational** |
 | [`release-engineering/`](release-engineering/README.md) | Readiness, versioning, deployment strategy, rollback, post-release verification | 4 | **operational** |
 | [`dependency-management/`](dependency-management/README.md) | Dependency inventory, breaking-change assessment, upgrade execution, verification, policy | 5 | **operational** |
+| [`decommissioning/`](decommissioning/README.md) | Consumer discovery, deprecation, staged shutdown, data and asset retirement | 4 | **operational** |
 | [`code-review/`](code-review/README.md) | Structured review, feedback, follow-up | 6 | skeleton |
 | [`documentation/`](documentation/README.md) | Documentation inventory, gaps, writing, validation | 8 | skeleton |
 | [`project-management/`](project-management/README.md) | Goals, breakdown, planning, tracking, risk | 8 | skeleton |

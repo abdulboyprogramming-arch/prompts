@@ -153,3 +153,20 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 - Outcome: defect reproduced in 2 min, cause proven by instrumentation (not code reading), fix verified by reverting it, regression test red→green. Three weaknesses found and fixed: (1) a green suite while a defect exists is now treated as evidence that the tests encode the buggy behaviour; (2) localisation now requires varying invocation context, and step 5 gains an ordered hypothesis-class list led by shared mutable state; (3) a new step requires explaining why the existing tests missed the defect.
 - Honest limits: one defect, one language, one evaluator who knew the fixture. Not a validation study, and no claim of superiority over unprompted debugging.
 - Follow-up: fixture set + scoring sheet; fixtures authored by someone other than the prompt author.
+
+### `07-workflows/cross-layer-integration.md`
+- **2026-10-20 · specialised · 88/100 · operational**
+- Reason: the characteristic failure it targets — every layer "done", product broken — was invisible in the library. Reconciles the contract before wiring infrastructure (where most time is wasted), enforces a seam table with auth and failure columns, tests through the transport rather than the function, and requires per-seam failure injection plus a "not proven" list.
+- Deductions: no language-specific client-generation recipes; assumes the layers can be composed locally if no integration environment exists.
+- Follow-up: add a worked example with a generated client.
+
+### `04-process/decommissioning/` — 4 stages
+- **2026-10-20 · specialised · 88/100 · operational**
+- Reason: the library covered construction exhaustively and removal not at all, despite removal being irreversible. P01 rejects "no traffic in the logs" as proof and enumerates consumer classes that leave no trace (batch jobs, partners, pipelines, BI). P02 derives the notice period from constraints instead of defaulting to 90 days. P03 stages shutdown with reversal at every step and a quiescence window. P04 decides per asset, with archive verified by restore and identities revoked and confirmed dead.
+- Deductions: no platform-specific teardown commands (by design); legal retention is escalated, not decided.
+- Follow-up: link P04's asset inventory to `03-domains/database`'s destructive register.
+
+### Coverage movement after integration + decommissioning
+- Dimension rows: 57 adequate / 36 partial / 5 missing.
+- Workflow rows: 8 adequate / 5 partial / 1 missing.
+- Remaining missing: enterprise readiness (dimension + workflow), data engineering, mobile, embedded, desktop/CLI, plus prototype discipline and duplicate detection outside the table.

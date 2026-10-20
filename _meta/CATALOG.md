@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 253 prompts — 0 canonical, 81 operational, 7 draft, 165 skeleton.
+**Totals:** 258 prompts — 0 canonical, 86 operational, 7 draft, 165 skeleton.
 
 ## `01-contribution/language-design`
 
@@ -310,6 +310,15 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `CR-P05` | PROMPT 05 — Follow-up Support | skeleton | implementation | B | [P05-Follow-up-Support.md](../04-process/code-review/P05-Follow-up/P05-Follow-up-Support.md) |
 | `CR-P06` | PROMPT 06 — Code Review Master Orchestrator | skeleton | orchestration | A | [P06-Code-Review-Orchestrator.md](../04-process/code-review/P06-Orchestrator/P06-Code-Review-Orchestrator.md) |
 
+## `04-process/decommissioning`
+
+| ID | Stage | Maturity | Mode | Risk | File |
+|----|-------|----------|------|------|------|
+| `DEC-P01` | PROMPT 01 — Consumer Discovery | operational | diagnostic | A | [P01-Consumer-Discovery.md](../04-process/decommissioning/P01-Consumers/P01-Consumer-Discovery.md) |
+| `DEC-P02` | PROMPT 02 — Deprecation Plan | operational | planning | A | [P02-Deprecation-Plan.md](../04-process/decommissioning/P02-Deprecation/P02-Deprecation-Plan.md) |
+| `DEC-P03` | PROMPT 03 — Shutdown Execution | operational | specialised | C | [P03-Shutdown-Execution.md](../04-process/decommissioning/P03-Shutdown/P03-Shutdown-Execution.md) |
+| `DEC-P04` | PROMPT 04 — Data and Asset Retirement | operational | specialised | D | [P04-Data-Asset-Retirement.md](../04-process/decommissioning/P04-Retirement/P04-Data-Asset-Retirement.md) |
+
 ## `04-process/dependency-management`
 
 | ID | Stage | Maturity | Mode | Risk | File |
@@ -430,6 +439,7 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `WF-HANDOFF` | Handoff Contract | draft | planning | A | [HANDOFF-CONTRACT.md](../07-workflows/HANDOFF-CONTRACT.md) |
 | `WF-AUDIT-REMEDIATE` | Workflow — Audit → Remediate | draft | audit-remediation | B | [audit-to-remediation.md](../07-workflows/audit-to-remediation.md) |
 | `WF-IMPROVE` | Workflow — Continuous Improvement | draft | continuous-improvement | B | [continuous-improvement.md](../07-workflows/continuous-improvement.md) |
+| `WF-INTEGRATE` | Workflow — Cross-Layer Integration | operational | specialised | B | [cross-layer-integration.md](../07-workflows/cross-layer-integration.md) |
 | `WF-GREENFIELD` | Workflow — Greenfield Delivery | draft | autonomous-completion | B | [greenfield-delivery.md](../07-workflows/greenfield-delivery.md) |
 | `WF-VERIFY` | Workflow — Independent Verification of Completed Work | operational | diagnostic | A | [independent-verification.md](../07-workflows/independent-verification.md) |
 | `WF-INCIDENT` | Workflow — Production Incident | draft | specialised | C | [production-incident.md](../07-workflows/production-incident.md) |

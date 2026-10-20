@@ -31,13 +31,13 @@ archive/         Legacy .txt source material, retained for provenance
 
 Run `python3 scripts/validate_library.py` for live numbers. At the time of writing:
 
-- **299 Markdown files**, **235 prompt files**, ~780 KB of content.
-- Maturity: **81 operational**, **7 draft**, **165 skeleton**.
-- **0 validation errors**; warnings are advisory (6).
-- Operational systems: open-source contribution agent (16), codebase audit (9), project recovery (7), security hardening (7), testing & QA (7), database (5), dependency management (5), observability & reliability (5), release engineering (4), AI/agentic (5), feature completion (4), independent verification (1), plus debugging, incident response, flaky-test triage, failed-fix escalation, data-loss recovery, and security incident response.
+- **328 Markdown files**, **258 prompt files**.
+- Maturity: **86 operational**, **7 draft**, **165 skeleton**.
+- **0 validation errors, 0 warnings**.
+- Operational systems: open-source contribution agent (16), codebase audit (9), project recovery (7), security hardening (7), testing & QA (7), database (5), dependency management (5), decommissioning (4), observability & reliability (5), release engineering (4), AI/agentic (5), feature completion (4), independent verification (1), plus debugging, incident response, flaky-test triage, failed-fix escalation, data-loss recovery, and security incident response.
 - Every prompt declares identifier, system, version, maturity, execution mode, and risk class.
 
-**The honest summary:** one sixth of the library is developed; five sixths are outlines that name a sensible stage sequence but lack verification, evidence rules, and failure handling. That ratio is stated everywhere it matters, and the validator fails the build if a README over-claims.
+**The honest summary:** roughly one third of the prompt files are developed to the standard (86 operational); the rest are outlines that name a sensible stage sequence but lack verification, evidence rules, and failure handling. One prompt has been empirically executed. That ratio is stated everywhere it matters, and the validator fails the build if a README over-claims.
 
 ## 4. Standards that now govern the repository
 
@@ -94,8 +94,8 @@ Full detail in `CHANGELOG.md`. Summary:
 1. **Empirical test harness** — one executed run now exists (`_meta/empirical-evaluation-01.md`: `DBG-01` against a synthetic fixture, three prompt fixes). Next: a fixture set, a scoring sheet, and fixtures authored by someone other than the prompt author. Every other `operational` label remains a structural review.
 2. Promote `02-engineering/refactoring` (7 stages) — highest-value remaining skeleton.
 3. Promote `03-domains/backend` (8 stages).
-4. **Integration workflow** (`07-workflows/`) for merging independently developed frontend/backend/infra work.
-5. `04-process/decommissioning/` and `03-domains/data-engineering/`.
+4. Enterprise readiness / governance (`04-process/governance-compliance/`) — the last workflow-level missing scenario.
+5. `03-domains/data-engineering/` (ingest, quality, lineage).
 6. Multi-agent orchestration workflow.
 
 ## 9. How to resume
