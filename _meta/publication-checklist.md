@@ -36,7 +36,7 @@
 | `.github/CODE_OF_CONDUCT.md` | **added this cycle** — evidence-based conduct, private reporting |
 | `.github/pull_request_template.md` | **added this cycle** — reproduces the library's own bar as checkboxes |
 | `.github/ISSUE_TEMPLATE/{bug,prompt-request}.md` + `config.yml` | **added this cycle** — no blank issues; security routed privately |
-| `LICENSE` | **added 2.13.0** — MIT for `scripts/` and code samples |
+| `LICENSE` | **added 2.13.0, corrected 2.13.1** — exact MIT text so GitHub detects SPDX `MIT` (the appended scope note made it read as "Other") |
 | `LICENSE-CONTENT` | **added 2.13.0** — CC BY 4.0 for prompts and prose, with attribution and endorsement boundary |
 | `CHANGELOG.md` | present — 2.6.0 → 2.12.0 in this cycle |
 | `.gitignore` | **added this cycle** |
