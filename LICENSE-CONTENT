@@ -13,7 +13,7 @@ The canonical legal code at the URL above governs; this file is the notice that 
 - Every system `README.md`, standard, template, checklist, and guide under `00-core/`, `_meta/`, `01-contribution/` … `07-workflows/`
 - `GALLERY.md`, `_meta/CATALOG.md`, `CHANGELOG.md`, `PROJECT-STATUS.md`, and this repository's documentation
 
-It does **not** cover the Python code in `scripts/`, which is MIT licensed — see `LICENSE`.
+It does **not** cover the executable code: everything in `scripts/` and any code samples embedded in the prompts is MIT licensed — see `LICENSE`.
 
 ## What you may do
 

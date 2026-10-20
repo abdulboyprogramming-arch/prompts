@@ -2,6 +2,12 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.13.1] — 2026-10-20
+
+### Fixed — licence detection
+
+`LICENSE` carried an explanatory paragraph after the MIT text, which made GitHub's licence detector read the repository as "Other" (`NOASSERTION`). The file is now the exact MIT text, so the repository is identified as MIT; the "what this covers" note moved to `LICENSE-CONTENT`, which already scoped the split.
+
 ## [2.13.0] — 2026-10-20
 
 ### Added — licensing (blocking item for publication)
