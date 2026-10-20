@@ -182,8 +182,8 @@ def check_inputs(doc: Doc) -> tuple[list[str], list[str]]:
 
 
 README_CLAIM = re.compile(
-    r"(?:\*\*Status:\*\*|\*\*Maturity:\*\*)\s*(?:\*\*)?\s*(Operational|Production-ready)",
-    re.IGNORECASE,
+    r"^\s*\*\*(?:Status|Maturity):?\s*\**\s*(Operational|Production-ready)\b",
+    re.IGNORECASE | re.MULTILINE,
 )
 # A README that says "Operational" anywhere in prose while most of its stages are
 # outlines is the same overclaim in a different sentence.
@@ -208,6 +208,9 @@ def check_system_readmes(docs: list[Doc]) -> list[str]:
             continue
         claim = README_CLAIM.search(d.text)
         prose = README_PROSE_CLAIM.search(d.text)
+        declares_mixed = re.search(r"\bmixed\b", d.text, re.IGNORECASE)
+        if declares_mixed and claim is None:
+            continue
         if not claim and not prose:
             continue
         system = os.sep.join(d.rel.split(os.sep)[:2])
@@ -215,15 +218,14 @@ def check_system_readmes(docs: list[Doc]) -> list[str]:
         if not stages:
             continue
         weak = [s for s in stages if s.maturity in ("skeleton", "draft")]
-        declares_mixed = re.search(r"\bmixed\b", d.text, re.IGNORECASE)
-        if not weak:
+        if not weak or declares_mixed:
             continue
         if claim is not None:
             errors.append(
                 f"{d.rel}: claims {claim.group(1)} but {len(weak)} of {len(stages)} stage prompts in "
                 f"{system}/ are skeleton/draft (e.g. {weak[0].rel}); the README overclaims"
             )
-        elif prose and not declares_mixed and len(weak) > len(stages) / 2:
+        elif prose and len(weak) > len(stages) / 2:
             errors.append(
                 f"{d.rel}: prose claims 'Operational' but {len(weak)} of {len(stages)} stage prompts in "
                 f"{system}/ are skeleton/draft; state the real maturity or mark the system mixed"

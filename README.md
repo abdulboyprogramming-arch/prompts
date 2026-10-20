@@ -4,7 +4,7 @@ A structured collection of prompts for AI coding agents, organised across the en
 
 Every prompt declares what it does, what it may change, how much it can be trusted, and what it will not do. Nothing here claims a capability its files do not have — the repository is validated against that rule on every change.
 
-**Browse everything:** [`GALLERY.md`](GALLERY.md) lists all 325 prompts with a direct link and one line on when to use each. It is generated from the prompts themselves and CI fails if it falls out of date, so it cannot drift from the library.
+**Browse everything:** [`GALLERY.md`](GALLERY.md) lists all 336 prompts with a direct link and one line on when to use each. It is generated from the prompts themselves and CI fails if it falls out of date, so it cannot drift from the library.
 
 ## Start here
 
@@ -40,6 +40,16 @@ Pick the row that matches your situation. Do not read the whole repository first
 | I need WCAG 2.2 AA conformance, not a scanner report | [`04-process/accessibility-audit/`](04-process/accessibility-audit/ACCESSIBILITY-AUDIT.md) | Keyboard + screen reader first |
 | A dashboard is wrong, empty, or stale | [`03-domains/data-engineering/`](03-domains/data-engineering/README.md) | Tests, contracts, backfills |
 | A key may be exposed and rotation is untested | [`02-engineering/secrets-rotation/`](02-engineering/secrets-rotation/SECRETS-ROTATION.md) | Inventory, runbook, drill |
+| Something is off by a day, an hour, or a month | [`02-engineering/time-correctness/`](02-engineering/time-correctness/TIME-CORRECTNESS.md) | Instants vs dates, DST, boundaries |
+| A vendor API is slow, wrong, or silently changed | [`05-scenarios/third-party-integration/`](05-scenarios/third-party-integration/THIRD-PARTY-INTEGRATION.md) | Eight failure modes, idempotency |
+| Uploads are a security and cost surface I have not reviewed | [`05-scenarios/file-uploads/`](05-scenarios/file-uploads/FILE-UPLOADS.md) | Validation, signed URLs, lifecycle |
+| We are launching in another language | [`05-scenarios/localization/`](05-scenarios/localization/LOCALIZATION.md) | Plurals, RTL, expansion |
+| Infrastructure was built by hand / the code has drifted | [`05-scenarios/infrastructure-as-code/`](05-scenarios/infrastructure-as-code/INFRA-AS-CODE.md) | Provenance, drift decisions |
+| "The site feels slow" and nobody owns it | [`05-scenarios/performance-budget/`](05-scenarios/performance-budget/PERFORMANCE-BUDGET.md) | Budgets that fail CI |
+| CI rebuilds everything / packages are quietly coupled | [`05-scenarios/monorepo/`](05-scenarios/monorepo/MONOREPO.md) | Graph, boundaries, affected-only |
+| I am shipping a CLI | [`03-domains/desktop-cli/`](03-domains/desktop-cli/README.md) | Signing, updates, terminal contract |
+| A region or account is gone and I need to know recovery works | [`05-scenarios/disaster-recovery/`](05-scenarios/disaster-recovery/DISASTER-RECOVERY.md) | Prove the restore, measure RTO/RPO |
+| My API is changing and partners depend on it | [`03-domains/backend/P09`](03-domains/backend/P09-API-Versioning/P09-API-Versioning.md) | Change classification + sunset |
 | I am starting from nothing | [`02-engineering/from-scratch/`](02-engineering/from-scratch/README.md) + workflow [`greenfield-delivery`](07-workflows/greenfield-delivery.md) | Structural only (skeleton) |
 | An agent says the work is complete and I need to trust it | [`07-workflows/independent-verification.md`](07-workflows/independent-verification.md) | Diagnostic |
 | Data was deleted or corrupted and I need it back | [`05-scenarios/data-loss/`](05-scenarios/data-loss/DATA-LOSS-RECOVERY.md) | Containment first |
@@ -122,6 +132,8 @@ In short: take it, change it, ship it — say where it came from, and do not pre
 | [`03-domains/mobile/`](03-domains/mobile/README.md) | 3 | operational |
 | [`03-domains/embedded-iot/`](03-domains/embedded-iot/README.md) | 2 | operational |
 | [`03-domains/data-engineering/`](03-domains/data-engineering/README.md) | 2 | operational |
+| [`03-domains/desktop-cli/`](03-domains/desktop-cli/README.md) | 2 | operational |
+| [`02-engineering/time-correctness/`](02-engineering/time-correctness/TIME-CORRECTNESS.md) | 1 | operational |
 | [`02-engineering/tenancy-audit/`](02-engineering/tenancy-audit/TENANCY-AUDIT.md) | 1 | operational |
 | [`02-engineering/secrets-rotation/`](02-engineering/secrets-rotation/SECRETS-ROTATION.md) | 1 | operational |
 | [`04-process/accessibility-audit/`](04-process/accessibility-audit/ACCESSIBILITY-AUDIT.md) | 1 | operational |
@@ -134,7 +146,7 @@ In short: take it, change it, ship it — say where it came from, and do not pre
 | [`04-process/handover/`](04-process/handover/README.md) | 5 | operational |
 | [`04-process/agent-context/`](04-process/agent-context/README.md) | 4 | operational |
 | [`07-workflows/`](07-workflows/README.md) | 9 | mixed (3 operational: verification, integration, multi-agent) |
-| [`05-scenarios/`](05-scenarios/README.md) | 19 | mixed (14 operational, 5 skeleton) |
+| [`05-scenarios/`](05-scenarios/README.md) | 26 | mixed (21 operational, 5 skeleton) |
 
 Everything else — backend, frontend, devops-infra, data-ml-ai, the eight game-design stages, architecture-review, from-scratch, migration, project management, research, systems improvement, language design, packages, web/web3 contribution — is a **skeleton**: a defensible sequence of stages with outline prompts. Those folders are useful for structuring a human-led session today; they are not yet safe to hand to an autonomous agent. Promotion order is in [`_meta/ROADMAP-AND-BACKLOG.md`](_meta/ROADMAP-AND-BACKLOG.md); per-scenario coverage with evidence is in [`_meta/coverage-matrix.md`](_meta/coverage-matrix.md).
 

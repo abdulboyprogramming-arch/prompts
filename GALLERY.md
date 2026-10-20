@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE — do not edit by hand. Run: python3 scripts/generate_gallery.py --write -->
 
-Every prompt in the library — **325** of them — with a direct link and the situation it is for, plus **8** foundational reference documents.
+Every prompt in the library — **336** of them — with a direct link and the situation it is for, plus **8** foundational reference documents.
 Generated from the prompt files, so it cannot drift from them; CI fails if this file is stale.
 
 **Reading the columns**
@@ -21,14 +21,14 @@ Generated from the prompt files, so it cannot drift from them; CI fails if this 
 |---|---:|---|
 | [00-core — foundations every prompt assumes](#00-core--foundations-every-prompt-assumes) | 2 | Rules and protocols that apply to every other prompt. |
 | [01-contribution — contributing to open source](#01-contribution--contributing-to-open-source) | 48 | Stage systems for contributing to an unfamiliar project. |
-| [02-engineering — building, auditing, and recovering code](#02-engineering--building-auditing-and-recovering-code) | 80 | Work on an existing codebase: audit, repair, complete, upgrade. |
-| [03-domains — domain-specific engineering](#03-domains--domain-specific-engineering) | 72 | Stack-specific practice: data, AI, and the domains still being built out. |
+| [02-engineering — building, auditing, and recovering code](#02-engineering--building-auditing-and-recovering-code) | 81 | Work on an existing codebase: audit, repair, complete, upgrade. |
+| [03-domains — domain-specific engineering](#03-domains--domain-specific-engineering) | 75 | Stack-specific practice: data, AI, and the domains still being built out. |
 | [04-process — delivering software responsibly](#04-process--delivering-software-responsibly) | 89 | The lifecycle around code: testing, release, observability, dependency and governance. |
-| [05-scenarios — single-session, high-urgency situations](#05-scenarios--single-session-high-urgency-situations) | 19 | One prompt, one session, one pressing situation. |
+| [05-scenarios — single-session, high-urgency situations](#05-scenarios--single-session-high-urgency-situations) | 26 | One prompt, one session, one pressing situation. |
 | [06-interactive — conversations that clarify a request](#06-interactive--conversations-that-clarify-a-request) | 4 | Use when the request is vague and needs to be scoped first. |
 | [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 11 | Composed sequences that route between systems and stop at human gates. |
 
-*Maturity across the library: 171 operational, 5 draft, 149 skeleton, 325 total.*
+*Maturity across the library: 182 operational, 5 draft, 149 skeleton, 336 total.*
 
 ---
 
@@ -124,12 +124,13 @@ Stage systems for contributing to an unfamiliar project.
 
 Work on an existing codebase: audit, repair, complete, upgrade.
 
-### All prompts in this area · 2 prompts
+### All prompts in this area · 3 prompts
 
 | ID | Prompt | Use it for | Maturity | Risk |
 |---|---|---|---|---|
 | `SEC-ROT-01` | [Secret Rotation: drill it before you need it](02-engineering/secrets-rotation/SECRETS-ROTATION.md) | An inventory of every secret with its owner, consumers, blast radius, and rotation mechanism; a per-class runbook; a drill performed on a non-production credential… <br>**Inputs:** `REPO_PATH, TARGET_ENV, SECRET_CLASSES, APPROVER, WINDOW, ONCALL` | operational | C |
 | `TENANCY-01` | [Tenant Isolation Audit](02-engineering/tenancy-audit/TENANCY-AUDIT.md) | An inventory of every data store and channel that holds tenant data, the enforcement mechanism for each, the leak paths found with reproduction steps, and an… <br>**Inputs:** `REPO_PATH, TENANCY_MODEL, DATABASES, CACHE_LAYERS, STORAGE, SEARCH, TARGET_ENV` | operational | A |
+| `TIME-01` | [Time and Date Correctness Audit](02-engineering/time-correctness/TIME-CORRECTNESS.md) | An inventory of time-bearing data and logic, a defect register with reproductions, boundary tests at DST and month-end, and a rule set for the codebase. <br>**Inputs:** `REPO_PATH, PRODUCT_TIME_ZONES, DATABASE, SCHEDULER, TARGET_ENV, REPORTING_PERIODS` | operational | A |
 
 ### architecture-review · 7 prompts
 
@@ -280,10 +281,11 @@ Stack-specific practice: data, AI, and the domains still being built out.
 | `AI-P06` | [Grounded Retrieval: does the system answer from your documents?](03-domains/ai-agentic/P06-Retrieval/P06-Grounded-Retrieval.md) | A labelled evaluation set with answerable and unanswerable questions, retrieval metrics, groundedness measurement, an ablation over chunking and k, and a written… <br>**Inputs:** `REPO_PATH, CORPUS_SCOPE, EVAL_SET, EMBEDDING_MODEL, CHUNK_STRATEGY, LATENCY_BUDGET` | operational | B |
 | `AI-P07` | [Agent Permissions and Tool Supply Chain](03-domains/ai-agentic/P07-Permissions/P07-Agent-Permissions.md) | A complete inventory of tools, servers, and capabilities; an effective-permission table; a least-privilege diff with each reduction applied where safe; an approval… <br>**Inputs:** `REPO_PATH, AGENT_CONFIG, ENVIRONMENT, TOOL_INVENTORY` | operational | B |
 
-### backend · 8 prompts
+### backend · 9 prompts
 
 | ID | Prompt | Use it for | Maturity | Risk |
 |---|---|---|---|---|
+| `API-VER-01` | [API Versioning and Consumer Contracts](03-domains/backend/P09-API-Versioning/P09-API-Versioning.md) | A versioning scheme, a consumer inventory, compatibility rules per change type, contract tests, a deprecation and sunset policy, and a migration path for anything… <br>**Inputs:** `API_SCOPE, CONSUMERS, CURRENT_VERSION, SUNSET_WINDOW, APPROVER` | operational | B |
 | `BE-P01` | [Context & Constraints](03-domains/backend/P01-Context/P01-Context-Constraints.md) | Understand the service’s role, consumers, and hard constraints. | skeleton | B |
 | `BE-P02` | [API / Interface Design](03-domains/backend/P02-API-Design/P02-API-Interface-Design.md) | Define clear contracts for the backend surface. | skeleton | B |
 | `BE-P03` | [Architecture](03-domains/backend/P03-Architecture/P03-Backend-Architecture.md) | Structure the service for clarity, changeability, and operational health. | skeleton | B |
@@ -331,6 +333,13 @@ Stack-specific practice: data, AI, and the domains still being built out.
 | `DB-P03` | [Pre-Flight Validation](03-domains/database/P03-Preflight/P03-Preflight-Validation.md) | The statements execute cleanly, in the expected duration, with the expected locking, producing the expected data state — and that you can get back. <br>**Inputs:** `PREFLIGHT_ENV, DATABASE_ACCESS` | operational | B |
 | `DB-P04` | [Execution & Reconciliation](03-domains/database/P04-Execution/P04-Execution-Reconciliation.md) | Execute the validated plan against the target environment with monitoring, abort discipline, and post-run reconciliation. <br>**Inputs:** `APPROVER, TARGET_ENV, CHANGE_WINDOW` | operational | C |
 | `DB-P05` | [Rollback & Post-Verification](03-domains/database/P05-Verification/P05-Rollback-Verification.md) | Prove the post-migration state is correct and stable, that the application behaves correctly against it, and that the reverse path remains executable (or is… <br>**Inputs:** `TARGET_ENV, PREVIOUS_VERSION` | operational | B |
+
+### desktop-cli · 2 prompts
+
+| ID | Prompt | Use it for | Maturity | Risk |
+|---|---|---|---|---|
+| `DESK-P01` | [CLI Distribution and Updates](03-domains/desktop-cli/P01-Distribution/P01-CLI-Distribution.md) | A distribution matrix per platform, signed and checksummed artifacts, an update mechanism with verification, a channel policy (stable/beta/nightly), and… <br>**Inputs:** `TOOL_NAME, DISTRIBUTION, PLATFORMS, PACKAGE_REGISTRY, AUTO_UPDATE, APPROVER` | operational | C |
+| `DESK-P02` | [Terminal UX, Signals, and Exit Codes](03-domains/desktop-cli/P02-Terminal-UX/P02-Terminal-UX.md) | A specified behaviour matrix (TTY and non-TTY, each signal, each error class), corrected output handling, and tests that exercise it without a terminal. <br>**Inputs:** `TOOL_NAME, COMMANDS, PLATFORMS, SHELLS, TARGET_ENV` | operational | A |
 
 ### devops-infra · 8 prompts
 
@@ -587,7 +596,7 @@ The lifecycle around code: testing, release, observability, dependency and gover
 
 One prompt, one session, one pressing situation.
 
-### All prompts in this area · 19 prompts
+### All prompts in this area · 26 prompts
 
 | ID | Prompt | Use it for | Maturity | Risk |
 |---|---|---|---|---|
@@ -595,21 +604,28 @@ One prompt, one session, one pressing situation.
 | `DBG-01` | [Systematic Debugging](05-scenarios/debugging/SYSTEMATIC-DEBUGGING.md) | Establish the minimal conditions that produce the defect, the causal mechanism, and a fix that is verified against both the defect and the surrounding behaviour. <br>**Inputs:** `OBSERVED_BEHAVIOUR, EXPECTED_BEHAVIOUR, REPRODUCTION_INPUT, REPO_PATH` | operational | B |
 | `DEPLOY-01` | [Deploy to a Managed Platform](05-scenarios/deployment-target/DEPLOY-TO-PLATFORM.md) | A documented target profile (runtime shape, build, config classes, limits, cost), a deployment that passes a real end-to-end check, and a rollback path that was… <br>**Inputs:** `DEPLOY_PLATFORM, REPO_PATH, TARGET_ENV, TARGET_SERVICE, DOMAIN_NAME, SPEND_LIMIT, APPROVER` | operational | C |
 | `DEVENV-01` | [Reproducible Dev Environment — one command, every editor, any machine](05-scenarios/dev-environment/DEV-ENVIRONMENT.md) | A documented, reproducible environment path (container or scripted), pinned runtimes, editor-agnostic configuration, and a verification that was run on at least one… <br>**Inputs:** `REPO_PATH, TARGET_OS, EDITORS, RUNTIME_VERSION, TEAM_SIZE` | operational | B |
+| `DR-01` | [Disaster Recovery: prove the restore, not the backup](05-scenarios/disaster-recovery/DISASTER-RECOVERY.md) | A recovery plan per disaster class, a restore drill performed in an isolated environment, measured RTO and RPO against targets, and a gap register. <br>**Inputs:** `SYSTEM_SCOPE, BACKUP_SOURCE, RTO_TARGET, RPO_TARGET, DRILL_ENV, APPROVER` | operational | C |
 | `EMAIL-01` | [Email Deliverability: it is not in the spam folder, it never arrived](05-scenarios/email-deliverability/EMAIL-DELIVERABILITY.md) | An authentication record audit (SPF, DKIM, DMARC, alignment), a stream separation review, a bounce and complaint analysis, a suppression-list check, and a warm-up… <br>**Inputs:** `DOMAIN, SENDER_STACK, STREAM, VOLUME, BOUNCE_DATA, TARGET_ENV` | operational | B |
 | `FIXFAIL-01` | [Failed Fix Escalation](05-scenarios/failed-fix/FAILED-FIX-ESCALATION.md) | An accurate record of what was tried and what it proved, an explicit statement of the current model of the defect and why it is probably wrong, and a decision —… <br>**Inputs:** `ORIGINAL_SYMPTOM, REPO_PATH, ATTEMPT_LIST` | operational | B |
 | `FLAKE-01` | [Flaky Test Triage](05-scenarios/flaky-tests/FLAKY-TEST-TRIAGE.md) | Answers: which non-determinism the test depends on, and how to make it deterministic without weakening its coverage. <br>**Inputs:** `TEST_IDENTIFIER, REPO_PATH, CI_HISTORY` | operational | B |
 | `HACK-01` | [Hackathon Sprint — build the demo that gets judged](05-scenarios/hackathon-sprint/HACKATHON-SPRINT.md) | A plan that fixes the demo path and the cut lines, a build that follows it, a rehearsed demo with fallbacks, and a submission that a judge can run without you. <br>**Inputs:** `HACKATHON_DEADLINE, JUDGING_CRITERIA, DEMO_FORMAT, TEAM_SIZE, TARGET_ENV` | operational | B |
 | `HOSTMIG-01` | [Move a Running Service to Another Platform](05-scenarios/platform-migration/PLATFORM-MIGRATION.md) | A staged plan where both platforms serve traffic simultaneously, a verified cutover with a rollback that stays available for days, and a decommission step that only… <br>**Inputs:** `SOURCE_PLATFORM, TARGET_PLATFORM, DOMAIN_NAME, TARGET_ENV, APPROVER, CHANGE_WINDOW` | operational | D |
+| `I18N-01` | [Localisation Correctness](05-scenarios/localization/LOCALIZATION.md) | A string inventory with context, a ruleset for translatable content, plural/format handling, layout and RTL verification, and per-locale evidence. <br>**Inputs:** `LOCALES, PLATFORM, STRING_FORMAT, TARGET_MARKETS, TARGET_ENV` | operational | B |
+| `IAC-01` | [Infrastructure as Code: adopting it, or proving it matches reality](05-scenarios/infrastructure-as-code/INFRA-AS-CODE.md) | An inventory of resources and their provenance (code, console, script, unknown), a drift report with a decision per item, a state-management plan, and an adoption… <br>**Inputs:** `CLOUD_SCOPE, TOOLING, STATE_BACKEND, APPROVER, TARGET_ENV` | operational | C |
 | `INC-01` | [Production Incident Response](05-scenarios/incident-response/PRODUCTION-INCIDENT.md) | Support stabilisation, diagnosis, and communication during an active incident, producing a timeline that can be used for a postmortem without reconstruction from… <br>**Inputs:** `INCIDENT_ID, TARGET_SERVICE, APPROVER, INCIDENT_START_TIME` | operational | C |
+| `INTEG-01` | [Third-Party Integration That Survives the Vendor](05-scenarios/third-party-integration/THIRD-PARTY-INTEGRATION.md) | An integration contract (what you depend on, what you assume), a failure-mode matrix with handling per mode, idempotency and retry design, contract tests, and a… <br>**Inputs:** `VENDOR, INTEGRATION_TYPE, CRITICALITY, SANDBOX, WEBHOOK_URL, TARGET_ENV` | operational | B |
 | `JOBS-01` | [Background Jobs That Stop Doing Damage](05-scenarios/background-jobs/BACKGROUND-JOBS.md) | A per-job safety assessment (idempotent? <br>**Inputs:** `TARGET_SERVICE, JOB_SCOPE, SCHEDULER, QUEUE_BACKEND, INCIDENT_REF, TARGET_ENV` | operational | B |
 | `LEGACY-01` | [Working with Legacy Code](05-scenarios/legacy-code/WORKING-WITH-LEGACY.md) | Change code nobody understands and nobody tested, without turning a small fix into a rewrite. | skeleton | B |
+| `MONO-01` | [Monorepo Health: builds, boundaries, and ownership](05-scenarios/monorepo/MONOREPO.md) | A package graph with real dependencies (not declared ones), a boundary violation register, an affected-only build/test plan, and an ownership map. <br>**Inputs:** `REPO_PATH, TOOLING, PACKAGE_COUNT, CI_MINUTES, APPROVER` | operational | B |
 | `ONBOARD-01` | [Codebase Onboarding](05-scenarios/onboarding/CODEBASE-ONBOARDING.md) | Join an unfamiliar codebase and need to become useful quickly: entry points, build, data flow, where the traps are. | skeleton | B |
 | `ONCALL-01` | [On-Call Shift Handover](05-scenarios/on-call-handover/ONCALL-HANDOVER.md) | SHIFT_HANDOVER.md for the window — open and recent incidents, silences and their expiry, changes and deployments in flight, expiring certificates/tokens/quota… <br>**Inputs:** `TARGET_SERVICE, SHIFT_WINDOW, TARGET_ENV, INCIDENT_REF, ONCALL_ROTA` | operational | B |
 | `PERF-01` | [Performance Investigation](05-scenarios/performance-investigation/PERFORMANCE-INVESTIGATION.md) | Something is slow: measure before optimising, find the bottleneck, and decide whether to fix, budget, or accept it. | skeleton | B |
+| `PERF-BUDGET-01` | [Performance Budgets and Core Web Vitals](05-scenarios/performance-budget/PERFORMANCE-BUDGET.md) | Measured baselines for the chosen metrics, budgets derived from user-perceptible thresholds, CI gates that block regressions, and a remediation list for what… <br>**Inputs:** `TARGET_URL, SURFACES, DEVICE_CLASS, NETWORK_PROFILE, BUDGETS, TARGET_ENV` | operational | B |
 | `PR-01` | [Write a Strong Pull Request](05-scenarios/pr-authoring/WRITE-STRONG-PR.md) | Turn a finished change into a pull request a reviewer can approve quickly: scope, evidence, risk, and rollback. | skeleton | B |
 | `QUICK-01` | [Safe Quick-Fix](05-scenarios/quick-fixes/SAFE-QUICK-FIX.md) | Fix a small, well-understood defect with the smallest correct diff — and know when the "quick" fix is not safe. | skeleton | B |
 | `SECINC-01` | [Security Incident Response](05-scenarios/security-incident/SECURITY-INCIDENT.md) | Detect and confirm → preserve evidence → contain → scope → eradicate → recover → disclose → learn. <br>**Inputs:** `INCIDENT_ID, DISCLOSURE_OWNER, DETECTION_SIGNAL` | operational | D |
 | `SURFACE-01` | [Live Surface Audit — a URL, host, or API from the outside](05-scenarios/live-surface-audit/LIVE-SURFACE-AUDIT.md) | An evidence-backed assessment of the target's externally visible surface — transport, headers, cookies, redirects, error behaviour, discoverability, performance… <br>**Inputs:** `TARGET_URL, AUDIT_AUTHORISATION, PAGE_LIMIT, REPORT_AUDIENCE` | operational | B |
+| `UPLOAD-01` | [File Uploads and Object Storage](05-scenarios/file-uploads/FILE-UPLOADS.md) | A validated upload path with signed direct-to-storage transfers where appropriate, content verification, size and type limits, lifecycle rules for orphans and… <br>**Inputs:** `STORAGE_BACKEND, USE_CASES, MAX_SIZE, FILE_TYPES, TARGET_ENV, RETENTION` | operational | B |
 
 ## 06-interactive — conversations that clarify a request
 
