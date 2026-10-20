@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE — do not edit by hand. Run: python3 scripts/generate_gallery.py --write -->
 
-Every prompt in the library — **317** of them — with a direct link and the situation it is for, plus **8** foundational reference documents.
+Every prompt in the library — **325** of them — with a direct link and the situation it is for, plus **8** foundational reference documents.
 Generated from the prompt files, so it cannot drift from them; CI fails if this file is stale.
 
 **Reading the columns**
@@ -21,14 +21,14 @@ Generated from the prompt files, so it cannot drift from them; CI fails if this 
 |---|---:|---|
 | [00-core — foundations every prompt assumes](#00-core--foundations-every-prompt-assumes) | 2 | Rules and protocols that apply to every other prompt. |
 | [01-contribution — contributing to open source](#01-contribution--contributing-to-open-source) | 48 | Stage systems for contributing to an unfamiliar project. |
-| [02-engineering — building, auditing, and recovering code](#02-engineering--building-auditing-and-recovering-code) | 78 | Work on an existing codebase: audit, repair, complete, upgrade. |
-| [03-domains — domain-specific engineering](#03-domains--domain-specific-engineering) | 70 | Stack-specific practice: data, AI, and the domains still being built out. |
-| [04-process — delivering software responsibly](#04-process--delivering-software-responsibly) | 88 | The lifecycle around code: testing, release, observability, dependency and governance. |
-| [05-scenarios — single-session, high-urgency situations](#05-scenarios--single-session-high-urgency-situations) | 17 | One prompt, one session, one pressing situation. |
+| [02-engineering — building, auditing, and recovering code](#02-engineering--building-auditing-and-recovering-code) | 80 | Work on an existing codebase: audit, repair, complete, upgrade. |
+| [03-domains — domain-specific engineering](#03-domains--domain-specific-engineering) | 72 | Stack-specific practice: data, AI, and the domains still being built out. |
+| [04-process — delivering software responsibly](#04-process--delivering-software-responsibly) | 89 | The lifecycle around code: testing, release, observability, dependency and governance. |
+| [05-scenarios — single-session, high-urgency situations](#05-scenarios--single-session-high-urgency-situations) | 19 | One prompt, one session, one pressing situation. |
 | [06-interactive — conversations that clarify a request](#06-interactive--conversations-that-clarify-a-request) | 4 | Use when the request is vague and needs to be scoped first. |
-| [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 10 | Composed sequences that route between systems and stop at human gates. |
+| [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 11 | Composed sequences that route between systems and stop at human gates. |
 
-*Maturity across the library: 163 operational, 5 draft, 149 skeleton, 317 total.*
+*Maturity across the library: 171 operational, 5 draft, 149 skeleton, 325 total.*
 
 ---
 
@@ -123,6 +123,13 @@ Stage systems for contributing to an unfamiliar project.
 ## 02-engineering — building, auditing, and recovering code
 
 Work on an existing codebase: audit, repair, complete, upgrade.
+
+### All prompts in this area · 2 prompts
+
+| ID | Prompt | Use it for | Maturity | Risk |
+|---|---|---|---|---|
+| `SEC-ROT-01` | [Secret Rotation: drill it before you need it](02-engineering/secrets-rotation/SECRETS-ROTATION.md) | An inventory of every secret with its owner, consumers, blast radius, and rotation mechanism; a per-class runbook; a drill performed on a non-production credential… <br>**Inputs:** `REPO_PATH, TARGET_ENV, SECRET_CLASSES, APPROVER, WINDOW, ONCALL` | operational | C |
+| `TENANCY-01` | [Tenant Isolation Audit](02-engineering/tenancy-audit/TENANCY-AUDIT.md) | An inventory of every data store and channel that holds tenant data, the enforcement mechanism for each, the leak paths found with reproduction steps, and an… <br>**Inputs:** `REPO_PATH, TENANCY_MODEL, DATABASES, CACHE_LAYERS, STORAGE, SEARCH, TARGET_ENV` | operational | A |
 
 ### architecture-review · 7 prompts
 
@@ -295,6 +302,13 @@ Stack-specific practice: data, AI, and the domains still being built out.
 | `COST-P03` | [Optimisation](03-domains/cost-engineering/P03-Optimisation/P03-Optimisation.md) | Execute the approved, quantified findings from P02 in order of value, each with a verification and a rollback. <br>**Inputs:** `APPROVER, TARGET_SERVICE, CHANGE_WINDOW` | operational | C |
 | `COST-P04` | [Guardrails & Unit Economics](03-domains/cost-engineering/P04-Guardrails/P04-Guardrails-Unit-Economics.md) | Produce guardrails (tagging, budgets, alerts, policies) and unit economics (cost per request, per tenant, per job) with owners and thresholds. <br>**Inputs:** `COST_TARGET, VALUE_METRIC` | operational | B |
 
+### data-engineering · 2 prompts
+
+| ID | Prompt | Use it for | Maturity | Risk |
+|---|---|---|---|---|
+| `DE-P01` | [Pipeline Reliability: make the data trustworthy before it is fast](03-domains/data-engineering/P01-Pipelines/P01-Pipeline-Reliability.md) | A pipeline inventory with ownership and schedule, a failure-mode analysis, data tests for the properties that matter, freshness and volume contracts, and an… <br>**Inputs:** `REPO_PATH, PIPELINE_SCOPE, ORCHESTRATOR, WAREHOUSE, SLA_WINDOW, TARGET_ENV` | operational | B |
+| `DE-P02` | [Backfill and Reconciliation](03-domains/data-engineering/P02-Backfills/P02-Backfill-Reconciliation.md) | A scoped backfill plan with a dry run, a reconciliation report proving the new data is correct, a list of affected downstream artefacts, and a rollback position. <br>**Inputs:** `TARGET_TABLE, DATE_RANGE, DOWNSTREAM_CONSUMERS, APPROVER, WAREHOUSE` | operational | C |
+
 ### data-ml-ai · 8 prompts
 
 | ID | Prompt | Use it for | Maturity | Risk |
@@ -394,6 +408,12 @@ Stack-specific practice: data, AI, and the domains still being built out.
 ## 04-process — delivering software responsibly
 
 The lifecycle around code: testing, release, observability, dependency and governance.
+
+### All prompts in this area · 1 prompt
+
+| ID | Prompt | Use it for | Maturity | Risk |
+|---|---|---|---|---|
+| `A11Y-01` | [Accessibility Conformance Audit (WCAG 2.2 AA)](04-process/accessibility-audit/ACCESSIBILITY-AUDIT.md) | A per-criterion conformance table for the audited pages, a prioritised defect list with reproductions, and a statement of what was and was not tested. <br>**Inputs:** `TARGET_URL, PAGES, LEVEL, ASSISTIVE_TECH, TARGET_ENV` | operational | A |
 
 ### agent-context · 4 prompts
 
@@ -567,7 +587,7 @@ The lifecycle around code: testing, release, observability, dependency and gover
 
 One prompt, one session, one pressing situation.
 
-### All prompts in this area · 17 prompts
+### All prompts in this area · 19 prompts
 
 | ID | Prompt | Use it for | Maturity | Risk |
 |---|---|---|---|---|
@@ -575,11 +595,13 @@ One prompt, one session, one pressing situation.
 | `DBG-01` | [Systematic Debugging](05-scenarios/debugging/SYSTEMATIC-DEBUGGING.md) | Establish the minimal conditions that produce the defect, the causal mechanism, and a fix that is verified against both the defect and the surrounding behaviour. <br>**Inputs:** `OBSERVED_BEHAVIOUR, EXPECTED_BEHAVIOUR, REPRODUCTION_INPUT, REPO_PATH` | operational | B |
 | `DEPLOY-01` | [Deploy to a Managed Platform](05-scenarios/deployment-target/DEPLOY-TO-PLATFORM.md) | A documented target profile (runtime shape, build, config classes, limits, cost), a deployment that passes a real end-to-end check, and a rollback path that was… <br>**Inputs:** `DEPLOY_PLATFORM, REPO_PATH, TARGET_ENV, TARGET_SERVICE, DOMAIN_NAME, SPEND_LIMIT, APPROVER` | operational | C |
 | `DEVENV-01` | [Reproducible Dev Environment — one command, every editor, any machine](05-scenarios/dev-environment/DEV-ENVIRONMENT.md) | A documented, reproducible environment path (container or scripted), pinned runtimes, editor-agnostic configuration, and a verification that was run on at least one… <br>**Inputs:** `REPO_PATH, TARGET_OS, EDITORS, RUNTIME_VERSION, TEAM_SIZE` | operational | B |
+| `EMAIL-01` | [Email Deliverability: it is not in the spam folder, it never arrived](05-scenarios/email-deliverability/EMAIL-DELIVERABILITY.md) | An authentication record audit (SPF, DKIM, DMARC, alignment), a stream separation review, a bounce and complaint analysis, a suppression-list check, and a warm-up… <br>**Inputs:** `DOMAIN, SENDER_STACK, STREAM, VOLUME, BOUNCE_DATA, TARGET_ENV` | operational | B |
 | `FIXFAIL-01` | [Failed Fix Escalation](05-scenarios/failed-fix/FAILED-FIX-ESCALATION.md) | An accurate record of what was tried and what it proved, an explicit statement of the current model of the defect and why it is probably wrong, and a decision —… <br>**Inputs:** `ORIGINAL_SYMPTOM, REPO_PATH, ATTEMPT_LIST` | operational | B |
 | `FLAKE-01` | [Flaky Test Triage](05-scenarios/flaky-tests/FLAKY-TEST-TRIAGE.md) | Answers: which non-determinism the test depends on, and how to make it deterministic without weakening its coverage. <br>**Inputs:** `TEST_IDENTIFIER, REPO_PATH, CI_HISTORY` | operational | B |
 | `HACK-01` | [Hackathon Sprint — build the demo that gets judged](05-scenarios/hackathon-sprint/HACKATHON-SPRINT.md) | A plan that fixes the demo path and the cut lines, a build that follows it, a rehearsed demo with fallbacks, and a submission that a judge can run without you. <br>**Inputs:** `HACKATHON_DEADLINE, JUDGING_CRITERIA, DEMO_FORMAT, TEAM_SIZE, TARGET_ENV` | operational | B |
 | `HOSTMIG-01` | [Move a Running Service to Another Platform](05-scenarios/platform-migration/PLATFORM-MIGRATION.md) | A staged plan where both platforms serve traffic simultaneously, a verified cutover with a rollback that stays available for days, and a decommission step that only… <br>**Inputs:** `SOURCE_PLATFORM, TARGET_PLATFORM, DOMAIN_NAME, TARGET_ENV, APPROVER, CHANGE_WINDOW` | operational | D |
 | `INC-01` | [Production Incident Response](05-scenarios/incident-response/PRODUCTION-INCIDENT.md) | Support stabilisation, diagnosis, and communication during an active incident, producing a timeline that can be used for a postmortem without reconstruction from… <br>**Inputs:** `INCIDENT_ID, TARGET_SERVICE, APPROVER, INCIDENT_START_TIME` | operational | C |
+| `JOBS-01` | [Background Jobs That Stop Doing Damage](05-scenarios/background-jobs/BACKGROUND-JOBS.md) | A per-job safety assessment (idempotent? <br>**Inputs:** `TARGET_SERVICE, JOB_SCOPE, SCHEDULER, QUEUE_BACKEND, INCIDENT_REF, TARGET_ENV` | operational | B |
 | `LEGACY-01` | [Working with Legacy Code](05-scenarios/legacy-code/WORKING-WITH-LEGACY.md) | Change code nobody understands and nobody tested, without turning a small fix into a rewrite. | skeleton | B |
 | `ONBOARD-01` | [Codebase Onboarding](05-scenarios/onboarding/CODEBASE-ONBOARDING.md) | Join an unfamiliar codebase and need to become useful quickly: entry points, build, data flow, where the traps are. | skeleton | B |
 | `ONCALL-01` | [On-Call Shift Handover](05-scenarios/on-call-handover/ONCALL-HANDOVER.md) | SHIFT_HANDOVER.md for the window — open and recent incidents, silences and their expiry, changes and deployments in flight, expiring certificates/tokens/quota… <br>**Inputs:** `TARGET_SERVICE, SHIFT_WINDOW, TARGET_ENV, INCIDENT_REF, ONCALL_ROTA` | operational | B |
@@ -606,10 +628,11 @@ Use when the request is vague and needs to be scoped first.
 
 Composed sequences that route between systems and stop at human gates.
 
-### All prompts in this area · 10 prompts
+### All prompts in this area · 11 prompts
 
 | ID | Prompt | Use it for | Maturity | Risk |
 |---|---|---|---|---|
+| `WF-AGENTADOPT` | [Workflow — Adopting Coding Agents Without Losing Control](07-workflows/agent-adoption.md) | A written adoption plan with a bounded pilot, an evidence standard for "good enough", a permission profile reviewed as a security decision, an oversight model, and… <br>**Inputs:** `REPO_PATH, TEAM_SCOPE, AGENT_TOOLS, RISK_APPETITE, APPROVER` | operational | B |
 | `WF-AUDIT-REMEDIATE` | [Workflow — Audit → Remediate](07-workflows/audit-to-remediation.md) | You need a defensible assessment of an existing codebase and then want the important parts fixed — without the audit becoming a permanent report nobody acts on, and… | draft | B |
 | `WF-GREENFIELD` | [Workflow — Greenfield Delivery](07-workflows/greenfield-delivery.md) | Produces a running, tested, documented, deployable initial version | draft | B |
 | `WF-HANDOFF` | [Handoff Contract](07-workflows/HANDOFF-CONTRACT.md) | Define one compact block that carries: what was done, what is true now, what is uncertain, what is next, and what authority exists. | operational | A |

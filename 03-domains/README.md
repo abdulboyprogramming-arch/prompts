@@ -16,7 +16,8 @@ Deep, technology-specific prompt systems. Cross-cutting activities (audits, refa
 | [`backend/`](backend/README.md) | Service implementation, API design, data, reliability | 8 | skeleton |
 | [`frontend/`](frontend/README.md) | UI architecture, state, accessibility, polish | 8 | skeleton |
 | [`devops-infra/`](devops-infra/README.md) | Infrastructure, IaC, pipelines, observability setup | 8 | skeleton |
-| [`data-ml-ai/`](data-ml-ai/README.md) | Data pipelines, ML problem framing, evaluation, deployment | 8 | skeleton |
+| [`data-engineering/`](data-engineering/README.md) | Pipeline reliability, data tests and contracts, backfill and reconciliation | 2 | **operational** |
+| [`data-ml-ai/`](data-ml-ai/README.md) | ML problem framing, features, evaluation, deployment (pipelines moved to `data-engineering/`) | 8 | skeleton |
 | [`games/`](games/README.md) | Game design, architecture, vertical slice, playtest; save migration and netcode | 10 | mixed (2 operational, 8 skeleton) |
 
 ## Developed domains and why these first
@@ -28,6 +29,7 @@ Six domains are operational: `ai-agentic`, `database`, `cost-engineering`, `paym
 - `mobile` — the client cannot be rolled back and a third party gates the release.
 - `embedded-iot` — recovery requires physical access; a bad image is a ladder and a technician.
 - `games` — saves and netcode are where players lose progress and trust.
+- `data-engineering` — a broken pipeline does not throw; it writes an empty partition and the dashboard keeps rendering.
 
 `backend`, `frontend`, `devops-infra`, and `data-ml-ai` remain skeletons: their sequences are sound, but writing them to the operational bar (evidence rules, verification, failure handling) is still outstanding. Coverage per scenario is tracked in [`_meta/coverage-matrix.md`](../_meta/coverage-matrix.md).
 
@@ -41,7 +43,7 @@ They are not safe for unsupervised agent execution: they lack verification, evid
 
 ## Still missing
 
-Desktop and CLI tooling, data engineering as a standalone discipline, and hardware/EDA work have **no system at all**. Mobile and embedded/firmware were closed in 2.15.0; these three remain real gaps rather than omissions by accident, and are recorded in the backlog. Creating a folder with three-line prompts would make the library look more complete and be less useful.
+Desktop and CLI tooling and hardware/EDA work have **no system at all**. Mobile and embedded/firmware were closed in 2.15.0; these three remain real gaps rather than omissions by accident, and are recorded in the backlog. Creating a folder with three-line prompts would make the library look more complete and be less useful.
 
 ## Boundaries
 

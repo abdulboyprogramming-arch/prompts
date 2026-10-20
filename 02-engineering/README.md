@@ -17,6 +17,8 @@ Engineering activities that apply across technologies: understanding a system, c
 | [`patterns-strategies-methods/`](patterns-strategies-methods/README.md) | Inventing or improving patterns and methods | 7 | skeleton |
 | [`performance/`](performance/README.md) | Performance analysis and optimisation | 7 | skeleton |
 | [`security-hardening/`](security-hardening/README.md) | Authorised review, triaged findings, proven remediation | 7 | **operational** |
+| [`tenancy-audit/`](tenancy-audit/TENANCY-AUDIT.md) | Cross-tenant leakage across stores, caches, jobs, search, storage, admin tools; regression suite | 1 | **operational** |
+| [`secrets-rotation/`](secrets-rotation/SECRETS-ROTATION.md) | Secret inventory by consumer, rotation runbook per class, a drill that proves the old key is dead | 1 | **operational** |
 
 ## What "skeleton" means here
 

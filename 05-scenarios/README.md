@@ -18,6 +18,8 @@ High-utility prompts for a specific situation, usable in one session. Lighter th
 | [`platform-migration/PLATFORM-MIGRATION.md`](platform-migration/PLATFORM-MIGRATION.md) | Move a running service between hosts without an outage you cannot undo | **operational** |
 | [`dev-environment/DEV-ENVIRONMENT.md`](dev-environment/DEV-ENVIRONMENT.md) | "Clone and run" is false — make one command work on every machine and editor | **operational** |
 | [`on-call-handover/ONCALL-HANDOVER.md`](on-call-handover/ONCALL-HANDOVER.md) | Shift change, and the next responder must inherit the real state of the system | **operational** |
+| [`background-jobs/BACKGROUND-JOBS.md`](background-jobs/BACKGROUND-JOBS.md) | Jobs duplicate, overlap, or silently stop — make retries safe | **operational** |
+| [`email-deliverability/EMAIL-DELIVERABILITY.md`](email-deliverability/EMAIL-DELIVERABILITY.md) | "I never got the reset link" — SPF/DKIM/DMARC alignment, streams, bounces | **operational** |
 | [`quick-fixes/SAFE-QUICK-FIX.md`](quick-fixes/SAFE-QUICK-FIX.md) | A small, contained fix with minimal blast radius | skeleton |
 | [`performance-investigation/PERFORMANCE-INVESTIGATION.md`](performance-investigation/PERFORMANCE-INVESTIGATION.md) | Something is slow and you need a diagnosis, not an optimisation project | skeleton |
 | [`legacy-code/WORKING-WITH-LEGACY.md`](legacy-code/WORKING-WITH-LEGACY.md) | Changing code nobody understands, without a rewrite | skeleton |

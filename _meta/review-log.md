@@ -367,3 +367,44 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 - Problem: retrieval was chosen but never measured; the engineering agent's permissions were never audited as a whole.
 - Design: P06 separates retrieval metrics from groundedness, mandates ≥30% unanswerable questions, and tests ACL leakage as a security case. P07 judges capability rather than intent across six axes, treats unpinned `npx` as a supply-chain gap, and requires the tightened configuration to survive daily use.
 - Deductions: neither covers model selection or hosting; both assume the operator can read their own configuration files.
+
+### `02-engineering/tenancy-audit/` — TENANCY-01
+- **2026-10-20 · diagnostic · 89/100 · operational**
+- Problem: no prompt anywhere addressed cross-tenant leakage, the highest-severity defect class in B2B software. `tenant`, `multi-tenant`, `IDOR` returned no prompt coverage.
+- Design: store inventory before code review, enforcement classified as database / query-layer / convention, seven named leak patterns including caches and background jobs, two-synthetic-tenant regression suite, existence-disclosure as a distinct finding class.
+- Deductions: no automated scanner (deliberate — the valuable checks are cross-request); admin-tool scoping is covered procedurally, not tested.
+
+### `02-engineering/secrets-rotation/` — SEC-ROT-01
+- **2026-10-20 · implementation · 88/100 · operational**
+- Problem: rotation appeared only as "rotate first" inside incident remediation. Nothing covered inventory by consumer, overlap strategy, or the drilled proof that the old credential is dead.
+- Design: rotation treated as a capability demonstrated by a drill; the 03:00 cron as the test that matters; revoke-first ordering for compromise; short-lived credentials preferred to rotation.
+- Deductions: vendor-specific CLI commands are intentionally absent; the drill assumes an environment equivalent to production exists.
+
+### `05-scenarios/background-jobs/` — JOBS-01
+- **2026-10-20 · diagnostic · 87/100 · operational**
+- Problem: `cron`, `idempotent`, `dead-letter` appear only inside other systems' procedures; no prompt treated background work as a correctness surface in its own right.
+- Design: job table before diagnosis, "assume it runs twice" as the organising rule, visibility-timeout-versus-p99 as a concrete duplicate-delivery cause, UTC scheduling with an explicit DST test.
+- Deductions: queue-backend specifics are named but not exhaustively mapped; reconciliation of already-duplicated effects is routed rather than performed.
+
+### `05-scenarios/email-deliverability/` — EMAIL-01
+- **2026-10-20 · diagnostic · 86/100 · operational**
+- Problem: SPF/DKIM/DMARC appeared in zero prompts. The failure — a provider returning 202 while mail is discarded — is invisible to every existing diagnostic.
+- Design: DNS as the source of truth over the provider UI, alignment explained as the thing DMARC actually enforces, stream separation framed as reputation isolation, SMTP response code required before any change.
+- Deductions: reputation remediation (blocklist removal) is described but not proceduralised; provider-specific APIs vary too much to script.
+
+### `04-process/accessibility-audit/` — A11Y-01
+- **2026-10-20 · diagnostic · 87/100 · operational**
+- Problem: `SURFACE-01` checked alt text and heading order; WCAG 2.2 AA conformance needs rendering, keyboard operation, assistive technology, reflow and the four 2.2 additions. Backlog #32 since 2.11.0.
+- Design: explicit ordering by yield (keyboard → screen reader → scanner), contrast measured on rendered output, states tested that demos never show, and a mandatory statement of what was not tested.
+- Deductions: no automated harness; the automatable third is not the difficult third, and the prompt says so.
+
+### `03-domains/data-engineering/` — DE-P01, DE-P02
+- **2026-10-20 · mixed · 88/100 · operational (new domain)**
+- Problem: backlog #71 and a coverage-matrix "Missing" row since 2.9.0 — `data-ml-ai` conflated pipelines with modelling, so ingestion, freshness, backfills and reconciliation had nowhere to live.
+- Design: DE-P01 asserts on output rather than task status and treats volume anomalies as failures; DE-P02 treats a backfill as a migration with consumers (snapshot, full-scale dry run, per-partition atomicity, value-level reconciliation). `data-ml-ai` now states the boundary.
+- Deductions: no orchestration-tool-specific guidance; warehouse cost is routed to `cost-engineering`.
+
+### Library capability — README overclaim rule (2.16.0)
+- **2026-10-20 · tooling · n/a**
+- Change: `README_CLAIM` now matches `**Maturity: operational` as well as `**Status:** Operational`; a second rule flags prose "Operational" claims when more than half a system's stages are skeleton and the README does not declare itself mixed.
+- Evidence: three real hits on the first run — `01-contribution/web` and `01-contribution/web3` (genuine overclaims, rewritten to skeleton), `03-domains/games` (false positive, exempted because it declares "Mixed"). The rule was verified against real cases, not fixtures; backlog #82 records that gap.

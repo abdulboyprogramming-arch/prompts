@@ -1,6 +1,6 @@
 # Coverage Matrix
 
-**Version:** 1.1.0 · **Last assessed:** 2026-10-20 (post-2.15.0 reassessment) · **Method:** evidence review of every prompt file; a scenario counts as covered only when an existing prompt addresses its distinctive requirements, constraints, and verification — not because a related prompt exists.
+**Version:** 1.1.0 · **Last assessed:** 2026-10-20 (post-2.16.0 reassessment) · **Method:** evidence review of every prompt file; a scenario counts as covered only when an existing prompt addresses its distinctive requirements, constraints, and verification — not because a related prompt exists.
 
 **Status vocabulary**
 
@@ -92,14 +92,14 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 
 | Area | Status | Evidence / gap |
 |------|--------|----------------|
-| Frontend | Partial | `03-domains/frontend` skeleton (a11y/state lack criteria) |
-| Backend / APIs | Partial | `backend` skeleton |
+| Frontend | Partial | `03-domains/frontend` skeleton; `A11Y-01` now provides the missing accessibility conformance method (WCAG 2.2 AA, keyboard + AT + reflow) |
+| Backend / APIs | Partial | `backend` skeleton; cross-cutting backend failures covered by `TENANCY-01` (isolation), `JOBS-01` (background work), `EMAIL-01` (deliverability) |
 | Databases | Adequate | `DB-P01..P05` (schema truth, migration design, pre-flight drills, execution/reconciliation, rollback and verification) |
 | Infrastructure | Partial | `devops-infra` skeleton |
-| Security | Adequate | `security-hardening` (assessment/remediation) |
+| Security | Adequate | `security-hardening` (assessment/remediation), `SEC-ROT-01` (rotation as a drilled capability) |
 | Testing | Adequate | `testing-qa` |
 | AI / LLM | Adequate | `ai-agentic` `AI-P01..P07`; P06 adds grounded retrieval with ACL-leakage and abstention measurement, P07 adds the engineering agent's own permission surface (MCP servers, shell, egress, credential inheritance) |
-| Data engineering | **Missing** | `data-ml-ai` conflates pipelines with modelling; no ingest/quality/lineage |
+| Data engineering | **Adequate** | `DE-P01..P02` (new) — pipeline inventory, seven failure modes, data tests and freshness/volume contracts, atomic per-partition backfills with value-level reconciliation. `data-ml-ai` now starts after trustworthy data |
 | Cost / FinOps | **Adequate** | `COST-P01..P04` (new) — attribution, waste diagnosis sized in money, safe optimisation, guardrails and unit economics |
 | Privacy / subject rights | **Adequate** | `PRIV-P01..P03` (new) — cross-system subject data inventory, verified export/deletion, enforced retention |
 | Money correctness | **Adequate** | `PAY-P01..P03` (new) — representation and invariants, idempotency and unknown outcomes, provider reconciliation and change-safety checklist |
@@ -160,6 +160,11 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Host migration (changing platform without an outage) | **Adequate** | `HOSTMIG-01`: peripheral inventory (DNS, MX/TXT, cookies, callbacks, egress IPs, cron), TTL lowered ahead, dual running, pre-declared abort, data checksums, old host retained past TTL, decommission checklist |
 | Reproducible dev environment and editor parity | **Adequate** | `DEVENV-01`: pinned runtimes, no global installs, one entry point, container + script, `.gitattributes` and case-sensitivity checks, CI parity, time-to-green measured |
 | AI-assistant context and IDE adaptability | **Adequate** | `CTX-P01..P04`: surface inventory by tool, one canonical `AGENTS.md` with thin adapters, adherence probes (command/convention/boundary/ambiguity), machine checks and drift triggers |
+| Tenant isolation (cross-customer leakage) | **Adequate** | `TENANCY-01`: store inventory, enforcement classification, seven leak patterns, two-tenant regression suite, existence-disclosure checks |
+| Background job correctness | **Adequate** | `JOBS-01`: idempotency by constraint, overlap locks, visibility-timeout alignment, cursor resume, UTC scheduling |
+| Email deliverability | **Adequate** | `EMAIL-01`: DNS-verified SPF/DKIM/DMARC with alignment, stream separation, bounce/suppression handling, warm-up |
+| Accessibility conformance | **Adequate** | `A11Y-01`: WCAG 2.2 AA by testing, including the four 2.2 additions and a "not tested" statement |
+| Secret rotation capability | **Adequate** | `SEC-ROT-01`: inventory by consumer, per-class runbook, drilled rotation with proof the old credential is rejected |
 | On-call shift handover | **Adequate** | `ONCALL-01`: state from systems (alerts, silences, deploys), about-to-break dates, known-noise, "if this pages you tonight", read-back, authority transfer |
 | Prompt generation from a description | **Adequate** | `GEN-P01`: five modes (compose / interview / improve / decompose / port), routing against existing coverage, risk-class derivation, runnable verification table, self-score, provenance marked `draft`. Companion `GEN-P02` supplies the evaluation protocol |
 | Timeboxed delivery with a demo deadline | **Adequate** | `HACK-01`: rubric mapped to demo moments, demo script as the build order, pre-declared cut lines, reserved freeze/rehearsal/submission time, stage-failure fallbacks, disclosed mocks. Scope coverage only — not team coordination under a 24-hour clock |
@@ -221,14 +226,18 @@ Counts are computed from the tables above; they are not estimates.
 
 | Status | Dimension rows | Workflow rows |
 |--------|---------------:|--------------:|
-| Adequate | 82 | 9 |
+| Adequate | 88 | 9 |
 | Partial | 30 | 5 |
-| Missing | 2 | 0 |
+| Missing | 1 | 0 |
 | Defective | 0 | 0 |
 | Indirect | 0 | 0 |
-| **Total assessed** | **114** | **14** |
+| **Total assessed** | **119** | **14** |
 
-**Reading this honestly:** roughly 72% of assessed dimension rows are adequate. The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
+**Reading this honestly:** roughly 74% of assessed dimension rows are adequate. The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
+
+**Closed in 2.16.0:** tenant isolation (`TENANCY-01`), secret rotation drills (`SEC-ROT-01`, closes backlog #51), background jobs (`JOBS-01`), email deliverability (`EMAIL-01`), accessibility conformance (`A11Y-01`, closes #32), data engineering as a discipline (`DE-P01..P02`, closes #71 in part).
+
+**Corrected in 2.16.0:** SLO definition (backlog #55) was already covered by `OBS-P03` (SLIs, error budgets, burn-rate alerting); a duplicate draft was written and deleted rather than shipped.
 
 **Closed in 2.15.0:** prompt generation and prompt evaluation (`GEN-P01`, `GEN-P02`); blockchain (`CHAIN-P01..P04`); mobile (`MOB-P01..P03`); embedded/IoT (`IOT-P01..P02`); games save data and netcode (`GD-P09`, `GD-P10`); agent tool permissions and RAG groundedness (`AI-P06`, `AI-P07`).
 
