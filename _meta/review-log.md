@@ -408,3 +408,68 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 - **2026-10-20 · tooling · n/a**
 - Change: `README_CLAIM` now matches `**Maturity: operational` as well as `**Status:** Operational`; a second rule flags prose "Operational" claims when more than half a system's stages are skeleton and the README does not declare itself mixed.
 - Evidence: three real hits on the first run — `01-contribution/web` and `01-contribution/web3` (genuine overclaims, rewritten to skeleton), `03-domains/games` (false positive, exempted because it declares "Mixed"). The rule was verified against real cases, not fixtures; backlog #82 records that gap.
+
+### `05-scenarios/disaster-recovery/` — DR-01
+- **2026-10-20 · implementation · 90/100 · operational**
+- Problem: `disaster recovery` appeared in **zero** files. The library could recover one deleted table and one failed deploy, but had nothing on losing a region, an account, or the backup system itself. This was the highest-consequence untested assumption in the repository.
+- Design: the drill is the deliverable — restore from the real backup in an isolated environment, measure every phase, verify the *application* against restored data (sequences, extensions, migrations), and state RTO/RPO in minutes against targets. Account-loss is a separate class with separate preparation.
+- Deductions: business-continuity planning (staff, premises) is out of scope; cost of a drill environment is assumed available.
+
+### `02-engineering/time-correctness/` — TIME-01
+- **2026-10-20 · diagnostic · 88/100 · operational**
+- Problem: DST, month arithmetic, and naive timestamps were handled incidentally (`JOBS-01` mentions UTC), never audited. Off-by-one-day defects are silent and reach reports, billing, and scheduling.
+- Design: classify every field as instant / wall-clock / date before fixing; eight named anti-patterns; boundary tests at DST transitions and month-end; frozen clocks so tests are reproducible.
+- Deductions: timezone database updates are an ops concern; product definitions of "day" must be supplied by the product.
+
+### `05-scenarios/third-party-integration/` — INTEG-01
+- **2026-10-20 · implementation · 88/100 · operational**
+- Problem: no prompt treated a vendor as an external dependency with its own failure modes. `DEPLOY-01` mentioned egress; nothing covered error-in-200, webhook duplication, or timeout ambiguity.
+- Design: eight-mode failure matrix; validate the body not the status; outbound idempotency keys stable across retries; webhook signature verification on the raw body; degradation defined before the outage.
+- Deductions: vendor-specific SDKs are not catalogued; commercial negotiation is out of scope.
+
+### `05-scenarios/file-uploads/` — UPLOAD-01
+- **2026-10-20 · implementation · 86/100 · operational**
+- Problem: uploads are simultaneously a security surface (malware, XSS, SSRF), a cost surface (orphans, egress), and a privacy surface (documents not covered by deletion). None appeared in the library.
+- Design: limits enforced at three layers; magic-byte validation; re-encode images; generated keys; private bucket with signed URLs; lifecycle rules for orphans and multipart parts; object keys tied to owning entities so deletion is queryable.
+- Deductions: media transcoding pipelines and CDN tuning are out of scope.
+
+### `05-scenarios/localization/` — I18N-01
+- **2026-10-20 · implementation · 85/100 · operational**
+- Problem: translation of *documents* was covered; localisation *correctness* (plurals, concatenation, RTL, expansion, locale sorting) was not. English-shaped code fails silently in every other language.
+- Design: eliminate fragment concatenation; ICU plural categories rather than `count === 1`; pseudo-localisation before translation; logical CSS properties for RTL; per-locale screenshot evidence.
+- Deductions: translation quality requires a native reviewer and is routed, not performed.
+
+### `05-scenarios/infrastructure-as-code/` — IAC-01
+- **2026-10-20 · audit-remediation · 87/100 · operational**
+- Problem: backlog #57. `DEPLOY-01` provisions; nothing established whether the code matches the estate, or how to adopt hand-built infrastructure without re-creating it.
+- Design: provider API as ground truth, provenance per resource, every plan destroy/replace treated as a decision, state posture, import-verify-no-change loop, pipeline as the only path.
+- Deductions: applies are explicitly out of scope for the prompt's own execution.
+
+### `05-scenarios/performance-budget/` — PERF-BUDGET-01
+- **2026-10-20 · implementation · 85/100 · operational**
+- Problem: backlog #52. Performance existed as an investigation (`performance-investigation`) but never as a gate; regressions accumulate undetected.
+- Design: p75 baselines on mid-tier mobile; budgets from perceptible thresholds plus a separate regression ceiling; deterministic CI gate; per-route attribution on pull requests; third-party budgets.
+- Deductions: implementation techniques remain in the `frontend` skeleton.
+
+### `05-scenarios/monorepo/` — MONO-01
+- **2026-10-20 · audit-remediation · 86/100 · operational**
+- Problem: backlog #54. Everything in the library assumed a single package; monorepo failures (affected detection, boundaries, cache invalidation) had no home.
+- Design: import graph over manifests; deep imports as violations; tasks must declare inputs to be cacheable; affected-only demonstrated by a leaf change; contracts imported from one source.
+- Deductions: tool migrations are out of scope.
+
+### `03-domains/backend/P09` — API-VER-01
+- **2026-10-20 · planning · 88/100 · operational**
+- Problem: backlogs #53 and #81. `MOB-P03` covered installed clients; nothing covered the public/partner API contract, deprecation, or sunset.
+- Design: consumer inventory before scheme; change classification table; schema artifact in CI with contract tests; deprecation with traffic thresholds; two concurrent majors as the ceiling.
+- Deductions: GraphQL-specific federation concerns are noted, not solved.
+
+### `03-domains/desktop-cli/` — DESK-P01, DESK-P02
+- **2026-10-20 · implementation · 87/100 · operational (new domain)**
+- Problem: the last **Missing** row in the coverage matrix. Distribution is a trust boundary and the terminal contract is an API that tools break silently.
+- Design: P01 treats the updater as a signature-verified code-execution channel and requires clean-machine install evidence; P02 specifies exit codes, stream separation, TTY detection, signals, and `NO_COLOR`.
+- Deductions: GUI desktop packaging and platform notarisation services are out of scope.
+
+### Library capability — validator regression suite (2.17.0)
+- **2026-10-20 · tooling · n/a**
+- Change: `scripts/test_validator.py`, six fixtures covering both claim forms, the prose rule, the mixed exemption, and a clean system; wired into CI before the validator itself runs.
+- Finding: writing the tests immediately exposed a real defect — the 2.16.0 regex matched `**Status:** Operational` but **not** `**Maturity: operational (v1.0.0).**`, the form used by most READMEs in this repository. It was silently checking almost nothing. Fixed, and the suite now pins both forms.

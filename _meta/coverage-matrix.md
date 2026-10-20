@@ -1,6 +1,6 @@
 # Coverage Matrix
 
-**Version:** 1.1.0 · **Last assessed:** 2026-10-20 (post-2.16.0 reassessment) · **Method:** evidence review of every prompt file; a scenario counts as covered only when an existing prompt addresses its distinctive requirements, constraints, and verification — not because a related prompt exists.
+**Version:** 1.1.0 · **Last assessed:** 2026-10-20 (post-2.17.0 reassessment) · **Method:** evidence review of every prompt file; a scenario counts as covered only when an existing prompt addresses its distinctive requirements, constraints, and verification — not because a related prompt exists.
 
 **Status vocabulary**
 
@@ -92,10 +92,10 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 
 | Area | Status | Evidence / gap |
 |------|--------|----------------|
-| Frontend | Partial | `03-domains/frontend` skeleton; `A11Y-01` now provides the missing accessibility conformance method (WCAG 2.2 AA, keyboard + AT + reflow) |
-| Backend / APIs | Partial | `backend` skeleton; cross-cutting backend failures covered by `TENANCY-01` (isolation), `JOBS-01` (background work), `EMAIL-01` (deliverability) |
+| Frontend | Partial | `03-domains/frontend` skeleton; `A11Y-01` provides the accessibility conformance method, `PERF-BUDGET-01` the performance gate, `I18N-01` the localisation correctness method |
+| Backend / APIs | Partial | `backend` skeleton except `API-VER-01` (versioning, contracts, sunset); cross-cutting backend failures covered by `TENANCY-01`, `JOBS-01`, `EMAIL-01`, `TIME-01`, `INTEG-01` |
 | Databases | Adequate | `DB-P01..P05` (schema truth, migration design, pre-flight drills, execution/reconciliation, rollback and verification) |
-| Infrastructure | Partial | `devops-infra` skeleton |
+| Infrastructure | Partial | `devops-infra` skeleton; `IAC-01` provides drift detection and adoption, `05-scenarios/deployment-target/` the provisioning path |
 | Security | Adequate | `security-hardening` (assessment/remediation), `SEC-ROT-01` (rotation as a drilled capability) |
 | Testing | Adequate | `testing-qa` |
 | AI / LLM | Adequate | `ai-agentic` `AI-P01..P07`; P06 adds grounded retrieval with ACL-leakage and abstention measurement, P07 adds the engineering agent's own permission surface (MCP servers, shell, egress, credential inheritance) |
@@ -107,7 +107,7 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Distributed systems | Partial | architecture/audit cover analysis; no design or failure-mode prompt |
 | Mobile | **Adequate** | `MOB-P01..P03` (new) — store release with a pre-declared halt criterion, crash triage with symbolication and consequence ranking, client-version compatibility and deprecation schedule |
 | Embedded / firmware | **Adequate** | `IOT-P01..P02` (new) — atomic OTA with trial boot and automatic rollback, power-cut testing, fleet silence classification and bounded recovery ladder |
-| Desktop / CLI | **Missing** | No system |
+| Desktop / CLI | **Adequate** | `DESK-P01..P02` (new) — distribution as a trust boundary, signed updates, terminal contract (exit codes, streams, signals, TTY) |
 | Games | Partial | 7 game-design stages remain skeleton; `GD-P09` (save migration) and `GD-P10` (netcode/determinism) are operational |
 | Blockchain / smart contracts | **Adequate** | `CHAIN-P01..P04` (new) — threat model with exploit-path ranking, key custody tiers and drilled rotation, upgrade with storage-layout diff and fork rehearsal, exploit response with containment-first ordering |
 | Performance | Partial | audit and incident touch it; `performance` skeleton |
@@ -165,6 +165,15 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Email deliverability | **Adequate** | `EMAIL-01`: DNS-verified SPF/DKIM/DMARC with alignment, stream separation, bounce/suppression handling, warm-up |
 | Accessibility conformance | **Adequate** | `A11Y-01`: WCAG 2.2 AA by testing, including the four 2.2 additions and a "not tested" statement |
 | Secret rotation capability | **Adequate** | `SEC-ROT-01`: inventory by consumer, per-class runbook, drilled rotation with proof the old credential is rejected |
+| Time and date correctness | **Adequate** | `TIME-01`: instants vs wall-clock vs dates, eight anti-patterns, DST/month-end/leap tests, frozen clocks |
+| Third-party integration resilience | **Adequate** | `INTEG-01`: eight failure modes, body validation over status codes, outbound idempotency, webhook signatures, degradation |
+| File upload safety | **Adequate** | `UPLOAD-01`: magic-byte validation, private bucket, signed URLs, scanning, lifecycle, deletion tied to objects |
+| Localisation correctness | **Adequate** | `I18N-01`: no concatenation, locale plural rules, pseudo-localisation, RTL layout, locale-aware sorting |
+| Infrastructure as code | **Adequate** | `IAC-01`: provider-API truth, provenance, per-resource drift decisions, state posture, policy checks |
+| Performance budgets | **Adequate** | `PERF-BUDGET-01`: p75 baselines, deterministic CI gate, bundle attribution, third-party budget |
+| Monorepo health | **Adequate** | `MONO-01`: import-level graph, boundary violations, affected-only evidence, CI time breakdown |
+| API versioning | **Adequate** | `API-VER-01`: change classification, schema artifact, contract tests, deprecation with traffic thresholds |
+| Disaster recovery and restore drills | **Adequate** | `DR-01`: six disaster classes, backup-chain silent failures, isolated restore drill, measured RTO/RPO, application-level verification including sequences, account-loss path |
 | On-call shift handover | **Adequate** | `ONCALL-01`: state from systems (alerts, silences, deploys), about-to-break dates, known-noise, "if this pages you tonight", read-back, authority transfer |
 | Prompt generation from a description | **Adequate** | `GEN-P01`: five modes (compose / interview / improve / decompose / port), routing against existing coverage, risk-class derivation, runnable verification table, self-score, provenance marked `draft`. Companion `GEN-P02` supplies the evaluation protocol |
 | Timeboxed delivery with a demo deadline | **Adequate** | `HACK-01`: rubric mapped to demo moments, demo script as the build order, pre-declared cut lines, reserved freeze/rehearsal/submission time, stage-failure fallbacks, disclosed mocks. Scope coverage only — not team coordination under a 24-hour clock |
@@ -226,14 +235,16 @@ Counts are computed from the tables above; they are not estimates.
 
 | Status | Dimension rows | Workflow rows |
 |--------|---------------:|--------------:|
-| Adequate | 88 | 9 |
+| Adequate | 97 | 9 |
 | Partial | 30 | 5 |
-| Missing | 1 | 0 |
+| Missing | 0 | 0 |
 | Defective | 0 | 0 |
 | Indirect | 0 | 0 |
-| **Total assessed** | **119** | **14** |
+| **Total assessed** | **127** | **14** |
 
-**Reading this honestly:** roughly 74% of assessed dimension rows are adequate. The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
+**Reading this honestly:** roughly 76% of assessed dimension rows are adequate. The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
+
+**Closed in 2.17.0:** disaster recovery and restore drills (`DR-01`); desktop/CLI — the last missing domain (`DESK-P01..P02`); time correctness (`TIME-01`); third-party integration (`INTEG-01`); file uploads (`UPLOAD-01`); localisation (`I18N-01`); infrastructure as code (`IAC-01`); performance budgets (`PERF-BUDGET-01`); monorepo (`MONO-01`); API versioning and contract testing (`API-VER-01`); validator regression tests (`scripts/test_validator.py`).
 
 **Closed in 2.16.0:** tenant isolation (`TENANCY-01`), secret rotation drills (`SEC-ROT-01`, closes backlog #51), background jobs (`JOBS-01`), email deliverability (`EMAIL-01`), accessibility conformance (`A11Y-01`, closes #32), data engineering as a discipline (`DE-P01..P02`, closes #71 in part).
 

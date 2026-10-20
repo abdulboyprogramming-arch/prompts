@@ -20,6 +20,13 @@ High-utility prompts for a specific situation, usable in one session. Lighter th
 | [`on-call-handover/ONCALL-HANDOVER.md`](on-call-handover/ONCALL-HANDOVER.md) | Shift change, and the next responder must inherit the real state of the system | **operational** |
 | [`background-jobs/BACKGROUND-JOBS.md`](background-jobs/BACKGROUND-JOBS.md) | Jobs duplicate, overlap, or silently stop — make retries safe | **operational** |
 | [`email-deliverability/EMAIL-DELIVERABILITY.md`](email-deliverability/EMAIL-DELIVERABILITY.md) | "I never got the reset link" — SPF/DKIM/DMARC alignment, streams, bounces | **operational** |
+| [`third-party-integration/THIRD-PARTY-INTEGRATION.md`](third-party-integration/THIRD-PARTY-INTEGRATION.md) | A vendor API: slow, wrong, duplicated, or silently changed | **operational** |
+| [`file-uploads/FILE-UPLOADS.md`](file-uploads/FILE-UPLOADS.md) | Uploads that must not become an unindexed copy of the customer database | **operational** |
+| [`localization/LOCALIZATION.md`](localization/LOCALIZATION.md) | Correct in another language, not just translated | **operational** |
+| [`infrastructure-as-code/INFRA-AS-CODE.md`](infrastructure-as-code/INFRA-AS-CODE.md) | Is the code the truth, or a plausible fiction about the console? | **operational** |
+| [`performance-budget/PERFORMANCE-BUDGET.md`](performance-budget/PERFORMANCE-BUDGET.md) | "The site feels slow" turned into a number that fails a build | **operational** |
+| [`monorepo/MONOREPO.md`](monorepo/MONOREPO.md) | Slow, fragile, or quietly coupled packages | **operational** |
+| [`disaster-recovery/DISASTER-RECOVERY.md`](disaster-recovery/DISASTER-RECOVERY.md) | The region, account, or data is gone — prove the restore, measure RTO/RPO | **operational** |
 | [`quick-fixes/SAFE-QUICK-FIX.md`](quick-fixes/SAFE-QUICK-FIX.md) | A small, contained fix with minimal blast radius | skeleton |
 | [`performance-investigation/PERFORMANCE-INVESTIGATION.md`](performance-investigation/PERFORMANCE-INVESTIGATION.md) | Something is slow and you need a diagnosis, not an optimisation project | skeleton |
 | [`legacy-code/WORKING-WITH-LEGACY.md`](legacy-code/WORKING-WITH-LEGACY.md) | Changing code nobody understands, without a rewrite | skeleton |
