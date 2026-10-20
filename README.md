@@ -26,6 +26,8 @@ Pick the row that matches your situation. Do not read the whole repository first
 | Two fix attempts have failed and the bug is still there | [`05-scenarios/failed-fix/`](05-scenarios/failed-fix/FAILED-FIX-ESCALATION.md) | Diagnostic |
 | I need to change a database schema without losing data | [`03-domains/database/`](03-domains/database/README.md) | Audit → drill → execute |
 | I need to upgrade a framework or dependency safely | [`04-process/dependency-management/`](04-process/dependency-management/README.md) | Audit → plan → verify |
+| I am splitting work across several agents | [`07-workflows/multi-agent-orchestration.md`](07-workflows/multi-agent-orchestration.md) | Orchestration |
+| A customer or auditor asks for evidence of our controls | [`04-process/governance-compliance/`](04-process/governance-compliance/README.md) | Audit |
 | I need to retire a service or endpoint safely | [`04-process/decommissioning/`](04-process/decommissioning/README.md) | Staged, reversible |
 | The frontend and backend were built separately | [`07-workflows/cross-layer-integration.md`](07-workflows/cross-layer-integration.md) | Specialised |
 | A feature "works" but only in the UI | [`02-engineering/feature-completion/`](02-engineering/feature-completion/README.md) | Implementation |
@@ -60,9 +62,10 @@ Maturity is enforced, not decorative: `scripts/validate_library.py` fails if a p
 | [`03-domains/database/`](03-domains/database/README.md) | 5 | operational |
 | [`04-process/dependency-management/`](04-process/dependency-management/README.md) | 5 | operational |
 | [`04-process/decommissioning/`](04-process/decommissioning/README.md) | 4 | operational |
+| [`04-process/governance-compliance/`](04-process/governance-compliance/README.md) | 3 | operational |
 | [`02-engineering/feature-completion/`](02-engineering/feature-completion/README.md) | 4 | operational |
 | [`07-workflows/independent-verification.md`](07-workflows/independent-verification.md) | 1 | operational |
-| [`07-workflows/`](07-workflows/README.md) | 8 | mixed (2 operational, 6 draft) |
+| [`07-workflows/`](07-workflows/README.md) | 9 | mixed (3 operational, 6 draft) |
 | [`05-scenarios/`](05-scenarios/README.md) | 11 | mixed (6 operational, 5 skeleton) |
 
 Everything else — backend, frontend, devops-infra, data-ml-ai, games, refactoring, architecture-review, migration, code review, documentation, project management, language design, packages, web/web3 contribution — is a **skeleton**: a defensible sequence of stages with outline prompts. Those folders are useful for structuring a human-led session today; they are not yet safe to hand to an autonomous agent. Promotion order is in [`_meta/ROADMAP-AND-BACKLOG.md`](_meta/ROADMAP-AND-BACKLOG.md).

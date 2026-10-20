@@ -59,7 +59,7 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Prototype / spike | Partial | No prompt for time-boxed prototyping with explicit "throw it away" discipline |
 | MVP | Partial | `greenfield-delivery` draft; `from-scratch` skeleton |
 | Growing product | Adequate | audit, testing, release, observability systems |
-| Enterprise system | **Missing** | No governance, compliance-evidence, or enterprise-readiness system (see backlog) |
+| Enterprise system | **Adequate** | `GOV-P01..P03` (new) — claim-to-mechanism map, evidence testing with mechanism bypass tests, readiness decision with four-way responses |
 | Legacy system | Partial | `legacy-code` skeleton; audit + recovery cover much of the need |
 | Production-critical platform | Partial | release/observability adequate; no capacity planning or DR exercise prompt |
 
@@ -116,7 +116,7 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Implementation | Adequate | `REC-P06`, `SEC-P06`, `QA-P05` |
 | Remediation | Adequate | `SEC-P06`, `AUDIT-P07/P08` → workflow |
 | Autonomous completion | Partial | adequate for recovery and contribution; `feature-completion` covers one feature, not multi-feature delivery |
-| Orchestration | Partial | `AUDIT-P09`, `SEC-P07` adequate; multi-agent coordination missing |
+| Orchestration | **Adequate** | `AUDIT-P09`, `SEC-P07` single-run orchestration; `WF-MULTIAGENT` (new) covers decomposition, interface freezing, ownership, integration and independent verification |
 | Independent verification | Adequate | `WF-VERIFY` (new) |
 
 ## 8. Quality assurance
@@ -192,7 +192,7 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Dependency/framework upgrades (`DEP-P01..P05`) | Yes | Yes | Yes | Yes | Yes | Yes | Yes | **Adequate** |
 | Failed deployment / corrupted config / failed migration recovery | Partial — `REL-P03` rollback + `DB-P05` reverse path; still no single combined runbook for a failed deploy with a half-applied migration | Partial | Partial | Partial | Partial | Yes | Partial | **Partial** |
 | Feature completed across all layers (`FC-P01..P04`) | Yes | Yes | Yes | Yes | Yes | Yes | Yes | **Adequate** |
-| Enterprise readiness | **Missing** — no governance/compliance system | — | — | — | — | — | — | **Missing** |
+| Enterprise readiness (`GOV-P01..P03`) | Yes | Yes | Yes | Yes | Yes | Yes | Yes | **Adequate** |
 | Introducing AI agents with oversight and rollback | Partial — `ai-agentic` covers the product; not the engineering-workflow adoption | Partial | Partial | Partial | Partial | Yes | Partial | **Partial** |
 | Handoff between engineers/agents | Adequate — `WF-HANDOFF`, `project-recovery`, status checkpoint | Yes | Yes | Yes | Yes | Yes | Yes | **Adequate** |
 | Long-term maintenance loop (`continuous-improvement`) | Partial — draft, no empirical run | Yes | Yes | Yes | Partial | Yes | Partial | **Partial** |
@@ -205,32 +205,29 @@ Counts are computed from the tables above; they are not estimates.
 
 | Status | Dimension rows | Workflow rows |
 |--------|---------------:|--------------:|
-| Adequate | 57 | 8 |
-| Partial | 36 | 5 |
-| Missing | 5 | 1 |
+| Adequate | 59 | 9 |
+| Partial | 35 | 5 |
+| Missing | 4 | 0 |
 | Defective | 0 | 0 |
 | Indirect | 0 | 0 |
 | **Total assessed** | **98** | **14** |
 
-**Reading this honestly:** roughly 58% of assessed dimension rows are adequate. The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
+**Reading this honestly:** roughly 60% of assessed dimension rows are adequate. The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
 
-**Closed in 2.1.x:** cross-layer integration (`WF-INTEGRATE`), decommissioning (`DEC-P01..P04`), and database engineering (`DB-P01..P05`), dependency/framework upgrades (`DEP-P01..P05`), vertical feature completion (`FC-P01..P04`), independent verification (`WF-VERIFY`), failed-fix escalation (`FIXFAIL-01`), data-loss recovery (`DATALOSS-01`), security incident response (`SECINC-01`).
+**Closed in 2.1.x:** enterprise readiness (`GOV-P01..P03`), multi-agent orchestration (`WF-MULTIAGENT`), cross-layer integration (`WF-INTEGRATE`), decommissioning (`DEC-P01..P04`), and database engineering (`DB-P01..P05`), dependency/framework upgrades (`DEP-P01..P05`), vertical feature completion (`FC-P01..P04`), independent verification (`WF-VERIFY`), failed-fix escalation (`FIXFAIL-01`), data-loss recovery (`DATALOSS-01`), security incident response (`SECINC-01`).
 
 **Missing scenarios still open**, in priority order:
 
-*Dimension rows marked Missing (5):*
+*Dimension rows marked Missing (4):*
 
-1. **Enterprise system readiness / governance** — control evidence, change management, auditability.
-2. **Data engineering** (ingest, quality, lineage, backfills at scale).
-3. **Mobile** domain system.
-4. **Embedded / firmware** domain system.
-5. **Desktop / CLI** domain system.
+1. **Data engineering** — ingest, quality, lineage, backfills at scale.
+2. **Mobile** domain system.
+3. **Embedded / firmware** domain system.
+4. **Desktop / CLI** domain system.
 
-*Workflow rows marked Missing (1):*
+*Workflow rows marked Missing:* none. Every critical workflow in the table now has a procedure, at least at `Partial`.
 
-6. **Enterprise readiness** end-to-end (depends on item 1).
-
-*Also missing but not a row above:* prototype/spike discipline and near-duplicate detection tooling for the library itself.
+*Also missing but not a row above:* prototype/spike discipline, near-duplicate detection tooling for the library itself, and empirical validation of all but one prompt.
 
 ## Maintenance of this matrix
 

@@ -18,6 +18,8 @@ Gap-discovery cycle driven by a new coverage matrix rather than the existing roa
 - `05-scenarios/security-incident/SECURITY-INCIDENT.md` — evidence-first response for an active compromise: containment strategy trade-offs, persistence search, verified eradication against a baseline, disclosure decision record.
 - `07-workflows/cross-layer-integration.md` — contract reconciliation before wiring, seam table with auth and failure contracts, transport/config diffs, end-to-end journey, per-seam failure injection, explicit unproven list.
 - `04-process/decommissioning/` (4 stages) — consumer discovery that does not accept "no traffic" as evidence, notice periods derived from constraints, staged reversible shutdown with a quiescence window, and per-asset retirement with verified archives and revoked identities.
+- `04-process/governance-compliance/` (3 stages) — claim-to-mechanism control map, evidence testing with population/sample sizes and mechanism bypass attempts, and a readiness decision offering fix/instrument/accept/stop-claiming per gap.
+- `07-workflows/multi-agent-orchestration.md` — decomposing work across agents: interface freezing before fan-out, single ownership of shared files, fixed status-report form, per-task verification before dependents unblock, and independent verification of the merged result.
 
 ### Changed
 
@@ -36,7 +38,7 @@ Gap-discovery cycle driven by a new coverage matrix rather than the existing roa
 
 - 165 prompts remain `skeleton`.
 - No prompt has been empirically executed against a real repository; structural validation is not empirical validation.
-- 5 dimension scenarios and 1 workflow remain missing (enterprise readiness, data engineering, mobile, embedded, desktop/CLI), listed by priority in the coverage matrix.
+- 4 dimension scenarios remain missing (data engineering, mobile, embedded, desktop/CLI); no critical workflow is unprocedured, though five remain partial.
 
 ## [2.0.0] — 2026-10-20
 

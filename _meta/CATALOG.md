@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 258 prompts — 0 canonical, 86 operational, 7 draft, 165 skeleton.
+**Totals:** 262 prompts — 0 canonical, 90 operational, 7 draft, 165 skeleton.
 
 ## `01-contribution/language-design`
 
@@ -342,6 +342,14 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `DOC-P07` | PROMPT 07 — Review & Validation | skeleton | diagnostic | B | [P07-Review-Validation.md](../04-process/documentation/P07-Review/P07-Review-Validation.md) |
 | `DOC-P08` | PROMPT 08 — Documentation Master Orchestrator | skeleton | orchestration | A | [P08-Documentation-Orchestrator.md](../04-process/documentation/P08-Orchestrator/P08-Documentation-Orchestrator.md) |
 
+## `04-process/governance-compliance`
+
+| ID | Stage | Maturity | Mode | Risk | File |
+|----|-------|----------|------|------|------|
+| `GOV-P01` | PROMPT 01 — Control Map | operational | diagnostic | A | [P01-Control-Map.md](../04-process/governance-compliance/P01-Control-Map/P01-Control-Map.md) |
+| `GOV-P02` | PROMPT 02 — Evidence Collection & Control Testing | operational | diagnostic | A | [P02-Evidence-Testing.md](../04-process/governance-compliance/P02-Evidence/P02-Evidence-Testing.md) |
+| `GOV-P03` | PROMPT 03 — Gap Remediation & Readiness Decision | operational | planning | A | [P03-Readiness-Decision.md](../04-process/governance-compliance/P03-Readiness/P03-Readiness-Decision.md) |
+
 ## `04-process/observability-reliability`
 
 | ID | Stage | Maturity | Mode | Risk | File |
@@ -442,6 +450,7 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `WF-INTEGRATE` | Workflow — Cross-Layer Integration | operational | specialised | B | [cross-layer-integration.md](../07-workflows/cross-layer-integration.md) |
 | `WF-GREENFIELD` | Workflow — Greenfield Delivery | draft | autonomous-completion | B | [greenfield-delivery.md](../07-workflows/greenfield-delivery.md) |
 | `WF-VERIFY` | Workflow — Independent Verification of Completed Work | operational | diagnostic | A | [independent-verification.md](../07-workflows/independent-verification.md) |
+| `WF-MULTIAGENT` | Workflow — Multi-Agent Orchestration | operational | orchestration | B | [multi-agent-orchestration.md](../07-workflows/multi-agent-orchestration.md) |
 | `WF-INCIDENT` | Workflow — Production Incident | draft | specialised | C | [production-incident.md](../07-workflows/production-incident.md) |
 | `WF-RECOVER` | Workflow — Recover an Abandoned or Broken Project | draft | autonomous-completion | B | [recover-abandoned-project.md](../07-workflows/recover-abandoned-project.md) |
 

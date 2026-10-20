@@ -170,3 +170,19 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 - Dimension rows: 57 adequate / 36 partial / 5 missing.
 - Workflow rows: 8 adequate / 5 partial / 1 missing.
 - Remaining missing: enterprise readiness (dimension + workflow), data engineering, mobile, embedded, desktop/CLI, plus prototype discipline and duplicate detection outside the table.
+
+### `04-process/governance-compliance/` — 3 stages
+- **2026-10-20 · audit-remediation · 86/100 · operational**
+- Reason: enterprise obligations were the last workflow-level missing scenario. P01 separates the claim from the mechanism and from the evidence (a policy document is a claim about a mechanism, not a control). P02 tests operations with population/sample sizes, mechanism bypass attempts, and a quiet-failure checklist (approvals after merge, self-approval, skipped CI, alerts routing nowhere). P03 forces one of four responses per gap and produces per-claim readiness statements in questionnaire language, explicitly refusing to certify.
+- Deductions: no framework clause mapping (SOC 2/ISO tables age badly and encourage mapping theatre); legal interpretation escalated rather than answered.
+- Follow-up: add a worked evidence index example.
+
+### `07-workflows/multi-agent-orchestration.md`
+- **2026-10-20 · orchestration · 88/100 · operational**
+- Reason: the master brief asked for multi-agent patterns, and the library's orchestration content covered single-run fan-out only. This workflow starts with "should you parallelise at all", freezes interfaces before fan-out, assigns one owner per shared file (the rule that prevents most multi-agent breakage), forbids agents negotiating interfaces pairwise, and requires per-task verification before dependents unblock plus independent verification of the merged result.
+- Deductions: no tool-specific agent APIs (deliberate); assumes separate branches/worktrees are possible.
+- Follow-up: pair with `independent-verification.md` as the default verification step in the worked example.
+
+### Coverage movement (integration, decommissioning, governance, orchestration)
+- Dimension rows: 59 adequate / 35 partial / 4 missing. Workflow rows: 9 adequate / 5 partial / 0 missing.
+- Remaining missing dimensions: data engineering, mobile, embedded, desktop/CLI. Every critical workflow now has a procedure.
