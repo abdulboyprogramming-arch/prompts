@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE — do not edit by hand. Run: python3 scripts/generate_gallery.py --write -->
 
-Every prompt in the library — **301** of them — with a direct link and the situation it is for, plus **8** foundational reference documents.
+Every prompt in the library — **317** of them — with a direct link and the situation it is for, plus **8** foundational reference documents.
 Generated from the prompt files, so it cannot drift from them; CI fails if this file is stale.
 
 **Reading the columns**
@@ -19,17 +19,29 @@ Generated from the prompt files, so it cannot drift from them; CI fails if this 
 
 | Area | Prompts | What it is for |
 |---|---:|---|
+| [00-core — foundations every prompt assumes](#00-core--foundations-every-prompt-assumes) | 2 | Rules and protocols that apply to every other prompt. |
 | [01-contribution — contributing to open source](#01-contribution--contributing-to-open-source) | 48 | Stage systems for contributing to an unfamiliar project. |
 | [02-engineering — building, auditing, and recovering code](#02-engineering--building-auditing-and-recovering-code) | 78 | Work on an existing codebase: audit, repair, complete, upgrade. |
-| [03-domains — domain-specific engineering](#03-domains--domain-specific-engineering) | 57 | Stack-specific practice: data, AI, and the domains still being built out. |
+| [03-domains — domain-specific engineering](#03-domains--domain-specific-engineering) | 70 | Stack-specific practice: data, AI, and the domains still being built out. |
 | [04-process — delivering software responsibly](#04-process--delivering-software-responsibly) | 88 | The lifecycle around code: testing, release, observability, dependency and governance. |
 | [05-scenarios — single-session, high-urgency situations](#05-scenarios--single-session-high-urgency-situations) | 17 | One prompt, one session, one pressing situation. |
 | [06-interactive — conversations that clarify a request](#06-interactive--conversations-that-clarify-a-request) | 4 | Use when the request is vague and needs to be scoped first. |
-| [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 9 | Composed sequences that route between systems and stop at human gates. |
+| [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 10 | Composed sequences that route between systems and stop at human gates. |
 
-*Maturity across the library: 147 operational, 5 draft, 149 skeleton, 301 total.*
+*Maturity across the library: 163 operational, 5 draft, 149 skeleton, 317 total.*
 
 ---
+
+## 00-core — foundations every prompt assumes
+
+Rules and protocols that apply to every other prompt.
+
+### All prompts in this area · 2 prompts
+
+| ID | Prompt | Use it for | Maturity | Risk |
+|---|---|---|---|---|
+| `GEN-P01` | [The Prompt Forge: build a runnable prompt from a description](00-core/prompt-engineering/PROMPT-FORGE.md) | The prompt — paste-ready, complete, with all ten sections filled for its archetype. <br>**Inputs:** `PROMPT_INTENT, TARGET_AGENT, OPERATING_MODE, DOMAIN, STRICTNESS, OUTPUT_SHAPE, INTERVIEW_MAX, EXISTING_PROMPT, REPO_PATH` | operational | A |
+| `GEN-P02` | [Prompt Regression: prove a prompt change is an improvement](00-core/prompt-engineering/PROMPT-REGRESSION.md) | A fixture set, a run protocol, per-case results, a score against _meta/quality-rubric.md, a comparison to the baseline where one exists, a decision, and the reason… <br>**Inputs:** `PROMPT_PATH, TEST_CASES, BASELINE_RESULTS, TARGET_AGENT, RUNS_PER_CASE, REPO_PATH` | operational | A |
 
 ## 01-contribution — contributing to open source
 
@@ -249,7 +261,7 @@ Work on an existing codebase: audit, repair, complete, upgrade.
 
 Stack-specific practice: data, AI, and the domains still being built out.
 
-### ai-agentic · 5 prompts
+### ai-agentic · 7 prompts
 
 | ID | Prompt | Use it for | Maturity | Risk |
 |---|---|---|---|---|
@@ -258,6 +270,8 @@ Stack-specific practice: data, AI, and the domains still being built out.
 | `AI-P03` | [Evaluation-Driven Development](03-domains/ai-agentic/P03-Evaluation/P03-Evaluation.md) | Produce a versioned eval dataset, a metric suite with thresholds, and a reproducible harness runnable in CI. <br>**Inputs:** `EVAL_BUDGET, EVAL_DATASET_PATH` | operational | B |
 | `AI-P04` | [Safety, Guardrails & Prompt-Injection Defence](03-domains/ai-agentic/P04-Safety/P04-Safety-Guardrails.md) | Implement input handling, output validation, tool authorisation, and detection for prompt injection and harmful output. <br>**Inputs:** `TARGET_SERVICE, APPROVER` | operational | B |
 | `AI-P05` | [AI Production Operations](03-domains/ai-agentic/P05-Production/P05-Production-Operations.md) | Implement request-level telemetry, cost and latency accounting, quality monitoring, oversight checkpoints, and a safe release process for model/prompt changes. <br>**Inputs:** `TARGET_SERVICE, TARGET_ENV` | operational | B |
+| `AI-P06` | [Grounded Retrieval: does the system answer from your documents?](03-domains/ai-agentic/P06-Retrieval/P06-Grounded-Retrieval.md) | A labelled evaluation set with answerable and unanswerable questions, retrieval metrics, groundedness measurement, an ablation over chunking and k, and a written… <br>**Inputs:** `REPO_PATH, CORPUS_SCOPE, EVAL_SET, EMBEDDING_MODEL, CHUNK_STRATEGY, LATENCY_BUDGET` | operational | B |
+| `AI-P07` | [Agent Permissions and Tool Supply Chain](03-domains/ai-agentic/P07-Permissions/P07-Agent-Permissions.md) | A complete inventory of tools, servers, and capabilities; an effective-permission table; a least-privilege diff with each reduction applied where safe; an approval… <br>**Inputs:** `REPO_PATH, AGENT_CONFIG, ENVIRONMENT, TOOL_INVENTORY` | operational | B |
 
 ### backend · 8 prompts
 
@@ -317,6 +331,13 @@ Stack-specific practice: data, AI, and the domains still being built out.
 | `DI-P07` | [Validation](03-domains/devops-infra/P07-Validation/P07-Validation.md) | Verify safety, correctness, and operational readiness of the changes. | skeleton | B |
 | `DI-P08` | [DevOps & Infrastructure Master Orchestrator](03-domains/devops-infra/P08-Orchestrator/P08-DevOps-Infra-Orchestrator.md) | Runs the devops infra system end to end: gates, routing, and final acceptance. | skeleton | A |
 
+### embedded-iot · 2 prompts
+
+| ID | Prompt | Use it for | Maturity | Risk |
+|---|---|---|---|---|
+| `IOT-P01` | [Firmware OTA with Rollback](03-domains/embedded-iot/P01-OTA/P01-Firmware-OTA.md) | A signed, versioned image; an update procedure with an atomic switch and tested rollback; a staged rollout with automatic abandonment; and a recovery path for… <br>**Inputs:** `DEVICE_CLASS, FIRMWARE_VERSION, FLEET_SIZE, CONNECTIVITY, POWER_SOURCE, APPROVER, ROLLBACK_SLOT` | operational | D |
+| `IOT-P02` | [Fleet Health and Remote Recovery](03-domains/embedded-iot/P02-Fleet/P02-Fleet-Health.md) | A health model with explicit expectations (what a healthy device reports and how often), a triage method that separates the causes of silence, and bounded… <br>**Inputs:** `DEVICE_CLASS, FLEET_SIZE, TELEMETRY_SOURCE, HEARTBEAT_WINDOW, TARGET_ENV` | operational | B |
+
 ### frontend · 8 prompts
 
 | ID | Prompt | Use it for | Maturity | Risk |
@@ -330,7 +351,7 @@ Stack-specific practice: data, AI, and the domains still being built out.
 | `FE-P07` | [Polish & Handoff](03-domains/frontend/P07-Polish/P07-Polish-Handoff.md) | Finish the slice so it is review-ready and pleasant to use. | skeleton | B |
 | `FE-P08` | [Frontend Master Orchestrator](03-domains/frontend/P08-Orchestrator/P08-Frontend-Orchestrator.md) | Runs the frontend system end to end: gates, routing, and final acceptance. | skeleton | A |
 
-### games · 8 prompts
+### games · 10 prompts
 
 | ID | Prompt | Use it for | Maturity | Risk |
 |---|---|---|---|---|
@@ -342,6 +363,16 @@ Stack-specific practice: data, AI, and the domains still being built out.
 | `GD-P06` | [Content & Polish](03-domains/games/P06-Content-Polish/P06-Content-Polish.md) | Improve playability through focused content, UX, and feedback work. | skeleton | B |
 | `GD-P07` | [Playtest & Validate](03-domains/games/P07-Playtest-Validate/P07-Playtest-Validate.md) | Evaluate whether the game (or feature) delivers on its vision and is technically healthy enough to continue. | skeleton | B |
 | `GD-P08` | [Game Development Master Orchestrator](03-domains/games/P08-Orchestrator/P08-Game-Development-Orchestrator.md) | Runs the games system end to end: gates, routing, and final acceptance. | skeleton | A |
+| `GD-P09` | [Save Data Migration and Compatibility](03-domains/games/P09-Save-Migration/P09-Save-Migration.md) | A versioned save schema, forward migrations for every supported source version, a corruption-resistant read path, and tested evidence on real old saves. <br>**Inputs:** `SAVE_FORMAT, TARGET_VERSION, PLATFORM, CLOUD_SAVE, SUPPORT_WINDOW, APPROVER` | operational | C |
+| `GD-P10` | [Multiplayer Netcode and Determinism](03-domains/games/P10-Netcode/P10-Netcode.md) | A diagnosis with measured numbers (latency, jitter, tick alignment, rollback depth), a corrected simulation or replication design where the bug is structural, and a… <br>**Inputs:** `TARGET_MODE, ENGINE, TICK_RATE, PLAYER_COUNT, REGIONS, REPRO_NOTES` | operational | B |
+
+### mobile · 3 prompts
+
+| ID | Prompt | Use it for | Maturity | Risk |
+|---|---|---|---|---|
+| `MOB-P01` | [Store Release and Phased Rollout](03-domains/mobile/P01-Release/P01-Store-Release.md) | A release plan with a signed build, store metadata, a staged rollout, a halt criterion defined *before* the rollout starts, and a post-release verification. <br>**Inputs:** `APP_ID, PLATFORM, TARGET_VERSION, TRACK, ROLLOUT_PERCENT, MIN_SUPPORTED_VERSION, APPROVER` | operational | C |
+| `MOB-P02` | [Crash Triage and Symbolication](03-domains/mobile/P02-Crashes/P02-Crash-Triage.md) | A symbolicated, deduplicated crash inventory; a ranking by affected users and business impact (not raw count); a classification of each cluster (our bug /… <br>**Inputs:** `APP_ID, PLATFORM, RELEASE_VERSION, CRASH_SOURCE, SAMPLE_SIZE, TARGET_ENV` | operational | A |
+| `MOB-P03` | [API Compatibility with Shipped Clients](03-domains/mobile/P03-Compatibility/P03-Client-Compatibility.md) | A client-version matrix (which versions exist, in what proportion), the compatibility contract for each supported version, a deprecation schedule, and a… <br>**Inputs:** `TARGET_SERVICE, MIN_SUPPORTED_VERSION, CLIENT_VERSIONS, DEPRECATION_WINDOW, APPROVER` | operational | B |
 
 ### payments · 3 prompts
 
@@ -350,6 +381,15 @@ Stack-specific practice: data, AI, and the domains still being built out.
 | `PAY-P01` | [Money Model & Invariants](03-domains/payments/P01-Model/P01-Money-Model-Invariants.md) | Answers: how is money stored, computed, and rounded; what states can a payment take; and which invariants must hold across every operation? <br>**Inputs:** `REPO_PATH, SUPPORTED_CURRENCIES, PROVIDER_NAME` | operational | A |
 | `PAY-P02` | [Idempotency & Unknown Outcomes](03-domains/payments/P02-Idempotency/P02-Idempotency-Failure.md) | Prove or disprove that each money-moving flow is idempotent, that unknown outcomes are handled as a state, and that no failure path can double-charge, silently… <br>**Inputs:** `PROVIDER_NAME, API_VERSION` | operational | B |
 | `PAY-P03` | [Reconciliation & Change Safety](03-domains/payments/P03-Reconciliation/P03-Reconciliation-Change-Safety.md) | A working reconciliation between your records and the provider's, a drift classification with owners, and a change-safety checklist for every future money change. <br>**Inputs:** `PROVIDER_NAME, RECONCILIATION_WINDOW` | operational | C |
+
+### web3 · 4 prompts
+
+| ID | Prompt | Use it for | Maturity | Risk |
+|---|---|---|---|---|
+| `CHAIN-P01` | [Smart Contract Threat Model and Review](03-domains/web3/P01-Review/P01-Contract-Threat-Model.md) | An asset and trust inventory, an attack-surface map, ranked findings with concrete exploit paths, and a list of what was not reviewed. <br>**Inputs:** `REPO_PATH, CHAIN, CONTRACT_SCOPE, TVL_HINT, AUDIT_CONTEXT, TARGET_ENV` | operational | A |
+| `CHAIN-P02` | [Key Custody and Deployment Authority](03-domains/web3/P02-Custody/P02-Key-Custody.md) | An authority matrix (role → capability → holder → threshold → delay → revocation path), a key inventory with custody tier per key, a rotation procedure that has… <br>**Inputs:** `CONTRACT_SCOPE, CHAIN, TEAM_SIZE, TREASURY_VALUE, COMPLIANCE_REGIME, TARGET_ENV` | operational | C |
+| `CHAIN-P03` | [Contract Upgrade and Storage Migration](03-domains/web3/P03-Upgrade/P03-Upgrade-Migration.md) | A storage-layout diff, an upgrade plan with a fork rehearsal, an execution log, and post-upgrade verification evidence. <br>**Inputs:** `CONTRACT_SCOPE, CHAIN, TARGET_ENV, PROXY_PATTERN, FORK_BLOCK, APPROVER, TIMELOCK_DELAY` | operational | D |
+| `CHAIN-P04` | [Exploit Response: funds are leaving right now](03-domains/web3/P04-Exploit/P04-Exploit-Response.md) | Immediate containment, a preserved evidence set, a written incident log with timestamps, a disclosure package for users, and a technical postmortem input. <br>**Inputs:** `TARGET_CONTRACT, CHAIN, ATTACK_TX, TREASURY_VALUE, COMMS_CHANNEL, APPROVER` | operational | D |
 
 ## 04-process — delivering software responsibly
 
@@ -566,7 +606,7 @@ Use when the request is vague and needs to be scoped first.
 
 Composed sequences that route between systems and stop at human gates.
 
-### All prompts in this area · 9 prompts
+### All prompts in this area · 10 prompts
 
 | ID | Prompt | Use it for | Maturity | Risk |
 |---|---|---|---|---|
@@ -577,6 +617,7 @@ Composed sequences that route between systems and stop at human gates.
 | `WF-INCIDENT` | [Workflow — Production Incident](07-workflows/production-incident.md) | Production is broken now: restore service, keep evidence, communicate, then run the postmortem — in that order. | draft | C |
 | `WF-INTEGRATE` | [Workflow — Cross-Layer Integration](07-workflows/cross-layer-integration.md) | Prove that the layers interoperate: contracts match, configuration is coherent, identity propagates, failures degrade as designed, and deployment order does not… <br>**Inputs:** `INTEGRATION_ENV, LAYER_BRANCHES` | operational | B |
 | `WF-MULTIAGENT` | [Workflow — Multi-Agent Orchestration](07-workflows/multi-agent-orchestration.md) | Produce a decomposition with non-overlapping boundaries, per-agent contracts, a shared state protocol, and an integration-and-verification path. <br>**Inputs:** `SHARED_STATE_REF, TASK_PLAN_FILE, APPROVER` | operational | B |
+| `WF-PROMPTAUTH` | [Workflow — Describe it, generate it, prove it, integrate it](07-workflows/prompt-authoring-pipeline.md) | You need a prompt that does not exist yet, or need to know whether a rewrite is better: describe, route against existing coverage, generate, evaluate, decide, integr <br>**Inputs:** `PROMPT_INTENT, TARGET_AGENT, LIBRARY_PATH, EVAL_FIXTURES` | operational | A |
 | `WF-RECOVER` | [Workflow — Recover an Abandoned or Broken Project](07-workflows/recover-abandoned-project.md) | A repository exists, is supposed to work, and does not. | draft | B |
 | `WF-VERIFY` | [Workflow — Independent Verification of Completed Work](07-workflows/independent-verification.md) | An agent or engineer reports work complete: reproduce the claims yourself, probe the tests, and audit the diff for undeclared scope. <br>**Inputs:** `BASE_REF, HEAD_REF, ACCEPTANCE_CLAIM_FILE` | operational | A |
 

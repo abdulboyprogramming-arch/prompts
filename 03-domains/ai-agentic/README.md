@@ -1,6 +1,6 @@
 # AI, LLM & Agentic Systems
 
-**Maturity: operational (v1.0.0).** Five stages for building software whose behaviour is probabilistic and whose inputs may be adversarial.
+**Maturity: operational (v1.1.0).** Seven stages for building software whose behaviour is probabilistic and whose inputs may be adversarial.
 
 **Entry point:** [`P01-Context/P01-Context-Risk.md`](P01-Context/P01-Context-Risk.md)
 **Execution mode:** audit-remediation
@@ -25,6 +25,8 @@ This system addresses those specifically. It is not a prompt-engineering tip lis
 | AI-P03 | [Evaluation-driven development](P03-Evaluation/P03-Evaluation.md) | `EVAL_PLAN.md`, eval harness |
 | AI-P04 | [Safety, guardrails & prompt-injection defence](P04-Safety/P04-Safety-Guardrails.md) | `SAFETY.md`, guardrail code |
 | AI-P05 | [Production: observability, cost, human oversight](P05-Production/P05-Production-Operations.md) | `AI_OPERATIONS.md` |
+| AI-P06 | [Grounded retrieval](P06-Retrieval/P06-Grounded-Retrieval.md) | `RETRIEVAL_EVAL.md`, grounding policy |
+| AI-P07 | [Agent permissions & tool supply chain](P07-Permissions/P07-Agent-Permissions.md) | `TOOL_PERMISSIONS.md`, approval matrix |
 
 ## Shared principles
 
@@ -35,6 +37,13 @@ This system addresses those specifically. It is not a prompt-engineering tip lis
 5. **Least-privilege tools.** Every tool call runs with the narrowest credential and blast radius that satisfies the task; destructive tools require confirmation.
 6. **Human oversight scales with consequence.** Read-only suggestions can be automatic; anything that writes, pays, or emails needs an approval step whose absence is visible in the design.
 7. **Cost and latency are product requirements**, tracked per request and per feature, not discovered on the invoice.
+
+## Added in v1.1.0
+
+Two gaps that the original five stages left implicit:
+
+- **Retrieval quality (AI-P06).** P02 chose a retrieval approach; nothing measured whether the system answers *from the corpus* or merely fluently. P06 scores retrieval and groundedness separately, with ≥30% unanswerable questions, citation correctness, abstention, and an explicit ACL-leakage test.
+- **Agent permissions (AI-P07).** P04 covers prompt injection inside the product; nothing covered the engineering agent's own blast radius — MCP servers, shell access, credential inheritance, unpinned `npx` execution, and rule files fetched from remote sources.
 
 ## Relationship to other systems
 
