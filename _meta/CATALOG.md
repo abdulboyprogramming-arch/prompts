@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 281 prompts — 0 canonical, 118 operational, 6 draft, 157 skeleton.
+**Totals:** 286 prompts — 0 canonical, 123 operational, 6 draft, 157 skeleton.
 
 ## `01-contribution/language-design`
 
@@ -358,6 +358,16 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `DOC-P06` | PROMPT 06 — Writing & Improvement | skeleton | implementation | B | [P06-Writing-Improvement.md](../04-process/documentation/P06-Writing/P06-Writing-Improvement.md) |
 | `DOC-P07` | PROMPT 07 — Review & Validation | skeleton | diagnostic | B | [P07-Review-Validation.md](../04-process/documentation/P07-Review/P07-Review-Validation.md) |
 | `DOC-P08` | PROMPT 08 — Documentation Master Orchestrator | skeleton | orchestration | A | [P08-Documentation-Orchestrator.md](../04-process/documentation/P08-Orchestrator/P08-Documentation-Orchestrator.md) |
+
+## `04-process/feature-flags`
+
+| ID | Stage | Maturity | Mode | Risk | File |
+|----|-------|----------|------|------|------|
+| `FF-P01` | PROMPT 01 — Flag Inventory and Risk | operational | diagnostic | A | [P01-Flag-Inventory-Risk.md](../04-process/feature-flags/P01-Inventory/P01-Flag-Inventory-Risk.md) |
+| `FF-P02` | PROMPT 02 — Flag Design and Safe Defaults | operational | planning | B | [P02-Flag-Design-Defaults.md](../04-process/feature-flags/P02-Design/P02-Flag-Design-Defaults.md) |
+| `FF-P03` | PROMPT 03 — Progressive Rollout | operational | implementation | C | [P03-Progressive-Rollout.md](../04-process/feature-flags/P03-Rollout/P03-Progressive-Rollout.md) |
+| `FF-P04` | PROMPT 04 — Kill-Switch Use Under Pressure | operational | specialised | C | [P04-Kill-Switch-Use.md](../04-process/feature-flags/P04-Kill-Switch/P04-Kill-Switch-Use.md) |
+| `FF-P05` | PROMPT 05 — Flag Retirement | operational | implementation | B | [P05-Flag-Retirement.md](../04-process/feature-flags/P05-Retirement/P05-Flag-Retirement.md) |
 
 ## `04-process/git-operations`
 

@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE — do not edit by hand. Run: python3 scripts/generate_gallery.py --write -->
 
-Every prompt in the library — **281** of them — with a direct link and the situation it is for, plus **8** foundational reference documents.
+Every prompt in the library — **286** of them — with a direct link and the situation it is for, plus **8** foundational reference documents.
 Generated from the prompt files, so it cannot drift from them; CI fails if this file is stale.
 
 **Reading the columns**
@@ -22,12 +22,12 @@ Generated from the prompt files, so it cannot drift from them; CI fails if this 
 | [01-contribution — contributing to open source](#01-contribution--contributing-to-open-source) | 48 | Stage systems for contributing to an unfamiliar project. |
 | [02-engineering — building, auditing, and recovering code](#02-engineering--building-auditing-and-recovering-code) | 78 | Work on an existing codebase: audit, repair, complete, upgrade. |
 | [03-domains — domain-specific engineering](#03-domains--domain-specific-engineering) | 57 | Stack-specific practice: data, AI, and the domains still being built out. |
-| [04-process — delivering software responsibly](#04-process--delivering-software-responsibly) | 74 | The lifecycle around code: testing, release, observability, dependency and governance. |
+| [04-process — delivering software responsibly](#04-process--delivering-software-responsibly) | 79 | The lifecycle around code: testing, release, observability, dependency and governance. |
 | [05-scenarios — single-session, high-urgency situations](#05-scenarios--single-session-high-urgency-situations) | 11 | One prompt, one session, one pressing situation. |
 | [06-interactive — conversations that clarify a request](#06-interactive--conversations-that-clarify-a-request) | 4 | Use when the request is vague and needs to be scoped first. |
 | [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 9 | Composed sequences that route between systems and stop at human gates. |
 
-*Maturity across the library: 118 operational, 6 draft, 157 skeleton, 281 total.*
+*Maturity across the library: 123 operational, 6 draft, 157 skeleton, 286 total.*
 
 ---
 
@@ -397,6 +397,16 @@ The lifecycle around code: testing, release, observability, dependency and gover
 | `DOC-P06` | [Writing & Improvement](04-process/documentation/P06-Writing/P06-Writing-Improvement.md) | Create or revise documentation according to the plan. | skeleton | B |
 | `DOC-P07` | [Review & Validation](04-process/documentation/P07-Review/P07-Review-Validation.md) | Validate that the documentation is accurate, clear, and useful. | skeleton | B |
 | `DOC-P08` | [Documentation Master Orchestrator](04-process/documentation/P08-Orchestrator/P08-Documentation-Orchestrator.md) | Runs the documentation system end to end: gates, routing, and final acceptance. | skeleton | A |
+
+### feature-flags · 5 prompts
+
+| ID | Prompt | Use it for | Maturity | Risk |
+|---|---|---|---|---|
+| `FF-P01` | [Flag Inventory and Risk](04-process/feature-flags/P01-Inventory/P01-Flag-Inventory-Risk.md) | A complete inventory of runtime switches with, per flag: identifier, type, owner, age, default state, exposure, where it is read, and risk class — plus a ranked… <br>**Inputs:** `REPO_PATH, FLAG_PROVIDER, TARGET_SERVICE` | operational | A |
+| `FF-P02` | [Flag Design and Safe Defaults](04-process/feature-flags/P02-Design/P02-Flag-Design-Defaults.md) | A design record per flag: purpose and type, name, read sites, default and failure behaviour, targeting, owner, expiry or review date, test plan for both states, and… <br>**Inputs:** `TARGET_SERVICE, CHANGE_WINDOW, RISK_TOLERANCE, APPROVER` | operational | B |
+| `FF-P03` | [Progressive Rollout](04-process/feature-flags/P03-Rollout/P03-Progressive-Rollout.md) | An executed or planned stage sequence with, per stage: exposure, cohort, duration, guardrail thresholds, the evidence to collect, the decision rule, and the… <br>**Inputs:** `TARGET_ENV, TARGET_SERVICE, APPROVER, CHANGE_WINDOW` | operational | C |
+| `FF-P04` | [Kill-Switch Use Under Pressure](04-process/feature-flags/P04-Kill-Switch/P04-Kill-Switch-Use.md) | A recorded switch decision — observed symptom, hypothesis, expected effect, the flip, the measured result, and the residual state (including data written before the… <br>**Inputs:** `TARGET_SERVICE, INCIDENT_ID, APPROVER, TARGET_ENV` | operational | C |
+| `FF-P05` | [Flag Retirement](04-process/feature-flags/P05-Retirement/P05-Flag-Retirement.md) | A removal commit that leaves one code path, no flag evaluation, no dead tests, and a record of the evidence and the residual risk. <br>**Inputs:** `REPO_PATH, BRANCH, FLAG_ID, BASE_REF, APPROVER` | operational | B |
 
 ### git-operations · 5 prompts
 

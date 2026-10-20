@@ -32,12 +32,12 @@ archive/         Legacy .txt source material, retained for provenance
 Run `python3 scripts/validate_library.py` for live numbers. At the time of writing:
 
 - **355 Markdown files**, **281 prompt files**.
-- Maturity: **118 operational**, **6 draft**, **157 skeleton**.
+- Maturity: **123 operational**, **6 draft**, **157 skeleton**.
 - **0 validation errors, 0 warnings**.
-- Operational systems: open-source contribution agent (16), codebase audit (9), project recovery (7), security hardening (7), testing & QA (7), refactoring (7), database (5), cost engineering (4), privacy requests (3), payments (3), git operations (5), code review (6), dependency management (5), decommissioning (4), governance and compliance (3), observability & reliability (5), release engineering (4), AI/agentic (5), feature completion (4), independent verification (1), plus debugging, incident response, flaky-test triage, failed-fix escalation, data-loss recovery, and security incident response.
+- Operational systems: open-source contribution agent (16), codebase audit (9), project recovery (7), security hardening (7), testing & QA (7), refactoring (7), database (5), cost engineering (4), privacy requests (3), payments (3), git operations (5), code review (6), feature flags (5), dependency management (5), decommissioning (4), governance and compliance (3), observability & reliability (5), release engineering (4), AI/agentic (5), feature completion (4), independent verification (1), plus debugging, incident response, flaky-test triage, failed-fix escalation, data-loss recovery, and security incident response.
 - Every prompt declares identifier, system, version, maturity, execution mode, and risk class.
 
-**The honest summary:** roughly two fifths of the prompt files are developed to the standard (118 operational); the rest are outlines that name a sensible stage sequence but lack verification, evidence rules, and failure handling. One prompt has been empirically executed. That ratio is stated everywhere it matters, and the validator fails the build if a README over-claims.
+**The honest summary:** roughly two fifths of the prompt files are developed to the standard (123 operational); the rest are outlines that name a sensible stage sequence but lack verification, evidence rules, and failure handling. One prompt has been empirically executed. That ratio is stated everywhere it matters, and the validator fails the build if a README over-claims.
 
 ## 4. Standards that now govern the repository
 
@@ -91,15 +91,14 @@ Full detail in `CHANGELOG.md`. Summary:
 
 ## 8. Next actions, in order
 
-Completed since this list was written: **input declarations across the operational library** (2.9.0 — 109/118 prompts, nine artifact-only stages exempt), **code review** (2.8.0), **git operations and the inputs convention** (2.7.0), **payments** (2.6.0).
+Completed since this list was written: **feature flags** (2.10.0), **input declarations across the operational library** (2.9.0 — 109/118 prompts, nine artifact-only stages exempt), **code review** (2.8.0), **git operations and the inputs convention** (2.7.0), **payments** (2.6.0).
 
 1. **Empirical test harness** — one executed run now exists (`_meta/empirical-evaluation-01.md`: `DBG-01` against a synthetic fixture, three prompt fixes). Next: a fixture set, a scoring sheet, and fixtures authored by someone other than the prompt author. Every other `operational` label remains a structural review.
 2. Promote `03-domains/backend` (8 stages) — highest-value remaining skeleton; it also supplies the home for live-API versioning.
-3. Feature-flag lifecycle — the highest-consequence remaining item in the 2.4.0 backlog (payments now covered).
-4. `03-domains/data-engineering/` (ingest, quality, lineage) — the largest remaining missing dimension.
-5. Empirical evaluation of a second prompt, ideally by someone other than its author.
-6. Mobile / embedded / desktop-CLI domain systems, in that order of demand.
-7. Consolidate the input vocabulary (97 names; backlog item 26) — cosmetic until a run sheet is reused across systems, then it becomes friction.
+3. `03-domains/data-engineering/` (ingest, quality, lineage) — the largest remaining missing dimension.
+4. Empirical evaluation of a second prompt, ideally by someone other than its author.
+5. Mobile / embedded / desktop-CLI domain systems, in that order of demand.
+6. Consolidate the input vocabulary (97 names; backlog item 26) — cosmetic until a run sheet is reused across systems, then it becomes friction.
 
 ## 9. How to resume
 

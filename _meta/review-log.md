@@ -252,3 +252,10 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 - Why it matters: a prompt that says "the repository path" is only runnable by a human reading it. A prompt that declares `{{REPO_PATH}}` can be composed, validated, and replayed.
 - What was deliberately not done: nine artifact-only stages were left without declarations; forcing an input there would have produced unused declarations and taught the wrong lesson.
 - Deductions: 97 names is more vocabulary than the library needs; some names will merge (item 26). No prompt was executed with a filled run sheet, so "declared" is verified and "runnable end to end" is not.
+
+### `04-process/feature-flags/` — 5 stages (new, operational)
+- **2026-10-20 · mixed · 86/100 · operational**
+- Problem: the library treated deploys as the unit of risk, but most production behaviour is changed by toggles that never pass through a deploy review.
+- Design: P01 forces typing by usage site (a permission gate living in a console is a security finding, not a flag); P02 makes the unreachable-provider default a design decision instead of an accident; P03 requires sample-size arithmetic before exposure, which is where most rollout plans are dishonest; P04 makes the *prediction* the record, so a flip with no effect is evidence rather than a story; P05 treats removal as the stage that reduces complexity and refuses to delete a writer whose readers still exist.
+- Deductions: no provider-specific API detail (evaluation semantics differ per vendor); the interaction between flags and mobile clients pinned to old versions is named as a blocker rather than solved.
+- Follow-up: a worked example of a 3-stage rollout with the arithmetic would make P03's standard concrete.

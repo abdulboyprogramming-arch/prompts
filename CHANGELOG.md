@@ -2,6 +2,28 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.10.0] — 2026-10-20
+
+### New system — `04-process/feature-flags/` (5 stages, operational)
+
+Runtime switches are branches that bypass code review, deployment approval, and version control. The library had nothing governing them: no inventory discipline, no safe-default rule, no rollout evidence standard, no removal procedure. Backlog item 1, open since the first cycle.
+
+- **FF-P01 Inventory & risk** — reconcile three sources (code, provider console, config) and treat every disagreement as a finding; type flags by *usage site*, not name, distinguishing release, kill-switch, permission, experiment, and migration, each with a different expected lifetime; audit every kill-switch for operator, off-path effect, and exercise history; rank by consequence; state blind spots and sampling.
+- **FF-P02 Design & defaults** — justify the flag against four legitimate reasons or don't add it; route entitlement gates out of the flag system into the policy layer; name for removal; make the default a safety property (what happens when the provider is unreachable); stable bucketing for percentage rollouts; owner, expiry, and removal criteria at creation; both-states and flag-mechanics tests.
+- **FF-P03 Progressive rollout** — guardrail thresholds and sample-size reasoning **before** exposure; cohort ladder before percentage ladder; numeric decision rule per stage; tested reversal including data already written; confounders recorded; a 100% rollout with the flag still present is only half done.
+- **FF-P04 Kill-switch use** — state the symptom as a number, predict the effect, flip once, measure against the prediction, and classify the outcome (as predicted / no effect / worse); check that the off-path does not orphan data; record the flag state you leave behind. "No effect" is the most valuable result, because it redirects the investigation.
+- **FF-P05 Retirement** — evidence of permanence rather than intent; delete the losing branch, tests, fixtures, and docs (a leftover conditional silently changes behaviour); check readers before removing a writer; decide the safety property explicitly when a kill-switch dies; add a prevention mechanism or ticket.
+
+### Changed
+
+- `04-process/README.md` and root routing table: feature-flags row and two routing entries; the duplicate stale `code-review` skeleton row is gone.
+- Coverage matrix: new row "feature flags and progressive delivery" (adequate); totals 68 adequate / 32 partial / 4 missing.
+- Backlog item 1 → **Implemented**.
+
+### Result
+
+361 Markdown files, 286 prompts: 123 operational, 6 draft, 157 skeleton. Validator 0 errors / 0 warnings.
+
 ## [2.9.0] — 2026-10-20
 
 ### Changed — input declarations across the operational library (backlog item 25)

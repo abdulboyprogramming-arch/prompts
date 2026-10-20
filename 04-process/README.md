@@ -15,7 +15,7 @@ Engineering process as procedure: how work is verified, reviewed, released, oper
 | [`privacy-requests/`](privacy-requests/README.md) | Locate a subject's data everywhere, export or delete with verification, retention that keeps it gone | 3 | **operational** |
 | [`git-operations/`](git-operations/README.md) | State checks before destructive commands, conflict resolution, history repair, recovery, conventions | 5 | **operational** |
 | [`code-review/`](code-review/README.md) | Intent, change understanding, evidenced findings, actionable feedback, verified fixes | 6 | **operational** |
-| [`code-review/`](code-review/README.md) | Structured review, feedback, follow-up | 6 | skeleton |
+| [`feature-flags/`](feature-flags/README.md) | Flag inventory and risk, safe defaults, progressive rollout, kill-switch use, retirement | 5 | **operational** |
 | [`documentation/`](documentation/README.md) | Documentation inventory, gaps, writing, validation | 8 | skeleton |
 | [`project-management/`](project-management/README.md) | Goals, breakdown, planning, tracking, risk | 8 | skeleton |
 | [`research-and-development/`](research-and-development/README.md) | Question, hypotheses, method, experiment, decision | 8 | skeleton |
@@ -49,4 +49,4 @@ observability-reliability ► detects failure, shortens recovery, converts
 
 ## Planned
 
-Dependency and toolchain management, governance and compliance evidence, and code-review depth are tracked in [`_meta/ROADMAP-AND-BACKLOG.md`](../_meta/ROADMAP-AND-BACKLOG.md).
+Dependency and toolchain management, governance and compliance evidence, and the remaining process gaps are tracked in [`_meta/ROADMAP-AND-BACKLOG.md`](../_meta/ROADMAP-AND-BACKLOG.md).

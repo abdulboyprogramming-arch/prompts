@@ -119,7 +119,7 @@ Recorded here rather than built immediately, because quality over volume applies
 
 | # | Problem (as engineers describe it) | Why existing content is insufficient | Likely home | Priority | Status |
 |---|-------------------------------------|---------------------------------------|-------------|----------|--------|
-| 1 | "Feature flags never get removed and the code has three paths for everything" | `REF-P06` removes *a refactor's* old path; nothing governs flag lifecycle, ownership, or expiry across the product | `04-process/release-engineering/` P05 or a `feature-flags/` stage | P1 | Discovered |
+| 1 | "Feature flags never get removed and the code has three paths for everything" | `REF-P06` removes *a refactor's* old path; nothing governs flag lifecycle, ownership, or expiry across the product | `04-process/feature-flags/` (5 stages) | P1 | **Implemented** in 2.10.0 |
 | 2 | "We broke a client's integration with an API change" | `decommissioning` covers external consumers of a *retired* service; nothing covers versioning, deprecation windows, and consumer tests for a *live* API | `03-domains/backend/` (when promoted) | P1 | Discovered |
 | 3 | "The queue backs up at peak and nobody notices until customers do" | `observability` covers signals/SLOs; nothing covers backpressure, consumer lag, poison messages, or load shedding | `04-process/observability-reliability/` P06 | P1 | Discovered |
 | 4 | "Tests pass locally and fail in CI" / "works on my machine" | `REC-P04` detects environment drift in recovery; no procedure for parity, containers, or CI-vs-local diagnosis | `05-scenarios/environment-parity/` | P1 | Discovered |
