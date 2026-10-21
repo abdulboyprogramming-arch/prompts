@@ -81,37 +81,36 @@ Full detail in `CHANGELOG.md`. Summary:
 
 ## 7. Known weaknesses (do not paper over)
 
-1. **Almost no empirical testing.** One prompt has a recorded run against a synthetic fixture (`_meta/empirical-evaluation-01.md`, `DBG-01`). `operational` means structurally reviewed against the rubric, not proven on a real repository — and 208 prompts now carry that label; [`_meta/evidence-levels.md`](_meta/evidence-levels.md) reports how many have been executed, which is one.
-2. **149 skeletons.** Concentrated in `02-engineering/` (architecture-review, migration, performance-investigation), `03-domains/` (frontend, devops-infra, data-ml-ai, games, security, backend's seven remaining stages) and `04-process/` (PM, code review variants).
-3. **Coverage is complete at the row level, which is not the same as depth.** Every row of `_meta/coverage-matrix.md` has a prompt; **27 of 143 dimension rows are still partial**, and 5 of 15 workflow rows. A named prompt is not a solved problem.
+1. **Almost no empirical testing.** Two prompts have a recorded run against constructed fixtures (`_meta/empirical-evaluation-01.md` for `DBG-01`, `_meta/empirical-evaluation-02.md` for `CHAT-DEBUG`). `operational` means structurally reviewed against the rubric, not proven on a real repository — and 213 prompts carry that label; [`_meta/evidence-levels.md`](_meta/evidence-levels.md) reports 2 of 213, which is 0.9%.
+2. **146 skeletons.** Concentrated in `02-engineering/` (architecture-review, migration, performance), `03-domains/` (frontend, devops-infra, data-ml-ai, games, backend's seven remaining stages) and `04-process/` (PM), plus five of the six overlapping `01-contribution` stages.
+3. **Coverage is complete at the row level, which is not the same as depth.** Every row of `_meta/coverage-matrix.md` has a prompt; **27 of 143 dimension rows are still partial**. A named prompt is not a solved problem.
 4. **Reviews are self-assessments** by the authoring agent, recorded in `_meta/review-log.md`. Independence is not claimed.
-5. **Workflows are untested compositions.** Artifact-name compatibility is maintained by convention and checked by the validator's link rules, not by execution.
-6. **`01-contribution/open-source/general-agent` has no "check ran vs not run" distinction.**
-7. **No prompt has been run by an engineer other than its author**, so the library measures its own writing, not its usefulness.
+5. **Workflows are untested compositions.** Artifact-name compatibility is maintained by convention and checked by the validator's link rules, not by execution. The multi-agent run documented in 2.22.0 is constructed, not observed.
+6. **The duplicate metric cannot see the differentiation that matters.** `P06` now asks for different evidence in each contribution variant, and its vocabulary overlap barely moved; the instrument measures words, not standards of proof.
+7. **The new chat prompts are unexecuted.** `CHAT-SELECT` and `CHAT-HANDOFF` are `operational` by authoring standard only, and both were written after the only conversational run (`CHAT-DEBUG`) that exists.
+8. **No prompt has been run by an engineer other than its author**, so the library measures its own writing, not its usefulness.
 
 ## 8. Next actions, in order
 
 Completed since this list was written: **conversational mode — any prompt usable in a chat window, with the capability delta stated** (2.21.0); **quickstart, usage metering, test data, worked failure examples, prose lint, and the contribution-variant decision** (2.20.0); **environment parity, capacity planning, vendor due diligence, abuse prevention, duplicate-detection signals, the generated evidence report, and a worked run sheet** (2.19.0); **data migration, access review, deletion verification** (2.18.0); **licence compliance, standards conformance, the compliance workflow, task automation, client-side secret exposure, supply chain integrity, data residency, feature sunset, incident communications, operational readiness, build performance, AI-output verification** (2.18.0); **disaster recovery, time correctness, third-party integration, uploads, localisation, IaC, performance budgets, monorepo, API versioning, desktop/CLI, validator self-tests** (2.17.0); **tenant isolation, secret rotation, background jobs, email deliverability, accessibility audit, data engineering, agent-adoption workflow** (2.16.0); **prompt generation and regression (`GEN-P01/P02`), web3, mobile, embedded/IoT, games save+netcode, RAG grounding, agent permissions** (2.15.0); **deployment targets, host migration, dev environment, agent context, on-call handover** (2.14.0), **project handover** (2.12.0), **documentation products and live surface audit** (2.11.0), **feature flags** (2.10.0), **input declarations across the operational library** (2.9.0 — 109/118 prompts, nine artifact-only stages exempt), **code review** (2.8.0), **git operations and the inputs convention** (2.7.0), **payments** (2.6.0).
 
-1. **Empirical test harness** — backlog #83/#91. Two executed runs exist, and `_meta/evidence-levels.md` now states the ratio (2 of 213 operational prompts). The next unit of value is a fixture set, a scoring sheet, and runs performed by someone other than the prompt author. Until then every `operational` label is a structural claim.
-2. **Differentiate the 18 overlapping contribution stages** (backlog #107) — one stage across all three variants per pass; #100 decided the policy and this is the work.
-3. **Promote `03-domains/backend`'s seven remaining skeleton stages** — it is the largest domain and now has a ninth stage (`P09`) that is operational while stages P01–P08 are outlines.
-4. **Promote `03-domains/frontend`** — accessibility and state management are named but lack pass criteria; `PERF-BUDGET-01` now covers budgets, but only from the outside.
-4. **Close the 29 partial coverage rows** — the largest clusters are testing depth, observability at the on-call level, and governance evidence.
-6. **Burn down the prose-lint baseline** (backlog #108) — 171 findings, starting with the 68 `etc.` in the open-source agent.
-7. Consolidate the input vocabulary (backlog #26) — cosmetic until a run sheet is reused across systems, then it becomes friction.
+1. **Empirical test harness** — backlog #83/#91. Two executed runs exist, and `_meta/evidence-levels.md` states the ratio (2 of 213). The next unit of value is a fixture set, a scoring sheet, and runs performed by someone other than the prompt author. `CHAT-SELECT` and `CHAT-MODE` are the cheapest to test: two people, one situation, compare the routing cards or the adapted run.
+2. **Differentiate the remaining 15 overlapping contribution stages** (backlog #107) — pass 1 of 6 is done (`P06`); the method and the honest limits of the metric are recorded in `01-contribution/VARIANTS.md`. Next: `P03`, which shares the most vocabulary with its siblings.
+3. **Promote `03-domains/backend`'s seven remaining skeleton stages** — it is the largest domain and has a ninth stage (`P09`) that is operational while P01–P08 are outlines.
+4. **Promote `03-domains/frontend`** — accessibility and state management are named but lack pass criteria; `PERF-BUDGET-01` covers budgets from the outside.
+5. **Close the 27 partial coverage rows** — the largest clusters are testing depth, observability at the on-call level, and governance evidence.
+6. **Consolidate the input vocabulary** (backlog #26) — cosmetic until a run sheet is reused across systems, then it becomes friction.
 
 ## 9. How to resume
 
 ```bash
-python3 scripts/test_validator.py               # validator self-tests, must be 6/6
-python3 scripts/validate_library.py             # must show 0 errors
-python3 scripts/validate_library.py --catalog   # regenerate _meta/CATALOG.md after changes
-python3 scripts/generate_gallery.py --write     # regenerate GALLERY.md
-python3 scripts/find_overlaps.py --top 10       # before writing anything that may exist already
+python3 scripts/check_all.py        # every gate CI runs, in the same order
+python3 scripts/check_all.py --fix  # regenerate catalog, gallery, task index, evidence first
+python3 scripts/find_overlaps.py --top 10          # before writing anything that may exist already
+python3 scripts/find_overlaps.py --metric combined --top 10   # reworded clones
 ```
 
-Then: read `_meta/prompt-authoring-standard.md`, copy the structure of an operational system (`02-engineering/codebase-audit/P03-Architecture/` is a compact example), pick an item from `_meta/ROADMAP-AND-BACKLOG.md`, and on completion update: the system README status table, root README table, `CHANGELOG.md`, `_meta/review-log.md`, and this file.
+Then: read `_meta/prompt-authoring-standard.md`, copy the structure of an operational system (`02-engineering/codebase-audit/P03-Architecture/` is a compact example), pick an item from `_meta/ROADMAP-AND-BACKLOG.md`, and on completion update the system README status table, the root README table (the validator now fails when its counts disagree with the tree), `TASKS.md` via its generator, `CHANGELOG.md`, `_meta/review-log.md`, and this file.
 
 Never regenerate a skeleton by copy-pasting another system's prose: the value of a prompt is in the domain-specific judgement it encodes.
 

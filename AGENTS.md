@@ -6,7 +6,7 @@ This repository is a library of engineering prompts. Changes are content changes
 
 1. Read `PROJECT-STATUS.md` — current state, decisions, known weaknesses, next actions.
 2. Read `_meta/prompt-authoring-standard.md` — the metadata block and required sections are enforced.
-3. Run `python3 scripts/validate_library.py` — establish whether the baseline is clean before you add to it.
+3. Run `python3 scripts/check_all.py` — establish whether the baseline is clean before you add to it.
 4. Read `_meta/taxonomy.md` before creating a folder or system.
 
 ## Rules
@@ -25,18 +25,15 @@ This repository is a library of engineering prompts. Changes are content changes
 
 ## After you change something
 
-1. `python3 scripts/validate_library.py` — zero errors.
-2. `python3 scripts/test_validator.py`, `scripts/test_overlaps.py`, `scripts/test_prose_lint.py` — the tooling's own tests.
-3. `python3 scripts/lint_prose.py --check` — the prose ratchet must not regress.
-4. `python3 scripts/validate_library.py --catalog` — regenerate `_meta/CATALOG.md`.
-5. `python3 scripts/generate_gallery.py --write` — regenerate `GALLERY.md` (CI fails if it is stale).
-6. `python3 scripts/evidence_report.py --write` — regenerate `_meta/evidence-levels.md` if counts changed.
-7. `python3 scripts/find_overlaps.py --top 10` and `--metric combined` — check you have not re-created an existing prompt.
-8. Update the owning system's `README.md` stage table (with true maturity).
-9. Update `README.md`'s status table if a system's maturity changed.
-10. Add a `CHANGELOG.md` entry.
-11. Add a review record to `_meta/review-log.md` if you changed a maturity label.
-12. Update `PROJECT-STATUS.md` if the state, decisions, or next actions changed.
+1. `python3 scripts/check_all.py --fix` — regenerates the catalog, gallery, task index, and evidence report, then runs every gate CI runs. One command, one list; CI calls the same script, so a local pass is the run your pull request will get.
+2. `python3 scripts/find_overlaps.py --top 10` and `--metric combined` — check you have not re-created an existing prompt (the gates bar the worst cases; this is how you read the ranking).
+3. `python3 scripts/generate_task_index.py --write` — required after adding a prompt: the index refuses to build when a prompt belongs to no task, so a new directory needs a home in `scripts/generate_task_index.py` first.
+4. Update the owning system's `README.md` stage table (with true maturity).
+5. Update `README.md`'s status table if a system's maturity changed.
+6. Add a `CHANGELOG.md` entry.
+7. Add a review record to `_meta/review-log.md` if you changed a maturity label.
+8. Update `PROJECT-STATUS.md` if the state, decisions, or next actions changed.
+9. Update the counts wherever they appear: `README.md`, `PROJECT-STATUS.md`, `QUICKSTART.md`, `_meta/publication-checklist.md`.
 
 ## Do not
 

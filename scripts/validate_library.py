@@ -383,6 +383,8 @@ def check(docs: list[Doc]) -> tuple[list[str], list[str]]:
                 f"{len(stages)} stages are skeleton"
             )
 
+    errors.extend(check_readme_counts(docs))
+
     for d in docs:
         if d.is_prompt and d.rel.split(os.sep)[0] not in TOOLING_DIRS:
             e, w = check_inputs(d)
@@ -408,6 +410,46 @@ def check(docs: list[Doc]) -> tuple[list[str], list[str]]:
         )
 
     return errors, warnings
+
+
+# A row in the README's per-system table looks like:
+#   | [`02-engineering/codebase-audit/`](02-engineering/codebase-audit/README.md) | 9 | operational |
+README_COUNT_ROW = re.compile(r"^\|\s*\[`([A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*)/`\]\([^)]*\)\s*\|\s*(\d+)\s*\|", re.M)
+
+
+def check_readme_counts(docs: list[Doc], readme_text: str | None = None) -> list[str]:
+    """The README's system table must agree with the number of prompts on disk.
+
+    This is the count that drifts most quietly. It drifted twice in one release:
+    `03-domains/ai-agentic/` said 5 while holding 7, and `07-workflows/` said 12
+    while holding 13. Neither is a lie anyone types; both are what happens when a
+    prompt is added and the table is not revisited. Because the table is the first
+    quantitative claim a reader meets, a stale row is a small, avoidable
+    inaccuracy in the document that asks to be trusted.
+    """
+    text = readme_text
+    if text is None:
+        readme_path = os.path.join(ROOT, "README.md")
+        if not os.path.exists(readme_path):
+            return []
+        with open(readme_path, encoding="utf-8") as fh:
+            text = fh.read()
+
+    errors: list[str] = []
+    for prefix, claimed in README_COUNT_ROW.findall(text):
+        actual = sum(
+            1
+            for d in docs
+            if d.is_prompt
+            and not is_archive(d.rel)
+            and d.rel.replace(os.sep, "/").startswith(prefix + "/")
+        )
+        if int(claimed) != actual:
+            errors.append(
+                f"README.md: table says {claimed} prompts under {prefix}/ but {actual} exist — "
+                "update the row (and the maturity in the same row) to match the tree"
+            )
+    return errors
 
 
 def build_catalog(docs: list[Doc]) -> str:

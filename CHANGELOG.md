@@ -61,6 +61,10 @@ Three rules followed, each traceable to a row of the audit that should have run 
 
 There were nine gates and three lists of them: the CI workflow, `CONTRIBUTING.md`, and the publication checklist. A contributor could not tell which was authoritative, and a gate added to one list was missing from the others. `scripts/check_all.py` is now the single source — CI runs that script and nothing else, and a local `python3 scripts/check_all.py` is the same run the pull request will get. `--fix` regenerates in dependency order (catalog, gallery, task index, evidence), because running them alphabetically produces a stale file that the next gate then fails.
 
+### New — the README's count table is now checked
+
+The per-system table in `README.md` drifted twice in one release: `03-domains/ai-agentic/` claimed 5 prompts while holding 7, and `07-workflows/` claimed 12 while holding 13. Neither is a lie anyone types — both are what happens when a prompt is added and the table is not revisited. Since that table is the first quantitative claim a reader meets, `scripts/validate_library.py` now compares every row against the tree and fails with the exact row to fix. Four fixtures in `test_validator.py` (10/10) pin the rule, including the case where two rows point at different directories.
+
 ### Also
 
 - `QUICKSTART.md` Path 0 gained both chat prompts and a third rule: a route without the index is `inferred`, never `verified`. Path 0 also moved to the top of the file — the reader with the fewest tools was being served last.
@@ -69,7 +73,7 @@ There were nine gates and three lists of them: the CI workflow, `CONTRIBUTING.md
 
 ### Result
 
-**461 Markdown files, 364 prompts: 213 operational, 5 draft, 146 skeleton.** Validator 0 errors / 0 warnings; tooling self-tests 6/6, 13/13, 12/12, 15/15; prose lint 0 findings at baseline 0; catalog, gallery, task index and evidence report current, verified by one command.
+**461 Markdown files, 364 prompts: 213 operational, 5 draft, 146 skeleton.** Validator 0 errors / 0 warnings; tooling self-tests 10/10, 13/13, 12/12, 15/15; prose lint 0 findings at baseline 0; catalog, gallery, task index and evidence report current, verified by one command.
 
 Coverage: **143 rows, unchanged** — this release improves the instruments, not the coverage. Executed: **2 of 213 operational prompts (0.9%)**, unchanged, and the four prompts promoted or added here have not been run. The review log says so for each.
 

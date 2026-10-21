@@ -2,8 +2,8 @@
 
 **Purpose:** the gate that must pass before this repository becomes public, and the list of things only the owner can do in GitHub settings.
 
-**Audited:** 2026-10-21 (v2.21.1) · **Auditor:** repository maintainer (agent-assisted, evidence below)
-**Previous audit:** v2.13.0 — the repository was already publishable then; this re-audit re-runs every check against the tree as it stands now, because 65 prompts and five tooling changes have landed since.
+**Audited:** 2026-10-21 (v2.22.0) · **Auditor:** repository maintainer (agent-assisted, evidence below)
+**Previous audit:** v2.21.1 — re-audited after six changes: the prose lint closed to zero, `TASKS.md` landed, two chat prompts were added, `P06` was differentiated across three variants, a multi-agent run was documented, and the gate list moved into `scripts/check_all.py`.
 
 ---
 
@@ -19,7 +19,7 @@
 
 ---
 
-## 1. Content gate (re-run at v2.21.1)
+## 1. Content gate (re-run at v2.22.0)
 
 | # | Check | Method | Result |
 |---|-------|--------|--------|
@@ -29,8 +29,8 @@
 | 4 | Catalog current | `--catalog` + `git diff` | **PASS** — regenerates with no diff |
 | 5 | Gallery current | `generate_gallery.py --check` | **PASS** — "up to date", 364 prompts |
 | 6 | Duplication | `find_overlaps.py --check` (shingle 0.55) and `--metric combined` (0.75) | **PASS** — highest shingle 0.18; highest combined 0.68, which is the known and *decided* contribution-variant case (`01-contribution/VARIANTS.md`) |
-| 7 | Tooling has tests | `test_validator.py`, `test_overlaps.py`, `test_prose_lint.py` | **PASS** — 6/6, 13/13, 12/12 |
-| 8 | Prose ratchet | `lint_prose.py --check` | **PASS** — 171 findings, baseline 171; the number is published, not hidden |
+| 7 | Tooling has tests | `test_validator.py`, `test_overlaps.py`, `test_prose_lint.py`, `test_task_index.py` | **PASS** — 10/10, 13/13, 12/12, 15/15 |
+| 8 | Prose lint | `lint_prose.py --check` | **PASS** — **0 findings at baseline 0**. The ratchet is now a gate: a new vague qualifier fails CI |
 | 9 | Relative links | validator, all links incl. `Depends on` | **PASS** — 0 broken |
 | 10 | Secrets in tree | `ghp_*`, `github_pat_*`, `AKIA*`, private-key headers | **PASS** — 0 hits |
 | 11 | Secrets in reachable history | `git log --all -p` over the same patterns | **PASS** — 0 hits. *Caveat:* this sandbox checkout presents a single squashed commit, so the scan covers the tree and that commit; the pre-existing remote history was scanned in the 2.13.0 audit and is unchanged since. |
@@ -40,6 +40,9 @@
 | 15 | Repository size | `git ls-files`, `du` | **PASS** — 471 tracked files, 4.2 MB; largest 112 KB |
 | 16 | Required community files | `.github/` listing | **PASS** — SECURITY, CODE_OF_CONDUCT, PR template, issue templates |
 | 17 | Licences | `LICENSE`, `LICENSE-CONTENT`, README section | **PASS** — MIT for code, CC BY 4.0 for content, SPDX-detectable |
+| 18 | Every prompt has a home | `generate_task_index.py --check` | **PASS** — 21 tasks, 364 prompts routed, 0 unrouted |
+| 19 | One gate list | `scripts/check_all.py` | **PASS** — CI runs that script and nothing else; a local pass is the same run |
+| 20 | Counts agree with the tree | `find` + `git ls-tree` | **PASS** — 461 Markdown files, 364 prompts, 213/5/146 by maturity, in all four places they appear |
 
 ## 2. What a reader sees first
 
@@ -48,21 +51,21 @@ Checked against the tree, not against intention:
 | Surface | State |
 |---|---|
 | `README.md` top | Links `QUICKSTART.md` before anything else — the reader gets a task, not a table of contents |
-| `QUICKSTART.md` | Five paths (broken / inherited / shipping / proof / new), each with ordered prompts and the artifact you end with; opens with what the library **cannot** do |
+| `QUICKSTART.md` | Six paths (chat-only / broken / inherited / shipping / proof / new), chat-first because that reader has the fewest tools; each with ordered prompts and the artifact you end with; opens with what the library **cannot** do |
 | Maturity legend | In the README above the fold; `operational` defined as *structurally reviewed*, not proven |
 | `_meta/evidence-levels.md` | Generated; states 0.9% executed (2 of 213); linked from the README and the quickstart |
-| `GALLERY.md` | 364 prompts, one line each, generated from the prompts |
+| `GALLERY.md` | 364 prompts by area, generated; `TASKS.md` indexes the same prompts by problem and fails the build if a prompt has no home |
 | Limitations | Stated in README, quickstart, `PROJECT-STATUS.md`, and §3 below — four places, consistent |
 
 ## 3. Limitations that must survive publication
 
 These are already stated in the repository. They must not be softened in marketing language, release notes, or a launch post.
 
-1. **One prompt has been executed and recorded** (`DBG-01`, `_meta/empirical-evaluation-01.md`). 208 are labelled `operational`, which means *structurally complete and reviewed*, not *proven in use*. `_meta/evidence-levels.md` says so with a generated number.
+1. **Two prompts have been executed and recorded** (`DBG-01`, `_meta/empirical-evaluation-01.md`; `CHAT-DEBUG`, `_meta/empirical-evaluation-02.md`). 213 are labelled `operational`, which means *structurally complete and reviewed*, not *proven in use*. `_meta/evidence-levels.md` states 2 of 213 — 0.9% — with a generated number, and the review log names the prompts added in 2.22.0 as unexecuted.
 2. **Reviews are author self-assessments**, scored in `_meta/review-log.md`. No second reviewer exists.
-3. **149 skeleton prompts** are named sequences without verification or failure handling — useful as human checklists, unsafe to run unattended.
+3. **146 skeleton prompts** are named sequences without verification or failure handling — useful as human checklists, unsafe to run unattended.
 4. **Coverage is 116 adequate / 27 partial / 0 missing** dimension rows. No row is missing; 27 are thin, and the matrix names what is thin.
-5. **171 prose-lint findings remain** (68 are `etc.`). The ratchet stops growth; the debt is recorded in the baseline and backlog #108, not glossed.
+5. **The `01-contribution` variants are one pass through six.** `P06` now differs by domain in all three systems; the other five overlapping stages still differ mainly in nouns (backlog #107), and the duplicate metric cannot confirm differentiation either way.
 6. **The library cannot make an agent honest.** It defines constraints and evidence rules; a model may still ignore them. `07-workflows/independent-verification.md` and `05-scenarios/ai-output-verification/` exist for exactly that reason.
 
 ## 4. Resolved decisions (kept for the record)

@@ -143,7 +143,7 @@ In short: take it, change it, ship it — say where it came from, and do not pre
 | [`04-process/testing-qa/`](04-process/testing-qa/README.md) | 7 | operational |
 | [`04-process/observability-reliability/`](04-process/observability-reliability/README.md) | 5 | operational |
 | [`04-process/release-engineering/`](04-process/release-engineering/README.md) | 4 | operational |
-| [`03-domains/ai-agentic/`](03-domains/ai-agentic/README.md) | 5 | operational |
+| [`03-domains/ai-agentic/`](03-domains/ai-agentic/README.md) | 7 | operational |
 | [`03-domains/database/`](03-domains/database/README.md) | 5 | operational |
 | [`04-process/dependency-management/`](04-process/dependency-management/README.md) | 5 | operational |
 | [`04-process/decommissioning/`](04-process/decommissioning/README.md) | 4 | operational |
@@ -165,7 +165,7 @@ In short: take it, change it, ship it — say where it came from, and do not pre
 | [`02-engineering/access-review/`](02-engineering/access-review/ACCESS-REVIEW.md) | 1 | operational |
 | [`04-process/accessibility-audit/`](04-process/accessibility-audit/ACCESSIBILITY-AUDIT.md) | 1 | operational |
 | [`00-core/prompt-engineering/`](00-core/prompt-engineering/PROMPT-FORGE.md) | 2 | operational (GEN-P01, GEN-P02) |
-| [`00-core/conversational/`](00-core/conversational/README.md) | 4 | operational (chat mode: any prompt, adapted) |
+| [`00-core/conversational/`](00-core/conversational/README.md) | 6 | operational (chat mode: any prompt adapted, plus select, review, debug, design, handoff) |
 | [`04-process/privacy-requests/`](04-process/privacy-requests/README.md) | 4 | operational |
 | [`04-process/git-operations/`](04-process/git-operations/README.md) | 5 | operational |
 | [`04-process/code-review/`](04-process/code-review/README.md) | 6 | operational |
@@ -173,10 +173,12 @@ In short: take it, change it, ship it — say where it came from, and do not pre
 | [`04-process/documentation/`](04-process/documentation/README.md) | 8 | operational |
 | [`04-process/handover/`](04-process/handover/README.md) | 5 | operational |
 | [`04-process/agent-context/`](04-process/agent-context/README.md) | 4 | operational |
-| [`07-workflows/`](07-workflows/README.md) | 12 | mixed (7 operational, 5 draft) |
+| [`07-workflows/`](07-workflows/README.md) | 13 | mixed (8 operational, 5 draft), plus one reference document |
 | [`05-scenarios/`](05-scenarios/README.md) | 42 | mixed (37 operational, 5 skeleton) |
 
-Everything else — backend, frontend, devops-infra, data-ml-ai, the eight game-design stages, architecture-review, from-scratch, migration, project management, research, systems improvement, language design, packages, web/web3 contribution — is a **skeleton**: a defensible sequence of stages with outline prompts. Those folders are useful for structuring a human-led session today; they are not yet safe to hand to an autonomous agent. Promotion order is in [`_meta/ROADMAP-AND-BACKLOG.md`](_meta/ROADMAP-AND-BACKLOG.md); per-scenario coverage with evidence is in [`_meta/coverage-matrix.md`](_meta/coverage-matrix.md).
+Everything else — backend, frontend, devops-infra, data-ml-ai, the eight game-design stages, architecture-review, from-scratch, migration, project management, research, systems improvement, language design, and seven of the eight stages in packages and web/web3 contribution — is a **skeleton**: a defensible sequence of stages with outline prompts.
+
+Three stages are the exception, and they are the same stage for a reason: `P06 Validation` in `web/`, `web3/` and `packages-libraries/` is `operational`, and each one asks for a different kind of evidence — cross-browser proof, a violating case per invariant, a published-artifact diff. They were rewritten together so that the three systems stop being one system with three sets of nouns (`01-contribution/VARIANTS.md`). Those folders are useful for structuring a human-led session today; they are not yet safe to hand to an autonomous agent. Promotion order is in [`_meta/ROADMAP-AND-BACKLOG.md`](_meta/ROADMAP-AND-BACKLOG.md); per-scenario coverage with evidence is in [`_meta/coverage-matrix.md`](_meta/coverage-matrix.md).
 
 ## Structure
 
@@ -217,13 +219,18 @@ Quality is scored with [`_meta/quality-rubric.md`](_meta/quality-rubric.md) — 
 
 ## Composing systems
 
-Individual prompts solve a task. Real work is a sequence with handoffs and decisions. [`07-workflows/`](07-workflows/README.md) defines five such sequences, each with explicit gates where a human must decide, failure routing, and acceptance criteria for the whole chain:
+Individual prompts solve a task. Real work is a sequence with handoffs and decisions. [`07-workflows/`](07-workflows/README.md) defines thirteen procedures, each with explicit gates where a human must decide, failure routing, and acceptance criteria for the whole chain:
 
 - [Recover an abandoned or broken project](07-workflows/recover-abandoned-project.md)
 - [Audit → remediate](07-workflows/audit-to-remediation.md)
 - [Production incident](07-workflows/production-incident.md)
 - [Greenfield delivery](07-workflows/greenfield-delivery.md)
 - [Continuous improvement](07-workflows/continuous-improvement.md)
+- [Independent verification](07-workflows/independent-verification.md)
+- [Multi-agent orchestration](07-workflows/multi-agent-orchestration.md) and [a worked run of it](07-workflows/multi-agent-worked-example.md)
+- [Cross-layer integration](07-workflows/cross-layer-integration.md)
+- [Compliance readiness](07-workflows/compliance-readiness.md)
+- [Agent adoption](07-workflows/agent-adoption.md)
 
 Stages exchange state using the [handoff contract](07-workflows/HANDOFF-CONTRACT.md), so a second session or a different agent can continue without replaying the conversation.
 

@@ -27,7 +27,7 @@ import tempfile
 import textwrap
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from validate_library import check_system_readmes, load  # noqa: E402
+from validate_library import check_readme_counts, check_system_readmes, load  # noqa: E402
 
 
 STAGE = """# PROMPT {n} — Stage {n}
@@ -141,6 +141,35 @@ CASES = [
 ]
 
 
+COUNT_CASES = [
+    (
+        "a README row that matches the tree passes",
+        "| [`testcase/system/`](testcase/system/README.md) | 2 | operational |\n",
+        2,
+        False,
+    ),
+    (
+        "a README row that is one short is an error",
+        "| [`testcase/system/`](testcase/system/README.md) | 1 | operational |\n",
+        2,
+        True,
+    ),
+    (
+        "a README row naming a directory with no prompts is an error",
+        "| [`testcase/empty/`](testcase/empty/README.md) | 1 | operational |\n",
+        2,
+        True,
+    ),
+    (
+        "a row for a different directory is checked against that directory, not this one",
+        "| [`testcase/other/`](testcase/other/README.md) | 1 | operational |\n"
+        "| [`testcase/system/`](testcase/system/README.md) | 2 | operational |\n",
+        2,
+        True,
+    ),
+]
+
+
 def main() -> int:
     failures = 0
     for name, readme, stages, expect_error in CASES:
@@ -155,7 +184,20 @@ def main() -> int:
             failures += 1
             for e in errors:
                 print(f"       got: {e}")
-    total = len(CASES)
+    for name, readme_text, stage_count, expect_error in COUNT_CASES:
+        with tempfile.TemporaryDirectory() as root:
+            docs = build(root, "**Maturity: operational (v1.0.0).** Two stages.\n",
+                         ["operational"] * stage_count)
+            errors = check_readme_counts(docs, readme_text)
+        got_error = bool(errors)
+        ok = got_error == expect_error
+        status = "ok  " if ok else "FAIL"
+        print(f"{status} {name} (expected {'error' if expect_error else 'no error'})")
+        if not ok:
+            failures += 1
+            for e in errors:
+                print(f"       got: {e}")
+    total = len(CASES) + len(COUNT_CASES)
     print(f"\n{total - failures}/{total} cases passed")
     return 1 if failures else 0
 
