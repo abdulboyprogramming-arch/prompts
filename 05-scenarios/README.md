@@ -56,7 +56,7 @@ The five skeleton prompts have useful structure but no verification or failure h
 | Situation | Use |
 |-----------|-----|
 | One question, one session, contained change | a scenario prompt |
-| Ordered stages, artifacts that persist, decisions between stages | a system in `02-engineering/`, `04-process/`, etc. |
+| Ordered stages, artifacts that persist, decisions between stages | a multi-stage system in `02-engineering/` or `04-process/` |
 | Multiple systems in sequence | a workflow in `07-workflows/` |
 
 If a scenario prompt keeps needing stages, handoffs, or durable artifacts, it should be promoted into a system rather than growing into a badly organised one.

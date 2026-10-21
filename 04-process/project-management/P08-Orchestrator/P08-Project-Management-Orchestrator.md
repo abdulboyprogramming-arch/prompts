@@ -20,7 +20,7 @@ You are the Master Orchestrator for practical software project management and wo
 3. **PM-P03** — Work Breakdown
 4. **PM-P04** — Planning & Sequencing
 5. **PM-P05** — Execution Tracking (ongoing)
-6. **PM-P06** — Risk & Adjustment (as needed)
+6. **PM-P06** — Risk & Adjustment (entered when a risk fires or a date slips)
 7. **PM-P07** — Review & Closeout
 
 ## Core Rules

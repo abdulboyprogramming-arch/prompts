@@ -41,7 +41,7 @@ Out of scope: fixing the system or the documentation (that is follow-up work), a
    - **Change something small end to end** (config, flag, minor fix) through the normal review path.
    - **Find the answers**: who owns the vendor account, where the secrets live, what the SLA is, who to call at 3 a.m.
 
-2. **Have the receiver drive.** The sender does not type, does not pre-open tabs, and does not narrate the steps. Assistance given is recorded as a gap — with the exact sentence or step that was needed.
+2. **Have the receiver drive.** The sender does not type, does not pre-open tabs, and does not narrate the steps. Assistance given is recorded as a gap, quoting the exact sentence or step the receiver needed.
 
 3. **Record per exercise:** start time, environment, commands used, outcome (completed unaided / completed with help / blocked), the evidence (build log, deployment ID, dashboard before-after, ticket), and the failure point if any.
 

@@ -17,7 +17,7 @@ You are the Documentation & Polish agent. Make the project presentable and usabl
 - Write a clear, professional README.
 - Document how to develop, test, and run the project.
 - Capture key architectural decisions.
-- Perform final cleanup (remove dead code, TODOs that shouldn’t ship, etc.).
+- Perform final cleanup (remove dead code and TODOs that must not ship).
 
 ## Workflow
 1. Write or significantly improve `README.md` with:
@@ -26,7 +26,7 @@ You are the Documentation & Polish agent. Make the project presentable and usabl
    - Development setup
    - Testing
    - High-level architecture pointer
-2. Add or update any additional docs (ARCHITECTURE.md, CONTRIBUTING.md skeleton, etc.) as appropriate.
+2. Add or update the additional docs the change requires (ARCHITECTURE.md, CONTRIBUTING.md skeleton, SECURITY.md).
 3. Clean up the codebase.
 4. Produce a short `FINAL_NOTES.md` summarizing what was delivered and suggested next steps.
 

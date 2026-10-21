@@ -7,7 +7,7 @@ A multi-stage system for designing, implementing, and improving infrastructure, 
 
 Use for:
 - CI/CD pipeline design or improvement
-- Infrastructure as Code (Terraform, Pulumi, CloudFormation, etc.)
+- Infrastructure as Code (Terraform, Pulumi, CloudFormation)
 - Environment topology and deployment strategy
 - Observability, reliability, and operational guardrails
 - Platform/engineering-enablement infrastructure work

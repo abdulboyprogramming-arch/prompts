@@ -48,7 +48,7 @@ Out of scope: idempotency and failure handling (P02), reconciliation (P03).
    | Integer with implicit currency | Fragile — flag missing currency dimension |
 
 3. **Check currency handling**: is a currency code stored beside every amount, or inferred from context? Are non-2-exponent currencies (JPY 0, KWD 3) handled? Is conversion performed at a stored rate with a recorded timestamp, or recomputed later from a moving rate?
-4. **Document the rounding rule and its allocation.** When an amount must be split (tax, fees, instalments, partial refunds), the parts must sum exactly to the whole. State the allocation method (largest remainder, first-item, etc.) and whether remainder cents are assigned deterministically.
+4. **Document the rounding rule and its allocation.** When an amount must be split (tax, fees, instalments, partial refunds), the parts must sum exactly to the whole. State the allocation method (largest remainder, first-item, or explicit fixed order) and whether remainder cents are assigned deterministically.
 5. **Map the state machine**: authorised → captured → settled → refunded/partially refunded → disputed → reversed, plus failed/voided and any provider-specific states. For each transition, record what triggers it, what is idempotent, and which states are terminal. Mark any transition that can happen out of order (e.g. a settlement webhook arriving before the capture response).
 6. **Write the invariants** as checks that can be run as SQL or tests, for example:
    - the sum of ledger entries for a payment equals its current state amount;

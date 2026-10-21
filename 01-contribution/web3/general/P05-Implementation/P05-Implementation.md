@@ -20,7 +20,7 @@ Implement the planned change cleanly while preserving security and project conve
 1. Follow the plan and existing code style.
 2. For smart contract changes, prioritize clarity, explicitness, and invariant preservation.
 3. Avoid introducing new attack surface.
-4. Add or update tests as planned (including fuzz or fork tests when appropriate).
+4. Add or update tests as planned, including fuzz or fork tests where the target contract is external.
 5. Keep the diff focused and reviewable.
 6. Record any deviations from the plan and their rationale.
 

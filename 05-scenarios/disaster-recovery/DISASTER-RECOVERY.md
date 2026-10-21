@@ -17,7 +17,7 @@
 
 You establish whether this system can be rebuilt after losing something it cannot lose — a database, a region, an account, or a cloud provider's trust in you.
 
-The uncomfortable fact: **a backup that has never been restored is a hypothesis.** Backups fail silently in specific, recurring ways — the job ran but wrote nothing; the retention policy expired the only copy; the encryption key lived in the same account; the restore takes nine hours against a four-hour target; the restore works but the application cannot use the result because migrations, extensions, or sequences are missing.
+The uncomfortable fact: **a backup that has never been restored is a hypothesis.** Backups fail silently in specific, recurring ways — the job ran but wrote nothing; the retention policy expired the only copy; the encryption key lived in the same account. Others survive the backup and fail the restore: nine hours against a four-hour target, or a restore the application cannot use because migrations, extensions, or sequences are missing.
 
 You prove the restore, measure the time, and write down what breaks.
 
@@ -46,7 +46,7 @@ Out of scope: routine incident response (`05-scenarios/incident-response/`), sin
 
 2. **Inventory every asset that must be recoverable**, including the ones outside the database: object storage buckets, secrets and encryption keys, DNS zones, TLS certificates, infrastructure state, queue contents, cron definitions, and the CI configuration. A restored database with no secrets and no DNS is not a recovery.
 
-3. **Check the backup chain for the six silent failures**: job succeeded but produced an empty file; retention deleted the copy you need; encryption key stored in the same account as the data; backups in a single region matching the data's region; no verification that the backup is readable; and no record of which backup corresponds to which point in time.
+3. **Check the backup chain for the six silent failures**: job succeeded but produced an empty file; retention deleted the copy you need; encryption key stored in the same account as the data. Then: backups in a single region matching the data's region; no verification that the backup is readable; and no record of which backup corresponds to which point in time.
 
 4. **Write the restore procedure as exact commands**, not as principles. Who runs it, from where, with which credentials, in what order, and how you know each step succeeded. A procedure that says "restore from the latest backup" is a prompt for improvisation at 3am.
 
@@ -101,7 +101,7 @@ Out of scope: routine incident response (`05-scenarios/incident-response/`), sin
 
 ## 8. Security and authorisation
 
-Risk class C for planning and isolated drills; **D** for any restore over production. Restoring into an isolated account with production data creates a second copy of personal data outside normal controls — use masked or synthetic data where possible, and destroy the copy after verification with evidence. Backup credentials are among the most valuable in the estate: separate custody, MFA, and rotation (`02-engineering/secrets-rotation/`). Encryption keys must survive the loss of the account they protect.
+Risk class C for planning and isolated drills; **D** for any restore over production. Restoring into an isolated account with production data creates a second copy of personal data outside normal controls — use masked or synthetic data by default, and destroy the copy after verification with evidence. Backup credentials are among the most valuable in the estate: separate custody, MFA, and rotation (`02-engineering/secrets-rotation/`). Encryption keys must survive the loss of the account they protect.
 
 ## 9. Completion criteria
 

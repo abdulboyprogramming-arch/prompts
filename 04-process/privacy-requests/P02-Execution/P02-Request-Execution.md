@@ -37,7 +37,7 @@ Out of scope: deciding whether the request is legally valid (owner/legal), inven
 ### For an access/export request
 
 1. **Scope the export** to the subject's data only. Use the identifier list from P01; never query by a field that could match multiple people (name, partial email).
-2. **Test the query on a staging copy first** where possible, and count rows. If the count is implausibly high, the key is wrong — stop.
+2. **Test the query on a staging copy first**, and count rows. If the count is implausibly high, the key is wrong — stop.
 3. **Assemble in the least-exposing format**: machine-readable (JSON/CSV), transmitted over an authenticated channel, encrypted at rest, with a stated expiry for the transfer link.
 4. **Redact third-party data** (other users in the same records, internal notes about other people, fraud signals you are legally allowed to withhold — flag, do not decide).
 5. **Record the export** (what, where, key used, row counts, recipient, expiry) without storing the payload in the repository.

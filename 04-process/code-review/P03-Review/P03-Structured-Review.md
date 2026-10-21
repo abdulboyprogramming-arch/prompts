@@ -78,7 +78,7 @@ Out of scope: writing the fix (unless trivial), rewriting the author's style, in
 ## 7. Failure handling
 
 - **Cannot verify a suspected bug** → record as a question with the exact conditions to reproduce; do not assert.
-- **The change is too large to review properly** → return a scoped review of the risk surface plus a request to split; state which parts are unreviewed. Approving an unreviewed diff is the failure mode to avoid.
+- **The change is too large to review in one pass** → return a scoped review of the risk surface plus a request to split; state which parts are unreviewed. Approving an unreviewed diff is the failure mode to avoid.
 - **Findings exceed what a PR comment can carry** (design-level problems) → summarise in one major finding and propose a design discussion; do not bury it in line comments.
 - **The author disagrees** → that is P04/P05 territory; record the disagreement and the evidence, not a verdict.
 - **You lack domain expertise to judge** → say so explicitly and name who should; a false confidence in review is worse than an acknowledged gap.

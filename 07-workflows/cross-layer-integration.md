@@ -44,7 +44,7 @@ Out of scope: implementing missing features in a layer (return that layer to its
    | Interaction | Producer | Consumer | Shape agreed | Auth mechanism | Failure contract |
    |-------------|----------|----------|--------------|----------------|------------------|
 
-3. **Diff the two sides mechanically where possible**: generate the client types from the server schema (or vice versa) instead of comparing by eye. Record the differences: missing fields, wrong optionality, different date formats, enums that do not match, pagination shape, error envelope, nullability.
+3. **Diff the two sides mechanically**:  generate the client types from the server schema (or vice versa) instead of comparing by eye. Record the differences: missing fields, wrong optionality, different date formats, enums that do not match, pagination shape, error envelope, nullability.
 4. **Check the error contract explicitly.** What does the producer return on validation failure, unauthorised, not found, conflict, and internal error? What does the consumer do with each? A UI that renders "Something went wrong" for a 422 is an integration defect, not a polish item.
 5. **Check identity propagation.** How does the caller's identity reach the data layer? Tokens in headers, cookies with CORS implications, service-to-service credentials, tenant identifiers derived from the token rather than the request body. Every hop is a place where authorisation silently disappears.
 
@@ -58,7 +58,7 @@ Out of scope: implementing missing features in a layer (return that layer to its
 ### Phase 3 — Prove the seams
 
 10. **Run one end-to-end journey** through every layer, from the user action to the persisted record and back, recording requests and responses at each hop. Not a smoke test of each service in isolation.
-11. **Exercise the failure paths at the seams:** stop the backend and confirm the frontend shows a recoverable error rather than hanging; return a 500 and confirm it is not rendered as success; kill the worker and confirm the job is retried rather than lost; make the third-party dependency time out and confirm the timeout is shorter than the user's patience.
+11. **Exercise the failure paths at the seams:** stop the backend and confirm the frontend shows a recoverable error rather than hanging; return a 500 and confirm it is not rendered as success; kill the worker and confirm the job is retried rather than lost. Then make the third-party dependency time out and confirm the timeout is shorter than the user's patience.
 12. **Test authorisation across the boundary**, with real credentials for at least two roles, through the actual transport — not by calling the service function directly.
 13. **Measure one realistic volume path**: the list endpoint with production-shaped data, the payload size the UI actually receives, and the p95 latency across the boundary. Integration is where N+1 queries and unbounded payloads become visible.
 

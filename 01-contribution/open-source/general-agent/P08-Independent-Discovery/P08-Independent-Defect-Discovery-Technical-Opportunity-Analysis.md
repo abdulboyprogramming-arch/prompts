@@ -67,7 +67,7 @@ For each potential finding record:
 - Reproduction steps (commands, inputs, environment notes) — make them as concrete as possible
 - Potential impact (correctness, security, usability, maintainability)
 - Confidence (Confirmed / High / Medium / Low)
-- Recommended next step (fix, add test, improve docs, further investigation, etc.)
+- Recommended next step (fix, add test, improve docs, further investigation)
 - Whether the issue appears to be already tracked (cross-check with P07 ledger)
 
 ### Step 4 — Security-Sensitive Findings

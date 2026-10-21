@@ -38,7 +38,7 @@ Do **not** begin deep repository analysis, issue triage, or code changes in this
 
 - Ability to read files in the working environment, rooted at `{{REPO_PATH}}`.
 - Optional: the operator details file `{{MY_DETAILS_FILE}}` (name, account, constraints).
-- Ability to run basic shell commands (`pwd`, `ls`, `git`, `gh` if installed, etc.).
+- Ability to run `pwd`, `ls`, and `git`, and `gh` only if it is installed and already authenticated.
 - No prior durable artifacts are required (this stage creates the initial ones).
 
 ## 5. Required Tools and Permissions
@@ -96,8 +96,8 @@ Do **not** begin deep repository analysis, issue triage, or code changes in this
 
 ### Step 5 — Tool & Runtime Inventory
 Probe for common tools that later stages may need (record presence/absence only):
-- Language runtimes (node, python, go, rustc, java, etc.)
-- Package managers (npm, yarn, pnpm, pip, cargo, maven, etc.)
+- Language runtimes: `node`, `python3`, `go`, `rustc`, `java` — record the version of each one present
+- Package managers: `npm`, `yarn`, `pnpm`, `pip`, `cargo`, `mvn` — record which one the repository actually uses
 - Build tools, linters, test runners commonly associated with detected languages
 - Docker / container tools if relevant
 Do not install anything. Only detect.
@@ -112,7 +112,7 @@ Do not install anything. Only detect.
    - Working tree state
    - Next recommended stage (normally P03)
 2. Write SESSION_HANDOVER.md with a concise resume packet.
-3. Ensure REPO_MAP.md, KNOWLEDGE_BASE.md, etc., exist as empty or skeleton files.
+3. Ensure GIT_STATE.md, REPO_MAP.md, KNOWLEDGE_BASE.md, and SESSION_HANDOVER.md exist as empty or skeleton files.
 
 ### Step 7 — Produce Bootstrap Report
 Emit a structured report (also append key points to the progress ledger) containing:

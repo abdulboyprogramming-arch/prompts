@@ -38,7 +38,7 @@ Out of scope: incident response if criteria are breached (`05-scenarios/incident
 5. **Check the new failure modes** introduced by the release: new logs appearing, new validation paths rejecting requests, new error classes. A new error class at low rate may be the first sign of a design flaw.
 6. **Watch for displacement.** Confirm the old instances/tasks/containers are gone, queues are draining, and no duplicate processing is occurring during the transition.
 7. **Decide:** `healthy`, `degraded but acceptable` (with the specific deviation), or `rollback required` (with the criterion triggered). Do not average away a broken cohort — check per region/tenant/version if routing is partial.
-8. **Close the loop:** if the release is healthy, record the new baseline. If mitigation was needed, record the flag state and expiry so it does not become permanent.
+8. **Close the loop:** if the release is healthy, record the new baseline. If you applied a mitigation, record the flag state and its expiry date so it does not become permanent.
 9. **Write `POST_RELEASE.md`:** artifact verification, signal table (baseline vs observed per interval), functional checks, changelog spot checks, new failure modes, displacement check, decision with the criterion that drove it, and follow-ups.
 
 ## 5. Decision rules and evidence standard

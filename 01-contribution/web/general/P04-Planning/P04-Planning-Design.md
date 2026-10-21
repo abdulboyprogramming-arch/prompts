@@ -25,7 +25,7 @@ Produce a concrete plan for implementing the selected work while respecting web 
    - Accessibility requirements
    - Responsive behavior
    - Error and loading states
-   - Testing strategy (unit, component, e2e as appropriate)
+   - Testing strategy naming the layer for each behaviour (unit, component, e2e)
 4. Write `PLAN.md` with steps, affected areas, test plan, and any design decisions.
 5. Keep the change focused.
 

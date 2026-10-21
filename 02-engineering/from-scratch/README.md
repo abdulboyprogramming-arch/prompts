@@ -24,4 +24,4 @@ A complete multi-stage system for designing and building high-quality software p
 - Make deliberate, documented stack decisions.
 - Prefer boring, proven technology unless the problem demands otherwise.
 - Deliver a working, well-structured, documented foundation rather than a half-finished feature explosion.
-- Keep the system adaptable to web apps, CLIs, libraries, services, tools, etc.
+- Keep the system adaptable to web apps, CLIs, libraries, services, and internal tools.

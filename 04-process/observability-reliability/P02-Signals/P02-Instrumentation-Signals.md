@@ -37,7 +37,7 @@ Out of scope: dashboards and alerts (P03), runbooks (P04), performance optimisat
 5. **Tracing.** Initialise the tracer and exporter, instrument inbound/outbound HTTP and database calls, and propagate context through queues/jobs. Sample deliberately (head or tail) and record the sampling policy.
 6. **Business events.** For critical flows, emit a small number of domain events with stable names (e.g. `payment.capture.succeeded`) usable for alerting on *correctness*, not just uptime.
 7. **Verify locally.** Run the service (if possible), trigger a request, and show the log line, metric series, and trace span in the local collector or output. If no collector is available, unit-test the instrumentation and show the emitted payload.
-8. **Measure overhead.** Compare a representative operation's latency/CPU before and after where possible; record the impact. Instrumentation that costs 20% throughput needs justification.
+8. **Measure overhead.** Compare a representative operation's latency and CPU before and after instrumentation, and record the impact. Instrumentation that costs 20% throughput needs justification.
 9. **Write `SIGNALS.md`:** question → signal mapping, field/metric/span naming conventions, sampling and retention assumptions, redaction rules, overhead measurement, rollout notes, and what remains uninstrumented.
 10. **Update the ledger.**
 

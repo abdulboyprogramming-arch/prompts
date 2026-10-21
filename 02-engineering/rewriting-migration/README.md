@@ -11,7 +11,7 @@ A disciplined multi-stage system for safely rewriting systems or migrating them 
 |----|--------|---------|
 | RW-P01 | Assessment & Goals | Understand why rewrite/migrate and what success looks like |
 | RW-P02 | Target Design | Define the desired end-state architecture and technology |
-| RW-P03 | Migration Strategy | Choose approach (strangler, big-bang, incremental modules, etc.) |
+| RW-P03 | Migration Strategy | Choose the approach: strangler fig, big-bang, or incremental module replacement |
 | RW-P04 | Safety Net | Characterization tests and behavioral locks |
 | RW-P05 | Incremental Migration | Execute the migration in verified steps |
 | RW-P06 | Validation | Prove behavioral equivalence and quality |

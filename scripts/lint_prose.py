@@ -13,11 +13,13 @@ failure modes that make a prompt unusable in practice:
 3. **Empty intensifiers in rules** — "be careful", "make sure to", "ensure that
    the code is good" without saying what good means.
 
-Adoption model: this is a **ratchet**, not a gate. A 355-prompt library already
-contains these phrases; failing the build on all of them would block every change.
-`--check` fails only when the total rises above the recorded baseline, and
-`--write-baseline` lowers it when a batch fixes real findings. That makes the
-number monotonically improvable without demanding a big-bang rewrite.
+Adoption model: a **ratchet that has closed**. When these rules were written the
+library already contained the phrases, and failing the build on all of them would
+have blocked every change; `--check` therefore compares against a recorded
+baseline rather than zero. The corpus was then burned down to **zero findings**
+(v2.22.0), so the baseline file records `0` and the ratchet is now a hard gate:
+any new unactionable phrase or 56-word sentence fails CI. `--write-baseline` still
+exists, but raising the number is now a decision that needs a reason in the commit.
 
 Usage
 -----

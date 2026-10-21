@@ -26,8 +26,8 @@ A repository exists, is supposed to work, and does not. You do not know how much
 | 5 | Recovery plan | `REC-P05` | **GATE 2 — mandatory approval** |
 | 6 | Incremental recovery | `REC-P06` | — |
 | 7 | Acceptance | `REC-P07` | **GATE 3 — merge decision** |
-| 8 | (if needed) test safety net | `04-process/testing-qa/` QA-P04→P06 | — |
-| 9 | (if needed) defect triage | `05-scenarios/debugging/` | — |
+| 8 | test safety net | `04-process/testing-qa/` QA-P04→P06 | — |
+| 9 | defect triage | `05-scenarios/debugging/` | — |
 
 ## Stage handoffs
 

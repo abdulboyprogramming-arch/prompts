@@ -94,7 +94,7 @@ Out of scope: mobile client version skew (`MOB-P03` covers installed apps), auth
 ## 7. Failure handling
 
 - **No visibility into consumers** → add request identification first; until then every removal is a guess and should be blocked.
-- **A breaking change already shipped** → treat as an incident: identify affected consumers from error rates and support tickets, restore the old behaviour behind a flag if possible, and start the deprecation properly.
+- **A breaking change already shipped** → treat as an incident: identify affected consumers from error rates and support tickets, restore the old behaviour behind a flag, and run the deprecation as a documented process rather than a notification.
 - **A partner refuses to migrate** → the decision is commercial; document the exception, the maintenance cost, and the date it is revisited — an unbounded exception becomes permanent.
 - **The API is internal service-to-service** → versioning is cheaper (you control both sides), but contract tests matter more, because a deploy and a consumer deploy are not atomic.
 - **GraphQL surface** → field deprecation is built in; the trap is changing a resolver's semantics without changing the schema. Contract tests must assert behaviour, not only shape.

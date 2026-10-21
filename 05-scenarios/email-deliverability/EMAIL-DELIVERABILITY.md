@@ -46,7 +46,7 @@ Out of scope: marketing copy, template design, and purchasing a deliverability s
 
 5. **Separate the streams.** Transactional (password reset, receipt) must not share a domain or IP reputation with marketing or notifications. If they do, one bad campaign suppresses every reset email. Check subdomains and provider stream configuration.
 
-6. **Read the bounce and complaint data properly**: hard bounces (invalid address) must be suppressed permanently; soft bounces should retry with a cap; complaints above ~0.1% indicate list quality or consent problems. A suppression list that is never pruned, or never *applied* to transactional sends, causes silent non-delivery to real users.
+6. **Read the bounce and complaint data by category**: hard bounces (invalid address) must be suppressed permanently; soft bounces should retry with a cap; complaints above ~0.1% indicate list quality or consent problems. A suppression list that is never pruned, or never *applied* to transactional sends, causes silent non-delivery to real users.
 
 7. **Check the content-level causes that are actually deliverability causes**: URL shorteners in transactional mail, link domains with bad reputation, image-only emails, missing `List-Unsubscribe` for bulk, and a From display name that changes every send.
 

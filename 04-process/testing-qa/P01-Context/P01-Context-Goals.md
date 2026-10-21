@@ -34,7 +34,7 @@ Out of scope: test inventory and suite execution (P02), writing tests (P05).
 ## 4. Workflow
 
 1. **Establish the system's purpose.** Read README and entry points; state in three sentences what the software does and who depends on it.
-2. **Build the R1–R4 risk map.** List the behaviours that matter (not modules): authentication, payment capture, data export, tenant isolation, background retry, migration execution, etc. Assign a risk class from the shared table in the system README, with a one-line justification each. Include at least three R1 candidates or state that none exist.
+2. **Build the R1–R4 risk map.** List the behaviours that matter (not modules): authentication, payment capture, data export, tenant isolation, background retry, migration execution. Assign a risk class from the shared table in the system README, with a one-line justification each. Include at least three R1 candidates or state that none exist.
 3. **Record what has already gone wrong.** Search the issue tracker references, CHANGELOG, recent revert commits (`git log --grep=revert`), and any incident notes. Concrete history beats imagined risk.
 4. **Capture constraints.** PR feedback latency target, CI minutes/cost limits, flaky-test tolerance, environments available (can integration tests reach a database?), team familiarity with testing patterns.
 5. **Define success for this engagement.** Two to four observable outcomes, e.g. "every R1 behaviour has at least one automated negative test", "PR pipeline under 10 minutes with zero quarantined tests", "the three most-duplicated test fixtures are replaced".

@@ -30,7 +30,7 @@ Out of scope: infrastructure provisioning (`03-domains/devops-infra/`), initial 
 
 ## 4. Workflow
 
-1. **Instrument every model call** with: timestamp, feature, model + version, prompt template version, input/output token counts, latency, cost, finish reason, retry count, validation outcome, request ID, and tenant (hashed). Do not log full prompt/response bodies by default; if needed for debugging, use a sampled, access-controlled, retained-for-days store.
+1. **Instrument every model call** with: timestamp, feature, model + version, prompt template version, input/output token counts, latency, cost, finish reason, retry count, validation outcome, request ID, and tenant (hashed). Do not log full prompt/response bodies by default; when debugging requires the body, use a sampled, access-controlled store with a retention measured in days.
 2. **Track unit economics.** Cost per request, per feature, per tenant; token breakdown; cache hit rate; cost of retries and failed validations. Set budget alerts.
 3. **Track quality in production**, not just latency: validation failure rate, refusal rate, judge score on a sampled stream, retrieval miss rate, user feedback signals, and escalation-to-human rate. Sample deliberately (e.g. 1–5%) to control cost.
 4. **Wire safety detection** from P04: injection suspicion, tool-call anomalies, out-of-policy attempts, repeated refusals. Route to alerts with owners.

@@ -59,7 +59,7 @@ Out of scope: capturing state (P02), moving access (P03), proving the receiver c
 
 5. **Convert the inventory into acceptance criteria** — observable statements the receiver can check, phrased as capability rather than document existence: "the receiver can restore the staging database from backup without assistance", "the receiver holds owner on the cloud account", "an alert fired at 02:00 reaches a named responder". Documents are means; capability is the criterion.
 
-6. **Set the date structure**: the effective date, the freeze window (no changes except by agreement), the cutover moment for authority, and the sender's availability window afterwards (a named end date, not "reachable if needed" forever).
+6. **Set the date structure**: the effective date, the freeze window (no changes except by agreement), the cutover moment for authority, and the sender's availability window afterwards (a named end date, not an open-ended "reachable whenever").
 
 7. **Fix the dispute and rollback path.** If the receiver cannot accept by the date, who decides — delay, partial handover, or escalate? A handover with no failure path becomes a handover that "happened" while nothing transferred.
 

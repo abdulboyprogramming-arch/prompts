@@ -112,4 +112,4 @@ Risk class C: rewrites historical data. Requires `{{APPROVER}}`, a recorded wind
 
 Artifacts: `.backfill/BACKFILL_PLAN.md`, `.backfill/RECONCILIATION.md`, snapshot reference.
 
-Handover: the data owners of every affected dashboard receive the delta; `03-domains/data-ml-ai/` evaluates whether a trained model must be retrained on corrected data; `04-process/observability-reliability/` P05 records the incident if the defect produced customer-visible numbers; DE-P01 adds the test that would have caught the original defect, because a backfill without a new test is a repeat appointment.
+Handover: the data owners of every affected dashboard receive the delta, and `03-domains/data-ml-ai/` evaluates whether a trained model must be retrained on corrected data. `04-process/observability-reliability/` P05 records the incident if the defect produced customer-visible numbers. DE-P01 adds the test that would have caught the original defect, because a backfill without a new test is a repeat appointment.

@@ -41,7 +41,7 @@ Out of scope: distribution (`DESK-P01`), and the tool's core functionality.
 
 4. **Support the environment variables users already have**: `NO_COLOR`, `CLICOLOR`, `TERM=dumb`, `CI`, and `FORCE_COLOR`. Ignoring `NO_COLOR` is a compatibility bug in 2026, not a preference.
 
-5. **Handle signals properly**: on `SIGINT` (Ctrl-C), stop work, clean up temporary files and lock files, and exit with the conventional code (`130`); on `SIGTERM`, do the same and exit promptly; on `SIGPIPE` (a piped consumer closed early, e.g. `| head`), exit quietly rather than printing a stack trace. Never leave a half-written file or a held lock.
+5. **Handle signals explicitly**: on `SIGINT` (Ctrl-C), stop work, clean up temporary files and lock files, and exit with the conventional code (`130`); on `SIGTERM`, do the same and exit promptly; on `SIGPIPE` (a piped consumer closed early, e.g. `| head`), exit quietly rather than printing a stack trace. Never leave a half-written file or a held lock.
 
 6. **Make interactive prompts safe**: never prompt when stdin is not a TTY (fail with a clear message and a flag to supply the value); never default to destructive; require explicit confirmation for irreversible operations; and make `--yes` documented and visible in `--help`.
 
@@ -106,7 +106,7 @@ Risk class A: changes its own output and signal handling. Never print secrets, t
 - [ ] `--help` includes examples, exit codes, and a bug link.
 - [ ] `--json` output stable and documented.
 - [ ] Windows behaviour tested and documented.
-- [ ] Behaviour test matrix in CI where possible.
+- [ ] Behaviour test matrix in CI, at least for the signals above.
 
 ## 10. Deliverables and handover
 

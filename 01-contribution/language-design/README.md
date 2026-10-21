@@ -21,7 +21,7 @@ A multi-stage system for designing new programming languages, DSLs, or major lan
 ## Principles
 
 - Start from a real problem and target users, not from novelty for its own sake.
-- Make trade-offs explicit (expressiveness vs simplicity, safety vs flexibility, etc.).
+- Make trade-offs explicit (expressiveness vs simplicity, safety vs flexibility).
 - Prefer a sharp MVP language/feature set over an unbounded design.
 - Separate design decisions from implementation accidents.
 - Document rationale so future contributors can evolve the language intentionally.

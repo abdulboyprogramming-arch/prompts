@@ -18,7 +18,7 @@ Locate the actual primary constraints on performance rather than assumed ones.
 
 ## Workflow
 1. Use profiling, tracing, and measurement data to identify dominant bottlenecks.
-2. Distinguish between CPU, memory, I/O, network, lock contention, algorithmic complexity, unnecessary work, etc.
+2. Distinguish between CPU, memory, I/O, network, lock contention, algorithmic complexity, and unnecessary work.
 3. Rank bottlenecks by estimated impact and ease of addressing.
 4. Write `BOTTLENECKS.md` with:
    - Ranked list of bottlenecks

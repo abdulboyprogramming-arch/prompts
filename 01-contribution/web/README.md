@@ -7,7 +7,7 @@ Prompt systems specialized for contributing to web projects (frontend, backend, 
 | Path | Purpose |
 |------|---------|
 | `general/` | Core multi-stage web contribution system (stack-agnostic foundation) |
-| `frontend/` | Frontend-specific extensions and deep prompts (React, Vue, Svelte, etc.) |
+| `frontend/` | Frontend-specific extensions and deep prompts (React, Vue, Svelte, Solid) |
 | `backend/` | Backend-specific extensions (APIs, services, databases) |
 | `fullstack/` | Coordinated fullstack contribution patterns |
 | `infra-devops/` | CI/CD, deployment, observability, and infrastructure contributions |

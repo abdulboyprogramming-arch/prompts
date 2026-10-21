@@ -18,7 +18,7 @@ Implement the planned change cleanly, preserving public API contracts unless a d
 
 ## Workflow
 1. Follow project conventions and the plan.
-2. Update tests and documentation/examples as needed.
+2. Update the tests and documentation/examples the change touches.
 3. Keep the diff focused and reviewable.
 4. Note any deviations and rationale.
 

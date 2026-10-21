@@ -23,7 +23,7 @@ Verify that the change is correct, polished, and meets project quality bars.
    - Accessibility basics
    - Responsive behavior at key breakpoints
    - Visual consistency with the design system (if applicable)
-   - No obvious performance regressions (bundle, unnecessary re-renders, etc.)
+   - No obvious performance regressions (bundle size, unnecessary re-renders, layout shift)
 3. Fix issues found within scope.
 4. Write `VALIDATION.md` summarizing commands run, results, and remaining risks.
 5. Only proceed when the change is in good shape.

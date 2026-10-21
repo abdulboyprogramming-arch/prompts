@@ -38,7 +38,7 @@ Out of scope: restructuring the code (P04), improving the tests' style, fixing b
 5. **Add contract tests at the seams** identified in P02: the exact input/output shapes that callers depend on, including error contracts. These survive the refactoring and protect consumers.
 6. **Prove the net catches breakage — this is the step that is skipped.** For each important test, break the behaviour deliberately in a scratch copy (return a wrong value, drop a field, change an error code) and confirm the test fails. A test that passes against broken code is decoration. Restore and confirm with `git diff`.
 7. **Add the behavioural observation you cannot unit-test**: metrics, structured logs, or a shadow comparison that will show whether the new path behaves like the old one after deployment (feeds P05).
-8. **Record wall-clock time and flakiness.** A slow or flaky net will be disabled during the refactoring — the moment it is most needed. Quarantine or speed up before proceeding; `05-scenarios/flaky-tests/` if needed.
+8. **Record wall-clock time and flakiness.** A slow or flaky net will be disabled during the refactoring — the moment it is most needed. Quarantine or speed up before proceeding, and switch to `05-scenarios/flaky-tests/` when the flake rate exceeds one in twenty runs.
 9. **Write `SAFETY_NET.md`:** baseline results, coverage of the area, tests added by category, mutation results per important test, golden-master corpus and how to regenerate it, runtime behaviour observations, known gaps, and a go/no-go for P04.
 
 ## 5. Decision rules and evidence standard

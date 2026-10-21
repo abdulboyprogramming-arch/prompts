@@ -47,7 +47,7 @@ Out of scope: changing the system to match the document (that is a code change a
 
 3. **Write the doc so its claims can be checked.** Prefer exact names (`npm run test:unit`, not "run the tests"), exact paths, exact versions, and a stated "applies to" version and date in the header.
 
-4. **Execute every command you write**, on the environment the reader will use (a clean container where possible). Paste real output where output matters. Where a command cannot be executed here, mark it as unverified in the log rather than presenting it as tested.
+4. **Execute every command you write**, on the environment the reader will use — a clean container if one is available. Paste real output where output matters. Where a command cannot be executed here, mark it as unverified in the log rather than presenting it as tested.
 
 5. **Use synthetic data in every example.** No customer records, no real tokens, no internal hostnames in anything that will be shared outside the engineering group.
 

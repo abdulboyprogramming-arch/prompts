@@ -40,7 +40,7 @@ Out of scope: deleting an operational kill-switch that is still needed (retire o
 
 4. **Delete the losing branch completely.** Remove the conditional, not just its configuration: the old function, its tests, its fixtures, its analytics events, its error strings, and the docs describing a choice that no longer exists. A flag removed from config but still read in code is the worst outcome — the code now runs on the default, unversioned and untested.
 
-5. **Check the data and contract surface before deleting.** If the removed branch wrote a different schema, event format, or message shape, other systems may still consume it. Confirm with a search and, where possible, with instrumentation showing no reads of the old shape. Deleting a writer is safe only if nothing still reads what it wrote.
+5. **Check the data and contract surface before deleting.** If the removed branch wrote a different schema, event format, or message shape, other systems may still consume it. Confirm with a repository search, and with instrumentation showing no reads of the old shape where the shape emits a measurable event. Deleting a writer is safe only if nothing still reads what it wrote.
 
 6. **Keep the safety property.** If the flag was also the kill-switch for that behaviour, removal deletes the control. Decide explicitly: is the behaviour now safe to run with no switch (it is the only path, monitored, with a rollback mechanism), or does an operational switch remain (with an owner and an exercise date)? Never leave the implicit answer.
 

@@ -90,7 +90,7 @@ Out of scope: reviewing the model's alignment, choosing an agent product, and gr
 
 ## 7. Failure handling
 
-- **The agent cannot function without broad filesystem access** (a monorepo with generated code) → scope to the repository root, exclude `.git` internals where possible, and add write approval for paths outside it.
+- **The agent cannot function without broad filesystem access** (a monorepo with generated code) → scope write access to the repository root, exclude `.git` internals entirely, and require approval for paths outside it.
 - **A required server is unpinned** → pin to a digest, vendor it, or accept it with a written residual risk and network restriction.
 - **The team disables approvals for speed** → make the irreversible set smaller so the gate is tolerable; never remove the gate on actions that move money, data, or code to production.
 - **A tool description changes after an update** → re-review on version change; descriptions are an injection surface, so a "minor" update is still a review trigger.

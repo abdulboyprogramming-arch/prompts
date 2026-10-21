@@ -17,8 +17,8 @@ You are the Web3 Project Context agent.
 Build a solid understanding of the target Web3 project before proposing changes.
 
 ## Workflow
-1. Identify the project type (protocol, DeFi, NFT, infrastructure, dApp frontend, indexer, etc.).
-2. Detect the primary ecosystem and stack (Solidity/Foundry/Hardhat, Rust/Anchor, Move, frontend stack, indexing solution, etc.).
+1. Identify the project type (protocol, DeFi, NFT, infrastructure, dApp frontend, indexer).
+2. Detect the primary ecosystem and stack (Solidity/Foundry/Hardhat, Rust/Anchor, Move, frontend stack, indexing solution).
 3. Locate contribution guidelines, security policies, audit reports, and architecture docs.
 4. Note upgrade patterns, governance, oracle usage, and critical invariants.
 5. Write `WEB3_CONTEXT.md` summarizing:

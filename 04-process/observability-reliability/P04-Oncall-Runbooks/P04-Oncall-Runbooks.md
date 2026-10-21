@@ -40,7 +40,7 @@ Out of scope: writing alerts (P03), incident command procedure (workflow), postm
    - **Verification** — the signal that proves recovery, and how long to observe.
    - **Escalation** — who, when, with what information.
    - **Do not** — the tempting action that makes it worse (e.g. restarting a queue consumer that duplicates work).
-3. **Test the runbook.** Walk through it against a real or staging environment where possible; mark each step `verified` or `unverified`. A runbook never executed is a hypothesis.
+3. **Test the runbook.** Walk through it against a staging environment or a dry run in the real one; mark each step `verified` or `unverified`. A runbook never executed is a hypothesis.
 4. **Document access and authority.** Which systems the responder can reach, which require approval, where credentials are obtained securely (never in the runbook), and the out-of-hours approval path.
 5. **Define the on-call contract:** rotation, response expectations, handover format, and what counts as an acceptable page.
 6. **Create the troubleshooting index:** symptom → likely causes → runbook link, covering the top ten signals.
@@ -62,7 +62,7 @@ Out of scope: writing alerts (P03), incident command procedure (workflow), postm
 |-------|--------|----------------|
 | Every page alert has a runbook | cross-check P03 alert list | complete |
 | Runbooks contain ordered actions | inspect | first 5 minutes are concrete |
-| Commands validated | dry-run/staging where possible | marked verified, or unverified with reason |
+| Commands validated | dry run, or staging | marked verified, or unverified with reason |
 | Verification signal defined | inspect | observable recovery proof |
 | No credentials | scan | none present |
 | Access matrix accurate | confirm with owner | matches reality |
