@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE — do not edit by hand. Run: python3 scripts/generate_gallery.py --write -->
 
-Every prompt in the library — **362** of them — with a direct link and the situation it is for, plus **9** foundational reference documents.
+Every prompt in the library — **364** of them — with a direct link and the situation it is for, plus **9** foundational reference documents.
 Generated from the prompt files, so it cannot drift from them; CI fails if this file is stale.
 
 **Reading the columns**
@@ -20,7 +20,7 @@ prompts by situation.
 
 | Area | Prompts | What it is for |
 |---|---:|---|
-| [00-core — foundations every prompt assumes](#00-core--foundations-every-prompt-assumes) | 6 | Rules and protocols that apply to every other prompt. |
+| [00-core — foundations every prompt assumes](#00-core--foundations-every-prompt-assumes) | 8 | Rules and protocols that apply to every other prompt. |
 | [01-contribution — contributing to open source](#01-contribution--contributing-to-open-source) | 48 | Stage systems for contributing to an unfamiliar project. |
 | [02-engineering — building, auditing, and recovering code](#02-engineering--building-auditing-and-recovering-code) | 82 | Work on an existing codebase: audit, repair, complete, upgrade. |
 | [03-domains — domain-specific engineering](#03-domains--domain-specific-engineering) | 75 | Stack-specific practice: data, AI, and the domains still being built out. |
@@ -29,7 +29,7 @@ prompts by situation.
 | [06-interactive — conversations that clarify a request](#06-interactive--conversations-that-clarify-a-request) | 4 | Use when the request is vague and needs to be scoped first. |
 | [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 13 | Composed sequences that route between systems and stop at human gates. |
 
-*Maturity across the library: 208 operational, 5 draft, 149 skeleton, 362 total.*
+*Maturity across the library: 210 operational, 5 draft, 149 skeleton, 364 total.*
 
 ---
 
@@ -37,14 +37,16 @@ prompts by situation.
 
 Rules and protocols that apply to every other prompt.
 
-### All prompts in this area · 6 prompts
+### All prompts in this area · 8 prompts
 
 | ID | Prompt | Use it for | Maturity | Risk |
 |---|---|---|---|---|
 | `CHAT-DEBUG` | [Chat Debugging: diagnose from a pasted error, and say what you cannot know](00-core/conversational/CHAT-DEBUG.md) | Something is broken, the only tool you have is a chat window, and you need the next test rather than five guesses. <br>**Inputs:** `SYMPTOM, ERROR_TEXT, LANGUAGE_STACK, RECENT_CHANGE, ALREADY_TRIED` | operational | A |
 | `CHAT-DESIGN` | [Chat Design: thinking architecture through in conversation](00-core/conversational/CHAT-DESIGN.md) | Choosing between two approaches, sizing a design before building it, or writing the decision record afterwards. <br>**Inputs:** `DESIGN_QUESTION, CONSTRAINTS, SCALE, TEAM_SIZE, DEADLINE, EXISTING_STACK` | operational | A |
+| `CHAT-HANDOFF` | [Chat Handoff: carrying a long engagement between conversations](00-core/conversational/CHAT-HANDOFF.md) | One message block, short enough to paste into a new conversation, containing the constraints, the established facts with labels, the decisions and their reasons… <br>**Inputs:** `ENGAGEMENT, PACKET_VERSION, OPEN_QUESTIONS, REDACTED_ITEMS` | operational | A |
 | `CHAT-MODE` | [Conversational Mode: running any prompt in a chat window](00-core/conversational/CHAT-MODE.md) | You want to use this library in ChatGPT, Claude, Gemini, or any chat window — with no repository access, no shell, and no ability to run a test. <br>**Inputs:** `PROMPT_REF, CHAT_MODEL, PROVIDED_CONTEXT, SESSION_LIMIT` | operational | A |
 | `CHAT-REVIEW` | [Chat Code Review: reviewing a paste, with the limits stated](00-core/conversational/CHAT-REVIEW.md) | You paste a function, a file, or a diff into a chat window and want a review that is useful and does not pretend to have read the codebase. <br>**Inputs:** `REVIEW_TARGET, REVIEW_INTENT, LANGUAGE_STACK, RISK_TOLERANCE` | operational | A |
+| `CHAT-SELECT` | [Chat Select: choosing the right prompt inside a conversation](00-core/conversational/CHAT-SELECT.md) | A routing card with one primary prompt, the reason it fits, the one fact that would overturn the choice, what the user should paste next, and the path to read if… <br>**Inputs:** `SITUATION, INDEX_PASTED, ALREADY_TRIED, CONSTRAINT` | operational | A |
 | `GEN-P01` | [The Prompt Forge: build a runnable prompt from a description](00-core/prompt-engineering/PROMPT-FORGE.md) | The prompt — paste-ready, complete, with all ten sections filled for its archetype. <br>**Inputs:** `PROMPT_INTENT, TARGET_AGENT, OPERATING_MODE, DOMAIN, STRICTNESS, OUTPUT_SHAPE, INTERVIEW_MAX, EXISTING_PROMPT, REPO_PATH` | operational | A |
 | `GEN-P02` | [Prompt Regression: prove a prompt change is an improvement](00-core/prompt-engineering/PROMPT-REGRESSION.md) | A fixture set, a run protocol, per-case results, a score against _meta/quality-rubric.md, a comparison to the baseline where one exists, a decision, and the reason… <br>**Inputs:** `PROMPT_PATH, TEST_CASES, BASELINE_RESULTS, TARGET_AGENT, RUNS_PER_CASE, REPO_PATH` | operational | A |
 

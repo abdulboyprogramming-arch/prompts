@@ -1,6 +1,6 @@
 # Quickstart — start being useful in ten minutes
 
-362 prompts is an archive, not a starting point. This page is the starting point: six situations, the exact prompts to run, in order, with what you should be holding at the end of each.
+364 prompts is an archive, not a starting point. This page is the starting point: six situations, the exact prompts to run, in order, with what you should be holding at the end of each.
 
 **Read this instead of the README if you have a job to do today.**
 
@@ -28,8 +28,10 @@ If you are in ChatGPT, Claude, Gemini, or any chat interface with no file access
 | 2 | [`00-core/conversational/CHAT-DEBUG.md`](00-core/conversational/CHAT-DEBUG.md) | One discriminating test at a time instead of five guesses |
 | 3 | [`00-core/conversational/CHAT-REVIEW.md`](00-core/conversational/CHAT-REVIEW.md) | A bounded review with the not-assessed list |
 | 4 | [`00-core/conversational/CHAT-DESIGN.md`](00-core/conversational/CHAT-DESIGN.md) | An ADR you can file, with what would reopen it |
+| 5 | [`00-core/conversational/CHAT-SELECT.md`](00-core/conversational/CHAT-SELECT.md) | One prompt chosen for your situation, with the fact that would change the choice |
+| 6 | [`00-core/conversational/CHAT-HANDOFF.md`](00-core/conversational/CHAT-HANDOFF.md) | A packet that lets a fresh chat continue without repeating a disproved hypothesis |
 
-Two rules apply to every chat run: **`verified` means someone ran it and pasted the output**, and **redact before pasting** — a consumer chat window is a third party.
+Three rules apply to every chat run: **`verified` means someone ran it and pasted the output**, **redact before pasting** — a consumer chat window is a third party — and **a route without the index is `inferred`, never `verified`**.
 
 ---
 

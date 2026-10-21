@@ -6,7 +6,7 @@ Every prompt declares what it does, what it may change, how much it can be trust
 
 **[`QUICKSTART.md`](QUICKSTART.md) — start here.** Six situations, the exact prompts in order, and what you should be holding at the end of each. It takes ten minutes and saves an hour of reading this file.
 
-**Browse everything:** [`TASKS.md`](TASKS.md) indexes the library by the problem you have — 21 tasks from "something is broken right now" to "I only have a chat window" — and [`GALLERY.md`](GALLERY.md) lists all 362 prompts by area with a direct link and one line on when to use each. Both are generated from the prompts themselves and CI fails if either falls out of date, so neither can drift from the library.
+**Browse everything:** [`TASKS.md`](TASKS.md) indexes the library by the problem you have — 21 tasks from "something is broken right now" to "I only have a chat window" — and [`GALLERY.md`](GALLERY.md) lists all 364 prompts by area with a direct link and one line on when to use each. Both are generated from the prompts themselves and CI fails if either falls out of date, so neither can drift from the library.
 
 ## Start here
 

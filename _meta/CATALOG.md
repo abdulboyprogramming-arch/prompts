@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 362 prompts — 0 canonical, 208 operational, 5 draft, 149 skeleton.
+**Totals:** 364 prompts — 0 canonical, 210 operational, 5 draft, 149 skeleton.
 
 ## `00-core`
 
@@ -14,8 +14,10 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 |----|-------|----------|------|------|------|
 | `CHAT-DEBUG` | Chat Debugging: diagnose from a pasted error, and say what y | operational | specialised | A | [CHAT-DEBUG.md](../00-core/conversational/CHAT-DEBUG.md) |
 | `CHAT-DESIGN` | Chat Design: thinking architecture through in conversation | operational | specialised | A | [CHAT-DESIGN.md](../00-core/conversational/CHAT-DESIGN.md) |
+| `CHAT-HANDOFF` | Chat Handoff: carrying a long engagement between conversatio | operational | specialised | A | [CHAT-HANDOFF.md](../00-core/conversational/CHAT-HANDOFF.md) |
 | `CHAT-MODE` | Conversational Mode: running any prompt in a chat window | operational | specialised | A | [CHAT-MODE.md](../00-core/conversational/CHAT-MODE.md) |
 | `CHAT-REVIEW` | Chat Code Review: reviewing a paste, with the limits stated | operational | specialised | A | [CHAT-REVIEW.md](../00-core/conversational/CHAT-REVIEW.md) |
+| `CHAT-SELECT` | Chat Select: choosing the right prompt inside a conversation | operational | specialised | A | [CHAT-SELECT.md](../00-core/conversational/CHAT-SELECT.md) |
 | `GEN-P01` | PROMPT 01 — The Prompt Forge: build a runnable prompt from a | operational | specialised | A | [PROMPT-FORGE.md](../00-core/prompt-engineering/PROMPT-FORGE.md) |
 | `GEN-P02` | PROMPT 02 — Prompt Regression: prove a prompt change is an i | operational | continuous-improvement | A | [PROMPT-REGRESSION.md](../00-core/prompt-engineering/PROMPT-REGRESSION.md) |
 

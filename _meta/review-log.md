@@ -654,3 +654,23 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 - Finding 3: no rule for a user claim that conflicts with evidence ("we bumped nothing", while a version differs). Added: a contradiction is evidence — record both and test the difference rather than accepting the reassuring account.
 - Also learned about the stop rule: escalation here is not a count of failed experiments but a **scope change** — the search moved outside what the user can paste. Recorded in the write-up as a partial gap; the prompt's stop rule is still count-based.
 - Deduction: this is the author evaluating the author's prompt, so the run demonstrates followability and defect discovery, not effectiveness. `CHAT-MODE`, `CHAT-REVIEW`, `CHAT-DESIGN` remain unexecuted.
+
+### `00-core/conversational/CHAT-SELECT.md`, `CHAT-HANDOFF.md` — the problems after the first success
+- **2026-10-21 · specialised · 88/100 · operational (new)**
+- Problem: two gaps that only appear once chat mode works. Selection still assumed a human who knows the library, and continuity assumed the conversation would stay open. A chat model can do neither: it cannot read 364 files, and it cannot remember beyond the window.
+- `CHAT-SELECT` decision worth keeping: **the label is the honesty mechanism.** A route is `observed` only when the user pasted `TASKS.md` or `GALLERY.md`; otherwise it is `inferred` and says so on the card. Without that, a plausible-sounding route inherits the authority of the index it never read. It also returns **one** prompt with a falsifier ("if the job also fails when run alone, this is `DBG-01`, not `FLAKE-01`") rather than a menu, because a menu returns the work to the person who asked.
+- `CHAT-HANDOFF` decision worth keeping: **a summary is the wrong artifact.** Summaries keep conclusions and drop disproved hypotheses, so the next conversation re-proposes an eliminated theory with fresh confidence and the user pays for the same dead end twice. The packet carries the eliminations, the label on every fact, the rejected decisions with reasons, the redaction statement, and a mandatory restatement from the receiving conversation before work resumes.
+- Design detail: the sixty-line bound is a truncation guard, not a style preference — a long packet is truncated from the bottom, which silently deletes the constraints, so the constraints go at the top.
+- Deductions: neither prompt has been executed. `CHAT-SELECT` is the cheaper of the two to test (two people, the same situation, compare the routing cards); that is the next evidence entry.
+
+### Library capability — the prose lint closes (2.22.0)
+- **2026-10-21 · tooling · n/a**
+- Change: 171 findings to 0. `_meta/prose-lint-baseline.json` now records `0`, so `--check` is a hard gate rather than a ratchet, and the script's own docstring says so.
+- Method worth recording: every replacement named items instead of gesturing at them, and the 24 long sentences were split at clause boundaries rather than abbreviated. A burndown that shortens by deleting content would have lowered the number and raised the ambiguity, which is the failure the lint exists to catch.
+- Lesson from the first pass: replacing `where possible` with another hedge (`where the platform allows`) would have passed the lint and changed nothing. The rule that kept it honest was reading each line's meaning before editing it — the find-and-replace version of this job is a way to score zero badly.
+
+### Library capability — task index (2.22.0)
+- **2026-10-21 · tooling · n/a**
+- Change: `scripts/generate_task_index.py` generates `TASKS.md` from 21 task definitions, and CI fails when a prompt belongs to no task or the file is stale. `scripts/test_task_index.py` pins 15 cases, including the prefix rule that must not match a sibling directory and the "unrouted prompt is reported, not dropped" property.
+- Finding: the first run reported **13 prompts with no home**, including all five `observability-reliability` stages. A hand-written index would have left them out silently; the coverage check is what made the gap visible, which is the argument for generating the index rather than curating it.
+- Limitation, stated in the file: homes are directory prefixes, so routing is coarse — a prompt is assigned by where it lives, not by what it says. The test pins the matching rules, and the falsifier is a mis-routed prompt a reader notices.

@@ -1,6 +1,6 @@
 # Coverage Matrix
 
-**Version:** 1.5.1 · **Last assessed:** 2026-10-21 (post-2.21.1: `CHAT-DEBUG` executed, validation evidence updated) · **Method:** evidence review of every prompt file; a scenario counts as covered only when an existing prompt addresses its distinctive requirements, constraints, and verification — not because a related prompt exists.
+**Version:** 1.6.0 · **Last assessed:** 2026-10-21 (post-2.22.0: task index, prose lint at zero, chat selection and handoff) · **Method:** evidence review of every prompt file; a scenario counts as covered only when an existing prompt addresses its distinctive requirements, constraints, and verification — not because a related prompt exists.
 
 **Status vocabulary**
 
@@ -213,7 +213,7 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 
 | Element | Status | Evidence / gap |
 |--------|--------|----------------|
-| Discoverability | Adequate | `QUICKSTART.md` (five paths with ordered prompts and end states), root README routing table, catalog, system READMEs, workflows, and `GEN-P01` which routes a new request to existing coverage before writing anything. Still a flat list in `GALLERY.md` — #110 |
+| Discoverability | **Adequate** | Six routes now, for six different readers: `QUICKSTART.md` (paths with ordered prompts and end states), `TASKS.md` (21 tasks, generated, every prompt required to have a home), root README routing table, `GALLERY.md` (complete, by area), `GEN-P01` (routes a request to existing coverage), and `06-interactive/` for a vague request. #110 closed in 2.22.0 |
 | Consistency | Adequate | one authoring standard, validator-enforced metadata |
 | Uniqueness | **Adequate** | identifiers unique (validator); `find_overlaps.py` reports four signals — shingle containment, vocabulary containment, structure similarity, and their product — because shingles miss reordered and reworded clones. CI gates shingle at 0.55 and combined at 0.75; `scripts/test_overlaps.py` pins 13 cases including a reworded clone that defeats the shingle metric. Highest current shingle pair is 0.18 and highest combined is 0.68 (the `01-contribution` parallel variants, backlog #100) |
 | Metadata | Adequate | required keys, validator-enforced |

@@ -1,6 +1,6 @@
 # Conversational Mode — using this library in a chat window
 
-**Maturity: operational.** Four prompts that make the library usable when the only tool available is a conversation: ChatGPT, Claude, Gemini, or any chat interface with no file access, no shell, and no ability to run a test.
+**Maturity: operational.** Six prompts that make the library usable when the only tool available is a conversation: ChatGPT, Claude, Gemini, or any chat interface with no file access, no shell, and no ability to run a test.
 
 ## The question this answers
 
@@ -24,12 +24,22 @@ A chat run is a legitimate run. It is weaker on evidence, not on thinking — an
 | [`CHAT-REVIEW.md`](CHAT-REVIEW.md) | You are pasting code or a diff for review | A bounded review with severities, the missing-context list, and what was not assessed |
 | [`CHAT-DEBUG.md`](CHAT-DEBUG.md) | Something is broken and you can only paste the error | A ranked hypothesis set, one discriminating test at a time, and an evidence ledger — **executed once, v1.1.0** ([record](../../_meta/empirical-evaluation-02.md)) |
 | [`CHAT-DESIGN.md`](CHAT-DESIGN.md) | You are choosing between approaches | An ADR with rejected options, reversibility, and what would reopen the decision |
+| [`CHAT-SELECT.md`](CHAT-SELECT.md) | You do not know which prompt applies | A routing card: one prompt, the falsifier, and the next message to paste — labelled `observed` or `inferred` |
+| [`CHAT-HANDOFF.md`](CHAT-HANDOFF.md) | The conversation is long enough to need a second one | A handoff packet that keeps the disproved hypotheses, plus the restatement the next chat must return |
 
 ## The three rules that make chat runs honest
 
 1. **`verified` means someone ran it and pasted the output.** Everything else is `observed`, `reported`, `inferred`, or `unknown`. A fluent answer about an unseen repository is the most dangerous output this library can produce.
 2. **Redact before pasting.** Code, logs, and errors pasted into a consumer model leave your control. Remove credentials, personal data, customer names, and internal hostnames — keep the structure, change the values. If a secret is already pasted, rotate it.
 3. **The self-audit closes every run**, with each completion criterion marked `met`, `not met`, or `cannot verify in chat`. A run that ends "everything looks good" has skipped the only step that distinguishes a chat run from an opinion.
+
+## What a long engagement needs that a single run does not
+
+Two problems appear only after the first successful session, and the library did not address either until 2.22.0.
+
+**Selection.** A chat model cannot open the library, so "which prompt do I need" is answered from memory. `CHAT-SELECT` refuses to dress that up: a route is `observed` when `TASKS.md` is pasted into the conversation and `inferred` when it is not. It returns one prompt, one falsifier, and the message to paste next — not a menu.
+
+**Continuity.** A summary of a long conversation keeps the conclusions and drops the **disproved hypotheses**, so the next chat proposes the same dead end with fresh confidence. `CHAT-HANDOFF` produces a packet that carries the negative results, the label on every fact, the redaction statement, and one mandatory step: the receiving conversation must restate the constraints and the eliminations before it is allowed to work.
 
 ## When to leave the chat window
 
@@ -51,5 +61,7 @@ The chat prompts are not shorter versions of the agent prompts. They replace a c
 | `05-scenarios/debugging/` | `CHAT-DEBUG` | hypothesis discipline, one variable at a time, cause versus symptom | reproduction and minimisation become experiments the user runs |
 | `04-process/code-review/` | `CHAT-REVIEW` | consequence ordering, evidence per finding, scoped verdict | repository context becomes a missing-context list |
 | `02-engineering/architecture-review/` | `CHAT-DESIGN` | constraint analysis, options with costs, ADR | inspection becomes interrogation |
+| `06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md` | `CHAT-SELECT` | one recommendation, with its falsifier | reading the library becomes an explicit `observed`/`inferred` label |
+| `04-process/handover/` | `CHAT-HANDOFF` | what the receiver can do unaided | a person becomes the next conversation, and the artifacts become one message |
 
 Where both exist, the chat version names the agent version and says when to switch. A run that needs the switch says so in its self-audit.

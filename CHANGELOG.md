@@ -2,6 +2,41 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.22.0] — 2026-10-21
+
+### Changed — the prose lint is now a gate, at zero
+
+The corpus was burned down from **171 findings to 0**. Every `etc.`, `as appropriate`, `where possible`, `properly`, and `if needed` that handed a decision back to the reader now names the items or the condition: `(package.json, pyproject.toml, go.mod, Cargo.toml, pom.xml, build.gradle)` instead of `(…, etc.)`, and `start local services on non-public ports when a test requires them` instead of `if needed`. The 24 sentences over 55 words were split at their clause boundaries rather than trimmed of meaning.
+
+Because the baseline now records `0`, the ratchet is a hard gate: a new vague qualifier fails CI. That was the point of writing the lint as a ratchet in 2.20.0 — it made the debt visible and countable, and this release pays it.
+
+### New — `TASKS.md`: the library indexed by the problem
+
+`GALLERY.md` is organised the way the repository is: by area. That is right for maintainers and wrong for a visitor, who arrives with a situation and does not know that "flaky test" lives under `05-scenarios`. **`TASKS.md` inverts the index**: 21 tasks, from *something is broken right now* to *I only have a chat window*, each listing the runnable prompts in it, where they live, and what to paste first.
+
+It carries one enforced property, and that is why it is generated rather than written:
+
+> **Every prompt in the library is reachable from at least one task.**
+
+A prompt added without a home fails the build with its path printed. That check found thirteen prompts with no home the first time it ran — the standalone audits (`time-correctness`, `tenancy-audit`, `access-review`, `secrets-rotation`) and the whole `observability-reliability` system, among others. `skeleton` prompts are counted per task instead of listed, so a task with four runnable prompts and eleven outlines says exactly that.
+
+### New — two chat prompts for the problem after the first success
+
+`00-core/conversational/` grows from four prompts to six, both `operational`.
+
+- **`CHAT-SELECT`** answers "which prompt do I need" inside a window that cannot open the library. It refuses to dress the guess up: a route is `observed` when `TASKS.md` is pasted and `inferred` when it is not, and the card carries the one fact that would overturn the choice. One prompt, not a menu.
+- **`CHAT-HANDOFF`** carries a long engagement between conversations. The design detail worth keeping: **a summary is the wrong artifact**, because it keeps the conclusions and drops the disproved hypotheses — so the next chat proposes the same dead end with fresh confidence. The packet keeps the eliminations, labels every fact, states what was redacted, and requires the receiving conversation to restate the constraints and eliminations before it is allowed to work.
+
+### Also
+
+- `QUICKSTART.md` Path 0 gained both prompts and a third rule: a route without the index is `inferred`, never `verified`. Path 0 also moved to the top of the file — the reader with the fewest tools was being served last.
+- `QUICKSTART.md` said "355 prompts" and "four situations". It says 364 and six, which is what the file contains. A count that drifts in the front door is the first lie a library tells.
+- `scripts/generate_task_index.py` + `scripts/test_task_index.py` (15 cases) + a CI step. The tests pin the matching rules, the unrouted-prompt report, the skeleton counting, and the word-boundary clipping.
+
+### Result
+
+**460 Markdown files, 364 prompts: 210 operational, 5 draft, 149 skeleton.** Validator 0 errors / 0 warnings; tooling self-tests 6/6, 13/13, 12/12, 15/15; prose lint 0 findings at baseline 0; catalog, gallery, task index and evidence report current. Coverage 143 rows, unchanged — this release improves the instruments, not the coverage. Executed: **2 of 210 operational prompts (1.0%)**, unchanged and still the honest number.
+
 ## [2.21.1] — 2026-10-21
 
 ### Changed — `CHAT-DEBUG` v1.1.0, after being run

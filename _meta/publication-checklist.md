@@ -23,11 +23,11 @@
 
 | # | Check | Method | Result |
 |---|-------|--------|--------|
-| 1 | Structural validation | `python3 scripts/validate_library.py` | **PASS** — 458 Markdown files, 362 prompts, **0 errors / 0 warnings** |
-| 2 | Maturity honesty | validator rules | **PASS** — 208 operational, 5 draft, 149 skeleton; no label exceeds body; no system README outranks its stages |
-| 3 | Executed-prompt count is generated | `scripts/evidence_report.py --check` | **PASS** — `_meta/evidence-levels.md` matches the registry: **2 of 208 operational prompts executed (1.0%)**, stated in the file the README links |
+| 1 | Structural validation | `python3 scripts/validate_library.py` | **PASS** — 460 Markdown files, 364 prompts, **0 errors / 0 warnings** |
+| 2 | Maturity honesty | validator rules | **PASS** — 210 operational, 5 draft, 149 skeleton; no label exceeds body; no system README outranks its stages |
+| 3 | Executed-prompt count is generated | `scripts/evidence_report.py --check` | **PASS** — `_meta/evidence-levels.md` matches the registry: **2 of 210 operational prompts executed (1.0%)**, stated in the file the README links |
 | 4 | Catalog current | `--catalog` + `git diff` | **PASS** — regenerates with no diff |
-| 5 | Gallery current | `generate_gallery.py --check` | **PASS** — "up to date", 362 prompts |
+| 5 | Gallery current | `generate_gallery.py --check` | **PASS** — "up to date", 364 prompts |
 | 6 | Duplication | `find_overlaps.py --check` (shingle 0.55) and `--metric combined` (0.75) | **PASS** — highest shingle 0.18; highest combined 0.68, which is the known and *decided* contribution-variant case (`01-contribution/VARIANTS.md`) |
 | 7 | Tooling has tests | `test_validator.py`, `test_overlaps.py`, `test_prose_lint.py` | **PASS** — 6/6, 13/13, 12/12 |
 | 8 | Prose ratchet | `lint_prose.py --check` | **PASS** — 171 findings, baseline 171; the number is published, not hidden |
@@ -51,7 +51,7 @@ Checked against the tree, not against intention:
 | `QUICKSTART.md` | Five paths (broken / inherited / shipping / proof / new), each with ordered prompts and the artifact you end with; opens with what the library **cannot** do |
 | Maturity legend | In the README above the fold; `operational` defined as *structurally reviewed*, not proven |
 | `_meta/evidence-levels.md` | Generated; states 1.0% executed (2 of 208); linked from the README and the quickstart |
-| `GALLERY.md` | 362 prompts, one line each, generated from the prompts |
+| `GALLERY.md` | 364 prompts, one line each, generated from the prompts |
 | Limitations | Stated in README, quickstart, `PROJECT-STATUS.md`, and §3 below — four places, consistent |
 
 ## 3. Limitations that must survive publication
@@ -103,9 +103,9 @@ Consequences today: PR checks show red without running, the badge is meaningless
 
 | Field | Suggested |
 |---|---|
-| Description | "362 prompts for AI coding agents, organised across the engineering lifecycle. Every prompt declares its scope, risk class, and what it will not do — and the repository is validated against those claims in CI." |
+| Description | "364 prompts for AI coding agents, organised across the engineering lifecycle. Every prompt declares its scope, risk class, and what it will not do — and the repository is validated against those claims in CI." |
 | Topics | `ai-agents`, `prompt-engineering`, `llm`, `coding-agents`, `software-engineering`, `code-review`, `incident-response`, `documentation`, `migration`, `developer-tools` |
-| Social preview | 1280×640 — title, one-line claim, and the honest numbers: 362 prompts · 208 operational · 2 executed |
+| Social preview | 1280×640 — title, one-line claim, and the honest numbers: 364 prompts · 210 operational · 2 executed |
 
 ### 5.4 Merge settings and branch cleanup
 

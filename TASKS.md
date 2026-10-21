@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE — do not edit by hand. Run: python3 scripts/generate_task_index.py --write -->
 
-**362 prompts**, indexed by the situation you are in. Each task lists the prompts that are
+**364 prompts**, indexed by the situation you are in. Each task lists the prompts that are
 **runnable** — `operational` and `draft`. The `skeleton` outlines are counted per task and linked
 to the gallery, because a wall of outlines would bury the rows that work today.
 
@@ -11,9 +11,9 @@ library is reachable from at least one task: a prompt added without a home fails
 
 | | |
 |---|---|
-| Prompts indexed | 362 |
-| Rows listed individually | 404 (a prompt can answer more than one task) |
-| Of those, `operational` | 233 |
+| Prompts indexed | 364 |
+| Rows listed individually | 408 (a prompt can answer more than one task) |
+| Of those, `operational` | 237 |
 
 Not sure which task is yours? [`QUICKSTART.md`](QUICKSTART.md) routes five common situations,
 [`06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md`](06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md)
@@ -238,6 +238,7 @@ What the receiver can do unaided, not what the sender explained.
 
 | ID | Prompt | Where | Use it for | Maturity |
 |---|---|---|---|---|
+| `CHAT-HANDOFF` | [Chat Handoff: carrying a long engagement between conversations](00-core/conversational/CHAT-HANDOFF.md) | `conversational` | One message block, short enough to paste into a new conversation, containing the constraints, the established facts with labels… | operational |
 | `DOC-P01` | [Context and Document Products](04-process/documentation/P01-Context/P01-Context-Scope.md) | `P01-Context` | DOC_CONTEXT.md with the product summary, the document products in scope (each with reader, purpose, format, and definition of… | operational |
 | `DOC-P02` | [Documentation Inventory and Truth Audit](04-process/documentation/P02-Inventory/P02-Documentation-Inventory.md) | `P02-Inventory` | DOC_INVENTORY.md — every significant document with its location, audience, source of truth, last-verified date, and a truth… | operational |
 | `DOC-P03` | [Audience, Jobs, and Structure](04-process/documentation/P03-Audience-Goals/P03-Audience-Goals.md) | `P03-Audience-Goals` | AUDIENCE_GOALS.md — personas with evidence, the top jobs per persona, the task-based structure per document product, entry… | operational |
@@ -252,7 +253,7 @@ What the receiver can do unaided, not what the sender explained.
 | `HAND-P04` | [Capability Verification by the Receiver](04-process/handover/P04-Competence/P04-Capability-Verification.md) | `P04-Competence` | CAPABILITY_REPORT.md — the exercise list, who performed what, evidence of success or the exact point of failure, the assistance… | operational |
 | `HAND-P05` | [Acceptance and Closeout](04-process/handover/P05-Acceptance/P05-Acceptance-Closeout.md) | `P05-Acceptance` | HANDOVER_ACCEPTANCE.md — the verdict against the P01 acceptance criteria, the condition list with owners and dates, confirmation… | operational |
 
-*Plus **1** `skeleton` prompt in these homes — a defensible stage sequence without verification or failure handling. Use them to structure a human-led session, not to drive an agent: [04-process](GALLERY.md#04-process--delivering-software-responsibly), [05-scenarios](GALLERY.md#05-scenarios--single-session-high-urgency-situations).*
+*Plus **1** `skeleton` prompt in these homes — a defensible stage sequence without verification or failure handling. Use them to structure a human-led session, not to drive an agent: [00-core](GALLERY.md#00-core--foundations-every-prompt-assumes), [04-process](GALLERY.md#04-process--delivering-software-responsibly), [05-scenarios](GALLERY.md#05-scenarios--single-session-high-urgency-situations).*
 
 ## Something costs too much or runs too slowly
 
@@ -434,6 +435,7 @@ The meta level: how a prompt is built, routed, and kept honest about what it can
 
 | ID | Prompt | Where | Use it for | Maturity |
 |---|---|---|---|---|
+| `CHAT-SELECT` | [Chat Select: choosing the right prompt inside a conversation](00-core/conversational/CHAT-SELECT.md) | `conversational` | A routing card with one primary prompt, the reason it fits, the one fact that would overturn the choice, what the user should… | operational |
 | `GEN-P01` | [The Prompt Forge: build a runnable prompt from a description](00-core/prompt-engineering/PROMPT-FORGE.md) | `prompt-engineering` | The prompt — paste-ready, complete, with all ten sections filled for its archetype. | operational |
 | `GEN-P02` | [Prompt Regression: prove a prompt change is an improvement](00-core/prompt-engineering/PROMPT-REGRESSION.md) | `prompt-engineering` | A fixture set, a run protocol, per-case results, a score against _meta/quality-rubric.md, a comparison to the baseline where one… | operational |
 
@@ -471,8 +473,10 @@ What survives when there is no repository, no shell, and no way to run a test.
 |---|---|---|---|---|
 | `CHAT-DEBUG` | [Chat Debugging: diagnose from a pasted error, and say what you cannot know](00-core/conversational/CHAT-DEBUG.md) | `conversational` | Something is broken, the only tool you have is a chat window, and you need the next test rather than five guesses. | operational |
 | `CHAT-DESIGN` | [Chat Design: thinking architecture through in conversation](00-core/conversational/CHAT-DESIGN.md) | `conversational` | Choosing between two approaches, sizing a design before building it, or writing the decision record afterwards. | operational |
+| `CHAT-HANDOFF` | [Chat Handoff: carrying a long engagement between conversations](00-core/conversational/CHAT-HANDOFF.md) | `conversational` | One message block, short enough to paste into a new conversation, containing the constraints, the established facts with labels… | operational |
 | `CHAT-MODE` | [Conversational Mode: running any prompt in a chat window](00-core/conversational/CHAT-MODE.md) | `conversational` | You want to use this library in ChatGPT, Claude, Gemini, or any chat window — with no repository access, no shell, and no ability… | operational |
 | `CHAT-REVIEW` | [Chat Code Review: reviewing a paste, with the limits stated](00-core/conversational/CHAT-REVIEW.md) | `conversational` | You paste a function, a file, or a diff into a chat window and want a review that is useful and does not pretend to have read the… | operational |
+| `CHAT-SELECT` | [Chat Select: choosing the right prompt inside a conversation](00-core/conversational/CHAT-SELECT.md) | `conversational` | A routing card with one primary prompt, the reason it fits, the one fact that would overturn the choice, what the user should… | operational |
 
 ---
 
