@@ -51,6 +51,8 @@ This repository is a curated library, not a collection bin. Contributions are ju
 ```bash
 python3 scripts/test_validator.py              # the validator's own rules, must pass
 python3 scripts/test_overlaps.py               # the duplicate detector's own tests, must pass
+python3 scripts/test_prose_lint.py             # the prose lint's own tests, must pass
+python3 scripts/lint_prose.py --check          # prose ratchet — must not regress
 python3 scripts/validate_library.py            # must exit 0
 python3 scripts/validate_library.py --catalog  # regenerate the catalog
 python3 scripts/generate_gallery.py --write    # regenerate GALLERY.md

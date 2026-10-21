@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE — do not edit by hand. Run: python3 scripts/generate_gallery.py --write -->
 
-Every prompt in the library — **355** of them — with a direct link and the situation it is for, plus **9** foundational reference documents.
+Every prompt in the library — **358** of them — with a direct link and the situation it is for, plus **9** foundational reference documents.
 Generated from the prompt files, so it cannot drift from them; CI fails if this file is stale.
 
 **Reading the columns**
@@ -24,11 +24,11 @@ Generated from the prompt files, so it cannot drift from them; CI fails if this 
 | [02-engineering — building, auditing, and recovering code](#02-engineering--building-auditing-and-recovering-code) | 82 | Work on an existing codebase: audit, repair, complete, upgrade. |
 | [03-domains — domain-specific engineering](#03-domains--domain-specific-engineering) | 75 | Stack-specific practice: data, AI, and the domains still being built out. |
 | [04-process — delivering software responsibly](#04-process--delivering-software-responsibly) | 92 | The lifecycle around code: testing, release, observability, dependency and governance. |
-| [05-scenarios — single-session, high-urgency situations](#05-scenarios--single-session-high-urgency-situations) | 40 | One prompt, one session, one pressing situation. |
+| [05-scenarios — single-session, high-urgency situations](#05-scenarios--single-session-high-urgency-situations) | 42 | One prompt, one session, one pressing situation. |
 | [06-interactive — conversations that clarify a request](#06-interactive--conversations-that-clarify-a-request) | 4 | Use when the request is vague and needs to be scoped first. |
-| [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 12 | Composed sequences that route between systems and stop at human gates. |
+| [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 13 | Composed sequences that route between systems and stop at human gates. |
 
-*Maturity across the library: 201 operational, 5 draft, 149 skeleton, 355 total.*
+*Maturity across the library: 204 operational, 5 draft, 149 skeleton, 358 total.*
 
 ---
 
@@ -600,7 +600,7 @@ The lifecycle around code: testing, release, observability, dependency and gover
 
 One prompt, one session, one pressing situation.
 
-### All prompts in this area · 40 prompts
+### All prompts in this area · 42 prompts
 
 | ID | Prompt | Use it for | Maturity | Risk |
 |---|---|---|---|---|
@@ -628,6 +628,7 @@ One prompt, one session, one pressing situation.
 | `INTEG-01` | [Third-Party Integration That Survives the Vendor](05-scenarios/third-party-integration/THIRD-PARTY-INTEGRATION.md) | An integration contract (what you depend on, what you assume), a failure-mode matrix with handling per mode, idempotency and retry design, contract tests, and a… <br>**Inputs:** `VENDOR, INTEGRATION_TYPE, CRITICALITY, SANDBOX, WEBHOOK_URL, TARGET_ENV` | operational | B |
 | `JOBS-01` | [Background Jobs That Stop Doing Damage](05-scenarios/background-jobs/BACKGROUND-JOBS.md) | A per-job safety assessment (idempotent? <br>**Inputs:** `TARGET_SERVICE, JOB_SCOPE, SCHEDULER, QUEUE_BACKEND, INCIDENT_REF, TARGET_ENV` | operational | B |
 | `LEGACY-01` | [Working with Legacy Code](05-scenarios/legacy-code/WORKING-WITH-LEGACY.md) | Change code nobody understands and nobody tested, without turning a small fix into a rewrite. | skeleton | B |
+| `METER-01` | [Usage Metering and Entitlements: count what you bill, enforce what you sold](05-scenarios/usage-metering/USAGE-METERING.md) | You charge by usage, seat, or request — and the number that reaches the invoice has to be reproducible, explainable, and correct across plan changes, outages, and re <br>**Inputs:** `METERED_UNITS, PLAN_MODEL, BILLING_PERIOD, APPROVER` | operational | A |
 | `MONO-01` | [Monorepo Health: builds, boundaries, and ownership](05-scenarios/monorepo/MONOREPO.md) | A package graph with real dependencies (not declared ones), a boundary violation register, an affected-only build/test plan, and an ownership map. <br>**Inputs:** `REPO_PATH, TOOLING, PACKAGE_COUNT, CI_MINUTES, APPROVER` | operational | B |
 | `ONBOARD-01` | [Codebase Onboarding](05-scenarios/onboarding/CODEBASE-ONBOARDING.md) | Join an unfamiliar codebase and need to become useful quickly: entry points, build, data flow, where the traps are. | skeleton | B |
 | `ONCALL-01` | [On-Call Shift Handover](05-scenarios/on-call-handover/ONCALL-HANDOVER.md) | SHIFT_HANDOVER.md for the window — open and recent incidents, silences and their expiry, changes and deployments in flight, expiring certificates/tokens/quota… <br>**Inputs:** `TARGET_SERVICE, SHIFT_WINDOW, TARGET_ENV, INCIDENT_REF, ONCALL_ROTA` | operational | B |
@@ -642,6 +643,7 @@ One prompt, one session, one pressing situation.
 | `SUNSET-01` | [Feature Sunset: removing something customers depend on](05-scenarios/feature-sunset/FEATURE-SUNSET.md) | A feature is being retired and you need usage evidence, a notice that is not a surprise, a reversible switch-off, and a decision about the data. <br>**Inputs:** `FEATURE_SCOPE, NOTICE_PERIOD, APPROVER, TIME_BUDGET` | operational | B |
 | `SUPPLY-01` | [Supply Chain: can you prove the thing you deployed is the thing you built?](05-scenarios/supply-chain/SUPPLY-CHAIN.md) | Assess whether a compromised package, a tampered build, or a substituted artifact could reach production — and what evidence you could produce if someone asked. <br>**Inputs:** `REPO_PATH, ARTIFACT_REGISTRY, APPROVER` | operational | A |
 | `SURFACE-01` | [Live Surface Audit — a URL, host, or API from the outside](05-scenarios/live-surface-audit/LIVE-SURFACE-AUDIT.md) | An evidence-backed assessment of the target's externally visible surface — transport, headers, cookies, redirects, error behaviour, discoverability, performance… <br>**Inputs:** `TARGET_URL, AUDIT_AUTHORISATION, PAGE_LIMIT, REPORT_AUDIENCE` | operational | B |
+| `TESTDATA-01` | [Test Data: the fixture that holds a real customer](05-scenarios/test-data/TEST-DATA.md) | A test database seeded from production, a fixture with a real email address, or a screenshot in a pull request — find it, replace it, and stop it coming back. <br>**Inputs:** `REPO_PATH, DATA_CLASS, RETENTION_DAYS, APPROVER` | operational | A |
 | `UPLOAD-01` | [File Uploads and Object Storage](05-scenarios/file-uploads/FILE-UPLOADS.md) | A validated upload path with signed direct-to-storage transfers where appropriate, content verification, size and type limits, lifecycle rules for orphans and… <br>**Inputs:** `STORAGE_BACKEND, USE_CASES, MAX_SIZE, FILE_TYPES, TARGET_ENV, RETENTION` | operational | B |
 | `VENDOR-01` | [Vendor Due Diligence: evaluating a supplier before you depend on it](05-scenarios/vendor-due-diligence/VENDOR-DUE-DILIGENCE.md) | Choosing a vendor, or a procurement request arrives — assess what happens if this supplier is breached, fails, raises prices, or disappears. <br>**Inputs:** `VENDOR_NAME, INTENDED_USE, DATA_CLASS, APPROVER, TIME_BUDGET` | operational | A |
 
@@ -662,13 +664,14 @@ Use when the request is vague and needs to be scoped first.
 
 Composed sequences that route between systems and stop at human gates.
 
-### All prompts in this area · 12 prompts
+### All prompts in this area · 13 prompts
 
 | ID | Prompt | Use it for | Maturity | Risk |
 |---|---|---|---|---|
 | `WF-AGENTADOPT` | [Workflow — Adopting Coding Agents Without Losing Control](07-workflows/agent-adoption.md) | A written adoption plan with a bounded pilot, an evidence standard for "good enough", a permission profile reviewed as a security decision, an oversight model, and… <br>**Inputs:** `REPO_PATH, TEAM_SCOPE, AGENT_TOOLS, RISK_APPETITE, APPROVER` | operational | B |
 | `WF-AUDIT-REMEDIATE` | [Workflow — Audit → Remediate](07-workflows/audit-to-remediation.md) | You need a defensible assessment of an existing codebase and then want the important parts fixed — without the audit becoming a permanent report nobody acts on, and… | draft | B |
 | `WF-COMPLY` | [Workflow — Compliance Readiness](07-workflows/compliance-readiness.md) | A security questionnaire, an audit window, or a customer contract names a standard you must evidence — sequence the whole response instead of improvising it. <br>**Inputs:** `STANDARD, SYSTEM_SCOPE, APPROVER, TIME_BUDGET` | operational | A |
+| `WF-FAILURE` | [Workflow — Failure Examples](07-workflows/failure-examples.md) | When a workflow gate refuses, a stage fails, or an agent reports success that is not true — what the correct handling looks like, written out. | operational | A |
 | `WF-GREENFIELD` | [Workflow — Greenfield Delivery](07-workflows/greenfield-delivery.md) | Produces a running, tested, documented, deployable initial version | draft | B |
 | `WF-HANDOFF` | [Handoff Contract](07-workflows/HANDOFF-CONTRACT.md) | Define one compact block that carries: what was done, what is true now, what is uncertain, what is next, and what authority exists. | operational | A |
 | `WF-IMPROVE` | [Workflow — Continuous Improvement](07-workflows/continuous-improvement.md) | Turn recurring pain into a measured improvement loop when nothing is currently on fire but the team keeps hitting the same problems. | draft | B |

@@ -1,6 +1,6 @@
 # Coverage Matrix
 
-**Version:** 1.3.0 · **Last assessed:** 2026-10-20 (post-2.19.0 reassessment) · **Method:** evidence review of every prompt file; a scenario counts as covered only when an existing prompt addresses its distinctive requirements, constraints, and verification — not because a related prompt exists.
+**Version:** 1.4.0 · **Last assessed:** 2026-10-20 (post-2.20.0 reassessment) · **Method:** evidence review of every prompt file; a scenario counts as covered only when an existing prompt addresses its distinctive requirements, constraints, and verification — not because a related prompt exists.
 
 **Status vocabulary**
 
@@ -99,11 +99,12 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Databases | Adequate | `DB-P01..P05` (schema truth, migration design, pre-flight drills, execution/reconciliation, rollback and verification) |
 | Infrastructure | Partial | `devops-infra` skeleton; `IAC-01` provides drift detection and adoption, `05-scenarios/deployment-target/` the provisioning path |
 | Security | Adequate | `security-hardening` (assessment/remediation), `SEC-ROT-01` (rotation as a drilled capability) |
-| Testing | Adequate | `testing-qa` |
+| Testing | Adequate | `testing-qa` (7 stages) plus `TESTDATA-01` for the data the suite runs against — classification into synthetic / anonymised / pseudonymised / real copy, generators that emit awkward data, isolation, and a CI guard against fixtures holding real records |
 | AI / LLM | Adequate | `ai-agentic` `AI-P01..P07`; P06 adds grounded retrieval with ACL-leakage and abstention measurement, P07 adds the engineering agent's own permission surface (MCP servers, shell, egress, credential inheritance) |
 | Data engineering | **Adequate** | `DE-P01..P02` (new) — pipeline inventory, seven failure modes, data tests and freshness/volume contracts, atomic per-partition backfills with value-level reconciliation. `data-ml-ai` now starts after trustworthy data |
 | Cost / FinOps | **Adequate** | `COST-P01..P04` (new) — attribution, waste diagnosis sized in money, safe optimisation, guardrails and unit economics |
 | Privacy / subject rights | **Adequate** | `PRIV-P01..P04` — cross-system subject data inventory, verified export/deletion, enforced retention, and deletion **verification** across warehouses, logs, indices, queues, backups and vendors, including whether a restore could resurrect a deleted subject |
+| Usage metering and entitlements | **Adequate** | `METER-01`: billable unit with exclusions, one metering point with its blind spot named, immutable idempotent events, fail-open/closed chosen and logged, period boundaries and plan changes, enforcement separated from accounting, monthly reconciliation against an independent source, dispute reconstruction from stored events |
 | Money correctness | **Adequate** | `PAY-P01..P03` (new) — representation and invariants, idempotency and unknown outcomes, provider reconciliation and change-safety checklist |
 | Version control operations | **Adequate** | `GIT-P01..P05` (new) — state check before destructive commands, conflict resolution by intent, history repair with a shared-history gate, reflog-based recovery, written conventions. Previously only prohibitions existed |
 | Distributed systems | Partial | architecture/audit cover analysis; no design or failure-mode prompt |
@@ -210,11 +211,11 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 
 | Element | Status | Evidence / gap |
 |--------|--------|----------------|
-| Discoverability | Adequate | root README routing table, catalog, system READMEs, workflows, and `GEN-P01` which routes a new request to existing coverage before writing anything |
+| Discoverability | Adequate | `QUICKSTART.md` (five paths with ordered prompts and end states), root README routing table, catalog, system READMEs, workflows, and `GEN-P01` which routes a new request to existing coverage before writing anything. Still a flat list in `GALLERY.md` — #110 |
 | Consistency | Adequate | one authoring standard, validator-enforced metadata |
 | Uniqueness | **Adequate** | identifiers unique (validator); `find_overlaps.py` reports four signals — shingle containment, vocabulary containment, structure similarity, and their product — because shingles miss reordered and reworded clones. CI gates shingle at 0.55 and combined at 0.75; `scripts/test_overlaps.py` pins 13 cases including a reworded clone that defeats the shingle metric. Highest current shingle pair is 0.18 and highest combined is 0.68 (the `01-contribution` parallel variants, backlog #100) |
 | Metadata | Adequate | required keys, validator-enforced |
-| Validation | Partial | `scripts/validate_library.py` (structural) with `scripts/test_validator.py` (6 fixtures), `scripts/test_overlaps.py` (13 fixtures), and `_meta/evidence-levels.md` generated from `_meta/evidence.json` so the executed-prompt count cannot be hand-written. Still one recorded empirical run (`DBG-01`), which that report states as 0.5% of the operational library. `GEN-P02` now defines the missing empirical protocol (frozen fixtures, two runs, trace grading, defect classification), but only `DBG-01` has been executed; every other operational prompt remains structurally reviewed only |
+| Validation | Partial (improved) | `scripts/validate_library.py` (structural) with `scripts/test_validator.py` (6 fixtures), `scripts/test_overlaps.py` (13 fixtures), and `_meta/evidence-levels.md` generated from `_meta/evidence.json` so the executed-prompt count cannot be hand-written. Still one recorded empirical run (`DBG-01`), which that report states as 0.5% of the operational library. `GEN-P02` now defines the missing empirical protocol (frozen fixtures, two runs, trace grading, defect classification), but only `DBG-01` has been executed; every other operational prompt remains structurally reviewed only |
 | Versioning | Adequate | per-prompt semver tied to maturity |
 | Maintenance | Adequate | roadmap, review log, continuation checkpoint, CI |
 | Prompt input configuration | **Adequate** | `_meta/prompt-inputs.md` (convention, canonical names, fallbacks), `**Inputs:**`/`{{NAME}}` validator gate, `00-core/inputs/RUN-SHEET.md`. 109/118 prompts at the time of the audit (the library has since grown to 123 operational) declare inputs; the 9 that do not are artifact-only stages where a declaration would be unused |
@@ -249,14 +250,16 @@ Counts are computed from the tables above; they are not estimates.
 
 | Status | Dimension rows | Workflow rows |
 |--------|---------------:|--------------:|
-| Adequate | 114 | 10 |
+| Adequate | 115 | 10 |
 | Partial | 27 | 5 |
 | Missing | 0 | 0 |
 | Defective | 0 | 0 |
 | Indirect | 0 | 0 |
-| **Total assessed** | **141** | **15** |
+| **Total assessed** | **142** | **15** |
 
-**Reading this honestly:** roughly 81% of assessed dimension rows are adequate. The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
+**Reading this honestly:** roughly 81% of assessed dimension rows are adequate (115 of 142). The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
+
+**Closed in 2.20.0:** usage metering and entitlements (`METER-01`), test and fixture data (`TESTDATA-01`), worked failure examples (`WF-FAILURE`), prose lint with a ratchet and 12 fixtures (`scripts/lint_prose.py`, #106), the contribution-variant decision (`01-contribution/VARIANTS.md`, #100 decided), and `QUICKSTART.md` — five paths from symptom to ordered prompts, which is the difference between a library and something a person can start using.
 
 **Closed in 2.19.0:** environment parity (`ENVPARITY-01`, closes the last quality-assurance gap in §8), capacity and quota exhaustion (`CAPACITY-01`), vendor selection (`VENDOR-01`); the duplicate detector gained vocabulary and structure signals with fixtures (#98); the executed-prompt count became a generated artifact (`_meta/evidence-levels.md`, #91) instead of a sentence; and a worked run sheet (#99) shows two systems composing rather than asserting that they do.
 

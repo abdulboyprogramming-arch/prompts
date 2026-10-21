@@ -14,6 +14,10 @@ Prompt systems for adding value to existing projects (open-source or private): c
 | [`web3/general/`](web3/general/README.md) | Contributing to web3 projects | 8 | Skeleton |
 | [`language-design/`](language-design/README.md) | Designing or extending a programming language | 8 | Skeleton |
 
+## Why three near-identical systems exist
+
+`web/general/`, `web3/general/`, and `packages-libraries/` share a stage sequence and differ in risk model, definition of done, and approval requirements. That duplication is measured, decided, and bounded — read [`VARIANTS.md`](VARIANTS.md) before consolidating, deleting, or promoting any of them. Short version: keep three, and any stage that cannot state what differs in its domain is a duplicate to delete rather than maintain.
+
 ## Choosing a system
 
 - **You have a specific repository and want the agent to find and land a contribution** → `open-source/general-agent/` (start at `P16` orchestrator, or `P03` if you only want reconnaissance).

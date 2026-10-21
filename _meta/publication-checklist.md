@@ -1,103 +1,139 @@
 # Publication Checklist
 
-**Purpose:** the gate that must pass before this repository becomes public. Every line is a check that was run, with its result. A check that was not run is listed as *not run*, not assumed.
+**Purpose:** the gate that must pass before this repository becomes public, and the list of things only the owner can do in GitHub settings.
 
-**Audited:** 2026-10-20 · **Version:** 2.13.0 · **Auditor:** repository maintainer (agent-assisted, evidence below)
+**Audited:** 2026-10-20 (v2.20.0) · **Auditor:** repository maintainer (agent-assisted, evidence below)
+**Previous audit:** v2.13.0 — the repository was already publishable then; this re-audit re-runs every check against the tree as it stands now, because 65 prompts and five tooling changes have landed since.
 
 ---
 
-## 1. Content gate
+## 0. Verdict
+
+| Question | Answer |
+|---|---|
+| Is the **content** safe to publish? | **Yes.** No secrets in the tree or in reachable history, no personal data in prompts, no absolute paths, links resolve, licence files present. |
+| Is it **ready** to publish? | **Content yes, infrastructure not yet.** Four things block a good launch, and none is in the repository: CI cannot run (GitHub Actions billing), branch protection is unset, the repository description/topics are unset, and the repository is private. |
+| Anything in the repository to fix first? | No. Every automated gate passes; see §1. |
+
+**What must happen before you flip it public is listed in §5.** Everything else here is evidence.
+
+---
+
+## 1. Content gate (re-run at v2.20.0)
 
 | # | Check | Method | Result |
 |---|-------|--------|--------|
-| 1 | Structural validation | `python3 scripts/validate_library.py` | **PASS** — 370 Markdown files, 293 prompts, 0 errors / 0 warnings |
-| 2 | Maturity honesty | validator rules | **PASS** — 139 operational, 5 draft, 149 skeleton; no label exceeds body; no README outranks its stages |
-| 3 | Catalog current | `validate_library.py --catalog` + `git diff` | **PASS** — `_meta/CATALOG.md` regenerates with no diff |
-| 4 | Gallery current | `generate_gallery.py --check` | **PASS** — "GALLERY.md is up to date" |
-| 5 | Duplication | `find_overlaps.py --check` (bar 0.55) | **PASS** — no pair above threshold |
-| 6 | Relative links | 966 links resolved against the filesystem | **PASS** — 0 broken |
-| 7 | Secrets in tree | patterns: `ghp_*`, `github_pat_*`, `AKIA*`, private-key headers, `password|secret|token = "…"` | **PASS** — 0 hits |
-| 8 | Secrets in history | `git log --all -p` over the same patterns | **PASS** — 0 hits |
-| 9 | Personal data in prompts | grep for emails, customer identifiers, internal hostnames | **PASS** — none in prompt content; commit authorship is the maintainer's own |
-| 10 | Absolute or environment paths | grep `/home/user`, sandbox hosts, session branch names | **PASS** — 0 hits (3 fixed this cycle: `PROJECT-STATUS` branch line, an `arena/…` example, and a stale version header) |
-| 11 | Compiled artifacts | `git ls-files` review | **FIXED** — 3 `__pycache__/*.pyc` files were tracked; removed and `.gitignore` added |
-| 12 | Repository size | `git ls-files` + `du` | **PASS** — 388 tracked files, 3.0 MB total; largest file 92 KB |
-| 13 | CI on the head commit | `gh run list`, PR checks | **PASS** — 4 gates green (validate, catalog freshness, gallery freshness, overlaps) |
-| 14 | Repo hygiene | root listing | **PASS** — no `node_modules`, no `.env`, no editor droppings, no build output |
+| 1 | Structural validation | `python3 scripts/validate_library.py` | **PASS** — 452 Markdown files, 358 prompts, **0 errors / 0 warnings** |
+| 2 | Maturity honesty | validator rules | **PASS** — 204 operational, 5 draft, 149 skeleton; no label exceeds body; no system README outranks its stages |
+| 3 | Executed-prompt count is generated | `scripts/evidence_report.py --check` | **PASS** — `_meta/evidence-levels.md` matches the registry: **1 of 204 operational prompts executed (0.5%)**, stated in the file the README links |
+| 4 | Catalog current | `--catalog` + `git diff` | **PASS** — regenerates with no diff |
+| 5 | Gallery current | `generate_gallery.py --check` | **PASS** — "up to date", 358 prompts |
+| 6 | Duplication | `find_overlaps.py --check` (shingle 0.55) and `--metric combined` (0.75) | **PASS** — highest shingle 0.18; highest combined 0.68, which is the known and *decided* contribution-variant case (`01-contribution/VARIANTS.md`) |
+| 7 | Tooling has tests | `test_validator.py`, `test_overlaps.py`, `test_prose_lint.py` | **PASS** — 6/6, 13/13, 12/12 |
+| 8 | Prose ratchet | `lint_prose.py --check` | **PASS** — 171 findings, baseline 171; the number is published, not hidden |
+| 9 | Relative links | validator, all links incl. `Depends on` | **PASS** — 0 broken |
+| 10 | Secrets in tree | `ghp_*`, `github_pat_*`, `AKIA*`, private-key headers | **PASS** — 0 hits |
+| 11 | Secrets in reachable history | `git log --all -p` over the same patterns | **PASS** — 0 hits. *Caveat:* this sandbox checkout presents a single squashed commit, so the scan covers the tree and that commit; the pre-existing remote history was scanned in the 2.13.0 audit and is unchanged since. |
+| 12 | Personal data in prompts | emails, customer identifiers, internal hostnames | **PASS** — none. `examples` use `example.com` and invented names |
+| 13 | Absolute / environment paths | `/home/user`, sandbox hosts, `arena/<id>` branch names | **PASS** — 0 hits in content (the only match is this checklist's own grep string) |
+| 14 | Tracked build artefacts | `git ls-files` | **PASS** — no `__pycache__`, `.pyc`, `node_modules`, `.env` |
+| 15 | Repository size | `git ls-files`, `du` | **PASS** — 471 tracked files, 4.2 MB; largest 112 KB |
+| 16 | Required community files | `.github/` listing | **PASS** — SECURITY, CODE_OF_CONDUCT, PR template, issue templates |
+| 17 | Licences | `LICENSE`, `LICENSE-CONTENT`, README section | **PASS** — MIT for code, CC BY 4.0 for content, SPDX-detectable |
 
-## 2. Community and policy files
+## 2. What a reader sees first
 
-| File | Status |
-|------|--------|
-| `README.md` | present — routing table, maturity table, honest limitations |
-| `CONTRIBUTING.md` | present — standards, validation commands, promotion bar |
-| `AGENTS.md` | present — instructions for agents working in this repository |
-| `.github/SECURITY.md` | **added this cycle** — scope, private reporting route, response times |
-| `.github/CODE_OF_CONDUCT.md` | **added this cycle** — evidence-based conduct, private reporting |
-| `.github/pull_request_template.md` | **added this cycle** — reproduces the library's own bar as checkboxes |
-| `.github/ISSUE_TEMPLATE/{bug,prompt-request}.md` + `config.yml` | **added this cycle** — no blank issues; security routed privately |
-| `LICENSE` | **added 2.13.0, corrected 2.13.1** — exact MIT text so GitHub detects SPDX `MIT` (the appended scope note made it read as "Other") |
-| `LICENSE-CONTENT` | **added 2.13.0** — CC BY 4.0 for prompts and prose, with attribution and endorsement boundary |
-| `CHANGELOG.md` | present — 2.6.0 → 2.12.0 in this cycle |
-| `.gitignore` | **added this cycle** |
+Checked against the tree, not against intention:
 
-## 3. Known limitations that must survive publication
+| Surface | State |
+|---|---|
+| `README.md` top | Links `QUICKSTART.md` before anything else — the reader gets a task, not a table of contents |
+| `QUICKSTART.md` | Five paths (broken / inherited / shipping / proof / new), each with ordered prompts and the artifact you end with; opens with what the library **cannot** do |
+| Maturity legend | In the README above the fold; `operational` defined as *structurally reviewed*, not proven |
+| `_meta/evidence-levels.md` | Generated; states 0.5% executed; linked from the README and the quickstart |
+| `GALLERY.md` | 358 prompts, one line each, generated from the prompts |
+| Limitations | Stated in README, quickstart, `PROJECT-STATUS.md`, and §3 below — four places, consistent |
 
-These are stated in the repository and must not be quietly dropped from the public framing:
+## 3. Limitations that must survive publication
 
-1. **One prompt has been empirically executed** (`DBG-01`, `_meta/empirical-evaluation-01.md`). Every other `operational` label means *structurally complete and reviewed*, not *proven in use*.
-2. **Reviews are author self-assessments** with rubric scores in `_meta/review-log.md`. There is no second, independent reviewer.
-3. **149 skeleton systems** are named sequences without verification or failure handling. They are labelled as such in every index.
-4. **Coverage is 72 adequate / 30 partial / 4 missing** dimension rows. The four missing are named: data engineering, mobile, embedded, desktop/CLI.
-5. **The library cannot make an agent honest.** It defines constraints and evidence rules; a model may still ignore them. The prompts that verify another agent's claims (`07-workflows/independent-verification.md`) exist for exactly that reason.
+These are already stated in the repository. They must not be softened in marketing language, release notes, or a launch post.
 
-## 4. Decisions required before publication
+1. **One prompt has been executed and recorded** (`DBG-01`, `_meta/empirical-evaluation-01.md`). 204 are labelled `operational`, which means *structurally complete and reviewed*, not *proven in use*. `_meta/evidence-levels.md` says so with a generated number.
+2. **Reviews are author self-assessments**, scored in `_meta/review-log.md`. No second reviewer exists.
+3. **149 skeleton prompts** are named sequences without verification or failure handling — useful as human checklists, unsafe to run unattended.
+4. **Coverage is 115 adequate / 27 partial / 0 missing** dimension rows. No row is missing; 27 are thin, and the matrix names what is thin.
+5. **171 prose-lint findings remain** (68 are `etc.`). The ratchet stops growth; the debt is recorded in the baseline and backlog #108, not glossed.
+6. **The library cannot make an agent honest.** It defines constraints and evidence rules; a model may still ignore them. `07-workflows/independent-verification.md` and `05-scenarios/ai-output-verification/` exist for exactly that reason.
 
-| # | Decision | Options | Recommendation |
-|---|----------|---------|----------------|
-| 1 | ~~**Licence**~~ | — | **RESOLVED 2.13.0**: dual — MIT for code, CC BY 4.0 for content. `LICENSE` + `LICENSE-CONTENT` added, README section added. |
-| 2 | ~~**`archive/legacy-txt-files/`**~~ | — | **RESOLVED 2.13.0**: kept, with the README rewritten as provenance framing — what they are, that they are excluded from validation, that their claims are unchecked. No history rewrite. |
-| 3 | **Commit author email** | keep · switch going forward | **Decided: keep.** It is the maintainer's public contact for a project that asks people to report issues; changing it now would not remove it from history anyway. |
-| 4 | **Merge strategy** | squash · merge commit · rebase | **Squash** — one development cycle, and the CHANGELOG carries the narrative. Applied to PR #1. |
-| 5 | **Tag / release** | `v2.13.0` with release notes from the CHANGELOG | **Done** — tag and release created after the merge, so the public reference matches a validated tree. |
+## 4. Resolved decisions (kept for the record)
 
-## 5. Platform settings to apply (outside the repository)
+| # | Decision | Resolution |
+|---|----------|------------|
+| 1 | Licence | **Dual**: MIT for code, CC BY 4.0 for content. `LICENSE`, `LICENSE-CONTENT`, README section, SPDX-detectable. (2.13.0) |
+| 2 | `archive/legacy-txt-files/` | **Kept** as provenance, excluded from validation, claims explicitly unchecked in its README. (2.13.0) |
+| 3 | Commit author email | **Kept** — public contact for a project that asks for issue reports. |
+| 4 | Merge strategy | **Squash**, one cycle per PR, narrative in `CHANGELOG.md`. |
+| 5 | Contribution variants | **Keep three, differentiate or delete per stage** — `01-contribution/VARIANTS.md` (2.20.0). |
 
-GitHub → repository → **Settings**:
+## 5. What only you can do — blocking, in order
 
-| Area | Setting | Suggested value |
-|------|---------|-----------------|
-| General | Description | "292 prompts for AI coding agents: audits, refactors, migrations, incidents, reviews, releases, documentation, handover. Every prompt declares scope, risk class, and what it will not do — and the repo is validated against those claims in CI." |
-| General | Topics | `ai-agents`, `prompt-engineering`, `llm`, `coding-agents`, `software-engineering`, `code-review`, `incident-response`, `documentation`, `migration`, `developer-tools`, `claude`, `gpt` |
-| General | Website | leave empty unless you publish a docs site |
-| General | Social preview | 1280×640 image — title, one-line claim, the four numbers (292 / 138 / 0 errors / 4 gates) |
-| General | Features | Issues **on**; Discussions **optional** (off is fine — the library prefers issues with evidence); Wiki **off** (docs live in the repo); Projects **off** unless you plan a roadmap board |
-| General | Merge button | Allow **squash** only; disable merge commits and rebase if you want a linear history |
-| General | Automatically delete head branches | **on** |
-| Branches | Default branch | `main` |
-| Branches | Protection on `main` | Require the `validate` check to pass; require a PR before merging; disallow force pushes and deletions (allow yourself to bypass while solo) |
-| Actions | General | Allow actions and reusable workflows; default `GITHUB_TOKEN` permissions **read-only** (the workflow already declares `contents: read`) |
-| Security | Dependabot alerts + security updates | **on** (the only dependency is `actions/*`, pinned to major tags) |
-| Security | Secret scanning + push protection | **on** where available on your plan |
-| Security | Code scanning (CodeQL) | **on** — Python only, cheap, and it closes the "no static analysis" gap |
-| Security | Private vulnerability reporting | **on** — `SECURITY.md` points at it |
-| Moderation | Interaction limits / blocked users | leave default |
+Nothing here can be done from the repository, and I cannot do any of it: `gh` returns 403 on repository settings, topics, and Actions with the current token scope.
 
-After publication, in the repository:
+### 5.1 Fix GitHub Actions billing — **blocking everything else**
 
-- Create release **`v2.12.0`**, target `main`, notes: the `[2.12.0]` section of `CHANGELOG.md` plus a link to `_meta/coverage-matrix.md` and the limitations in §3 above.
-- Pin an issue titled **"Read this before trusting an `operational` label"** if you want the limitation visible at the top of the issue list; the README states it, but pins are read more often.
+Every workflow run fails in ~3 seconds with:
+
+> The job was not started because recent account payments have failed or your spending limit needs to be increased.
+
+Consequences today: PR checks show red without running, the badge is meaningless, and the repository's central claim — *"the validator fails the build if a README over-claims"* — is enforced only when a human runs it locally. Before publishing, this must work, because a visitor's first impression of a CI-enforced project is a red X.
+
+**Where:** GitHub → Settings → **Billing & plans** → Actions. Either add a payment method or set a spending limit above $0.
+
+### 5.2 Branch protection on `main`
+
+| Setting | Value |
+|---|---|
+| Require a pull request before merging | on |
+| Require status checks to pass | `validate` |
+| Require branches to be up to date | on |
+| Disallow force pushes and deletions | on |
+| Allow yourself to bypass while solo | yes (direct pushes during setup) |
+
+### 5.3 Repository description, topics, and social preview
+
+| Field | Suggested |
+|---|---|
+| Description | "358 prompts for AI coding agents, organised across the engineering lifecycle. Every prompt declares its scope, risk class, and what it will not do — and the repository is validated against those claims in CI." |
+| Topics | `ai-agents`, `prompt-engineering`, `llm`, `coding-agents`, `software-engineering`, `code-review`, `incident-response`, `documentation`, `migration`, `developer-tools` |
+| Social preview | 1280×640 — title, one-line claim, and the honest numbers: 358 prompts · 204 operational · 1 executed |
+
+### 5.4 Merge settings and branch cleanup
+
+Squash-only; automatically delete head branches.
+
+### 5.5 Security features
+
+| Feature | Why |
+|---|---|
+| Dependabot alerts + security updates | the only dependencies are `actions/*`; still worth the email |
+| Secret scanning + push protection | cheapest possible insurance for a public repository |
+| Code scanning (CodeQL, Python) | the scripts are stdlib-only but they run in CI on every PR |
+| Private vulnerability reporting | `SECURITY.md` points at it; without it the promise is empty |
+
+### 5.6 Then, and only then, make it public
+
+After the above, in this order: publish → confirm the first Actions run is green on `main` → check `GALLERY.md` renders with working links → confirm the **Security** tab shows `SECURITY.md` → confirm the community-standards checklist is complete → create the release for the current tag.
 
 ## 6. Post-publication gate
 
 | Check | When | Why |
-|-------|------|-----|
-| CI green on `main` after merge | immediately | proves the merged tree, not just the branch, validates |
-| `GALLERY.md` renders with working links on GitHub | within a day | relative links behave differently in the rendered view |
-| `SECURITY.md` visible under the **Security** tab | within a day | GitHub only surfaces it once it is on the default branch |
-| Community standards checklist | within a day | should show 5/5 once a licence exists |
-| First external issue answered within a week | first week | the repository's own claims about evidence apply to its issue triage too |
+|---|---|---|
+| CI green on `main` | immediately | a public repository's first impression is its check mark |
+| Links render on GitHub | same day | relative-link behaviour differs in the rendered view |
+| `evidence-levels.md` linked and reachable | same day | it is the honesty claim the whole project rests on |
+| First external issue answered within a week | first week | the repository's own evidence standards should apply to its issue triage |
+| Dependabot PR merged or closed within a week | first week | an ignored Dependabot PR tells visitors nobody is home |
 
 ---
 
-**Verdict:** the repository content passes every automated gate and every manual check that was run, and both blocking decisions (licence, archive framing) are resolved as of 2.13.0. What remains in §5 is GitHub configuration, not repository risk.
+**Bottom line:** the repository is publishable. What stops it being a *good* launch is the Actions billing failure, which turns the project's strongest property — machine-enforced honesty — into a broken badge.

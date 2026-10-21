@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 355 prompts — 0 canonical, 201 operational, 5 draft, 149 skeleton.
+**Totals:** 358 prompts — 0 canonical, 204 operational, 5 draft, 149 skeleton.
 
 ## `00-core`
 
@@ -594,7 +594,9 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `QUICK-01` | Safe Quick-Fix Prompt | skeleton | specialised | B | [SAFE-QUICK-FIX.md](../05-scenarios/quick-fixes/SAFE-QUICK-FIX.md) |
 | `SECINC-01` | Security Incident Response | operational | specialised | D | [SECURITY-INCIDENT.md](../05-scenarios/security-incident/SECURITY-INCIDENT.md) |
 | `SUPPLY-01` | Supply Chain: can you prove the thing you deployed is the th | operational | audit-remediation | A | [SUPPLY-CHAIN.md](../05-scenarios/supply-chain/SUPPLY-CHAIN.md) |
+| `TESTDATA-01` | Test Data: the fixture that holds a real customer | operational | audit-remediation | A | [TEST-DATA.md](../05-scenarios/test-data/TEST-DATA.md) |
 | `INTEG-01` | PROMPT 01 — Third-Party Integration That Survives the Vendor | operational | implementation | B | [THIRD-PARTY-INTEGRATION.md](../05-scenarios/third-party-integration/THIRD-PARTY-INTEGRATION.md) |
+| `METER-01` | Usage Metering and Entitlements: count what you bill, enforc | operational | audit-remediation | A | [USAGE-METERING.md](../05-scenarios/usage-metering/USAGE-METERING.md) |
 | `VENDOR-01` | Vendor Due Diligence: evaluating a supplier before you depen | operational | research | A | [VENDOR-DUE-DILIGENCE.md](../05-scenarios/vendor-due-diligence/VENDOR-DUE-DILIGENCE.md) |
 
 ## `06-interactive`
@@ -616,6 +618,7 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `WF-COMPLY` | Workflow — Compliance Readiness | operational | orchestration | A | [compliance-readiness.md](../07-workflows/compliance-readiness.md) |
 | `WF-IMPROVE` | Workflow — Continuous Improvement | draft | continuous-improvement | B | [continuous-improvement.md](../07-workflows/continuous-improvement.md) |
 | `WF-INTEGRATE` | Workflow — Cross-Layer Integration | operational | specialised | B | [cross-layer-integration.md](../07-workflows/cross-layer-integration.md) |
+| `WF-FAILURE` | Workflow — Failure Examples | operational | specialised | A | [failure-examples.md](../07-workflows/failure-examples.md) |
 | `WF-GREENFIELD` | Workflow — Greenfield Delivery | draft | autonomous-completion | B | [greenfield-delivery.md](../07-workflows/greenfield-delivery.md) |
 | `WF-VERIFY` | Workflow — Independent Verification of Completed Work | operational | diagnostic | A | [independent-verification.md](../07-workflows/independent-verification.md) |
 | `WF-MULTIAGENT` | Workflow — Multi-Agent Orchestration | operational | orchestration | B | [multi-agent-orchestration.md](../07-workflows/multi-agent-orchestration.md) |

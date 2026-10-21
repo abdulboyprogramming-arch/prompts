@@ -605,3 +605,34 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 - Problem: backlog #99. The run sheet defined a form; composition between systems was asserted rather than shown.
 - Design: one filled sheet across two systems and six stages, with the artifact chain, the three properties that make it work (paste once, artifacts rather than transcripts, inputs ≠ dependencies), a system-scoped input block, and a recorded amendment. Also states what the example does **not** show (a refused gate, a failed stage, a multi-agent run) and points at backlog #101 for the first.
 
+
+### `05-scenarios/usage-metering/` — METER-01
+- **2026-10-20 · audit-remediation · 90/100 · operational**
+- Problem: backlog #105. Money movement (`PAY-P01..P03`) and infrastructure spend (`COST-P01..P04`) were covered; **the quantity you bill** was not. Metering fails silently in both directions — uncounted usage is revenue loss, duplicated usage is a dispute — and the first detector is usually a customer with a spreadsheet.
+- Design: the billable unit as a contract with exclusions; one metering point per unit with its blind spot written down; immutable, idempotent events with corrections as new events; fail-open versus fail-closed chosen and logged; period boundary, timezone and late-event rules; plan-change/proration rules; **enforcement separated from accounting**; monthly reconciliation against an independent source; dispute reconstruction from stored events alone.
+- Deductions: invoicing, tax, and collection remain with `payments`.
+
+### `05-scenarios/test-data/` — TESTDATA-01
+- **2026-10-20 · audit-remediation · 87/100 · operational**
+- Problem: backlog #103. `testing-qa` P04 contains one bullet on test data strategy; the risks (a committed fixture with a real address, a staging database copied from production, a screenshot in a pull request) had no procedure. Test data is the least-governed copy of production data and the only one that ships with the repository.
+- Design: inventory including cassettes, base64 blobs and attached evidence; four states (synthetic / anonymised / pseudonymised / real copy) with different remediation; a test that "anonymised" is actually irreversible; generators that produce awkward data deliberately, because tidy test data hides bugs; isolation as structure rather than discipline; a CI guard demonstrated failing.
+- Deductions: retention and subject rights stay with `privacy-requests`.
+
+### `07-workflows/failure-examples.md` — WF-FAILURE
+- **2026-10-20 · specialised · 86/100 · operational**
+- Problem: backlog #101. Every workflow defines gates and failure routing; none demonstrated them. `RUN-SHEET-EXAMPLE.md` closed this for the success path in 2.19.0; this closes the failure path.
+- Design: four scenarios — a refused gate after work was already done, a stage blocked by an upstream artifact, an agent claim refuted by verification (test count down from 87 to 84), and a mitigation that made the incident worse. Each names the wrong response, because that is what readers do by default, and the artifact that changes.
+- Deductions: these are reconstructed examples, not transcripts of named incidents; the file states that.
+
+### Library capability — prose lint (2.20.0)
+- **2026-10-20 · tooling · n/a**
+- Change: `scripts/lint_prose.py` flags unactionable qualifiers (`as appropriate`, `if necessary`, `etc.`), empty intensifiers when the sentence contains no concrete instruction, and sentences over 55 words. `scripts/test_prose_lint.py` pins 12 cases including the false positives that would make it unusable.
+- Adoption: **a ratchet, not a gate** — `--check` fails only when findings exceed `_meta/prose-lint-baseline.json`. Baseline is 171 across 112 files (68 of them `etc.`, concentrated in the 16-stage open-source agent). Non-zero baselines are honest debt; a gate at zero would have blocked every change on day one, and a lint nobody adopts catches nothing.
+- Limit: lexical only. It cannot see that a sentence is ambiguous in a way that uses none of these words.
+
+### `01-contribution/VARIANTS.md` — the duplication decision (#100)
+- **2026-10-20 · decision record · n/a**
+- Finding: the combined duplicate metric puts the three contribution variants at 0.63–0.68 — the highest in the library — where shingles reported 0.06–0.18.
+- Decision: keep three, and require every overlapping stage to state its domain difference or be deleted. Promotion stays blocked until it does; the differentiation work is backlog #107, deliberately ordered *one stage across all three variants* rather than one system at a time, because a single-author bulk rewrite would reproduce the same text with different nouns.
+- Why recorded as a file: the next agent to "clean up duplication" needs to know the risk model and approval model differ, not just the vocabulary.
+
