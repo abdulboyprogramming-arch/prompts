@@ -2,7 +2,7 @@
 
 **Purpose:** the gate that must pass before this repository becomes public, and the list of things only the owner can do in GitHub settings.
 
-**Audited:** 2026-10-20 (v2.21.0) · **Auditor:** repository maintainer (agent-assisted, evidence below)
+**Audited:** 2026-10-21 (v2.21.1) · **Auditor:** repository maintainer (agent-assisted, evidence below)
 **Previous audit:** v2.13.0 — the repository was already publishable then; this re-audit re-runs every check against the tree as it stands now, because 65 prompts and five tooling changes have landed since.
 
 ---
@@ -19,13 +19,13 @@
 
 ---
 
-## 1. Content gate (re-run at v2.20.0)
+## 1. Content gate (re-run at v2.21.1)
 
 | # | Check | Method | Result |
 |---|-------|--------|--------|
-| 1 | Structural validation | `python3 scripts/validate_library.py` | **PASS** — 457 Markdown files, 362 prompts, **0 errors / 0 warnings** |
+| 1 | Structural validation | `python3 scripts/validate_library.py` | **PASS** — 458 Markdown files, 362 prompts, **0 errors / 0 warnings** |
 | 2 | Maturity honesty | validator rules | **PASS** — 208 operational, 5 draft, 149 skeleton; no label exceeds body; no system README outranks its stages |
-| 3 | Executed-prompt count is generated | `scripts/evidence_report.py --check` | **PASS** — `_meta/evidence-levels.md` matches the registry: **1 of 208 operational prompts executed (0.5%)**, stated in the file the README links |
+| 3 | Executed-prompt count is generated | `scripts/evidence_report.py --check` | **PASS** — `_meta/evidence-levels.md` matches the registry: **2 of 208 operational prompts executed (1.0%)**, stated in the file the README links |
 | 4 | Catalog current | `--catalog` + `git diff` | **PASS** — regenerates with no diff |
 | 5 | Gallery current | `generate_gallery.py --check` | **PASS** — "up to date", 362 prompts |
 | 6 | Duplication | `find_overlaps.py --check` (shingle 0.55) and `--metric combined` (0.75) | **PASS** — highest shingle 0.18; highest combined 0.68, which is the known and *decided* contribution-variant case (`01-contribution/VARIANTS.md`) |
@@ -50,7 +50,7 @@ Checked against the tree, not against intention:
 | `README.md` top | Links `QUICKSTART.md` before anything else — the reader gets a task, not a table of contents |
 | `QUICKSTART.md` | Five paths (broken / inherited / shipping / proof / new), each with ordered prompts and the artifact you end with; opens with what the library **cannot** do |
 | Maturity legend | In the README above the fold; `operational` defined as *structurally reviewed*, not proven |
-| `_meta/evidence-levels.md` | Generated; states 0.5% executed; linked from the README and the quickstart |
+| `_meta/evidence-levels.md` | Generated; states 1.0% executed (2 of 208); linked from the README and the quickstart |
 | `GALLERY.md` | 362 prompts, one line each, generated from the prompts |
 | Limitations | Stated in README, quickstart, `PROJECT-STATUS.md`, and §3 below — four places, consistent |
 
@@ -105,7 +105,7 @@ Consequences today: PR checks show red without running, the badge is meaningless
 |---|---|
 | Description | "362 prompts for AI coding agents, organised across the engineering lifecycle. Every prompt declares its scope, risk class, and what it will not do — and the repository is validated against those claims in CI." |
 | Topics | `ai-agents`, `prompt-engineering`, `llm`, `coding-agents`, `software-engineering`, `code-review`, `incident-response`, `documentation`, `migration`, `developer-tools` |
-| Social preview | 1280×640 — title, one-line claim, and the honest numbers: 362 prompts · 208 operational · 1 executed |
+| Social preview | 1280×640 — title, one-line claim, and the honest numbers: 362 prompts · 208 operational · 2 executed |
 
 ### 5.4 Merge settings and branch cleanup
 

@@ -645,3 +645,12 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 - Three chat-native prompts were written because they are the tasks people actually do in a chat window and they need different wording: `CHAT-REVIEW` (bounded review with a not-assessed list), `CHAT-DEBUG` (one discriminating experiment per turn, with a ledger), `CHAT-DESIGN` (ADR with rejected options and a reopening condition).
 - Deductions: no attempt to model a specific vendor's features; context-window behaviour is described generically.
 
+
+### `00-core/conversational/CHAT-DEBUG.md` — first execution (v1.1.0)
+- **2026-10-20 · specialised · 89/100 · operational (re-review after execution)**
+- Method: `_meta/empirical-evaluation-02.md`. A constructed fixture — a nightly sync failing with `sqlite3.OperationalError: database is locked` at `db.commit()` — where the pasted function contains **no defect** and a second, uncommitted connection in code the user never sent holds the lock. The prompt's steps were followed as written, with the user turns written by the evaluator. A tabletop, not a live session, and recorded as such.
+- Finding 1 (the important one): the prompt inherited the assumption that the bug is in the paste. It had no instruction to ask what else touches the same resource, so its natural next move was to critique a correct loop. Added workflow step 2b and a failure-handling rule: *"this function is fine, and something else holds the lock" is a valid answer.*
+- Finding 2: the evidence ledger had no slot for a finding located outside the paste, so the discovery of the second connection would have stayed `OPEN` forever and looked unresolved. Ledger gained `CONTRADICTION:` and `OUT OF SCOPE (needs access):`.
+- Finding 3: no rule for a user claim that conflicts with evidence ("we bumped nothing", while a version differs). Added: a contradiction is evidence — record both and test the difference rather than accepting the reassuring account.
+- Also learned about the stop rule: escalation here is not a count of failed experiments but a **scope change** — the search moved outside what the user can paste. Recorded in the write-up as a partial gap; the prompt's stop rule is still count-based.
+- Deduction: this is the author evaluating the author's prompt, so the run demonstrates followability and defect discovery, not effectiveness. `CHAT-MODE`, `CHAT-REVIEW`, `CHAT-DESIGN` remain unexecuted.
