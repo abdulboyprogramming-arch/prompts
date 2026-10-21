@@ -37,6 +37,10 @@ High-utility prompts for a specific situation, usable in one session. Lighter th
 | [`operational-readiness/OPERATIONAL-READINESS.md`](operational-readiness/OPERATIONAL-READINESS.md) | Would the on-call engineer survive this service at 03:00? | **operational** |
 | [`build-performance/BUILD-PERFORMANCE.md`](build-performance/BUILD-PERFORMANCE.md) | CI takes 40 minutes and people skip tests — measure the loop before optimising | **operational** |
 | [`ai-output-verification/AI-OUTPUT-VERIFICATION.md`](ai-output-verification/AI-OUTPUT-VERIFICATION.md) | An agent says it is done — verify what is true before anyone trusts it | **operational** |
+| [`environment-parity/ENVIRONMENT-PARITY.md`](environment-parity/ENVIRONMENT-PARITY.md) | "Works locally, fails in staging" — find the difference that changes behaviour, by experiment | **operational** |
+| [`capacity-planning/CAPACITY-PLANNING.md`](capacity-planning/CAPACITY-PLANNING.md) | What runs out first, when, and what you will do about it — pools, quotas, sequences, expiries | **operational** |
+| [`vendor-due-diligence/VENDOR-DUE-DILIGENCE.md`](vendor-due-diligence/VENDOR-DUE-DILIGENCE.md) | Before you depend on a supplier: data exposure, reliability, lock-in, exit plan | **operational** |
+| [`abuse-prevention/ABUSE-PREVENTION.md`](abuse-prevention/ABUSE-PREVENTION.md) | Credential stuffing, scraping, enumeration, signup spam — limit the dimension the abuse consumes | **operational** |
 | [`quick-fixes/SAFE-QUICK-FIX.md`](quick-fixes/SAFE-QUICK-FIX.md) | A small, contained fix with minimal blast radius | skeleton |
 | [`performance-investigation/PERFORMANCE-INVESTIGATION.md`](performance-investigation/PERFORMANCE-INVESTIGATION.md) | Something is slow and you need a diagnosis, not an optimisation project | skeleton |
 | [`legacy-code/WORKING-WITH-LEGACY.md`](legacy-code/WORKING-WITH-LEGACY.md) | Changing code nobody understands, without a rewrite | skeleton |
