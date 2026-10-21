@@ -61,6 +61,18 @@ def main() -> int:
     check("a routed prompt lands in at least one task",
           unrouted == [] and any(v for v in routed.values()))
 
+    # A prompt can answer two situations, and both should find it. This is the case
+    # that a routing run on a real situation exposed: background jobs belong under
+    # "something is broken" as well as under "running the work".
+    job = doc("05-scenarios/background-jobs/BACKGROUND-JOBS.md")
+    routed, unrouted = T.route([job])
+    questions = [T.TASKS[i][0] for i, docs in routed.items() if docs]
+    check("a prompt with two homes is listed under both",
+          unrouted == [] and len(questions) == 2, str(questions))
+    check("the two homes are the broken-now and running-the-work tasks",
+          "Something is broken right now" in questions
+          and "I am running the work, not just the code" in questions, str(questions))
+
     # The build must refuse to render an index it knows is incomplete.
     try:
         T.build([doc("99-nowhere/ORPHAN.md")])

@@ -2,7 +2,7 @@
 
 **Identifier:** CHAT-SELECT
 **System:** 00-core/conversational
-**Version:** 1.0.0
+**Version:** 1.1.0
 **Maturity:** operational
 **Execution mode:** specialised
 **Risk class:** A — it produces a routing decision, not a change to any system
@@ -52,9 +52,13 @@ Out of scope: reading the library on the user's behalf; pretending a route is ve
 
 3. **Classify the situation into exactly one task.** Use the twenty-one task headings in `TASKS.md` as the vocabulary. They run from "broken now" and "unfamiliar codebase" through "shipping a release", "handover", "cost or slowness", "data movement", "AI and agents", "games", "blockchain" and "a specific stack" to "an outside audience", "running the work", "writing prompts", "multi-system work" and "chat-only".
 
+   **Classify the sentence, not the noun.** The user describes a symptom; the index is organised by the work that answers it, and the two do not always agree. "Our nightly export stopped producing files" is a *broken now* situation to the person living it, while the index files the prompt for it under *running the work*, because a job that stops is scheduled work rather than a defect in code. When the user's sentence and the index's heading disagree, name both: the task the user is in, and the heading the prompt is filed under. Then say which prompt to run first. Do not silently translate a symptom into the index's vocabulary — the user will not recognise their problem in the answer, and the card will look wrong even when the route is right.
+
 4. **Choose one prompt, not a system.** Systems have entry stages for people who will run several. A chat user needs the one prompt that answers the sentence they typed. Within the chosen task, prefer in this order: `operational` over `draft`; a single scenario prompt over a multi-stage system; `CHAT-*` over its agent equivalent when there is no repository access.
 
 5. **Name the fact that would change the answer.** One sentence, testable: *"If the failing job also fails when run alone, this is `DBG-01`, not `FLAKE-01`."* This is what makes the card checkable rather than authoritative.
+
+   **The falsifier has to separate the two things most likely to be confused, and that is usually two prompts in one task, not two tasks.** Tasks are coarse; several prompts inside one answer nearly the same sentence, and their difference is a condition the user has stated or can state. "A customer sent a security questionnaire" fits both the control map and the standards-conformance prompt in the same task; the separating fact is whether the ask is evidence of controls the user operates or a map of the standard they must meet. A falsifier that separates tasks is doing work the task step already did.
 
 6. **Write the paste request.** The next message the user should send, phrased as the selected prompt's inputs. For `CHAT-DEBUG` that is the error text, the command, and the versions. Give them a template they can fill without reading the prompt first.
 
@@ -65,6 +69,8 @@ Out of scope: reading the library on the user's behalf; pretending a route is ve
 ## 5. Decision rules and evidence standard
 
 - **One primary recommendation.** Secondary prompts are named only as "if the answer is X, then Y" — never as a menu.
+- **The symptom is data.** When the user's sentence and the index's heading disagree, the disagreement is information: say both and route on the sentence. The card is written for the person, labelled for the index.
+- **Within-task ambiguity is the common case.** Two prompts in one task almost always fit the same sentence; the falsifier exists to separate them. A card whose falsifier separates tasks has skipped the step that matters.
 - **The index beats your memory.** If `TASKS.md` is pasted, quote the route from it. Your recollection of the library is not a source.
 - **A route is a claim, and it carries a label.** `observed` or `inferred`, stated in the card.
 - **Prefer the smallest thing that answers the sentence.** A ten-stage system is the wrong answer to a one-line question.
@@ -80,7 +86,8 @@ Out of scope: reading the library on the user's behalf; pretending a route is ve
 | Questions capped | Conversation | Three or fewer, each with a stated discriminator |
 | One task | Card | Exactly one of the twenty-one task headings |
 | One primary prompt | Card | Identifier and path; alternatives only as conditions |
-| Falsifier named | Card | A testable fact that would change the route |
+| Falsifier named | Card | A testable fact that would change the route — and it separates two prompts, not two tasks |
+| Symptom and heading reconciled | Card | When the user's words and the index disagree, both are named and the first move is stated |
 | Paste request | Card | A fillable template matching the prompt's inputs |
 | Limit stated | Card | What this environment cannot do, when relevant |
 | Label honest | Card | `inferred` wherever the index was not in the conversation |
@@ -88,6 +95,8 @@ Out of scope: reading the library on the user's behalf; pretending a route is ve
 ## 7. Failure handling
 
 - **The situation fits two tasks equally** → ask the one question that separates them, and say which tasks you are separating. Do not average the answer.
+- **Two prompts in the chosen task fit equally** → this is the normal case, not a tie: name the one whose inputs the user already has, and make the falsifier the condition that distinguishes them. If neither input is present, name the cheaper prompt and say what to paste.
+- **The user's symptom contradicts the task the index files the prompt under** → say so in one line. A reader who is told "this looks like breakage, and the library files it under running the work, because the job stopping is scheduled work" trusts the card more than one that renames their problem.
 - **The user pastes neither index and wants certainty** → offer the lift: paste `TASKS.md`, and the route becomes `observed`. It is one message and it changes the quality of the answer.
 - **No prompt fits** → say so. The library is honest about gaps (`_meta/coverage-matrix.md` lists partial rows), and inventing a route to a prompt that does not address the situation wastes the user's time.
 - **The user wants a plan across several systems** → route to `07-workflows/` and name the workflow README, not the individual stages. A chat window is a poor place to run a ten-stage sequence, and the card should say that.
@@ -103,7 +112,8 @@ Class A: a routing decision changes nothing. Two cautions. First, the user's des
 - [ ] Three questions at most, each discriminating.
 - [ ] Exactly one task heading chosen from the twenty-one.
 - [ ] Exactly one primary prompt, with identifier and path.
-- [ ] Falsifier stated as a testable fact.
+- [ ] Falsifier stated as a testable fact that separates two candidate prompts.
+- [ ] Symptom and index heading reconciled where they differ, with the first move named.
 - [ ] Paste request written as a fillable template.
 - [ ] Environment limits named where the prompt cannot run.
 - [ ] Route labelled `observed` or `inferred` and never upgraded.

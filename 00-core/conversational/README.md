@@ -24,7 +24,7 @@ A chat run is a legitimate run. It is weaker on evidence, not on thinking — an
 | [`CHAT-REVIEW.md`](CHAT-REVIEW.md) | You are pasting code or a diff for review | A bounded review with severities, the missing-context list, and what was not assessed |
 | [`CHAT-DEBUG.md`](CHAT-DEBUG.md) | Something is broken and you can only paste the error | A ranked hypothesis set, one discriminating test at a time, and an evidence ledger — **executed once, v1.1.0** ([record](../../_meta/empirical-evaluation-02.md)) |
 | [`CHAT-DESIGN.md`](CHAT-DESIGN.md) | You are choosing between approaches | An ADR with rejected options, reversibility, and what would reopen the decision |
-| [`CHAT-SELECT.md`](CHAT-SELECT.md) | You do not know which prompt applies | A routing card: one prompt, the falsifier, and the next message to paste — labelled `observed` or `inferred` |
+| [`CHAT-SELECT.md`](CHAT-SELECT.md) | You do not know which prompt applies | A routing card: one prompt, the falsifier, and the next message to paste — labelled `observed` or `inferred`. **Executed once, v1.1.0: 4 of 6 routes correct** ([record](../../_meta/empirical-evaluation-03.md)) |
 | [`CHAT-HANDOFF.md`](CHAT-HANDOFF.md) | The conversation is long enough to need a second one | A handoff packet that keeps the disproved hypotheses, plus the restatement the next chat must return |
 
 ## The three rules that make chat runs honest

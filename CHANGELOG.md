@@ -65,17 +65,30 @@ There were nine gates and three lists of them: the CI workflow, `CONTRIBUTING.md
 
 The per-system table in `README.md` drifted twice in one release: `03-domains/ai-agentic/` claimed 5 prompts while holding 7, and `07-workflows/` claimed 12 while holding 13. Neither is a lie anyone types — both are what happens when a prompt is added and the table is not revisited. Since that table is the first quantitative claim a reader meets, `scripts/validate_library.py` now compares every row against the tree and fails with the exact row to fix. Four fixtures in `test_validator.py` (10/10) pin the rule, including the case where two rows point at different directories.
 
+### Changed — `CHAT-SELECT` v1.1.0, after a routing run with a scoring key
+
+The third empirical run, and the first with **ground truth outside the prompt**: six situations were routed following `CHAT-SELECT` as written, then each routing card was scored against the generated `TASKS.md`, where "which task owns this prompt" is a fact in the repository rather than the evaluator's opinion. Four of six cards named the prompt the index assigns to the situation's task. Write-up: [`_meta/empirical-evaluation-03.md`](_meta/empirical-evaluation-03.md).
+
+The two misses were worth more than the hits:
+
+| Defect | What it looks like in a real conversation | Fix in 1.1.0 |
+|---|---|---|
+| The prompt equated the user's symptom with the index's heading | "Our nightly export stopped producing files" is *broken now* to the user and *running the work* to the index. A model that silently translates one into the other returns a correct route the user does not recognise | Classify the sentence, then name the index's heading for the same prompt; when they differ, state both and say which to run first |
+| The falsifier was only asked to separate *tasks* | Tasks are coarse; the realistic ambiguity is two prompts inside one task (`GOV-P01` control map versus `STD-01` standards conformance for one security questionnaire). Every card in the run had a falsifier, and four of them separated the wrong pair | The falsifier must separate the two candidate prompts, and the verification row now checks that it does |
+
+**One defect was in the index, not the prompt.** A job that stops firing is the most common form of "something is broken right now", and `JOBS-01` was reachable only from *running the work*. Background jobs are now a home of both tasks, and `JOBS-01` carries an explicit `Gallery` line because both rows had been rendering the clipped fragment "A per-job safety assessment (idempotent?". Two cases in `test_task_index.py` pin multi-home routing (17/17), and the generator comment now says that overlapping homes are deliberate and must be true of both descriptions.
+
 ### Also
 
 - `QUICKSTART.md` Path 0 gained both chat prompts and a third rule: a route without the index is `inferred`, never `verified`. Path 0 also moved to the top of the file — the reader with the fewest tools was being served last.
 - `QUICKSTART.md` said "355 prompts" and "four situations". It says 364 and six, which is what the file contains. A count that drifts in the front door is the first lie a library tells.
-- `scripts/test_task_index.py` (15 cases) pins the index's matching rules, the unrouted-prompt report, the skeleton counting, and the word-boundary clipping.
+- `scripts/test_task_index.py` (17 cases) pins the index's matching rules, the unrouted-prompt report, multi-home routing, the skeleton counting, and the word-boundary clipping.
 
 ### Result
 
-**461 Markdown files, 364 prompts: 213 operational, 5 draft, 146 skeleton.** Validator 0 errors / 0 warnings; tooling self-tests 10/10, 13/13, 12/12, 15/15; prose lint 0 findings at baseline 0; catalog, gallery, task index and evidence report current, verified by one command.
+**457 Markdown files, 364 prompts: 213 operational, 5 draft, 146 skeleton.** Validator 0 errors / 0 warnings; tooling self-tests 10/10, 13/13, 12/12, 17/17; prose lint 0 findings at baseline 0; catalog, gallery, task index and evidence report current, verified by one command. The file count is the validator's scan, not `find`'s — they differ by tooling and archive files, and the scanned number is the one that matches the other claims here.
 
-Coverage: **143 rows, unchanged** — this release improves the instruments, not the coverage. Executed: **2 of 213 operational prompts (0.9%)**, unchanged, and the four prompts promoted or added here have not been run. The review log says so for each.
+Coverage: **143 rows, unchanged** — this release improves the instruments, not the coverage. Executed: **3 of 213 operational prompts (1.4%)** — `DBG-01`, `CHAT-DEBUG`, and `CHAT-SELECT` from this release. The three `P06` stages promoted here and `CHAT-HANDOFF` have not been run, and the review log says so for each.
 
 ## [2.21.1] — 2026-10-21
 

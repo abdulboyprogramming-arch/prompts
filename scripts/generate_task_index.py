@@ -49,6 +49,12 @@ OUT = os.path.join(ROOT, "TASKS.md")
 # `homes` are directory prefixes relative to the repository root; a prompt belongs
 # to a task when its path starts with one of them. Prefix matching is deliberately
 # coarse — it is auditable by eye, and the coverage check catches anything missed.
+#
+# Homes may overlap across tasks, and that is deliberate: a prompt answers more than
+# one situation, and a reader who arrives from either side should find it. If the
+# same directory appears under two tasks, check that both descriptions are true of
+# it — a row that appears twice under a description that only fits once is worse
+# than a missing row, because it looks like coverage.
 TASKS: list[tuple[str, str, list[str], str]] = [
     (
         "Something is broken right now",
@@ -64,12 +70,14 @@ TASKS: list[tuple[str, str, list[str], str]] = [
             "05-scenarios/performance-investigation",
             "05-scenarios/incident-communications",
             "05-scenarios/ai-output-verification",
+            "05-scenarios/background-jobs",
             "05-scenarios/quick-fixes",
             "00-core/conversational/CHAT-DEBUG.md",
             "00-core/conversational/CHAT-MODE.md",
         ],
         "Start with `DBG-01` if the failure is reproducible in a repository you can run. "
-        "Start with `CHAT-DEBUG` if all you have is a pasted error.",
+        "Start with `CHAT-DEBUG` if all you have is a pasted error. "
+        "Start with `JOBS-01` if what stopped is scheduled work and nothing threw.",
     ),
     (
         "I have to work in a codebase I have never seen",

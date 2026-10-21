@@ -12,8 +12,8 @@ library is reachable from at least one task: a prompt added without a home fails
 | | |
 |---|---|
 | Prompts indexed | 364 |
-| Rows listed individually | 408 (a prompt can answer more than one task) |
-| Of those, `operational` | 241 |
+| Rows listed individually | 409 (a prompt can answer more than one task) |
+| Of those, `operational` | 242 |
 
 Not sure which task is yours? [`QUICKSTART.md`](QUICKSTART.md) routes five common situations,
 [`06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md`](06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md)
@@ -25,13 +25,14 @@ asks three questions, and [`GALLERY.md`](GALLERY.md) is the complete flat list.
 
 Diagnosis first, mitigation second, cause third. Every prompt here forbids the reverse order.
 
-**Start here.** Start with `DBG-01` if the failure is reproducible in a repository you can run. Start with `CHAT-DEBUG` if all you have is a pasted error.
+**Start here.** Start with `DBG-01` if the failure is reproducible in a repository you can run. Start with `CHAT-DEBUG` if all you have is a pasted error. Start with `JOBS-01` if what stopped is scheduled work and nothing threw.
 
 | ID | Prompt | Where | Use it for | Maturity |
 |---|---|---|---|---|
 | `CHAT-DEBUG` | [Chat Debugging: diagnose from a pasted error, and say what you cannot know](00-core/conversational/CHAT-DEBUG.md) | `conversational` | Something is broken, the only tool you have is a chat window, and you need the next test rather than five guesses. | operational |
 | `CHAT-MODE` | [Conversational Mode: running any prompt in a chat window](00-core/conversational/CHAT-MODE.md) | `conversational` | You want to use this library in ChatGPT, Claude, Gemini, or any chat window — with no repository access, no shell, and no ability… | operational |
 | `AIVERIFY-01` | [Verifying AI Output: what did the agent actually do, as opposed to claim?](05-scenarios/ai-output-verification/AI-OUTPUT-VERIFICATION.md) | `ai-output-verification` | An agent says it is done — "tests pass, feature implemented, bug fixed" — and you need to know what is true before anyone trusts… | operational |
+| `JOBS-01` | [Background Jobs That Stop Doing Damage](05-scenarios/background-jobs/BACKGROUND-JOBS.md) | `background-jobs` | Diagnose why background work duplicates, drops, loops, or fails silently — and make every job safe to re-run. | operational |
 | `DATALOSS-01` | [Data-Loss Recovery](05-scenarios/data-loss/DATA-LOSS-RECOVERY.md) | `data-loss` | Contain the damage, then recover data from a backup, log replay, or an upstream source — and say precisely what is still gone. | operational |
 | `DBG-01` | [Systematic Debugging](05-scenarios/debugging/SYSTEMATIC-DEBUGGING.md) | `debugging` | Establish the minimal conditions that produce the defect, the causal mechanism, and a fix that is verified against both the… | operational |
 | `DR-01` | [Disaster Recovery: prove the restore, not the backup](05-scenarios/disaster-recovery/DISASTER-RECOVERY.md) | `disaster-recovery` | A recovery plan per disaster class, a restore drill performed in an isolated environment, measured RTO and RPO against targets… | operational |
@@ -427,7 +428,7 @@ Process design, decommissioning, and the improvement cycle that survives a busy 
 | `DEC-P03` | [Shutdown Execution](04-process/decommissioning/P03-Shutdown/P03-Shutdown-Execution.md) | `P03-Shutdown` | Execute the shutdown: stop new use, drain remaining traffic, confirm quiescence, and leave the system in a restorable state for a… | operational |
 | `DEC-P04` | [Data and Asset Retirement](04-process/decommissioning/P04-Retirement/P04-Data-Asset-Retirement.md) | `P04-Retirement` | A complete asset inventory, a retention decision per asset with an owner, deletion executed only for assets whose decisions are… | operational |
 | `AUTO-01` | [Automate a Described Task: turn "we do this by hand" into something that runs](05-scenarios/automation/AUTOMATE-TASK.md) | `automation` | Someone describes a manual procedure — "every Monday we export this, rename it, upload it, then email finance" — and you need a… | operational |
-| `JOBS-01` | [Background Jobs That Stop Doing Damage](05-scenarios/background-jobs/BACKGROUND-JOBS.md) | `background-jobs` | A per-job safety assessment (idempotent? | operational |
+| `JOBS-01` | [Background Jobs That Stop Doing Damage](05-scenarios/background-jobs/BACKGROUND-JOBS.md) | `background-jobs` | Diagnose why background work duplicates, drops, loops, or fails silently — and make every job safe to re-run. | operational |
 
 *Plus **24** `skeleton` prompts in these homes — a defensible stage sequence without verification or failure handling. Use them to structure a human-led session, not to drive an agent: [04-process](GALLERY.md#04-process--delivering-software-responsibly), [05-scenarios](GALLERY.md#05-scenarios--single-session-high-urgency-situations).*
 

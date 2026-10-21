@@ -33,6 +33,17 @@
       "result": "three real prompt defects found and fixed in v1.1.0: no instruction to find other holders of the same resource, a ledger unable to record findings outside the paste, and no rule for contradictions between the user's account and the evidence",
       "record": "_meta/empirical-evaluation-02.md",
       "limitations": "tabletop by the author, not a live user session; single fixture; database errors name their resource, which makes this lesson unusually easy to teach"
+    },
+    {
+      "identifier": "CHAT-SELECT",
+      "title": "Chat Select: choosing the right prompt inside a conversation",
+      "path": "00-core/conversational/CHAT-SELECT.md",
+      "date": "2026-10-21",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "scope": "six situations routed with the prompt as written, then each routing card scored against the generated TASKS.md index as external ground truth",
+      "result": "4 of 6 cards named the prompt that TASKS.md assigns to the situation's task; two prompt defects found and fixed in v1.1.0 (no rule for a symptom that the index files under a different heading, and no requirement that the falsifier separate two prompts within a task), plus one index defect (background jobs were not reachable from the broken-now task)",
+      "record": "_meta/empirical-evaluation-03.md",
+      "limitations": "tabletop at a keyboard by the author, who wrote the situations and the questions; no live model and no second evaluator, so it tests the instrument and not compliance with it; six situations are a smoke test, not a benchmark"
     }
   ]
 }

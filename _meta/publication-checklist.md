@@ -25,11 +25,11 @@
 |---|-------|--------|--------|
 | 1 | Structural validation | `python3 scripts/validate_library.py` | **PASS** — 461 Markdown files, 364 prompts, **0 errors / 0 warnings** |
 | 2 | Maturity honesty | validator rules | **PASS** — 213 operational, 5 draft, 146 skeleton; no label exceeds body; no system README outranks its stages |
-| 3 | Executed-prompt count is generated | `scripts/evidence_report.py --check` | **PASS** — `_meta/evidence-levels.md` matches the registry: **2 of 213 operational prompts executed (0.9%)**, stated in the file the README links |
+| 3 | Executed-prompt count is generated | `scripts/evidence_report.py --check` | **PASS** — `_meta/evidence-levels.md` matches the registry: **3 of 213 operational prompts executed (1.4%)**, stated in the file the README links |
 | 4 | Catalog current | `--catalog` + `git diff` | **PASS** — regenerates with no diff |
 | 5 | Gallery current | `generate_gallery.py --check` | **PASS** — "up to date", 364 prompts |
 | 6 | Duplication | `find_overlaps.py --check` (shingle 0.55) and `--metric combined` (0.75) | **PASS** — highest shingle 0.18; highest combined 0.68, which is the known and *decided* contribution-variant case (`01-contribution/VARIANTS.md`) |
-| 7 | Tooling has tests | `test_validator.py`, `test_overlaps.py`, `test_prose_lint.py`, `test_task_index.py` | **PASS** — 10/10, 13/13, 12/12, 15/15 |
+| 7 | Tooling has tests | `test_validator.py`, `test_overlaps.py`, `test_prose_lint.py`, `test_task_index.py` | **PASS** — 10/10, 13/13, 12/12, 17/17 |
 | 8 | Prose lint | `lint_prose.py --check` | **PASS** — **0 findings at baseline 0**. The ratchet is now a gate: a new vague qualifier fails CI |
 | 9 | Relative links | validator, all links incl. `Depends on` | **PASS** — 0 broken |
 | 10 | Secrets in tree | `ghp_*`, `github_pat_*`, `AKIA*`, private-key headers | **PASS** — 0 hits |
@@ -53,7 +53,7 @@ Checked against the tree, not against intention:
 | `README.md` top | Links `QUICKSTART.md` before anything else — the reader gets a task, not a table of contents |
 | `QUICKSTART.md` | Six paths (chat-only / broken / inherited / shipping / proof / new), chat-first because that reader has the fewest tools; each with ordered prompts and the artifact you end with; opens with what the library **cannot** do |
 | Maturity legend | In the README above the fold; `operational` defined as *structurally reviewed*, not proven |
-| `_meta/evidence-levels.md` | Generated; states 0.9% executed (2 of 213); linked from the README and the quickstart |
+| `_meta/evidence-levels.md` | Generated; states 1.4% executed (3 of 213); linked from the README and the quickstart |
 | `GALLERY.md` | 364 prompts by area, generated; `TASKS.md` indexes the same prompts by problem and fails the build if a prompt has no home |
 | Limitations | Stated in README, quickstart, `PROJECT-STATUS.md`, and §3 below — four places, consistent |
 
@@ -61,7 +61,7 @@ Checked against the tree, not against intention:
 
 These are already stated in the repository. They must not be softened in marketing language, release notes, or a launch post.
 
-1. **Two prompts have been executed and recorded** (`DBG-01`, `_meta/empirical-evaluation-01.md`; `CHAT-DEBUG`, `_meta/empirical-evaluation-02.md`). 213 are labelled `operational`, which means *structurally complete and reviewed*, not *proven in use*. `_meta/evidence-levels.md` states 2 of 213 — 0.9% — with a generated number, and the review log names the prompts added in 2.22.0 as unexecuted.
+1. **Three prompts have been executed and recorded** (`DBG-01`, `_meta/empirical-evaluation-01.md`; `CHAT-DEBUG`, `_meta/empirical-evaluation-02.md`; `CHAT-SELECT`, `_meta/empirical-evaluation-03.md`). 213 are labelled `operational`, which means *structurally complete and reviewed*, not *proven in use*. `_meta/evidence-levels.md` states 3 of 213 — 1.4% — with a generated number, and the review log names the prompts added or changed in 2.22.0 that were never run (`CHAT-HANDOFF`, the three `P06` stages).
 2. **Reviews are author self-assessments**, scored in `_meta/review-log.md`. No second reviewer exists.
 3. **146 skeleton prompts** are named sequences without verification or failure handling — useful as human checklists, unsafe to run unattended.
 4. **Coverage is 116 adequate / 27 partial / 0 missing** dimension rows. No row is missing; 27 are thin, and the matrix names what is thin.
