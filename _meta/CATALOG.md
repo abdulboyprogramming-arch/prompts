@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 351 prompts — 0 canonical, 197 operational, 5 draft, 149 skeleton.
+**Totals:** 355 prompts — 0 canonical, 201 operational, 5 draft, 149 skeleton.
 
 ## `00-core`
 
@@ -556,10 +556,12 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
 | ID | Stage | Maturity | Mode | Risk | File |
 |----|-------|----------|------|------|------|
+| `ABUSE-01` | Abuse Prevention: when a legitimate endpoint gets used illeg | operational | audit-remediation | A | [ABUSE-PREVENTION.md](../05-scenarios/abuse-prevention/ABUSE-PREVENTION.md) |
 | `AIVERIFY-01` | Verifying AI Output: what did the agent actually do, as oppo | operational | diagnostic | A | [AI-OUTPUT-VERIFICATION.md](../05-scenarios/ai-output-verification/AI-OUTPUT-VERIFICATION.md) |
 | `AUTO-01` | Automate a Described Task: turn "we do this by hand" into so | operational | implementation | B | [AUTOMATE-TASK.md](../05-scenarios/automation/AUTOMATE-TASK.md) |
 | `JOBS-01` | PROMPT 01 — Background Jobs That Stop Doing Damage | operational | diagnostic | B | [BACKGROUND-JOBS.md](../05-scenarios/background-jobs/BACKGROUND-JOBS.md) |
 | `BUILD-01` | Build Performance: the feedback loop is a product | operational | diagnostic | A | [BUILD-PERFORMANCE.md](../05-scenarios/build-performance/BUILD-PERFORMANCE.md) |
+| `CAPACITY-01` | Capacity Planning: what runs out first, and when | operational | planning | A | [CAPACITY-PLANNING.md](../05-scenarios/capacity-planning/CAPACITY-PLANNING.md) |
 | `SECRET-CLIENT-01` | Client-Side Secrets: the key that shipped to every user | operational | audit-remediation | A | [CLIENT-SIDE-SECRETS.md](../05-scenarios/client-secrets/CLIENT-SIDE-SECRETS.md) |
 | `DATALOSS-01` | Data-Loss Recovery | operational | specialised | D | [DATA-LOSS-RECOVERY.md](../05-scenarios/data-loss/DATA-LOSS-RECOVERY.md) |
 | `DATA-MIG-01` | Data Migration: move the records, not just the schema | operational | specialised | C | [DATA-MIGRATION.md](../05-scenarios/data-migration/DATA-MIGRATION.md) |
@@ -569,6 +571,7 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `DEVENV-01` | Reproducible Dev Environment — one command, every editor, an | operational | implementation | B | [DEV-ENVIRONMENT.md](../05-scenarios/dev-environment/DEV-ENVIRONMENT.md) |
 | `DR-01` | PROMPT 01 — Disaster Recovery: prove the restore, not the ba | operational | implementation | C | [DISASTER-RECOVERY.md](../05-scenarios/disaster-recovery/DISASTER-RECOVERY.md) |
 | `EMAIL-01` | PROMPT 01 — Email Deliverability: it is not in the spam fold | operational | diagnostic | B | [EMAIL-DELIVERABILITY.md](../05-scenarios/email-deliverability/EMAIL-DELIVERABILITY.md) |
+| `ENVPARITY-01` | Environment Parity: why it works here and not there | operational | audit-remediation | A | [ENVIRONMENT-PARITY.md](../05-scenarios/environment-parity/ENVIRONMENT-PARITY.md) |
 | `FIXFAIL-01` | Failed Fix Escalation | operational | diagnostic | B | [FAILED-FIX-ESCALATION.md](../05-scenarios/failed-fix/FAILED-FIX-ESCALATION.md) |
 | `SUNSET-01` | Feature Sunset: removing something customers depend on | operational | planning | B | [FEATURE-SUNSET.md](../05-scenarios/feature-sunset/FEATURE-SUNSET.md) |
 | `UPLOAD-01` | PROMPT 01 — File Uploads and Object Storage | operational | implementation | B | [FILE-UPLOADS.md](../05-scenarios/file-uploads/FILE-UPLOADS.md) |
@@ -592,6 +595,7 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `SECINC-01` | Security Incident Response | operational | specialised | D | [SECURITY-INCIDENT.md](../05-scenarios/security-incident/SECURITY-INCIDENT.md) |
 | `SUPPLY-01` | Supply Chain: can you prove the thing you deployed is the th | operational | audit-remediation | A | [SUPPLY-CHAIN.md](../05-scenarios/supply-chain/SUPPLY-CHAIN.md) |
 | `INTEG-01` | PROMPT 01 — Third-Party Integration That Survives the Vendor | operational | implementation | B | [THIRD-PARTY-INTEGRATION.md](../05-scenarios/third-party-integration/THIRD-PARTY-INTEGRATION.md) |
+| `VENDOR-01` | Vendor Due Diligence: evaluating a supplier before you depen | operational | research | A | [VENDOR-DUE-DILIGENCE.md](../05-scenarios/vendor-due-diligence/VENDOR-DUE-DILIGENCE.md) |
 
 ## `06-interactive`
 

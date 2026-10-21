@@ -564,3 +564,44 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 - Design: inventory from providers and reconciled to the roster; consequence classification; non-human access (CI identities, long-lived tokens, vendor impersonation, break-glass); decisions of keep/narrow/remove/escalate with reasons; removals verified by denial; exceptions with owners and expiry.
 - Deductions: authentication design and incident containment are separate; removing access is class D because it can stop production or lock out the only administrator.
 
+
+### `05-scenarios/environment-parity/` — ENVPARITY-01
+- **2026-10-20 · audit-remediation · 88/100 · operational**
+- Problem: backlog-level gap in §8 of the coverage matrix ("no environment-parity prompt"). Reproducibility covered *setup*; nothing explained **behaviour differences** between local, CI, staging and production, which is the more common and more expensive question.
+- Design: nine layers ranked by how often each is the cause; config diffed mechanically including **missing** keys, because absence means a code default; data compared by shape and volume; service gaps enumerated; cause proven by a single-variable experiment rather than argued; config contract plus a CI parity check that compares keys, never secret values.
+- Deductions: building environments and performance-only differences are routed elsewhere.
+
+### `05-scenarios/capacity-planning/` — CAPACITY-01
+- **2026-10-20 · planning · 87/100 · operational**
+- Problem: backlog #96. `cost-engineering` optimises spend and `operational-readiness` tests alerts, but nothing computed *when* a resource hits its ceiling. The failures that hurt are the non-obvious ones: connection pools, sequence headroom, quotas with reset windows, and certificate expiry — capacity with a date and no growth.
+- Design: peak rather than average; date-to-ceiling **and** date-to-headroom, with the earliest date named as the bottleneck; specific failure behaviour per resource; autoscaler metric, cooldown and maximum interrogated; four plan forms (scale / shed / eliminate / accept); expiries in the same table as capacity.
+- Deductions: purchasing decisions routed; disaster-recovery capacity is a different problem.
+
+### `05-scenarios/vendor-due-diligence/` — VENDOR-01
+- **2026-10-20 · research · 86/100 · operational**
+- Problem: backlog #94. `STD-01` answers questionnaires sent *to* you; `INTEG-01` handles a vendor misbehaving *after* adoption. Nothing assessed a supplier *before* the dependency existed.
+- Design: dependency class sets the depth (accessory / degrading / critical path / data processor); "claimed by vendor" is a third evidence category, weaker than verified; reliability read from incident history rather than an uptime figure; SLA compared against your own promise; lock-in quantified in switching days; exit plan written before adoption.
+- Deductions: contract negotiation and security testing of the vendor are out of scope.
+
+### `05-scenarios/abuse-prevention/` — ABUSE-01
+- **2026-10-20 · audit-remediation · 89/100 · operational**
+- Problem: backlog #102. Abuse had no home: hardening covers auth weaknesses, tenancy covers isolation, and nothing covered the endpoint that is *working as designed* while being used for something else.
+- Design: abuse economics first; the limiting dimension table (credential stuffing limited per account rather than per IP; scraping limited by coverage rather than rate; cost-based abuse limited by cost units); uniform responses before rate limits; four-stage rollout with a measured false-positive budget; exemption path for server traffic and an appeal path tested once.
+- Deductions: network-level DDoS is the provider's responsibility; confirmed attacks go to `security-incident`.
+
+### Library capability — duplicate detection (2.19.0)
+- **2026-10-20 · tooling · n/a**
+- Change: `find_overlaps.py` gained vocabulary containment, structure similarity, and their product as a combined metric, plus `--metric` selection with per-metric floors and CI bars. `scripts/test_overlaps.py` pins 13 cases.
+- Finding: the combined metric immediately ranked the `01-contribution` parallel variants highest (0.68) — shingle containment had reported them at 0.11–0.18 and made them look unremarkable. Backlog #100 records the consolidation decision that has not been made.
+- Limitation, stated in the module: all four signals are lexical. A paraphrase with genuinely different vocabulary is still invisible, and the tool's job is to shorten the reading list, not to replace the reading.
+
+### Library capability — evidence levels (2.19.0)
+- **2026-10-20 · tooling · n/a**
+- Change: `_meta/evidence.json` is the registry of executions that actually happened; `scripts/evidence_report.py` validates it against the catalog and the filesystem and generates `_meta/evidence-levels.md`, which CI checks for staleness.
+- Why: every release note quotes the operational count, and that number reads as a quality claim. The generated report states the measured alternative — **1 of 201 operational prompts (0.5%)** has a recorded execution — and cannot be edited without editing the registry.
+
+### `00-core/inputs/RUN-SHEET-EXAMPLE.md`
+- **2026-10-20 · documentation · n/a**
+- Problem: backlog #99. The run sheet defined a form; composition between systems was asserted rather than shown.
+- Design: one filled sheet across two systems and six stages, with the artifact chain, the three properties that make it work (paste once, artifacts rather than transcripts, inputs ≠ dependencies), a system-scoped input block, and a recorded amendment. Also states what the example does **not** show (a refused gate, a failed stage, a multi-agent run) and points at backlog #101 for the first.
+

@@ -2,6 +2,36 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.19.0] — 2026-10-20
+
+### New — the estate, and the library measuring itself
+
+Four prompts and three pieces of library infrastructure. The theme is the parts of engineering that are invisible until they fail: the differences between environments, the resource that runs out, the supplier you depend on, and the traffic that is not a customer.
+
+**`ENVPARITY-01` — Environment Parity** (`05-scenarios/environment-parity/`)
+Why it works locally and not in staging. Nine layers ranked by how often each is the cause; configuration diffed mechanically **including missing keys**, because an absent variable means a code default and the default is where the surprise lives; data compared by shape and volume; service gaps enumerated (a queue with no consumer looks like success); cause proven by a single-variable experiment rather than described; a config contract with a CI parity check that compares keys, never secret values.
+
+**`CAPACITY-01` — Capacity Planning** (`05-scenarios/capacity-planning/`)
+What runs out first and when. Every finite resource — including connection pools, sequence headroom, vendor quotas **with their reset windows**, and certificates, which are capacity with a date and no growth. Peak rather than average; date-to-ceiling *and* date-to-headroom, with the earliest date named as the bottleneck; specific failure behaviour per resource; the autoscaler's cooldown and maximum interrogated, because a maximum is a ceiling; four explicit plans (scale / shed / eliminate / accept).
+
+**`VENDOR-01` — Vendor Due Diligence** (`05-scenarios/vendor-due-diligence/`)
+Assessing a supplier before the dependency exists. Dependency class sets the depth; "claimed by vendor" is a third evidence category, weaker than verified; reliability read from incident history rather than an uptime figure; the SLA compared against your own promise; lock-in quantified in switching days; and an exit plan written **before** adoption, when it is leverage rather than negotiation.
+
+**`ABUSE-01` — Abuse Prevention** (`05-scenarios/abuse-prevention/`)
+When a working endpoint is used for something else. Abuse economics first; the limiting dimension chosen per abuse type — credential stuffing limited **per account** rather than per IP, scraping limited by **coverage** rather than rate, expensive calls limited by **cost units** rather than call counts; uniform responses before rate limits, because removing the signal removes the incentive; a four-stage rollout with a measured false-positive budget; an exemption path for server traffic that cannot solve a CAPTCHA, and an appeal path tested once.
+
+### Library capability
+
+- **`scripts/find_overlaps.py` now reports four signals** — shingle containment, vocabulary containment, structure similarity, and their product — because a shingle-only detector cannot see a reworded clone. CI gates shingle at 0.55 and combined at 0.75; `scripts/test_overlaps.py` pins **13 cases**, including a clone that defeats the shingle metric entirely. The module states its own limit: all four signals are lexical, so a paraphrase in different vocabulary remains a human judgement.
+- **`_meta/evidence-levels.md` is now generated** from `_meta/evidence.json` by `scripts/evidence_report.py`, and CI fails if it is stale. It answers the question the maturity labels cannot: of **201** operational prompts, **1** has a recorded execution — **0.5%**. Every previous release quoted the operational count as a quality signal; this release makes the difference between *structurally reviewed* and *demonstrated* a generated number instead of a sentence.
+- **`00-core/inputs/RUN-SHEET-EXAMPLE.md`** shows one filled sheet across two systems and six stages, with the artifact chain and a recorded amendment — because "prompts compose" is a claim, and a claim needs an example.
+
+### Result
+
+447 Markdown files, **355 prompts: 201 operational, 5 draft, 149 skeleton**. Validator 0 errors / 0 warnings; `test_validator.py` 6/6; `test_overlaps.py` 13/13; gallery and catalog current; duplicate gate passes on both metrics (highest shingle 0.18, highest combined 0.68).
+
+Coverage: **141 dimension rows, 114 adequate / 27 partial / 0 missing** (was 110/29/0). Backlog #100–#106 added; #94, #96, #98, #99, #102 closed.
+
 ## [2.18.0] — 2026-10-20
 
 ### New — the compliance layer, the automation layer, and what a second pass found

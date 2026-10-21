@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE — do not edit by hand. Run: python3 scripts/generate_gallery.py --write -->
 
-Every prompt in the library — **351** of them — with a direct link and the situation it is for, plus **8** foundational reference documents.
+Every prompt in the library — **355** of them — with a direct link and the situation it is for, plus **9** foundational reference documents.
 Generated from the prompt files, so it cannot drift from them; CI fails if this file is stale.
 
 **Reading the columns**
@@ -24,11 +24,11 @@ Generated from the prompt files, so it cannot drift from them; CI fails if this 
 | [02-engineering — building, auditing, and recovering code](#02-engineering--building-auditing-and-recovering-code) | 82 | Work on an existing codebase: audit, repair, complete, upgrade. |
 | [03-domains — domain-specific engineering](#03-domains--domain-specific-engineering) | 75 | Stack-specific practice: data, AI, and the domains still being built out. |
 | [04-process — delivering software responsibly](#04-process--delivering-software-responsibly) | 92 | The lifecycle around code: testing, release, observability, dependency and governance. |
-| [05-scenarios — single-session, high-urgency situations](#05-scenarios--single-session-high-urgency-situations) | 36 | One prompt, one session, one pressing situation. |
+| [05-scenarios — single-session, high-urgency situations](#05-scenarios--single-session-high-urgency-situations) | 40 | One prompt, one session, one pressing situation. |
 | [06-interactive — conversations that clarify a request](#06-interactive--conversations-that-clarify-a-request) | 4 | Use when the request is vague and needs to be scoped first. |
 | [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 12 | Composed sequences that route between systems and stop at human gates. |
 
-*Maturity across the library: 197 operational, 5 draft, 149 skeleton, 351 total.*
+*Maturity across the library: 201 operational, 5 draft, 149 skeleton, 355 total.*
 
 ---
 
@@ -600,13 +600,15 @@ The lifecycle around code: testing, release, observability, dependency and gover
 
 One prompt, one session, one pressing situation.
 
-### All prompts in this area · 36 prompts
+### All prompts in this area · 40 prompts
 
 | ID | Prompt | Use it for | Maturity | Risk |
 |---|---|---|---|---|
+| `ABUSE-01` | [Abuse Prevention: when a legitimate endpoint gets used illegitimately](05-scenarios/abuse-prevention/ABUSE-PREVENTION.md) | Credential stuffing, scraping, enumeration, signup spam, or a bill that grows with someone else's traffic — separate abuse from growth, then limit it without locking <br>**Inputs:** `SURFACE_SCOPE, TRAFFIC_SOURCE, RISK_TOLERANCE, APPROVER` | operational | A |
 | `AIVERIFY-01` | [Verifying AI Output: what did the agent actually do, as opposed to claim?](05-scenarios/ai-output-verification/AI-OUTPUT-VERIFICATION.md) | An agent says it is done — "tests pass, feature implemented, bug fixed" — and you need to know what is true before anyone trusts it. <br>**Inputs:** `CLAIM_SCOPE, AGENT_TRANSCRIPT, APPROVER, TIME_BUDGET` | operational | A |
 | `AUTO-01` | [Automate a Described Task: turn "we do this by hand" into something that runs](05-scenarios/automation/AUTOMATE-TASK.md) | Someone describes a manual procedure — "every Monday we export this, rename it, upload it, then email finance" — and you need a script that does it safely, verifiabl <br>**Inputs:** `TASK_DESCRIPTION, EXECUTION_ENV, APPROVER, TIME_BUDGET` | operational | B |
 | `BUILD-01` | [Build Performance: the feedback loop is a product](05-scenarios/build-performance/BUILD-PERFORMANCE.md) | CI takes 40 minutes, developers skip tests locally, or the cache never hits — measure where the time actually goes before optimising anything. <br>**Inputs:** `REPO_PATH, CI_PROVIDER, TIME_BUDGET, APPROVER` | operational | A |
+| `CAPACITY-01` | [Capacity Planning: what runs out first, and when](05-scenarios/capacity-planning/CAPACITY-PLANNING.md) | Before a launch, a migration, or a seasonal peak — work out which resource runs out first, when, and what you are going to do about it. <br>**Inputs:** `SERVICE_SCOPE, GROWTH_RATE, HEADROOM_TARGET, APPROVER` | operational | A |
 | `DATA-MIG-01` | [Data Migration: move the records, not just the schema](05-scenarios/data-migration/DATA-MIGRATION.md) | Records must move between systems — a new CRM, a rebuilt service, a warehouse, a vendor change — and the plan must survive partial failure without losing or duplicat <br>**Inputs:** `SOURCE_SYSTEM, TARGET_SYSTEM, FREEZE_WINDOW, APPROVER, TIME_BUDGET` | operational | C |
 | `DATALOSS-01` | [Data-Loss Recovery](05-scenarios/data-loss/DATA-LOSS-RECOVERY.md) | Contain the damage, then recover data from a backup, log replay, or an upstream source — and say precisely what is still gone. <br>**Inputs:** `TARGET_ENV, DATA_LOSS_WINDOW, APPROVER, BACKUP_INVENTORY` | operational | D |
 | `DBG-01` | [Systematic Debugging](05-scenarios/debugging/SYSTEMATIC-DEBUGGING.md) | Establish the minimal conditions that produce the defect, the causal mechanism, and a fix that is verified against both the defect and the surrounding behaviour. <br>**Inputs:** `OBSERVED_BEHAVIOUR, EXPECTED_BEHAVIOUR, REPRODUCTION_INPUT, REPO_PATH` | operational | B |
@@ -614,6 +616,7 @@ One prompt, one session, one pressing situation.
 | `DEVENV-01` | [Reproducible Dev Environment — one command, every editor, any machine](05-scenarios/dev-environment/DEV-ENVIRONMENT.md) | A documented, reproducible environment path (container or scripted), pinned runtimes, editor-agnostic configuration, and a verification that was run on at least one… <br>**Inputs:** `REPO_PATH, TARGET_OS, EDITORS, RUNTIME_VERSION, TEAM_SIZE` | operational | B |
 | `DR-01` | [Disaster Recovery: prove the restore, not the backup](05-scenarios/disaster-recovery/DISASTER-RECOVERY.md) | A recovery plan per disaster class, a restore drill performed in an isolated environment, measured RTO and RPO against targets, and a gap register. <br>**Inputs:** `SYSTEM_SCOPE, BACKUP_SOURCE, RTO_TARGET, RPO_TARGET, DRILL_ENV, APPROVER` | operational | C |
 | `EMAIL-01` | [Email Deliverability: it is not in the spam folder, it never arrived](05-scenarios/email-deliverability/EMAIL-DELIVERABILITY.md) | An authentication record audit (SPF, DKIM, DMARC, alignment), a stream separation review, a bounce and complaint analysis, a suppression-list check, and a warm-up… <br>**Inputs:** `DOMAIN, SENDER_STACK, STREAM, VOLUME, BOUNCE_DATA, TARGET_ENV` | operational | B |
+| `ENVPARITY-01` | [Environment Parity: why it works here and not there](05-scenarios/environment-parity/ENVIRONMENT-PARITY.md) | "It works locally", staging behaves differently from production, or a bug reproduces on one machine and not another — find the difference that matters instead of the <br>**Inputs:** `TARGET_ENV, SOURCE_ENV, APPROVER, TIME_BUDGET` | operational | A |
 | `FIXFAIL-01` | [Failed Fix Escalation](05-scenarios/failed-fix/FAILED-FIX-ESCALATION.md) | An accurate record of what was tried and what it proved, an explicit statement of the current model of the defect and why it is probably wrong, and a decision —… <br>**Inputs:** `ORIGINAL_SYMPTOM, REPO_PATH, ATTEMPT_LIST` | operational | B |
 | `FLAKE-01` | [Flaky Test Triage](05-scenarios/flaky-tests/FLAKY-TEST-TRIAGE.md) | Answers: which non-determinism the test depends on, and how to make it deterministic without weakening its coverage. <br>**Inputs:** `TEST_IDENTIFIER, REPO_PATH, CI_HISTORY` | operational | B |
 | `HACK-01` | [Hackathon Sprint — build the demo that gets judged](05-scenarios/hackathon-sprint/HACKATHON-SPRINT.md) | A plan that fixes the demo path and the cut lines, a build that follows it, a rehearsed demo with fallbacks, and a submission that a judge can run without you. <br>**Inputs:** `HACKATHON_DEADLINE, JUDGING_CRITERIA, DEMO_FORMAT, TEAM_SIZE, TARGET_ENV` | operational | B |
@@ -640,6 +643,7 @@ One prompt, one session, one pressing situation.
 | `SUPPLY-01` | [Supply Chain: can you prove the thing you deployed is the thing you built?](05-scenarios/supply-chain/SUPPLY-CHAIN.md) | Assess whether a compromised package, a tampered build, or a substituted artifact could reach production — and what evidence you could produce if someone asked. <br>**Inputs:** `REPO_PATH, ARTIFACT_REGISTRY, APPROVER` | operational | A |
 | `SURFACE-01` | [Live Surface Audit — a URL, host, or API from the outside](05-scenarios/live-surface-audit/LIVE-SURFACE-AUDIT.md) | An evidence-backed assessment of the target's externally visible surface — transport, headers, cookies, redirects, error behaviour, discoverability, performance… <br>**Inputs:** `TARGET_URL, AUDIT_AUTHORISATION, PAGE_LIMIT, REPORT_AUDIENCE` | operational | B |
 | `UPLOAD-01` | [File Uploads and Object Storage](05-scenarios/file-uploads/FILE-UPLOADS.md) | A validated upload path with signed direct-to-storage transfers where appropriate, content verification, size and type limits, lifecycle rules for orphans and… <br>**Inputs:** `STORAGE_BACKEND, USE_CASES, MAX_SIZE, FILE_TYPES, TARGET_ENV, RETENTION` | operational | B |
+| `VENDOR-01` | [Vendor Due Diligence: evaluating a supplier before you depend on it](05-scenarios/vendor-due-diligence/VENDOR-DUE-DILIGENCE.md) | Choosing a vendor, or a procurement request arrives — assess what happens if this supplier is breached, fails, raises prices, or disappears. <br>**Inputs:** `VENDOR_NAME, INTENDED_USE, DATA_CLASS, APPROVER, TIME_BUDGET` | operational | A |
 
 ## 06-interactive — conversations that clarify a request
 
@@ -684,6 +688,7 @@ documents rather than staged prompts, so they carry no identifier or maturity la
 |---|---|---|
 | [Multi-Stage Handover Protocol](00-core/agent-orchestration/MULTI-STAGE-HANDOVER.md) | A workflow spans more than one session and the next agent must continue without re-deriving context. | A |
 | [Recovery & Failure Handling](00-core/agent-orchestration/RECOVERY-AND-FAILURE.md) | A stage fails, stalls, or produces something unverifiable, and the workflow must decide whether to retry, escalate, or stop. | A |
+| [Run Sheet — a worked example](00-core/inputs/RUN-SHEET-EXAMPLE.md) | A gate being refused. | A |
 | [Run Sheet — fill this in once per engagement](00-core/inputs/RUN-SHEET.md) | REPO_PATH: BASE_REF: BRANCH: TARGET_AREA: OUT_OF_SCOPE | A |
 | [Prompt Quality Bar](00-core/prompt-engineering/QUALITY-BAR.md) | You are writing or reviewing a prompt and need the minimum bar it must clear before anyone uses it. | A |
 | [Stage Prompt Template (superseded)](00-core/prompt-engineering/STAGE-PROMPT-TEMPLATE.md) | You need the legacy stage-prompt skeleton for reference. Superseded by _meta/prompt-template.md. | A |
