@@ -85,6 +85,10 @@ Pick the row that matches your situation. Do not read the whole repository first
 | I need to run an access review or prove one happened | [`02-engineering/access-review/`](02-engineering/access-review/ACCESS-REVIEW.md) | Entitlements first, removals verified |
 | I deleted a subject's data and need to prove it is gone | [`04-process/privacy-requests/P04`](04-process/privacy-requests/P04-Verification/P04-Deletion-Verification.md) | Warehouses, logs, backups, vendors |
 | I am removing a feature customers use | [`05-scenarios/feature-sunset/`](05-scenarios/feature-sunset/FEATURE-SUNSET.md) | Usage evidence, notice, reversible |
+| "Works locally, fails in staging" | [`05-scenarios/environment-parity/`](05-scenarios/environment-parity/ENVIRONMENT-PARITY.md) | Rank by consequence, prove by experiment |
+| I need to know what breaks first under load | [`05-scenarios/capacity-planning/`](05-scenarios/capacity-planning/CAPACITY-PLANNING.md) | Pools, quotas, expiries, dates |
+| Someone is abusing a public endpoint (stuffing, scraping, spam) | [`05-scenarios/abuse-prevention/`](05-scenarios/abuse-prevention/ABUSE-PREVENTION.md) | Limit the right dimension, not the IP |
+| We are about to depend on a vendor | [`05-scenarios/vendor-due-diligence/`](05-scenarios/vendor-due-diligence/VENDOR-DUE-DILIGENCE.md) | Data, reliability, lock-in, exit |
 | An incident needs a customer update, on a cadence | [`05-scenarios/incident-communications/`](05-scenarios/incident-communications/INCIDENT-COMMUNICATIONS.md) | No speculation, no promises |
 | Would on-call survive this service at 03:00? | [`05-scenarios/operational-readiness/`](05-scenarios/operational-readiness/OPERATIONAL-READINESS.md) | Runbook and alert test |
 | CI is so slow people skip the tests | [`05-scenarios/build-performance/`](05-scenarios/build-performance/BUILD-PERFORMANCE.md) | Measure the loop first |
@@ -111,7 +115,7 @@ The library is deliberately honest about how developed each system is.
 | **draft** | Substantive but not yet reviewed against the rubric; gaps are listed in the file | Yes, expect to fill gaps |
 | **skeleton** | A stage sequence with a short outline. Names the artifact and a few steps; no verification or failure handling | As a **human checklist**, not for unsupervised autonomy |
 
-Maturity is enforced, not decorative: `scripts/validate_library.py` fails if a prompt's label exceeds its content, or if a system README advertises more maturity than its stages have.
+Maturity is enforced, not decorative: `scripts/validate_library.py` fails if a prompt's label exceeds its content, or if a system README advertises more maturity than its stages have. And because `operational` means *structurally reviewed* rather than *proven*, [`_meta/evidence-levels.md`](_meta/evidence-levels.md) reports — generated from a registry, not written by hand — how many operational prompts have ever been executed. The current answer is in that file, and it is deliberately uncomfortable.
 
 ### Licence
 
@@ -163,7 +167,7 @@ In short: take it, change it, ship it — say where it came from, and do not pre
 | [`04-process/handover/`](04-process/handover/README.md) | 5 | operational |
 | [`04-process/agent-context/`](04-process/agent-context/README.md) | 4 | operational |
 | [`07-workflows/`](07-workflows/README.md) | 11 | mixed (6 operational, 5 draft) |
-| [`05-scenarios/`](05-scenarios/README.md) | 36 | mixed (31 operational, 5 skeleton) |
+| [`05-scenarios/`](05-scenarios/README.md) | 40 | mixed (35 operational, 5 skeleton) |
 
 Everything else — backend, frontend, devops-infra, data-ml-ai, the eight game-design stages, architecture-review, from-scratch, migration, project management, research, systems improvement, language design, packages, web/web3 contribution — is a **skeleton**: a defensible sequence of stages with outline prompts. Those folders are useful for structuring a human-led session today; they are not yet safe to hand to an autonomous agent. Promotion order is in [`_meta/ROADMAP-AND-BACKLOG.md`](_meta/ROADMAP-AND-BACKLOG.md); per-scenario coverage with evidence is in [`_meta/coverage-matrix.md`](_meta/coverage-matrix.md).
 

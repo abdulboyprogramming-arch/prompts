@@ -50,11 +50,14 @@ This repository is a curated library, not a collection bin. Contributions are ju
 
 ```bash
 python3 scripts/test_validator.py              # the validator's own rules, must pass
+python3 scripts/test_overlaps.py               # the duplicate detector's own tests, must pass
 python3 scripts/validate_library.py            # must exit 0
 python3 scripts/validate_library.py --catalog  # regenerate the catalog
 python3 scripts/generate_gallery.py --write    # regenerate GALLERY.md
 python3 scripts/generate_gallery.py --check     # what CI runs
 python3 scripts/find_overlaps.py --top 10      # is this prompt already written?
+python3 scripts/find_overlaps.py --metric combined --top 10   # reworded clones
+python3 scripts/evidence_report.py --check     # executed-prompt count is current
 python3 scripts/new_prompt.py --system <dir> --identifier <ID> --title "<Title>"  # scaffold
 ```
 

@@ -1,0 +1,27 @@
+{
+  "_comment": "Evidence registry. Source of truth for which prompts have been EXECUTED, as opposed to structurally reviewed. Add an entry only when a run happened and left a record; scripts/evidence_report.py validates every identifier against the catalog and every path against the filesystem, then generates _meta/evidence-levels.md.",
+  "_fields": {
+    "identifier": "prompt identifier, must exist in the catalog",
+    "title": "human title",
+    "path": "path to the prompt file",
+    "date": "ISO date the run happened",
+    "evaluator": "who ran it, and whether they wrote the prompt",
+    "scope": "what the run covered, in one line",
+    "result": "outcome in one line, including defects found",
+    "record": "path to the write-up",
+    "limitations": "what this run does not show"
+  },
+  "evaluations": [
+    {
+      "identifier": "DBG-01",
+      "title": "Systematic Debugging",
+      "path": "05-scenarios/debugging/SYSTEMATIC-DEBUGGING.md",
+      "date": "2026-10-20",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "scope": "one synthetic fixture with a hidden mutable-default defect and a green test suite",
+      "result": "protocol completed end to end; three real prompt weaknesses found and fixed in v1.2.0",
+      "record": "_meta/empirical-evaluation-01.md",
+      "limitations": "single small fixture, author-evaluated, deterministic defect, familiar stack"
+    }
+  ]
+}
