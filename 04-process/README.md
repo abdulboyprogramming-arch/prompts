@@ -13,6 +13,8 @@ Engineering process as procedure: how work is verified, reviewed, released, oper
 | [`dependency-management/`](dependency-management/README.md) | Dependency inventory, breaking-change assessment, upgrade execution, verification, policy | 5 | **operational** |
 | [`decommissioning/`](decommissioning/README.md) | Consumer discovery, deprecation, staged shutdown, data and asset retirement | 4 | **operational** |
 | [`governance-compliance/`](governance-compliance/README.md) | Control mapping, evidence testing, readiness decision for enterprise obligations | 3 | **operational** |
+| [`licence-compliance/`](licence-compliance/LICENCE-COMPLIANCE.md) | Obligations imposed by the licences you ship: inventory, notices, copyleft disposition, CI gate | 1 | **operational** |
+| [`standards-conformance/`](standards-conformance/STANDARDS-CONFORMANCE.md) | Assess a project against one named external standard with per-requirement evidence | 1 | **operational** |
 | [`privacy-requests/`](privacy-requests/README.md) | Locate a subject's data everywhere, export or delete with verification, retention that keeps it gone | 3 | **operational** |
 | [`git-operations/`](git-operations/README.md) | State checks before destructive commands, conflict resolution, history repair, recovery, conventions | 5 | **operational** |
 | [`code-review/`](code-review/README.md) | Intent, change understanding, evidenced findings, actionable feedback, verified fixes | 6 | **operational** |

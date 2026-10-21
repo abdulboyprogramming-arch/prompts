@@ -63,11 +63,15 @@ Web3 contribution lives in `01-contribution/web3`; there is no `03-domains/web3`
 
 ## 04-process sub-taxonomy
 
-`testing-qa`, `observability-reliability`, `release-engineering`, `code-review`, `documentation`, `feature-flags`, `git-operations`, `dependency-management`, `decommissioning`, `governance-compliance`, `privacy-requests` (all operational); `project-management`, `research-and-development`, `systems-building-improvement` (skeletons).
+`testing-qa`, `observability-reliability`, `release-engineering`, `code-review`, `documentation`, `feature-flags`, `git-operations`, `dependency-management`, `decommissioning`, `governance-compliance`, `privacy-requests`, `licence-compliance`, `standards-conformance`, `accessibility-audit`, `agent-context`, `handover` (all operational); `project-management`, `research-and-development`, `systems-building-improvement` (skeletons).
+
+Placement rule that now decides several cases: **a named external requirement goes to `standards-conformance`** (one standard, per-requirement evidence); **an organisation-wide control programme goes to `governance-compliance`**; **what a licence obliges you to do when you ship goes to `licence-compliance`**. These three overlap in vocabulary and not in work.
 
 ## 05-scenarios
 
-Single-file, high-utility prompts: debugging, incident response, flaky tests, legacy code, onboarding, performance investigation, PR authoring, quick fixes. Scenario prompts may be promoted into a system if they grow stage structure.
+Single-file, high-utility prompts, 35 today: debugging, incident response, flaky tests, legacy code, onboarding, performance investigation, PR authoring, quick fixes (skeletons); plus operational single-session procedures including data loss, disaster recovery, security incident, incident communications, live surface audit, deployment target, platform migration, dev environment, on-call handover, background jobs, email deliverability, third-party integration, file uploads, localisation, infrastructure as code, performance budgets, monorepo, time correctness, tenancy, secret rotation, task automation, client-side secrets, supply chain, data residency, feature sunset, operational readiness, build performance, and AI-output verification.
+
+A scenario stays single-file when it is executed in one session against evidence the agent can gather. It is promoted to a system only when it needs persistent artifacts between stages and a decision gate between them — `disaster-recovery` and `third-party-integration` were each considered for promotion and kept as single prompts because the artifacts fit one report.
 
 ## 07-workflows
 

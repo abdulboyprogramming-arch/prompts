@@ -27,6 +27,16 @@ High-utility prompts for a specific situation, usable in one session. Lighter th
 | [`performance-budget/PERFORMANCE-BUDGET.md`](performance-budget/PERFORMANCE-BUDGET.md) | "The site feels slow" turned into a number that fails a build | **operational** |
 | [`monorepo/MONOREPO.md`](monorepo/MONOREPO.md) | Slow, fragile, or quietly coupled packages | **operational** |
 | [`disaster-recovery/DISASTER-RECOVERY.md`](disaster-recovery/DISASTER-RECOVERY.md) | The region, account, or data is gone — prove the restore, measure RTO/RPO | **operational** |
+| [`automation/AUTOMATE-TASK.md`](automation/AUTOMATE-TASK.md) | "Every Monday we do this by hand" — turn it into a script that is idempotent, verified, and heard from when it fails | **operational** |
+| [`client-secrets/CLIENT-SIDE-SECRETS.md`](client-secrets/CLIENT-SIDE-SECRETS.md) | A key shipped in a bundle, app, or CLI — find it, state what it can do, replace the design | **operational** |
+| [`supply-chain/SUPPLY-CHAIN.md`](supply-chain/SUPPLY-CHAIN.md) | Can you prove the artifact you deployed is the one you built, and would a compromised dependency reach production? | **operational** |
+| [`data-residency/DATA-RESIDENCY.md`](data-residency/DATA-RESIDENCY.md) | A contract or regulator says data must stay in a region — find where it actually goes | **operational** |
+| [`data-migration/DATA-MIGRATION.md`](data-migration/DATA-MIGRATION.md) | Records must move between systems — field mapping, loss register, idempotent load, value-level reconciliation | **operational** |
+| [`feature-sunset/FEATURE-SUNSET.md`](feature-sunset/FEATURE-SUNSET.md) | Retire a feature customers use: usage evidence, notice, reversible switch-off, data decision | **operational** |
+| [`incident-communications/INCIDENT-COMMUNICATIONS.md`](incident-communications/INCIDENT-COMMUNICATIONS.md) | Someone must write the customer update on a cadence, without speculation | **operational** |
+| [`operational-readiness/OPERATIONAL-READINESS.md`](operational-readiness/OPERATIONAL-READINESS.md) | Would the on-call engineer survive this service at 03:00? | **operational** |
+| [`build-performance/BUILD-PERFORMANCE.md`](build-performance/BUILD-PERFORMANCE.md) | CI takes 40 minutes and people skip tests — measure the loop before optimising | **operational** |
+| [`ai-output-verification/AI-OUTPUT-VERIFICATION.md`](ai-output-verification/AI-OUTPUT-VERIFICATION.md) | An agent says it is done — verify what is true before anyone trusts it | **operational** |
 | [`quick-fixes/SAFE-QUICK-FIX.md`](quick-fixes/SAFE-QUICK-FIX.md) | A small, contained fix with minimal blast radius | skeleton |
 | [`performance-investigation/PERFORMANCE-INVESTIGATION.md`](performance-investigation/PERFORMANCE-INVESTIGATION.md) | Something is slow and you need a diagnosis, not an optimisation project | skeleton |
 | [`legacy-code/WORKING-WITH-LEGACY.md`](legacy-code/WORKING-WITH-LEGACY.md) | Changing code nobody understands, without a rewrite | skeleton |

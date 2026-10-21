@@ -56,6 +56,9 @@ Only `confirmed` findings may be rated S1/S2.
 - Deployment-time controls (TLS, network policy, secret injection): `03-domains/devops-infra/`.
 - Incident in progress: `05-scenarios/incident-response/`. Do not run a review during an outage.
 - Dependency CVEs: gather in audit P05 or this system's P03 supply-chain section; do not duplicate both.
+- Credentials published in client artifacts (browser bundles, app binaries, `EXPO_PUBLIC_*`/`NEXT_PUBLIC_*` inlining): `05-scenarios/client-secrets/` — a different failure from a leaked server credential, because there is no rotation that un-publishes it.
+- Build and release integrity (lockfiles, install scripts, provenance, digest pinning): `05-scenarios/supply-chain/`.
+- Evidence obligations for a named standard: `04-process/standards-conformance/`.
 
 ## What this system will not do
 

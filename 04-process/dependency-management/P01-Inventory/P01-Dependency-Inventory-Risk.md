@@ -2,7 +2,7 @@
 
 **Identifier:** DEP-P01
 **System:** 04-process/dependency-management
-**Version:** 1.0.0
+**Version:** 1.0.1
 **Maturity:** operational
 **Execution mode:** diagnostic
 **Risk class:** B
@@ -90,3 +90,5 @@ Risk class B: analysis plus read-only audit commands. Do not update, install, or
 Artifact: `.deps/DEPENDENCY_MAP.md`.
 
 P02 receives: the risk ranking, the critical-few list, reproducibility constraints, and security findings that determine upgrade order.
+
+Licence findings are handed to `04-process/licence-compliance/` (`LIC-01`), which turns a licence label into the obligation it imposes on what you actually distribute. Supply-chain integrity — lockfile enforcement, install scripts, provenance — is `05-scenarios/supply-chain/` (`SUPPLY-01`).

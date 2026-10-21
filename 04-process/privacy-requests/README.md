@@ -1,6 +1,6 @@
 # Privacy Requests
 
-**Maturity: operational (v1.0.0).** Three stages for handling access, export, and deletion requests for personal data — the engineering obligations behind GDPR/CCPA-style rights.
+**Maturity: operational (v1.1.0).** Four stages for handling access, export, deletion, and *verification of deletion* for personal data — the engineering obligations behind GDPR/CCPA-style rights.
 
 **Entry point:** [`P01-Inventory/P01-Data-Inventory.md`](P01-Inventory/P01-Data-Inventory.md)
 **Execution mode:** specialised
@@ -24,6 +24,7 @@ The failure modes are predictable and expensive:
 | PRIV-P01 | [Data inventory](P01-Inventory/P01-Data-Inventory.md) | Where does this person's data exist — every system, including the ones nobody thinks of | `.privacy/DATA_MAP.md` |
 | PRIV-P02 | [Execution](P02-Execution/P02-Request-Execution.md) | Export or delete with verification, scoping, and a record | `.privacy/REQUEST_LOG.md` |
 | PRIV-P03 | [Retention & recurrence](P03-Retention/P03-Retention-Systematise.md) | Retention schedules, and making the next request cheap | `.privacy/RETENTION.md` |
+| PRIV-P04 | [Deletion verification](P04-Verification/P04-Deletion-Verification.md) | Prove the data is gone from warehouses, logs, indices, queues, backups, and vendors — and that a restore cannot resurrect it | `.privacy/DELETION_EVIDENCE.md` |
 
 ## Rules
 
