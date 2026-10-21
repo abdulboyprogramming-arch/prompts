@@ -2,6 +2,31 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.24.0] — 2026-10-21
+
+### New — a worked multi-agent run, and the three rules it forced (#109)
+
+`WF-MULTIAGENT` said "freeze the interfaces first" and "audit for cross-agent interference". Neither was demonstrated, so both read as formalities. [`07-workflows/multi-agent-worked-example.md`](07-workflows/multi-agent-worked-example.md) is a two-agent notifications feature where:
+
+- the event schema was frozen before either agent started;
+- Agent A added a **required** `template_id` on day 2 and reported it as *done*, not *deviated*;
+- both per-agent suites stayed green, because each built its fixtures from its own copy of the schema;
+- the seam broke silently — the worker rendered an empty template and the job reported success.
+
+The recovery is the interesting part: the interface was **versioned** (v2 with `template_id` optional, `template` retained) rather than reverted, because a consumer already depended on v1; and the fixing agent built its test from A's *serialised payload* rather than from the frozen block.
+
+Three rules followed, each traceable to a row of the audit that should have run on day 2:
+
+1. **The frozen interface is a fixture, not a paragraph.** A serialised example in the repository, which agents' tests read. A copy in a prompt is where drift lives.
+2. **A required field is an interface change**, reported as `deviated`, never as `done`.
+3. **The seam check belongs to the orchestrator and runs before integration**, asserting on the boundary outcome — the rendered email, the persisted row — not on the handshake.
+
+`WF-MULTIAGENT` v1.1.0 carries all three, with completion criteria and a failure-handling entry for the case where every unit suite is green and the integration fails.
+
+### Result
+
+**460 Markdown files, 364 prompts: 213 operational, 5 draft, 146 skeleton** (this release adds a reference document, not a prompt). Validator 0 errors / 0 warnings; tooling self-tests 6/6, 13/13, 12/12, 15/15; prose lint 0 findings at baseline 0; catalog, gallery, task index and evidence report current.
+
 ## [2.23.0] — 2026-10-21
 
 ### Changed — `P06 Validation` differentiated across the three contribution variants (#107)

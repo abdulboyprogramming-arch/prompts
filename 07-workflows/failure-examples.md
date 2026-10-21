@@ -124,6 +124,10 @@ These are not hypothetical. Each was assembled from the failure modes the prompt
 - [ ] Each example ends in a state that can be checked, not in reassurance.
 - [ ] No example is softened to a tidier outcome.
 
+## The failure these four do not cover
+
+Interface drift between parallel agents is a different shape: nothing fails, every per-agent check passes, and the defect lives in the seam. It is worked through separately in [`multi-agent-worked-example.md`](multi-agent-worked-example.md).
+
 ## Using this file
 
 - Read the matching example **before** running a workflow whose gate you expect to be contentious.

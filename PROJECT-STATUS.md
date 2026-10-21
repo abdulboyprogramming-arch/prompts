@@ -1,6 +1,6 @@
 # Project Status — Continuation Checkpoint
 
-**As of:** 2026-10-21 · **Library version:** 2.23.0 · **Branch:** `main` (work delivered in a feature branch, merged by pull request)
+**As of:** 2026-10-21 · **Library version:** 2.24.0 · **Branch:** `main` (work delivered in a feature branch, merged by pull request)
 **Read this first** if you are continuing work on this repository. It replaces guesswork about what exists and what was intended.
 
 ---

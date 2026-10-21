@@ -20,6 +20,7 @@ A workflow is not a new prompt to paste. It is an operating procedure for a sess
 | [Multi-agent orchestration](multi-agent-orchestration.md) | Work will be split across several agents and must integrate coherently | separable tasks with freezeable interfaces | operational |
 | [Agent adoption](agent-adoption.md) | A team is introducing coding agents and needs evaluation, permissions, oversight, and rollback | `CTX-P01` → `AI-P07` → pilot | operational |
 | [Failure examples](failure-examples.md) | A gate refuses, a stage fails, a claim does not survive verification, a mitigation makes it worse | any workflow | operational |
+| [A worked multi-agent run](multi-agent-worked-example.md) | You are about to split work across agents and want to know what interface drift looks like | `WF-MULTIAGENT` | reference |
 | [Compliance readiness](compliance-readiness.md) | A questionnaire, audit window, or contract names a standard you must evidence | `04-process/standards-conformance/` | operational |
 | [Prompt authoring pipeline](prompt-authoring-pipeline.md) | You need a prompt that does not exist yet, or need to know whether a rewrite is better | `GEN-P01` → `GEN-P02` | operational |
 
