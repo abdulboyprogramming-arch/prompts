@@ -1,6 +1,6 @@
 # Project Status — Continuation Checkpoint
 
-**As of:** 2026-10-20 · **Library version:** 2.19.0 · **Branch:** `main` (work delivered in a feature branch, merged by pull request)
+**As of:** 2026-10-20 · **Library version:** 2.20.0 · **Branch:** `main` (work delivered in a feature branch, merged by pull request)
 **Read this first** if you are continuing work on this repository. It replaces guesswork about what exists and what was intended.
 
 ---
@@ -31,13 +31,13 @@ archive/         Legacy .txt source material, retained for provenance
 
 Run `python3 scripts/validate_library.py` for live numbers. At the time of writing:
 
-- **447 Markdown files**, **355 prompt files**.
-- Maturity: **201 operational**, **5 draft**, **149 skeleton**.
+- **452 Markdown files**, **358 prompt files**.
+- Maturity: **204 operational**, **5 draft**, **149 skeleton**.
 - **0 validation errors, 0 warnings**.
 - Operational systems: open-source contribution agent (16), codebase audit (9), project recovery (7), security hardening (7), testing & QA (7), refactoring (7), database (5), cost engineering (4), privacy requests (3), payments (3), git operations (5), code review (6), feature flags (5), documentation (8), handover (5), hackathon sprint (1), agent context (4), deployment (2), dev environment (1), on-call handover (1), dependency management (5), decommissioning (4), governance and compliance (3), observability & reliability (5), release engineering (4), AI/agentic (5), feature completion (4), independent verification (1), plus licence compliance, standards conformance, automation of described tasks, client-side secrets, supply chain, data residency, feature sunset, incident communications, operational readiness, build performance, AI-output verification, debugging, incident response, flaky-test triage, failed-fix escalation, data-loss recovery, disaster recovery, security incident response, time correctness, third-party integration, file uploads, localisation, infrastructure as code, performance budgets, monorepo health, API versioning, and desktop/CLI (2 stages).
 - Every prompt declares identifier, system, version, maturity, execution mode, and risk class.
 
-**The honest summary:** roughly two fifths of the prompt files are developed to the standard (201 operational); the rest are outlines that name a sensible stage sequence but lack verification, evidence rules, and failure handling. One prompt has been empirically executed. That ratio is stated everywhere it matters, and the validator fails the build if a README over-claims.
+**The honest summary:** roughly two fifths of the prompt files are developed to the standard (204 operational); the rest are outlines that name a sensible stage sequence but lack verification, evidence rules, and failure handling. One prompt has been empirically executed. That ratio is stated everywhere it matters, and the validator fails the build if a README over-claims.
 
 ## 4. Standards that now govern the repository
 
@@ -81,7 +81,7 @@ Full detail in `CHANGELOG.md`. Summary:
 
 ## 7. Known weaknesses (do not paper over)
 
-1. **Almost no empirical testing.** One prompt has a recorded run against a synthetic fixture (`_meta/empirical-evaluation-01.md`, `DBG-01`). `operational` means structurally reviewed against the rubric, not proven on a real repository — and 201 prompts now carry that label; [`_meta/evidence-levels.md`](_meta/evidence-levels.md) reports how many have been executed, which is one.
+1. **Almost no empirical testing.** One prompt has a recorded run against a synthetic fixture (`_meta/empirical-evaluation-01.md`, `DBG-01`). `operational` means structurally reviewed against the rubric, not proven on a real repository — and 204 prompts now carry that label; [`_meta/evidence-levels.md`](_meta/evidence-levels.md) reports how many have been executed, which is one.
 2. **149 skeletons.** Concentrated in `02-engineering/` (architecture-review, migration, performance-investigation), `03-domains/` (frontend, devops-infra, data-ml-ai, games, security, backend's seven remaining stages) and `04-process/` (PM, code review variants).
 3. **Coverage is complete at the row level, which is not the same as depth.** Every row of `_meta/coverage-matrix.md` has a prompt; **27 of 141 dimension rows are still partial**, and 5 of 15 workflow rows. A named prompt is not a solved problem.
 4. **Reviews are self-assessments** by the authoring agent, recorded in `_meta/review-log.md`. Independence is not claimed.
@@ -91,14 +91,14 @@ Full detail in `CHANGELOG.md`. Summary:
 
 ## 8. Next actions, in order
 
-Completed since this list was written: **environment parity, capacity planning, vendor due diligence, abuse prevention, duplicate-detection signals, the generated evidence report, and a worked run sheet** (2.19.0); **data migration, access review, deletion verification** (2.18.0); **licence compliance, standards conformance, the compliance workflow, task automation, client-side secret exposure, supply chain integrity, data residency, feature sunset, incident communications, operational readiness, build performance, AI-output verification** (2.18.0); **disaster recovery, time correctness, third-party integration, uploads, localisation, IaC, performance budgets, monorepo, API versioning, desktop/CLI, validator self-tests** (2.17.0); **tenant isolation, secret rotation, background jobs, email deliverability, accessibility audit, data engineering, agent-adoption workflow** (2.16.0); **prompt generation and regression (`GEN-P01/P02`), web3, mobile, embedded/IoT, games save+netcode, RAG grounding, agent permissions** (2.15.0); **deployment targets, host migration, dev environment, agent context, on-call handover** (2.14.0), **project handover** (2.12.0), **documentation products and live surface audit** (2.11.0), **feature flags** (2.10.0), **input declarations across the operational library** (2.9.0 — 109/118 prompts, nine artifact-only stages exempt), **code review** (2.8.0), **git operations and the inputs convention** (2.7.0), **payments** (2.6.0).
+Completed since this list was written: **quickstart, usage metering, test data, worked failure examples, prose lint, and the contribution-variant decision** (2.20.0); **environment parity, capacity planning, vendor due diligence, abuse prevention, duplicate-detection signals, the generated evidence report, and a worked run sheet** (2.19.0); **data migration, access review, deletion verification** (2.18.0); **licence compliance, standards conformance, the compliance workflow, task automation, client-side secret exposure, supply chain integrity, data residency, feature sunset, incident communications, operational readiness, build performance, AI-output verification** (2.18.0); **disaster recovery, time correctness, third-party integration, uploads, localisation, IaC, performance budgets, monorepo, API versioning, desktop/CLI, validator self-tests** (2.17.0); **tenant isolation, secret rotation, background jobs, email deliverability, accessibility audit, data engineering, agent-adoption workflow** (2.16.0); **prompt generation and regression (`GEN-P01/P02`), web3, mobile, embedded/IoT, games save+netcode, RAG grounding, agent permissions** (2.15.0); **deployment targets, host migration, dev environment, agent context, on-call handover** (2.14.0), **project handover** (2.12.0), **documentation products and live surface audit** (2.11.0), **feature flags** (2.10.0), **input declarations across the operational library** (2.9.0 — 109/118 prompts, nine artifact-only stages exempt), **code review** (2.8.0), **git operations and the inputs convention** (2.7.0), **payments** (2.6.0).
 
 1. **Empirical test harness** — backlog #83/#91. One executed run exists, and `_meta/evidence-levels.md` now states the ratio (1 of 201 operational prompts). The next unit of value is a fixture set, a scoring sheet, and runs performed by someone other than the prompt author. Until then every `operational` label is a structural claim.
-2. **Abuse and rate-limit enforcement** is now covered (`ABUSE-01`); next is **usage metering and entitlements** (backlog #105).
+2. **Differentiate the 18 overlapping contribution stages** (backlog #107) — one stage across all three variants per pass; #100 decided the policy and this is the work.
 3. **Promote `03-domains/backend`'s seven remaining skeleton stages** — it is the largest domain and now has a ninth stage (`P09`) that is operational while stages P01–P08 are outlines.
 4. **Promote `03-domains/frontend`** — accessibility and state management are named but lack pass criteria; `PERF-BUDGET-01` now covers budgets, but only from the outside.
 4. **Close the 29 partial coverage rows** — the largest clusters are testing depth, observability at the on-call level, and governance evidence.
-6. **Consolidate the `01-contribution` parallel variants** (backlog #100) — the duplicate metric ranks them highest in the library.
+6. **Burn down the prose-lint baseline** (backlog #108) — 171 findings, starting with the 68 `etc.` in the open-source agent.
 7. Consolidate the input vocabulary (backlog #26) — cosmetic until a run sheet is reused across systems, then it becomes friction.
 
 ## 9. How to resume

@@ -138,7 +138,7 @@ def is_archive(rel: str) -> bool:
     return rel.split(os.sep)[0] in ARCHIVE_DIRS
 
 
-TOP_LEVEL_DOCS = {"README.md", "AGENTS.md", "CHANGELOG.md", "CONTRIBUTING.md", "PROJECT-STATUS.md", "GALLERY.md"}
+TOP_LEVEL_DOCS = {"README.md", "AGENTS.md", "CHANGELOG.md", "CONTRIBUTING.md", "PROJECT-STATUS.md", "GALLERY.md", "QUICKSTART.md"}
 
 
 def strip_fences(text: str) -> str:
