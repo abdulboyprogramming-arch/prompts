@@ -9,9 +9,9 @@ CI fails if this file is stale, so the numbers below cannot drift from the regis
 |-------|------:|
 | Prompt files in the library | 362 |
 | Labelled `operational` (structurally reviewed) | 208 |
-| `operational` prompts with a recorded execution | 1 |
-| `operational` prompts with no recorded execution | 207 |
-| Share of `operational` prompts demonstrated | 0.5% |
+| `operational` prompts with a recorded execution | 2 |
+| `operational` prompts with no recorded execution | 206 |
+| Share of `operational` prompts demonstrated | 1.0% |
 
 `operational` means the artifact meets the authoring standard and survived a structural
 review against the quality rubric. It does **not** mean the prompt has been run against a
@@ -21,6 +21,7 @@ real repository. Exactly one column above measures execution, and it is the smal
 
 | Prompt | Date | Evaluator | Scope | Result | Record | Limitations |
 |--------|------|-----------|-------|--------|--------|-------------|
+| `CHAT-DEBUG` Conversational Debugging | 2026-10-20 | the prompt's author (conflict of interest recorded) | tabletop walkthrough of a constructed fixture: a nightly sync failing with 'database is locked' at commit(), where the pasted code is innocent and a second uncommitted connection in unseen code holds the lock | three real prompt defects found and fixed in v1.1.0: no instruction to find other holders of the same resource, a ledger unable to record findings outside the paste, and no rule for contradictions between the user's account and the evidence | [`empirical-evaluation-02.md`](../_meta/empirical-evaluation-02.md) | tabletop by the author, not a live user session; single fixture; database errors name their resource, which makes this lesson unusually easy to teach |
 | `DBG-01` Systematic Debugging | 2026-10-20 | the prompt's author (conflict of interest recorded) | one synthetic fixture with a hidden mutable-default defect and a green test suite | protocol completed end to end; three real prompt weaknesses found and fixed in v1.2.0 | [`empirical-evaluation-01.md`](../_meta/empirical-evaluation-01.md) | single small fixture, author-evaluated, deterministic defect, familiar stack |
 
 ## How to add an execution
