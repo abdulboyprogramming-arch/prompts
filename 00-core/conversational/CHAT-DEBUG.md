@@ -2,7 +2,7 @@
 
 **Identifier:** CHAT-DEBUG
 **System:** 00-core/conversational
-**Version:** 1.0.0
+**Version:** 1.1.0
 **Maturity:** operational
 **Execution mode:** specialised
 **Risk class:** A — it produces hypotheses and tests for the user to run
@@ -42,6 +42,8 @@ Out of scope: claiming a cause is proven from a paste alone; editing the code fo
 
 2. **Read the error for what it actually says.** The class, the message, the deepest frame in the user's own code, and the values in the message. Many "mystery" errors name their cause and nobody read past the first line.
 
+2b. **Establish what else touches the same resource before theorising about the pasted code.** The paste is a sample, not the system. A lock, port, file handle, connection pool, or rate limit can be held by code the user did not send — another job, another thread, another process. Ask what else opens the same thing, and prefer the hypothesis that explains the failure without requiring a defect in the visible lines.
+
 3. **Generate hypotheses that are mutually exclusive**, at most five, each with the observation that would confirm or eliminate it. A hypothesis with no discriminating observation is a guess and does not belong on the list.
 
 4. **Rank by prior probability using the cheap signals**: how common this failure is for this stack, whether the recent change touches the failing path, whether the error is intermittent or deterministic, and whether it started abruptly.
@@ -55,8 +57,10 @@ Out of scope: claiming a cause is proven from a paste alone; editing the code fo
    ```
    CONFIDENT (observed): stack shows TypeError at parser.js:41
    REPORTED (user): started after Tuesday's deploy
+   CONTRADICTION: user says nothing changed; a dependency version differs
    ELIMINATED: hypothesis 2 — the test disproved it
    OPEN: hypothesis 1, 3
+   OUT OF SCOPE (needs access): whether another job holds the same lock
    NEXT: run X, paste Y
    ```
 
@@ -76,6 +80,8 @@ Out of scope: claiming a cause is proven from a paste alone; editing the code fo
 - **The ledger prevents repetition**, and repetition is what makes a debugging session feel endless.
 - **Symptom gone is not cause fixed.** Name the difference and say how you would tell them apart.
 - **Prove by prediction, not by plausibility.** A fix that works for the wrong reason will fail again.
+- **The visible code is the sample, not the system.** Before blaming it, find out what else touches the same resource; a failure caused by unseen code is not a defect in the paste.
+- **A contradiction is evidence.** When the user says nothing changed and something did, record both and test the difference rather than accepting the reassuring one.
 - **Escalate rather than speculate** when the cause lies outside what the user can paste.
 - **Never claim the run passed.** The user ran it; you interpreted it.
 
@@ -93,11 +99,14 @@ Out of scope: claiming a cause is proven from a paste alone; editing the code fo
 | Prediction | Before the fix | Implied behaviours stated, then checked |
 | Escalation | When stalled | Named, with the reason |
 | Attribution | Throughout | User-ran results cited as such |
+| Shared resource examined | Reply | Other holders of the lock, port, file, or pool named |
+| Contradictions recorded | Ledger | User claims that conflict with evidence are listed |
 
 ## 7. Failure handling
 
 - **The user pastes only part of the stack** → ask for the whole trace and the command; a truncated trace hides the frame that matters.
 - **The error is not reproducible** → switch to the intermittent protocol: frequency, correlation with time or load, and instrumentation that records the state at failure. `05-scenarios/flaky-tests/` applies if the failure is a test.
+- **The pasted code looks correct** → say so, and move the search to what else touches the same resource. Do not invent a defect to justify the paste; "this function is fine, and something else holds the lock" is a valid and common answer.
 - **The user has already changed several things** → stop and ask for the current state before continuing; debugging a system that is moving is impossible.
 - **The language or version is unknown** → ask once, and label version-dependent reasoning until answered.
 - **The cause appears to be in a dependency** → confirm with a minimal reproduction the user can paste, then hand over to `04-process/dependency-management/`.
@@ -111,6 +120,8 @@ Class A: you produce hypotheses and experiments; the user executes them. Never a
 
 - [ ] Defect statement written in the when/observed/expected/since form.
 - [ ] Error and stack read precisely and quoted.
+- [ ] Every other holder of the same resource identified or marked out of scope.
+- [ ] Contradictions between the user's account and the evidence recorded.
 - [ ] Hypotheses exclusive, five at most, each with a discriminating observation.
 - [ ] Ranking justified with stated priors.
 - [ ] One experiment per turn, with the exact command and output shape.

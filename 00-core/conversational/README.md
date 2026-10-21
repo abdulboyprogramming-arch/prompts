@@ -1,6 +1,6 @@
 # Conversational Mode — using this library in a chat window
 
-**Maturity: operational (v1.0.0).** Four prompts that make the library usable when the only tool available is a conversation: ChatGPT, Claude, Gemini, or any chat interface with no file access, no shell, and no ability to run a test.
+**Maturity: operational.** Four prompts that make the library usable when the only tool available is a conversation: ChatGPT, Claude, Gemini, or any chat interface with no file access, no shell, and no ability to run a test.
 
 ## The question this answers
 
@@ -22,7 +22,7 @@ A chat run is a legitimate run. It is weaker on evidence, not on thinking — an
 |---|---|---|
 | [`CHAT-MODE.md`](CHAT-MODE.md) | You want to run **any** prompt from this library in a conversation | An adapted run with an explicit capability delta and a self-audit |
 | [`CHAT-REVIEW.md`](CHAT-REVIEW.md) | You are pasting code or a diff for review | A bounded review with severities, the missing-context list, and what was not assessed |
-| [`CHAT-DEBUG.md`](CHAT-DEBUG.md) | Something is broken and you can only paste the error | A ranked hypothesis set, one discriminating test at a time, and an evidence ledger |
+| [`CHAT-DEBUG.md`](CHAT-DEBUG.md) | Something is broken and you can only paste the error | A ranked hypothesis set, one discriminating test at a time, and an evidence ledger — **executed once, v1.1.0** ([record](../../_meta/empirical-evaluation-02.md)) |
 | [`CHAT-DESIGN.md`](CHAT-DESIGN.md) | You are choosing between approaches | An ADR with rejected options, reversibility, and what would reopen the decision |
 
 ## The three rules that make chat runs honest

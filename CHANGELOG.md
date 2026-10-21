@@ -2,6 +2,26 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.21.1] — 2026-10-21
+
+### Changed — `CHAT-DEBUG` v1.1.0, after being run
+
+The first conversational prompt in the library has now been executed, and it found three defects. The fixture: a nightly sync failing with `sqlite3.OperationalError: database is locked` at `db.commit()`, where the pasted function is **correct** and a second, uncommitted connection in code the user never sent holds the lock. The write-up is [`_meta/empirical-evaluation-02.md`](_meta/empirical-evaluation-02.md); it is a tabletop by the prompt's author, and the record says so.
+
+| Defect | What it cost | Fix in 1.1.0 |
+|---|---|---|
+| The prompt assumed the bug was in the paste | It would have critiqued an innocent loop and found a plausible, wrong cause | Step 2b: establish what else touches the same lock, port, file, or pool, and prefer the hypothesis that explains the failure without a defect in the visible lines |
+| The ledger could not hold a finding outside the paste | A correct answer stayed `OPEN` and looked unresolved | `CONTRADICTION:` and `OUT OF SCOPE (needs access):` lines |
+| No rule for a user claim that conflicts with evidence | "We bumped nothing" would have been accepted while a version differed | A contradiction is evidence — record both and test the difference |
+
+One thing the prompt still gets wrong is recorded rather than fixed: its stop rule counts experiments, but the real stopping condition in this run was a **scope change** — the search moved outside what the user can paste. Two completion criteria were added (shared resource identified, contradictions recorded), plus the failure-handling answer that matters most in a chat window: *"this function is fine, and something else holds the lock"* is a valid conclusion.
+
+### Result
+
+**458 Markdown files, 362 prompts: 208 operational, 5 draft, 149 skeleton.** Executed: **2 of 208 operational prompts (1.0%)** — `DBG-01` and now `CHAT-DEBUG`. Validator 0 errors / 0 warnings; tooling self-tests 6/6, 13/13, 12/12; prose ratchet clean at baseline 171; catalog, gallery and evidence report regenerated.
+
+The number that moved is the honest one: the library's demonstrated share doubled from 0.5% to 1.0%. Two data points are not a trend, and the other three conversational prompts remain unexecuted.
+
 ## [2.21.0] — 2026-10-20
 
 ### New — conversational mode: the library in a chat window

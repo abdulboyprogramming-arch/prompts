@@ -22,6 +22,17 @@
       "result": "protocol completed end to end; three real prompt weaknesses found and fixed in v1.2.0",
       "record": "_meta/empirical-evaluation-01.md",
       "limitations": "single small fixture, author-evaluated, deterministic defect, familiar stack"
+    },
+    {
+      "identifier": "CHAT-DEBUG",
+      "title": "Conversational Debugging",
+      "path": "00-core/conversational/CHAT-DEBUG.md",
+      "date": "2026-10-20",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "scope": "tabletop walkthrough of a constructed fixture: a nightly sync failing with 'database is locked' at commit(), where the pasted code is innocent and a second uncommitted connection in unseen code holds the lock",
+      "result": "three real prompt defects found and fixed in v1.1.0: no instruction to find other holders of the same resource, a ledger unable to record findings outside the paste, and no rule for contradictions between the user's account and the evidence",
+      "record": "_meta/empirical-evaluation-02.md",
+      "limitations": "tabletop by the author, not a live user session; single fixture; database errors name their resource, which makes this lesson unusually easy to teach"
     }
   ]
 }
