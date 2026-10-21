@@ -2,6 +2,35 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.20.0] — 2026-10-20
+
+### New — usable by a person, and measurable by the repository
+
+Four artifacts and one decision. The theme is the gap between a library that *contains* the right prompts and one that a person can *start using*, and the gap between a claim that gates work and a demonstration that they do.
+
+**`QUICKSTART.md` — five paths from symptom to ordered prompts**
+355 prompts is an archive, not a starting point. Five situations — production is broken, you inherited something, you are about to ship, someone wants proof, you are building new — each with the exact prompts in order, what you should be holding after each step, and the shortest defensible version if you only have an hour. It opens with what the library cannot do, because a reader who starts there is harder to mislead.
+
+**`METER-01` — Usage Metering and Entitlements** (`05-scenarios/usage-metering/`)
+The quantity you bill, which nothing covered: `payments` moves money, `cost-engineering` optimises spend, and the number on the invoice belonged to nobody. Billable unit defined with its exclusions; one metering point with its blind spot named; immutable idempotent events where corrections are new events; fail-open versus fail-closed chosen *and logged*; the period boundary rules where disputes live; **enforcement separated from accounting**, so an access-control bug cannot become a billing incident; monthly reconciliation against an independent source; and dispute reconstruction from stored events alone.
+
+**`TESTDATA-01` — Test Data** (`05-scenarios/test-data/`)
+The least-governed copy of production data is the one that ships with the repository. Inventory including cassettes, base64 blobs, and screenshots attached to pull requests; four states — synthetic, anonymised, pseudonymised, real copy — with different remediation each; a test that "anonymised" is actually irreversible; generators that emit awkward data deliberately, because tidy test data is how a suite stays green while production breaks; and a CI guard demonstrated failing on a planted address.
+
+**`WF-FAILURE` — Failure Examples** (`07-workflows/failure-examples.md`)
+Workflows define gates and failure routing; nothing showed them firing. Four scenarios: a gate that refuses *after* work was done, a stage blocked by an upstream artifact, an agent claim refuted by verification (the suite passed with 84 tests, down from 87), and a mitigation that made an incident worse. Each names the wrong response, because that is what readers do by default.
+
+### Library capability
+
+- **`scripts/lint_prose.py`** finds what the structural validator structurally cannot: unactionable qualifiers (`as appropriate`, `if necessary`, `etc.`), empty intensifiers with no concrete instruction in the sentence, and run-on sentences. Adopted as a **ratchet**: CI fails only when findings exceed a recorded baseline, so the corpus can improve without a big-bang rewrite. Baseline: **171 findings across 112 files**, 68 of them `etc.` concentrated in the 16-stage open-source agent. Twelve fixtures, including the false positives that would make it unusable.
+- **`01-contribution/VARIANTS.md`** records the decision the new duplicate metric demanded. The three contribution variants score 0.63–0.68 combined — the highest in the library — because they differ mainly in nouns. They are kept, with a rule: any overlapping stage must state its domain difference or be deleted, and promotion stays blocked until it does. Backlog #107 orders the work one stage across all three variants rather than one system at a time.
+
+### Result
+
+**452 Markdown files, 358 prompts: 204 operational, 5 draft, 149 skeleton.** Validator 0 errors / 0 warnings; tooling self-tests 6/6 (validator), 13/13 (overlaps), 12/12 (prose lint); catalog, gallery and evidence report current; duplicate gates pass on both metrics.
+
+Coverage: **142 dimension rows, 115 adequate / 27 partial / 0 missing**. Backlog #107–#110 added; #100 (decided), #101, #103, #105, #106 closed.
+
 ## [2.19.0] — 2026-10-20
 
 ### New — the estate, and the library measuring itself

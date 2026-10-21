@@ -50,6 +50,12 @@ jobs:
       - name: Check for near-duplicate prompts (structure x vocabulary signal)
         run: python3 scripts/find_overlaps.py --check --metric combined --top 5
 
+      - name: Self-test the prose lint
+        run: python3 scripts/test_prose_lint.py
+
+      - name: Prose lint (ratchet — fails only on regression)
+        run: python3 scripts/lint_prose.py --check
+
       - name: Verify the evidence-level report is current
         run: |
           if ! python3 scripts/evidence_report.py --check; then

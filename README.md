@@ -4,11 +4,13 @@ A structured collection of prompts for AI coding agents, organised across the en
 
 Every prompt declares what it does, what it may change, how much it can be trusted, and what it will not do. Nothing here claims a capability its files do not have — the repository is validated against that rule on every change.
 
+**[`QUICKSTART.md`](QUICKSTART.md) — start here.** Four situations, the exact prompts in order, and what you should be holding at the end of each. It takes ten minutes and saves an hour of reading this file.
+
 **Browse everything:** [`GALLERY.md`](GALLERY.md) lists all 352 prompts with a direct link and one line on when to use each. It is generated from the prompts themselves and CI fails if it falls out of date, so it cannot drift from the library.
 
 ## Start here
 
-Pick the row that matches your situation. Do not read the whole repository first.
+Pick the row that matches your situation. Do not read the whole repository first. If you would rather follow a path than pick a symptom, use [`QUICKSTART.md`](QUICKSTART.md).
 
 | Your situation | Start with | Mode |
 |----------------|-----------|------|
@@ -87,6 +89,9 @@ Pick the row that matches your situation. Do not read the whole repository first
 | I am removing a feature customers use | [`05-scenarios/feature-sunset/`](05-scenarios/feature-sunset/FEATURE-SUNSET.md) | Usage evidence, notice, reversible |
 | "Works locally, fails in staging" | [`05-scenarios/environment-parity/`](05-scenarios/environment-parity/ENVIRONMENT-PARITY.md) | Rank by consequence, prove by experiment |
 | I need to know what breaks first under load | [`05-scenarios/capacity-planning/`](05-scenarios/capacity-planning/CAPACITY-PLANNING.md) | Pools, quotas, expiries, dates |
+| We charge by usage and the invoice has to be defensible | [`05-scenarios/usage-metering/`](05-scenarios/usage-metering/USAGE-METERING.md) | Immutable events, entitlements separate |
+| Our test fixtures hold real customer data | [`05-scenarios/test-data/`](05-scenarios/test-data/TEST-DATA.md) | Classify, replace, guard |
+| A workflow gate refused / a stage failed / an agent overstated | [`07-workflows/failure-examples.md`](07-workflows/failure-examples.md) | What handling it looks like |
 | Someone is abusing a public endpoint (stuffing, scraping, spam) | [`05-scenarios/abuse-prevention/`](05-scenarios/abuse-prevention/ABUSE-PREVENTION.md) | Limit the right dimension, not the IP |
 | We are about to depend on a vendor | [`05-scenarios/vendor-due-diligence/`](05-scenarios/vendor-due-diligence/VENDOR-DUE-DILIGENCE.md) | Data, reliability, lock-in, exit |
 | An incident needs a customer update, on a cadence | [`05-scenarios/incident-communications/`](05-scenarios/incident-communications/INCIDENT-COMMUNICATIONS.md) | No speculation, no promises |
@@ -166,8 +171,8 @@ In short: take it, change it, ship it — say where it came from, and do not pre
 | [`04-process/documentation/`](04-process/documentation/README.md) | 8 | operational |
 | [`04-process/handover/`](04-process/handover/README.md) | 5 | operational |
 | [`04-process/agent-context/`](04-process/agent-context/README.md) | 4 | operational |
-| [`07-workflows/`](07-workflows/README.md) | 11 | mixed (6 operational, 5 draft) |
-| [`05-scenarios/`](05-scenarios/README.md) | 40 | mixed (35 operational, 5 skeleton) |
+| [`07-workflows/`](07-workflows/README.md) | 12 | mixed (7 operational, 5 draft) |
+| [`05-scenarios/`](05-scenarios/README.md) | 42 | mixed (37 operational, 5 skeleton) |
 
 Everything else — backend, frontend, devops-infra, data-ml-ai, the eight game-design stages, architecture-review, from-scratch, migration, project management, research, systems improvement, language design, packages, web/web3 contribution — is a **skeleton**: a defensible sequence of stages with outline prompts. Those folders are useful for structuring a human-led session today; they are not yet safe to hand to an autonomous agent. Promotion order is in [`_meta/ROADMAP-AND-BACKLOG.md`](_meta/ROADMAP-AND-BACKLOG.md); per-scenario coverage with evidence is in [`_meta/coverage-matrix.md`](_meta/coverage-matrix.md).
 

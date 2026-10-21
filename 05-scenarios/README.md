@@ -41,6 +41,8 @@ High-utility prompts for a specific situation, usable in one session. Lighter th
 | [`capacity-planning/CAPACITY-PLANNING.md`](capacity-planning/CAPACITY-PLANNING.md) | What runs out first, when, and what you will do about it — pools, quotas, sequences, expiries | **operational** |
 | [`vendor-due-diligence/VENDOR-DUE-DILIGENCE.md`](vendor-due-diligence/VENDOR-DUE-DILIGENCE.md) | Before you depend on a supplier: data exposure, reliability, lock-in, exit plan | **operational** |
 | [`abuse-prevention/ABUSE-PREVENTION.md`](abuse-prevention/ABUSE-PREVENTION.md) | Credential stuffing, scraping, enumeration, signup spam — limit the dimension the abuse consumes | **operational** |
+| [`test-data/TEST-DATA.md`](test-data/TEST-DATA.md) | The fixture holding a real customer, the staging database copied from production | **operational** |
+| [`usage-metering/USAGE-METERING.md`](usage-metering/USAGE-METERING.md) | You bill by usage, seat, or request — make the number defensible | **operational** |
 | [`quick-fixes/SAFE-QUICK-FIX.md`](quick-fixes/SAFE-QUICK-FIX.md) | A small, contained fix with minimal blast radius | skeleton |
 | [`performance-investigation/PERFORMANCE-INVESTIGATION.md`](performance-investigation/PERFORMANCE-INVESTIGATION.md) | Something is slow and you need a diagnosis, not an optimisation project | skeleton |
 | [`legacy-code/WORKING-WITH-LEGACY.md`](legacy-code/WORKING-WITH-LEGACY.md) | Changing code nobody understands, without a rewrite | skeleton |
