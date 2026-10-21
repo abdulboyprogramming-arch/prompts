@@ -6,12 +6,16 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 358 prompts — 0 canonical, 204 operational, 5 draft, 149 skeleton.
+**Totals:** 362 prompts — 0 canonical, 208 operational, 5 draft, 149 skeleton.
 
 ## `00-core`
 
 | ID | Stage | Maturity | Mode | Risk | File |
 |----|-------|----------|------|------|------|
+| `CHAT-DEBUG` | Chat Debugging: diagnose from a pasted error, and say what y | operational | specialised | A | [CHAT-DEBUG.md](../00-core/conversational/CHAT-DEBUG.md) |
+| `CHAT-DESIGN` | Chat Design: thinking architecture through in conversation | operational | specialised | A | [CHAT-DESIGN.md](../00-core/conversational/CHAT-DESIGN.md) |
+| `CHAT-MODE` | Conversational Mode: running any prompt in a chat window | operational | specialised | A | [CHAT-MODE.md](../00-core/conversational/CHAT-MODE.md) |
+| `CHAT-REVIEW` | Chat Code Review: reviewing a paste, with the limits stated | operational | specialised | A | [CHAT-REVIEW.md](../00-core/conversational/CHAT-REVIEW.md) |
 | `GEN-P01` | PROMPT 01 — The Prompt Forge: build a runnable prompt from a | operational | specialised | A | [PROMPT-FORGE.md](../00-core/prompt-engineering/PROMPT-FORGE.md) |
 | `GEN-P02` | PROMPT 02 — Prompt Regression: prove a prompt change is an i | operational | continuous-improvement | A | [PROMPT-REGRESSION.md](../00-core/prompt-engineering/PROMPT-REGRESSION.md) |
 

@@ -2,7 +2,7 @@
 
 **Purpose:** the gate that must pass before this repository becomes public, and the list of things only the owner can do in GitHub settings.
 
-**Audited:** 2026-10-20 (v2.20.0) · **Auditor:** repository maintainer (agent-assisted, evidence below)
+**Audited:** 2026-10-20 (v2.21.0) · **Auditor:** repository maintainer (agent-assisted, evidence below)
 **Previous audit:** v2.13.0 — the repository was already publishable then; this re-audit re-runs every check against the tree as it stands now, because 65 prompts and five tooling changes have landed since.
 
 ---
@@ -23,11 +23,11 @@
 
 | # | Check | Method | Result |
 |---|-------|--------|--------|
-| 1 | Structural validation | `python3 scripts/validate_library.py` | **PASS** — 452 Markdown files, 358 prompts, **0 errors / 0 warnings** |
-| 2 | Maturity honesty | validator rules | **PASS** — 204 operational, 5 draft, 149 skeleton; no label exceeds body; no system README outranks its stages |
-| 3 | Executed-prompt count is generated | `scripts/evidence_report.py --check` | **PASS** — `_meta/evidence-levels.md` matches the registry: **1 of 204 operational prompts executed (0.5%)**, stated in the file the README links |
+| 1 | Structural validation | `python3 scripts/validate_library.py` | **PASS** — 457 Markdown files, 362 prompts, **0 errors / 0 warnings** |
+| 2 | Maturity honesty | validator rules | **PASS** — 208 operational, 5 draft, 149 skeleton; no label exceeds body; no system README outranks its stages |
+| 3 | Executed-prompt count is generated | `scripts/evidence_report.py --check` | **PASS** — `_meta/evidence-levels.md` matches the registry: **1 of 208 operational prompts executed (0.5%)**, stated in the file the README links |
 | 4 | Catalog current | `--catalog` + `git diff` | **PASS** — regenerates with no diff |
-| 5 | Gallery current | `generate_gallery.py --check` | **PASS** — "up to date", 358 prompts |
+| 5 | Gallery current | `generate_gallery.py --check` | **PASS** — "up to date", 362 prompts |
 | 6 | Duplication | `find_overlaps.py --check` (shingle 0.55) and `--metric combined` (0.75) | **PASS** — highest shingle 0.18; highest combined 0.68, which is the known and *decided* contribution-variant case (`01-contribution/VARIANTS.md`) |
 | 7 | Tooling has tests | `test_validator.py`, `test_overlaps.py`, `test_prose_lint.py` | **PASS** — 6/6, 13/13, 12/12 |
 | 8 | Prose ratchet | `lint_prose.py --check` | **PASS** — 171 findings, baseline 171; the number is published, not hidden |
@@ -51,17 +51,17 @@ Checked against the tree, not against intention:
 | `QUICKSTART.md` | Five paths (broken / inherited / shipping / proof / new), each with ordered prompts and the artifact you end with; opens with what the library **cannot** do |
 | Maturity legend | In the README above the fold; `operational` defined as *structurally reviewed*, not proven |
 | `_meta/evidence-levels.md` | Generated; states 0.5% executed; linked from the README and the quickstart |
-| `GALLERY.md` | 358 prompts, one line each, generated from the prompts |
+| `GALLERY.md` | 362 prompts, one line each, generated from the prompts |
 | Limitations | Stated in README, quickstart, `PROJECT-STATUS.md`, and §3 below — four places, consistent |
 
 ## 3. Limitations that must survive publication
 
 These are already stated in the repository. They must not be softened in marketing language, release notes, or a launch post.
 
-1. **One prompt has been executed and recorded** (`DBG-01`, `_meta/empirical-evaluation-01.md`). 204 are labelled `operational`, which means *structurally complete and reviewed*, not *proven in use*. `_meta/evidence-levels.md` says so with a generated number.
+1. **One prompt has been executed and recorded** (`DBG-01`, `_meta/empirical-evaluation-01.md`). 208 are labelled `operational`, which means *structurally complete and reviewed*, not *proven in use*. `_meta/evidence-levels.md` says so with a generated number.
 2. **Reviews are author self-assessments**, scored in `_meta/review-log.md`. No second reviewer exists.
 3. **149 skeleton prompts** are named sequences without verification or failure handling — useful as human checklists, unsafe to run unattended.
-4. **Coverage is 115 adequate / 27 partial / 0 missing** dimension rows. No row is missing; 27 are thin, and the matrix names what is thin.
+4. **Coverage is 116 adequate / 27 partial / 0 missing** dimension rows. No row is missing; 27 are thin, and the matrix names what is thin.
 5. **171 prose-lint findings remain** (68 are `etc.`). The ratchet stops growth; the debt is recorded in the baseline and backlog #108, not glossed.
 6. **The library cannot make an agent honest.** It defines constraints and evidence rules; a model may still ignore them. `07-workflows/independent-verification.md` and `05-scenarios/ai-output-verification/` exist for exactly that reason.
 
@@ -103,9 +103,9 @@ Consequences today: PR checks show red without running, the badge is meaningless
 
 | Field | Suggested |
 |---|---|
-| Description | "358 prompts for AI coding agents, organised across the engineering lifecycle. Every prompt declares its scope, risk class, and what it will not do — and the repository is validated against those claims in CI." |
+| Description | "362 prompts for AI coding agents, organised across the engineering lifecycle. Every prompt declares its scope, risk class, and what it will not do — and the repository is validated against those claims in CI." |
 | Topics | `ai-agents`, `prompt-engineering`, `llm`, `coding-agents`, `software-engineering`, `code-review`, `incident-response`, `documentation`, `migration`, `developer-tools` |
-| Social preview | 1280×640 — title, one-line claim, and the honest numbers: 358 prompts · 204 operational · 1 executed |
+| Social preview | 1280×640 — title, one-line claim, and the honest numbers: 362 prompts · 208 operational · 1 executed |
 
 ### 5.4 Merge settings and branch cleanup
 

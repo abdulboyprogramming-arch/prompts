@@ -6,7 +6,7 @@ Every prompt declares what it does, what it may change, how much it can be trust
 
 **[`QUICKSTART.md`](QUICKSTART.md) — start here.** Four situations, the exact prompts in order, and what you should be holding at the end of each. It takes ten minutes and saves an hour of reading this file.
 
-**Browse everything:** [`GALLERY.md`](GALLERY.md) lists all 352 prompts with a direct link and one line on when to use each. It is generated from the prompts themselves and CI fails if it falls out of date, so it cannot drift from the library.
+**Browse everything:** [`GALLERY.md`](GALLERY.md) lists all 362 prompts with a direct link and one line on when to use each. It is generated from the prompts themselves and CI fails if it falls out of date, so it cannot drift from the library.
 
 ## Start here
 
@@ -107,6 +107,7 @@ Pick the row that matches your situation. Do not read the whole repository first
 | I need to restructure code without changing behaviour | [`02-engineering/refactoring/`](02-engineering/refactoring/README.md) | Diagnostic → implementation |
 | A feature "works" but only in the UI | [`02-engineering/feature-completion/`](02-engineering/feature-completion/README.md) | Implementation |
 | My request is vague and needs intake | [`06-interactive/`](06-interactive/README.md) | Interactive |
+| I only have a chat window, no repository access | [`00-core/conversational/`](00-core/conversational/README.md) | Any prompt, adapted, with the capability delta stated |
 
 Full inventory, with maturity per prompt: [`_meta/CATALOG.md`](_meta/CATALOG.md).
 
@@ -164,6 +165,7 @@ In short: take it, change it, ship it — say where it came from, and do not pre
 | [`02-engineering/access-review/`](02-engineering/access-review/ACCESS-REVIEW.md) | 1 | operational |
 | [`04-process/accessibility-audit/`](04-process/accessibility-audit/ACCESSIBILITY-AUDIT.md) | 1 | operational |
 | [`00-core/prompt-engineering/`](00-core/prompt-engineering/PROMPT-FORGE.md) | 2 | operational (GEN-P01, GEN-P02) |
+| [`00-core/conversational/`](00-core/conversational/README.md) | 4 | operational (chat mode: any prompt, adapted) |
 | [`04-process/privacy-requests/`](04-process/privacy-requests/README.md) | 4 | operational |
 | [`04-process/git-operations/`](04-process/git-operations/README.md) | 5 | operational |
 | [`04-process/code-review/`](04-process/code-review/README.md) | 6 | operational |
@@ -179,7 +181,7 @@ Everything else — backend, frontend, devops-infra, data-ml-ai, the eight game-
 ## Structure
 
 ```
-00-core/          Safety categories, orchestration primitives, base agent contract
+00-core/          Safety categories, orchestration primitives, base agent contract, chat mode
 01-contribution/  Contributing to existing projects (OSS, packages, web, web3, languages)
 02-engineering/   Audits, project recovery, architecture, refactoring, migration, performance, security
 03-domains/       Backend, frontend, devops, data/ML, games, AI-agentic, web3, mobile, embedded/IoT

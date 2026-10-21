@@ -2,6 +2,39 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.21.0] — 2026-10-20
+
+### New — conversational mode: the library in a chat window
+
+The direct answer to a fair question: **do these prompts have a chatbot version?** They did not. All 358 assumed an agent that can read a repository, run commands, and observe results, and nothing in the library said what survives when those are removed.
+
+The answer is a mechanism rather than a disclaimer. **`CHAT-MODE` adapts any prompt** in the library for a conversation, and it starts by stating the capability delta:
+
+| Capability | Agent | Chat window | Consequence |
+|---|---|---|---|
+| Discovery | Reads files, config, history | Nothing | The model must ask; the user must paste |
+| Execution | Runs tests and commands | Nothing | The user runs; the model interprets |
+| Verification | Observes the outcome | Nothing | Claims are labelled, never verified |
+
+**The evidence rule is the load-bearing part.** In chat, `verified` is reserved for the case where the user pasted the command *and* its output *and* they match the claim. Everything else is `observed`, `reported`, `inferred`, or `unknown`. Without that rule, a chat run silently inherits the authority of an agent run — and a fluent answer about an unseen repository is the most dangerous output this library can produce.
+
+**Three chat-native prompts**, because these are the tasks people actually do in a chat window and they need different wording:
+
+- **`CHAT-REVIEW`** — a bounded review with severities, a **not-assessed list** (tests, callers, config, data, dependencies), and a verdict scoped to the excerpt. "Looks good to merge" is prohibited; the smallest fix and the path to a real review are the deliverables.
+- **`CHAT-DEBUG`** — one discriminating experiment per turn, never three, with an evidence ledger (confident / reported / eliminated / open / next) that survives context truncation. Distinguishes symptom gone from cause fixed, and proves causes by prediction.
+- **`CHAT-DESIGN`** — an ADR with two to four real options including doing nothing, constraints applied as eliminations rather than invented weights, three ways the leading option fails in a year, reversibility, and the condition that would reopen the decision.
+
+### Also
+
+- `QUICKSTART.md` gained **Path 0 — you only have a chat window**, so the chat route is visible from the front door rather than buried in `00-core`.
+- `00-core/README.md` now lists the conversational family as executable prompts alongside `GEN-P01`/`GEN-P02`.
+
+### Result
+
+**457 Markdown files, 362 prompts: 208 operational, 5 draft, 149 skeleton.** Validator 0 errors / 0 warnings; tooling self-tests 6/6, 13/13, 12/12; prose ratchet clean at baseline 171; catalog, gallery and evidence report current.
+
+Coverage: **143 dimension rows, 116 adequate / 27 partial / 0 missing**, with conversational use assessed for the first time.
+
 ## [2.20.0] — 2026-10-20
 
 ### New — usable by a person, and measurable by the repository
