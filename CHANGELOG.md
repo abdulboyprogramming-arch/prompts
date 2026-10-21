@@ -59,6 +59,21 @@ Each names the failure it exists to catch: *picks a visible redesign and hands t
 
 The pass also corrected a measurement error from pass 1. Its vocabulary figures had been computed with Jaccard over word sets while the pair table above them used containment, so "barely moved" was reached by comparing two different things. Recomputed on both sides with `find_overlaps.py`'s own functions, `P06`'s vocabulary fell from 0.44–0.47 to 0.37–0.43 and its combined score rose. The conclusion survived; the arithmetic did not, and `01-contribution/VARIANTS.md` now carries the correction rather than a quietly amended table.
 
+### Changed — `P02 Discovery` and `P07 PR` differentiated (#107, passes 3 and 4)
+
+Two more passes, and the metric that pass 2 moved kept moving:
+
+| Stage | What the three variants now do differently | Combined, before → after |
+|---|---|---|
+| `P02 Discovery` | `WEB-P02` walks the running app at three widths with a keyboard; `W3-P02` maps the trust boundary before looking for missing guards; `PKG-P02` searches **consumer code** for wrappers, copies, and pinned old majors | 0.56–0.65 → **0.29–0.32** |
+| `P07 PR` | `WEB-P07` writes a viewing instruction — recipe, labelled media, look-here list; `W3-P07` writes a risk disclosure that opens with four facts; `PKG-P07` writes the release note first, because the changelog entry is the acceptance test for the description | 0.63–0.68 → **0.32–0.35** |
+
+The interesting result is `P02`. The three outlines were not merely similar — they used the same word for three different search spaces, and the only way to differentiate them was to notice that *discovery in a library happens in someone else's repository*. A candidate without a witness is now a hypothesis, kept out of the ranked list, in the same way a web candidate without an observation and a web3 candidate without a boundary are.
+
+`P07` differentiated by **reader**, not by content: a web reviewer checks behaviour, a protocol reviewer prices risk, a library maintainer decides a release. Each description now leads with what its reader decides first.
+
+Every rewritten pair sits at 0.29–0.38 combined, from 0.26–0.68. `P04 Planning` and `P05 Implementation` remain; `P01` and `P08` are deliberately untouched, because planning and implementing a change in a repository genuinely are the same job in any language, and differentiating them would produce adjectives rather than instruments.
+
 ### New — a worked multi-agent run, and the three rules it forced (#109)
 
 `WF-MULTIAGENT` said "freeze the interfaces first" and "audit for cross-agent interference". Neither was demonstrated, so both read as formalities. [`07-workflows/multi-agent-worked-example.md`](07-workflows/multi-agent-worked-example.md) is a two-agent notifications feature where the event schema was frozen before either agent started; Agent A then added a **required** `template_id` on day 2 and reported it as *done*, not *deviated*.
@@ -102,9 +117,9 @@ The two misses were worth more than the hits:
 
 ### Result
 
-**457 Markdown files, 364 prompts: 216 operational, 5 draft, 143 skeleton.** Validator 0 errors / 0 warnings; tooling self-tests 10/10, 13/13, 12/12, 17/17; prose lint 0 findings at baseline 0; catalog, gallery, task index and evidence report current, verified by one command. The file count is the validator's scan, not `find`'s — they differ by tooling and archive files, and the scanned number is the one that matches the other claims here.
+**457 Markdown files, 364 prompts: 222 operational, 5 draft, 137 skeleton.** Validator 0 errors / 0 warnings; tooling self-tests 10/10, 13/13, 12/12, 17/17; prose lint 0 findings at baseline 0; catalog, gallery, task index and evidence report current, verified by one command. The file count is the validator's scan, not `find`'s — they differ by tooling and archive files, and the scanned number is the one that matches the other claims here.
 
-Coverage: **143 rows, unchanged** — this release improves the instruments, not the coverage. Executed: **3 of 216 operational prompts (1.4%)** — `DBG-01`, `CHAT-DEBUG`, and `CHAT-SELECT` from this release. The six `P03` and `P06` stages promoted here and `CHAT-HANDOFF` have not been run, and the review log says so for each.
+Coverage: **143 rows, unchanged** — this release improves the instruments, not the coverage. Executed: **3 of 222 operational prompts (1.4%)** — `DBG-01`, `CHAT-DEBUG`, and `CHAT-SELECT` from this release. The twelve `P02`/`P03`/`P06`/`P07` stages promoted here and `CHAT-HANDOFF` have not been run, and the review log says so for each.
 
 ## [2.21.1] — 2026-10-21
 

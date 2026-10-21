@@ -29,7 +29,7 @@ prompts by situation.
 | [06-interactive — conversations that clarify a request](#06-interactive--conversations-that-clarify-a-request) | 4 | Use when the request is vague and needs to be scoped first. |
 | [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 13 | Composed sequences that route between systems and stop at human gates. |
 
-*Maturity across the library: 216 operational, 5 draft, 143 skeleton, 364 total.*
+*Maturity across the library: 222 operational, 5 draft, 137 skeleton, 364 total.*
 
 ---
 
@@ -93,12 +93,12 @@ Stage systems for contributing to an unfamiliar project.
 | ID | Prompt | Use it for | Maturity | Risk |
 |---|---|---|---|---|
 | `PKG-P01` | [Context & Package Understanding](01-contribution/packages-libraries/P01-Context/P01-Context-Package-Understanding.md) | Understand the package’s purpose, public API, users, and contribution norms. | skeleton | B |
-| `PKG-P02` | [Discovery & Opportunity Identification](01-contribution/packages-libraries/P02-Discovery/P02-Discovery-Opportunity-Identification.md) | Find valuable, realistic contribution opportunities for the package. | skeleton | A |
+| `PKG-P02` | [Discovery & Opportunity Identification: read the consumers, not just the code](01-contribution/packages-libraries/P02-Discovery/P02-Discovery-Opportunity-Identification.md) | OPPORTUNITIES.md where each candidate records the consumer evidence (issue, downstream workaround, error message in the wild), the friction it represents, the… <br>**Inputs:** `PROJECT_CONTEXT, ISSUE_TRACKER, RELEASE_HISTORY, DOWNSTREAM_SEARCH, SEMVER_POLICY` | operational | A |
 | `PKG-P03` | [Opportunity Selection & Framing: choose work that does not add a promise you must keep](01-contribution/packages-libraries/P03-Selection/P03-Opportunity-Selection-Framing.md) | SELECTED_WORK.md naming one candidate, its surface cost ledger (symbols added, symbols changed, dependencies added, behaviour changed silently), the semver… <br>**Inputs:** `OPPORTUNITIES, PROJECT_CONVENTIONS, ISSUE_REF, SEMVER_POLICY, SUPPORT_POLICY` | operational | A |
 | `PKG-P04` | [Planning & API Impact](01-contribution/packages-libraries/P04-Planning/P04-Planning-API-Impact.md) | Plan the change while explicitly considering public API impact and versioning. | skeleton | B |
 | `PKG-P05` | [Implementation](01-contribution/packages-libraries/P05-Implementation/P05-Implementation.md) | Implement the planned change cleanly, preserving public API contracts unless a deliberate breaking change was approved in the plan. | skeleton | B |
 | `PKG-P06` | [Validation & Compatibility: prove you did not break anyone's build](01-contribution/packages-libraries/P06-Validation/P06-Validation-Compatibility.md) | VALIDATION.md with the public API surface diff, the runtime and module-format matrix, consumer smoke tests run against the packaged artifact, the semver decision… <br>**Inputs:** `CHANGE_SCOPE, SUPPORTED_RUNTIMES, PREVIOUS_VERSION, TEST_COMMAND, SEMVER_POLICY` | operational | A |
-| `PKG-P07` | [PR & Communication](01-contribution/packages-libraries/P07-PR/P07-PR-Communication.md) | Prepare a clear pull request that makes compatibility impact and verification obvious to maintainers. | skeleton | B |
+| `PKG-P07` | [PR & Communication: write the release note first, then the pull request](01-contribution/packages-libraries/P07-PR/P07-PR-Communication.md) | PULL_REQUEST.md opening with the compatibility verdict and the symbol that drives it, a draft changelog entry in the project's format, the consumer-visible change… <br>**Inputs:** `VALIDATION, SEMVER_EXPECTATION, ISSUE_REF, PR_TEMPLATE, CHANGELOG_FORMAT, SUPPORT_POLICY` | operational | B |
 | `PKG-P08` | [Package & Library Contribution Master Orchestrator](01-contribution/packages-libraries/P08-Orchestrator/P08-Package-Contribution-Orchestrator.md) | Runs the packages libraries system end to end: gates, routing, and final acceptance. | skeleton | A |
 
 ### web/general · 8 prompts
@@ -106,12 +106,12 @@ Stage systems for contributing to an unfamiliar project.
 | ID | Prompt | Use it for | Maturity | Risk |
 |---|---|---|---|---|
 | `WEB-P01` | [Context & Project Understanding](01-contribution/web/general/P01-Context/P01-Context-Project-Understanding.md) | Build a solid understanding of the target web project before proposing or making changes. | skeleton | B |
-| `WEB-P02` | [Discovery & Opportunity Identification](01-contribution/web/general/P02-Discovery/P02-Discovery-Opportunity-Identification.md) | Find valuable, realistic contribution opportunities in the web project. | skeleton | A |
+| `WEB-P02` | [Discovery & Opportunity Identification: find what a real browser shows, not what a code read suggests](01-contribution/web/general/P02-Discovery/P02-Discovery-Opportunity-Identification.md) | OPPORTUNITIES.md where every candidate records what was observed, where (URL and viewport), in which engine, what the project's own signals say about it (issue… <br>**Inputs:** `PROJECT_CONTEXT, ISSUE_LABELS, RUN_COMMAND, BASELINE_BROWSERS, A11Y_TARGET` | operational | A |
 | `WEB-P03` | [Opportunity Selection & Framing: choose work you can prove, in a surface you are allowed to change](01-contribution/web/general/P03-Opportunity/P03-Opportunity-Selection-Framing.md) | SELECTED_WORK.md naming one candidate, the user-visible claim it makes, the artifact that will prove the claim, the surfaces it touches, the states in scope, the… <br>**Inputs:** `OPPORTUNITIES, PROJECT_CONVENTIONS, DESIGN_OWNER, ISSUE_REF, BROWSER_SUPPORT` | operational | A |
 | `WEB-P04` | [Planning & Design](01-contribution/web/general/P04-Planning/P04-Planning-Design.md) | Produce a concrete plan for implementing the selected work while respecting web project conventions. | skeleton | B |
 | `WEB-P05` | [Implementation](01-contribution/web/general/P05-Implementation/P05-Implementation.md) | Implement the planned change cleanly, following the project’s conventions and web best practices. | skeleton | B |
 | `WEB-P06` | [Validation & Quality: prove the change works in a browser you did not write it in](01-contribution/web/general/P06-Validation/P06-Validation-Quality.md) | VALIDATION.md stating what ran, at which engine and viewport, what it showed, which accessibility criteria were checked and how, and — explicitly — which checks… <br>**Inputs:** `CHANGE_SCOPE, BASELINE_BROWSERS, A11Y_TARGET, TEST_COMMAND, VIEWPORTS` | operational | A |
-| `WEB-P07` | [PR & Communication](01-contribution/web/general/P07-PR-Communication/P07-PR-Communication.md) | Prepare and submit a clear, professional pull request that reviewers will appreciate. | skeleton | B |
+| `WEB-P07` | [PR & Communication: give the reviewer a viewing instruction, not a gallery](01-contribution/web/general/P07-PR-Communication/P07-PR-Communication.md) | PULL_REQUEST.md with a one-paragraph summary naming the user-visible change, a numbered reproduction recipe, media labelled with engine and viewport, the states a… <br>**Inputs:** `VALIDATION, BRANCH, PREVIEW_URL, ISSUE_REF, PR_TEMPLATE, A11Y_TARGET` | operational | B |
 | `WEB-P08` | [Web Contribution Master Orchestrator](01-contribution/web/general/P08-Orchestrator/P08-Web-Contribution-Orchestrator.md) | Runs the general system end to end: gates, routing, and final acceptance. | skeleton | A |
 
 ### web3/general · 8 prompts
@@ -119,12 +119,12 @@ Stage systems for contributing to an unfamiliar project.
 | ID | Prompt | Use it for | Maturity | Risk |
 |---|---|---|---|---|
 | `W3-P01` | [Context & Project Understanding](01-contribution/web3/general/P01-Context/P01-Context-Project-Understanding.md) | Build a solid understanding of the target Web3 project before proposing changes. | skeleton | B |
-| `W3-P02` | [Discovery & Opportunity Identification](01-contribution/web3/general/P02-Discovery/P02-Discovery-Opportunity-Identification.md) | Find valuable, realistic contribution opportunities. | skeleton | A |
+| `W3-P02` | [Discovery & Opportunity Identification: map the trust boundary before you look for bugs](01-contribution/web3/general/P02-Discovery/P02-Discovery-Opportunity-Identification.md) | OPPORTUNITIES.md containing a trust-boundary map (privileged functions, value paths, external calls, oracle and price inputs, upgrade authority), a candidate table… <br>**Inputs:** `PROJECT_CONTEXT, ADVISORIES, AUDIT_REF, DEPLOYMENT_TARGETS, GOVERNANCE_DOCS` | operational | A |
 | `W3-P03` | [Opportunity Selection & Framing: choose work whose failure someone else can undo](01-contribution/web3/general/P03-Selection/P03-Opportunity-Selection-Framing.md) | SELECTED_WORK.md naming one candidate, its reversibility tier, the preconditions that must hold before implementation begins, the invariants the change must… <br>**Inputs:** `OPPORTUNITIES, PROJECT_CONVENTIONS, MAINTAINER_APPROVAL, DEPLOYMENT_TARGETS, AUDIT_REF` | operational | A |
 | `W3-P04` | [Planning & Design](01-contribution/web3/general/P04-Planning/P04-Planning-Design.md) | Produce a concrete plan that respects Web3 constraints and project conventions. | skeleton | B |
 | `W3-P05` | [Implementation](01-contribution/web3/general/P05-Implementation/P05-Implementation.md) | Implement the planned change cleanly while preserving security and project conventions. | skeleton | B |
 | `W3-P06` | [Validation & Security: prove the invariants, not the test suite](01-contribution/web3/general/P06-Validation/P06-Validation-Security.md) | VALIDATION.md containing the invariant list with the test that proves each, the access-control matrix, the value-flow review, the analyser findings triaged, and a… <br>**Inputs:** `CHANGE_SCOPE, INVARIANTS, CHAIN_AND_FORK_BLOCK, AUDIT_TOOLS, VALUE_AT_RISK` | operational | A |
-| `W3-P07` | [PR & Communication](01-contribution/web3/general/P07-PR/P07-PR-Communication.md) | Prepare a clear, professional pull request that helps reviewers assess correctness and risk. | skeleton | B |
+| `W3-P07` | [PR & Communication: lead with what can go wrong, not with what you fixed](01-contribution/web3/general/P07-PR/P07-PR-Communication.md) | PULL_REQUEST.md whose first section is the state change, the tier inherited from W3-P03, the blast radius, and the worst outcome if merged while wrong; then the… <br>**Inputs:** `VALIDATION, TIER, ISSUE_REF, PR_TEMPLATE, AUDIT_REF, DEPLOYMENT_PLAN` | operational | B |
 | `W3-P08` | [Web3 Contribution Master Orchestrator](01-contribution/web3/general/P08-Orchestrator/P08-Web3-Contribution-Orchestrator.md) | Runs the general system end to end: gates, routing, and final acceptance. | skeleton | A |
 
 ## 02-engineering — building, auditing, and recovering code

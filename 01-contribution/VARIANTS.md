@@ -94,14 +94,42 @@ Combined similarity fell from 0.54–0.68 to 0.36–0.38 across all three pairs,
 
 That contrast is the useful result of doing two passes. **`P06` was content differentiation inside a shared skeleton, and the metric punished it for using the shared structure. `P03` replaced the skeleton itself, and the metric agreed.** A future pass can predict which reading it will get. If the three files keep the ten standard sections and differ only in what they ask inside them, structure stays at 1.00 and combined similarity stays near 0.6. The measurable drop requires the *procedure* to differ, not just the nouns.
 
+## Pass 3 — `P07 PR`, where the three variants address three different readers
+
+`P07` had the highest score in the library (0.63–0.68) and the clearest reason to exist three times over: each variant's pull request is read by someone deciding something different.
+
+| Variant | What the PR is for | The reader's decision | What it leads with |
+|---|---|---|---|
+| `web/general` | A viewing instruction | "Does this behave correctly where I can see it?" | A numbered reproduction recipe and labelled media (engine, width, state) |
+| `web3/general` | A risk disclosure | "What happens to the money if this is wrong?" | Four facts: state change, tier, undo path, worst outcome |
+| `packages-libraries` | A release note and a semver argument | "Which release can this ship in, and what do I tell users?" | The verdict and the symbol that drives it, then a draft changelog entry |
+
+The disqualifying sentences are correspondingly different: *a screenshot with no viewing instruction*, *risk buried below the fold*, *a PR that cannot be described to a consumer*.
+
+**Measurement:** combined similarity fell from 0.63–0.68 to 0.32–0.35; vocabulary containment 0.63–0.68 → 0.38–0.42; structure 1.00 → 0.83; shingle to 0.01.
+
+## Pass 4 — `P02 Discovery`, where the search happens in three different places
+
+Discovery was the last pair above 0.55, and the pass made explicit something that had been implicit in all three outlines: **the same word covers three different search spaces.**
+
+| Variant | Where the candidates come from | The instrument | Characteristic failure |
+|---|---|---|---|
+| `web/general` | The running application | A surface list walked at 320/768/widest, a keyboard pass, the tracker by label | A list of refactors with the broken screen unmentioned |
+| `web3/general` | The trust boundary | A five-part map — privileged surface, value paths, external calls, price inputs, upgrade surface — then missing guards | Gas savings listed, unguarded privileged function missing |
+| `packages-libraries` | The consumers | Downstream code search for wrappers, copies, and pins, plus a clean install per runtime | API improvements nobody asked for, with no witness |
+
+Each records a different kind of evidence, because each has a different notion of proof: an observation at a named viewport; a boundary with a failure class; a witness in someone else's repository.
+
+**Measurement:** combined similarity fell from 0.56–0.65 to 0.29–0.32; vocabulary containment 0.56–0.65 → 0.35–0.38; structure 1.00 → 0.83; shingle to 0.01.
+
 ## Current state, honestly
 
-Two of six overlapping stages are through a pass in all three variants: `P03` and `P06`. Six of eight stages in each system are still outlines (`P01`, `P02`, `P04`, `P05`, `P07`, `P08`), and and the top of the combined table is now the part that has not been touched: `P07` at 0.63–0.68 and `P02` at 0.56–0.65. Two things follow:
+Four of six overlapping stages are through a pass in all three variants: `P02`, `P03`, `P06` and `P07`. Two stages remain — `P04 Planning` and `P05 Implementation` — and with them `P01` and `P08`, which sit at 0.15–0.46 combined. Those last two are the stages where the variants arguably should be similar, because planning a change and implementing it in a repository are close to the same job in any language. Two things follow:
 
 1. **They stay `skeleton`.** A system that cannot distinguish its stages is not ready to be called operational, whatever its prose says.
 2. **The next person to touch them works one stage across all three**, not one system start to finish. That is the ordering that produces a real difference: pick `P06 Validation`, write web3's invariant checks and packages' compatibility matrix, and the web variant's cross-browser evidence — then the three files stop being the same file.
 
-Recorded as backlog #107: *differentiate the 18 overlapping stages, one stage across all three variants per pass*. It is deliberately not a bulk rewrite, because a bulk rewrite of three systems by one author at one time would produce the same text again with different nouns. **Progress: 2 of 6 passes done (12 of 18 stage files), 6 stages left.** Next is `P07` — the highest score in the table at 0.68, and the one where the three variants genuinely do have different jobs (a browser repro, a risk disclosure, a semver rationale).
+Recorded as backlog #107: *differentiate the 18 overlapping stages, one stage across all three variants per pass*. It is deliberately not a bulk rewrite, because a bulk rewrite of three systems by one author at one time would produce the same text again with different nouns. **Progress: 4 of 6 passes done (12 of 18 stage files), 2 stages left.** Next is `P05` or `P04`; the remaining decision worth recording is whether `P01` and `P08` should be differentiated at all, since their similarity is already low and their content is genuinely the same job.
 
 ## What this record prevents
 
