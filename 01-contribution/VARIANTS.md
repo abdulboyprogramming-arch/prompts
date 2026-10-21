@@ -52,32 +52,56 @@ The method below was applied once, at v2.22.0, to the stage where the three doma
 | `web3/general` | The invariants hold when someone tries to break them | A violating case per invariant, an access-control matrix, a fork test pinned to a block |
 | `packages-libraries` | The published interface did not break a consumer's build | A surface diff against the released version, an install of the artifact in a clean environment |
 
-**The measurement, honestly:**
+**The measurement, honestly** — measured with the tools' own functions against the files at `060ffe5` and at the pass:
 
-| Pair | Before (shingle / vocab) | After (shingle / vocab) |
+| Pair | Before (shr / voc / str / **combined**) | After |
 |---|---|---|
-| `web` ↔ `web3` | 0.03 / 0.28 | 0.00 / 0.23 |
-| `web` ↔ `pkg` | 0.11 / 0.22 | 0.01 / 0.27 |
-| `web3` ↔ `pkg` | 0.03 / 0.20 | 0.00 / 0.22 |
+| `web` ↔ `web3` | 0.03 / 0.44 / 0.60 / **0.26** | 0.00 / 0.38 / 0.83 / **0.32** |
+| `web` ↔ `pkg` | 0.11 / 0.47 / 0.60 / **0.28** | 0.01 / 0.43 / 0.83 / **0.36** |
+| `web3` ↔ `pkg` | 0.03 / 0.44 / 0.60 / **0.27** | 0.00 / 0.37 / 0.83 / **0.31** |
 
-Vocabulary overlap barely changed, and one pair rose. That is not a failure of the work; it is a limitation of the instrument, and it has to be stated:
+Combined similarity **rose** on all three pairs, from 0.26–0.28 to 0.31–0.36, and the reason is worth more than the direction:
 
-- **The `P06` outlines were two paragraphs each.** Short files have little vocabulary to overlap, so the 0.63–0.68 figures at the top of this record belong almost entirely to the longer stages (`P03`, `P07`), not to `P06`.
-- **Length dilutes the metric.** Rewriting an outline into a developed prompt adds domain words and multiplies the denominator; a similarity score can fall because a file grew, not because two files diverged.
+- **Vocabulary fell** (0.44–0.47 → 0.37–0.43). The three files do share less language after the pass.
+- **Structure rose** (0.60 → 0.83), because an outline has a handful of headings and a developed prompt has the ten the standard requires. The metric multiplies the two, so the structural term swamped a real lexical gain.
 - **The differentiation here is a different evidence standard**, and no lexical metric can see the difference between "run the tests" and "a violating case per invariant". A reviewer or a maintainer can.
 
 So the honest claim for this pass is the one a reviewer can check by reading: the three files now ask for different evidence, in different words, with different failure handling. The duplicate detector stays at its bar and remains useful for the case it was built for — a file copied and renamed.
 
+**Correction to the first version of this section.** It reported vocabulary as 0.20–0.28 before and 0.20–0.22 after, and concluded that the metric "barely moved". Those figures came from a *different vocabulary function* than the one `find_overlaps.py` uses for the pair table at the top of this record: Jaccard over word sets rather than containment, so the numbers were not comparable with the 0.63–0.68 rows they sat under. Recomputed with the tool's own functions on both sides, vocabulary fell by about 0.06 and the combined score rose, as the table above shows. The conclusion survives — the instrument could not confirm this pass — and the comparison is now apples to apples.
+
+## Pass 2 — `P03 Selection`, where the metric finally moves
+
+`P03` was the harder pass and the more informative one. `P06` asked the three variants to prove different things about a finished change; `P03` asks them to **choose** differently, and the three answers had to be different instruments rather than different adjectives:
+
+| Variant | How a candidate is selected | The sentence that disqualifies a candidate |
+|---|---|---|
+| `web/general` | By proof strength: the claim must be assertable at a named viewport and engine, and anything visible needs a named owner of the design decision | *No owner for the decision* — a visual change with nobody accountable for it is a design argument, not a contribution |
+| `web3/general` | By **reversibility tier** — who can undo it if it is wrong — with tier 2 and 3 gated behind recorded maintainer approval **before** code exists | *No approval, no tier 2 or 3 selection* — consent is not inferred from an old issue |
+| `packages-libraries` | By **surface cost ledger**: symbols added, behaviour changed silently, dependencies inherited, and the support burden the maintainer carries forever | *Adds a promise you must keep* — public API ranks last among equals |
+
+Each stage's own text names the sibling it differs from and the characteristic failure it exists to catch: *picks a visible redesign and hands the maintainer an unauthorised design decision*; *submits a change to a value path described as a small fix*; *adds a convenience option the maintainer supports forever*.
+
+**The measurement, for once, moved** — same functions, same method as the corrected pass-1 table:
+
+| Pair | Before pass 2 (shr / voc / str / **combined**) | After pass 2 |
+|---|---|---|
+| `web` ↔ `web3` | 0.15 / 0.57 / 1.00 / **0.57** | 0.01 / 0.44 / 0.83 / **0.36** |
+| `web` ↔ `pkg` | 0.00 / 0.54 / 1.00 / **0.54** | 0.02 / 0.45 / 0.83 / **0.38** |
+| `web3` ↔ `pkg` | 0.11 / 0.68 / 1.00 / **0.68** | 0.01 / 0.44 / 0.83 / **0.36** |
+
+Combined similarity fell from 0.54–0.68 to 0.36–0.38 across all three pairs, and every component moved the same way: structure broke from identical to 0.83, vocabulary from 0.54–0.68 to 0.44–0.45, shingle overlap to almost nothing. Unlike `P06`, this is not an artefact of length — the files grew, and the denominator grew with them, but the intersection shrank in absolute terms because three selection instruments share almost no sentences.
+
+That contrast is the useful result of doing two passes. **`P06` was content differentiation inside a shared skeleton, and the metric punished it for using the shared structure. `P03` replaced the skeleton itself, and the metric agreed.** A future pass can predict which reading it will get. If the three files keep the ten standard sections and differ only in what they ask inside them, structure stays at 1.00 and combined similarity stays near 0.6. The measurable drop requires the *procedure* to differ, not just the nouns.
+
 ## Current state, honestly
 
-Seven of eight stages in each system are still outlines, and the combined similarity at the top of this record is unchanged because the files that produce it (`P03`, `P07`) have not been through a pass yet. Two things follow:## Current state, honestly
-
-Seven of eight stages in each system are still outlines. The differentiation above is **stated in the READMEs and, for `P06` only, present in the stage files**, which is why the remaining combined similarity sits at 0.63–0.68 rather than something lower. Two things follow:
+Two of six overlapping stages are through a pass in all three variants: `P03` and `P06`. Six of eight stages in each system are still outlines (`P01`, `P02`, `P04`, `P05`, `P07`, `P08`), and and the top of the combined table is now the part that has not been touched: `P07` at 0.63–0.68 and `P02` at 0.56–0.65. Two things follow:
 
 1. **They stay `skeleton`.** A system that cannot distinguish its stages is not ready to be called operational, whatever its prose says.
 2. **The next person to touch them works one stage across all three**, not one system start to finish. That is the ordering that produces a real difference: pick `P06 Validation`, write web3's invariant checks and packages' compatibility matrix, and the web variant's cross-browser evidence — then the three files stop being the same file.
 
-Recorded as backlog #107: *differentiate the 18 overlapping stages, one stage across all three variants per pass*. It is deliberately not a bulk rewrite, because a bulk rewrite of three systems by one author at one time would produce the same text again with different nouns.
+Recorded as backlog #107: *differentiate the 18 overlapping stages, one stage across all three variants per pass*. It is deliberately not a bulk rewrite, because a bulk rewrite of three systems by one author at one time would produce the same text again with different nouns. **Progress: 2 of 6 passes done (12 of 18 stage files), 6 stages left.** Next is `P07` — the highest score in the table at 0.68, and the one where the three variants genuinely do have different jobs (a browser repro, a risk disclosure, a semver rationale).
 
 ## What this record prevents
 
@@ -88,10 +112,10 @@ Recorded as backlog #107: *differentiate the 18 overlapping stages, one stage ac
 ## How to check the rule still holds
 
 ```bash
-python3 scripts/find_overlaps.py --metric combined --top 6
+python3 scripts/find_overlaps.py --metric combined --top 12
 ```
 
-If a pair inside `01-contribution` falls below 0.40, the differentiation work landed. If a pair *inside a single system* rises above 0.60, two stages of one system have collapsed into each other and one of them should go.
+If a pair inside `01-contribution` falls below 0.40, the differentiation work landed for that stage — `P03` and `P06` are there. If a pair *inside a single system* rises above 0.60, two stages of one system have collapsed into each other and one of them should go. The bar is the same 0.40 the CI gate uses for a different purpose, and it is a floor for this work, not proof: the `P06` pass is the standing reminder that a metric can miss a real difference and that reading the files is still the primary instrument.
 
 ## Related
 

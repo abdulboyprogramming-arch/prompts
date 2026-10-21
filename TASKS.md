@@ -13,7 +13,7 @@ library is reachable from at least one task: a prompt added without a home fails
 |---|---|
 | Prompts indexed | 364 |
 | Rows listed individually | 409 (a prompt can answer more than one task) |
-| Of those, `operational` | 242 |
+| Of those, `operational` | 246 |
 
 Not sure which task is yours? [`QUICKSTART.md`](QUICKSTART.md) routes five common situations,
 [`06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md`](06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md)
@@ -68,8 +68,11 @@ Reconnaissance, then orientation, then a first contribution that survives review
 | `P14` | [Issues, Pull Requests, Review Responses & Maintainer Communication](01-contribution/open-source/general-agent/P14-PR-Communication/P14-Issues-Pull-Requests-Review-Responses-Maintainer-Communication.md) | `P14-PR-Communication` | Open a new pull request (or update an existing one) that follows the project’s PR template and conventions. | operational |
 | `P15` | [Continuous Contribution Management, Monitoring & Recovery](01-contribution/open-source/general-agent/P15-Continuous-Management/P15-Continuous-Contribution-Management-Recovery.md) | `P15-Continuous-Management` | Maintain an accurate, up-to-date picture of all in-progress and completed contribution work. | operational |
 | `P16` | [Final Autonomous Contribution Orchestrator](01-contribution/open-source/general-agent/P16-Master-Orchestrator/P16-Final-Autonomous-Contribution-Orchestrator.md) | `P16-Master-Orchestrator` | Transform the raw inputs (repository + MY_DETAILS.txt + this orchestrator) into professional open-source contribution outcomes by | operational |
+| `PKG-P03` | [Opportunity Selection & Framing: choose work that does not add a promise you must keep](01-contribution/packages-libraries/P03-Selection/P03-Opportunity-Selection-Framing.md) | `P03-Selection` | SELECTED_WORK.md naming one candidate, its surface cost ledger (symbols added, symbols changed, dependencies added, behaviour… | operational |
 | `PKG-P06` | [Validation & Compatibility: prove you did not break anyone's build](01-contribution/packages-libraries/P06-Validation/P06-Validation-Compatibility.md) | `P06-Validation` | VALIDATION.md with the public API surface diff, the runtime and module-format matrix, consumer smoke tests run against the… | operational |
+| `WEB-P03` | [Opportunity Selection & Framing: choose work you can prove, in a surface you are allowed to change](01-contribution/web/general/P03-Opportunity/P03-Opportunity-Selection-Framing.md) | `P03-Opportunity` | SELECTED_WORK.md naming one candidate, the user-visible claim it makes, the artifact that will prove the claim, the surfaces it… | operational |
 | `WEB-P06` | [Validation & Quality: prove the change works in a browser you did not write it in](01-contribution/web/general/P06-Validation/P06-Validation-Quality.md) | `P06-Validation` | VALIDATION.md stating what ran, at which engine and viewport, what it showed, which accessibility criteria were checked and how… | operational |
+| `W3-P03` | [Opportunity Selection & Framing: choose work whose failure someone else can undo](01-contribution/web3/general/P03-Selection/P03-Opportunity-Selection-Framing.md) | `P03-Selection` | SELECTED_WORK.md naming one candidate, its reversibility tier, the preconditions that must hold before implementation begins, the… | operational |
 | `W3-P06` | [Validation & Security: prove the invariants, not the test suite](01-contribution/web3/general/P06-Validation/P06-Validation-Security.md) | `P06-Validation` | VALIDATION.md containing the invariant list with the test that proves each, the access-control matrix, the value-flow review, the… | operational |
 | `AUDIT-P01` | [Scope, Environment & Audit Contract](02-engineering/codebase-audit/P01-Bootstrap/P01-Audit-Environment-Bootstrap.md) | `P01-Bootstrap` | Produce a defensible audit contract: what commit is being audited, what questions the audit must answer, what is in and out of… | operational |
 | `AUDIT-P02` | [Structural Mapping](02-engineering/codebase-audit/P02-Structure/P02-Structural-Mapping.md) | `P02-Structure` | Answers: what are the components of this repository, how are they built and run, which files matter, and which directories are… | operational |
@@ -81,7 +84,7 @@ Reconnaissance, then orientation, then a first contribution that survives review
 | `AUDIT-P08` | [Improvement Roadmap & Final Report](02-engineering/codebase-audit/P08-Roadmap/P08-Improvement-Roadmap-Report.md) | `P08-Roadmap` | Answers: what should be done, in what order, why that order, and what happens if nothing is done? | operational |
 | `AUDIT-P09` | [Deep Codebase Audit Master Orchestrator](02-engineering/codebase-audit/P09-Orchestrator/P09-Deep-Codebase-Audit-Orchestrator.md) | `P09-Orchestrator` | Deliver a complete, internally consistent audit: scope contract → structure → architecture → quality → tests/dependencies →… | operational |
 
-*Plus **31** `skeleton` prompts in these homes — a defensible stage sequence without verification or failure handling. Use them to structure a human-led session, not to drive an agent: [01-contribution](GALLERY.md#01-contribution--contributing-to-open-source), [02-engineering](GALLERY.md#02-engineering--building-auditing-and-recovering-code), [05-scenarios](GALLERY.md#05-scenarios--single-session-high-urgency-situations).*
+*Plus **28** `skeleton` prompts in these homes — a defensible stage sequence without verification or failure handling. Use them to structure a human-led session, not to drive an agent: [01-contribution](GALLERY.md#01-contribution--contributing-to-open-source), [02-engineering](GALLERY.md#02-engineering--building-auditing-and-recovering-code), [05-scenarios](GALLERY.md#05-scenarios--single-session-high-urgency-situations).*
 
 ## I need to change existing code without breaking it
 
@@ -341,6 +344,7 @@ Contract-level discipline: invariants, access control, upgrade paths, and the au
 
 | ID | Prompt | Where | Use it for | Maturity |
 |---|---|---|---|---|
+| `W3-P03` | [Opportunity Selection & Framing: choose work whose failure someone else can undo](01-contribution/web3/general/P03-Selection/P03-Opportunity-Selection-Framing.md) | `P03-Selection` | SELECTED_WORK.md naming one candidate, its reversibility tier, the preconditions that must hold before implementation begins, the… | operational |
 | `W3-P06` | [Validation & Security: prove the invariants, not the test suite](01-contribution/web3/general/P06-Validation/P06-Validation-Security.md) | `P06-Validation` | VALIDATION.md containing the invariant list with the test that proves each, the access-control matrix, the value-flow review, the… | operational |
 | `PAY-P01` | [Money Model & Invariants](03-domains/payments/P01-Model/P01-Money-Model-Invariants.md) | `P01-Model` | Answers: how is money stored, computed, and rounded; what states can a payment take; and which invariants must hold across every… | operational |
 | `PAY-P02` | [Idempotency & Unknown Outcomes](03-domains/payments/P02-Idempotency/P02-Idempotency-Failure.md) | `P02-Idempotency` | Prove or disprove that each money-moving flow is idempotent, that unknown outcomes are handled as a state, and that no failure… | operational |
@@ -350,7 +354,7 @@ Contract-level discipline: invariants, access control, upgrade paths, and the au
 | `CHAIN-P03` | [Contract Upgrade and Storage Migration](03-domains/web3/P03-Upgrade/P03-Upgrade-Migration.md) | `P03-Upgrade` | A storage-layout diff, an upgrade plan with a fork rehearsal, an execution log, and post-upgrade verification evidence. | operational |
 | `CHAIN-P04` | [Exploit Response: funds are leaving right now](03-domains/web3/P04-Exploit/P04-Exploit-Response.md) | `P04-Exploit` | Immediate containment, a preserved evidence set, a written incident log with timestamps, a disclosure package for users, and a… | operational |
 
-*Plus **7** `skeleton` prompts in these homes — a defensible stage sequence without verification or failure handling. Use them to structure a human-led session, not to drive an agent: [01-contribution](GALLERY.md#01-contribution--contributing-to-open-source), [03-domains](GALLERY.md#03-domains--domain-specific-engineering).*
+*Plus **6** `skeleton` prompts in these homes — a defensible stage sequence without verification or failure handling. Use them to structure a human-led session, not to drive an agent: [01-contribution](GALLERY.md#01-contribution--contributing-to-open-source), [03-domains](GALLERY.md#03-domains--domain-specific-engineering).*
 
 ## I am building a specific kind of application
 

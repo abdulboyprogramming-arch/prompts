@@ -43,6 +43,22 @@ Each names the characteristic failure it exists to catch: *works in the author's
 
 **The measurement did not cooperate, and that is recorded rather than smoothed over.** Pairwise vocabulary overlap across the three files went from 0.20–0.28 to 0.22–0.27 — one pair rose. The reason is in `VARIANTS.md`: the `P06` outlines were two paragraphs each, so they never contributed the 0.63–0.68 similarity at the top of that record, which comes from the longer `P03` and `P07` stages; and rewriting a short outline into a developed prompt multiplies the denominator. The claim for this pass is the one a reviewer can check by reading, not a number.
 
+### Changed — `P03 Selection` differentiated across the three contribution variants (#107, pass 2)
+
+Pass 1 left the duplicate metric unmoved and said why. Pass 2 was designed to test that explanation, and it did: **if three variants keep the standard ten sections and differ only in what they ask inside them, combined similarity cannot fall.** So this pass replaced the procedure rather than the adjectives, and each variant now selects with an instrument the other two do not have:
+
+| Variant | How work is chosen | What disqualifies a candidate |
+|---|---|---|
+| `WEB-P03` | A **claim register**: the user-visible claim, the artifact that proves it, the surface it touches, and who owns the decision — ranked by proof strength, then by review cost | No owner for a visible change, no assertable claim, no reference |
+| `W3-P03` | A **reversibility tier** from 0 to 3 by asking who can undo the change if it is wrong, with tiers 2 and 3 gated behind recorded maintainer approval *before* code exists | A tier 2 or 3 change with no approval; an invariant that cannot be written |
+| `PKG-P03` | A **surface cost ledger**: symbols added, behaviour changed silently, dependencies inherited, and the support burden the maintainer carries indefinitely | A change that adds a promise the maintainer must keep |
+
+Each names the failure it exists to catch: *picks a visible redesign and hands the maintainer an unauthorised design decision*; *submits a change to a value path described as a small fix*; *adds a convenience option the maintainer supports forever*.
+
+**The measurement moved this time, and the reason is the finding.** Combined similarity fell on all three pairs, from 0.54–0.68 to 0.36–0.38, with shingle, vocabulary, and structure all falling together. `P06` had risen from 0.26–0.28 to 0.31–0.36 for a mechanical reason: an outline has a handful of headings, a developed prompt has the ten the standard requires, and the metric multiplies structure by vocabulary.
+
+The pass also corrected a measurement error from pass 1. Its vocabulary figures had been computed with Jaccard over word sets while the pair table above them used containment, so "barely moved" was reached by comparing two different things. Recomputed on both sides with `find_overlaps.py`'s own functions, `P06`'s vocabulary fell from 0.44–0.47 to 0.37–0.43 and its combined score rose. The conclusion survived; the arithmetic did not, and `01-contribution/VARIANTS.md` now carries the correction rather than a quietly amended table.
+
 ### New — a worked multi-agent run, and the three rules it forced (#109)
 
 `WF-MULTIAGENT` said "freeze the interfaces first" and "audit for cross-agent interference". Neither was demonstrated, so both read as formalities. [`07-workflows/multi-agent-worked-example.md`](07-workflows/multi-agent-worked-example.md) is a two-agent notifications feature where the event schema was frozen before either agent started; Agent A then added a **required** `template_id` on day 2 and reported it as *done*, not *deviated*.
@@ -86,9 +102,9 @@ The two misses were worth more than the hits:
 
 ### Result
 
-**457 Markdown files, 364 prompts: 213 operational, 5 draft, 146 skeleton.** Validator 0 errors / 0 warnings; tooling self-tests 10/10, 13/13, 12/12, 17/17; prose lint 0 findings at baseline 0; catalog, gallery, task index and evidence report current, verified by one command. The file count is the validator's scan, not `find`'s — they differ by tooling and archive files, and the scanned number is the one that matches the other claims here.
+**457 Markdown files, 364 prompts: 216 operational, 5 draft, 143 skeleton.** Validator 0 errors / 0 warnings; tooling self-tests 10/10, 13/13, 12/12, 17/17; prose lint 0 findings at baseline 0; catalog, gallery, task index and evidence report current, verified by one command. The file count is the validator's scan, not `find`'s — they differ by tooling and archive files, and the scanned number is the one that matches the other claims here.
 
-Coverage: **143 rows, unchanged** — this release improves the instruments, not the coverage. Executed: **3 of 213 operational prompts (1.4%)** — `DBG-01`, `CHAT-DEBUG`, and `CHAT-SELECT` from this release. The three `P06` stages promoted here and `CHAT-HANDOFF` have not been run, and the review log says so for each.
+Coverage: **143 rows, unchanged** — this release improves the instruments, not the coverage. Executed: **3 of 216 operational prompts (1.4%)** — `DBG-01`, `CHAT-DEBUG`, and `CHAT-SELECT` from this release. The six `P03` and `P06` stages promoted here and `CHAT-HANDOFF` have not been run, and the review log says so for each.
 
 ## [2.21.1] — 2026-10-21
 

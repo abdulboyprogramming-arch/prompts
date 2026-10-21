@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 364 prompts — 0 canonical, 213 operational, 5 draft, 146 skeleton.
+**Totals:** 364 prompts — 0 canonical, 216 operational, 5 draft, 143 skeleton.
 
 ## `00-core`
 
@@ -61,7 +61,7 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 |----|-------|----------|------|------|------|
 | `PKG-P01` | PROMPT 01 — Context & Package Understanding | skeleton | implementation | B | [P01-Context-Package-Understanding.md](../01-contribution/packages-libraries/P01-Context/P01-Context-Package-Understanding.md) |
 | `PKG-P02` | PROMPT 02 — Discovery & Opportunity Identification | skeleton | diagnostic | A | [P02-Discovery-Opportunity-Identification.md](../01-contribution/packages-libraries/P02-Discovery/P02-Discovery-Opportunity-Identification.md) |
-| `PKG-P03` | PROMPT 03 — Opportunity Selection & Framing | skeleton | planning | B | [P03-Opportunity-Selection-Framing.md](../01-contribution/packages-libraries/P03-Selection/P03-Opportunity-Selection-Framing.md) |
+| `PKG-P03` | PROMPT 03 — Opportunity Selection & Framing: choose work tha | operational | planning | A | [P03-Opportunity-Selection-Framing.md](../01-contribution/packages-libraries/P03-Selection/P03-Opportunity-Selection-Framing.md) |
 | `PKG-P04` | PROMPT 04 — Planning & API Impact | skeleton | planning | B | [P04-Planning-API-Impact.md](../01-contribution/packages-libraries/P04-Planning/P04-Planning-API-Impact.md) |
 | `PKG-P05` | PROMPT 05 — Implementation | skeleton | implementation | B | [P05-Implementation.md](../01-contribution/packages-libraries/P05-Implementation/P05-Implementation.md) |
 | `PKG-P06` | PROMPT 06 — Validation & Compatibility: prove you did not br | operational | diagnostic | A | [P06-Validation-Compatibility.md](../01-contribution/packages-libraries/P06-Validation/P06-Validation-Compatibility.md) |
@@ -74,7 +74,7 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 |----|-------|----------|------|------|------|
 | `WEB-P01` | PROMPT 01 — Context & Project Understanding | skeleton | implementation | B | [P01-Context-Project-Understanding.md](../01-contribution/web/general/P01-Context/P01-Context-Project-Understanding.md) |
 | `WEB-P02` | PROMPT 02 — Discovery & Opportunity Identification | skeleton | diagnostic | A | [P02-Discovery-Opportunity-Identification.md](../01-contribution/web/general/P02-Discovery/P02-Discovery-Opportunity-Identification.md) |
-| `WEB-P03` | PROMPT 03 — Opportunity Selection & Framing | skeleton | planning | B | [P03-Opportunity-Selection-Framing.md](../01-contribution/web/general/P03-Opportunity/P03-Opportunity-Selection-Framing.md) |
+| `WEB-P03` | PROMPT 03 — Opportunity Selection & Framing: choose work you | operational | planning | A | [P03-Opportunity-Selection-Framing.md](../01-contribution/web/general/P03-Opportunity/P03-Opportunity-Selection-Framing.md) |
 | `WEB-P04` | PROMPT 04 — Planning & Design | skeleton | planning | B | [P04-Planning-Design.md](../01-contribution/web/general/P04-Planning/P04-Planning-Design.md) |
 | `WEB-P05` | PROMPT 05 — Implementation | skeleton | implementation | B | [P05-Implementation.md](../01-contribution/web/general/P05-Implementation/P05-Implementation.md) |
 | `WEB-P06` | PROMPT 06 — Validation & Quality: prove the change works in  | operational | diagnostic | A | [P06-Validation-Quality.md](../01-contribution/web/general/P06-Validation/P06-Validation-Quality.md) |
@@ -87,7 +87,7 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 |----|-------|----------|------|------|------|
 | `W3-P01` | PROMPT 01 — Context & Project Understanding | skeleton | implementation | B | [P01-Context-Project-Understanding.md](../01-contribution/web3/general/P01-Context/P01-Context-Project-Understanding.md) |
 | `W3-P02` | PROMPT 02 — Discovery & Opportunity Identification | skeleton | diagnostic | A | [P02-Discovery-Opportunity-Identification.md](../01-contribution/web3/general/P02-Discovery/P02-Discovery-Opportunity-Identification.md) |
-| `W3-P03` | PROMPT 03 — Opportunity Selection & Framing | skeleton | planning | B | [P03-Opportunity-Selection-Framing.md](../01-contribution/web3/general/P03-Selection/P03-Opportunity-Selection-Framing.md) |
+| `W3-P03` | PROMPT 03 — Opportunity Selection & Framing: choose work who | operational | planning | A | [P03-Opportunity-Selection-Framing.md](../01-contribution/web3/general/P03-Selection/P03-Opportunity-Selection-Framing.md) |
 | `W3-P04` | PROMPT 04 — Planning & Design | skeleton | planning | B | [P04-Planning-Design.md](../01-contribution/web3/general/P04-Planning/P04-Planning-Design.md) |
 | `W3-P05` | PROMPT 05 — Implementation | skeleton | implementation | B | [P05-Implementation.md](../01-contribution/web3/general/P05-Implementation/P05-Implementation.md) |
 | `W3-P06` | PROMPT 06 — Validation & Security: prove the invariants, not | operational | diagnostic | A | [P06-Validation-Security.md](../01-contribution/web3/general/P06-Validation/P06-Validation-Security.md) |

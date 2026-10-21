@@ -29,7 +29,7 @@ prompts by situation.
 | [06-interactive — conversations that clarify a request](#06-interactive--conversations-that-clarify-a-request) | 4 | Use when the request is vague and needs to be scoped first. |
 | [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 13 | Composed sequences that route between systems and stop at human gates. |
 
-*Maturity across the library: 213 operational, 5 draft, 146 skeleton, 364 total.*
+*Maturity across the library: 216 operational, 5 draft, 143 skeleton, 364 total.*
 
 ---
 
@@ -94,7 +94,7 @@ Stage systems for contributing to an unfamiliar project.
 |---|---|---|---|---|
 | `PKG-P01` | [Context & Package Understanding](01-contribution/packages-libraries/P01-Context/P01-Context-Package-Understanding.md) | Understand the package’s purpose, public API, users, and contribution norms. | skeleton | B |
 | `PKG-P02` | [Discovery & Opportunity Identification](01-contribution/packages-libraries/P02-Discovery/P02-Discovery-Opportunity-Identification.md) | Find valuable, realistic contribution opportunities for the package. | skeleton | A |
-| `PKG-P03` | [Opportunity Selection & Framing](01-contribution/packages-libraries/P03-Selection/P03-Opportunity-Selection-Framing.md) | Select the best opportunity and frame it with explicit compatibility awareness. | skeleton | B |
+| `PKG-P03` | [Opportunity Selection & Framing: choose work that does not add a promise you must keep](01-contribution/packages-libraries/P03-Selection/P03-Opportunity-Selection-Framing.md) | SELECTED_WORK.md naming one candidate, its surface cost ledger (symbols added, symbols changed, dependencies added, behaviour changed silently), the semver… <br>**Inputs:** `OPPORTUNITIES, PROJECT_CONVENTIONS, ISSUE_REF, SEMVER_POLICY, SUPPORT_POLICY` | operational | A |
 | `PKG-P04` | [Planning & API Impact](01-contribution/packages-libraries/P04-Planning/P04-Planning-API-Impact.md) | Plan the change while explicitly considering public API impact and versioning. | skeleton | B |
 | `PKG-P05` | [Implementation](01-contribution/packages-libraries/P05-Implementation/P05-Implementation.md) | Implement the planned change cleanly, preserving public API contracts unless a deliberate breaking change was approved in the plan. | skeleton | B |
 | `PKG-P06` | [Validation & Compatibility: prove you did not break anyone's build](01-contribution/packages-libraries/P06-Validation/P06-Validation-Compatibility.md) | VALIDATION.md with the public API surface diff, the runtime and module-format matrix, consumer smoke tests run against the packaged artifact, the semver decision… <br>**Inputs:** `CHANGE_SCOPE, SUPPORTED_RUNTIMES, PREVIOUS_VERSION, TEST_COMMAND, SEMVER_POLICY` | operational | A |
@@ -107,7 +107,7 @@ Stage systems for contributing to an unfamiliar project.
 |---|---|---|---|---|
 | `WEB-P01` | [Context & Project Understanding](01-contribution/web/general/P01-Context/P01-Context-Project-Understanding.md) | Build a solid understanding of the target web project before proposing or making changes. | skeleton | B |
 | `WEB-P02` | [Discovery & Opportunity Identification](01-contribution/web/general/P02-Discovery/P02-Discovery-Opportunity-Identification.md) | Find valuable, realistic contribution opportunities in the web project. | skeleton | A |
-| `WEB-P03` | [Opportunity Selection & Framing](01-contribution/web/general/P03-Opportunity/P03-Opportunity-Selection-Framing.md) | Select the best opportunity for the current context and frame it clearly. | skeleton | B |
+| `WEB-P03` | [Opportunity Selection & Framing: choose work you can prove, in a surface you are allowed to change](01-contribution/web/general/P03-Opportunity/P03-Opportunity-Selection-Framing.md) | SELECTED_WORK.md naming one candidate, the user-visible claim it makes, the artifact that will prove the claim, the surfaces it touches, the states in scope, the… <br>**Inputs:** `OPPORTUNITIES, PROJECT_CONVENTIONS, DESIGN_OWNER, ISSUE_REF, BROWSER_SUPPORT` | operational | A |
 | `WEB-P04` | [Planning & Design](01-contribution/web/general/P04-Planning/P04-Planning-Design.md) | Produce a concrete plan for implementing the selected work while respecting web project conventions. | skeleton | B |
 | `WEB-P05` | [Implementation](01-contribution/web/general/P05-Implementation/P05-Implementation.md) | Implement the planned change cleanly, following the project’s conventions and web best practices. | skeleton | B |
 | `WEB-P06` | [Validation & Quality: prove the change works in a browser you did not write it in](01-contribution/web/general/P06-Validation/P06-Validation-Quality.md) | VALIDATION.md stating what ran, at which engine and viewport, what it showed, which accessibility criteria were checked and how, and — explicitly — which checks… <br>**Inputs:** `CHANGE_SCOPE, BASELINE_BROWSERS, A11Y_TARGET, TEST_COMMAND, VIEWPORTS` | operational | A |
@@ -120,7 +120,7 @@ Stage systems for contributing to an unfamiliar project.
 |---|---|---|---|---|
 | `W3-P01` | [Context & Project Understanding](01-contribution/web3/general/P01-Context/P01-Context-Project-Understanding.md) | Build a solid understanding of the target Web3 project before proposing changes. | skeleton | B |
 | `W3-P02` | [Discovery & Opportunity Identification](01-contribution/web3/general/P02-Discovery/P02-Discovery-Opportunity-Identification.md) | Find valuable, realistic contribution opportunities. | skeleton | A |
-| `W3-P03` | [Opportunity Selection & Framing](01-contribution/web3/general/P03-Selection/P03-Opportunity-Selection-Framing.md) | Select the best opportunity and frame it clearly, with explicit risk awareness. | skeleton | B |
+| `W3-P03` | [Opportunity Selection & Framing: choose work whose failure someone else can undo](01-contribution/web3/general/P03-Selection/P03-Opportunity-Selection-Framing.md) | SELECTED_WORK.md naming one candidate, its reversibility tier, the preconditions that must hold before implementation begins, the invariants the change must… <br>**Inputs:** `OPPORTUNITIES, PROJECT_CONVENTIONS, MAINTAINER_APPROVAL, DEPLOYMENT_TARGETS, AUDIT_REF` | operational | A |
 | `W3-P04` | [Planning & Design](01-contribution/web3/general/P04-Planning/P04-Planning-Design.md) | Produce a concrete plan that respects Web3 constraints and project conventions. | skeleton | B |
 | `W3-P05` | [Implementation](01-contribution/web3/general/P05-Implementation/P05-Implementation.md) | Implement the planned change cleanly while preserving security and project conventions. | skeleton | B |
 | `W3-P06` | [Validation & Security: prove the invariants, not the test suite](01-contribution/web3/general/P06-Validation/P06-Validation-Security.md) | VALIDATION.md containing the invariant list with the test that proves each, the access-control matrix, the value-flow review, the analyser findings triaged, and a… <br>**Inputs:** `CHANGE_SCOPE, INVARIANTS, CHAIN_AND_FORK_BLOCK, AUDIT_TOOLS, VALUE_AT_RISK` | operational | A |
