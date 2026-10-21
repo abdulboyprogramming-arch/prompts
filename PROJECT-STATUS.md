@@ -1,6 +1,6 @@
 # Project Status — Continuation Checkpoint
 
-**As of:** 2026-10-21 · **Library version:** 2.22.0 · **Branch:** `main` (work delivered in a feature branch, merged by pull request)
+**As of:** 2026-10-21 · **Library version:** 2.23.0 · **Branch:** `main` (work delivered in a feature branch, merged by pull request)
 **Read this first** if you are continuing work on this repository. It replaces guesswork about what exists and what was intended.
 
 ---
@@ -32,12 +32,12 @@ archive/         Legacy .txt source material, retained for provenance
 Run `python3 scripts/validate_library.py` for live numbers. At the time of writing:
 
 - **460 Markdown files**, **364 prompt files**.
-- Maturity: **210 operational**, **5 draft**, **149 skeleton**.
+- Maturity: **213 operational**, **5 draft**, **146 skeleton**.
 - **0 validation errors, 0 warnings**.
 - Operational systems: open-source contribution agent (16), codebase audit (9), project recovery (7), security hardening (7), testing & QA (7), refactoring (7), database (5), cost engineering (4), privacy requests (3), payments (3), git operations (5), code review (6), feature flags (5), documentation (8), handover (5), hackathon sprint (1), agent context (4), deployment (2), dev environment (1), on-call handover (1), dependency management (5), decommissioning (4), governance and compliance (3), observability & reliability (5), release engineering (4), AI/agentic (5), feature completion (4), independent verification (1), plus licence compliance, standards conformance, automation of described tasks, client-side secrets, supply chain, data residency, feature sunset, incident communications, operational readiness, build performance, AI-output verification, debugging, incident response, flaky-test triage, failed-fix escalation, data-loss recovery, disaster recovery, security incident response, time correctness, third-party integration, file uploads, localisation, infrastructure as code, performance budgets, monorepo health, API versioning, and desktop/CLI (2 stages).
 - Every prompt declares identifier, system, version, maturity, execution mode, and risk class.
 
-**The honest summary:** roughly two fifths of the prompt files are developed to the standard (210 operational); the rest are outlines that name a sensible stage sequence but lack verification, evidence rules, and failure handling. Two prompts have been empirically executed — one engineering (`DBG-01`), one conversational (`CHAT-DEBUG`) — which is 1.0% of the operational library. That ratio is stated everywhere it matters, and the validator fails the build if a README over-claims.
+**The honest summary:** roughly two fifths of the prompt files are developed to the standard (213 operational); the rest are outlines that name a sensible stage sequence but lack verification, evidence rules, and failure handling. Two prompts have been empirically executed — one engineering (`DBG-01`), one conversational (`CHAT-DEBUG`) — which is 1.0% of the operational library. That ratio is stated everywhere it matters, and the validator fails the build if a README over-claims.
 
 ## 4. Standards that now govern the repository
 
@@ -93,7 +93,7 @@ Full detail in `CHANGELOG.md`. Summary:
 
 Completed since this list was written: **conversational mode — any prompt usable in a chat window, with the capability delta stated** (2.21.0); **quickstart, usage metering, test data, worked failure examples, prose lint, and the contribution-variant decision** (2.20.0); **environment parity, capacity planning, vendor due diligence, abuse prevention, duplicate-detection signals, the generated evidence report, and a worked run sheet** (2.19.0); **data migration, access review, deletion verification** (2.18.0); **licence compliance, standards conformance, the compliance workflow, task automation, client-side secret exposure, supply chain integrity, data residency, feature sunset, incident communications, operational readiness, build performance, AI-output verification** (2.18.0); **disaster recovery, time correctness, third-party integration, uploads, localisation, IaC, performance budgets, monorepo, API versioning, desktop/CLI, validator self-tests** (2.17.0); **tenant isolation, secret rotation, background jobs, email deliverability, accessibility audit, data engineering, agent-adoption workflow** (2.16.0); **prompt generation and regression (`GEN-P01/P02`), web3, mobile, embedded/IoT, games save+netcode, RAG grounding, agent permissions** (2.15.0); **deployment targets, host migration, dev environment, agent context, on-call handover** (2.14.0), **project handover** (2.12.0), **documentation products and live surface audit** (2.11.0), **feature flags** (2.10.0), **input declarations across the operational library** (2.9.0 — 109/118 prompts, nine artifact-only stages exempt), **code review** (2.8.0), **git operations and the inputs convention** (2.7.0), **payments** (2.6.0).
 
-1. **Empirical test harness** — backlog #83/#91. Two executed runs exist, and `_meta/evidence-levels.md` now states the ratio (2 of 210 operational prompts). The next unit of value is a fixture set, a scoring sheet, and runs performed by someone other than the prompt author. Until then every `operational` label is a structural claim.
+1. **Empirical test harness** — backlog #83/#91. Two executed runs exist, and `_meta/evidence-levels.md` now states the ratio (2 of 213 operational prompts). The next unit of value is a fixture set, a scoring sheet, and runs performed by someone other than the prompt author. Until then every `operational` label is a structural claim.
 2. **Differentiate the 18 overlapping contribution stages** (backlog #107) — one stage across all three variants per pass; #100 decided the policy and this is the work.
 3. **Promote `03-domains/backend`'s seven remaining skeleton stages** — it is the largest domain and now has a ninth stage (`P09`) that is operational while stages P01–P08 are outlines.
 4. **Promote `03-domains/frontend`** — accessibility and state management are named but lack pass criteria; `PERF-BUDGET-01` now covers budgets, but only from the outside.

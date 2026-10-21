@@ -1,6 +1,6 @@
 # General Web3 Contribution System
 
-**Maturity: skeleton (v0.1.0).** These eight stage files are structural outlines: a reasonable sequence with named artifacts, but without the evidence rules, verification steps, and failure handling the library standard requires. Do not present this system as operational, and do not run it unattended on a repository that controls real assets.
+**Maturity: seven skeletons, one operational.** `W3-P06` (validation and security) is developed: invariants stated before tests, a violating case per invariant, an access-control matrix, a pinned fork run, and a confidence statement that has to be specific. The other seven stages are outlines. Do not run this system unattended on a repository that controls real assets.
 
 **Intended use today:** a human-supervised checklist for contributing to a web3 project.
 **Additional constraint:** anything that can move funds or change on-chain state requires explicit human approval before execution (risk class C/D — see `00-core/safety-and-security/ACTION-CATEGORIES.md`).
@@ -14,7 +14,7 @@
 | W3-P03 | [Opportunity Selection & Framing](P03-Selection/P03-Opportunity-Selection-Framing.md) | Choose one, define acceptance and blast radius | skeleton |
 | W3-P04 | [Planning & Design](P04-Planning/P04-Planning-Design.md) | Design against existing contract patterns | skeleton |
 | W3-P05 | [Implementation](P05-Implementation/P05-Implementation.md) | Implementation plus test coverage | skeleton |
-| W3-P06 | [Validation & Security](P06-Validation/P06-Validation-Security.md) | Tests, invariants, adversarial review | skeleton |
+| W3-P06 | [Validation & Security](P06-Validation/P06-Validation-Security.md) | Invariants, adversarial cases, access-control matrix | **operational** |
 | W3-P07 | [PR & Communication](P07-PR/P07-PR-Communication.md) | Change description maintainers will trust | skeleton |
 | W3-P08 | [Orchestrator](P08-Orchestrator/P08-Web3-Contribution-Orchestrator.md) | Sequences the stages | skeleton |
 

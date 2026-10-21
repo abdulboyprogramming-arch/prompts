@@ -29,7 +29,7 @@ prompts by situation.
 | [06-interactive — conversations that clarify a request](#06-interactive--conversations-that-clarify-a-request) | 4 | Use when the request is vague and needs to be scoped first. |
 | [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 13 | Composed sequences that route between systems and stop at human gates. |
 
-*Maturity across the library: 210 operational, 5 draft, 149 skeleton, 364 total.*
+*Maturity across the library: 213 operational, 5 draft, 146 skeleton, 364 total.*
 
 ---
 
@@ -97,7 +97,7 @@ Stage systems for contributing to an unfamiliar project.
 | `PKG-P03` | [Opportunity Selection & Framing](01-contribution/packages-libraries/P03-Selection/P03-Opportunity-Selection-Framing.md) | Select the best opportunity and frame it with explicit compatibility awareness. | skeleton | B |
 | `PKG-P04` | [Planning & API Impact](01-contribution/packages-libraries/P04-Planning/P04-Planning-API-Impact.md) | Plan the change while explicitly considering public API impact and versioning. | skeleton | B |
 | `PKG-P05` | [Implementation](01-contribution/packages-libraries/P05-Implementation/P05-Implementation.md) | Implement the planned change cleanly, preserving public API contracts unless a deliberate breaking change was approved in the plan. | skeleton | B |
-| `PKG-P06` | [Validation & Compatibility](01-contribution/packages-libraries/P06-Validation/P06-Validation-Compatibility.md) | Verify correctness, compatibility expectations, and release readiness signals. | skeleton | C |
+| `PKG-P06` | [Validation & Compatibility: prove you did not break anyone's build](01-contribution/packages-libraries/P06-Validation/P06-Validation-Compatibility.md) | VALIDATION.md with the public API surface diff, the runtime and module-format matrix, consumer smoke tests run against the packaged artifact, the semver decision… <br>**Inputs:** `CHANGE_SCOPE, SUPPORTED_RUNTIMES, PREVIOUS_VERSION, TEST_COMMAND, SEMVER_POLICY` | operational | A |
 | `PKG-P07` | [PR & Communication](01-contribution/packages-libraries/P07-PR/P07-PR-Communication.md) | Prepare a clear pull request that makes compatibility impact and verification obvious to maintainers. | skeleton | B |
 | `PKG-P08` | [Package & Library Contribution Master Orchestrator](01-contribution/packages-libraries/P08-Orchestrator/P08-Package-Contribution-Orchestrator.md) | Runs the packages libraries system end to end: gates, routing, and final acceptance. | skeleton | A |
 
@@ -110,7 +110,7 @@ Stage systems for contributing to an unfamiliar project.
 | `WEB-P03` | [Opportunity Selection & Framing](01-contribution/web/general/P03-Opportunity/P03-Opportunity-Selection-Framing.md) | Select the best opportunity for the current context and frame it clearly. | skeleton | B |
 | `WEB-P04` | [Planning & Design](01-contribution/web/general/P04-Planning/P04-Planning-Design.md) | Produce a concrete plan for implementing the selected work while respecting web project conventions. | skeleton | B |
 | `WEB-P05` | [Implementation](01-contribution/web/general/P05-Implementation/P05-Implementation.md) | Implement the planned change cleanly, following the project’s conventions and web best practices. | skeleton | B |
-| `WEB-P06` | [Validation & Quality](01-contribution/web/general/P06-Validation/P06-Validation-Quality.md) | Verify that the change is correct, polished, and meets project quality bars. | skeleton | B |
+| `WEB-P06` | [Validation & Quality: prove the change works in a browser you did not write it in](01-contribution/web/general/P06-Validation/P06-Validation-Quality.md) | VALIDATION.md stating what ran, at which engine and viewport, what it showed, which accessibility criteria were checked and how, and — explicitly — which checks… <br>**Inputs:** `CHANGE_SCOPE, BASELINE_BROWSERS, A11Y_TARGET, TEST_COMMAND, VIEWPORTS` | operational | A |
 | `WEB-P07` | [PR & Communication](01-contribution/web/general/P07-PR-Communication/P07-PR-Communication.md) | Prepare and submit a clear, professional pull request that reviewers will appreciate. | skeleton | B |
 | `WEB-P08` | [Web Contribution Master Orchestrator](01-contribution/web/general/P08-Orchestrator/P08-Web-Contribution-Orchestrator.md) | Runs the general system end to end: gates, routing, and final acceptance. | skeleton | A |
 
@@ -123,7 +123,7 @@ Stage systems for contributing to an unfamiliar project.
 | `W3-P03` | [Opportunity Selection & Framing](01-contribution/web3/general/P03-Selection/P03-Opportunity-Selection-Framing.md) | Select the best opportunity and frame it clearly, with explicit risk awareness. | skeleton | B |
 | `W3-P04` | [Planning & Design](01-contribution/web3/general/P04-Planning/P04-Planning-Design.md) | Produce a concrete plan that respects Web3 constraints and project conventions. | skeleton | B |
 | `W3-P05` | [Implementation](01-contribution/web3/general/P05-Implementation/P05-Implementation.md) | Implement the planned change cleanly while preserving security and project conventions. | skeleton | B |
-| `W3-P06` | [Validation & Security Checks](01-contribution/web3/general/P06-Validation/P06-Validation-Security.md) | Verify correctness, safety, and quality of the change. | skeleton | B |
+| `W3-P06` | [Validation & Security: prove the invariants, not the test suite](01-contribution/web3/general/P06-Validation/P06-Validation-Security.md) | VALIDATION.md containing the invariant list with the test that proves each, the access-control matrix, the value-flow review, the analyser findings triaged, and a… <br>**Inputs:** `CHANGE_SCOPE, INVARIANTS, CHAIN_AND_FORK_BLOCK, AUDIT_TOOLS, VALUE_AT_RISK` | operational | A |
 | `W3-P07` | [PR & Communication](01-contribution/web3/general/P07-PR/P07-PR-Communication.md) | Prepare a clear, professional pull request that helps reviewers assess correctness and risk. | skeleton | B |
 | `W3-P08` | [Web3 Contribution Master Orchestrator](01-contribution/web3/general/P08-Orchestrator/P08-Web3-Contribution-Orchestrator.md) | Runs the general system end to end: gates, routing, and final acceptance. | skeleton | A |
 

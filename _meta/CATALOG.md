@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 364 prompts — 0 canonical, 210 operational, 5 draft, 149 skeleton.
+**Totals:** 364 prompts — 0 canonical, 213 operational, 5 draft, 146 skeleton.
 
 ## `00-core`
 
@@ -64,7 +64,7 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `PKG-P03` | PROMPT 03 — Opportunity Selection & Framing | skeleton | planning | B | [P03-Opportunity-Selection-Framing.md](../01-contribution/packages-libraries/P03-Selection/P03-Opportunity-Selection-Framing.md) |
 | `PKG-P04` | PROMPT 04 — Planning & API Impact | skeleton | planning | B | [P04-Planning-API-Impact.md](../01-contribution/packages-libraries/P04-Planning/P04-Planning-API-Impact.md) |
 | `PKG-P05` | PROMPT 05 — Implementation | skeleton | implementation | B | [P05-Implementation.md](../01-contribution/packages-libraries/P05-Implementation/P05-Implementation.md) |
-| `PKG-P06` | PROMPT 06 — Validation & Compatibility | skeleton | diagnostic | C | [P06-Validation-Compatibility.md](../01-contribution/packages-libraries/P06-Validation/P06-Validation-Compatibility.md) |
+| `PKG-P06` | PROMPT 06 — Validation & Compatibility: prove you did not br | operational | diagnostic | A | [P06-Validation-Compatibility.md](../01-contribution/packages-libraries/P06-Validation/P06-Validation-Compatibility.md) |
 | `PKG-P07` | PROMPT 07 — PR & Communication | skeleton | implementation | B | [P07-PR-Communication.md](../01-contribution/packages-libraries/P07-PR/P07-PR-Communication.md) |
 | `PKG-P08` | PROMPT 08 — Package & Library Contribution Master Orchestrat | skeleton | orchestration | A | [P08-Package-Contribution-Orchestrator.md](../01-contribution/packages-libraries/P08-Orchestrator/P08-Package-Contribution-Orchestrator.md) |
 
@@ -77,7 +77,7 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `WEB-P03` | PROMPT 03 — Opportunity Selection & Framing | skeleton | planning | B | [P03-Opportunity-Selection-Framing.md](../01-contribution/web/general/P03-Opportunity/P03-Opportunity-Selection-Framing.md) |
 | `WEB-P04` | PROMPT 04 — Planning & Design | skeleton | planning | B | [P04-Planning-Design.md](../01-contribution/web/general/P04-Planning/P04-Planning-Design.md) |
 | `WEB-P05` | PROMPT 05 — Implementation | skeleton | implementation | B | [P05-Implementation.md](../01-contribution/web/general/P05-Implementation/P05-Implementation.md) |
-| `WEB-P06` | PROMPT 06 — Validation & Quality | skeleton | diagnostic | B | [P06-Validation-Quality.md](../01-contribution/web/general/P06-Validation/P06-Validation-Quality.md) |
+| `WEB-P06` | PROMPT 06 — Validation & Quality: prove the change works in  | operational | diagnostic | A | [P06-Validation-Quality.md](../01-contribution/web/general/P06-Validation/P06-Validation-Quality.md) |
 | `WEB-P07` | PROMPT 07 — PR & Communication | skeleton | implementation | B | [P07-PR-Communication.md](../01-contribution/web/general/P07-PR-Communication/P07-PR-Communication.md) |
 | `WEB-P08` | PROMPT 08 — Web Contribution Master Orchestrator | skeleton | orchestration | A | [P08-Web-Contribution-Orchestrator.md](../01-contribution/web/general/P08-Orchestrator/P08-Web-Contribution-Orchestrator.md) |
 
@@ -90,7 +90,7 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `W3-P03` | PROMPT 03 — Opportunity Selection & Framing | skeleton | planning | B | [P03-Opportunity-Selection-Framing.md](../01-contribution/web3/general/P03-Selection/P03-Opportunity-Selection-Framing.md) |
 | `W3-P04` | PROMPT 04 — Planning & Design | skeleton | planning | B | [P04-Planning-Design.md](../01-contribution/web3/general/P04-Planning/P04-Planning-Design.md) |
 | `W3-P05` | PROMPT 05 — Implementation | skeleton | implementation | B | [P05-Implementation.md](../01-contribution/web3/general/P05-Implementation/P05-Implementation.md) |
-| `W3-P06` | PROMPT 06 — Validation & Security Checks | skeleton | diagnostic | B | [P06-Validation-Security.md](../01-contribution/web3/general/P06-Validation/P06-Validation-Security.md) |
+| `W3-P06` | PROMPT 06 — Validation & Security: prove the invariants, not | operational | diagnostic | A | [P06-Validation-Security.md](../01-contribution/web3/general/P06-Validation/P06-Validation-Security.md) |
 | `W3-P07` | PROMPT 07 — PR & Communication | skeleton | implementation | B | [P07-PR-Communication.md](../01-contribution/web3/general/P07-PR/P07-PR-Communication.md) |
 | `W3-P08` | PROMPT 08 — Web3 Contribution Master Orchestrator | skeleton | orchestration | A | [P08-Web3-Contribution-Orchestrator.md](../01-contribution/web3/general/P08-Orchestrator/P08-Web3-Contribution-Orchestrator.md) |
 

@@ -2,6 +2,26 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.23.0] — 2026-10-21
+
+### Changed — `P06 Validation` differentiated across the three contribution variants (#107)
+
+`01-contribution` holds three systems whose stages were the same file with different nouns; `VARIANTS.md` (2.20.0) decided to keep all three but ruled that **any overlapping stage must state what is different about it in its domain**, and blocked promotion until it did. This release does that for the one stage where the difference is sharpest, and promotes all three to `operational`:
+
+| Variant | Validation means | The evidence that convinces a maintainer |
+|---|---|---|
+| `WEB-P06` | It works in engines, viewports, and input methods the author did not use | A screenshot at a named browser and width, or a passing cross-browser job |
+| `W3-P06` | The invariants hold when someone tries to break them | A violating case per invariant, an access-control matrix, a fork run pinned to a block |
+| `PKG-P06` | The published interface did not break a consumer's build | A surface diff against the released version, and an install of the built artifact in a clean environment |
+
+Each now carries an evidence standard, a failure-handling section, and completion criteria. The characteristic failure each one hunts is named: *works in the author's browser*, *works in the test suite and drains the contract*, *works here and breaks a consumer's build*.
+
+**The measurement did not cooperate, and that is recorded rather than smoothed over.** Pairwise vocabulary overlap across the three files went from 0.20–0.28 to 0.22–0.27 — one pair rose. The reason is in `VARIANTS.md`: the `P06` outlines were two paragraphs each, so they never contributed the 0.63–0.68 similarity at the top of the record, which comes from the longer `P03` and `P07` stages. Rewriting a short outline into a developed prompt also multiplies the denominator. So the claim for this pass is the one a reviewer can check by reading, not a number; the detector stays at its bar for the case it was built for.
+
+### Result
+
+**460 Markdown files, 364 prompts: 213 operational, 5 draft, 146 skeleton.** Validator 0 errors / 0 warnings; tooling self-tests 6/6, 13/13, 12/12, 15/15; prose lint 0 findings at baseline 0; catalog, gallery, task index and evidence report current. Executed: **2 of 213 operational prompts (0.9%)** — the three new operational prompts have not been run, and the review log says so.
+
 ## [2.22.0] — 2026-10-21
 
 ### Changed — the prose lint is now a gate, at zero

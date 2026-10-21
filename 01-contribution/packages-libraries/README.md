@@ -1,6 +1,6 @@
 # Package & Library Contribution System
 
-**Status:** Skeleton — 8 stage outlines (skeleton 8). The stages name a sensible sequence but lack the evidence rules, verification, and failure handling that this library requires of `operational`. Treat the system as a plan, not a procedure; see [`_meta/ROADMAP-AND-BACKLOG.md`](../../_meta/ROADMAP-AND-BACKLOG.md).
+**Status:** seven skeleton outlines, one operational stage (`PKG-P06`). The validation stage carries the evidence rules this domain needs — published-artifact diff, clean-environment install per runtime, and a semver verdict with its reason. The rest name a defensible sequence and nothing more; see [`_meta/ROADMAP-AND-BACKLOG.md`](../../_meta/ROADMAP-AND-BACKLOG.md).
 **Entry Point:** [`P08-Orchestrator/P08-Package-Contribution-Orchestrator.md`](P08-Orchestrator/P08-Package-Contribution-Orchestrator.md)
 
 A multi-stage system for making high-quality contributions to software packages and libraries (language packages, SDKs, shared libraries, CLI tools distributed as packages).
@@ -14,7 +14,7 @@ A multi-stage system for making high-quality contributions to software packages 
 | PKG-P03 | Opportunity Selection & Framing | Choose and clearly frame the work |
 | PKG-P04 | Planning & API Impact | Plan the change with compatibility in mind |
 | PKG-P05 | Implementation | Execute following project conventions |
-| PKG-P06 | Validation & Compatibility | Tests, versioning, and compatibility checks |
+| PKG-P06 | [Validation & Compatibility](P06-Validation/P06-Validation-Compatibility.md) — **operational** | Published-artifact diff, clean-install smoke tests, semver verdict |
 | PKG-P07 | PR & Communication | Prepare a professional pull request |
 | PKG-P08 | Master Orchestrator | Coordinates the full contribution flow |
 
