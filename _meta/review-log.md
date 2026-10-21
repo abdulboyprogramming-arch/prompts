@@ -717,3 +717,11 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 - Design detail worth keeping: all three now reject the same shape of candidate — one with no evidence — but each names a different kind of evidence. That is what makes them non-interchangeable without making them stop being discovery.
 - Decision recorded rather than deferred: `P01` and `P08` are left undifferentiated. Their similarity is already 0.15–0.46 and their content is genuinely the same job in every language; forcing a difference would produce adjectives. `P04` and `P05` remain open.
 - Deductions: none of the six has been executed. The web and package stages are the cheapest to test against a real repository; the web3 stage's trust-boundary map is the one most likely to be judged too slow by a maintainer.
+
+### `01-contribution/*/P04` and `P05` — passes 5 and 6, closing #107
+- **2026-10-21 · specialised · 89/100 · operational (6 stages promoted)**
+- `P05`: the same verb hid three disciplines — state coverage and native semantics (web), no new surface with append-only storage (web3), and an exported surface where every line is a promise (packages). Combined 0.40–0.61 → 0.29–0.33.
+- `P04`: each plan protects something different — a state × breakpoint matrix, a deployment sequence with halt conditions, an allowed surface delta with release choreography. Combined 0.19–0.51 → 0.32–0.33.
+- Recorded decision, not an omission: `P01` and `P08` stay undifferentiated. Their combined similarity was already 0.15–0.46 and their content is genuinely the same job in any language; a pass would have produced adjectives where the rule asks for instruments.
+- Consequence carried into every README: the three systems remain `mixed`, not `operational`. Six of eight stages are developed; the first and last are not, and a system that cannot start or orchestrate itself is still not safe unattended.
+- Deductions: eighteen rewritten stages, zero executions. The differentiation is a claim about intent and evidence standard, and only a real repository can test whether a maintainer accepts these procedures.

@@ -122,14 +122,36 @@ Each records a different kind of evidence, because each has a different notion o
 
 **Measurement:** combined similarity fell from 0.56–0.65 to 0.29–0.32; vocabulary containment 0.56–0.65 → 0.35–0.38; structure 1.00 → 0.83; shingle to 0.01.
 
+## Pass 5 — `P05 Implementation`, where the same verb hides three different disciplines
+
+| Variant | The discipline | The characteristic failure |
+|---|---|---|
+| `web/general` | Build every state the plan named, use the platform before the library, keep the diff behaviour-only | The happy path ships, the error state does not exist, and a clickable `div` replaces a working `button` |
+| `web3/general` | Add no surface, preserve every invariant, append-only storage, state settled before external calls | A convenient external call and a new state variable arrive in one PR, each harmless alone |
+| `packages-libraries` | Every line exported is a line supported: no accidental exports, types as documentation, tests through the entry point | A helper exported for convenience, a type widened to compile, and tests that import `src/` |
+
+Combined: 0.40–0.61 → **0.29–0.33**.
+
+## Pass 6 — `P04 Planning`, where each plan protects a different thing
+
+| Variant | What the plan is organised around | What a plan without it produces |
+|---|---|---|
+| `web/general` | The **state × breakpoint matrix**, with a test layer per behaviour | A description of the desktop happy path, and states discovered in review |
+| `web3/general` | The **deployment sequence and storage decision**, before the diff | A thorough plan for the code with one line for the upgrade |
+| `packages-libraries` | The **allowed surface delta** and the release choreography | A correct patch that cannot ship, or a break with no deprecation |
+
+Combined: 0.19–0.51 → **0.32–0.33**.
+
 ## Current state, honestly
 
-Four of six overlapping stages are through a pass in all three variants: `P02`, `P03`, `P06` and `P07`. Two stages remain — `P04 Planning` and `P05 Implementation` — and with them `P01` and `P08`, which sit at 0.15–0.46 combined. Those last two are the stages where the variants arguably should be similar, because planning a change and implementing it in a repository are close to the same job in any language. Two things follow:
+All six overlapping stages are through a pass in all three variants: `P02`, `P03`, `P04`, `P05`, `P06` and `P07`. Every pair sits at 0.29–0.38 combined, down from 0.26–0.68 before the work started, and each stage states a difference a maintainer can check by reading rather than by trusting a metric. `P01` and `P08` were left alone deliberately: their similarity was already 0.15–0.46 and their content genuinely is the same job in any language, so differentiating them would have produced adjectives.
 
-1. **They stay `skeleton`.** A system that cannot distinguish its stages is not ready to be called operational, whatever its prose says.
-2. **The next person to touch them works one stage across all three**, not one system start to finish. That is the ordering that produces a real difference: pick `P06 Validation`, write web3's invariant checks and packages' compatibility matrix, and the web variant's cross-browser evidence — then the three files stop being the same file.
+Two things follow:
 
-Recorded as backlog #107: *differentiate the 18 overlapping stages, one stage across all three variants per pass*. It is deliberately not a bulk rewrite, because a bulk rewrite of three systems by one author at one time would produce the same text again with different nouns. **Progress: 4 of 6 passes done (12 of 18 stage files), 2 stages left.** Next is `P05` or `P04`; the remaining decision worth recording is whether `P01` and `P08` should be differentiated at all, since their similarity is already low and their content is genuinely the same job.
+1. **The systems stay `mixed`, not `operational`.** Six of eight stages are developed in each; `P01` and `P08` remain outlines, and a system whose first and last stages are outlines is not ready to run unattended whatever its middle says.
+2. **The next person to touch them works one stage across all three**, not one system start to finish. That is the ordering that produced this result: six passes, each taking one stage and writing three genuinely different instruments, rather than three rewrites by one author at one time.
+
+Recorded as backlog #107: *differentiate the 18 overlapping stages, one stage across all three variants per pass*. It is deliberately not a bulk rewrite, because a bulk rewrite of three systems by one author at one time would produce the same text again with different nouns. **Progress: 6 of 6 passes done (18 of 18 stage files).** `P01` and `P08` are excluded by decision, recorded above. What remains is not differentiation but verification: none of the six stages in any variant has been executed, and `P02` and `P07` are the cheapest to test against a real repository.
 
 ## What this record prevents
 

@@ -74,6 +74,19 @@ The interesting result is `P02`. The three outlines were not merely similar — 
 
 Every rewritten pair sits at 0.29–0.38 combined, from 0.26–0.68. `P04 Planning` and `P05 Implementation` remain; `P01` and `P08` are deliberately untouched, because planning and implementing a change in a repository genuinely are the same job in any language, and differentiating them would produce adjectives rather than instruments.
 
+### Changed — `P04 Planning` and `P05 Implementation` complete the differentiation (#107, passes 5–6)
+
+The last two passes finish #107: six stages, eighteen files, every variant pair now at 0.29–0.38 combined from a starting 0.26–0.68.
+
+| Stage | `web/general` | `web3/general` | `packages-libraries` | Combined |
+|---|---|---|---|---|
+| `P05 Implementation` | Build every state the plan named; native elements before ARIA before JavaScript | Add no surface, append-only storage, state settled before external calls | Every export is a promise: no accidental exports, entry-point tests, packaging checked | 0.40–0.61 → **0.29–0.33** |
+| `P04 Planning` | The state × breakpoint matrix with a test layer per behaviour | The deployment sequence and storage decision, written before the diff | The allowed surface delta and the release choreography | 0.19–0.51 → **0.32–0.33** |
+
+Two decisions are recorded rather than made by omission. `P01` and `P08` stay undifferentiated: their similarity was already 0.15–0.46 and their content genuinely is the same job in any language, so a pass would have produced adjectives. And the systems stay `mixed` rather than `operational`, because a system whose first and last stages are outlines is not ready to run unattended whatever its middle says.
+
+What remains is execution. Eighteen stages that have never been run are eighteen hypotheses about what a maintainer will accept — `WEB-P02`/`WEB-P07` and `PKG-P02`/`PKG-P07` are the cheapest to test, because their output can be judged against a public issue tracker.
+
 ### New — a worked multi-agent run, and the three rules it forced (#109)
 
 `WF-MULTIAGENT` said "freeze the interfaces first" and "audit for cross-agent interference". Neither was demonstrated, so both read as formalities. [`07-workflows/multi-agent-worked-example.md`](07-workflows/multi-agent-worked-example.md) is a two-agent notifications feature where the event schema was frozen before either agent started; Agent A then added a **required** `template_id` on day 2 and reported it as *done*, not *deviated*.
@@ -117,9 +130,9 @@ The two misses were worth more than the hits:
 
 ### Result
 
-**457 Markdown files, 364 prompts: 222 operational, 5 draft, 137 skeleton.** Validator 0 errors / 0 warnings; tooling self-tests 10/10, 13/13, 12/12, 17/17; prose lint 0 findings at baseline 0; catalog, gallery, task index and evidence report current, verified by one command. The file count is the validator's scan, not `find`'s — they differ by tooling and archive files, and the scanned number is the one that matches the other claims here.
+**457 Markdown files, 364 prompts: 228 operational, 5 draft, 131 skeleton.** Validator 0 errors / 0 warnings; tooling self-tests 10/10, 13/13, 12/12, 17/17; prose lint 0 findings at baseline 0; catalog, gallery, task index and evidence report current, verified by one command. The file count is the validator's scan, not `find`'s — they differ by tooling and archive files, and the scanned number is the one that matches the other claims here.
 
-Coverage: **143 rows, unchanged** — this release improves the instruments, not the coverage. Executed: **3 of 222 operational prompts (1.4%)** — `DBG-01`, `CHAT-DEBUG`, and `CHAT-SELECT` from this release. The twelve `P02`/`P03`/`P06`/`P07` stages promoted here and `CHAT-HANDOFF` have not been run, and the review log says so for each.
+Coverage: **143 rows, unchanged** — this release improves the instruments, not the coverage. Executed: **3 of 228 operational prompts (1.3%)** — `DBG-01`, `CHAT-DEBUG`, and `CHAT-SELECT` from this release. The eighteen contribution stages promoted here and `CHAT-HANDOFF` have not been run, and the review log says so for each.
 
 ## [2.21.1] — 2026-10-21
 
