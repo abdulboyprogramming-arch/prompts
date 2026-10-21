@@ -29,7 +29,7 @@
 | 4 | Catalog current | `--catalog` + `git diff` | **PASS** — regenerates with no diff |
 | 5 | Gallery current | `generate_gallery.py --check` | **PASS** — "up to date", 364 prompts |
 | 6 | Duplication | `find_overlaps.py --check` (shingle 0.55) and `--metric combined` (0.75) | **PASS** — highest shingle 0.18; highest combined 0.68, which is the known and *decided* contribution-variant case (`01-contribution/VARIANTS.md`) |
-| 7 | Tooling has tests | `test_validator.py`, `test_overlaps.py`, `test_prose_lint.py`, `test_task_index.py` | **PASS** — 10/10, 13/13, 12/12, 17/17 |
+| 7 | Tooling has tests | `test_validator.py`, `test_overlaps.py`, `test_prose_lint.py`, `test_task_index.py` | **PASS** — 14/14, 13/13, 12/12, 17/17 |
 | 8 | Prose lint | `lint_prose.py --check` | **PASS** — **0 findings at baseline 0**. The ratchet is now a gate: a new vague qualifier fails CI |
 | 9 | Relative links | validator, all links incl. `Depends on` | **PASS** — 0 broken |
 | 10 | Secrets in tree | `ghp_*`, `github_pat_*`, `AKIA*`, private-key headers | **PASS** — 0 hits |

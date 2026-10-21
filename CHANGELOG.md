@@ -105,6 +105,12 @@ Three rules followed, each traceable to a row of the audit that should have run 
 
 There were nine gates and three lists of them: the CI workflow, `CONTRIBUTING.md`, and the publication checklist. A contributor could not tell which was authoritative, and a gate added to one list was missing from the others. `scripts/check_all.py` is now the single source — CI runs that script and nothing else, and a local `python3 scripts/check_all.py` is the same run the pull request will get. `--fix` regenerates in dependency order (catalog, gallery, task index, evidence), because running them alphabetically produces a stale file that the next gate then fails.
 
+### New — the counts in prose are checked too
+
+Every generated artefact is guarded: CI fails if the catalog, gallery, task index, or evidence report is stale. The numbers a reader meets **before** those artefacts were not. Promoting prompts in this release moved the operational count from 213 to 228, and four hand-written sentences had to be edited each time — `PROJECT-STATUS.md`, the publication checklist's gate table and limitations section, and the quickstart. That is four chances to miss one, per release, forever.
+
+`scripts/validate_library.py` now compares the maturity lines in `PROJECT-STATUS.md` and `_meta/publication-checklist.md` against the tree and fails with both numbers: *"says 213 operational / 5 draft / 146 skeleton but the tree has 228 / 5 / 131"*. Four fixtures pin it (14/14), including the case where a document has no maturity line at all and must not be treated as a failure.
+
 ### New — the README's count table is now checked
 
 The per-system table in `README.md` drifted twice in one release: `03-domains/ai-agentic/` claimed 5 prompts while holding 7, and `07-workflows/` claimed 12 while holding 13. Neither is a lie anyone types — both are what happens when a prompt is added and the table is not revisited. Since that table is the first quantitative claim a reader meets, `scripts/validate_library.py` now compares every row against the tree and fails with the exact row to fix. Four fixtures in `test_validator.py` (10/10) pin the rule, including the case where two rows point at different directories.
@@ -130,7 +136,7 @@ The two misses were worth more than the hits:
 
 ### Result
 
-**457 Markdown files, 364 prompts: 228 operational, 5 draft, 131 skeleton.** Validator 0 errors / 0 warnings; tooling self-tests 10/10, 13/13, 12/12, 17/17; prose lint 0 findings at baseline 0; catalog, gallery, task index and evidence report current, verified by one command. The file count is the validator's scan, not `find`'s — they differ by tooling and archive files, and the scanned number is the one that matches the other claims here.
+**457 Markdown files, 364 prompts: 228 operational, 5 draft, 131 skeleton.** Validator 0 errors / 0 warnings; tooling self-tests 14/14, 13/13, 12/12, 17/17; prose lint 0 findings at baseline 0; catalog, gallery, task index and evidence report current, verified by one command. The file count is the validator's scan, not `find`'s — they differ by tooling and archive files, and the scanned number is the one that matches the other claims here.
 
 Coverage: **143 rows, unchanged** — this release improves the instruments, not the coverage. Executed: **3 of 228 operational prompts (1.3%)** — `DBG-01`, `CHAT-DEBUG`, and `CHAT-SELECT` from this release. The eighteen contribution stages promoted here and `CHAT-HANDOFF` have not been run, and the review log says so for each.
 

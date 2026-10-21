@@ -27,7 +27,12 @@ import tempfile
 import textwrap
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from validate_library import check_readme_counts, check_system_readmes, load  # noqa: E402
+from validate_library import (  # noqa: E402
+    check_documented_counts,
+    check_readme_counts,
+    check_system_readmes,
+    load,
+)
 
 
 STAGE = """# PROMPT {n} — Stage {n}
@@ -170,6 +175,34 @@ COUNT_CASES = [
 ]
 
 
+DOC_CASES = [
+    (
+        "a maturity line that matches the tree passes",
+        ["operational", "operational", "skeleton"],
+        "- Maturity: **2 operational**, **0 draft**, **1 skeleton**.\n",
+        False,
+    ),
+    (
+        "a maturity line that is stale is an error",
+        ["operational", "operational", "skeleton"],
+        "- Maturity: **1 operational**, **0 draft**, **1 skeleton**.\n",
+        True,
+    ),
+    (
+        "the error names the file and both numbers",
+        ["operational", "operational", "skeleton"],
+        "- Maturity: **9 operational**, **0 draft**, **1 skeleton**.\n",
+        True,
+    ),
+    (
+        "a document with no maturity line is ignored, not failed",
+        ["operational"],
+        "# Notes\n\nNo counts here.\n",
+        False,
+    ),
+]
+
+
 def main() -> int:
     failures = 0
     for name, readme, stages, expect_error in CASES:
@@ -197,7 +230,24 @@ def main() -> int:
             failures += 1
             for e in errors:
                 print(f"       got: {e}")
-    total = len(CASES) + len(COUNT_CASES)
+    for name, stages, text, expect_error in DOC_CASES:
+        with tempfile.TemporaryDirectory() as root:
+            docs = build(root, "**Maturity: operational (v1.0.0).** Two stages.\n", stages)
+            errors = check_documented_counts(docs, {"PROJECT-STATUS.md": text})
+        got_error = bool(errors)
+        ok = got_error == expect_error
+        status = "ok  " if ok else "FAIL"
+        print(f"{status} {name} (expected {'error' if expect_error else 'no error'})")
+        if not ok:
+            failures += 1
+            for e in errors:
+                print(f"       got: {e}")
+        elif name.startswith("the error names"):
+            if "PROJECT-STATUS.md" not in errors[0] or "tree has 2 / 0 / 1" not in errors[0]:
+                failures += 1
+                print("       detail missing from the message")
+
+    total = len(CASES) + len(COUNT_CASES) + len(DOC_CASES)
     print(f"\n{total - failures}/{total} cases passed")
     return 1 if failures else 0
 

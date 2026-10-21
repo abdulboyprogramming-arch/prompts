@@ -384,6 +384,7 @@ def check(docs: list[Doc]) -> tuple[list[str], list[str]]:
             )
 
     errors.extend(check_readme_counts(docs))
+    errors.extend(check_documented_counts(docs))
 
     for d in docs:
         if d.is_prompt and d.rel.split(os.sep)[0] not in TOOLING_DIRS:
@@ -449,6 +450,69 @@ def check_readme_counts(docs: list[Doc], readme_text: str | None = None) -> list
                 f"README.md: table says {claimed} prompts under {prefix}/ but {actual} exist — "
                 "update the row (and the maturity in the same row) to match the tree"
             )
+    return errors
+
+
+# Maturity lines restated in prose. Each is a hand-maintained sentence, and each
+# drifted every time a batch promoted a prompt: the number of `operational`
+# prompts moved from 213 to 228 during one release, and four documents had to be
+# edited by hand each time. A hand-maintained count beside a generated one is a
+# claim waiting to become false.
+DOC_MATURITY_LINES = [
+    (
+        "PROJECT-STATUS.md",
+        re.compile(r"\*\*(\d+) operational\*\*,\s*\*\*(\d+) draft\*\*,\s*\*\*(\d+) skeleton\*\*"),
+    ),
+    (
+        os.path.join("_meta", "publication-checklist.md"),
+        re.compile(r"(\d+) operational, (\d+) draft, (\d+) skeleton"),
+    ),
+]
+
+
+def check_documented_counts(
+    docs: list[Doc], texts: dict[str, str] | None = None
+) -> list[str]:
+    """Prose counts must match the tree, in the same way the README table must.
+
+    The generated files cannot drift: CI fails if they are stale. The documents a
+    reader actually arrives through can, and did — a maturity line that says 213
+    while the tree holds 228 is the quiet kind of wrong, because it looks like a
+    measurement.
+
+    `texts` maps a path to its content so tests can supply fixtures instead of
+    reading the working tree.
+    """
+    prompts = [
+        d
+        for d in docs
+        if d.is_prompt and not is_archive(d.rel) and d.rel.split(os.sep)[0] not in TOOLING_DIRS
+    ]
+    counts: dict[str, int] = {"operational": 0, "draft": 0, "skeleton": 0}
+    for d in prompts:
+        if d.maturity in counts:
+            counts[d.maturity] += 1
+
+    errors: list[str] = []
+    for rel, pattern in DOC_MATURITY_LINES:
+        if texts is not None:
+            text = texts.get(rel)
+        else:
+            path = os.path.join(ROOT, rel)
+            text = None
+            if os.path.exists(path):
+                with open(path, encoding="utf-8") as fh:
+                    text = fh.read()
+        if text is None:
+            continue
+        for op, dr, sk in pattern.findall(text):
+            claimed = (int(op), int(dr), int(sk))
+            actual = (counts["operational"], counts["draft"], counts["skeleton"])
+            if claimed != actual:
+                errors.append(
+                    f"{rel}: says {op} operational / {dr} draft / {sk} skeleton but the tree "
+                    f"has {actual[0]} / {actual[1]} / {actual[2]} — update the line"
+                )
     return errors
 
 
