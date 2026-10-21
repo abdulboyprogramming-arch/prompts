@@ -1,6 +1,6 @@
 # Project Status — Continuation Checkpoint
 
-**As of:** 2026-10-21 · **Library version:** 2.24.0 · **Branch:** `main` (work delivered in a feature branch, merged by pull request)
+**As of:** 2026-10-21 · **Library version:** 2.22.0 · **Branch:** `main` (work delivered in a feature branch, merged by pull request)
 **Read this first** if you are continuing work on this repository. It replaces guesswork about what exists and what was intended.
 
 ---
@@ -31,7 +31,7 @@ archive/         Legacy .txt source material, retained for provenance
 
 Run `python3 scripts/validate_library.py` for live numbers. At the time of writing:
 
-- **460 Markdown files**, **364 prompt files**.
+- **461 Markdown files**, **364 prompt files**.
 - Maturity: **213 operational**, **5 draft**, **146 skeleton**.
 - **0 validation errors, 0 warnings**.
 - Operational systems: open-source contribution agent (16), codebase audit (9), project recovery (7), security hardening (7), testing & QA (7), refactoring (7), database (5), cost engineering (4), privacy requests (3), payments (3), git operations (5), code review (6), feature flags (5), documentation (8), handover (5), hackathon sprint (1), agent context (4), deployment (2), dev environment (1), on-call handover (1), dependency management (5), decommissioning (4), governance and compliance (3), observability & reliability (5), release engineering (4), AI/agentic (5), feature completion (4), independent verification (1), plus licence compliance, standards conformance, automation of described tasks, client-side secrets, supply chain, data residency, feature sunset, incident communications, operational readiness, build performance, AI-output verification, debugging, incident response, flaky-test triage, failed-fix escalation, data-loss recovery, disaster recovery, security incident response, time correctness, third-party integration, file uploads, localisation, infrastructure as code, performance budgets, monorepo health, API versioning, and desktop/CLI (2 stages).

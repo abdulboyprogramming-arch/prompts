@@ -1,0 +1,34 @@
+name: Validate prompt library
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+# One script is the single source of the gate list: `scripts/check_all.py`.
+# CI, CONTRIBUTING.md and the publication checklist all point at it, so a check
+# added in one place cannot be missing from the others.
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Every gate
+        run: python3 scripts/check_all.py --verbose
+
+      - name: The tree must be unchanged by a regeneration
+        run: |
+          if ! git diff --quiet; then
+            echo "::error::Generated files changed during the run. Run: python3 scripts/check_all.py --fix"
+            git diff --stat
+            exit 1
+          fi

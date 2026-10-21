@@ -44,7 +44,7 @@ The differences are real and they are axes, not adjectives:
 
 ## Pass 1 — `P06 Validation`, and why the metric barely moved
 
-The method below was applied once, at v2.23.0, to the stage where the three domains diverge most. All three files were rewritten from outline to `operational`, each with its own evidence standard:
+The method below was applied once, at v2.22.0, to the stage where the three domains diverge most. All three files were rewritten from outline to `operational`, each with its own evidence standard:
 
 | Variant | What validation *is* here | The evidence that convinces a maintainer |
 |---|---|---|

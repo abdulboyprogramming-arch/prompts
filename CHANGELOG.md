@@ -2,52 +2,9 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
-## [2.24.0] — 2026-10-21
-
-### New — a worked multi-agent run, and the three rules it forced (#109)
-
-`WF-MULTIAGENT` said "freeze the interfaces first" and "audit for cross-agent interference". Neither was demonstrated, so both read as formalities. [`07-workflows/multi-agent-worked-example.md`](07-workflows/multi-agent-worked-example.md) is a two-agent notifications feature where:
-
-- the event schema was frozen before either agent started;
-- Agent A added a **required** `template_id` on day 2 and reported it as *done*, not *deviated*;
-- both per-agent suites stayed green, because each built its fixtures from its own copy of the schema;
-- the seam broke silently — the worker rendered an empty template and the job reported success.
-
-The recovery is the interesting part: the interface was **versioned** (v2 with `template_id` optional, `template` retained) rather than reverted, because a consumer already depended on v1; and the fixing agent built its test from A's *serialised payload* rather than from the frozen block.
-
-Three rules followed, each traceable to a row of the audit that should have run on day 2:
-
-1. **The frozen interface is a fixture, not a paragraph.** A serialised example in the repository, which agents' tests read. A copy in a prompt is where drift lives.
-2. **A required field is an interface change**, reported as `deviated`, never as `done`.
-3. **The seam check belongs to the orchestrator and runs before integration**, asserting on the boundary outcome — the rendered email, the persisted row — not on the handshake.
-
-`WF-MULTIAGENT` v1.1.0 carries all three, with completion criteria and a failure-handling entry for the case where every unit suite is green and the integration fails.
-
-### Result
-
-**460 Markdown files, 364 prompts: 213 operational, 5 draft, 146 skeleton** (this release adds a reference document, not a prompt). Validator 0 errors / 0 warnings; tooling self-tests 6/6, 13/13, 12/12, 15/15; prose lint 0 findings at baseline 0; catalog, gallery, task index and evidence report current.
-
-## [2.23.0] — 2026-10-21
-
-### Changed — `P06 Validation` differentiated across the three contribution variants (#107)
-
-`01-contribution` holds three systems whose stages were the same file with different nouns; `VARIANTS.md` (2.20.0) decided to keep all three but ruled that **any overlapping stage must state what is different about it in its domain**, and blocked promotion until it did. This release does that for the one stage where the difference is sharpest, and promotes all three to `operational`:
-
-| Variant | Validation means | The evidence that convinces a maintainer |
-|---|---|---|
-| `WEB-P06` | It works in engines, viewports, and input methods the author did not use | A screenshot at a named browser and width, or a passing cross-browser job |
-| `W3-P06` | The invariants hold when someone tries to break them | A violating case per invariant, an access-control matrix, a fork run pinned to a block |
-| `PKG-P06` | The published interface did not break a consumer's build | A surface diff against the released version, and an install of the built artifact in a clean environment |
-
-Each now carries an evidence standard, a failure-handling section, and completion criteria. The characteristic failure each one hunts is named: *works in the author's browser*, *works in the test suite and drains the contract*, *works here and breaks a consumer's build*.
-
-**The measurement did not cooperate, and that is recorded rather than smoothed over.** Pairwise vocabulary overlap across the three files went from 0.20–0.28 to 0.22–0.27 — one pair rose. The reason is in `VARIANTS.md`: the `P06` outlines were two paragraphs each, so they never contributed the 0.63–0.68 similarity at the top of the record, which comes from the longer `P03` and `P07` stages. Rewriting a short outline into a developed prompt also multiplies the denominator. So the claim for this pass is the one a reviewer can check by reading, not a number; the detector stays at its bar for the case it was built for.
-
-### Result
-
-**460 Markdown files, 364 prompts: 213 operational, 5 draft, 146 skeleton.** Validator 0 errors / 0 warnings; tooling self-tests 6/6, 13/13, 12/12, 15/15; prose lint 0 findings at baseline 0; catalog, gallery, task index and evidence report current. Executed: **2 of 213 operational prompts (0.9%)** — the three new operational prompts have not been run, and the review log says so.
-
 ## [2.22.0] — 2026-10-21
+
+Six changes that were developed together and ship as one release: one measurement closed, one index added, two chat prompts, one differentiation pass, one worked example, and one script that makes the gate list authoritative.
 
 ### Changed — the prose lint is now a gate, at zero
 
@@ -72,15 +29,49 @@ A prompt added without a home fails the build with its path printed. That check 
 - **`CHAT-SELECT`** answers "which prompt do I need" inside a window that cannot open the library. It refuses to dress the guess up: a route is `observed` when `TASKS.md` is pasted and `inferred` when it is not, and the card carries the one fact that would overturn the choice. One prompt, not a menu.
 - **`CHAT-HANDOFF`** carries a long engagement between conversations. The design detail worth keeping: **a summary is the wrong artifact**, because it keeps the conclusions and drops the disproved hypotheses — so the next chat proposes the same dead end with fresh confidence. The packet keeps the eliminations, labels every fact, states what was redacted, and requires the receiving conversation to restate the constraints and eliminations before it is allowed to work.
 
+### Changed — `P06 Validation` differentiated across the three contribution variants (#107)
+
+`01-contribution` holds three systems whose stages were the same file with different nouns; `VARIANTS.md` (2.20.0) decided to keep all three but ruled that **any overlapping stage must state what is different about it in its domain**, and blocked promotion until it did. This release does that for the one stage where the difference is sharpest, and promotes all three to `operational`:
+
+| Variant | Validation means | The evidence that convinces a maintainer |
+|---|---|---|
+| `WEB-P06` | It works in engines, viewports, and input methods the author did not use | A screenshot at a named browser and width, or a passing cross-browser job |
+| `W3-P06` | The invariants hold when someone tries to break them | A violating case per invariant, an access-control matrix, a fork run pinned to a block |
+| `PKG-P06` | The published interface did not break a consumer's build | A surface diff against the released version, and an install of the built artifact in a clean environment |
+
+Each names the characteristic failure it exists to catch: *works in the author's browser*, *works in the test suite and drains the contract*, *works here and breaks a consumer's build*.
+
+**The measurement did not cooperate, and that is recorded rather than smoothed over.** Pairwise vocabulary overlap across the three files went from 0.20–0.28 to 0.22–0.27 — one pair rose. The reason is in `VARIANTS.md`: the `P06` outlines were two paragraphs each, so they never contributed the 0.63–0.68 similarity at the top of that record, which comes from the longer `P03` and `P07` stages; and rewriting a short outline into a developed prompt multiplies the denominator. The claim for this pass is the one a reviewer can check by reading, not a number.
+
+### New — a worked multi-agent run, and the three rules it forced (#109)
+
+`WF-MULTIAGENT` said "freeze the interfaces first" and "audit for cross-agent interference". Neither was demonstrated, so both read as formalities. [`07-workflows/multi-agent-worked-example.md`](07-workflows/multi-agent-worked-example.md) is a two-agent notifications feature where the event schema was frozen before either agent started; Agent A then added a **required** `template_id` on day 2 and reported it as *done*, not *deviated*.
+
+Both per-agent suites stayed green, because each built its fixtures from its own copy of the schema, and the seam broke silently: the worker rendered an empty template while the job reported success. The recovery **versioned** the interface (v2 with `template_id` optional, `template` retained) rather than reverting it, because a consumer already depended on v1.
+
+Three rules followed, each traceable to a row of the audit that should have run on day 2:
+
+1. **The frozen interface is a fixture, not a paragraph** — a serialised example in the repository, which the agents' tests read.
+2. **A required field is an interface change**, reported as `deviated`, never as `done`.
+3. **The seam check belongs to the orchestrator and runs before integration**, asserting on the boundary outcome rather than on the handshake.
+
+`WF-MULTIAGENT` v1.1.0 carries all three, with completion criteria and a failure-handling entry for the case where every unit suite is green and the integration fails.
+
+### New — `scripts/check_all.py`, so the gate list has one owner
+
+There were nine gates and three lists of them: the CI workflow, `CONTRIBUTING.md`, and the publication checklist. A contributor could not tell which was authoritative, and a gate added to one list was missing from the others. `scripts/check_all.py` is now the single source — CI runs that script and nothing else, and a local `python3 scripts/check_all.py` is the same run the pull request will get. `--fix` regenerates in dependency order (catalog, gallery, task index, evidence), because running them alphabetically produces a stale file that the next gate then fails.
+
 ### Also
 
-- `QUICKSTART.md` Path 0 gained both prompts and a third rule: a route without the index is `inferred`, never `verified`. Path 0 also moved to the top of the file — the reader with the fewest tools was being served last.
+- `QUICKSTART.md` Path 0 gained both chat prompts and a third rule: a route without the index is `inferred`, never `verified`. Path 0 also moved to the top of the file — the reader with the fewest tools was being served last.
 - `QUICKSTART.md` said "355 prompts" and "four situations". It says 364 and six, which is what the file contains. A count that drifts in the front door is the first lie a library tells.
-- `scripts/generate_task_index.py` + `scripts/test_task_index.py` (15 cases) + a CI step. The tests pin the matching rules, the unrouted-prompt report, the skeleton counting, and the word-boundary clipping.
+- `scripts/test_task_index.py` (15 cases) pins the index's matching rules, the unrouted-prompt report, the skeleton counting, and the word-boundary clipping.
 
 ### Result
 
-**460 Markdown files, 364 prompts: 210 operational, 5 draft, 149 skeleton.** Validator 0 errors / 0 warnings; tooling self-tests 6/6, 13/13, 12/12, 15/15; prose lint 0 findings at baseline 0; catalog, gallery, task index and evidence report current. Coverage 143 rows, unchanged — this release improves the instruments, not the coverage. Executed: **2 of 210 operational prompts (1.0%)**, unchanged and still the honest number.
+**461 Markdown files, 364 prompts: 213 operational, 5 draft, 146 skeleton.** Validator 0 errors / 0 warnings; tooling self-tests 6/6, 13/13, 12/12, 15/15; prose lint 0 findings at baseline 0; catalog, gallery, task index and evidence report current, verified by one command.
+
+Coverage: **143 rows, unchanged** — this release improves the instruments, not the coverage. Executed: **2 of 213 operational prompts (0.9%)**, unchanged, and the four prompts promoted or added here have not been run. The review log says so for each.
 
 ## [2.21.1] — 2026-10-21
 

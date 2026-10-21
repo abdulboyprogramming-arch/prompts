@@ -26,8 +26,8 @@
 
 ## Known gaps before promotion to `operational`
 
-1. ~~No stage defines what counts as evidence that a UI change is correct~~ — closed in 2.23.0 by `WEB-P06`: browser matrix, before/after visual diff, DOM assertion, not-run list.
-2. ~~Accessibility is mentioned but has no pass criteria~~ — closed in 2.23.0: keyboard pass first, screen-reader pass second, scanners third, with the criterion named per finding.
+1. ~~No stage defines what counts as evidence that a UI change is correct~~ — closed in 2.22.0 by `WEB-P06`: browser matrix, before/after visual diff, DOM assertion, not-run list.
+2. ~~Accessibility is mentioned but has no pass criteria~~ — closed in 2.22.0: keyboard pass first, screen-reader pass second, scanners third, with the criterion named per finding.
 3. The orchestrator does not define behaviour when a stage is blocked.
 4. No regression-protection or rollback section in the implementation stages.
 5. `P02`, `P03`, and `P07` are still the same file as their `web3` and `packages` counterparts with different nouns (backlog #107).
