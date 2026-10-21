@@ -473,3 +473,94 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 - **2026-10-20 · tooling · n/a**
 - Change: `scripts/test_validator.py`, six fixtures covering both claim forms, the prose rule, the mixed exemption, and a clean system; wired into CI before the validator itself runs.
 - Finding: writing the tests immediately exposed a real defect — the 2.16.0 regex matched `**Status:** Operational` but **not** `**Maturity: operational (v1.0.0).**`, the form used by most READMEs in this repository. It was silently checking almost nothing. Fixed, and the suite now pins both forms.
+
+### `04-process/licence-compliance/` — LIC-01
+- **2026-10-20 · implementation · 89/100 · operational**
+- Problem: licence posture appeared as one bullet inside `DEP-P01` ("flag for the owner"). Nothing produced the obligations, the attribution file, or a gate. The distinction that matters — what you are *obliged to do* when you distribute — had no home.
+- Design: distribution perimeter first (every judgement depends on it), obligation families rather than labels, outbound/inbound compatibility in the direction people forget, notices generated from the resolved graph, disposition with owner and expiry, CI gate.
+- Deductions: legal conclusions are explicitly routed, not performed; patent review out of scope.
+
+### `04-process/standards-conformance/` — STD-01
+- **2026-10-20 · audit-remediation · 88/100 · operational**
+- Problem: `GOV-P01..P03` map organisation-level controls; nothing assessed a *project* against a named standard with per-requirement evidence. The compliance question was answerable only by an auditor.
+- Design: claimed / practised / evidenced / enforced as four distinct levels; only the last two count; periodic controls checked by **last occurrence date**; unknown rows preserved rather than rounded up; maintainability model (which rows automate).
+- Deductions: certification is not performed; legal interpretation routed.
+
+### `07-workflows/compliance-readiness.md` — WF-COMPLY
+- **2026-10-20 · orchestration · 87/100 · operational**
+- Problem: the library had components of a compliance response and no sequence. The workflow adds entry conditions, four gates, ordering rules (evidence capture before remediation), and an evidence-pack specification with dates.
+- Design: the pack table names the minimum per section; failure routing covers unavailable standard text, architectural scope gaps, and deadlines shorter than remediation.
+
+### `05-scenarios/automation/` — AUTO-01
+- **2026-10-20 · implementation · 88/100 · operational**
+- Problem: the direct answer to "does it cover automating a described task" was no. The library described how to *build* software; it did not describe how to convert a manually-performed procedure into something that runs.
+- Design: four step classes (deterministic / fragile / judgement / blocked), idempotency proven by a double run, the silent-no-op guard, outcome verification rather than exit codes, four recorded proofs before the schedule is enabled.
+- Deductions: orchestration platforms and workflow engines are not evaluated.
+
+### `05-scenarios/client-secrets/` — SECRET-CLIENT-01
+- **2026-10-20 · audit-remediation · 90/100 · operational**
+- Problem: backlog #86. `SEC-ROT-01` rotates server credentials; a key inlined into a bundle is published forever and rotation alone cannot fix it. The severity question ("what can a holder do") was nowhere.
+- Design: scan the built artifact, not the source; framework inlining mechanisms enumerated by name; capability-based severity table; replacement architecture per capability; revocation ordered before removal because artifacts are archived.
+- Deductions: provider console configuration is described, not performed.
+
+### `05-scenarios/supply-chain/` — SUPPLY-01
+- **2026-10-20 · audit-remediation · 87/100 · operational**
+- Problem: dependency management chose versions; nothing asked whether the artifact you deployed is the artifact you built.
+- Design: chain with evidence per link; install-time execution as the pre-scanner blind spot; dependency confusion as a naming problem; digest pinning; provenance verified once; SBOM queried while nothing is on fire.
+- Deductions: build-infrastructure hardening beyond CI trust boundaries is out of scope.
+
+### `05-scenarios/data-residency/` — RESIDENCY-01
+- **2026-10-20 · audit-remediation · 86/100 · operational**
+- Problem: backlog #90. Residency was a phrase inside three prompts and a map nowhere.
+- Design: six location kinds (storage, replicas, processing, observability, support access, third parties), configuration as evidence, client-side SDK flows, transfer register with a named mechanism and confirmer, enforcement control proven by a deliberate violation.
+- Deductions: legal adequacy analysis routed; data itself never copied into the map.
+
+### `05-scenarios/feature-sunset/` — SUNSET-01
+- **2026-10-20 · planning · 87/100 · operational**
+- Problem: backlog #85. `decommissioning` retires systems; removing one feature — with contracts, machine clients, shared tables, and a data decision — had no procedure.
+- Design: usage by account/workflow/concentration rather than page views; blind spots (machine clients, scheduled jobs, support tooling); a reversible sequence that names the last reversible point; data retention as part of the sunset, not a follow-up.
+- Deductions: the decision to sunset is product's; compensation and contract renegotiation routed.
+
+### `05-scenarios/incident-communications/` — INC-COMMS-01
+- **2026-10-20 · specialised · 85/100 · operational**
+- Problem: `INC-01` restores service and `OBS-P05` writes the postmortem. Nobody owned the customer update, and the rules that prevent damage (no cause speculation, no duration promises, no unverified "your data is safe") were unstated.
+- Design: facts sheet citing incident-channel messages; announced cadence; four-state vocabulary; audience separation; append-only log that makes every external claim attributable.
+- Deductions: disclosure decisions belong to legal; PR strategy out of scope.
+
+### `05-scenarios/operational-readiness/` — OPS-01
+- **2026-10-20 · audit-remediation · 88/100 · operational**
+- Problem: `REL-P01` gates a release; nothing tested whether a *service* is operable at 03:00 by someone who did not build it. Alert triage and the runbook outsider test were absent.
+- Design: four failure classes (silence, saturation, dependency, partial), page/ticket/remove triage, dated proof of rollback and restore, on-call access confirmed today, one timed exercise.
+- Deductions: architecture redesign routed to `architecture-review`.
+
+### `05-scenarios/build-performance/` — BUILD-01
+- **2026-10-20 · diagnostic · 85/100 · operational**
+- Problem: build and CI time was invisible. `PERF-BUDGET-01` covers runtime budgets; the loop engineers wait on twenty times a day had no prompt.
+- Design: phase timings before any fix; three loops with different budgets; work reduced before cached; cache hit rate measured; before/after with the same method including cold cache.
+- Deductions: runner purchasing decisions routed.
+
+### `05-scenarios/ai-output-verification/` — AIVERIFY-01
+- **2026-10-20 · diagnostic · 91/100 · operational**
+- Problem: the library instructs agents extensively and had no prompt for verifying an agent's claims. `WF-VERIFY` covers human work; the agent-specific failure modes (test-count regression, "verified" by reading, narrowed requirement, silenced checks) were unaddressed.
+- Design: claims verbatim, clean-state reproduction, revert-and-fail as the only proof a test works, diff accounting, and an explicit `unverifiable` verdict that may never be rounded up.
+- Deductions: fixing is deliberately out of scope — fixing destroys independence.
+
+
+### `05-scenarios/data-migration/` — DATA-MIG-01
+- **2026-10-20 · specialised · 88/100 · operational**
+- Problem: backlog #93. Schema migration (`DB-P01..P05`) and host migration (`05-scenarios/platform-migration/`) both existed; moving *records* between systems, where meaning changes in transit, had no procedure. The characteristic failure is not the job erroring — it is the job succeeding with truncated strings and lost timezone offsets.
+- Design: field mapping with an explicit loss register and affected-row counts; identity decided before loading so reruns upsert rather than append; resumable load with checkpoints and reject files; reconciliation on hashes and aggregates rather than counts; two rehearsals; cutover with a named rollback expiry.
+- Deductions: target schema design and application rewrites are out of scope.
+
+### `04-process/privacy-requests/P04` — PRIV-P04
+- **2026-10-20 · audit-remediation · 90/100 · operational**
+- Problem: backlog #95. `PRIV-P02` deletes and marks the request complete. The places where deletion is claimed and never checked — warehouse, logs, search index, queue, backups, vendor — were unexamined, and a restore could resurrect a deleted subject.
+- Design: per-location definition of what "deleted" can even mean (immutable logs age out; backups expire); multiple identifiers including hashes; verification queries tested against a known-positive record; resurrection paths examined; a synthetic canary through the real path.
+- Notes: this is the adversarial half of deletion — it assumes P02 was incomplete and looks for the proof. Promoted the system README to v1.1.0.
+
+### `02-engineering/access-review/` — ACCESS-01
+- **2026-10-20 · audit-remediation · 89/100 · operational**
+- Problem: backlog #97. Access control was covered as a review *topic* and never as a recurring *procedure*. Tenants of this gap: reviews run against the roster rather than the identity provider, reviewed people instead of entitlements, and removals recorded in a document rather than executed in the system.
+- Design: inventory from providers and reconciled to the roster; consequence classification; non-human access (CI identities, long-lived tokens, vendor impersonation, break-glass); decisions of keep/narrow/remove/escalate with reasons; removals verified by denial; exceptions with owners and expiry.
+- Deductions: authentication design and incident containment are separate; removing access is class D because it can stop production or lock out the only administrator.
+

@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 336 prompts — 0 canonical, 182 operational, 5 draft, 149 skeleton.
+**Totals:** 351 prompts — 0 canonical, 197 operational, 5 draft, 149 skeleton.
 
 ## `00-core`
 
@@ -92,6 +92,7 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
 | ID | Stage | Maturity | Mode | Risk | File |
 |----|-------|----------|------|------|------|
+| `ACCESS-01` | Access Review: who can still get in, and should they? | operational | audit-remediation | A | [ACCESS-REVIEW.md](../02-engineering/access-review/ACCESS-REVIEW.md) |
 | `SEC-ROT-01` | PROMPT 01 — Secret Rotation: drill it before you need it | operational | implementation | C | [SECRETS-ROTATION.md](../02-engineering/secrets-rotation/SECRETS-ROTATION.md) |
 | `TENANCY-01` | PROMPT 01 — Tenant Isolation Audit | operational | diagnostic | A | [TENANCY-AUDIT.md](../02-engineering/tenancy-audit/TENANCY-AUDIT.md) |
 | `TIME-01` | PROMPT 01 — Time and Date Correctness Audit | operational | diagnostic | A | [TIME-CORRECTNESS.md](../02-engineering/time-correctness/TIME-CORRECTNESS.md) |
@@ -379,6 +380,8 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | ID | Stage | Maturity | Mode | Risk | File |
 |----|-------|----------|------|------|------|
 | `A11Y-01` | PROMPT 01 — Accessibility Conformance Audit (WCAG 2.2 AA) | operational | diagnostic | A | [ACCESSIBILITY-AUDIT.md](../04-process/accessibility-audit/ACCESSIBILITY-AUDIT.md) |
+| `LIC-01` | Licence Compliance: what you owe the people whose code you s | operational | audit-remediation | A | [LICENCE-COMPLIANCE.md](../04-process/licence-compliance/LICENCE-COMPLIANCE.md) |
+| `STD-01` | Standards Conformance: prove the project against a named ext | operational | audit-remediation | A | [STANDARDS-CONFORMANCE.md](../04-process/standards-conformance/STANDARDS-CONFORMANCE.md) |
 
 ## `04-process/agent-context`
 
@@ -487,6 +490,7 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `PRIV-P01` | PROMPT 01 — Subject Data Inventory | operational | diagnostic | C | [P01-Data-Inventory.md](../04-process/privacy-requests/P01-Inventory/P01-Data-Inventory.md) |
 | `PRIV-P02` | PROMPT 02 — Request Execution | operational | specialised | D | [P02-Request-Execution.md](../04-process/privacy-requests/P02-Execution/P02-Request-Execution.md) |
 | `PRIV-P03` | PROMPT 03 — Retention & Systematisation | operational | planning | B | [P03-Retention-Systematise.md](../04-process/privacy-requests/P03-Retention/P03-Retention-Systematise.md) |
+| `PRIV-P04` | PROMPT 04 — Deletion Verification: prove it is gone from the | operational | audit-remediation | A | [P04-Deletion-Verification.md](../04-process/privacy-requests/P04-Verification/P04-Deletion-Verification.md) |
 
 ## `04-process/project-management`
 
@@ -552,17 +556,25 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
 | ID | Stage | Maturity | Mode | Risk | File |
 |----|-------|----------|------|------|------|
+| `AIVERIFY-01` | Verifying AI Output: what did the agent actually do, as oppo | operational | diagnostic | A | [AI-OUTPUT-VERIFICATION.md](../05-scenarios/ai-output-verification/AI-OUTPUT-VERIFICATION.md) |
+| `AUTO-01` | Automate a Described Task: turn "we do this by hand" into so | operational | implementation | B | [AUTOMATE-TASK.md](../05-scenarios/automation/AUTOMATE-TASK.md) |
 | `JOBS-01` | PROMPT 01 — Background Jobs That Stop Doing Damage | operational | diagnostic | B | [BACKGROUND-JOBS.md](../05-scenarios/background-jobs/BACKGROUND-JOBS.md) |
+| `BUILD-01` | Build Performance: the feedback loop is a product | operational | diagnostic | A | [BUILD-PERFORMANCE.md](../05-scenarios/build-performance/BUILD-PERFORMANCE.md) |
+| `SECRET-CLIENT-01` | Client-Side Secrets: the key that shipped to every user | operational | audit-remediation | A | [CLIENT-SIDE-SECRETS.md](../05-scenarios/client-secrets/CLIENT-SIDE-SECRETS.md) |
 | `DATALOSS-01` | Data-Loss Recovery | operational | specialised | D | [DATA-LOSS-RECOVERY.md](../05-scenarios/data-loss/DATA-LOSS-RECOVERY.md) |
+| `DATA-MIG-01` | Data Migration: move the records, not just the schema | operational | specialised | C | [DATA-MIGRATION.md](../05-scenarios/data-migration/DATA-MIGRATION.md) |
+| `RESIDENCY-01` | Data Residency: where the data actually is, and how you woul | operational | audit-remediation | A | [DATA-RESIDENCY.md](../05-scenarios/data-residency/DATA-RESIDENCY.md) |
 | `DBG-01` | Systematic Debugging | operational | diagnostic | B | [SYSTEMATIC-DEBUGGING.md](../05-scenarios/debugging/SYSTEMATIC-DEBUGGING.md) |
 | `DEPLOY-01` | Deploy to a Managed Platform | operational | implementation | C | [DEPLOY-TO-PLATFORM.md](../05-scenarios/deployment-target/DEPLOY-TO-PLATFORM.md) |
 | `DEVENV-01` | Reproducible Dev Environment — one command, every editor, an | operational | implementation | B | [DEV-ENVIRONMENT.md](../05-scenarios/dev-environment/DEV-ENVIRONMENT.md) |
 | `DR-01` | PROMPT 01 — Disaster Recovery: prove the restore, not the ba | operational | implementation | C | [DISASTER-RECOVERY.md](../05-scenarios/disaster-recovery/DISASTER-RECOVERY.md) |
 | `EMAIL-01` | PROMPT 01 — Email Deliverability: it is not in the spam fold | operational | diagnostic | B | [EMAIL-DELIVERABILITY.md](../05-scenarios/email-deliverability/EMAIL-DELIVERABILITY.md) |
 | `FIXFAIL-01` | Failed Fix Escalation | operational | diagnostic | B | [FAILED-FIX-ESCALATION.md](../05-scenarios/failed-fix/FAILED-FIX-ESCALATION.md) |
+| `SUNSET-01` | Feature Sunset: removing something customers depend on | operational | planning | B | [FEATURE-SUNSET.md](../05-scenarios/feature-sunset/FEATURE-SUNSET.md) |
 | `UPLOAD-01` | PROMPT 01 — File Uploads and Object Storage | operational | implementation | B | [FILE-UPLOADS.md](../05-scenarios/file-uploads/FILE-UPLOADS.md) |
 | `FLAKE-01` | Flaky Test Triage | operational | diagnostic | B | [FLAKY-TEST-TRIAGE.md](../05-scenarios/flaky-tests/FLAKY-TEST-TRIAGE.md) |
 | `HACK-01` | Hackathon Sprint — build the demo that gets judged | operational | autonomous-completion | B | [HACKATHON-SPRINT.md](../05-scenarios/hackathon-sprint/HACKATHON-SPRINT.md) |
+| `INC-COMMS-01` | Incident Communications: tell the truth, on time, to the rig | operational | specialised | B | [INCIDENT-COMMUNICATIONS.md](../05-scenarios/incident-communications/INCIDENT-COMMUNICATIONS.md) |
 | `INC-01` | Production Incident Response | operational | specialised | C | [PRODUCTION-INCIDENT.md](../05-scenarios/incident-response/PRODUCTION-INCIDENT.md) |
 | `IAC-01` | PROMPT 01 — Infrastructure as Code: adopting it, or proving  | operational | audit-remediation | C | [INFRA-AS-CODE.md](../05-scenarios/infrastructure-as-code/INFRA-AS-CODE.md) |
 | `LEGACY-01` | Working with Legacy Code Prompt | skeleton | specialised | B | [WORKING-WITH-LEGACY.md](../05-scenarios/legacy-code/WORKING-WITH-LEGACY.md) |
@@ -571,12 +583,14 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `MONO-01` | PROMPT 01 — Monorepo Health: builds, boundaries, and ownersh | operational | audit-remediation | B | [MONOREPO.md](../05-scenarios/monorepo/MONOREPO.md) |
 | `ONCALL-01` | On-Call Shift Handover | operational | specialised | B | [ONCALL-HANDOVER.md](../05-scenarios/on-call-handover/ONCALL-HANDOVER.md) |
 | `ONBOARD-01` | Codebase Onboarding Prompt | skeleton | specialised | B | [CODEBASE-ONBOARDING.md](../05-scenarios/onboarding/CODEBASE-ONBOARDING.md) |
+| `OPS-01` | Operational Readiness: would the on-call engineer survive th | operational | audit-remediation | A | [OPERATIONAL-READINESS.md](../05-scenarios/operational-readiness/OPERATIONAL-READINESS.md) |
 | `PERF-BUDGET-01` | PROMPT 01 — Performance Budgets and Core Web Vitals | operational | implementation | B | [PERFORMANCE-BUDGET.md](../05-scenarios/performance-budget/PERFORMANCE-BUDGET.md) |
 | `PERF-01` | Performance Investigation Prompt | skeleton | specialised | B | [PERFORMANCE-INVESTIGATION.md](../05-scenarios/performance-investigation/PERFORMANCE-INVESTIGATION.md) |
 | `HOSTMIG-01` | Move a Running Service to Another Platform | operational | implementation | D | [PLATFORM-MIGRATION.md](../05-scenarios/platform-migration/PLATFORM-MIGRATION.md) |
 | `PR-01` | Write a Strong Pull Request Prompt | skeleton | specialised | B | [WRITE-STRONG-PR.md](../05-scenarios/pr-authoring/WRITE-STRONG-PR.md) |
 | `QUICK-01` | Safe Quick-Fix Prompt | skeleton | specialised | B | [SAFE-QUICK-FIX.md](../05-scenarios/quick-fixes/SAFE-QUICK-FIX.md) |
 | `SECINC-01` | Security Incident Response | operational | specialised | D | [SECURITY-INCIDENT.md](../05-scenarios/security-incident/SECURITY-INCIDENT.md) |
+| `SUPPLY-01` | Supply Chain: can you prove the thing you deployed is the th | operational | audit-remediation | A | [SUPPLY-CHAIN.md](../05-scenarios/supply-chain/SUPPLY-CHAIN.md) |
 | `INTEG-01` | PROMPT 01 — Third-Party Integration That Survives the Vendor | operational | implementation | B | [THIRD-PARTY-INTEGRATION.md](../05-scenarios/third-party-integration/THIRD-PARTY-INTEGRATION.md) |
 
 ## `06-interactive`
@@ -595,6 +609,7 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `WF-HANDOFF` | Handoff Contract | operational | planning | A | [HANDOFF-CONTRACT.md](../07-workflows/HANDOFF-CONTRACT.md) |
 | `WF-AGENTADOPT` | Workflow — Adopting Coding Agents Without Losing Control | operational | orchestration | B | [agent-adoption.md](../07-workflows/agent-adoption.md) |
 | `WF-AUDIT-REMEDIATE` | Workflow — Audit → Remediate | draft | audit-remediation | B | [audit-to-remediation.md](../07-workflows/audit-to-remediation.md) |
+| `WF-COMPLY` | Workflow — Compliance Readiness | operational | orchestration | A | [compliance-readiness.md](../07-workflows/compliance-readiness.md) |
 | `WF-IMPROVE` | Workflow — Continuous Improvement | draft | continuous-improvement | B | [continuous-improvement.md](../07-workflows/continuous-improvement.md) |
 | `WF-INTEGRATE` | Workflow — Cross-Layer Integration | operational | specialised | B | [cross-layer-integration.md](../07-workflows/cross-layer-integration.md) |
 | `WF-GREENFIELD` | Workflow — Greenfield Delivery | draft | autonomous-completion | B | [greenfield-delivery.md](../07-workflows/greenfield-delivery.md) |

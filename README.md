@@ -4,7 +4,7 @@ A structured collection of prompts for AI coding agents, organised across the en
 
 Every prompt declares what it does, what it may change, how much it can be trusted, and what it will not do. Nothing here claims a capability its files do not have — the repository is validated against that rule on every change.
 
-**Browse everything:** [`GALLERY.md`](GALLERY.md) lists all 336 prompts with a direct link and one line on when to use each. It is generated from the prompts themselves and CI fails if it falls out of date, so it cannot drift from the library.
+**Browse everything:** [`GALLERY.md`](GALLERY.md) lists all 352 prompts with a direct link and one line on when to use each. It is generated from the prompts themselves and CI fails if it falls out of date, so it cannot drift from the library.
 
 ## Start here
 
@@ -75,6 +75,20 @@ Pick the row that matches your situation. Do not read the whole repository first
 | Commits, a branch, or a stash just vanished | [`04-process/git-operations/P04-Recovery`](04-process/git-operations/P04-Recovery/P04-Recovery.md) | Time-critical |
 | I need to rewrite history or clean a secret out of it | [`04-process/git-operations/P03-History`](04-process/git-operations/P03-History/P03-History-Repair.md) | Category D if shared |
 | I am splitting work across several agents | [`07-workflows/multi-agent-orchestration.md`](07-workflows/multi-agent-orchestration.md) | Orchestration |
+| I have to prove compliance with a named standard (SOC 2, ISO 27001, PCI, WCAG) | [`04-process/standards-conformance/`](04-process/standards-conformance/STANDARDS-CONFORMANCE.md) | Requirement → practice → dated evidence |
+| I need to know what our dependencies' licences oblige us to do | [`04-process/licence-compliance/`](04-process/licence-compliance/LICENCE-COMPLIANCE.md) | Obligations, notices, copyleft disposition |
+| We do this task by hand every week and it keeps going wrong | [`05-scenarios/automation/`](05-scenarios/automation/AUTOMATE-TASK.md) | Idempotent, verified, loudly failing |
+| A key is in our bundle / mobile app / CLI and I need it gone | [`05-scenarios/client-secrets/`](05-scenarios/client-secrets/CLIENT-SIDE-SECRETS.md) | Capability first, then architecture |
+| A dependency could be compromised, or I cannot prove what I deployed | [`05-scenarios/supply-chain/`](05-scenarios/supply-chain/SUPPLY-CHAIN.md) | Lockfiles, pinning, provenance |
+| A contract says data must stay in a region | [`05-scenarios/data-residency/`](05-scenarios/data-residency/DATA-RESIDENCY.md) | Map, transfers, enforcement |
+| Records must move between systems (not just the schema) | [`05-scenarios/data-migration/`](05-scenarios/data-migration/DATA-MIGRATION.md) | Mapping, loss register, reconciliation |
+| I need to run an access review or prove one happened | [`02-engineering/access-review/`](02-engineering/access-review/ACCESS-REVIEW.md) | Entitlements first, removals verified |
+| I deleted a subject's data and need to prove it is gone | [`04-process/privacy-requests/P04`](04-process/privacy-requests/P04-Verification/P04-Deletion-Verification.md) | Warehouses, logs, backups, vendors |
+| I am removing a feature customers use | [`05-scenarios/feature-sunset/`](05-scenarios/feature-sunset/FEATURE-SUNSET.md) | Usage evidence, notice, reversible |
+| An incident needs a customer update, on a cadence | [`05-scenarios/incident-communications/`](05-scenarios/incident-communications/INCIDENT-COMMUNICATIONS.md) | No speculation, no promises |
+| Would on-call survive this service at 03:00? | [`05-scenarios/operational-readiness/`](05-scenarios/operational-readiness/OPERATIONAL-READINESS.md) | Runbook and alert test |
+| CI is so slow people skip the tests | [`05-scenarios/build-performance/`](05-scenarios/build-performance/BUILD-PERFORMANCE.md) | Measure the loop first |
+| An agent reports done and I need to verify it | [`05-scenarios/ai-output-verification/`](05-scenarios/ai-output-verification/AI-OUTPUT-VERIFICATION.md) | Claim-by-claim, clean state |
 | A customer or auditor asks for evidence of our controls | [`04-process/governance-compliance/`](04-process/governance-compliance/README.md) | Audit |
 | I need to retire a service or endpoint safely | [`04-process/decommissioning/`](04-process/decommissioning/README.md) | Staged, reversible |
 | The frontend and backend were built separately | [`07-workflows/cross-layer-integration.md`](07-workflows/cross-layer-integration.md) | Specialised |
@@ -124,6 +138,8 @@ In short: take it, change it, ship it — say where it came from, and do not pre
 | [`04-process/dependency-management/`](04-process/dependency-management/README.md) | 5 | operational |
 | [`04-process/decommissioning/`](04-process/decommissioning/README.md) | 4 | operational |
 | [`04-process/governance-compliance/`](04-process/governance-compliance/README.md) | 3 | operational |
+| [`04-process/licence-compliance/`](04-process/licence-compliance/LICENCE-COMPLIANCE.md) | 1 | operational |
+| [`04-process/standards-conformance/`](04-process/standards-conformance/STANDARDS-CONFORMANCE.md) | 1 | operational |
 | [`02-engineering/feature-completion/`](02-engineering/feature-completion/README.md) | 4 | operational |
 | [`02-engineering/refactoring/`](02-engineering/refactoring/README.md) | 7 | operational |
 | [`03-domains/cost-engineering/`](03-domains/cost-engineering/README.md) | 4 | operational |
@@ -136,17 +152,18 @@ In short: take it, change it, ship it — say where it came from, and do not pre
 | [`02-engineering/time-correctness/`](02-engineering/time-correctness/TIME-CORRECTNESS.md) | 1 | operational |
 | [`02-engineering/tenancy-audit/`](02-engineering/tenancy-audit/TENANCY-AUDIT.md) | 1 | operational |
 | [`02-engineering/secrets-rotation/`](02-engineering/secrets-rotation/SECRETS-ROTATION.md) | 1 | operational |
+| [`02-engineering/access-review/`](02-engineering/access-review/ACCESS-REVIEW.md) | 1 | operational |
 | [`04-process/accessibility-audit/`](04-process/accessibility-audit/ACCESSIBILITY-AUDIT.md) | 1 | operational |
 | [`00-core/prompt-engineering/`](00-core/prompt-engineering/PROMPT-FORGE.md) | 2 | operational (GEN-P01, GEN-P02) |
-| [`04-process/privacy-requests/`](04-process/privacy-requests/README.md) | 3 | operational |
+| [`04-process/privacy-requests/`](04-process/privacy-requests/README.md) | 4 | operational |
 | [`04-process/git-operations/`](04-process/git-operations/README.md) | 5 | operational |
 | [`04-process/code-review/`](04-process/code-review/README.md) | 6 | operational |
 | [`04-process/feature-flags/`](04-process/feature-flags/README.md) | 5 | operational |
 | [`04-process/documentation/`](04-process/documentation/README.md) | 8 | operational |
 | [`04-process/handover/`](04-process/handover/README.md) | 5 | operational |
 | [`04-process/agent-context/`](04-process/agent-context/README.md) | 4 | operational |
-| [`07-workflows/`](07-workflows/README.md) | 9 | mixed (3 operational: verification, integration, multi-agent) |
-| [`05-scenarios/`](05-scenarios/README.md) | 26 | mixed (21 operational, 5 skeleton) |
+| [`07-workflows/`](07-workflows/README.md) | 11 | mixed (6 operational, 5 draft) |
+| [`05-scenarios/`](05-scenarios/README.md) | 36 | mixed (31 operational, 5 skeleton) |
 
 Everything else — backend, frontend, devops-infra, data-ml-ai, the eight game-design stages, architecture-review, from-scratch, migration, project management, research, systems improvement, language design, packages, web/web3 contribution — is a **skeleton**: a defensible sequence of stages with outline prompts. Those folders are useful for structuring a human-led session today; they are not yet safe to hand to an autonomous agent. Promotion order is in [`_meta/ROADMAP-AND-BACKLOG.md`](_meta/ROADMAP-AND-BACKLOG.md); per-scenario coverage with evidence is in [`_meta/coverage-matrix.md`](_meta/coverage-matrix.md).
 
@@ -162,7 +179,7 @@ Everything else — backend, frontend, devops-infra, data-ml-ai, the eight game-
 06-interactive/   Context collectors and intake wizards
 07-workflows/     Composed multi-system sequences with gates and handoff contracts
 _meta/            Authoring standard, rubric, taxonomy, catalog, roadmap, review log
-scripts/          Validator and catalog generator
+scripts/          Validator with self-tests, catalog and gallery generators, overlap search
 archive/          Legacy source material (not maintained)
 ```
 
