@@ -636,3 +636,12 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 - Decision: keep three, and require every overlapping stage to state its domain difference or be deleted. Promotion stays blocked until it does; the differentiation work is backlog #107, deliberately ordered *one stage across all three variants* rather than one system at a time, because a single-author bulk rewrite would reproduce the same text with different nouns.
 - Why recorded as a file: the next agent to "clean up duplication" needs to know the risk model and approval model differ, not just the vocabulary.
 
+
+### `00-core/conversational/` — CHAT-MODE, CHAT-REVIEW, CHAT-DEBUG, CHAT-DESIGN
+- **2026-10-20 · specialised · 88–90/100 · operational (new family)**
+- Problem, stated by the maintainer as a question: *do these prompts have a chatbot version?* They did not. All 358 assumed an agent that can read files, run commands, and observe results. Nothing in the library said what survives when those are removed, and a fluent answer about an unseen repository is the most dangerous output this library can produce.
+- Decision: answer the question with a mechanism rather than a disclaimer. **`CHAT-MODE` adapts any prompt**, and the adaptation is a three-row capability table (discovery → interrogation, execution → the user runs it, verification → labelled claims) plus a paste protocol, a state ledger for long sessions, and a closing self-audit where `cannot verify in chat` is a first-class verdict.
+- Design detail worth keeping: the evidence vocabulary. `verified` is reserved for the case where the user pasted the command *and* its output *and* they match the claim; everything else is `observed`, `reported`, `inferred`, or `unknown`. Without that rule a chat run silently inherits the authority of an agent run.
+- Three chat-native prompts were written because they are the tasks people actually do in a chat window and they need different wording: `CHAT-REVIEW` (bounded review with a not-assessed list), `CHAT-DEBUG` (one discriminating experiment per turn, with a ledger), `CHAT-DESIGN` (ADR with rejected options and a reopening condition).
+- Deductions: no attempt to model a specific vendor's features; context-window behaviour is described generically.
+

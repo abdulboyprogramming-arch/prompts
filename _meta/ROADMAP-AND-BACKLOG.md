@@ -300,3 +300,12 @@ The 2.18.0 batch answered three direct questions: does the library cover licence
 | 109 | **No worked example of a multi-agent run** | `WF-MULTIAGENT` defines ownership and interface freezing; nothing shows two agents integrating, and the failure mode (interface drift) is only described | `07-workflows/failure-examples.md` extension | P2 | Discovered |
 | 110 | **The gallery is a flat list of 358 prompts** | `GALLERY.md` is generated but not navigable by task; a reader who does not know the vocabulary cannot find the right prompt. The quickstart routes five situations and stops there | `scripts/generate_gallery.py` + task index | P2 | Discovered |
 
+## Discovered in 2.21.0 — after conversational mode
+
+| # | Problem | Why existing material is insufficient | Home | Priority | Status |
+|---|---------|---------------------------------------|------|----------|--------|
+| 111 | **No prompt for the chat session itself as an artifact** | `CHAT-MODE` produces a run, but a long engagement across several chats has no handoff: the state block is described, not specified | `00-core/conversational/` extension | P2 | Discovered |
+| 112 | **Prompt selection in chat is still a human task** | `GEN-P01` builds a prompt and `06-interactive/SYSTEM-SELECTOR` routes, but neither is a chat-native "tell me your situation and I will pick the prompt" interaction | `06-interactive/` promotion | P2 | Discovered |
+| 113 | **The gallery is not navigable by task** | 362 prompts in a flat area list; a visitor who does not know the vocabulary cannot find the right one, and `QUICKSTART` covers five situations only | `scripts/generate_gallery.py` | P2 | Discovered |
+| 114 | **Conversational prompts are unexecuted like the rest** | `CHAT-MODE` is the most testable prompt in the library — two people can run the same chat task and compare outputs — and it has no recorded run | `_meta/evidence.json` | P1 | Discovered |
+

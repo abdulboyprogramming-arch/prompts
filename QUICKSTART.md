@@ -64,6 +64,21 @@ If you only have an hour: **step 2 and the six silent backup failures in step 4*
 
 ---
 
+## Path 0 — You only have a chat window (no repo access)
+
+If you are in ChatGPT, Claude, Gemini, or any chat interface with no file access, you do not need a different library — you need the capability delta stated up front.
+
+| Step | Prompt | You end with |
+|---|---|---|
+| 1 | [`00-core/conversational/CHAT-MODE.md`](00-core/conversational/CHAT-MODE.md) | Any prompt in this library adapted for a conversation, with what it cannot verify written down |
+| 2 | [`00-core/conversational/CHAT-DEBUG.md`](00-core/conversational/CHAT-DEBUG.md) | One discriminating test at a time instead of five guesses |
+| 3 | [`00-core/conversational/CHAT-REVIEW.md`](00-core/conversational/CHAT-REVIEW.md) | A bounded review with the not-assessed list |
+| 4 | [`00-core/conversational/CHAT-DESIGN.md`](00-core/conversational/CHAT-DESIGN.md) | An ADR you can file, with what would reopen it |
+
+Two rules apply to every chat run: **`verified` means someone ran it and pasted the output**, and **redact before pasting** — a consumer chat window is a third party.
+
+---
+
 ## Path 4 — Someone is asking for proof (1–3 days)
 
 A security questionnaire, an audit, a customer contract with a standard in it, an enterprise deal.

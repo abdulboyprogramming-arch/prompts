@@ -1,6 +1,6 @@
 # Coverage Matrix
 
-**Version:** 1.4.0 · **Last assessed:** 2026-10-20 (post-2.20.0 reassessment) · **Method:** evidence review of every prompt file; a scenario counts as covered only when an existing prompt addresses its distinctive requirements, constraints, and verification — not because a related prompt exists.
+**Version:** 1.5.0 · **Last assessed:** 2026-10-20 (post-2.21.0 reassessment) · **Method:** evidence review of every prompt file; a scenario counts as covered only when an existing prompt addresses its distinctive requirements, constraints, and verification — not because a related prompt exists.
 
 **Status vocabulary**
 
@@ -153,6 +153,8 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Review / decision-making | Adequate | `WF-VERIFY`, audit P07/P08 |
 | Continuation across sessions | Adequate | `PROJECT-STATUS.md`, ledgers, handoff contract |
 
+| Conversational use (no repository access) | **Adequate** | `CHAT-MODE` + `CHAT-REVIEW`, `CHAT-DEBUG`, `CHAT-DESIGN`: the capability delta stated before work (discovery → interrogation, execution → the user runs it, verification → a four-label vocabulary that reserves `verified` for pasted output), paste protocol with redaction, a state ledger for long sessions, and a closing self-audit with `cannot verify in chat` as a first-class verdict |
+
 ## 10. Operational safety
 
 | Element | Status | Evidence / gap |
@@ -250,14 +252,16 @@ Counts are computed from the tables above; they are not estimates.
 
 | Status | Dimension rows | Workflow rows |
 |--------|---------------:|--------------:|
-| Adequate | 115 | 10 |
+| Adequate | 116 | 10 |
 | Partial | 27 | 5 |
 | Missing | 0 | 0 |
 | Defective | 0 | 0 |
 | Indirect | 0 | 0 |
-| **Total assessed** | **142** | **15** |
+| **Total assessed** | **143** | **15** |
 
-**Reading this honestly:** roughly 81% of assessed dimension rows are adequate (115 of 142). The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
+**Reading this honestly:** roughly 81% of assessed dimension rows are adequate (116 of 143). The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
+
+**Closed in 2.21.0:** conversational mode — using the library in a chat window with the capability delta made explicit (`CHAT-MODE`, `CHAT-REVIEW`, `CHAT-DEBUG`, `CHAT-DESIGN`). This was a genuine gap: 358 prompts assumed repository access, and nothing stated what degrades when it is absent.
 
 **Closed in 2.20.0:** usage metering and entitlements (`METER-01`), test and fixture data (`TESTDATA-01`), worked failure examples (`WF-FAILURE`), prose lint with a ratchet and 12 fixtures (`scripts/lint_prose.py`, #106), the contribution-variant decision (`01-contribution/VARIANTS.md`, #100 decided), and `QUICKSTART.md` — five paths from symptom to ordered prompts, which is the difference between a library and something a person can start using.
 
