@@ -1,6 +1,6 @@
 # Coverage Matrix
 
-**Version:** 1.1.0 · **Last assessed:** 2026-10-20 (post-2.17.0 reassessment) · **Method:** evidence review of every prompt file; a scenario counts as covered only when an existing prompt addresses its distinctive requirements, constraints, and verification — not because a related prompt exists.
+**Version:** 1.2.0 · **Last assessed:** 2026-10-20 (post-2.18.0 reassessment) · **Method:** evidence review of every prompt file; a scenario counts as covered only when an existing prompt addresses its distinctive requirements, constraints, and verification — not because a related prompt exists.
 
 **Status vocabulary**
 
@@ -44,13 +44,15 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Correction | Adequate | `SEC-P06`, `REC-P06`, debugging fix stage |
 | Optimisation | Partial | `performance` skeleton |
 | Migration (code) | Partial | `rewriting-migration` skeleton |
-| Migration (data/schema) | Adequate | `DB-P01..P05` (new) |
+| Migration (data/schema) | Adequate | `DB-P01..P05` (schema, in place) and `DATA-MIG-01` (records between systems: field mapping, loss register, idempotent upsert, value-level reconciliation, cutover and rollback expiry) |
 | Recovery | Adequate | `project-recovery`, `INC-01`, `DB-P05` |
 | Integration | **Adequate** | `WF-INTEGRATE` (new) — contract reconciliation before wiring, seam table, transport and config diffs, end-to-end journey, failure paths per seam |
 | Feature completion across layers | **Adequate** | `FC-P01..P04` (new) — contract, layer map, implementation, acceptance |
 | Independent verification of others' work | **Adequate** | `WF-VERIFY` (new) — claims audit, clean-state reproduction, mutation probing, undeclared-change audit |
 | Failed-fix escalation | **Adequate** | `FIXFAIL-01` (new) — attempt ledger, failure classification, decision to revert/re-scope/escalate |
 | Continuous improvement | Partial | `WF-IMPROVE` draft; no measurement harness |
+| Automating a described manual task | **Adequate** | `AUTO-01`: step classification (deterministic / fragile / judgement / blocked), idempotency proof by double-run, input-shape guard against the silent no-op, outcome verification, failure channel, and four recorded proofs before enabling the schedule |
+| Verifying another agent's output | **Adequate** | `AIVERIFY-01`: claims enumerated verbatim, clean-state reproduction, test-count comparison against base, revert-and-fail proof, diff accounting including silenced checks, one-sentence verdict. Complements `WF-VERIFY`, which verifies human work |
 
 ## 3. System maturity
 
@@ -101,7 +103,7 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | AI / LLM | Adequate | `ai-agentic` `AI-P01..P07`; P06 adds grounded retrieval with ACL-leakage and abstention measurement, P07 adds the engineering agent's own permission surface (MCP servers, shell, egress, credential inheritance) |
 | Data engineering | **Adequate** | `DE-P01..P02` (new) — pipeline inventory, seven failure modes, data tests and freshness/volume contracts, atomic per-partition backfills with value-level reconciliation. `data-ml-ai` now starts after trustworthy data |
 | Cost / FinOps | **Adequate** | `COST-P01..P04` (new) — attribution, waste diagnosis sized in money, safe optimisation, guardrails and unit economics |
-| Privacy / subject rights | **Adequate** | `PRIV-P01..P03` (new) — cross-system subject data inventory, verified export/deletion, enforced retention |
+| Privacy / subject rights | **Adequate** | `PRIV-P01..P04` — cross-system subject data inventory, verified export/deletion, enforced retention, and deletion **verification** across warehouses, logs, indices, queues, backups and vendors, including whether a restore could resurrect a deleted subject |
 | Money correctness | **Adequate** | `PAY-P01..P03` (new) — representation and invariants, idempotency and unknown outcomes, provider reconciliation and change-safety checklist |
 | Version control operations | **Adequate** | `GIT-P01..P05` (new) — state check before destructive commands, conflict resolution by intent, history repair with a shared-history gate, reflog-based recovery, written conventions. Previously only prohibitions existed |
 | Distributed systems | Partial | architecture/audit cover analysis; no design or failure-mode prompt |
@@ -110,7 +112,10 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Desktop / CLI | **Adequate** | `DESK-P01..P02` (new) — distribution as a trust boundary, signed updates, terminal contract (exit codes, streams, signals, TTY) |
 | Games | Partial | 7 game-design stages remain skeleton; `GD-P09` (save migration) and `GD-P10` (netcode/determinism) are operational |
 | Blockchain / smart contracts | **Adequate** | `CHAIN-P01..P04` (new) — threat model with exploit-path ranking, key custody tiers and drilled rotation, upgrade with storage-layout diff and fork rehearsal, exploit response with containment-first ordering |
-| Performance | Partial | audit and incident touch it; `performance` skeleton |
+| Performance | Partial | audit and incident touch it; `performance` skeleton; `PERF-BUDGET-01` covers budgets and `BUILD-01` build/CI time |
+| Supply chain integrity | **Adequate** | `SUPPLY-01`: delivery chain with evidence per link, lockfile enforcement, install-script execution, dependency confusion, CI trust boundaries, digest pinning, provenance verified once, SBOM queried before it is needed |
+| Licence obligations | **Adequate** | `LIC-01`: distribution perimeter first, obligation families rather than labels, outbound/inbound compatibility, generated notices with versions, disposition with owner and expiry, CI gate |
+| Standards conformance | **Adequate** | `STD-01`: verbatim requirement set, applicability with justification, claimed/practised/evidenced/enforced separation, periodic controls dated, honest position; `WF-COMPLY` sequences the response |
 
 ## 7. Execution mode
 
@@ -154,7 +159,7 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Backup | Partial | required by `DB-P03`; no general backup-strategy prompt |
 | Restore / restore drills | Adequate for DB changes | `DB-P03` requires an executed drill; no system-wide DR exercise |
 | Rollback | Adequate | `REL-P03` three layers, `DB-P05` reverse-path status |
-| Access control | Partial | covered in security review, not as a change procedure |
+| Access control | **Adequate** | `ACCESS-01`: entitlement inventory from providers rather than the roster, per-entitlement decisions, removals verified in the system, break-glass verified unused, standing-access and exception registers |
 | Secret protection | Adequate | `00-core/safety-and-security`, `SEC-P03/P06` |
 | Deployment target provisioning (managed PaaS/serverless/VPS) | **Adequate** | `DEPLOY-01` + `PLATFORM-PROFILES.md`: app-shape classification, build/runtime/preview variable scopes, ephemeral disk, timeouts, cold starts, region/residency, cost metering, tested rollback, exit route. Provider is an input, not an assumption |
 | Host migration (changing platform without an outage) | **Adequate** | `HOSTMIG-01`: peripheral inventory (DNS, MX/TXT, cookies, callbacks, egress IPs, cron), TTL lowered ahead, dual running, pre-declared abort, data checksums, old host retained past TTL, decommission checklist |
@@ -174,6 +179,12 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Monorepo health | **Adequate** | `MONO-01`: import-level graph, boundary violations, affected-only evidence, CI time breakdown |
 | API versioning | **Adequate** | `API-VER-01`: change classification, schema artifact, contract tests, deprecation with traffic thresholds |
 | Disaster recovery and restore drills | **Adequate** | `DR-01`: six disaster classes, backup-chain silent failures, isolated restore drill, measured RTO/RPO, application-level verification including sequences, account-loss path |
+| Operational readiness (launch gate) | **Adequate** | `OPS-01`: silence/saturation/dependency/partial failure signals, alert triage page/ticket/remove, runbook outsider test, dated proof of rollback/restore/failover, on-call access checked today, timed dry exercise |
+| Incident communications | **Adequate** | `INC-COMMS-01`: facts sheet citing incident-channel messages, announced cadence, four-state vocabulary, audience separation, no unverified data-safety assurance, append-only log |
+| Client-side secret exposure | **Adequate** | `SECRET-CLIENT-01`: built artifact scanned, framework inlining mechanisms, capability-based severity, extraction evidence, replacement architecture per capability, revocation before removal |
+| Data residency | **Adequate** | `RESIDENCY-01`: six location kinds, configuration as evidence, client-side SDK flows, transfer register with named mechanism, enforcement control demonstrated, resilience trade-off escalated |
+| Feature-level retirement | **Adequate** | `SUNSET-01`: usage by account/workflow/concentration, telemetry blind spots, dependency map, three notices, reversible sequence with the last reversible point, data decision owned and dated |
+| Build and CI performance | **Adequate** | `BUILD-01`: phase timings before any fix, three loops separated, work reduced before cached, hit rates measured, before/after on the same method |
 | On-call shift handover | **Adequate** | `ONCALL-01`: state from systems (alerts, silences, deploys), about-to-break dates, known-noise, "if this pages you tonight", read-back, authority transfer |
 | Prompt generation from a description | **Adequate** | `GEN-P01`: five modes (compose / interview / improve / decompose / port), routing against existing coverage, risk-class derivation, runnable verification table, self-score, provenance marked `draft`. Companion `GEN-P02` supplies the evaluation protocol |
 | Timeboxed delivery with a demo deadline | **Adequate** | `HACK-01`: rubric mapped to demo moments, demo script as the build order, pre-declared cut lines, reserved freeze/rehearsal/submission time, stage-failure fallbacks, disclosed mocks. Scope coverage only — not team coordination under a 24-hour clock |
@@ -226,6 +237,7 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Introducing AI agents with oversight and rollback | Partial — `ai-agentic` covers the product; not the engineering-workflow adoption | Partial | Partial | Partial | Partial | Yes | Partial | **Partial** |
 | Handoff between engineers/agents | Adequate — `WF-HANDOFF`, `project-recovery`, status checkpoint | Yes | Yes | Yes | Yes | Yes | Yes | **Adequate** |
 | Long-term maintenance loop (`continuous-improvement`) | Partial — draft, no empirical run | Yes | Yes | Yes | Partial | Yes | Partial | **Partial** |
+| Compliance response end to end (`WF-COMPLY` → `STD-01` → `GOV-*` → `LIC-01`/`SUPPLY-01`/`RESIDENCY-01` → readiness) | Yes — standard, scope, owner, deadline are entry conditions | Yes | Yes — each stage produces a named artifact | Yes — gates at scope, remediation, readiness, and send | Yes — failure routing table | Yes | Yes — dated evidence per requirement | **Adequate** |
 
 ---
 
@@ -235,14 +247,16 @@ Counts are computed from the tables above; they are not estimates.
 
 | Status | Dimension rows | Workflow rows |
 |--------|---------------:|--------------:|
-| Adequate | 97 | 9 |
-| Partial | 30 | 5 |
+| Adequate | 110 | 10 |
+| Partial | 29 | 5 |
 | Missing | 0 | 0 |
 | Defective | 0 | 0 |
 | Indirect | 0 | 0 |
-| **Total assessed** | **127** | **14** |
+| **Total assessed** | **139** | **15** |
 
-**Reading this honestly:** roughly 76% of assessed dimension rows are adequate. The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
+**Reading this honestly:** roughly 79% of assessed dimension rows are adequate. The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
+
+**Closed in 2.18.0:** record migration between systems (`DATA-MIG-01`), access review as a procedure (`ACCESS-01`), deletion verification (`PRIV-P04`); licence obligations (`LIC-01`), standards conformance against a named standard (`STD-01`), the compliance response workflow (`WF-COMPLY`), automation of described tasks (`AUTO-01`), client-side secret exposure (`SECRET-CLIENT-01`), supply-chain integrity (`SUPPLY-01`), data residency (`RESIDENCY-01`), feature-level sunset (`SUNSET-01`), incident communications (`INC-COMMS-01`), operational readiness (`OPS-01`), build/CI performance (`BUILD-01`), and verification of AI output (`AIVERIFY-01`).
 
 **Closed in 2.17.0:** disaster recovery and restore drills (`DR-01`); desktop/CLI — the last missing domain (`DESK-P01..P02`); time correctness (`TIME-01`); third-party integration (`INTEG-01`); file uploads (`UPLOAD-01`); localisation (`I18N-01`); infrastructure as code (`IAC-01`); performance budgets (`PERF-BUDGET-01`); monorepo (`MONO-01`); API versioning and contract testing (`API-VER-01`); validator regression tests (`scripts/test_validator.py`).
 
@@ -276,18 +290,15 @@ Counts are computed from the tables above; they are not estimates.
 
 **Closed in 2.1.x:** enterprise readiness (`GOV-P01..P03`), multi-agent orchestration (`WF-MULTIAGENT`), cross-layer integration (`WF-INTEGRATE`), decommissioning (`DEC-P01..P04`), and database engineering (`DB-P01..P05`), dependency/framework upgrades (`DEP-P01..P05`), vertical feature completion (`FC-P01..P04`), independent verification (`WF-VERIFY`), failed-fix escalation (`FIXFAIL-01`), data-loss recovery (`DATALOSS-01`), security incident response (`SECINC-01`).
 
-**Missing scenarios still open**, in priority order:
+**No dimension or workflow row is currently marked Missing.** The last four (data engineering, mobile, embedded/firmware, desktop CLI) were closed between 2.15.0 and 2.17.0.
 
-*Dimension rows marked Missing (4):*
+The honest remainder is not "missing", it is **partial and unproven**:
 
-1. **Data engineering** — ingest, quality, lineage, backfills at scale.
-2. **Mobile** domain system.
-3. **Embedded / firmware** domain system.
-4. **Desktop / CLI** domain system.
+- 29 dimension rows are partial — a prompt exists, but a stage, a verification, or a failure path is thin. The largest clusters are frontend, backend (P01–P08 still skeletons), infrastructure, distributed-systems design, architecture evolution, and prototype/spike discipline.
+- 5 workflow rows are partial: greenfield delivery, legacy modernisation, failed-deployment-plus-half-applied-migration recovery, AI-agent adoption (`WF-AGENTADOPT` is operational, the underlying `from-scratch` stages are not), and the continuous-improvement loop.
+- **Only one prompt has ever been executed against a fixture** (`DBG-01`). Every "Adequate" in this table means *structurally adequate*, evidenced by content review — not demonstrated on a real repository. Backlog #83 and #91 hold that distinction open.
 
-*Workflow rows marked Missing:* none. Every critical workflow in the table now has a procedure, at least at `Partial`.
-
-*Also missing but not a row above:* prototype/spike discipline, near-duplicate detection tooling for the library itself, and empirical validation of all but one prompt.
+*Assessed and deliberately not implemented:* prototype/spike discipline as a separate prompt (the discipline is short enough to live in `from-scratch` guidance and does not justify a file), and new domain systems for hardware/EDA and scientific computing (no evidence of demand in this library's usage).
 
 ## Maintenance of this matrix
 

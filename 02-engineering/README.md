@@ -19,6 +19,7 @@ Engineering activities that apply across technologies: understanding a system, c
 | [`security-hardening/`](security-hardening/README.md) | Authorised review, triaged findings, proven remediation | 7 | **operational** |
 | [`tenancy-audit/`](tenancy-audit/TENANCY-AUDIT.md) | Cross-tenant leakage across stores, caches, jobs, search, storage, admin tools; regression suite | 1 | **operational** |
 | [`secrets-rotation/`](secrets-rotation/SECRETS-ROTATION.md) | Secret inventory by consumer, rotation runbook per class, a drill that proves the old key is dead | 1 | **operational** |
+| [`access-review/`](access-review/ACCESS-REVIEW.md) | Entitlement inventory from the providers, per-entitlement decisions, executed and verified removals, break-glass and standing-access registers | 1 | **operational** |
 
 ## What "skeleton" means here
 

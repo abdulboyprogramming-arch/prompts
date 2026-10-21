@@ -2,6 +2,64 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.18.0] — 2026-10-20
+
+### New — the compliance layer, the automation layer, and what a second pass found
+
+Fifteen prompts answering three questions directly: *does the library cover licences, standards, and compliance obligations?* (it did not), *does it cover automating a described task?* (it did not), and *what else is missing once you look for it?* (nine things).
+
+**`LIC-01` — Licence Compliance** (`04-process/licence-compliance/`)
+Distribution perimeter first, because every judgement depends on it. Obligation families rather than licence labels; the outbound/inbound compatibility direction people forget; notices generated from the resolved graph with versions; a disposition with an owner and an expiry for every copyleft finding; a CI gate that fails on an unapproved licence. Legal conclusions are routed, never performed.
+
+**`STD-01` — Standards Conformance** (`04-process/standards-conformance/`)
+Assess one *named* standard with a version against one project. The distinction the prompt enforces: **claimed → practised → evidenced → enforced**, and only the last two count. Periodic controls are checked by *last occurrence date*, not by policy text. `unknown` rows are preserved rather than rounded up.
+
+**`WF-COMPLY` — Compliance Readiness** (`07-workflows/compliance-readiness.md`)
+Entry conditions (standard, scope, owner, deadline), four gates, and the evidence pack a questionnaire or an auditor actually consumes. Ordering rule: capture evidence for practices that already exist before engineering new controls — days instead of weeks.
+
+**`AUTO-01` — Automating a Described Task** (`05-scenarios/automation/`)
+Four step classes (deterministic / fragile / judgement / blocked), idempotency proven by running it twice, an input-shape guard against the silent no-op that causes most real incidents, outcome verification rather than exit codes, and four recorded proofs before the schedule is switched on.
+
+**`SECRET-CLIENT-01` — Client-Side Secrets** (`05-scenarios/client-secrets/`)
+Scan the *built artifact*, not the source: build-time inlining is invisible in source and absolute in the artifact. Framework mechanisms enumerated (`NEXT_PUBLIC_*`, `VITE_*`, `EXPO_PUBLIC_*`, `Info.plist`, `--dart-define`). Severity equals capability, not the label "API key". Revocation before removal, because published artifacts are archived.
+
+**`SUPPLY-01` — Supply Chain** (`05-scenarios/supply-chain/`)
+Can you prove the artifact you deployed is the artifact you built? Chain with evidence per link, install-time execution as the blind spot scanners do not see, dependency confusion as a naming problem, digest pinning over tags, provenance verified once, and an SBOM queried before it is needed.
+
+**`RESIDENCY-01` — Data Residency** (`05-scenarios/data-residency/`)
+Six location kinds: storage, replicas, processing, observability, support access, third parties. Configuration is evidence; a wiki page is not. Client-side SDK flows count as transfers. Enforcement proven by blocking a deliberate violation.
+
+**`SUNSET-01` — Feature Sunset** (`05-scenarios/feature-sunset/`)
+Removing one feature rather than a system: usage by account, workflow, recency, and concentration; the telemetry blind spots (machine clients, scheduled jobs, support tooling); a reversible sequence that names the last reversible point; and the data decision as part of the sunset, not a follow-up ticket.
+
+**`INC-COMMS-01` — Incident Communications** (`05-scenarios/incident-communications/`)
+Fact sheet citing incident-channel messages, an announced cadence that is kept, the four-state vocabulary, audience separation, no cause speculation or duration promises, and never "your data is safe" during an investigation.
+
+**`OPS-01` — Operational Readiness** (`05-scenarios/operational-readiness/`)
+Would the on-call engineer survive this at 03:00? Silence/saturation/dependency/partial failure signals, alert triage into page/ticket/remove, the runbook outsider test, dated proof of rollback and restore, on-call access confirmed *today*, one timed exercise.
+
+**`BUILD-01` — Build Performance** (`05-scenarios/build-performance/`)
+Phase timings before any fix; three loops with different budgets (edit / verify / release); reduce the work before caching it; measure the cache hit rate; before-and-after with the same method including cold cache.
+
+**`AIVERIFY-01` — Verifying AI Output** (`05-scenarios/ai-output-verification/`)
+The agent's completion report is a set of hypotheses. Claims verbatim, clean-state reproduction, test counts compared against the base commit, revert-and-fail as the only proof a new test works, diff accounting including silenced checks — and `unverifiable` may never be rounded up to `verified`.
+
+### Changed
+
+- `04-process/dependency-management/P01` now routes licence findings to `LIC-01` and supply-chain integrity to `SUPPLY-01` instead of leaving both as a bullet.
+- `02-engineering/security-hardening/` boundaries now point to `SECRET-CLIENT-01`, `SUPPLY-01`, and `STD-01`, because a leaked server credential, a published client key, a tampered build, and an unevidenced control are four different problems.
+- Coverage matrix: 139 dimension rows (**110 adequate / 29 partial / 0 missing**, was 97/30/0) and 15 workflow rows (10 adequate). The stale "Missing scenarios still open" list — which still named data engineering, mobile, embedded, and desktop/CLI — is gone, replaced by an honest statement of what *partial* means and why "adequate" is a structural claim.
+
+### Also in this release
+
+- **`DATA-MIG-01` — Data Migration** (`05-scenarios/data-migration/`): moving records between systems rather than changing a schema in place. Field mapping with a loss register, identity decided before the load so reruns upsert, resumable batches with reject files, reconciliation on hashes and aggregates rather than counts, two rehearsals, and a cutover whose rollback has a named expiry point.
+- **`PRIV-P04` — Deletion Verification** (`04-process/privacy-requests/P04`): the adversarial half of deletion. Per-location definitions of what "deleted" can mean (an immutable log ages out; a backup expires), multiple identifiers including hashes, verification queries tested against a known-positive record, resurrection paths through restore and rebuild, and a synthetic canary through the real path.
+- **`ACCESS-01` — Access Review** (`02-engineering/access-review/`): entitlements from the identity provider and the cloud rather than the roster, decisions per entitlement rather than per person, non-human access and break-glass accounts, removals verified by denial, and exceptions with an owner and an expiry.
+
+### Result
+
+441 Markdown files, **351 prompts: 197 operational, 5 draft, 149 skeleton**. Validator 0 errors / 0 warnings; self-tests 6/6; gallery current; no new near-duplicates (highest containment 0.18, unchanged). Backlog #92–#99 added; #93, #95, and #97 closed in the same release, because a backlog entry written and left undone is a recommendation dressed as work.
+
 ## [2.17.0] — 2026-10-20
 
 ### New — completing the map: the last missing domain, the last untested assumption
