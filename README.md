@@ -4,9 +4,9 @@ A structured collection of prompts for AI coding agents, organised across the en
 
 Every prompt declares what it does, what it may change, how much it can be trusted, and what it will not do. Nothing here claims a capability its files do not have — the repository is validated against that rule on every change.
 
-**[`QUICKSTART.md`](QUICKSTART.md) — start here.** Four situations, the exact prompts in order, and what you should be holding at the end of each. It takes ten minutes and saves an hour of reading this file.
+**[`QUICKSTART.md`](QUICKSTART.md) — start here.** Six situations, the exact prompts in order, and what you should be holding at the end of each. It takes ten minutes and saves an hour of reading this file.
 
-**Browse everything:** [`GALLERY.md`](GALLERY.md) lists all 362 prompts with a direct link and one line on when to use each. It is generated from the prompts themselves and CI fails if it falls out of date, so it cannot drift from the library.
+**Browse everything:** [`TASKS.md`](TASKS.md) indexes the library by the problem you have — 21 tasks from "something is broken right now" to "I only have a chat window" — and [`GALLERY.md`](GALLERY.md) lists all 362 prompts by area with a direct link and one line on when to use each. Both are generated from the prompts themselves and CI fails if either falls out of date, so neither can drift from the library.
 
 ## Start here
 

@@ -288,7 +288,8 @@ def build_gallery(docs: list[Doc]) -> str:
         "| **Maturity** | `operational` = complete and reviewable; `draft` = usable with supervision; `skeleton` = outline, not runnable |",
         "| **Risk** | A = read-only, B = branch changes, C = shared environments, D = destructive |",
         "",
-        "**Browse by area**",
+        "**Browse by area** — or start from the problem in [`TASKS.md`](TASKS.md), which indexes the same",
+        "prompts by situation.",
         "",
         "| Area | Prompts | What it is for |",
         "|---|---:|---|",
@@ -371,9 +372,9 @@ def build_gallery(docs: list[Doc]) -> str:
         "add a `**Gallery:** one line describing when to use this` metadata line to the prompt;",
         "the generator prefers it over the extracted objective.",
         "",
-        "Related indexes: [`README.md`](README.md) routes by situation, [`_meta/CATALOG.md`](_meta/CATALOG.md)",
-        "lists metadata for tooling, and [`_meta/coverage-matrix.md`](_meta/coverage-matrix.md) tracks what is",
-        "covered — and what is not.",
+        "Related indexes: [`TASKS.md`](TASKS.md) inverts this page by the problem you have, [`README.md`](README.md)",
+        "routes by situation, [`_meta/CATALOG.md`](_meta/CATALOG.md) lists metadata for tooling, and",
+        "[`_meta/coverage-matrix.md`](_meta/coverage-matrix.md) tracks what is covered — and what is not.",
         "",
     ]
     text = "\n".join(out)

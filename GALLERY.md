@@ -15,7 +15,8 @@ Generated from the prompt files, so it cannot drift from them; CI fails if this 
 | **Maturity** | `operational` = complete and reviewable; `draft` = usable with supervision; `skeleton` = outline, not runnable |
 | **Risk** | A = read-only, B = branch changes, C = shared environments, D = destructive |
 
-**Browse by area**
+**Browse by area** — or start from the problem in [`TASKS.md`](TASKS.md), which indexes the same
+prompts by situation.
 
 | Area | Prompts | What it is for |
 |---|---:|---|
@@ -648,7 +649,7 @@ One prompt, one session, one pressing situation.
 | `SUPPLY-01` | [Supply Chain: can you prove the thing you deployed is the thing you built?](05-scenarios/supply-chain/SUPPLY-CHAIN.md) | Assess whether a compromised package, a tampered build, or a substituted artifact could reach production — and what evidence you could produce if someone asked. <br>**Inputs:** `REPO_PATH, ARTIFACT_REGISTRY, APPROVER` | operational | A |
 | `SURFACE-01` | [Live Surface Audit — a URL, host, or API from the outside](05-scenarios/live-surface-audit/LIVE-SURFACE-AUDIT.md) | An evidence-backed assessment of the target's externally visible surface — transport, headers, cookies, redirects, error behaviour, discoverability, performance… <br>**Inputs:** `TARGET_URL, AUDIT_AUTHORISATION, PAGE_LIMIT, REPORT_AUDIENCE` | operational | B |
 | `TESTDATA-01` | [Test Data: the fixture that holds a real customer](05-scenarios/test-data/TEST-DATA.md) | A test database seeded from production, a fixture with a real email address, or a screenshot in a pull request — find it, replace it, and stop it coming back. <br>**Inputs:** `REPO_PATH, DATA_CLASS, RETENTION_DAYS, APPROVER` | operational | A |
-| `UPLOAD-01` | [File Uploads and Object Storage](05-scenarios/file-uploads/FILE-UPLOADS.md) | A validated upload path with signed direct-to-storage transfers where appropriate, content verification, size and type limits, lifecycle rules for orphans and… <br>**Inputs:** `STORAGE_BACKEND, USE_CASES, MAX_SIZE, FILE_TYPES, TARGET_ENV, RETENTION` | operational | B |
+| `UPLOAD-01` | [File Uploads and Object Storage](05-scenarios/file-uploads/FILE-UPLOADS.md) | A validated upload path with signed direct-to-storage transfers for files over the size limit of the application server, content verification, size and type limits… <br>**Inputs:** `STORAGE_BACKEND, USE_CASES, MAX_SIZE, FILE_TYPES, TARGET_ENV, RETENTION` | operational | B |
 | `VENDOR-01` | [Vendor Due Diligence: evaluating a supplier before you depend on it](05-scenarios/vendor-due-diligence/VENDOR-DUE-DILIGENCE.md) | Choosing a vendor, or a procurement request arrives — assess what happens if this supplier is breached, fails, raises prices, or disappears. <br>**Inputs:** `VENDOR_NAME, INTENDED_USE, DATA_CLASS, APPROVER, TIME_BUDGET` | operational | A |
 
 ## 06-interactive — conversations that clarify a request
@@ -719,6 +720,6 @@ CI fails when `GALLERY.md` no longer matches the library. To control the wording
 add a `**Gallery:** one line describing when to use this` metadata line to the prompt;
 the generator prefers it over the extracted objective.
 
-Related indexes: [`README.md`](README.md) routes by situation, [`_meta/CATALOG.md`](_meta/CATALOG.md)
-lists metadata for tooling, and [`_meta/coverage-matrix.md`](_meta/coverage-matrix.md) tracks what is
-covered — and what is not.
+Related indexes: [`TASKS.md`](TASKS.md) inverts this page by the problem you have, [`README.md`](README.md)
+routes by situation, [`_meta/CATALOG.md`](_meta/CATALOG.md) lists metadata for tooling, and
+[`_meta/coverage-matrix.md`](_meta/coverage-matrix.md) tracks what is covered — and what is not.

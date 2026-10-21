@@ -56,6 +56,16 @@ jobs:
       - name: Prose lint (ratchet — fails only on regression)
         run: python3 scripts/lint_prose.py --check
 
+      - name: Self-test the task index
+        run: python3 scripts/test_task_index.py
+
+      - name: Verify the task index is current and every prompt has a home
+        run: |
+          if ! python3 scripts/generate_task_index.py --check; then
+            echo "::error::TASKS.md is stale or a prompt is unrouted. Run: python3 scripts/generate_task_index.py --write"
+            exit 1
+          fi
+
       - name: Verify the evidence-level report is current
         run: |
           if ! python3 scripts/evidence_report.py --check; then

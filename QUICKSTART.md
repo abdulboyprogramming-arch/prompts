@@ -1,6 +1,6 @@
 # Quickstart — start being useful in ten minutes
 
-355 prompts is an archive, not a starting point. This page is the starting point: four situations, the exact prompts to run, in order, with what you should be holding at the end of each.
+362 prompts is an archive, not a starting point. This page is the starting point: six situations, the exact prompts to run, in order, with what you should be holding at the end of each.
 
 **Read this instead of the README if you have a job to do today.**
 
@@ -15,6 +15,21 @@
 | Prevent a long list of specific, named failures | Replace your judgement about your system |
 
 Use the prompts as an experienced colleague's checklist, not as an authority.
+
+---
+
+## Path 0 — You only have a chat window (no repo access)
+
+If you are in ChatGPT, Claude, Gemini, or any chat interface with no file access, you do not need a different library — you need the capability delta stated up front.
+
+| Step | Prompt | You end with |
+|---|---|---|
+| 1 | [`00-core/conversational/CHAT-MODE.md`](00-core/conversational/CHAT-MODE.md) | Any prompt in this library adapted for a conversation, with what it cannot verify written down |
+| 2 | [`00-core/conversational/CHAT-DEBUG.md`](00-core/conversational/CHAT-DEBUG.md) | One discriminating test at a time instead of five guesses |
+| 3 | [`00-core/conversational/CHAT-REVIEW.md`](00-core/conversational/CHAT-REVIEW.md) | A bounded review with the not-assessed list |
+| 4 | [`00-core/conversational/CHAT-DESIGN.md`](00-core/conversational/CHAT-DESIGN.md) | An ADR you can file, with what would reopen it |
+
+Two rules apply to every chat run: **`verified` means someone ran it and pasted the output**, and **redact before pasting** — a consumer chat window is a third party.
 
 ---
 
@@ -64,21 +79,6 @@ If you only have an hour: **step 2 and the six silent backup failures in step 4*
 
 ---
 
-## Path 0 — You only have a chat window (no repo access)
-
-If you are in ChatGPT, Claude, Gemini, or any chat interface with no file access, you do not need a different library — you need the capability delta stated up front.
-
-| Step | Prompt | You end with |
-|---|---|---|
-| 1 | [`00-core/conversational/CHAT-MODE.md`](00-core/conversational/CHAT-MODE.md) | Any prompt in this library adapted for a conversation, with what it cannot verify written down |
-| 2 | [`00-core/conversational/CHAT-DEBUG.md`](00-core/conversational/CHAT-DEBUG.md) | One discriminating test at a time instead of five guesses |
-| 3 | [`00-core/conversational/CHAT-REVIEW.md`](00-core/conversational/CHAT-REVIEW.md) | A bounded review with the not-assessed list |
-| 4 | [`00-core/conversational/CHAT-DESIGN.md`](00-core/conversational/CHAT-DESIGN.md) | An ADR you can file, with what would reopen it |
-
-Two rules apply to every chat run: **`verified` means someone ran it and pasted the output**, and **redact before pasting** — a consumer chat window is a third party.
-
----
-
 ## Path 4 — Someone is asking for proof (1–3 days)
 
 A security questionnaire, an audit, a customer contract with a standard in it, an enterprise deal.
@@ -124,4 +124,4 @@ Workflow version: [`07-workflows/compliance-readiness.md`](07-workflows/complian
 
 ---
 
-**Next:** [`README.md`](README.md) for routing by symptom, [`GALLERY.md`](GALLERY.md) for all 355 prompts, [`_meta/ROADMAP-AND-BACKLOG.md`](_meta/ROADMAP-AND-BACKLOG.md) for what is deliberately unfinished.
+**Next:** [`README.md`](README.md) for routing by symptom, [`TASKS.md`](TASKS.md) for the library indexed by problem, [`GALLERY.md`](GALLERY.md) for all 362 prompts, [`_meta/ROADMAP-AND-BACKLOG.md`](_meta/ROADMAP-AND-BACKLOG.md) for what is deliberately unfinished.
