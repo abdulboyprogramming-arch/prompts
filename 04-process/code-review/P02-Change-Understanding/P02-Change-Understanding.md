@@ -2,7 +2,7 @@
 
 **Identifier:** CR-P02
 **System:** 04-process/code-review
-**Version:** 1.0.0
+**Version:** 1.1.0
 **Maturity:** operational
 **Execution mode:** diagnostic
 **Risk class:** A
@@ -46,7 +46,7 @@ Out of scope: issuing findings (P03), writing feedback (P04).
 5. **Trace one real path end to end** through the change — the primary journey for a feature, the failing input for a bug fix. Reading code in isolation misses wiring errors that a single traced path exposes.
 6. **Identify what is untested**: which new branches, error paths, or edge cases have no test. Record as hypotheses, not findings.
 7. **Note the parts you cannot evaluate** — domain logic you do not know, performance implications, security properties requiring threat modelling. State them; a reviewer who claims universal competence is not credible.
-8. **Write `CHANGE_SUMMARY.md`:** structural summary, semantic summary per module, intent reconciliation (extra and missing), deletion audit, seam checks, traced path result, untested areas, and expert questions.
+8. **Write `CHANGE_SUMMARY.md`:** structural summary, semantic summary per module, **the sampling record** — modules read in full, modules sampled, modules not read, with the reason — intent reconciliation (extra and missing), deletion audit, seam checks, traced path result, untested areas, and expert questions. The depth decision was made in P01; this is where it becomes auditable, so a later reader can tell a thorough review from a confident one.
 
 ## 5. Decision rules and evidence standard
 

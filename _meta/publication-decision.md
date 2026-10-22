@@ -27,7 +27,7 @@ Conflating them is what turns readiness into an endless cycle: full validation o
 | Installation and usage instructions | README "Start here" routing table, maturity legend, structure, composition; `QUICKSTART.md` for six situations | met |
 | Accurate project status | counts and maturity are gate-checked against the tree; execution ratio generated from `_meta/evidence.json`; limitations stated in README and `release-readiness.md` | met |
 | Contribution and conduct policies | `CONTRIBUTING.md`, `.github/CODE_OF_CONDUCT.md`, `.github/SECURITY.md` exist **and** are linked (validator `check_community`) | met |
-| Required validation checks | 14 gates pass locally; 84 self-test cases pass; composition 0 errors | met |
+| Required validation checks | 15 gates pass locally; 94 self-test cases pass; composition 0 errors | met |
 
 **One accuracy defect was found and fixed in this pass**, which is why this list is not "we assumed": the README asserted that CI fails when a generated file is stale, and `PROJECT-STATUS.md` described the workflow as running. Neither is true on this account (§5). Both now state the billing block and the local equivalent.
 
@@ -92,4 +92,6 @@ Two honest routes, and the choice belongs to the owner:
 1. **Merge PR #12 first, then publish.** The front door is the verified state. Requires the merge authorisation that is on hold.
 2. **Publish now, merge later.** Acceptable, and the repository is not dishonest — v2.21.1 was its own accurate release — but the first impression is a weaker, older tree, and the improvement arrives after launch.
 
-**PR #12 stays open and unmerged pending the owner's instruction.**
+**PR #12 merged on 2026-10-22** (squash, `1dc6f25`, branch deleted). It was later shown that every commit in the
+repository carried an `arena-agent` co-author trailer; history was rewritten the same day and `main` now reads
+`3a62a6b`. See the review log.

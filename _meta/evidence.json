@@ -165,6 +165,39 @@
       "result": "trunk-with-tags model, squash default, and every rule's enforcement recorded as convention-only where nothing enforces it; two defects fixed in v1.1.0 - the generated-code rule never told the operator to scan what is committed (a .pyc had survived four stages), and an unobservable CI fact had no 'not observable' option",
       "record": "_meta/empirical-evaluation-11.md",
       "limitations": "no hosted remote, so protection rules and red-build history were unobservable by construction; the .gitignore recommendation was not applied, to preserve the artefacts other stages verified"
+    },
+    {
+      "identifier": "CR-P01",
+      "title": "Review Context & Goals",
+      "path": "04-process/code-review/P01-Context/P01-Context-Goals.md",
+      "scope": "set up a review of the tooling diff v2.21.1..main (12 files, +1794/-80): stated intent, scope metrics, change type, three risk areas named before the diff was read, four hypotheses and a sampling depth",
+      "result": "all eight verification checks pass; the risk-first ordering changed what was looked for - the runner as single point of failure was named as a hypothesis before the code was read, and it was where the defect was",
+      "limitations": "agent-authored target and agent grader; one review, one diff",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author, who also wrote the code under review (conflict of interest recorded)",
+      "record": "_meta/empirical-evaluation-12.md"
+    },
+    {
+      "identifier": "CR-P02",
+      "title": "Change Understanding",
+      "path": "04-process/code-review/P02-Change-Understanding/P02-Change-Understanding.md",
+      "scope": "read the diff by module, reconcile against the stated intent, and carry discrepancies forward as hypotheses",
+      "result": "three discrepancies carried to P03 (runner has no test; the runner writes to the tree; nothing proves a self-test can fail); the third did not survive verification, which was recorded rather than quietly dropped",
+      "limitations": "500 of 1794 lines sampled, not read",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author, who also wrote the code under review (conflict of interest recorded)",
+      "record": "_meta/empirical-evaluation-12.md"
+    },
+    {
+      "identifier": "CR-P03",
+      "title": "Structured Review",
+      "path": "04-process/code-review/P03-Review/P03-Structured-Review.md",
+      "scope": "findings for the tooling diff, each demonstrated before being recorded",
+      "result": "one High (a failing validator run left _meta/CATALOG.md rewritten in the working tree, so the gate dirtied the tree exactly when it failed), one Medium (the runner was the only script with no test), two Low; all four fixed, and the High was reproduced before and after the fix",
+      "limitations": "reviewer wrote the code being reviewed; three of six stages ran, so not an end-to-end system run",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author, who also wrote the code under review (conflict of interest recorded)",
+      "record": "_meta/empirical-evaluation-12.md"
     }
   ]
 }

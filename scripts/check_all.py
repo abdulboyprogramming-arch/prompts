@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Run every gate in the order CI runs them, with one summary at the end.
 
-The repository has nine checks and they drifted between three places: the CI
+The repository's checks drifted between three places: the CI
 workflow, the contributor guide, and a paragraph in the publication checklist.
 A contributor could not tell which list was authoritative, and a check added to
 one list was not added to the others.
@@ -36,6 +36,7 @@ PY = sys.executable
 
 # (gate name, argv, whether --quick skips it)
 GATES: list[tuple[str, list[str], bool]] = [
+    ("gate-list self-tests", ["scripts/test_check_all.py"], False),
     ("validator self-tests", ["scripts/test_validator.py"], False),
     ("validator", ["scripts/validate_library.py"], False),
     ("overlap self-tests", ["scripts/test_overlaps.py"], False),
@@ -65,15 +66,33 @@ CATALOG = os.path.join("_meta", "CATALOG.md")
 
 
 def catalog_is_current() -> tuple[bool, str]:
-    """`--catalog` rewrites the file, so currency means "the rewrite changes nothing"."""
+    """`--catalog` rewrites the file, so currency means "the rewrite changes nothing".
+
+    The restore has to survive the failure path. This function used to return
+    early when the validator errored, which left the rewritten catalog in the
+    working tree — the one case where the tree most needs to be left alone,
+    because the catalog had just been built from a tree that failed validation.
+    A contributor then saw a modified generated file in `git status` and a CI
+    "tree unchanged" step that failed for the wrong reason.
+
+    Two smaller edges are handled here as well: the file may not exist at all
+    (restore means delete, not write an empty file), and the restore must run
+    even if reading the rewritten file raises.
+    """
     path = os.path.join(ROOT, CATALOG)
-    before = open(path, encoding="utf-8").read() if os.path.exists(path) else ""
-    code, out = run(["scripts/validate_library.py", "--catalog"])
+    existed = os.path.exists(path)
+    before = open(path, encoding="utf-8").read() if existed else ""
+    try:
+        code, out = run(["scripts/validate_library.py", "--catalog"])
+        after = open(path, encoding="utf-8").read() if os.path.exists(path) else ""
+    finally:
+        if existed:
+            open(path, "w", encoding="utf-8").write(before)
+        elif os.path.exists(path):
+            os.remove(path)
     if code != 0:
         return False, out
-    after = open(path, encoding="utf-8").read() if os.path.exists(path) else ""
     if before != after:
-        open(path, "w", encoding="utf-8").write(before)  # leave the tree as we found it
         return False, f"{CATALOG} was stale; run: python3 scripts/validate_library.py --catalog"
     return True, ""
 

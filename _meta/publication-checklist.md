@@ -23,7 +23,7 @@
 
 | # | Check | Method | Result |
 |---|-------|--------|--------|
-| 1 | Structural validation | `python3 scripts/validate_library.py` | **PASS** — 470 Markdown files, 364 prompts, **0 errors / 0 warnings** |
+| 1 | Structural validation | `python3 scripts/validate_library.py` | **PASS** — 471 Markdown files, 364 prompts, **0 errors / 0 warnings** |
 | 2 | Maturity honesty | validator rules | **PASS** — 228 operational, 5 draft, 131 skeleton; no label exceeds body; no system README outranks its stages |
 | 3 | Executed-prompt count is generated | `scripts/evidence_report.py --check` | **PASS** — `_meta/evidence-levels.md` matches the registry: **14 of 228 operational prompts executed (6.1%)**, stated in the file the README links |
 | 4 | Catalog current | `--catalog` + `git diff` | **PASS** — regenerates with no diff |
@@ -44,7 +44,7 @@
 | 18 | Licences | `LICENSE`, `LICENSE-CONTENT`, README section | **PASS** — MIT for code, CC BY 4.0 for content, SPDX-detectable |
 | 19 | Every prompt has a home | `generate_task_index.py --check` | **PASS** — 21 tasks, 364 prompts routed, 0 unrouted |
 | 20 | One gate list | `scripts/check_all.py` | **PASS** — CI runs that script and nothing else; a local pass is the same run |
-| 21 | Counts agree with the tree | validator `check_documented_counts`, `check_stated_totals`, `check_readme_counts` | **PASS** — 470 Markdown files, 364 prompts, 228/5/131 by maturity; the file and prompt totals are compared on every run in the four documents that quote them |
+| 21 | Counts agree with the tree | validator `check_documented_counts`, `check_stated_totals`, `check_readme_counts` | **PASS** — 471 Markdown files, 364 prompts, 228/5/131 by maturity; the file and prompt totals are compared on every run in the four documents that quote them |
 | 22 | Repository settings are decided | `_meta/repository-configuration.md` | **PASS** — description, topics, merge policy, security features and sponsorship decision recorded with the commands; **not yet applied** |
 
 Twenty-two gates. Six are new in this pass: composition (6b), community files and their links (16), prose counts (17), and the three that close the gap between what the documents claim and what the tree contains (15, 21, 22).
