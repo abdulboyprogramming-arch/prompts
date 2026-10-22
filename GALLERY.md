@@ -29,7 +29,7 @@ prompts by situation.
 | [06-interactive — conversations that clarify a request](#06-interactive--conversations-that-clarify-a-request) | 4 | Use when the request is vague and needs to be scoped first. |
 | [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 13 | Composed sequences that route between systems and stop at human gates. |
 
-*Maturity across the library: 228 operational, 5 draft, 131 skeleton, 364 total.*
+*Maturity across the library: 235 operational, 5 draft, 124 skeleton, 364 total.*
 
 ---
 
@@ -216,13 +216,13 @@ Work on an existing codebase: audit, repair, complete, upgrade.
 
 | ID | Prompt | Use it for | Maturity | Risk |
 |---|---|---|---|---|
-| `PERF-P01` | [Context & Goals](02-engineering/performance/P01-Context/P01-Context-Goals.md) | Clarify what “good performance” means for this system and what constraints apply. | skeleton | B |
-| `PERF-P02` | [Measurement Setup](02-engineering/performance/P02-Measurement/P02-Measurement-Setup.md) | Establish reliable ways to measure the relevant performance characteristics and capture a baseline. | skeleton | B |
-| `PERF-P03` | [Analysis](02-engineering/performance/P03-Analysis/P03-Analysis.md) | Understand the current performance behavior in depth. | skeleton | B |
-| `PERF-P04` | [Bottleneck Identification](02-engineering/performance/P04-Bottleneck-Identification/P04-Bottleneck-Identification.md) | Locate the actual primary constraints on performance rather than assumed ones. | skeleton | B |
-| `PERF-P05` | [Optimization Design](02-engineering/performance/P05-Optimization-Design/P05-Optimization-Design.md) | Design targeted, high-leverage improvements that address the real bottlenecks. | skeleton | B |
-| `PERF-P06` | [Implementation & Validation](02-engineering/performance/P06-Implementation-Validation/P06-Implementation-Validation.md) | Apply the planned optimizations carefully and prove that they improve the targeted metrics without breaking correctness. | skeleton | B |
-| `PERF-P07` | [Performance Analysis & Optimization Master Orchestrator](02-engineering/performance/P07-Orchestrator/P07-Performance-Orchestrator.md) | Runs the performance system end to end: gates, routing, and final acceptance. | skeleton | A |
+| `PERF-P01` | [Context & Goals](02-engineering/performance/P01-Context/P01-Context-Goals.md) | Produce PERF_CONTEXT.md: the system's critical paths, a measurable goal per path, the constraints that bound the solution, and an explicit list of what is out of… <br>**Inputs:** `TARGET_PATH, SLO_SOURCE, USER_COMPLAINTS` | operational | A |
+| `PERF-P02` | [Measurement Setup](02-engineering/performance/P02-Measurement/P02-Measurement-Setup.md) | Produce a harness (script, command file, or documented procedure) covering the paths named in PERF_CONTEXT.md, and MEASUREMENT.md recording the method, the… <br>**Inputs:** `TARGET_PATH, TIME_BUDGET` | operational | B |
+| `PERF-P03` | [Analysis](02-engineering/performance/P03-Analysis/P03-Analysis.md) | Produce ANALYSIS.md that turns the baseline numbers into a ranked, evidenced description of behaviour, and a short list of hypotheses for PERF-P04 to test. <br>**Inputs:** `TARGET_PATH, PROFILE_TOOL` | operational | A |
+| `PERF-P04` | [Bottleneck Identification](02-engineering/performance/P04-Bottleneck-Identification/P04-Bottleneck-Identification.md) | Produce BOTTLENECKS.md: a ranked, evidenced list of limits, each with the share of the measured time it owns and the confidence in that attribution — plus the… <br>**Inputs:** `TARGET_PATH` | operational | A |
+| `PERF-P05` | [Optimization Design](02-engineering/performance/P05-Optimization-Design/P05-Optimization-Design.md) | Produce OPTIMIZATION_PLAN.md: ordered changes, each tied to a bottleneck, with expected effect derived from the measured share, the test that will confirm it, and… <br>**Inputs:** `TARGET_PATH, RISK_TOLERANCE` | operational | A |
+| `PERF-P06` | [Implementation & Validation](02-engineering/performance/P06-Implementation-Validation/P06-Implementation-Validation.md) | Apply the changes in OPTIMIZATION_PLAN.md, re-measure with the PERF-P02 harness, run the repository's correctness checks, and write VALIDATION.md. <br>**Inputs:** `TARGET_PATH` | operational | B |
+| `PERF-P07` | [Performance Analysis & Optimization Orchestrator](02-engineering/performance/P07-Orchestrator/P07-Performance-Orchestrator.md) | Run PERF-P01 to PERF-P06 in order, gating each on the previous stage's artifacts, and produce PERF_RUN.md: which stages ran, what each concluded, which gates… <br>**Inputs:** `TARGET_PATH` | operational | A |
 
 ### project-recovery · 7 prompts
 

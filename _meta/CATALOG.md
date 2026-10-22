@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 364 prompts — 0 canonical, 228 operational, 5 draft, 131 skeleton.
+**Totals:** 364 prompts — 0 canonical, 235 operational, 5 draft, 124 skeleton.
 
 ## `00-core`
 
@@ -179,13 +179,13 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
 | ID | Stage | Maturity | Mode | Risk | File |
 |----|-------|----------|------|------|------|
-| `PERF-P01` | PROMPT 01 — Context & Goals | skeleton | planning | B | [P01-Context-Goals.md](../02-engineering/performance/P01-Context/P01-Context-Goals.md) |
-| `PERF-P02` | PROMPT 02 — Measurement Setup | skeleton | implementation | B | [P02-Measurement-Setup.md](../02-engineering/performance/P02-Measurement/P02-Measurement-Setup.md) |
-| `PERF-P03` | PROMPT 03 — Analysis | skeleton | diagnostic | B | [P03-Analysis.md](../02-engineering/performance/P03-Analysis/P03-Analysis.md) |
-| `PERF-P04` | PROMPT 04 — Bottleneck Identification | skeleton | implementation | B | [P04-Bottleneck-Identification.md](../02-engineering/performance/P04-Bottleneck-Identification/P04-Bottleneck-Identification.md) |
-| `PERF-P05` | PROMPT 05 — Optimization Design | skeleton | planning | B | [P05-Optimization-Design.md](../02-engineering/performance/P05-Optimization-Design/P05-Optimization-Design.md) |
-| `PERF-P06` | PROMPT 06 — Implementation & Validation | skeleton | implementation | B | [P06-Implementation-Validation.md](../02-engineering/performance/P06-Implementation-Validation/P06-Implementation-Validation.md) |
-| `PERF-P07` | PROMPT 07 — Performance Analysis & Optimization Master Orche | skeleton | orchestration | A | [P07-Performance-Orchestrator.md](../02-engineering/performance/P07-Orchestrator/P07-Performance-Orchestrator.md) |
+| `PERF-P01` | PROMPT 1 — Context & Goals | operational | planning | A | [P01-Context-Goals.md](../02-engineering/performance/P01-Context/P01-Context-Goals.md) |
+| `PERF-P02` | PROMPT 2 — Measurement Setup | operational | implementation | B | [P02-Measurement-Setup.md](../02-engineering/performance/P02-Measurement/P02-Measurement-Setup.md) |
+| `PERF-P03` | PROMPT 3 — Analysis | operational | diagnostic | A | [P03-Analysis.md](../02-engineering/performance/P03-Analysis/P03-Analysis.md) |
+| `PERF-P04` | PROMPT 4 — Bottleneck Identification | operational | diagnostic | A | [P04-Bottleneck-Identification.md](../02-engineering/performance/P04-Bottleneck-Identification/P04-Bottleneck-Identification.md) |
+| `PERF-P05` | PROMPT 5 — Optimization Design | operational | planning | A | [P05-Optimization-Design.md](../02-engineering/performance/P05-Optimization-Design/P05-Optimization-Design.md) |
+| `PERF-P06` | PROMPT 6 — Implementation & Validation | operational | implementation | B | [P06-Implementation-Validation.md](../02-engineering/performance/P06-Implementation-Validation/P06-Implementation-Validation.md) |
+| `PERF-P07` | PROMPT 7 — Performance Analysis & Optimization Orchestrator | operational | orchestration | A | [P07-Performance-Orchestrator.md](../02-engineering/performance/P07-Orchestrator/P07-Performance-Orchestrator.md) |
 
 ## `02-engineering/project-recovery`
 

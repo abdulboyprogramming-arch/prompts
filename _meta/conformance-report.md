@@ -12,9 +12,9 @@ input, which is the property that makes a sequence of prompts a system rather th
 |---------|------:|
 | Systems with more than one stage | 52 |
 | Dependency links between stages in a system | 239 |
-| Links where the downstream stage never names the upstream artifact | **82** |
-| Links that mention it only by stem, never as a filename | 10 |
-| Links that cite the upstream filename | 147 |
+| Links where the downstream stage never names the upstream artifact | **78** |
+| Links that mention it only by stem, never as a filename | 9 |
+| Links that cite the upstream filename | 152 |
 
 The second row is the library's real integration claim. The third is what is left of it: a
 link where the downstream prompt says *"the rollout evidence"* instead of naming
@@ -43,7 +43,7 @@ handed the artifact without anyone guessing its name.
 | `02-engineering/feature-design-suggestion` | 7 | 6 | 6 | 0 | 3 | 3 |
 | `02-engineering/from-scratch` | 8 | 8 | 7 | 1 | 2 | 4 |
 | `02-engineering/patterns-strategies-methods` | 7 | 8 | 5 | 0 | 1 | 4 |
-| `02-engineering/performance` | 7 | 6 | 5 | 0 | 1 | 4 |
+| `02-engineering/performance` | 7 | 6 | 5 | 5 | 0 | 0 |
 | `02-engineering/project-recovery` | 7 | 8 | 6 | 6 | 0 | 0 |
 | `02-engineering/refactoring` | 7 | 7 | 7 | 7 | 0 | 0 |
 | `02-engineering/rewriting-migration` | 8 | 7 | 7 | 0 | 0 | 7 |
@@ -135,15 +135,6 @@ that stage produces but this one never mentions.
 | `PS-P04` | `PS-P03` | `EXISTING_PATTERNS.md` |
 | `PS-P05` | `PS-P04` | `IDEATION.md` |
 | `PS-P06` | `PS-P05` | `EVALUATION.md` |
-
-### `02-engineering/performance`
-
-| Stage | Depends on | Artifact not named |
-|-------|------------|--------------------|
-| `PERF-P02` | `PERF-P01` | `PERF_CONTEXT.md` |
-| `PERF-P03` | `PERF-P02` | `MEASUREMENT.md` |
-| `PERF-P04` | `PERF-P03` | `ANALYSIS.md` |
-| `PERF-P06` | `PERF-P05` | `OPTIMIZATION_PLAN.md` |
 
 ### `02-engineering/rewriting-migration`
 
@@ -277,12 +268,6 @@ before the prompts are run back to back.
 | Stage | Depends on | Artifact matched by stem only |
 |-------|------------|-------------------------------|
 | `PS-P03` | `PS-P02` | `PROBLEM.md` |
-
-### `02-engineering/performance`
-
-| Stage | Depends on | Artifact matched by stem only |
-|-------|------------|-------------------------------|
-| `PERF-P05` | `PERF-P04` | `BOTTLENECKS.md` |
 
 ### `02-engineering/security-hardening`
 

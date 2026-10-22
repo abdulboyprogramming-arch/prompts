@@ -49,8 +49,11 @@ GATES: list[tuple[str, list[str], bool]] = [
     ("task index current", ["scripts/generate_task_index.py", "--check"], False),
     ("evidence report self-tests", ["scripts/test_evidence_report.py"], False),
     ("evidence report current", ["scripts/evidence_report.py", "--check"], False),
-    ("duplicate detector (shingle)", ["scripts/find_overlaps.py", "--check", "--top", "5"], True),
-    ("duplicate detector (combined)", ["scripts/find_overlaps.py", "--check", "--metric", "combined", "--top", "5"], True),
+    # One process, two metrics. Every pair is scored on every signal anyway, so
+    # asking twice meant reading the corpus twice: measured at 1.73 s for two
+    # runs against 0.89 s for one.
+    ("duplicate detector", ["scripts/find_overlaps.py", "--check", "--metric", "shingle",
+                            "--metric", "combined", "--top", "5"], True),
 ]
 
 # Regeneration, in dependency order. --fix runs this before the gates.

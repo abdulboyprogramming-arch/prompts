@@ -124,6 +124,27 @@ Checks are run, and the results are recorded.
     check("numbered headings normalise", "workflow" in h and "1. workflow" not in h, str(sorted(h)))
     check("metadata block is not body text", "identifier" not in fo.body(a).lower())
 
+    # The failure rule, tested without a corpus. The gate now asks one process
+    # for two metrics, so a rule that reported the wrong metric would point a
+    # maintainer at the wrong pair.
+    pair = (0.9, 0.1, 0.05, "x.md", "y.md",
+            {"shingle": 0.10, "vocab": 0.90, "structure": 0.80, "combined": 0.80})
+    one = fo.failures_over([pair], fo.bars_for(["shingle"]))
+    check("a pair under the bar is not a failure", one == [], str(one))
+
+    two = fo.failures_over([pair], fo.bars_for(["shingle", "vocab"]))
+    check("only the metric that clears its bar is reported",
+          len(two) == 1 and two[0][0] == "vocab", str(two))
+
+    both = fo.failures_over([pair], fo.bars_for(["vocab", "combined"]))
+    check("both metrics are reported when both clear their bars",
+          {f[0] for f in both} == {"vocab", "combined"} and len(both) == 2, str(both))
+
+    override = fo.bars_for(["shingle"], 0.05)
+    check("an explicit --ci-bar replaces the default for that metric",
+          override == {"shingle": 0.05} and len(fo.failures_over([pair], override)) == 1,
+          str(override))
+
     passed = sum(1 for _, ok, _ in RESULTS if ok)
     for name, ok, detail in RESULTS:
         print(f"{'PASS' if ok else 'FAIL'}  {name}" + (f"  ({detail})" if detail and not ok else ""))

@@ -94,7 +94,14 @@ def main() -> int:
     # that happens to share the denominator.
     ok("a zeroth count is skipped", scan({"_meta/x.md": "Runs by another person: 0 of 228.\n"}) == [])
     ok("a stale non-zero count on a similar line is still reported",
-       len(scan({"_meta/x.md": "Independent review covered 14 of 228\n"})) == 1)
+       len(scan({"_meta/x.md": "Independent review recorded 14 of 228\n"})) == 1)
+
+    # A line that shares the denominator but measures something else must not be
+    # flagged: the first version of this scan did, on a true sentence.
+    ok("a skeleton-count line is not an executed-count claim",
+       scan({"_meta/x.md": "165 of 228 prompts are skeleton.\n"}) == [])
+    ok("a recorded-count line is still checked",
+       len(scan({"_meta/x.md": "14 of 228 have been recorded.\n"})) == 1)
 
     # The generated file is compared byte for byte, so scanning it would double-report.
     ok("the generated report is exempt",

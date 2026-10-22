@@ -37,6 +37,11 @@ Usage
     python3 scripts/find_overlaps.py --metric vocab --top 10
     python3 scripts/find_overlaps.py --json           # machine-readable
 
+`--metric` may be given more than once. Every pair is scored on every signal in
+the same pass, so `--metric shingle --metric combined` costs what one metric
+costs: the second run is not a second read of 364 files. That is why the gate
+list checks both signals in a single invocation.
+
 `--check` uses a deliberately high threshold so CI fails only on genuine
 duplication, not on prompts that legitimately share a vocabulary. The default
 metric is shingle containment (0.55). `--metric vocab` uses 0.85, and
@@ -51,6 +56,8 @@ stage sequence, and they are legitimately similar and legitimately duplicated.
 from __future__ import annotations
 
 import argparse
+import collections
+from collections import defaultdict
 import itertools
 import json
 import os
@@ -147,23 +154,77 @@ def jaccard(a: set[str], b: set[str]) -> float:
     return len(a & b) / len(a | b)
 
 
+BARS = {"shingle": 0.55, "vocab": 0.85, "structure": 0.80, "combined": 0.75}
+FLOORS = {"shingle": 0.10, "vocab": 0.60, "structure": 0.60, "combined": 0.40}
+
+
+def bars_for(metrics: list[str], ci_bar: float | None = None) -> dict[str, float]:
+    """The failure bar per metric. A single explicit `--ci-bar` overrides the one metric."""
+    if ci_bar is not None:
+        return {metrics[0]: ci_bar}
+    return {m: BARS[m] for m in metrics}
+
+
+def failures_over(pairs: list[tuple], bars: dict[str, float]) -> list[tuple[str, float, float, str, str]]:
+    """Every (metric, score, bar, a, b) that clears its bar, worst first.
+
+    Pure, so the failure rule can be tested without a corpus: a pair that clears
+    the bar on one signal and stays under it on another must report exactly one
+    failure, and the metric must be named.
+    """
+    found: list[tuple[str, float, float, str, str]] = []
+    for p in pairs:
+        s = p[5] if len(p) > 5 else {}
+        for metric, bar in bars.items():
+            score = s.get(metric)
+            if score is not None and score >= bar:
+                found.append((metric, score, bar, p[3], p[4]))
+    found.sort(key=lambda f: -f[1])
+    return found
+
+
+def shared_shingle_counts(keys: list[str], sh: dict[str, set[str]]) -> dict[tuple[int, int], int]:
+    """How many 5-word shingles each document pair has in common, in one pass.
+
+    Comparing every pair's shingle sets directly is the expensive part of this
+    script: 66,066 pairs x ~460 shingles. Inverting the index and counting
+    coincidences costs 0.02 s on the same corpus and gives identical counts,
+    because a pair's intersection size is the number of shingles whose posting
+    list contains both documents.
+    """
+    postings: dict[str, list[int]] = defaultdict(list)
+    for i, key in enumerate(keys):
+        for shingle in sh[key]:
+            postings[shingle].append(i)
+    counts: dict[tuple[int, int], int] = defaultdict(int)
+    for docs in postings.values():
+        if len(docs) > 1:
+            for a, b in itertools.combinations(docs, 2):
+                counts[(a, b)] += 1
+    return counts
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--threshold", type=float, default=None, help="minimum score to report (default: 0.10 shingle, 0.60 vocab, 0.60 structure)")
     ap.add_argument("--top", type=int, default=25, help="how many pairs to print")
     ap.add_argument("--check", action="store_true", help="exit 1 if any pair exceeds the CI bar")
-    ap.add_argument("--metric", choices=("shingle", "vocab", "structure", "combined"), default="shingle",
-                    help="which signal --check and the ranking use (default shingle)")
+    ap.add_argument("--metric", choices=("shingle", "vocab", "structure", "combined"), action="append",
+                    default=None, metavar="METRIC",
+                    help="which signal --check and the ranking use (default shingle); repeatable, "
+                         "and repeating it costs nothing because every pair is scored on every signal anyway")
     ap.add_argument("--ci-bar", type=float, default=None, help="score that fails --check (default: 0.55 shingle, 0.85 vocab, 0.80 structure)")
     ap.add_argument("--json", action="store_true", help="emit JSON")
     args = ap.parse_args()
 
+    metrics = args.metric or ["shingle"]
+    if len(metrics) > 1 and args.ci_bar is not None:
+        ap.error("--ci-bar applies to one metric; give it with a single --metric")
     bar = args.ci_bar if args.ci_bar is not None else {
         "shingle": 0.55, "vocab": 0.85, "structure": 0.80, "combined": 0.75,
-    }[args.metric]
-    floor = args.threshold if args.threshold is not None else {
-        "shingle": 0.10, "vocab": 0.60, "structure": 0.60, "combined": 0.40,
-    }[args.metric]
+    }[metrics[0]]
+    floor = args.threshold if args.threshold is not None else min(FLOORS[m] for m in metrics)
+    floors = {m: (args.threshold if args.threshold is not None else FLOORS[m]) for m in metrics}
 
     docs = load(ROOT)
     prompts = [d for d in docs if d.is_prompt and not is_archive(d.rel) and d.rel.split(os.sep)[0] != "_meta"]
@@ -176,64 +237,89 @@ def main() -> int:
         vb[d.rel] = vocabulary(b)
         hd[d.rel] = headings(d.text)
 
-    def metric_value(a: str, b: str) -> float:
-        if args.metric == "vocab":
-            return containment(vb[a], vb[b])
-        if args.metric == "structure":
-            return jaccard(hd[a], hd[b])
-        if args.metric == "combined":
-            return jaccard(hd[a], hd[b]) * containment(vb[a], vb[b])
-        return containment(sh[a], sh[b])
+    metric_set = set(metrics)
+    keys = sorted(sh)
+    shared = shared_shingle_counts(keys, sh)
 
-    # Every pair is scored on every metric: the point of a second signal is to
-    # catch the pairs the first one misses, so it cannot be pre-filtered by it.
     pairs = []
-    for a, b in itertools.combinations(sorted(sh), 2):
-        if a == b:
+    for i, j in itertools.combinations(range(len(keys)), 2):
+        a, b = keys[i], keys[j]
+        s: dict[str, float] = {}
+        # Structure is cheap (heading sets hold tens of members) and every
+        # report prints it, so it is always computed even when only one other
+        # metric decides the ranking.
+        s["structure"] = jaccard(hd[a], hd[b])
+        s["shingle"] = (shared.get((i, j), 0) / min(len(sh[a]), len(sh[b]))) if sh[a] and sh[b] else 0.0
+        if "vocab" in metric_set or "combined" in metric_set:
+            # For the combined metric, score = structure x vocabulary, so a pair
+            # whose structure is already below the bar cannot clear it however
+            # much vocabulary it shares. Skipping the vocabulary comparison for
+            # those pairs is what makes this pass cheaper than two single-metric
+            # passes, and it cannot change the result.
+            if "vocab" in metric_set or s["structure"] >= floors["combined"]:
+                s["vocab"] = containment(vb[a], vb[b])
+                s["combined"] = s["structure"] * s["vocab"]
+            else:
+                # Structure alone rules it out; the exact vocabulary comparison
+                # would be spent on a pair that cannot clear the bar.
+                s["combined"] = 0.0
+        keep = [m for m in metrics if s.get(m, 0.0) >= floors[m]]
+        if not keep:
             continue
-        score = metric_value(a, b)
-        if score < floor:
-            continue
-        pairs.append((score, containment(sh[a], sh[b]), jaccard(sh[a], sh[b]), a, b))
+        # Every report prints all four signals, so a kept pair gets the ones the
+        # ranking did not need.
+        if "vocab" not in s:
+            s["vocab"] = containment(vb[a], vb[b])
+        if "combined" in metric_set:
+            s["combined"] = s["structure"] * s["vocab"]
+        s["shingle_jaccard"] = jaccard(sh[a], sh[b])
+        best = max(s[m] for m in keep)
+        pairs.append((best, s["shingle"], s["shingle_jaccard"], a, b, s))
 
-    pairs.sort(reverse=True)
+    # Same order as before the optimisation: score, then the two supporting
+    # signals, then the paths. A change in tie-break order would churn every
+    # report that quotes the top pairs.
+    pairs.sort(key=lambda x: (x[0], x[1], x[2], x[3], x[4]), reverse=True)
     print_floor = floor
+    label = " + ".join(metrics)
 
     if args.json:
         print(json.dumps(
             [{
-                "score": round(s0, 3),
-                "shingle_containment": round(c, 3),
-                "shingle_jaccard": round(j, 3),
-                "vocab_containment": round(containment(vb[a], vb[b]), 3),
-                "structure_jaccard": round(jaccard(hd[a], hd[b]), 3),
-                "a": a,
-                "b": b,
-            } for s0, c, j, a, b in pairs[:args.top]],
+                "score": round(p0[0], 3),
+                "shingle_containment": round(p0[1], 3),
+                "shingle_jaccard": round(p0[2], 3),
+                "vocab_containment": round(p0[5].get("vocab", 0.0), 3),
+                "structure_jaccard": round(p0[5].get("structure", 0.0), 3),
+                "combined": round(p0[5].get("combined", 0.0), 3),
+                "a": p0[3],
+                "b": p0[4],
+            } for p0 in pairs[:args.top]],
             indent=2,
         ))
     else:
         print(f"Compared {len(sh)} prompts across every pair.")
-        print(f"Pairs at or above {args.metric} {print_floor:.2f}: {len(pairs)}")
-        print(f"Ranked by: {args.metric}   (CI bar {bar:.2f})\n")
+        print(f"Pairs at or above {label} {print_floor:.2f}: {len(pairs)}")
+        print(f"Ranked by: {label}   (CI bar {bar:.2f})\n")
         if pairs:
-            s0, c, j, a, b = pairs[0]
-            print(f"Highest {args.metric} score: {s0:.2f}\n  {a}\n  {b}\n")
+            print(f"Highest {label} score: {pairs[0][0]:.2f}\n  {pairs[0][3]}\n  {pairs[0][4]}\n")
         else:
             print("No overlapping pairs at this threshold.")
-        for s0, c, j, a, b in pairs[:args.top]:
+        for p0 in pairs[:args.top]:
+            s = p0[5]
             print(
-                f"{s0:5.2f} {args.metric:9s} "
-                f"shr {c:4.2f}  voc {containment(vb[a], vb[b]):4.2f}  "
-                f"str {jaccard(hd[a], hd[b]):4.2f}   {a}\n{'':48}{b}\n"
+                f"{p0[0]:5.2f} {label:9s} "
+                f"shr {p0[1]:4.2f}  voc {s.get('vocab', 0.0):4.2f}  "
+                f"str {s.get('structure', 0.0):4.2f}   {p0[3]}\n{'':48}{p0[4]}\n"
             )
 
     if args.check:
-        worst = [p for p in pairs if p[0] >= bar]
-        if worst:
-            print(f"ERROR   {len(worst)} prompt pair(s) exceed {args.metric} {bar:.2f}", file=sys.stderr)
-            for s0, _, _, a, b in worst[:10]:
-                print(f"  {s0:.2f}  {a}  <->  {b}", file=sys.stderr)
+        failures = failures_over(pairs, bars_for(metrics, args.ci_bar))
+        if failures:
+            for metric, score, bar_value, a, b in failures[:10]:
+                print(f"ERROR   {score:.2f} {metric} (bar {bar_value:.2f})  {a}  <->  {b}", file=sys.stderr)
+            print(f"ERROR   {len(failures)} prompt pair(s) exceed "
+                  f"{'a CI bar' if len(metrics) > 1 else f'{metrics[0]} {bar:.2f}'}", file=sys.stderr)
             return 1
     return 0
 

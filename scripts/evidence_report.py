@@ -187,6 +187,13 @@ def published_claims(c: dict[str, int]) -> list[str]:
                     or rel in ("CHANGELOG.md", os.path.join("_meta", "review-log.md"))):
                 continue
             for lineno, line in enumerate(open(path, encoding="utf-8", errors="replace"), 1):
+                # The denominator is shared with other measurements: "165 of 235
+                # prompts are skeleton" is a true sentence about a different
+                # thing, and flagging it was the first false positive this scan
+                # produced. Requiring the line to be about execution keeps the
+                # check honest in both directions.
+                if not any(word in line.lower() for word in ("execut", "record", "run")):
+                    continue
                 for m in pattern.finditer(line):
                     if int(m.group(1)) not in (0, c["operational_evaluated"]):
                         findings.append(

@@ -13,7 +13,7 @@ library is reachable from at least one task: a prompt added without a home fails
 |---|---|
 | Prompts indexed | 364 |
 | Rows listed individually | 409 (a prompt can answer more than one task) |
-| Of those, `operational` | 262 |
+| Of those, `operational` | 276 |
 
 Not sure which task is yours? [`QUICKSTART.md`](QUICKSTART.md) routes five common situations,
 [`06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md`](06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md)
@@ -158,6 +158,13 @@ Audit and measurement, with the difference between 'no evidence of a problem' an
 | `AUDIT-P07` | [Findings Synthesis & Prioritisation](02-engineering/codebase-audit/P07-Findings/P07-Findings-Synthesis-Prioritization.md) | `P07-Findings` | Answers: which findings are real, how severe, how confident, and what should be done first? | operational |
 | `AUDIT-P08` | [Improvement Roadmap & Final Report](02-engineering/codebase-audit/P08-Roadmap/P08-Improvement-Roadmap-Report.md) | `P08-Roadmap` | Answers: what should be done, in what order, why that order, and what happens if nothing is done? | operational |
 | `AUDIT-P09` | [Deep Codebase Audit Master Orchestrator](02-engineering/codebase-audit/P09-Orchestrator/P09-Deep-Codebase-Audit-Orchestrator.md) | `P09-Orchestrator` | Deliver a complete, internally consistent audit: scope contract → structure → architecture → quality → tests/dependencies →… | operational |
+| `PERF-P01` | [Context & Goals](02-engineering/performance/P01-Context/P01-Context-Goals.md) | `P01-Context` | Produce PERF_CONTEXT.md: the system's critical paths, a measurable goal per path, the constraints that bound the solution, and an… | operational |
+| `PERF-P02` | [Measurement Setup](02-engineering/performance/P02-Measurement/P02-Measurement-Setup.md) | `P02-Measurement` | Produce a harness (script, command file, or documented procedure) covering the paths named in PERF_CONTEXT.md, and MEASUREMENT.md… | operational |
+| `PERF-P03` | [Analysis](02-engineering/performance/P03-Analysis/P03-Analysis.md) | `P03-Analysis` | Produce ANALYSIS.md that turns the baseline numbers into a ranked, evidenced description of behaviour, and a short list of… | operational |
+| `PERF-P04` | [Bottleneck Identification](02-engineering/performance/P04-Bottleneck-Identification/P04-Bottleneck-Identification.md) | `P04-Bottleneck-Identification` | Produce BOTTLENECKS.md: a ranked, evidenced list of limits, each with the share of the measured time it owns and the confidence… | operational |
+| `PERF-P05` | [Optimization Design](02-engineering/performance/P05-Optimization-Design/P05-Optimization-Design.md) | `P05-Optimization-Design` | Produce OPTIMIZATION_PLAN.md: ordered changes, each tied to a bottleneck, with expected effect derived from the measured share… | operational |
+| `PERF-P06` | [Implementation & Validation](02-engineering/performance/P06-Implementation-Validation/P06-Implementation-Validation.md) | `P06-Implementation-Validation` | Apply the changes in OPTIMIZATION_PLAN.md, re-measure with the PERF-P02 harness, run the repository's correctness checks, and… | operational |
+| `PERF-P07` | [Performance Analysis & Optimization Orchestrator](02-engineering/performance/P07-Orchestrator/P07-Performance-Orchestrator.md) | `P07-Orchestrator` | Run PERF-P01 to PERF-P06 in order, gating each on the previous stage's artifacts, and produce PERF_RUN.md: which stages ran, what… | operational |
 | `SEC-ROT-01` | [Secret Rotation: drill it before you need it](02-engineering/secrets-rotation/SECRETS-ROTATION.md) | `secrets-rotation` | An inventory of every secret with its owner, consumers, blast radius, and rotation mechanism; a per-class runbook; a drill… | operational |
 | `SEC-P01` | [Authorisation, Scope & Rules of Engagement](02-engineering/security-hardening/P01-Context/P01-Context-Scope.md) | `P01-Context` | Answers: who authorised this work, what is in and out of scope, which techniques are permitted, how findings will be handled, and… | operational |
 | `SEC-P02` | [Assets & Threat Model](02-engineering/security-hardening/P02-Threat-Model/P02-Threat-Model.md) | `P02-Threat-Model` | Produce an asset inventory, actor list, trust-boundary map, and a ranked set of abuse cases with the controls that should resist… | operational |
@@ -170,8 +177,6 @@ Audit and measurement, with the difference between 'no evidence of a problem' an
 | `TIME-01` | [Time and Date Correctness Audit](02-engineering/time-correctness/TIME-CORRECTNESS.md) | `time-correctness` | An inventory of time-bearing data and logic, a defect register with reproductions, boundary tests at DST and month-end, and a… | operational |
 | `SURFACE-01` | [Live Surface Audit — a URL, host, or API from the outside](05-scenarios/live-surface-audit/LIVE-SURFACE-AUDIT.md) | `live-surface-audit` | An evidence-backed assessment of the target's externally visible surface — transport, headers, cookies, redirects, error… | operational |
 | `MONO-01` | [Monorepo Health: builds, boundaries, and ownership](05-scenarios/monorepo/MONOREPO.md) | `monorepo` | A package graph with real dependencies (not declared ones), a boundary violation register, an affected-only build/test plan, and… | operational |
-
-*Plus **7** `skeleton` prompts in these homes — a defensible stage sequence without verification or failure handling. Use them to structure a human-led session, not to drive an agent: [02-engineering](GALLERY.md#02-engineering--building-auditing-and-recovering-code), [05-scenarios](GALLERY.md#05-scenarios--single-session-high-urgency-situations).*
 
 ## I am shipping a release
 
@@ -282,6 +287,13 @@ Measurement before optimisation, in money and in milliseconds.
 
 | ID | Prompt | Where | Use it for | Maturity |
 |---|---|---|---|---|
+| `PERF-P01` | [Context & Goals](02-engineering/performance/P01-Context/P01-Context-Goals.md) | `P01-Context` | Produce PERF_CONTEXT.md: the system's critical paths, a measurable goal per path, the constraints that bound the solution, and an… | operational |
+| `PERF-P02` | [Measurement Setup](02-engineering/performance/P02-Measurement/P02-Measurement-Setup.md) | `P02-Measurement` | Produce a harness (script, command file, or documented procedure) covering the paths named in PERF_CONTEXT.md, and MEASUREMENT.md… | operational |
+| `PERF-P03` | [Analysis](02-engineering/performance/P03-Analysis/P03-Analysis.md) | `P03-Analysis` | Produce ANALYSIS.md that turns the baseline numbers into a ranked, evidenced description of behaviour, and a short list of… | operational |
+| `PERF-P04` | [Bottleneck Identification](02-engineering/performance/P04-Bottleneck-Identification/P04-Bottleneck-Identification.md) | `P04-Bottleneck-Identification` | Produce BOTTLENECKS.md: a ranked, evidenced list of limits, each with the share of the measured time it owns and the confidence… | operational |
+| `PERF-P05` | [Optimization Design](02-engineering/performance/P05-Optimization-Design/P05-Optimization-Design.md) | `P05-Optimization-Design` | Produce OPTIMIZATION_PLAN.md: ordered changes, each tied to a bottleneck, with expected effect derived from the measured share… | operational |
+| `PERF-P06` | [Implementation & Validation](02-engineering/performance/P06-Implementation-Validation/P06-Implementation-Validation.md) | `P06-Implementation-Validation` | Apply the changes in OPTIMIZATION_PLAN.md, re-measure with the PERF-P02 harness, run the repository's correctness checks, and… | operational |
+| `PERF-P07` | [Performance Analysis & Optimization Orchestrator](02-engineering/performance/P07-Orchestrator/P07-Performance-Orchestrator.md) | `P07-Orchestrator` | Run PERF-P01 to PERF-P06 in order, gating each on the previous stage's artifacts, and produce PERF_RUN.md: which stages ran, what… | operational |
 | `COST-P01` | [Cost Visibility & Attribution](03-domains/cost-engineering/P01-Visibility/P01-Cost-Visibility.md) | `P01-Visibility` | Answers: what did we spend, on what, attributed to whom, and what fraction is unattributable? | operational |
 | `COST-P02` | [Waste Diagnosis](03-domains/cost-engineering/P02-Diagnosis/P02-Waste-Diagnosis.md) | `P02-Diagnosis` | Answers: for the top cost centres, what specific mechanism generates the spend, how much would removing it save, and what would… | operational |
 | `COST-P03` | [Optimisation](03-domains/cost-engineering/P03-Optimisation/P03-Optimisation.md) | `P03-Optimisation` | Execute the approved, quantified findings from P02 in order of value, each with a verification and a rollback. | operational |
@@ -290,8 +302,6 @@ Measurement before optimisation, in money and in milliseconds.
 | `CAPACITY-01` | [Capacity Planning: what runs out first, and when](05-scenarios/capacity-planning/CAPACITY-PLANNING.md) | `capacity-planning` | Before a launch, a migration, or a seasonal peak — work out which resource runs out first, when, and what you are going to do… | operational |
 | `PERF-BUDGET-01` | [Performance Budgets and Core Web Vitals](05-scenarios/performance-budget/PERFORMANCE-BUDGET.md) | `performance-budget` | Measured baselines for the chosen metrics, budgets derived from user-perceptible thresholds, CI gates that block regressions, and… | operational |
 | `METER-01` | [Usage Metering and Entitlements: count what you bill, enforce what you sold](05-scenarios/usage-metering/USAGE-METERING.md) | `usage-metering` | You charge by usage, seat, or request — and the number that reaches the invoice has to be reproducible, explainable, and correct… | operational |
-
-*Plus **7** `skeleton` prompts in these homes — a defensible stage sequence without verification or failure handling. Use them to structure a human-led session, not to drive an agent: [02-engineering](GALLERY.md#02-engineering--building-auditing-and-recovering-code), [03-domains](GALLERY.md#03-domains--domain-specific-engineering), [05-scenarios](GALLERY.md#05-scenarios--single-session-high-urgency-situations).*
 
 ## I need to move or delete data
 

@@ -198,6 +198,83 @@
       "date": "2026-10-22",
       "evaluator": "the prompt's author, who also wrote the code under review (conflict of interest recorded)",
       "record": "_meta/empirical-evaluation-12.md"
+    },
+    {
+      "identifier": "PERF-P01",
+      "title": "Context & Goals",
+      "path": "02-engineering/performance/P01-Context/P01-Context-Goals.md",
+      "scope": "set the goals for this repository's own gate suite: the number that matters is the wall-clock time of `scripts/check_all.py`, which every contributor runs before pushing",
+      "result": "one measurable goal with a source (the gate suite's own runtime), three critical paths and a non-goals list; the goal was written before any measurement, which is what made the later 25% claim checkable",
+      "limitations": "one system, one goal; the traffic analogy does not transfer to a local gate runner",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "record": "_meta/empirical-evaluation-13.md"
+    },
+    {
+      "identifier": "PERF-P02",
+      "title": "Measurement Setup",
+      "path": "02-engineering/performance/P02-Measurement/P02-Measurement-Setup.md",
+      "scope": "build a three-run median harness over the gate suite and a per-gate breakdown, and record the environment",
+      "result": "suite median 3.40 s (3.34-3.67), per-gate breakdown captured for 15 gates; the spread across three runs was 9.7%, just inside the prompt's own 10% soundness rule, which the report had to state rather than hide",
+      "limitations": "single machine, single workload; no CI runner to compare against because Actions is blocked by billing",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "record": "_meta/empirical-evaluation-13.md"
+    },
+    {
+      "identifier": "PERF-P03",
+      "title": "Analysis",
+      "path": "02-engineering/performance/P03-Analysis/P03-Analysis.md",
+      "scope": "attribute the 3.40 s across gates and sweep one dimension",
+      "result": "two gates ran the same detector over the same corpus; together they owned 54% of gate time (1.74 s of 3.20 s), and the remaining 13 gates totalled 1.46 s",
+      "limitations": "attribution is per-process wall clock, so interpreter startup is included in every gate",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "record": "_meta/empirical-evaluation-13.md"
+    },
+    {
+      "identifier": "PERF-P04",
+      "title": "Bottleneck Identification",
+      "path": "02-engineering/performance/P04-Bottleneck-Identification/P04-Bottleneck-Identification.md",
+      "scope": "confirm the duplicate-detector cost by ablation and rank the rest with ceilings",
+      "result": "ablation confirmed: running the detector once instead of twice removed 0.84 s. A second candidate, the O(n^2) shingle comparison, was measured at 0.52 s and cut to 0.02 s by an inverted index, verified against 200 sampled pairs with zero mismatches",
+      "limitations": "the ceiling estimate assumed the two gates were redundant, which the ablation then had to prove rather than assume",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "record": "_meta/empirical-evaluation-13.md"
+    },
+    {
+      "identifier": "PERF-P05",
+      "title": "Optimization Design",
+      "path": "02-engineering/performance/P05-Optimization-Design/P05-Optimization-Design.md",
+      "scope": "choose between merging the two gates and rewriting the detector's core loop",
+      "result": "both were planned, and the plan required byte-identical output before either could be kept: every metric's report and the JSON were diffed against the pre-change version",
+      "limitations": "the prediction was written before the change and was off by 0.26 s on the first attempt, which is recorded rather than revised",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "record": "_meta/empirical-evaluation-13.md"
+    },
+    {
+      "identifier": "PERF-P06",
+      "title": "Implementation & Validation",
+      "path": "02-engineering/performance/P06-Implementation-Validation/P06-Implementation-Validation.md",
+      "scope": "implement the multi-metric pass, the inverted index, and the merged gate; then measure and verify correctness",
+      "result": "suite median 3.40 s to 2.56 s (-25%); all four metric reports and the JSON output byte-identical to the pre-change version; 112 self-test cases pass, up from 106, with 4 new cases for the failure rule and 2 for the scan",
+      "limitations": "one machine, one corpus; the correctness evidence is the repository's own suite plus a diff of the detector's output, not an independent measurement",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "record": "_meta/empirical-evaluation-13.md"
+    },
+    {
+      "identifier": "PERF-P07",
+      "title": "Performance Orchestrator",
+      "path": "02-engineering/performance/P07-Orchestrator/P07-Performance-Orchestrator.md",
+      "scope": "coordinate the six stages against one target and record the gates between them",
+      "result": "all six stages ran in order and each gate passed; the orchestrator's own rule stopped the chain once the second optimisation reached the noise floor of the harness",
+      "limitations": "a single run of the sequence; the orchestrator was not exercised on a blocked stage",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "record": "_meta/empirical-evaluation-13.md"
     }
   ]
 }

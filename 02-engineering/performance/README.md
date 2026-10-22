@@ -1,6 +1,6 @@
 # Performance Analysis & Optimization System
 
-**Status:** Skeleton — 7 stage outlines (skeleton 7). The stages name a sensible sequence but lack the evidence rules, verification, and failure handling that this library requires of `operational`. Treat the system as a plan, not a procedure; see [`_meta/ROADMAP-AND-BACKLOG.md`](../../_meta/ROADMAP-AND-BACKLOG.md).
+**Status:** Operational — 7 stages (7 operational). The family was completed and then run end to end against this repository's own tooling on 2026-10-22: see [`_meta/empirical-evaluation-13.md`](../../_meta/empirical-evaluation-13.md). The gates remain author-run; no second reader has executed a stage.
 **Entry Point:** [`P07-Orchestrator/P07-Performance-Orchestrator.md`](P07-Orchestrator/P07-Performance-Orchestrator.md)
 
 A disciplined multi-stage system for measuring, analyzing, and improving software performance in a focused, evidence-based way.
