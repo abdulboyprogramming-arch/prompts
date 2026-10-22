@@ -8,7 +8,6 @@ timestamps below were read from the API, not reconstructed.
 
 | # | Title | Branch → base | Purpose | Status | Reviewer | Checks | Merge commit | Owner reviewed in person |
 |---|-------|---------------|---------|--------|----------|--------|--------------|--------------------------|
-| 24 | 2.28.1 — testing-QA stages 1–2 run against this repository; risk-class-A rule made blocking | `arena/a052802d-prompts` → `main` | Two testing-QA stages executed on the library itself; the run found that a read-only prompt inviting a deploy only warned, so the gate passed. Rule moved into `check_risk_class()` as an error with five fixtures | **merged** 2026-10-22, squash | none — the API refuses a review request from the author (`422`); assigned + `needs-review` | CI: no step has ever executed (billing); local 15/15, self-tests 32/32 | pending | **no** |
 
 ## Closed without merging
 
@@ -21,6 +20,7 @@ timestamps below were read from the API, not reconstructed.
 
 | # | Title | Merged | Merge commit | Notes |
 |---|-------|--------|--------------|-------|
+| 24 | 2.28.1 — testing-QA stages 1–2 run against this repository; risk-class-A rule made blocking | 2026-10-22 | `ce2ec6d` | Merged under the standing merge authority; the run found a gate that could not fail and made it blocking |
 | 23 | 2.28.0 — devops-infra family completed (`DI-P01`…`DI-P08`) | 2026-10-22 | `b1cbc9a` | Merged under the standing merge authority; locked state with a recovery procedure and a four-condition plan gate |
 | 22 | 2.27.0 — frontend family completed (`FE-P01`…`FE-P08`) | 2026-10-22 | `64cdd05` | Merged under the standing "merge all" authorisation; state matrix with no blank cells, one owner per piece of state |
 | 21 | 2.26.0 — backend family completed; prose counts now gated | 2026-10-22 | `a159e24` | Merged under the standing "merge all" authorisation; validator rule added after `PROJECT-STATUS.md` was found three releases stale |
