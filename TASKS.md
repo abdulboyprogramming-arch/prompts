@@ -13,7 +13,7 @@ library is reachable from at least one task: a prompt added without a home fails
 |---|---|
 | Prompts indexed | 364 |
 | Rows listed individually | 409 (a prompt can answer more than one task) |
-| Of those, `operational` | 324 |
+| Of those, `operational` | 325 |
 
 Not sure which task is yours? [`QUICKSTART.md`](QUICKSTART.md) routes five common situations,
 [`06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md`](06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md)
@@ -515,8 +515,9 @@ The meta level: how a prompt is built, routed, and kept honest about what it can
 | `CHAT-SELECT` | [Chat Select: choosing the right prompt inside a conversation](00-core/conversational/CHAT-SELECT.md) | `conversational` | A routing card with one primary prompt, the reason it fits, the one fact that would overturn the choice, what the user should… | operational |
 | `GEN-P01` | [The Prompt Forge: build a runnable prompt from a description](00-core/prompt-engineering/PROMPT-FORGE.md) | `prompt-engineering` | The prompt — paste-ready, complete, with all ten sections filled for its archetype. | operational |
 | `GEN-P02` | [Prompt Regression: prove a prompt change is an improvement](00-core/prompt-engineering/PROMPT-REGRESSION.md) | `prompt-engineering` | A fixture set, a run protocol, per-case results, a score against _meta/quality-rubric.md, a comparison to the baseline where one… | operational |
+| `INT-P01` | [Project Intake Context Collector](06-interactive/context-collectors/PROJECT-INTAKE.md) | `context-collectors` | Start a project engagement: discover what the repository already answers, resolve contradictions with the user, and produce a… | operational |
 
-*Plus **4** `skeleton` prompts in these homes — a defensible stage sequence without verification or failure handling. Use them to structure a human-led session, not to drive an agent: [00-core](GALLERY.md#00-core--foundations-every-prompt-assumes), [06-interactive](GALLERY.md#06-interactive--conversations-that-clarify-a-request).*
+*Plus **3** `skeleton` prompts in these homes — a defensible stage sequence without verification or failure handling. Use them to structure a human-led session, not to drive an agent: [00-core](GALLERY.md#00-core--foundations-every-prompt-assumes), [06-interactive](GALLERY.md#06-interactive--conversations-that-clarify-a-request).*
 
 ## The work spans several systems
 

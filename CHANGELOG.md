@@ -2,6 +2,65 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.28.5] — 2026-10-22
+
+The repository is public. The first thing to say about that is what did **not** change with it.
+
+### Published — and verified without the authenticated session
+
+`abdulboyprogramming-arch/prompts` is public as of 2026-10-22. The owner made the change in
+Settings → Danger Zone; the API path returns `403` for the integration token, so it could not have
+been done from here. Verified by reading the repository back with no credentials:
+
+| Check | Result |
+|---|---|
+| `GET /repos/.../prompts` unauthenticated | **200**, `private: false` |
+| README through the contents API | **31,304 bytes**, renders |
+| Top-level paths | **24** resolve |
+| Releases | **24** visible |
+| Licence detected by GitHub | **MIT** |
+
+Nothing in the tree changed to make publication possible, and the pre-publication secret scan
+(61 commits, 22 tags, 0 hits) still stands.
+
+### Not fixed by publication — checked, not assumed
+
+Publishing was expected to end the Actions failure, because standard runners are free for public
+repositories. It did not. Run `39840703180`, created **while the repository was already public**,
+reported `conclusion: failure` with **`steps: 0`** and no runner assigned. CI has still never
+executed a step, so every enforcement claim in this repository remains a local-gate claim.
+
+The security features that were supposed to be enabled *before* publication — secret scanning, push
+protection, CodeQL, private vulnerability reporting — are also still unset. A public repository
+without them is the one state this project's own readiness page called out, and it now says so in
+the past tense of a missed order rather than the future tense of a plan.
+
+### Executed — `INT-P01`, the first run in `06-interactive` (`_meta/empirical-evaluation-18.md`)
+
+A frozen contributor request was written as a fixture
+([`_meta/fixtures/intake-scenario/`](_meta/fixtures/intake-scenario/REQUEST.md)) containing two false
+statements, one question the tree already answers, and one preference dressed as a design decision.
+
+- **v0.1.0 scored 0 of 5.** It adopted "Python 3.8 in CI" and "no CI configured" as facts, asked
+  three questions the repository answers, cited nothing, and took a stage count from a preference.
+- **The repair was ordering, not more questions.** Asking a contributor what their own CI runs is
+  the interrogation the system's README already prohibits; the repository answers it. v1.1.0 makes
+  discovery step one, turns the user's message into *claims to check*, and makes a disagreement a
+  first-class section of the brief instead of something to resolve silently.
+- **v1.1.0 scored 5 of 5** on the same fixture: contradictions tabled with both sides, 11 facts each
+  with a source, five bounded assumptions, no answerable question asked, stage count derived from
+  the lifecycle.
+
+`INT-P01` moves to `operational` (v1.1.0). The other three `06-interactive` prompts remain skeletons,
+and the system README says the fix was demonstrated on one prompt and still has to be repeated.
+
+### Reconciled
+
+Library 364 prompts — **282 operational**, 5 draft, 77 skeleton; 487 Markdown files.
+Evidence: **34 of 282 executed (12.1%)**, all author-run, none independent.
+`_meta/taxonomy.md` said `03-domains` was still "mixed; backend/frontend/devops/data/games are
+skeleton" and `06-interactive` was "draft" — both were three releases stale and are corrected.
+
 ## [2.28.4] — 2026-10-22
 
 A publication-readiness audit, re-measured rather than re-read. The verdict did not change; four of

@@ -2,7 +2,7 @@
 
 # Release Readiness — what is done, what is checked, and what still blocks
 
-**Date:** 2026-10-22 · **Version under review:** 2.22.0 · **Branch:** `main` (PR #12 merged, `1dc6f25`; history rewritten the same day, `main` at `3a62a6b`)
+**Date:** 2026-10-22 · **Version under review:** 2.28.5 · **Branch:** `main`. **The repository is public as of 2026-10-22**, which changes this page's question from *"what would be wrong if it went public?"* to *"what is wrong with it now that it has?"* — §4 is the answer.
 
 This page answers one question honestly: **if this went public tomorrow, what would be wrong with it?** It is written to be uncomfortable, because the alternative — a checklist that says "ready" — is the failure mode the library itself documents.
 
@@ -16,11 +16,11 @@ This page answers one question honestly: **if this went public tomorrow, what wo
 |---|---|---|
 | Structural quality | 0 validator errors, 0 warnings, 0 prose findings across 485 files | **Ready** |
 | Internal consistency | Counts, links, identifiers, artifact chains, catalog, gallery and task index all machine-checked | **Ready** |
-| Honesty about limits | Every claim about execution is generated from a registry, and the counts quoted in prose are compared against the tree on every run; the ratio is 11.7% | **Ready** |
+| Honesty about limits | Every claim about execution is generated from a registry, and the counts quoted in prose are compared against the tree on every run; the ratio is 12.1% | **Ready** |
 | Community files | Licence (dual), contributing, code of conduct, security policy, issue templates, PR template | **Ready** |
-| Repository configuration | Documented in [`repository-configuration.md`](repository-configuration.md), not yet applied | **Action, not debt** |
-| CI | The workflow is correct and runs one command; it cannot run on this account because of Actions billing | **Blocked outside the repo** |
-| Empirical evidence | 33 of 281 operational prompts executed (11.7%), all by the author, none by a second reader; batch 0 complete, batch 2 begun | **The real gap** |
+| Repository configuration | Description and topics applied; branch protection and security features still unset — [`repository-configuration.md`](repository-configuration.md) | **Partly applied** |
+| CI | The workflow is correct and runs one command; it has still never executed a step, including after the repository was published (`steps: 0`, run `39840703180`) | **Blocked outside the repo** |
+| Empirical evidence | 34 of 282 operational prompts executed (12.1%), all by the author, none by a second reader; batch 0 complete, batch 2 begun | **The real gap** |
 | Contributor readiness | Templates and gates are in place; the first external PR is untested | **Unknown by definition** |
 
 ## 2. What has been tested, by batch
@@ -51,17 +51,17 @@ The queue and the per-batch targets are in [`execution-batches.md`](execution-ba
 2. **Compositional** — do two prompts in a sequence agree on the artifact between them. Machine-checked for 239 links; 92 still rely on prose that names a concept rather than a file, 82 of them without naming the file at all.
 3. **Empirical** — does following the prompt produce a better result than not following it. **Fourteen prompts, author-evaluated, none by a second reader.** Nothing here can be automated inside a repository without model access and a scoring sheet, which is backlog #83/#91.
 
-Only the third is evidence of usefulness, and it is 11.7%.
+Only the third is evidence of usefulness, and it is 12.1%.
 
 ## 4. Blockers, in the order they must be cleared
 
 Outside the repository, and each is a decision or an account, not an edit:
 
-1. **Actions billing.** CI cannot run on this account; the workflow is correct and unexercised. Until it runs once, branch protection cannot require it.
-2. **Branch protection on `main`.** Require `validate`, no force pushes, no deletions, linear history. Depends on 1.
-3. **Repository metadata.** Description, ten topics, Discussions on, wiki off, squash-only merges. Copy-paste commands in [`repository-configuration.md`](repository-configuration.md).
-4. **Security features.** Dependabot, secret scanning with push protection, CodeQL, private vulnerability reporting. All free for public repositories; all enable before the code is public, not after.
-5. **Visibility.** Public. Last, because every item above is cheaper to do quietly.
+1. **Actions billing — still blocking, now overdue.** CI cannot run on this account. It was published without it, so the first thing a visitor sees is a red check that never executed a step (`steps: 0`, run `39840703180`, created while the repository was already public). Until it runs once, branch protection cannot require it either.
+2. **Security features — now the more urgent of the two.** Secret scanning, push protection, CodeQL and private vulnerability reporting were meant to be enabled *before* publication. They were not, and the repository is public. All are free for public repositories and all are owner-only settings.
+3. **Branch protection on `main`.** Require `validate`, no force pushes, no deletions, linear history. Depends on 1.
+4. ~~Repository metadata~~ — **done**: description and all ten topics applied and verified.
+5. ~~Visibility~~ — **done 2026-10-22**: public, verified unauthenticated (repo 200, README 31 KB, 24 top-level paths, 24 releases).
 
 ## 5. What is *not* a blocker, and why
 
@@ -93,7 +93,7 @@ Release readiness is not a feeling, so it is written as tests. **Mandatory** cri
 | 3 | Every prompt composes with its neighbours | `check_prompt_contract.py`, 0 errors; no cycle; no two writers | Mandatory | **met** |
 | 4 | No secrets, no personal data, no absolute paths | publication checklist rows 10–13 | Mandatory | **met** |
 | 5 | Licence, contributing, conduct, security policy exist **and** are linked | validator `check_community` | Mandatory | **met** |
-| 6 | Execution claims are generated from a registry, never hand-maintained | `evidence_report.py --check` | Mandatory | **met** — 33 of 281, 11.7% |
+| 6 | Execution claims are generated from a registry, never hand-maintained | `evidence_report.py --check` | Mandatory | **met** — 34 of 282, 12.1% |
 | 7 | Every gate that can be tested has a self-test | seven suites, 106 cases total | Mandatory | **met** |
 | 8 | Every document that quotes a total is covered by a rule | `DOC_TOTAL_FILES` list; `evidence_report.py --check` scans every page for the executed ratio | Mandatory | **met** for the file count in 4 documents and for the executed ratio everywhere; other totals are still prose, corrected by hand |
 | 9 | At least one batch fully executed and written up | batch 0: 8 of 8 | Mandatory | **met** |

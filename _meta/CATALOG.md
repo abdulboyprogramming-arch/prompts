@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 364 prompts — 0 canonical, 281 operational, 5 draft, 78 skeleton.
+**Totals:** 364 prompts — 0 canonical, 282 operational, 5 draft, 77 skeleton.
 
 ## `00-core`
 
@@ -611,7 +611,7 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 |----|-------|----------|------|------|------|
 | `INT-P02` | Contribution Intake Context Collector | skeleton | planning | A | [CONTRIBUTION-INTAKE.md](../06-interactive/context-collectors/CONTRIBUTION-INTAKE.md) |
 | `INT-P03` | Greenfield / From-Scratch Intake Context Collector | skeleton | planning | A | [GREENFIELD-INTAKE.md](../06-interactive/context-collectors/GREENFIELD-INTAKE.md) |
-| `INT-P01` | Project Intake Context Collector | skeleton | planning | A | [PROJECT-INTAKE.md](../06-interactive/context-collectors/PROJECT-INTAKE.md) |
+| `INT-P01` | Project Intake Context Collector | operational | planning | A | [PROJECT-INTAKE.md](../06-interactive/context-collectors/PROJECT-INTAKE.md) |
 | `WIZ-P01` | System Selector Wizard | skeleton | planning | A | [SYSTEM-SELECTOR.md](../06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md) |
 
 ## `07-workflows`

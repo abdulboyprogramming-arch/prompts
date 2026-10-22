@@ -11,7 +11,7 @@
 | It can | It cannot |
 |---|---|
 | Give a capable agent or an engineer a procedure with evidence rules and a definition of done | Make an agent honest; the prompts that check another agent's work exist because of this |
-| Tell you when a prompt is an outline rather than a procedure | Guarantee quality — `operational` means *structurally reviewed*, not *proven* (see [`_meta/evidence-levels.md`](_meta/evidence-levels.md): 33 of 281 executed (11.7%)) |
+| Tell you when a prompt is an outline rather than a procedure | Guarantee quality — `operational` means *structurally reviewed*, not *proven* (see [`_meta/evidence-levels.md`](_meta/evidence-levels.md): 34 of 282 executed (12.1%)) |
 | Prevent a long list of specific, named failures | Replace your judgement about your system |
 
 Use the prompts as an experienced colleague's checklist, not as an authority.
