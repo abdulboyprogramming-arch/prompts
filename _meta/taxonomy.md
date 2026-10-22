@@ -22,10 +22,10 @@ Purpose and domain determine the folder; mode, risk, and maturity are declared i
 | `00-core` | Core primitives | Safety, orchestration, base system prompt, prompt-engineering references | Operational (reference material) |
 | `01-contribution` | Contribution | Adding value to existing projects: open source, packages, web, web3, language design | One operational system; others skeleton |
 | `02-engineering` | Engineering | Audits, architecture, refactoring, migration, performance, security, project recovery, from-scratch | Mixed |
-| `03-domains` | Domains | Deep technology systems: backend, frontend, devops, data/ML, games, AI/agentic | Mixed; backend/frontend/devops/data/games are skeleton |
+| `03-domains` | Domains | Deep technology systems: backend, frontend, devops, data/ML, games, AI/agentic | All fourteen systems operational (complete as of 2.28.0) |
 | `04-process` | Process | Testing, code review, documentation, project management, research, observability, release engineering | Mixed |
 | `05-scenarios` | Scenarios | Single-purpose prompts for common situations | Operational for debugging, incident, flaky tests; others draft/skeleton |
-| `06-interactive` | Interactive | Intake prompts and wizards that collect context | Draft |
+| `06-interactive` | Interactive | Intake prompts and wizards that collect context | One operational (`INT-P01`, 2.28.5); three skeletons |
 | `07-workflows` | Workflows | Composed multi-system sequences with gates and handoff contracts | Draft |
 | `_meta` | Library standards | Authoring standard, rubric, templates, catalog, roadmap, review log | Operational |
 | `archive` | Archive | Superseded source material (legacy .txt) | Retained, not maintained |

@@ -910,4 +910,33 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
   removes the standing caveat. One sandbox path in `.qa/VALIDATION.md` removed.
 - Not claimed: publication. Visibility, branch protection and CI remain owner-only; no public URL
   can be tested until the repository is flipped.
+### Publication — the repository went public, and the one thing that did not change (2.28.5)
+- **2026-10-22 · publication · the owner** · record `_meta/publication-checklist.md` §0 and §5.4
+- Visibility changed in the GitHub UI (API returns 403 for the integration token). Verified with no
+  credentials: repo 200 / `private: false`, README 31,304 bytes, 24 top-level paths, 24 releases, MIT
+  detected. No file changed to make it possible.
+- **Publication did fix CI — but the first claim said the opposite.** Run `39840703180` failed with
+  `steps: 0` and was taken as evidence about the post-publication state; it had been queued before the
+  visibility change took effect. The next run, `39846014231`, executed steps 1–11 on a real runner and
+  passed. The wrong inference stood in the changelog and in PR #34's description for about half an hour
+  before the pull-request run contradicted it, and the correction is kept in both rather than edited out.
+- **The order was inverted:** secret scanning, push protection, CodeQL and private vulnerability
+  reporting were meant to be on *before* the code was public. They are not. The readiness page now
+  records that as a missed order rather than a plan.
+
+### Execution — `INT-P01`, the first `06-interactive` run, and a brief that believed the user (2.28.5)
+- **2026-10-22 · execution · the prompt's author** · record `_meta/empirical-evaluation-18.md`
+- Fixture: a frozen contributor request with two false statements ("Python 3.8 for CI", "no CI
+  configured"), one question the tree answers (which folder), one preference as a design decision
+  ("five stages? eight?").
+- **v0.1.0 scored 0 of 5.** It turned both false statements into facts, asked three answerable
+  questions, sourced nothing, and adopted the stage count from the message.
+- **Diagnosis:** the defect was ordering. v0.1.0 starts with the user and never reaches the tree, so
+  every statement arrives as an input rather than a claim. The fix is not more questions — asking a
+  contributor about their own CI is what the system README forbids.
+- **v1.1.0 scored 5 of 5** on the same fixture: contradictions tabled with both sides, 11 sourced
+  facts, five assumptions each with a falsifier, no answerable question, stage count set by the
+  lifecycle. Promoted to `operational`.
+- Not claimed: one prompt of four; a desk run against a fixture the author wrote; the brief is not
+  tested downstream, so whether consuming it improves a later stage remains unmeasured.
 

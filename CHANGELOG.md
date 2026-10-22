@@ -2,6 +2,87 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.28.5] — 2026-10-22
+
+The repository is public. The first thing to say about that is what did **not** change with it.
+
+### Published — and verified without the authenticated session
+
+`abdulboyprogramming-arch/prompts` is public as of 2026-10-22. The owner made the change in
+Settings → Danger Zone; the API path returns `403` for the integration token, so it could not have
+been done from here. Verified by reading the repository back with no credentials:
+
+| Check | Result |
+|---|---|
+| `GET /repos/.../prompts` unauthenticated | **200**, `private: false` |
+| README through the contents API | **31,304 bytes**, renders |
+| Top-level paths | **24** resolve |
+| Releases | **24** visible |
+| Licence detected by GitHub | **MIT** |
+
+Nothing in the tree changed to make publication possible, and the pre-publication secret scan
+(61 commits, 22 tags, 0 hits) still stands.
+
+### Fixed by publication — and confirmed by a run that actually executed
+
+Publishing was expected to end the Actions failure, because standard runners are free for public
+repositories. It did, and this was verified rather than assumed:
+
+> Run `39846014231` (`pull_request`, 20:06:57Z) — **success**, on runner `GitHub Actions 1000002633`,
+> steps 1–11 green including *Every gate* and the clean-regeneration check. First executed step in
+> the repository's history.
+
+**A correction, kept visible.** The first draft of this entry said publication had *not* fixed CI,
+because run `39840703180` failed with `steps: 0` after the flip. That inference was wrong: the run
+was queued minutes before the visibility change took effect, and a later run on the same repository
+executed normally. The failing run is still evidence of the billing block; it is not evidence about
+the state after publication. The wrong claim was published in this changelog and in PR #34's body
+for roughly half an hour before the pull-request run contradicted it.
+
+### Found — branch protection that no solo maintainer can satisfy
+
+The first merge attempt after publication was refused: *"At least 1 approving review is required by
+reviewers with write access."* The active ruleset (`Protect default branch`, id `25579218`) requires
+one approval, GitHub forbids approving your own pull request, and `bypass_actors` is empty — so
+`--admin` cannot help either. PR #34 carries the work and cannot be merged until the rule changes.
+
+It is the same defect class this repository keeps finding: a control that looks like governance and
+functions as a stop. Two ways out, in [`repository-configuration.md`](_meta/repository-configuration.md)
+§4a — add *Repository admin* as a bypass actor (recommended), or set required approvals to 0.
+
+### Still not fixed — the security features
+
+Secret scanning, push protection, CodeQL and private vulnerability reporting were meant to be
+enabled *before* the code was public. They are not, and publication did not enable them. A public
+repository without them is the state this project's own readiness page called out, and it now
+records that as a missed order rather than a plan.
+
+### Executed — `INT-P01`, the first run in `06-interactive` (`_meta/empirical-evaluation-18.md`)
+
+A frozen contributor request was written as a fixture
+([`_meta/fixtures/intake-scenario/`](_meta/fixtures/intake-scenario/REQUEST.md)) containing two false
+statements, one question the tree already answers, and one preference dressed as a design decision.
+
+- **v0.1.0 scored 0 of 5.** It adopted "Python 3.8 in CI" and "no CI configured" as facts, asked
+  three questions the repository answers, cited nothing, and took a stage count from a preference.
+- **The repair was ordering, not more questions.** Asking a contributor what their own CI runs is
+  the interrogation the system's README already prohibits; the repository answers it. v1.1.0 makes
+  discovery step one, turns the user's message into *claims to check*, and makes a disagreement a
+  first-class section of the brief instead of something to resolve silently.
+- **v1.1.0 scored 5 of 5** on the same fixture: contradictions tabled with both sides, 11 facts each
+  with a source, five bounded assumptions, no answerable question asked, stage count derived from
+  the lifecycle.
+
+`INT-P01` moves to `operational` (v1.1.0). The other three `06-interactive` prompts remain skeletons,
+and the system README says the fix was demonstrated on one prompt and still has to be repeated.
+
+### Reconciled
+
+Library 364 prompts — **282 operational**, 5 draft, 77 skeleton; 487 Markdown files.
+Evidence: **34 of 282 executed (12.1%)**, all author-run, none independent.
+`_meta/taxonomy.md` said `03-domains` was still "mixed; backend/frontend/devops/data/games are
+skeleton" and `06-interactive` was "draft" — both were three releases stale and are corrected.
+
 ## [2.28.4] — 2026-10-22
 
 A publication-readiness audit, re-measured rather than re-read. The verdict did not change; four of

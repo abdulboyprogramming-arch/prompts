@@ -59,6 +59,36 @@ If you generate one, the acceptance test is: *does the image make a claim the RE
 | CodeQL | **On** for Python | The scripts are the only executable surface |
 | Private vulnerability reporting | **On** | Matches `.github/SECURITY.md` |
 
+## 4a. What actually exists on `main` — measured 2026-10-22
+
+A ruleset named **"Protect default branch"** (id `25579218`) is active on the default branch. It is
+not the configuration §4 recommends, and it changed what "merge yourself" can mean here.
+
+| Rule | Setting | Consequence for a solo maintainer |
+|---|---|---|
+| `deletion` | blocks branch deletion | fine |
+| `non_fast_forward` | blocks force-push | fine, and matches the intent |
+| `required_linear_history` | on | fine — the workflow is squash-only |
+| `pull_request` | **1 approving review required**, thread resolution required, squash only | **blocking**: GitHub refuses an approval on your own pull request (`422`), so with one identity and `bypass_actors: []` (`current_user_can_bypass: never`) nothing can be merged |
+| `required_status_checks` | `validate` | now satisfiable — run `39846014231` was green |
+
+**Measured effect:** PR #34 was blocked at merge with *"At least 1 approving review is required by
+reviewers with write access"*, and `--admin` does not help because no bypass actor is configured.
+The ruleset predates the publication, but earlier merges today succeeded, so something about it
+became enforceable during the session; the state above is what the API reports now.
+
+**Two ways out, both owner-only:**
+
+1. **Recommended:** Settings → Rules → *Protect default branch* → add **Repository admin** as a
+   bypass actor. The protection stays on for everyone else; the single maintainer keeps the ability
+   to merge their own reviewed-by-CI pull requests. This is how a one-person repository gets the
+   benefit of the rule without being locked out by it.
+2. Set *Required approvals* to **0** and rely on `validate` plus linear history. Weaker, but honest
+   about the fact that there is no second reviewer to require.
+
+Recording a rule that nobody can satisfy is the same defect class as a check that cannot fail: it
+looks like governance and functions as a stop.
+
 ## 5. The commands
 
 Run in this order. Each is idempotent.
@@ -115,7 +145,7 @@ Four reasons, in order of weight:
 
 1. **The work is not funding-shaped yet.** Sponsorship pays for sustained maintenance. This repository has one author, three executed prompts, and a release cadence measured in days. Money would introduce an obligation (responsiveness, a roadmap) that the project cannot honestly meet, and the library's entire posture is that claims should match evidence.
 2. **A sponsorship button changes what a reader expects.** "Give me money" on a page that also says *"operational means structurally reviewed, not proven"* invites the reader to ask what they are paying for. The honest answer today is "a well-organised library with self-reviewed prompts", which is a good thing to give away and a bad thing to sell.
-3. **It creates a second audience.** Sponsors read updates; contributors read the changelog. One maintainer serving two audiences splits attention away from execution, which is the actual bottleneck (33 of 281).
+3. **It creates a second audience.** Sponsors read updates; contributors read the changelog. One maintainer serving two audiences splits attention away from execution, which is the actual bottleneck (34 of 282).
 4. **It is trivially reversible.** Adding `FUNDING.yml` later takes one commit. Leaving it out now costs nothing.
 
 **What to do instead, if someone offers money:** a single line in the README pointing at the backlog's *empirical test harness* item — "the most useful contribution is a run of any prompt against a real repository, written up in `_meta/empirical-evaluation-NN.md`". That converts enthusiasm into the thing that is actually missing.

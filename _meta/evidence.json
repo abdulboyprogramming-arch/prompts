@@ -374,6 +374,17 @@
       "result": "PASS with two recorded failures - the mandatory P01 checkpoint cannot be held when author and approver are the same person, and the ledger had gone three releases stale (P02 in progress, P03-P06 not started after all six had shipped); CI enforcement remains unobservable (steps: 0). Six of eight checks passed, 12 new cases and 5 of 5 mutations confirmed",
       "record": ".qa/QA_LEDGER.md",
       "limitations": "author-run, and the orchestrator is author-run checking author-run work, which is the weakest form of this evidence; three of the twelve fixtures are guards with no prior red state, so 'every new test has red-green evidence' is recorded as partial rather than met"
+    },
+    {
+      "identifier": "INT-P01",
+      "title": "Project Intake Context Collector",
+      "path": "06-interactive/context-collectors/PROJECT-INTAKE.md",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "scope": "run against this repository driven by a frozen contributor request containing two false statements, one question the tree already answers and one preference disguised as a design decision; both versions graded against the same five fixture criteria",
+      "result": "FAILED at v0.1.0 then PASSED at v1.1.0 - 0 of 5 criteria at v0.1.0, which adopted both false statements as facts, asked three questions the repository answers and took a stage count from a preference; v1.1.0 adds repository discovery first, a contradiction table, sourced facts, bounded assumptions and lifecycle-derived stage counts",
+      "record": "_meta/empirical-evaluation-18.md",
+      "limitations": "author-run desk execution against a fixture the author wrote; one prompt of four in the system; the graded brief is not tested downstream, so whether consuming it improves a later stage is unmeasured"
     }
   ]
 }

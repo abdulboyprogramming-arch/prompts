@@ -80,7 +80,7 @@ handed the artifact without anyone guessing its name.
 | `04-process/systems-building-improvement` | 8 | 7 | 7 | 0 | 0 | 7 |
 | `04-process/testing-qa` | 7 | 7 | 7 | 7 | 0 | 0 |
 | `05-scenarios` | 42 | 43 | 0 | 0 | 0 | 0 |
-| `06-interactive` | 4 | 0 | 0 | 0 | 0 | 0 |
+| `06-interactive` | 4 | 1 | 0 | 0 | 0 | 0 |
 | `07-workflows` | 13 | 4 | 1 | 1 | 0 | 0 |
 
 ## The specific links that name no artifact
