@@ -78,3 +78,40 @@ Each finding was **verified before it was recorded**, which is the stage's centr
 - Three of six stages ran. `CR-P04` (feedback), `CR-P05` (follow-up) and `CR-P06` (orchestrator) were not executed, so this is not an end-to-end system run.
 - 500 of the 1,794 lines were sampled, not read. A full read would likely find more.
 - The target is the only kind of code this reviewer is currently able to review without inventing a fixture.
+
+## 9. Follow-on, same day: the ratio was published fourteen times
+
+Registering the three reviews above moved the executed count from 14 to 17, and
+the gate run passed. It passed because `evidence_report.py --check` compares one
+generated file and nothing else. Fourteen hand-written copies of the old ratio
+were still in the tree — in `README.md`, `QUICKSTART.md`, `PROJECT-STATUS.md`,
+`_meta/execution-batches.md`, `_meta/publication-checklist.md`,
+`_meta/publication-decision.md`, `_meta/release-readiness.md` and
+`_meta/repository-configuration.md` — including three different numbers for the
+same figure (9, 11 and 14 of 228) in documents published as current.
+
+This is the same defect class the review was about: a number that is checked in
+one place and restated in others. The fix follows the same principle, check the
+thing a reader actually reads:
+
+- `published_claims()` in `evidence_report.py --check` now scans every Markdown
+  page for `N of <operational total>` and fails when the count disagrees with the
+  registry. Dated records (`_meta/empirical-evaluation-*.md`, `CHANGELOG.md`,
+  `_meta/review-log.md`) are exempt, because they state what was true when they
+  were written. A zeroth count is exempt because it is only ever the
+  independent-run figure, which shares the denominator and counts something else.
+- All fourteen copies were corrected by hand, along with the percentages beside
+  them (6.1% → 7.5%, 4.8% → 7.5%, 3.9% → 7.5%).
+- `scripts/test_evidence_report.py` covers the scan: 12 cases, including the
+  exemptions and the file-and-line in the message. It is one of the sixteen gates.
+
+Two further stale figures surfaced in the same pass and are recorded rather than
+quietly fixed: `_meta/release-readiness.md` said "five suites, 84 cases" (six and
+94 at the time of the check, seven and 106 after the additions here), and
+`_meta/publication-checklist.md` said 471 tracked files / 4.2 MB / 112 KB largest
+(513 tracked files, 3.6 MB, 120 KB, measured with `git ls-files` and `du`).
+
+The scan does not cover every number in the repository, only this ratio over
+every page. Totals of files and prompts are still checked in four documents only,
+by the validator's `DOC_TOTAL_FILES` list, and everything else is prose. That gap
+is now named in `release-readiness.md` row 8 rather than left implied.
