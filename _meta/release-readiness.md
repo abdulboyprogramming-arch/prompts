@@ -14,32 +14,32 @@ This page answers one question honestly: **if this went public tomorrow, what wo
 
 | Dimension | State | Verdict |
 |---|---|---|
-| Structural quality | 0 validator errors, 0 warnings, 0 prose findings across 458 files | **Ready** |
+| Structural quality | 0 validator errors, 0 warnings, 0 prose findings across 462 files | **Ready** |
 | Internal consistency | Counts, links, identifiers, artifact chains, catalog, gallery and task index all machine-checked | **Ready** |
-| Honesty about limits | Every claim about execution is generated from a registry; the ratio is 1.3% | **Ready** |
+| Honesty about limits | Every claim about execution is generated from a registry, and the counts quoted in prose are compared against the tree on every run; the ratio is 1.8% | **Ready** |
 | Community files | Licence (dual), contributing, code of conduct, security policy, issue templates, PR template | **Ready** |
 | Repository configuration | Documented in [`repository-configuration.md`](repository-configuration.md), not yet applied | **Action, not debt** |
 | CI | The workflow is correct and runs one command; it cannot run on this account because of Actions billing | **Blocked outside the repo** |
-| Empirical evidence | 3 of 228 operational prompts executed, all tabletop, all by the author | **The real gap** |
+| Empirical evidence | 4 of 228 operational prompts executed, all by the author, none by a second reader | **The real gap** |
 | Contributor readiness | Templates and gates are in place; the first external PR is untested | **Unknown by definition** |
 
 ## 2. What has been tested, by batch
 
 The mechanical pass covers **all 364 prompts**, in seven batches by top-level folder. It checks what a document can be checked for without running a model: metadata, sections, declared inputs against used placeholders, dependency resolution, artifact ownership, cycles, and whether a downstream stage names what its upstream produces.
 
-| Batch | Prompts | Operational | Skeleton | Executed | Dependency links | Links naming no artifact |
+| Batch | Prompts | Operational | Skeleton | Executed | Dependency links | Links not citing a filename |
 |---|---:|---:|---:|---:|---:|---:|
-| `00-core/` | 8 | 8 | 0 | 2 | 0 | 0 |
+| `00-core/` | 8 | 8 | 0 | 3 | 0 | 0 |
 | `01-contribution/` | 48 | 34 | 14 | 0 | 38 | 6 |
-| `02-engineering/` | 82 | 38 | 44 | 0 | 69 | 28 |
+| `02-engineering/` | 82 | 38 | 44 | 0 | 69 | 37 |
 | `03-domains/` | 75 | 35 | 40 | 0 | 53 | 30 |
-| `04-process/` | 92 | 68 | 24 | 1 | 78 | 18 |
+| `04-process/` | 92 | 68 | 24 | 0 | 78 | 19 |
 | `05-scenarios/` | 42 | 37 | 5 | 1 | 0 | 0 |
 | `06-interactive/` | 4 | 0 | 4 | 0 | 0 | 0 |
 | `07-workflows/` | 13 | 8 | 0 | 0 | 1 | 0 |
-| **Total** | **364** | **228** | **131** | **3** | **239** | **82** |
+| **Total** | **364** | **228** | **131** | **4** | **239** | **92** |
 
-The "links naming no artifact" column is the one that is still imperfect: **38% do not cite the upstream filename**, down from 49% in this release after 46 operational prompts were given an explicit line naming it. Of the 92, 10 mention the artifact only by stem — usually a `{{PLACEHOLDER}}` that shares it — and 82 do not mention it at all. Every remaining row is a `skeleton` without a prerequisites section, so the fix is part of promoting them rather than a separate task. The per-system detail is generated in [`conformance-report.md`](conformance-report.md).
+The "links not citing a filename" column is the one that is still imperfect: **38% do not cite the upstream filename**, down from 49% in this release after 46 operational prompts were given an explicit line naming it. Of the 92, 10 mention the artifact only by stem — usually a `{{PLACEHOLDER}}` that shares it — and 82 do not mention it at all. Every remaining row is a `skeleton` without a prerequisites section, so the fix is part of promoting them rather than a separate task. The per-system detail is generated in [`conformance-report.md`](conformance-report.md).
 
 ## 3. What "tested" does and does not mean here
 
@@ -48,10 +48,10 @@ Three kinds of check exist in this repository, and conflating them is the easies
 1. **Structural** — does the prompt have the parts the standard requires, with inputs that are declared and used. Machine-checked, all 364 prompts, on every commit.
 The queue and the per-batch targets are in [`execution-batches.md`](execution-batches.md), which also states what a run has to leave behind to count.
 
-2. **Compositional** — do two prompts in a sequence agree on the artifact between them. Machine-checked for 239 links; 82 still rely on prose that names a concept rather than a file.
-3. **Empirical** — does following the prompt produce a better result than not following it. **Three prompts, tabletop, author-evaluated.** Nothing here can be automated inside a repository without model access and a scoring sheet, which is backlog #83/#91.
+2. **Compositional** — do two prompts in a sequence agree on the artifact between them. Machine-checked for 239 links; 92 still rely on prose that names a concept rather than a file, 82 of them without naming the file at all.
+3. **Empirical** — does following the prompt produce a better result than not following it. **Four prompts, author-evaluated, none by a second reader.** Nothing here can be automated inside a repository without model access and a scoring sheet, which is backlog #83/#91.
 
-Only the third is evidence of usefulness, and it is 1.3%.
+Only the third is evidence of usefulness, and it is 1.8%.
 
 ## 4. Blockers, in the order they must be cleared
 
