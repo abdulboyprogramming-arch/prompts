@@ -55,6 +55,61 @@
       "result": "six findings, two of them defects that inflated the library's own integration metric - a stem match satisfying a filename link, and substring matches such as 'planning' satisfying PLAN.md; 30 of 157 links had been scored as named on that basis. Prompt defects fixed in v1.1.0: no rule that a published number is the correctness question, and no rule to ask about the standard as well as the framework",
       "record": "_meta/empirical-evaluation-04.md",
       "limitations": "author-evaluated on both sides; one small Python file whose window happened to be complete, so the window claim was not tested; no second reader"
+    },
+    {
+      "identifier": "CHAT-MODE",
+      "title": "Chat Mode: adapting a prompt for a conversation",
+      "path": "00-core/conversational/CHAT-MODE.md",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "scope": "adapted GIT-P03 (history repair, risk class D when shared) for a chat window with no file or command access, then measured coverage of the source prompt's four prerequisite rows",
+      "result": "4 of 4 prerequisite rows mapped; two real defects found and fixed in v1.1.0 - the workflow had no rule for a prerequisite that is a stop condition (the risk gate was left to the adapter to invent), and SESSION_LIMIT was declared but consumed by no step, so the state-block mitigation had no threshold",
+      "record": "_meta/empirical-evaluation-05.md",
+      "limitations": "one adapter, one target, one pass; the target was chosen because it breaks the rule, so it is a good test of the fix and a poor sample; no human ran the pasted commands"
+    },
+    {
+      "identifier": "CHAT-DESIGN",
+      "title": "Chat Design: a decision record from a conversation",
+      "path": "00-core/conversational/CHAT-DESIGN.md",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "scope": "a live tooling decision in this repository - merge the composition gate into the validator, or not - with measurements taken during the run (710/351/136 lines, 0.25/0.10/3.12 s, six documents naming the scripts)",
+      "result": "ADR produced with four options including do-nothing; three defects found and fixed in v1.1.0 - nothing required the status quo to be one of the options (the run nearly recommended extracting helpers that already existed), SCALE presumed a traffic volume that a code-structure decision does not have, and the ADR had no destination. The run also surfaced a repository defect: two CI workflows, one of which skipped the composition gate",
+      "record": "_meta/empirical-evaluation-06.md",
+      "limitations": "agent-chosen question on a repository the agent can see in full, which is the case the prompt was written against; no human filed the ADR"
+    },
+    {
+      "identifier": "CHAT-HANDOFF",
+      "title": "Chat Handoff: carrying a long engagement between conversations",
+      "path": "00-core/conversational/CHAT-HANDOFF.md",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "scope": "a 48-line packet for the 2.22.0 engagement, then a five-question reconstruction answered from the packet alone",
+      "result": "5 of 5 questions answerable from the packet with no transcript; three defects found and fixed in v1.1.0 - the four labels had no way to express 'generated, true as of a date' (every count in a repository handoff is that), a fact contradicting the project's own docs had no label, and the required restatement had no template",
+      "record": "_meta/empirical-evaluation-07.md",
+      "limitations": "the cold read was not cold - the agent wrote the packet, the questions and the answers; the packet was never pasted into a different model; no secret appeared, so redaction was not exercised"
+    },
+    {
+      "identifier": "GEN-P01",
+      "title": "Prompt Forge: turning an intent into an executable prompt",
+      "path": "00-core/prompt-engineering/PROMPT-FORGE.md",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "scope": "compose a prompt for a gap the coverage matrix already names - requirements change control and traceability after baseline - with routing against four existing prompts and a self-score against the quality rubric",
+      "result": "a complete draft prompt (REQ-CHANGE-01), variables table, three test cases and a provenance line, self-scored 83/100; four defects found and fixed in v1.1.0 - the rubric band and the mandatory draft label were left contradictory, no rule existed for composing with no operator present, the self-score was emitted after the prompt, and the 70% overlap test had no method",
+      "record": "_meta/empirical-evaluation-08.md",
+      "limitations": "one intent, chosen by the author to match a known gap; the interview path ran in defaulting mode only; the generated prompt was not added to the library, so the gap is not closed"
+    },
+    {
+      "identifier": "GEN-P02",
+      "title": "Prompt Regression: measuring whether a prompt works",
+      "path": "00-core/prompt-engineering/PROMPT-REGRESSION.md",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "scope": "real execution of the generated REQ-CHANGE-01 against a synthetic git fixture at tag v1.4.0: three pre-registered cases (normal, no-approver, contractual refusal), two runs on the normal case, assertions checked by shell commands",
+      "result": "all three decisions correct and no baseline file edited; one defect found in the prompt under test (a change that weakens a security control was accepted with only a product approver, and the safeguard appeared in 1 of 2 runs of identical input); four defects found in GEN-P02 and fixed in v1.1.0 - the 'fresh session' requirement had no isolation procedure and could be claimed without being met, no budget rule for which case gets the second run, no trace format, and a collision with the library's own evidence convention",
+      "record": "_meta/empirical-evaluation-09.md",
+      "limitations": "no isolation: every run shared one context, so the instability may be an artifact of that; n=1 on two of three cases; rubric score self-assessed"
     }
   ]
 }

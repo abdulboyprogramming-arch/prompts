@@ -1,0 +1,37 @@
+# Baseline captured 2026-10-22T08:49:40Z
+
+## git
+arena/cdb05e8f-prompts
+0debbc2aa2f782b5146657a5704616a6f2c01e35
+?? _meta/baseline/
+
+## tree counts
+468
+
+## validator
+
+Scanned 462 Markdown files; 364 prompt files.
+Maturity: draft=5, operational=228, skeleton=131
+Result: 0 error(s), 0 warning(s).
+
+## contract
+52 multi-stage systems; 239 dependency links; 147 cite the upstream filename, 10 mention it only by stem, 82 name no artifact (34%).
+Links that do not cite a filename: 92 of 239 (38%).
+Result: 0 error(s).
+
+## self-tests
+test_validator     23/23 cases passed
+test_contract      19/19 cases passed
+test_overlaps      13/13 cases passed
+test_prose_lint    12/12 cases passed
+test_task_index    17/17 cases passed
+
+## evidence registry
+4 entries
+  DBG-01 2026-10-20
+  CHAT-DEBUG 2026-10-20
+  CHAT-SELECT 2026-10-21
+  CHAT-REVIEW 2026-10-22
+
+## gate list
+14

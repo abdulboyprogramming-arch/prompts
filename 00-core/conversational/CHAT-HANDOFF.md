@@ -2,7 +2,7 @@
 
 **Identifier:** CHAT-HANDOFF
 **System:** 00-core/conversational
-**Version:** 1.0.0
+**Version:** 1.1.0
 **Maturity:** operational
 **Execution mode:** specialised
 **Risk class:** A — it produces a message block, not a change to any system
@@ -47,9 +47,12 @@ Out of scope: transcripts; a narrative of the conversation; re-explaining the ba
    | `observed` | The user pasted output that shows it |
    | `reported` | The user stated it; nothing shows it |
    | `inferred` | Reasoned from what was pasted |
+   | `generated` | A command produced it, and it will change — date and command required |
    | `unknown` | Nothing supports it, and the next conversation must not treat it as known |
 
    A fact with no label is not admitted to the packet.
+
+   **`generated` exists because the most common handoff fact is a number.** "228 operational prompts" is true when the command runs and false after the next edit. Labelled `observed` it becomes a property of the system that the next conversation will defend; labelled `generated` with its date and command, it becomes a snapshot anyone can refresh. When a fact contradicts the project's own documentation, mark it `conflict`, quote both claims, and name where each came from — italics are not a label.
 
 4. **Record the decisions with their reasons, and the ones that were rejected.** "We chose the queue; we rejected the cron retry because it fires twice on the DST boundary." A decision without its rejected alternative will be reopened, and the reopening will look like a fresh idea.
 
@@ -61,9 +64,18 @@ Out of scope: transcripts; a narrative of the conversation; re-explaining the ba
 
 8. **State the redaction.** What was removed (credentials, customer names, hostnames), what was replaced by a placeholder, and any secret that was pasted before redaction and should be rotated. This line is not optional, because the packet will be pasted into another third party.
 
-9. **Keep it under about sixty lines.** A packet that exceeds a comfortable paste is a packet that gets truncated, and truncation silently deletes the constraints first. Put the constraints and the completion condition at the top so a partial paste keeps them.
+9. **Keep it under about sixty lines.** A packet that exceeds a comfortable paste is a packet that gets truncated, and truncation silently deletes the constraints first. Put the constraints and the completion condition at the top so a partial paste keeps them. When it will not fit, cut in this order: narrative, then context the user already knows, then open questions that are interesting rather than blocking. Never cut a constraint, the completion condition, or an eliminated hypothesis — those are the four things only this packet holds.
 
-10. **Require a restatement before work resumes.** The receiving conversation must reply with: the completion condition, the three constraints it will obey, the eliminated hypotheses it will not revisit, and one fact it believes is wrong or unreachable. Until that restatement arrives, it must not start the work. This is the packet's only integrity check, and it takes one message.
+10. **Require a restatement before work resumes, in a fixed shape.** The receiving conversation replies with exactly four numbered lines:
+
+    ```
+    1. Done means: <the completion condition, in its own words>
+    2. I will obey: <three constraints it will act on, quoted>
+    3. I will not revisit: <the eliminated hypotheses it accepts as dead>
+    4. I think this may be wrong: <one fact it doubts, and what would settle it>
+    ```
+
+    Until that restatement arrives, it must not start the work. This is the packet's only integrity check, it takes one message, and the template is what makes it checkable rather than a pleasantry.
 
 ## 5. Decision rules and evidence standard
 
@@ -81,7 +93,7 @@ Out of scope: transcripts; a narrative of the conversation; re-explaining the ba
 |-------|--------|----------------|
 | Frame present | Packet header | Goal and completion condition in the first two sentences |
 | Constraints listed | Packet | Rules, each on one line, at the top |
-| Every fact labelled | Packet | No unlabelled claim about the system |
+| Every fact labelled | Packet | No unlabelled claim about the system; counts marked `generated` with a date and a command |
 | Decisions include rejections | Packet | Each choice names what was not chosen and why |
 | Eliminated hypotheses recorded | Packet | What was believed, what disproved it, the date |
 | Open questions numbered | Packet | Blocking question marked |
@@ -107,7 +119,7 @@ Class A: the packet is text. Its risk is that it is **portable** — a handoff p
 
 - [ ] Goal and completion condition stated in the first two sentences.
 - [ ] Constraints listed as rules, at the top of the packet.
-- [ ] Every fact carries one of the four labels.
+- [ ] Every fact carries one of the five labels; generated numbers carry a date and a command.
 - [ ] Accepted and rejected decisions recorded with reasons.
 - [ ] Eliminated hypotheses kept, with the experiment that disproved each.
 - [ ] Open questions numbered, blocking one marked.

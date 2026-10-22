@@ -2,7 +2,7 @@
 
 **Identifier:** GEN-P02
 **System:** 00-core/prompt-engineering
-**Version:** 1.0.0
+**Version:** 1.1.0
 **Maturity:** operational
 **Execution mode:** continuous-improvement
 **Risk class:** A (runs prompts read-only against fixtures; B if the harness writes results into the repository)
@@ -33,6 +33,7 @@ Out of scope: authoring the prompt (GEN-P01, `_meta/prompt-authoring-standard.md
 - `{{TEST_CASES}}` — at least three cases: **normal** (typical, complete input), **thin** (missing one or two optional inputs), **adversarial** (contradictory, out-of-scope, or vaguely hostile input). If none exist, derive them from `{{TEST_CASES}}` and record that they are new.
 - `{{BASELINE_RESULTS}}` — the previous version's results, if this is a revision. Without a baseline you can score the prompt but cannot claim improvement.
 - `{{TARGET_AGENT}}`; `{{RUNS_PER_CASE}}` (default 2 — one run cannot distinguish a prompt from luck); `{{REPO_PATH}}` as the working directory.
+- **A budget rule, because 3 cases × 2 runs is 6 runs and not every pass can afford six:** spend the second run on the case that decides the ship decision — usually the adversarial one, or the case where the first run was partial. Record the shortfall by name (*"one run each on thin and adversarial"*) rather than leaving the reader to infer it.
 - **A clean working copy.** Never run a fixture against a repository holding uncommitted work.
 
 ## 4. Workflow
@@ -43,7 +44,9 @@ Out of scope: authoring the prompt (GEN-P01, `_meta/prompt-authoring-standard.md
 
 3. **Run each case in a fresh session** — new context, no memory of the previous case. Context carry-over is the most common way a bad prompt scores well.
 
-4. **Capture raw output and the full action trace**, not just the final answer. The trace is where the failures live: commands run that were never verified, files edited outside scope, claims with no evidence, stops that came too early.
+   **Isolation has to be manufactured, so say how.** One of these, in descending order of strength: a separate agent invocation per case, with the fixture as the only input; a separate process whose first message is the fixture and nothing else; a separate conversation started from the fixture text alone. When none is available — an agent evaluating its own prompt in one context — record `isolation: unavailable` in the header and treat every behavioural result as provisional. An evaluation that claims fresh sessions and ran them in one context is worse than one that admits the limitation, because the number it produces will be trusted.
+
+4. **Capture raw output and the full action trace**, not just the final answer. The trace is the command output and the file diffs — for an agent with no external logger, the shell transcript *is* the trace, and it is enough as long as it is quoted rather than summarised. The trace is where the failures live: commands run that were never verified, files edited outside scope, claims with no evidence, stops that came too early.
 
 5. **Score two things separately**:
    - **Rubric score** — the nine dimensions in `_meta/quality-rubric.md`, applied to the prompt's design (is verification defined? is failure handling specific?).
@@ -113,6 +116,6 @@ Risk class A: run in a disposable copy with read-only access to anything real. F
 
 ## 10. Deliverables and handover
 
-Artifacts: `PROMPT_EVAL.md`, fixture files, raw traces.
+Artifacts: `PROMPT_EVAL.md`, fixture files, raw traces. When the repository's evidence convention is in use (`_meta/empirical-evaluation-NN.md` plus an entry in `_meta/evidence.json`), the `PROMPT_EVAL.md` content lives inside that record and is not duplicated into a second file — one run, one record.
 
 Handover: a **ship** decision permits the prompt to move from `draft` to `operational` with the evaluation cited in `_meta/review-log.md`; a **do-not-ship** decision returns to [GEN-P01](PROMPT-FORGE.md) with the defect classification, which tells the author whether to add an instruction, disambiguate one, or add a machine check. Results accumulate into the prompt's score history, which is the only defensible answer to "is the library getting better?"

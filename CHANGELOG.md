@@ -111,6 +111,26 @@ The first answers "what still blocks a release" in one page: what is tested and 
 
 The second records the settings GitHub asks for — description, ten topics, merge policy, security features, social preview — with the commands that apply them and the reason for each. It also records the **sponsorship decision**: not now, with four reasons, and the trigger for revisiting (`repository-configuration.md` §6).
 
+### New — batch 0 executed end to end: eight prompts run, eight changed
+
+Part 5 of the brief asked for execution rather than review. Batch 0 — the six conversational prompts plus `GEN-P01` and `GEN-P02` — is now **8 of 8 executed**, in five new records (`_meta/empirical-evaluation-05.md` to `-09.md`), and **every one of the five runs changed the prompt it ran**. The executed total is 9 of 228 (3.9%).
+
+| Run | What it actually did | Defect it found |
+|---|---|---|
+| `CHAT-MODE` | adapted `GIT-P03` (history repair) for a chat window; mapped 4 of 4 prerequisite rows | no rule for a prerequisite that is a **stop condition** — the risk gate was left to the adapter to invent; `SESSION_LIMIT` was declared and consumed by no step |
+| `CHAT-DESIGN` | a real ADR on splitting the composition gate from the validator, with measurements taken during the run | nothing required the **status quo** to be one of the options; `SCALE` presumed traffic volume for a code-structure decision; the ADR had no destination |
+| `CHAT-HANDOFF` | a 48-line packet for this engagement, then a five-question reconstruction answered from the packet alone (5/5) | the four labels had no way to say *generated, true as of a date* — which is what every count in a repository handoff is |
+| `GEN-P01` | forged `REQ-CHANGE-01` for a coverage gap the matrix already named, routed against four existing prompts, self-scored 83/100 | the rubric's operational band and the mandatory `draft` label were left contradictory; no rule for composing with no operator present; the 70% overlap test had no method |
+| `GEN-P02` | ran the forged prompt against a real git fixture at `v1.4.0`: three pre-registered cases, two runs on the normal case, assertions checked by shell commands | the prompt under test accepted a change that **weakens a security control** with only a product approver, and the safeguard appeared in 1 of 2 runs of identical input; `GEN-P02` itself required "fresh sessions" with no way to get them |
+
+**The measurement that matters is not the coverage.** Three of three decisions came out right in `GEN-P02`'s fixture runs, and the same input produced a 68-line artifact and then a 29-line one, with the safety clause present only the first time. Reading the prompt would not have found that; two runs did. The library's own evidence rule — *a run that changes nothing is a run that taught nothing* — is what this batch tested, and it held: five runs, five prompts revised to v1.1.0.
+
+**What batch 0 does not prove.** Every run was performed by the prompt's author, on targets the author chose, graded by the author. `CHAT-HANDOFF`'s cold read was not cold; `GEN-P02`'s "fresh sessions" did not happen and the record says `isolation: unavailable`. Batch 0 is complete in executions and empty in independent verification, and those are different columns.
+
+### Fixed — CI had two workflows, one of them missing the composition gate
+
+`validate.yml` ran `check_all.py --verbose`; `validate-library.yml` re-listed twelve individual commands and did not run the composition gate, so a pull request could go green on the older workflow while the gate was red, and every gate change had to be made twice. The release documentation had been claiming "CI runs that script and nothing else" since the gate list landed. `validate-library.yml` is deleted; `validate.yml` remains the single workflow, and the claim is now true.
+
 ### New — the totals in prose are checked, because two of them were wrong
 
 `check_documented_counts` has compared the maturity triplet against the tree since 2.22.0. It did not compare the *totals*, and the totals had drifted: `PROJECT-STATUS.md` and the publication checklist both still said 458 Markdown files when the tree held 462, `QUICKSTART.md` offered "all 362 prompts", and the social-preview guidance promised 213 operational prompts and two executed.

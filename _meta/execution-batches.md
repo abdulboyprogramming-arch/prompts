@@ -28,7 +28,7 @@ Batches are ordered by *what a run costs to set up*, not by folder. Each batch b
 
 | Batch | What it is | Prompts / operational | Target | Run status |
 |---|---|---:|---|---|
-| **B0** | Conversational prompts: `00-core/conversational/` | 8 / 8 | a paste, a pasted file, or a decision about which prompt to use | **4 of 8 recorded** — `CHAT-DEBUG`, `CHAT-SELECT`, `CHAT-REVIEW`, plus `CHAT-MODE`'s capability delta used implicitly by all three. `CHAT-ASK`, `CHAT-DESIGN`, `CHAT-HANDOFF`, and `CHAT-MODE` standalone remain |
+| **B0** | The eight identified prompts in `00-core/` — six conversational (`CHAT-MODE`, `CHAT-DEBUG`, `CHAT-DESIGN`, `CHAT-HANDOFF`, `CHAT-REVIEW`, `CHAT-SELECT`) plus `GEN-P01` and `GEN-P02` under `prompt-engineering/` | 8 / 8 | a paste, a pasted file, a decision about which prompt to use, or a prompt to forge and test | **8 of 8 executed** (2026-10-22). See §5 — the earlier version of this table said 8 conversational prompts and named `CHAT-ASK`, which does not exist |
 | **B1** | Codebase work: `02-engineering/` | 82 / 38 | this repository for roughly a third of them — the audit, review, and repair prompts, whose subject is a source tree; an application fixture for the rest, which expect routes, schema, or services this repository does not have | 0 recorded |
 | **B2** | Process work: `04-process/` | 92 / 68 | this repository's own history and releases — a real diff, a real `CHANGELOG.md`, a real tag | 0 recorded. Needs a deliberately messy branch, or a historic one restored from `git log` |
 | **B3** | Incident and scenario rehearsal: `05-scenarios/` | 42 / 37 | a labelled staging directory and a declared fake incident, never the real repository | **1 recorded** — `DBG-01` |
@@ -75,24 +75,24 @@ Four runs, eight prompts exercised (some inside other runs), across 228 operatio
 
 ---
 
-## 5. B0 in detail, because it can be finished
+## 5. B0 in detail — complete, and a membership correction
 
-The eight conversational prompts share one target: a chat window with a paste. Six of the eight can be run in a single sitting each, and three already have.
+**This section was wrong when it was written, and the error is worth keeping.** It said B0 held eight *conversational* prompts, listed `CHAT-ASK` as unrun, and concluded that four runs would finish the batch. Verification against the tree on 2026-10-22 found six conversational prompts — `CHAT-ASK` has never existed — and a B0 total of eight only if `GEN-P01` and `GEN-P02` are included, which is what the validator's count of `00-core/` (8 identified prompts) always said. The plan had invented a prompt to reach a number it already had.
 
-| Prompt | State | What remains |
-|---|---|---|
-| `CHAT-MODE` | used implicitly by three runs, never run standalone | one run where the capability delta is stated for a task whose answer depends on it |
-| `CHAT-DEBUG` | executed, v1.1.0 | re-run after the v1.1.0 changes to confirm the three fixes did not add a fourth problem |
-| `CHAT-SELECT` | executed, v1.1.0 | re-run against the current `TASKS.md`, which changed after the run |
-| `CHAT-REVIEW` | executed, v1.1.0 | re-run on a file the author did not write — the obvious first candidate is a third-party script in the same language |
-| `CHAT-DESIGN` | never run | a design discussion with a stated deadline and two candidate approaches |
-| `CHAT-ASK` | never run | a question whose answer requires two clarifying turns, one of which the user does not want to give |
-| `CHAT-HANDOFF` | never run, new in 2.22.0 | a packet produced at the end of a long session, then read cold by a second model instance with no other context |
-| `CHAT-SELECT` and `CHAT-REVIEW` | — | the only pair that can be run back to back on one artifact: choose the prompt, then run the one chosen |
+| Prompt | Version after this pass | Run | Record |
+|---|---|---|---|
+| `CHAT-MODE` | 1.1.0 | adapted `GIT-P03` for a chat window; 4 of 4 prerequisite rows mapped | `empirical-evaluation-05.md` |
+| `CHAT-DEBUG` | 1.1.0 | recorded 2026-10-20 | `-02.md` |
+| `CHAT-SELECT` | 1.1.0 | recorded 2026-10-21 | `-03.md` |
+| `CHAT-REVIEW` | 1.1.0 | reviewed this repository's own composition gate; found two metric defects | `-04.md` |
+| `CHAT-DESIGN` | 1.1.0 | ADR on splitting the composition gate from the validator | `-06.md` |
+| `CHAT-HANDOFF` | 1.1.0 | 48-line packet, then a five-question reconstruction with 5/5 answerable | `-07.md` |
+| `GEN-P01` | 1.1.0 | forged `REQ-CHANGE-01` for a named coverage gap; self-scored 83/100 | `-08.md` |
+| `GEN-P02` | 1.1.0 | ran `REQ-CHANGE-01` against a real git fixture, three cases, shell assertions | `-09.md` |
 
-Finishing B0 is four runs. It would move the ratio to 8 of 228 and, more usefully, give the first evidence about prompts read cold, since `CHAT-HANDOFF` is designed to be consumed by something that was not present when it was written.
+**What B0 completion does and does not mean.** All eight have been executed and all eight changed as a result: 6 of 8 gained a v1.1.0, and both prompt-engineering prompts did. That is the batch's real output — not coverage, but defects. **None of the eight has been run by anyone other than the author**, and two of the eight (`CHAT-MODE`, `CHAT-HANDOFF`) were graded on artifacts the same agent wrote and then read back. The batch is complete in the column that counts executions and empty in the column that would make it evidence a stranger can rely on.
 
----
+The next executable task in this batch is a re-run by a second person, and there is no way to manufacture that here.
 
 ## 6. Honest status
 
