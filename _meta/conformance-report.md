@@ -12,9 +12,9 @@ input, which is the property that makes a sequence of prompts a system rather th
 |---------|------:|
 | Systems with more than one stage | 52 |
 | Dependency links between stages in a system | 239 |
-| Links where the downstream stage never names the upstream artifact | **78** |
+| Links where the downstream stage never names the upstream artifact | **73** |
 | Links that mention it only by stem, never as a filename | 9 |
-| Links that cite the upstream filename | 152 |
+| Links that cite the upstream filename | 157 |
 
 The second row is the library's real integration claim. The third is what is left of it: a
 link where the downstream prompt says *"the rollout evidence"* instead of naming
@@ -58,7 +58,7 @@ handed the artifact without anyone guessing its name.
 | `03-domains/devops-infra` | 8 | 7 | 6 | 0 | 0 | 6 |
 | `03-domains/embedded-iot` | 2 | 3 | 1 | 1 | 0 | 0 |
 | `03-domains/frontend` | 8 | 7 | 6 | 0 | 0 | 6 |
-| `03-domains/games` | 10 | 9 | 6 | 0 | 0 | 6 |
+| `03-domains/games` | 10 | 9 | 6 | 5 | 0 | 1 |
 | `03-domains/mobile` | 3 | 4 | 0 | 0 | 0 | 0 |
 | `03-domains/payments` | 3 | 4 | 2 | 2 | 0 | 0 |
 | `03-domains/web3` | 4 | 6 | 5 | 5 | 0 | 0 |
@@ -196,12 +196,7 @@ that stage produces but this one never mentions.
 
 | Stage | Depends on | Artifact not named |
 |-------|------------|--------------------|
-| `GD-P02` | `GD-P01` | `GAME_VISION.md` |
-| `GD-P03` | `GD-P02` | `GAME_DESIGN.md` |
-| `GD-P04` | `GD-P03` | `GAME_ARCHITECTURE.md` |
-| `GD-P05` | `GD-P04` | `VERTICAL_SLICE.md` |
-| `GD-P06` | `GD-P05` | `SYSTEMS_LOG.md` |
-| `GD-P07` | `GD-P06` | `POLISH_NOTES.md` |
+| `GD-P07` | `GD-P06` | `CONTENT_MANIFEST.md` |
 
 ### `04-process/project-management`
 

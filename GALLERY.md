@@ -29,7 +29,7 @@ prompts by situation.
 | [06-interactive — conversations that clarify a request](#06-interactive--conversations-that-clarify-a-request) | 4 | Use when the request is vague and needs to be scoped first. |
 | [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 13 | Composed sequences that route between systems and stop at human gates. |
 
-*Maturity across the library: 241 operational, 5 draft, 118 skeleton, 364 total.*
+*Maturity across the library: 249 operational, 5 draft, 110 skeleton, 364 total.*
 
 ---
 
@@ -386,14 +386,14 @@ Stack-specific practice: data, AI, and the domains still being built out.
 
 | ID | Prompt | Use it for | Maturity | Risk |
 |---|---|---|---|---|
-| `GD-P01` | [Vision & Player Fantasy](03-domains/games/P01-Vision/P01-Vision-Player-Fantasy.md) | Define the core player fantasy, audience, and experience goal before mechanics or technology decisions. | skeleton | B |
-| `GD-P02` | [Game Design](03-domains/games/P02-Design/P02-Game-Design.md) | Turn the vision into a concrete but minimal design for the first playable version. | skeleton | B |
-| `GD-P03` | [Technical Architecture](03-domains/games/P03-Architecture/P03-Technical-Architecture.md) | Choose an appropriate technical approach for the MVP and define a clean project structure. | skeleton | B |
-| `GD-P04` | [Vertical Slice](03-domains/games/P04-Vertical-Slice/P04-Vertical-Slice.md) | Build the smallest playable slice that proves the core fantasy and loop. | skeleton | B |
-| `GD-P05` | [Core Systems](03-domains/games/P05-Systems/P05-Core-Systems.md) | Implement the additional systems required to support the MVP beyond the first slice. | skeleton | B |
-| `GD-P06` | [Content & Polish](03-domains/games/P06-Content-Polish/P06-Content-Polish.md) | Improve playability through focused content, UX, and feedback work. | skeleton | B |
-| `GD-P07` | [Playtest & Validate](03-domains/games/P07-Playtest-Validate/P07-Playtest-Validate.md) | Evaluate whether the game (or feature) delivers on its vision and is technically healthy enough to continue. | skeleton | B |
-| `GD-P08` | [Game Development Master Orchestrator](03-domains/games/P08-Orchestrator/P08-Game-Development-Orchestrator.md) | Runs the games system end to end: gates, routing, and final acceptance. | skeleton | A |
+| `GD-P01` | [Vision & Player Fantasy: the sentence the whole game has to keep](03-domains/games/P01-Vision/P01-Vision-Player-Fantasy.md) | GAME_VISION.md containing <br>**Inputs:** `PROJECT_PATH, TARGET_PLATFORM, REFERENCE_GAMES, TEAM_SIZE` | operational | A |
+| `GD-P02` | [Game Design: the loop that delivers the fantasy, and nothing else](03-domains/games/P02-Design/P02-Game-Design.md) | GAME_DESIGN.md containing <br>**Inputs:** `PROJECT_PATH, REFERENCE_GAMES, SESSION_LENGTH` | operational | A |
+| `GD-P03` | [Technical Architecture: the smallest engine that can be tuned](03-domains/games/P03-Architecture/P03-Technical-Architecture.md) | GAME_ARCHITECTURE.md containing <br>**Inputs:** `PROJECT_PATH, TARGET_PLATFORM, TEAM_SKILLS, PLATFORM_BUDGET` | operational | A |
+| `GD-P04` | [Vertical Slice: one loop, built end to end, judged in a playtest](03-domains/games/P04-Vertical-Slice/P04-Vertical-Slice.md) | run from GD-P03, the cut list, and the acceptance questions the playtest must answer. <br>**Inputs:** `PROJECT_PATH, SLICE_BUDGET, TARGET_PLATFORM` | operational | B |
+| `GD-P05` | [Core Systems: build the systems the loop proved it needs](03-domains/games/P05-Systems/P05-Core-Systems.md) | SYSTEMS_PLAN.md and the systems it lists, each with <br>**Inputs:** `PROJECT_PATH, TARGET_PLATFORM, CONTENT_COUNTS` | operational | B |
+| `GD-P06` | [Content & Polish: volume where the loop is proven, cut where it is not](03-domains/games/P06-Content-Polish/P06-Content-Polish.md) | each item meeting the acceptance state the design named. <br>**Inputs:** `PROJECT_PATH, CONTENT_COUNTS, ART_BUDGET, LOCALISATION` | operational | B |
+| `GD-P07` | [Playtest & Validation: the fantasy sentence meets a player](03-domains/games/P07-Playtest-Validate/P07-Playtest-Validate.md) | PLAYTEST_REPORT.md containing <br>**Inputs:** `PROJECT_PATH, PARTICIPANT_COUNT, SESSION_LENGTH, TELEMETRY` | operational | B |
+| `GD-P08` | [Game Development Master Orchestrator](03-domains/games/P08-Orchestrator/P08-Game-Development-Orchestrator.md) | GAME_RUN.md and the stage artifacts. <br>**Inputs:** `PROJECT_PATH, GAME_GOAL, SLICE_BUDGET, TARGET_PLATFORM, PARTICIPANT_COUNT` | operational | A |
 | `GD-P09` | [Save Data Migration and Compatibility](03-domains/games/P09-Save-Migration/P09-Save-Migration.md) | A versioned save schema, forward migrations for every supported source version, a corruption-resistant read path, and tested evidence on real old saves. <br>**Inputs:** `SAVE_FORMAT, TARGET_VERSION, PLATFORM, CLOUD_SAVE, SUPPORT_WINDOW, APPROVER` | operational | C |
 | `GD-P10` | [Multiplayer Netcode and Determinism](03-domains/games/P10-Netcode/P10-Netcode.md) | A diagnosis with measured numbers (latency, jitter, tick alignment, rollback depth), a corrected simulation or replication design where the bug is structural, and a… <br>**Inputs:** `TARGET_MODE, ENGINE, TICK_RATE, PLAYER_COUNT, REGIONS, REPRO_NOTES` | operational | B |
 

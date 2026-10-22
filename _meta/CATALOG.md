@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 364 prompts — 0 canonical, 241 operational, 5 draft, 118 skeleton.
+**Totals:** 364 prompts — 0 canonical, 249 operational, 5 draft, 110 skeleton.
 
 ## `00-core`
 
@@ -345,14 +345,14 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
 | ID | Stage | Maturity | Mode | Risk | File |
 |----|-------|----------|------|------|------|
-| `GD-P01` | PROMPT 01 — Vision & Player Fantasy | skeleton | planning | B | [P01-Vision-Player-Fantasy.md](../03-domains/games/P01-Vision/P01-Vision-Player-Fantasy.md) |
-| `GD-P02` | PROMPT 02 — Game Design | skeleton | planning | B | [P02-Game-Design.md](../03-domains/games/P02-Design/P02-Game-Design.md) |
-| `GD-P03` | PROMPT 03 — Technical Architecture | skeleton | planning | B | [P03-Technical-Architecture.md](../03-domains/games/P03-Architecture/P03-Technical-Architecture.md) |
-| `GD-P04` | PROMPT 04 — Vertical Slice | skeleton | implementation | B | [P04-Vertical-Slice.md](../03-domains/games/P04-Vertical-Slice/P04-Vertical-Slice.md) |
-| `GD-P05` | PROMPT 05 — Core Systems | skeleton | implementation | B | [P05-Core-Systems.md](../03-domains/games/P05-Systems/P05-Core-Systems.md) |
-| `GD-P06` | PROMPT 06 — Content & Polish | skeleton | implementation | B | [P06-Content-Polish.md](../03-domains/games/P06-Content-Polish/P06-Content-Polish.md) |
-| `GD-P07` | PROMPT 07 — Playtest & Validate | skeleton | diagnostic | B | [P07-Playtest-Validate.md](../03-domains/games/P07-Playtest-Validate/P07-Playtest-Validate.md) |
-| `GD-P08` | PROMPT 08 — Game Development Master Orchestrator | skeleton | orchestration | A | [P08-Game-Development-Orchestrator.md](../03-domains/games/P08-Orchestrator/P08-Game-Development-Orchestrator.md) |
+| `GD-P01` | PROMPT 01 — Vision & Player Fantasy: the sentence the whole  | operational | planning | A | [P01-Vision-Player-Fantasy.md](../03-domains/games/P01-Vision/P01-Vision-Player-Fantasy.md) |
+| `GD-P02` | PROMPT 02 — Game Design: the loop that delivers the fantasy, | operational | planning | A | [P02-Game-Design.md](../03-domains/games/P02-Design/P02-Game-Design.md) |
+| `GD-P03` | PROMPT 03 — Technical Architecture: the smallest engine that | operational | planning | A | [P03-Technical-Architecture.md](../03-domains/games/P03-Architecture/P03-Technical-Architecture.md) |
+| `GD-P04` | PROMPT 04 — Vertical Slice: one loop, built end to end, judg | operational | implementation | B | [P04-Vertical-Slice.md](../03-domains/games/P04-Vertical-Slice/P04-Vertical-Slice.md) |
+| `GD-P05` | PROMPT 05 — Core Systems: build the systems the loop proved  | operational | implementation | B | [P05-Core-Systems.md](../03-domains/games/P05-Systems/P05-Core-Systems.md) |
+| `GD-P06` | PROMPT 06 — Content & Polish: volume where the loop is prove | operational | implementation | B | [P06-Content-Polish.md](../03-domains/games/P06-Content-Polish/P06-Content-Polish.md) |
+| `GD-P07` | PROMPT 07 — Playtest & Validation: the fantasy sentence meet | operational | diagnostic | B | [P07-Playtest-Validate.md](../03-domains/games/P07-Playtest-Validate/P07-Playtest-Validate.md) |
+| `GD-P08` | PROMPT 08 — Game Development Master Orchestrator | operational | orchestration | A | [P08-Game-Development-Orchestrator.md](../03-domains/games/P08-Orchestrator/P08-Game-Development-Orchestrator.md) |
 | `GD-P09` | PROMPT 09 — Save Data Migration and Compatibility | operational | implementation | C | [P09-Save-Migration.md](../03-domains/games/P09-Save-Migration/P09-Save-Migration.md) |
 | `GD-P10` | PROMPT 10 — Multiplayer Netcode and Determinism | operational | diagnostic | B | [P10-Netcode.md](../03-domains/games/P10-Netcode/P10-Netcode.md) |
 

@@ -8,10 +8,10 @@ CI fails if this file is stale, so the numbers below cannot drift from the regis
 | Claim | Count |
 |-------|------:|
 | Prompt files in the library | 364 |
-| Labelled `operational` (structurally reviewed) | 241 |
+| Labelled `operational` (structurally reviewed) | 249 |
 | `operational` prompts with a recorded execution | 25 |
-| `operational` prompts with no recorded execution | 216 |
-| Share of `operational` prompts demonstrated | 10.4% |
+| `operational` prompts with no recorded execution | 224 |
+| Share of `operational` prompts demonstrated | 10.0% |
 
 `operational` means the artifact meets the authoring standard and survived a structural
 review against the quality rubric. It does **not** mean the prompt has been run against a
