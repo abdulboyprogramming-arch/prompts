@@ -14,7 +14,7 @@
 | Is the **content** safe to publish? | **Yes.** No secrets in the tree or in reachable history, no personal data in prompts, no absolute paths, links resolve, licence files present. |
 | Is it **published**? | **Yes — public as of 2026-10-22.** Verified unauthenticated: `api.github.com/repos/...` returns 200 with `private: false`, the README renders (31 KB), 24 top-level paths resolve, and 24 releases are visible without a token. Publication was performed by the owner in the GitHub UI; the API path returns 403 for the integration token. |
 | Anything in the repository to fix first? | No. Every automated gate passes; see §1. |
-| What is still not done? | **CI has never executed a step**, and branch protection is unset. Both are GitHub settings, and neither became true when the repository was published — that was checked rather than assumed (§5.1). |
+| What is still not done? | **Branch protection is unset**, and the security features that were meant to precede publication are still off. CI, by contrast, now runs: run `39846014231` executed every step and passed (§5.1). |
 
 **What must happen before you flip it public is listed in §5.** Everything else here is evidence.
 
@@ -100,7 +100,9 @@ Consequences today: PR checks show red without running, the badge is meaningless
 
 **Where:** GitHub → Settings → **Billing & plans** → Actions. Either add a payment method or set a spending limit above $0.
 
-**Checked again after publication (2026-10-22, repository now public):** still failing. Run `39840703180`, created *after* the repository was public, reported `conclusion: failure` with **`steps: 0`** and an empty `runner_name` — the job was never assigned a runner, so GitHub-hosted standard minutes have not taken effect on this account. Publication did not fix it, which is why it was not assumed to. A fresh run triggered by a later push is the next retest; the local gate remains the only gate until then.
+**CI now executes.** Run [`39846014231`](https://github.com/abdulboyprogramming-arch/prompts/actions/runs/39846014231) (`pull_request`, 2026-10-22T20:06:57Z) completed **success** on runner `GitHub Actions 1000002633` with steps 1–11 all green, including *Every gate* (`python3 scripts/check_all.py --verbose`) and the clean-regeneration check. This is the first workflow run in the repository's history that executed a step. Publication is what changed it: the last failing run was 36 minutes earlier, while the repository was still private.
+
+The earlier failing runs — `39836004571`, `39840703180`, both `steps: 0` with no runner assigned — remain the evidence that the account's billing block was real. They are not evidence about the post-publication state: the last of them was queued before the visibility change took effect, and the next run executed normally.
 
 ### 5.2 Branch protection on `main`
 

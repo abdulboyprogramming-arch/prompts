@@ -915,8 +915,11 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 - Visibility changed in the GitHub UI (API returns 403 for the integration token). Verified with no
   credentials: repo 200 / `private: false`, README 31,304 bytes, 24 top-level paths, 24 releases, MIT
   detected. No file changed to make it possible.
-- **Publication did not fix CI**, and this was checked rather than assumed: run `39840703180` was
-  created with the repository already public and still reports `steps: 0` with no runner assigned.
+- **Publication did fix CI — but the first claim said the opposite.** Run `39840703180` failed with
+  `steps: 0` and was taken as evidence about the post-publication state; it had been queued before the
+  visibility change took effect. The next run, `39846014231`, executed steps 1–11 on a real runner and
+  passed. The wrong inference stood in the changelog and in PR #34's description for about half an hour
+  before the pull-request run contradicted it, and the correction is kept in both rather than edited out.
 - **The order was inverted:** secret scanning, push protection, CodeQL and private vulnerability
   reporting were meant to be on *before* the code was public. They are not. The readiness page now
   records that as a missed order rather than a plan.

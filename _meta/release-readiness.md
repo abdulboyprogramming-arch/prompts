@@ -19,7 +19,7 @@ This page answers one question honestly: **if this went public tomorrow, what wo
 | Honesty about limits | Every claim about execution is generated from a registry, and the counts quoted in prose are compared against the tree on every run; the ratio is 12.1% | **Ready** |
 | Community files | Licence (dual), contributing, code of conduct, security policy, issue templates, PR template | **Ready** |
 | Repository configuration | Description and topics applied; branch protection and security features still unset — [`repository-configuration.md`](repository-configuration.md) | **Partly applied** |
-| CI | The workflow is correct and runs one command; it has still never executed a step, including after the repository was published (`steps: 0`, run `39840703180`) | **Blocked outside the repo** |
+| CI | **Runs and passes.** Run `39846014231` executed steps 1–11 on a real runner, all green, including `check_all.py` and the clean-regeneration check — the first executed step in the repository's history | **Ready** |
 | Empirical evidence | 34 of 282 operational prompts executed (12.1%), all by the author, none by a second reader; batch 0 complete, batch 2 begun | **The real gap** |
 | Contributor readiness | Templates and gates are in place; the first external PR is untested | **Unknown by definition** |
 
@@ -57,9 +57,9 @@ Only the third is evidence of usefulness, and it is 12.1%.
 
 Outside the repository, and each is a decision or an account, not an edit:
 
-1. **Actions billing — still blocking, now overdue.** CI cannot run on this account. It was published without it, so the first thing a visitor sees is a red check that never executed a step (`steps: 0`, run `39840703180`, created while the repository was already public). Until it runs once, branch protection cannot require it either.
-2. **Security features — now the more urgent of the two.** Secret scanning, push protection, CodeQL and private vulnerability reporting were meant to be enabled *before* publication. They were not, and the repository is public. All are free for public repositories and all are owner-only settings.
-3. **Branch protection on `main`.** Require `validate`, no force pushes, no deletions, linear history. Depends on 1.
+1. **Security features — now the only urgent item.** Secret scanning, push protection, CodeQL and private vulnerability reporting were meant to be enabled *before* publication. They were not, and the repository is public. All are free for public repositories and all are owner-only settings.
+2. **Branch protection on `main`.** Require `validate`, no force pushes, no deletions, linear history. The dependency is clear: `validate` now has a green run to require (run `39846014231`).
+3. ~~Actions billing~~ — **resolved by publication.** The first run after the visibility change executed every step and passed. The earlier `steps: 0` failures were real; they described the private-repository state.
 4. ~~Repository metadata~~ — **done**: description and all ten topics applied and verified.
 5. ~~Visibility~~ — **done 2026-10-22**: public, verified unauthenticated (repo 200, README 31 KB, 24 top-level paths, 24 releases).
 

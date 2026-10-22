@@ -23,17 +23,28 @@ been done from here. Verified by reading the repository back with no credentials
 Nothing in the tree changed to make publication possible, and the pre-publication secret scan
 (61 commits, 22 tags, 0 hits) still stands.
 
-### Not fixed by publication — checked, not assumed
+### Fixed by publication — and confirmed by a run that actually executed
 
 Publishing was expected to end the Actions failure, because standard runners are free for public
-repositories. It did not. Run `39840703180`, created **while the repository was already public**,
-reported `conclusion: failure` with **`steps: 0`** and no runner assigned. CI has still never
-executed a step, so every enforcement claim in this repository remains a local-gate claim.
+repositories. It did, and this was verified rather than assumed:
 
-The security features that were supposed to be enabled *before* publication — secret scanning, push
-protection, CodeQL, private vulnerability reporting — are also still unset. A public repository
-without them is the one state this project's own readiness page called out, and it now says so in
-the past tense of a missed order rather than the future tense of a plan.
+> Run `39846014231` (`pull_request`, 20:06:57Z) — **success**, on runner `GitHub Actions 1000002633`,
+> steps 1–11 green including *Every gate* and the clean-regeneration check. First executed step in
+> the repository's history.
+
+**A correction, kept visible.** The first draft of this entry said publication had *not* fixed CI,
+because run `39840703180` failed with `steps: 0` after the flip. That inference was wrong: the run
+was queued minutes before the visibility change took effect, and a later run on the same repository
+executed normally. The failing run is still evidence of the billing block; it is not evidence about
+the state after publication. The wrong claim was published in this changelog and in PR #34's body
+for roughly half an hour before the pull-request run contradicted it.
+
+### Still not fixed — the security features
+
+Secret scanning, push protection, CodeQL and private vulnerability reporting were meant to be
+enabled *before* the code was public. They are not, and publication did not enable them. A public
+repository without them is the state this project's own readiness page called out, and it now
+records that as a missed order rather than a plan.
 
 ### Executed — `INT-P01`, the first run in `06-interactive` (`_meta/empirical-evaluation-18.md`)
 
