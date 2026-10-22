@@ -20,7 +20,7 @@ This page answers one question honestly: **if this went public tomorrow, what wo
 | Community files | Licence (dual), contributing, code of conduct, security policy, issue templates, PR template | **Ready** |
 | Repository configuration | Documented in [`repository-configuration.md`](repository-configuration.md), not yet applied | **Action, not debt** |
 | CI | The workflow is correct and runs one command; it cannot run on this account because of Actions billing | **Blocked outside the repo** |
-| Empirical evidence | 9 of 228 operational prompts executed (3.9%), all by the author, none by a second reader; batch 0 complete | **The real gap** |
+| Empirical evidence | 11 of 228 operational prompts executed (4.8%), all by the author, none by a second reader; batch 0 complete, batch 2 begun | **The real gap** |
 | Contributor readiness | Templates and gates are in place; the first external PR is untested | **Unknown by definition** |
 
 ## 2. What has been tested, by batch
@@ -33,11 +33,11 @@ The mechanical pass covers **all 364 prompts**, in seven batches by top-level fo
 | `01-contribution/` | 48 | 34 | 14 | 0 | 38 | 6 |
 | `02-engineering/` | 82 | 38 | 44 | 0 | 69 | 37 |
 | `03-domains/` | 75 | 35 | 40 | 0 | 53 | 30 |
-| `04-process/` | 92 | 68 | 24 | 0 | 78 | 19 |
+| `04-process/` | 92 | 68 | 24 | 2 | 78 | 19 |
 | `05-scenarios/` | 42 | 37 | 5 | 1 | 0 | 0 |
 | `06-interactive/` | 4 | 0 | 4 | 0 | 0 | 0 |
 | `07-workflows/` | 13 | 8 | 0 | 0 | 1 | 0 |
-| **Total** | **364** | **228** | **131** | **9** | **239** | **92** |
+| **Total** | **364** | **228** | **131** | **11** | **239** | **92** |
 
 The "links not citing a filename" column is the one that is still imperfect: **38% do not cite the upstream filename**, down from 49% in this release after 46 operational prompts were given an explicit line naming it. Of the 92, 10 mention the artifact only by stem — usually a `{{PLACEHOLDER}}` that shares it — and 82 do not mention it at all. Every remaining row is a `skeleton` without a prerequisites section, so the fix is part of promoting them rather than a separate task. The per-system detail is generated in [`conformance-report.md`](conformance-report.md).
 
@@ -49,9 +49,9 @@ Three kinds of check exist in this repository, and conflating them is the easies
 The queue and the per-batch targets are in [`execution-batches.md`](execution-batches.md), which also states what a run has to leave behind to count.
 
 2. **Compositional** — do two prompts in a sequence agree on the artifact between them. Machine-checked for 239 links; 92 still rely on prose that names a concept rather than a file, 82 of them without naming the file at all.
-3. **Empirical** — does following the prompt produce a better result than not following it. **Nine prompts, author-evaluated, none by a second reader.** Nothing here can be automated inside a repository without model access and a scoring sheet, which is backlog #83/#91.
+3. **Empirical** — does following the prompt produce a better result than not following it. **Eleven prompts, author-evaluated, none by a second reader.** Nothing here can be automated inside a repository without model access and a scoring sheet, which is backlog #83/#91.
 
-Only the third is evidence of usefulness, and it is 3.9%.
+Only the third is evidence of usefulness, and it is 4.8%.
 
 ## 4. Blockers, in the order they must be cleared
 
@@ -98,7 +98,7 @@ Release readiness is not a feeling, so it is written as tests. **Mandatory** cri
 | 8 | Every document that quotes a total is covered by a rule | `DOC_TOTAL_FILES` list | Mandatory | **met** for 4 documents; `_meta/` pages are ordinary prose and were corrected by hand in this pass — a gap, recorded rather than hidden |
 | 9 | At least one batch fully executed and written up | batch 0: 8 of 8 | Mandatory | **met** |
 | 10 | At least one prompt executed against a real repository, not a fixture | evidence records with a repository target | Mandatory | **met** — `CHAT-REVIEW`, `CHAT-DESIGN` |
-| 11 | At least one system executed end to end | an evidence record spanning every stage of one system | Desirable | **not met** |
+| 11 | At least one system executed end to end | an evidence record spanning every stage of one system | Desirable | **partial** — `git-operations` stages 1–2 of 5 ran as a unit (`-10.md`); stages 3–5 did not |
 | 12 | At least three runs by someone other than the author | evidence entries whose evaluator is not the author | Desirable — and the single biggest gap | **not met**, 0 of 3 |
 | 13 | A second reader can resume from the documentation alone | a stranger follows `QUICKSTART.md` and reports | Desirable | **untested** |
 | 14 | CI runs the gates on every pull request | a green check on a PR | Mandatory for publication, blocked externally | **blocked** — Actions billing |
@@ -107,7 +107,7 @@ Release readiness is not a feeling, so it is written as tests. **Mandatory** cri
 
 ## 8. The honest one-line status
 
-> Structurally clean, internally consistent, and unusually candid about its own limits. **Nine of 228 procedures have ever been run, all by their author.** Treat it as a well-audited library of procedures, not as a validated one, and say that in any announcement.
+> Structurally clean, internally consistent, and unusually candid about its own limits. **Eleven of 228 procedures have ever been run, all by their author.** Treat it as a well-audited library of procedures, not as a validated one, and say that in any announcement.
 
 ## Related
 

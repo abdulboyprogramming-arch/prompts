@@ -763,3 +763,10 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 - Repository defect found while measuring, not by reading: **two CI workflows**, the older one missing the composition gate. Deleted; `validate.yml` is now the only one, and the claim it supports is true.
 - The plan document was also wrong: it described B0 as eight conversational prompts and listed `CHAT-ASK`, which has never existed. B0 is eight identified prompts across `conversational/` and `prompt-engineering/`. Corrected in `execution-batches.md` §5, with the error kept as a note.
 - What this batch cannot claim: no run by a second person, no isolation in the `GEN-P02` runs, and no end-to-end system execution. The batch is complete in executions, empty in independent verification.
+
+### Execution — `git-operations` stages 1–2 as a system (2.22.0, third pass)
+- **2026-10-22 · executions · the prompt's author** · record `_meta/empirical-evaluation-10.md`
+- Built a real fixture (`/tmp/gitops`): a rename on `main`, a capability plus config change on `feature` with one commit that exists nowhere else, a lockfile both sides touched, no remote. Ran `GIT-P01` (state) then `GIT-P02` (conflict) in order, P02 consuming P01's `.git-ops/STATE.md`.
+- Both stages held: unpushed commit identified, backup branch recorded, direction of "ours" stated, both intents preserved (old symbol gone by grep, tests pass, no markers, history unrewritten).
+- Defects: **High** — `GIT-P02`'s "regenerate lockfiles, never hand-merge" rule keys on conflict type, and git **auto-merged the lockfile in silence**, so the rule never fired; **Medium** — `GIT-P01` recommended `git stash create`, which returns an unreachable SHA that expires, for a snapshot whose purpose is to be findable. Both fixed to v1.1.0, plus a `.git-ops/` location rule the two stages needed and neither had.
+- Scope claim kept honest: two stages of five, merge only (no rebase), no package manager, so the repaired lockfile rule was verified only against the fixture's absence of one.

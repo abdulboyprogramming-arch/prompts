@@ -111,6 +111,19 @@ The first answers "what still blocks a release" in one page: what is tested and 
 
 The second records the settings GitHub asks for — description, ten topics, merge policy, security features, social preview — with the commands that apply them and the reason for each. It also records the **sponsorship decision**: not now, with four reasons, and the trigger for revisiting (`repository-configuration.md` §6).
 
+### New — `git-operations` stages 1–2 executed against a real merge conflict
+
+The first process prompts to be run: `GIT-P01` (state and safety check) then `GIT-P02` (conflict resolution), in order, on a purpose-built repository with a rename on one side, a capability change on the other, and one commit that exists nowhere else.
+
+Both held. The state check found the unrecoverable commit and produced the right recommendation; the conflict was resolved by intent rather than by side, with `grep -rn "send("` empty afterwards, the test suite passing, and no history rewritten.
+
+Two defects, one of them serious:
+
+- **High — the generated-file rule never fires in the case that happens.** `GIT-P02` step 5 says never hand-merge a lockfile, and step 2 keys that on conflict type. Git **auto-merged** `requirements.lock` with no marker, so neither step saw it. A lockfile merged by a text algorithm installs something neither branch intended, and the clean merge is exactly what hides it. The prompt now requires listing files both sides touched that merged *cleanly* and checking them against the generated-file list.
+- **Medium — the recommended snapshot is invisible.** `GIT-P01` offered `git stash create`, which returns a SHA without storing it; the object is unreachable and expires. For a snapshot whose entire purpose is to be findable later, that is worse than no snapshot. Replaced with a stored stash and a recorded `stash@{n}`.
+
+Both prompts also gained the rule neither had: `.git-ops/` is local working state, added to `.git/info/exclude`, never committed — because a committed `STATE.md` conflicts in the exact situation it describes. Both to v1.1.0.
+
 ### New — batch 0 executed end to end: eight prompts run, eight changed
 
 Part 5 of the brief asked for execution rather than review. Batch 0 — the six conversational prompts plus `GEN-P01` and `GEN-P02` — is now **8 of 8 executed**, in five new records (`_meta/empirical-evaluation-05.md` to `-09.md`), and **every one of the five runs changed the prompt it ran**. The executed total is 9 of 228 (3.9%).

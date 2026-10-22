@@ -110,6 +110,28 @@
       "result": "all three decisions correct and no baseline file edited; one defect found in the prompt under test (a change that weakens a security control was accepted with only a product approver, and the safeguard appeared in 1 of 2 runs of identical input); four defects found in GEN-P02 and fixed in v1.1.0 - the 'fresh session' requirement had no isolation procedure and could be claimed without being met, no budget rule for which case gets the second run, no trace format, and a collision with the library's own evidence convention",
       "record": "_meta/empirical-evaluation-09.md",
       "limitations": "no isolation: every run shared one context, so the instability may be an artifact of that; n=1 on two of three cases; rubric score self-assessed"
+    },
+    {
+      "identifier": "GIT-P01",
+      "title": "Repository State & Safety Check",
+      "path": "04-process/git-operations/P01-State/P01-State-Safety-Check.md",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "scope": "real execution on a purpose-built git fixture: one branch, one commit that exists nowhere else, an untracked file, no remote",
+      "result": "artifact produced and every safety assertion held (in-progress operation correctly none, unpushed commit identified, backup branch recorded, recommendation correct); two defects fixed in v1.1.0 - the recommended git stash create snapshot is unreachable and expires silently, and the artifact's .git-ops location was never specified as local-only",
+      "record": "_meta/empirical-evaluation-10.md",
+      "limitations": "synthetic five-file fixture with one author; no remote, so the shared-history branch of the assessment was untested"
+    },
+    {
+      "identifier": "GIT-P02",
+      "title": "Conflict Resolution",
+      "path": "04-process/git-operations/P02-Conflicts/P02-Conflict-Resolution.md",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "scope": "real merge conflict resolved as stage 2 of the git-operations system, consuming GIT-P01's STATE.md: a rename on one side, a capability plus config change on the other, and a lockfile both sides touched",
+      "result": "both intents preserved (grep for the old symbol empty, tests pass, no markers, history unrewritten) and the direction-of-ours rule worked; one High defect found and fixed in v1.1.0 - the regenerate-generated-files rule keys on conflict type, so a lockfile git auto-merged in silence is never checked",
+      "record": "_meta/empirical-evaluation-10.md",
+      "limitations": "two stages of a five-stage system, not an end-to-end run; no package manager, so the repaired rule could not be tested against a real lockfile; a merge was run, not a rebase, where the direction rule matters most"
     }
   ]
 }
