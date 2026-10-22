@@ -385,6 +385,7 @@ def check(docs: list[Doc]) -> tuple[list[str], list[str]]:
 
     errors.extend(check_readme_counts(docs))
     errors.extend(check_documented_counts(docs))
+    errors.extend(check_stated_totals(docs))
     errors.extend(check_community(docs))
 
     for d in docs:
@@ -509,6 +510,70 @@ DOC_MATURITY_LINES = [
         re.compile(r"(\d+) operational, (\d+) draft, (\d+) skeleton"),
     ),
 ]
+
+
+# (document, pattern, which total it claims). The Maturity triplet was the first
+# claim of this kind to drift, not the last: "458 Markdown files" outlived the two
+# documents that made it 462, and a social-preview line still promised 213
+# operational prompts and two executed. A total in prose is a measurement, so it
+# gets the same treatment as the maturity line.
+# Only phrasings that unambiguously mean the total. "228 prompts carry that label"
+# is a statement about the operational subset, and a rule that cannot tell the two
+# apart produces findings the reader has to dismiss, which is how a gate gets
+# switched off.
+DOC_TOTAL_LINES = [
+    (re.compile(r"(\d+)\s+Markdown files"), "files"),
+    (re.compile(r"(\d+)\s+prompt files"), "prompts"),
+    (re.compile(r"all\s+(\d+)\s+prompts\b"), "prompts"),
+]
+
+DOC_TOTAL_FILES = [
+    "README.md",
+    "PROJECT-STATUS.md",
+    "QUICKSTART.md",
+    os.path.join("_meta", "publication-checklist.md"),
+]
+
+
+def check_stated_totals(
+    docs: list[Doc],
+    texts: dict[str, str] | None = None,
+    totals: dict[str, int] | None = None,
+) -> list[str]:
+    """Totals quoted in prose must equal what the scanner just counted.
+
+    Only the documents a reader arrives through are checked, and not the changelog:
+    a changelog's numbers were true on the release date and rewriting them would be
+    worse than leaving them. `texts` lets the self-tests supply fixtures.
+    """
+    total_files = len(docs)
+    total_prompts = sum(
+        1
+        for d in docs
+        if d.is_prompt and not is_archive(d.rel) and d.rel.split(os.sep)[0] not in TOOLING_DIRS
+    )
+    actual = {"files": total_files, "prompts": total_prompts}
+    if totals is not None:
+        actual.update(totals)
+    errors: list[str] = []
+    for rel in DOC_TOTAL_FILES:
+        if texts is not None:
+            text = texts.get(rel)
+        else:
+            path = os.path.join(ROOT, rel)
+            text = None
+            if os.path.exists(path):
+                with open(path, encoding="utf-8") as fh:
+                    text = fh.read()
+        if text is None:
+            continue
+        for pattern, kind in DOC_TOTAL_LINES:
+            for raw in pattern.findall(text):
+                if int(raw) != actual[kind]:
+                    errors.append(
+                        f"{rel}: says {raw} {kind} but the tree has {actual[kind]} — update the number"
+                    )
+    return errors
 
 
 def check_documented_counts(

@@ -103,13 +103,19 @@ It found three real defects on the first run, all in `02-engineering/from-scratc
 
 `.github/CODE_OF_CONDUCT.md` existed and nothing pointed at it. A conduct policy that no document links is a file, not a policy — GitHub shows it in its own UI, and a contributor reading the repository never learns it applies. The same was true of `.github/SECURITY.md`.
 
-`check_community` now requires `LICENSE`, `CONTRIBUTING.md`, the code of conduct and the security policy to exist **and** to be reachable from `README.md` and `CONTRIBUTING.md`. Four fixtures (validator self-tests now 18/18). `CONTRIBUTING.md` gained a *Community and conduct* section, and `README.md`'s contributing section was rewritten: it had been telling readers that `validate_library.py` was the gate and that 165 of 235 prompts were skeletons, both of which stopped being true several releases ago.
+`check_community` now requires `LICENSE`, `CONTRIBUTING.md`, the code of conduct and the security policy to exist **and** to be reachable from `README.md` and `CONTRIBUTING.md`. Four fixtures (validator self-tests now 23/23). `CONTRIBUTING.md` gained a *Community and conduct* section, and `README.md`'s contributing section was rewritten: it had been telling readers that `validate_library.py` was the gate and that 165 of 235 prompts were skeletons, both of which stopped being true several releases ago.
 
 ### New — `_meta/release-readiness.md` and `_meta/repository-configuration.md`
 
 The first answers "what still blocks a release" in one page: what is tested and at which level, the three kinds of check the repository performs, five external blockers in the order they must be cleared, four things that are deliberately *not* blockers, and the four things that would make the library trustable rather than merely clean. Its one-line status is the sentence to use in any announcement.
 
 The second records the settings GitHub asks for — description, ten topics, merge policy, security features, social preview — with the commands that apply them and the reason for each. It also records the **sponsorship decision**: not now, with four reasons, and the trigger for revisiting (`repository-configuration.md` §6).
+
+### New — the totals in prose are checked, because two of them were wrong
+
+`check_documented_counts` has compared the maturity triplet against the tree since 2.22.0. It did not compare the *totals*, and the totals had drifted: `PROJECT-STATUS.md` and the publication checklist both still said 458 Markdown files when the tree held 462, `QUICKSTART.md` offered "all 362 prompts", and the social-preview guidance promised 213 operational prompts and two executed.
+
+`check_stated_totals` now compares "N Markdown files", "N prompt files" and "all N prompts" in the four documents a reader arrives through. The changelog is deliberately excluded: its numbers were true on their release date, and rewriting them would destroy the record that makes the changelog worth keeping. Five fixtures (validator self-tests now 23/23), including the one that matters most — *"228 prompts carry that label"* is a claim about a subset, and a rule that cannot tell a subset from a total produces findings a reader learns to dismiss.
 
 ### New — `CHAT-REVIEW` executed against a real file, and the metric it broke
 
@@ -174,7 +180,7 @@ The two misses were worth more than the hits:
 
 ### Result
 
-**458 Markdown files, 364 prompts: 228 operational, 5 draft, 131 skeleton.** Validator 0 errors / 0 warnings; tooling self-tests 18/18, 13/13, 12/12, 17/17, 19/19; prose lint 0 findings at baseline 0; catalog, gallery, task index, evidence report and conformance report current, verified by one command. The file count is the validator's scan, not `find`'s — they differ by tooling and archive files, and the scanned number is the one that matches the other claims here.
+**462 Markdown files, 364 prompts: 228 operational, 5 draft, 131 skeleton.** Validator 0 errors / 0 warnings; tooling self-tests 23/23, 13/13, 12/12, 17/17, 19/19; prose lint 0 findings at baseline 0; catalog, gallery, task index, evidence report and conformance report current, verified by one command. The file count is the validator's scan, not `find`'s — they differ by tooling and archive files, and the scanned number is the one that matches the other claims here.
 
 Coverage: **143 rows, unchanged** — this release improves the instruments, not the coverage. Executed: **3 of 228 operational prompts (1.3%)** — `DBG-01`, `CHAT-DEBUG`, and `CHAT-SELECT` from this release. The eighteen contribution stages promoted here and `CHAT-HANDOFF` have not been run, and the review log says so for each.
 

@@ -747,3 +747,10 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 - Consequence: the honest figure moved from **34% unnamed to 46% do not cite a filename**, then to **38%** after 21 more operational prompts were given explicit filenames. The repository had been quoting the looser number as its integration claim.
 - Prompt changes (v1.1.0): a published number is the correctness question and comes first; ask about the standard as well as the framework; the not-assessed list must name the definitions the review assumed. New verification rows for both.
 - The finding about the practice, not the prompt: four runs, four prompts changed. Structural review had passed all four.
+
+### Library capability — totals in prose (2.22.0)
+- **2026-10-22 · tooling · n/a**
+- Change: `check_stated_totals()` compares "N Markdown files", "N prompt files" and "all N prompts" against the scanner in the four documents a reader arrives through. Five fixtures, validator self-tests 23/23.
+- Found immediately: two documents said 458 Markdown files where the tree held 462, the quickstart offered "all 362 prompts", and the social-preview guidance promised 213 operational prompts and two executed. Every one of those numbers had been true when written; the tree moved and the sentences did not.
+- The design decision worth keeping: the rule covers three phrasings and not the word "prompts" alone. *"228 prompts carry that label"* is a statement about the operational subset, and a gate that flags it teaches the reader to ignore the gate. A check that cannot distinguish a subset from a total is a check that will be switched off.
+- Changelog numbers are excluded on purpose. They were true on their release date, and the falsification would be the edit.

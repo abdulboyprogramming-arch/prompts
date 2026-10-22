@@ -31,6 +31,7 @@ from validate_library import (  # noqa: E402
     check_community,
     check_documented_counts,
     check_readme_counts,
+    check_stated_totals,
     check_system_readmes,
     load,
 )
@@ -204,6 +205,35 @@ DOC_CASES = [
 ]
 
 
+TOTAL_CASES = [
+    (
+        "a file total that matches the scan passes",
+        {"PROJECT-STATUS.md": "**3 Markdown files**, **2 prompt files**.\n"},
+        False,
+    ),
+    (
+        "a stale Markdown file total is an error",
+        {"PROJECT-STATUS.md": "**458 Markdown files**, **2 prompt files**.\n"},
+        True,
+    ),
+    (
+        "a stale prompt total is an error",
+        {"QUICKSTART.md": "All 362 prompts, plus 3 prompt files.\n"},
+        True,
+    ),
+    (
+        "a subset claim is not a total and is not checked",
+        {"PROJECT-STATUS.md": "228 prompts carry that label; 3 Markdown files.\n"},
+        False,
+    ),
+    (
+        "an unchecked document is ignored",
+        {"CHANGELOG.md": "Old release: 457 Markdown files.\n"},
+        False,
+    ),
+]
+
+
 COMMUNITY_CASES = [
     (
         "all community files present and linked passes",
@@ -277,6 +307,18 @@ def main() -> int:
                 failures += 1
                 print("       detail missing from the message")
 
+    # The stated-totals rule counts the docs it is given, so the fixtures supply a
+    # document list and read their claims against it.
+    for name, texts, expect_error in TOTAL_CASES:
+        errors = check_stated_totals([], texts, totals={"files": 3, "prompts": 2})
+        got_error = bool(errors)
+        good = got_error == expect_error
+        print(f"{'ok  ' if good else 'FAIL'} {name} (expected {'error' if expect_error else 'no error'})")
+        if not good:
+            failures += 1
+            for e in errors:
+                print(f"       got: {e}")
+
     for name, texts, expect_error in COMMUNITY_CASES:
         errors = check_community([], texts)
         got_error = bool(errors)
@@ -287,7 +329,7 @@ def main() -> int:
             for e in errors:
                 print(f"       got: {e}")
 
-    total = len(CASES) + len(COUNT_CASES) + len(DOC_CASES) + len(COMMUNITY_CASES)
+    total = len(CASES) + len(COUNT_CASES) + len(DOC_CASES) + len(TOTAL_CASES) + len(COMMUNITY_CASES)
     print(f"\n{total - failures}/{total} cases passed")
     return 1 if failures else 0
 

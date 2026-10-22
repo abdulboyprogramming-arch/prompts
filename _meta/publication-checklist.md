@@ -23,14 +23,14 @@
 
 | # | Check | Method | Result |
 |---|-------|--------|--------|
-| 1 | Structural validation | `python3 scripts/validate_library.py` | **PASS** — 458 Markdown files, 364 prompts, **0 errors / 0 warnings** |
+| 1 | Structural validation | `python3 scripts/validate_library.py` | **PASS** — 462 Markdown files, 364 prompts, **0 errors / 0 warnings** |
 | 2 | Maturity honesty | validator rules | **PASS** — 228 operational, 5 draft, 131 skeleton; no label exceeds body; no system README outranks its stages |
 | 3 | Executed-prompt count is generated | `scripts/evidence_report.py --check` | **PASS** — `_meta/evidence-levels.md` matches the registry: **4 of 228 operational prompts executed (1.8%)**, stated in the file the README links |
 | 4 | Catalog current | `--catalog` + `git diff` | **PASS** — regenerates with no diff |
 | 5 | Gallery current | `generate_gallery.py --check` | **PASS** — "up to date", 364 prompts |
 | 6 | Duplication | `find_overlaps.py --check` (shingle 0.55) and `--metric combined` (0.75) | **PASS** — highest shingle 0.18; highest combined 0.68, which is the known and *decided* contribution-variant case (`01-contribution/VARIANTS.md`) |
 | 6b | Composition | `scripts/check_prompt_contract.py` | **PASS** — 0 errors across 52 systems and 239 dependency links; 147 cite the upstream filename, 10 mention it only by stem, 82 name no artifact — 92 (38%) do not cite a filename, all in skeletons and listed in `_meta/conformance-report.md` |
-| 7 | Tooling has tests | `test_validator.py`, `test_overlaps.py`, `test_prose_lint.py`, `test_task_index.py`, `test_contract.py` | **PASS** — 18/18, 13/13, 12/12, 17/17, 19/19 |
+| 7 | Tooling has tests | `test_validator.py`, `test_overlaps.py`, `test_prose_lint.py`, `test_task_index.py`, `test_contract.py` | **PASS** — 23/23, 13/13, 12/12, 17/17, 19/19 |
 | 8 | Prose lint | `lint_prose.py --check` | **PASS** — **0 findings at baseline 0**. The ratchet is now a gate: a new vague qualifier fails CI |
 | 9 | Relative links | validator, all links incl. `Depends on` | **PASS** — 0 broken |
 | 10 | Secrets in tree | `ghp_*`, `github_pat_*`, `AKIA*`, private-key headers | **PASS** — 0 hits |
@@ -44,7 +44,7 @@
 | 18 | Licences | `LICENSE`, `LICENSE-CONTENT`, README section | **PASS** — MIT for code, CC BY 4.0 for content, SPDX-detectable |
 | 19 | Every prompt has a home | `generate_task_index.py --check` | **PASS** — 21 tasks, 364 prompts routed, 0 unrouted |
 | 20 | One gate list | `scripts/check_all.py` | **PASS** — CI runs that script and nothing else; a local pass is the same run |
-| 21 | Counts agree with the tree | validator `check_documented_counts` + `check_readme_counts` | **PASS** — 458 Markdown files, 364 prompts, 228/5/131 by maturity, checked mechanically wherever they appear |
+| 21 | Counts agree with the tree | validator `check_documented_counts`, `check_stated_totals`, `check_readme_counts` | **PASS** — 462 Markdown files, 364 prompts, 228/5/131 by maturity; the file and prompt totals are compared on every run in the four documents that quote them |
 | 22 | Repository settings are decided | `_meta/repository-configuration.md` | **PASS** — description, topics, merge policy, security features and sponsorship decision recorded with the commands; **not yet applied** |
 
 Twenty-two gates. Six are new in this pass: composition (6b), community files and their links (16), prose counts (17), and the three that close the gap between what the documents claim and what the tree contains (15, 21, 22).
@@ -113,7 +113,7 @@ Consequences today: PR checks show red without running, the badge is meaningless
 |---|---|
 | Description | "364 prompts for AI coding agents, organised across the engineering lifecycle. Every prompt declares its scope, risk class, and what it will not do — and the repository is validated against those claims in CI." |
 | Topics | `ai-agents`, `prompt-engineering`, `llm`, `coding-agents`, `software-engineering`, `code-review`, `incident-response`, `documentation`, `migration`, `developer-tools` |
-| Social preview | 1280×640 — title, one-line claim, and the honest numbers: 364 prompts · 213 operational · 2 executed |
+| Social preview | 1280×640 — title, one-line claim, and the honest numbers: 364 prompts · 228 operational · 4 executed |
 
 ### 5.4 Merge settings and branch cleanup
 
