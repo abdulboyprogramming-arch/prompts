@@ -2,16 +2,16 @@
 
 Prompts that gather the information a deeper system needs, so that work does not begin on assumptions. They ask a small number of high-leverage questions and produce a structured brief the next prompt can consume.
 
-**Maturity: one `operational`, three `skeleton` (v2.28.5).** `PROJECT-INTAKE.md` was run against a frozen request in 2.28.5, failed every graded criterion, and was rebuilt around repository discovery, contradictions and sourced facts (`_meta/empirical-evaluation-18.md`). The other three remain skeletons: a useful question set with no verification, evidence rules or failure handling. Use those three interactively with a human.
+**Maturity: all four prompts are `operational` (v2.28.6).** Each was run against a committed fixture before it was trusted, and every one failed first: `PROJECT-INTAKE` scored 0 of 5 (`empirical-evaluation-18.md`), `CONTRIBUTION-INTAKE` 0 of 5, `GREENFIELD-INTAKE` 1 of 8 and `SYSTEM-SELECTOR` 5 of 14 (`-19.md`). The repairs came from the failures — read the repository before asking the user, treat the user's statements as claims to check, and route from the generated index rather than from memory.
 
 ## Contents
 
 | Prompt | Purpose | Produces |
 |--------|---------|----------|
 | [`context-collectors/PROJECT-INTAKE.md`](context-collectors/PROJECT-INTAKE.md) | Establish the project, repository, stack, and constraints — discovered first, then asked — `operational` | `PROJECT_BRIEF.md` |
-| [`context-collectors/CONTRIBUTION-INTAKE.md`](context-collectors/CONTRIBUTION-INTAKE.md) | Establish target repository, contributor identity, and authorisation | `CONTRIBUTION_BRIEF.md` |
-| [`context-collectors/GREENFIELD-INTAKE.md`](context-collectors/GREENFIELD-INTAKE.md) | Establish the problem, users, and non-goals for a new project | `GREENFIELD_BRIEF.md` |
-| [`multi-step-wizards/SYSTEM-SELECTOR.md`](multi-step-wizards/SYSTEM-SELECTOR.md) | Route the user to the right system/workflow | recommendation |
+| [`context-collectors/CONTRIBUTION-INTAKE.md`](context-collectors/CONTRIBUTION-INTAKE.md) | Read the upstream's rules and permissions before any code is written — `operational` | `CONTRIBUTION_BRIEF.md` |
+| [`context-collectors/GREENFIELD-INTAKE.md`](context-collectors/GREENFIELD-INTAKE.md) | Separate the problem from the proposal, fix the constraints, write the non-goals — `operational` | `GREENFIELD_BRIEF.md` |
+| [`multi-step-wizards/SYSTEM-SELECTOR.md`](multi-step-wizards/SYSTEM-SELECTOR.md) | Route to a destination that exists, using `TASKS.md` rather than memory — `operational` | routing card |
 
 ## Design principles
 
@@ -30,9 +30,11 @@ If the request is already specific ("this test is flaky", "the audit found these
 
 1. ~~No validation that the produced brief is internally consistent.~~ **Closed for `INT-P01` in 2.28.5** — §6 verification, seven checks.
 2. ~~No handling of contradictory answers.~~ **Closed for `INT-P01` in 2.28.5** — contradictions are a first-class section of the brief.
-3. `SYSTEM-SELECTOR` does not yet cover the systems added in 2.0.0 (project-recovery, observability, release, AI/agentic, workflows). **Open.**
+3. ~~`SYSTEM-SELECTOR` does not yet cover the systems added in 2.0.0~~ **Closed in 2.28.6** — it now routes from the 21-section `TASKS.md` index, and a 14-request fixture scores it against that index rather than against memory (5 of 14 → 14 of 14).
 4. ~~No record of which assumptions the user confirmed.~~ **Closed for `INT-P01` in 2.28.5** — each assumption carries its confirmer and a falsifier.
 
-The same three repairs are **not** applied to `INT-P02`, `INT-P03` or `WIZ-P01`, which remain skeletons. The fix was demonstrated on one prompt and has to be repeated on the others before the system can be called operational.
+All four gaps are now closed, and each was closed by a run that failed first. The system has no skeletons left.
+
+**What is still not tested:** that these briefs improve the work of the systems that consume them. The library has no end-to-end composition harness, and every result above is author-run.
 
 Tracked in [`_meta/ROADMAP-AND-BACKLOG.md`](../_meta/ROADMAP-AND-BACKLOG.md).

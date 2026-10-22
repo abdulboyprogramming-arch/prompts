@@ -29,7 +29,7 @@ prompts by situation.
 | [06-interactive — conversations that clarify a request](#06-interactive--conversations-that-clarify-a-request) | 4 | Use when the request is vague and needs to be scoped first. |
 | [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 13 | Composed sequences that route between systems and stop at human gates. |
 
-*Maturity across the library: 282 operational, 5 draft, 77 skeleton, 364 total.*
+*Maturity across the library: 285 operational, 5 draft, 74 skeleton, 364 total.*
 
 ---
 
@@ -663,9 +663,9 @@ Use when the request is vague and needs to be scoped first.
 | ID | Prompt | Use it for | Maturity | Risk |
 |---|---|---|---|---|
 | `INT-P01` | [Project Intake Context Collector](06-interactive/context-collectors/PROJECT-INTAKE.md) | Start a project engagement: discover what the repository already answers, resolve contradictions with the user, and produce a brief that separates facts from assumpt <br>**Inputs:** `REPO_PATH, USER_REQUEST, DEADLINE, APPROVER` | operational | A |
-| `INT-P02` | [Contribution Intake Context Collector](06-interactive/context-collectors/CONTRIBUTION-INTAKE.md) | Before contributing to someone else's project: collect the repository, the maintainers' expectations, and the candidate tasks. | skeleton | A |
-| `INT-P03` | [Greenfield / From-Scratch Intake Context Collector](06-interactive/context-collectors/GREENFIELD-INTAKE.md) | Starting from nothing: collect the product intent, constraints, and non-goals needed to pick a build strategy. | skeleton | A |
-| `WIZ-P01` | [System Selector Wizard](06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md) | You do not know which system applies: answer a short question set and get routed to the right prompt sequence. | skeleton | A |
+| `INT-P02` | [Contribution Intake Context Collector](06-interactive/context-collectors/CONTRIBUTION-INTAKE.md) | Before contributing to someone else's project: read the maintenance rules and permissions first, so the contribution is one the project actually accepts. <br>**Inputs:** `TARGET_UPSTREAM, USER_REQUEST, REPO_PATH, APPROVER` | operational | A |
+| `INT-P03` | [Greenfield / From-Scratch Intake Context Collector](06-interactive/context-collectors/GREENFIELD-INTAKE.md) | Before building from nothing: separate the problem from the proposed solution, and write the non-goals down while they are still cheap to hold. <br>**Inputs:** `USER_REQUEST, DEADLINE, TEAM_SIZE, APPROVER` | operational | A |
+| `WIZ-P01` | [System Selector Wizard](06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md) | You do not know which system applies: route the request against the repository's own index instead of guessing from memory. <br>**Inputs:** `USER_REQUEST, REPO_PATH, CAPABILITIES` | operational | A |
 
 ## 07-workflows — multi-system procedures
 

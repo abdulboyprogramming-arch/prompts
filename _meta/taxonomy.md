@@ -25,7 +25,7 @@ Purpose and domain determine the folder; mode, risk, and maturity are declared i
 | `03-domains` | Domains | Deep technology systems: backend, frontend, devops, data/ML, games, AI/agentic | All fourteen systems operational (complete as of 2.28.0) |
 | `04-process` | Process | Testing, code review, documentation, project management, research, observability, release engineering | Mixed |
 | `05-scenarios` | Scenarios | Single-purpose prompts for common situations | Operational for debugging, incident, flaky tests; others draft/skeleton |
-| `06-interactive` | Interactive | Intake prompts and wizards that collect context | One operational (`INT-P01`, 2.28.5); three skeletons |
+| `06-interactive` | Interactive | Intake prompts and wizards that collect context | All four operational as of 2.28.6, each after a fixture run that failed first |
 | `07-workflows` | Workflows | Composed multi-system sequences with gates and handoff contracts | Draft |
 | `_meta` | Library standards | Authoring standard, rubric, templates, catalog, roadmap, review log | Operational |
 | `archive` | Archive | Superseded source material (legacy .txt) | Retained, not maintained |

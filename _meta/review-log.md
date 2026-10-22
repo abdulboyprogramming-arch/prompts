@@ -939,4 +939,21 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
   lifecycle. Promoted to `operational`.
 - Not claimed: one prompt of four; a desk run against a fixture the author wrote; the brief is not
   tested downstream, so whether consuming it improves a later stage remains unmeasured.
+### Execution — `06-interactive` completed: the router scored against the repository's own index (2.28.6)
+- **2026-10-22 · executions · the prompt's author** · record `_meta/empirical-evaluation-19.md`
+- `WIZ-P01` is the only prompt in the library whose output can be graded against generated ground
+  truth: `TASKS.md` names a destination for each of 21 situations. Fourteen requests, **5 of 14 → 14 of 14**.
+- The failure classes were not vocabulary: three requests had no category (the seven predate release,
+  privacy, AI-agentic), three have two legitimate destinations separated by a condition, four
+  destinations postdate the prompt. v1.1.0 reads the index, checks capability first, and verifies paths.
+- `INT-P02` **0 of 5 → 5 of 5** against five planted traps in a synthetic upstream; `INT-P03`
+  **1 of 8 → 8 of 8** against a proposal-in-search-of-a-problem. Both failed for the same structural
+  reason as `INT-P01` last cycle: they asked the user instead of reading, and the user was the only
+  source that could be confidently wrong.
+- The fixture's own first draft was wrong twice (named `project-recovery` where the index says
+  `ONBOARD-01`, `ai-output-verification` where the section names only `CHAT-*`). Caught by checking
+  against the index — the same discipline the prompt was rewritten to require.
+- Not claimed: author-run desk execution; the request-to-section mapping in the routing fixture is a
+  judgement even though the section-to-destination mapping is generated; nothing tests whether these
+  briefs improve the systems that consume them.
 
