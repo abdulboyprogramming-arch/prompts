@@ -12,9 +12,9 @@ input, which is the property that makes a sequence of prompts a system rather th
 |---------|------:|
 | Systems with more than one stage | 52 |
 | Dependency links between stages in a system | 239 |
-| Links where the downstream stage never names the upstream artifact | **73** |
+| Links where the downstream stage never names the upstream artifact | **68** |
 | Links that mention it only by stem, never as a filename | 9 |
-| Links that cite the upstream filename | 157 |
+| Links that cite the upstream filename | 162 |
 
 The second row is the library's real integration claim. The third is what is left of it: a
 link where the downstream prompt says *"the rollout evidence"* instead of naming
@@ -52,7 +52,7 @@ handed the artifact without anyone guessing its name.
 | `03-domains/backend` | 9 | 8 | 6 | 0 | 0 | 6 |
 | `03-domains/cost-engineering` | 4 | 5 | 3 | 3 | 0 | 0 |
 | `03-domains/data-engineering` | 2 | 3 | 1 | 1 | 0 | 0 |
-| `03-domains/data-ml-ai` | 8 | 7 | 6 | 0 | 0 | 6 |
+| `03-domains/data-ml-ai` | 8 | 7 | 6 | 5 | 0 | 1 |
 | `03-domains/database` | 5 | 7 | 4 | 4 | 0 | 0 |
 | `03-domains/desktop-cli` | 2 | 2 | 0 | 0 | 0 | 0 |
 | `03-domains/devops-infra` | 8 | 7 | 6 | 0 | 0 | 6 |
@@ -163,12 +163,7 @@ that stage produces but this one never mentions.
 
 | Stage | Depends on | Artifact not named |
 |-------|------------|--------------------|
-| `ML-P02` | `ML-P01` | `ML_CONTEXT.md` |
-| `ML-P03` | `ML-P02` | `ML_PROBLEM.md` |
-| `ML-P04` | `ML-P03` | `ML_DATA.md` |
-| `ML-P05` | `ML-P04` | `ML_APPROACH.md` |
-| `ML-P06` | `ML-P05` | `ML_IMPLEMENTATION_LOG.md` |
-| `ML-P07` | `ML-P06` | `ML_EVALUATION.md` |
+| `MLA-P06` | `MLA-P05` | `ML_IMPLEMENTATION_LOG.md` |
 
 ### `03-domains/devops-infra`
 

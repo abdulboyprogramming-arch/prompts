@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 364 prompts — 0 canonical, 249 operational, 5 draft, 110 skeleton.
+**Totals:** 364 prompts — 0 canonical, 257 operational, 5 draft, 102 skeleton.
 
 ## `00-core`
 
@@ -282,14 +282,14 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
 | ID | Stage | Maturity | Mode | Risk | File |
 |----|-------|----------|------|------|------|
-| `ML-P01` | PROMPT 01 — Context & Constraints | skeleton | implementation | B | [P01-Context-Constraints.md](../03-domains/data-ml-ai/P01-Context/P01-Context-Constraints.md) |
-| `ML-P02` | PROMPT 02 — Problem Framing | skeleton | planning | B | [P02-Problem-Framing.md](../03-domains/data-ml-ai/P02-Problem-Framing/P02-Problem-Framing.md) |
-| `ML-P03` | PROMPT 03 — Data Assessment | skeleton | diagnostic | B | [P03-Data-Assessment.md](../03-domains/data-ml-ai/P03-Data/P03-Data-Assessment.md) |
-| `ML-P04` | PROMPT 04 — Approach Design | skeleton | planning | B | [P04-Approach-Design.md](../03-domains/data-ml-ai/P04-Approach/P04-Approach-Design.md) |
-| `ML-P05` | PROMPT 05 — Implementation | skeleton | implementation | B | [P05-Implementation.md](../03-domains/data-ml-ai/P05-Implementation/P05-Implementation.md) |
-| `ML-P06` | PROMPT 06 — Evaluation | skeleton | diagnostic | B | [P06-Evaluation.md](../03-domains/data-ml-ai/P06-Evaluation/P06-Evaluation.md) |
-| `ML-P07` | PROMPT 07 — Deployment & Monitoring | skeleton | implementation | C | [P07-Deployment-Monitoring.md](../03-domains/data-ml-ai/P07-Deployment-Monitoring/P07-Deployment-Monitoring.md) |
-| `ML-P08` | PROMPT 08 — Data / ML / AI Master Orchestrator | skeleton | orchestration | C | [P08-Data-ML-AI-Orchestrator.md](../03-domains/data-ml-ai/P08-Orchestrator/P08-Data-ML-AI-Orchestrator.md) |
+| `MLA-P01` | PROMPT 1 — Context & Constraints: the decision first, the mo | operational | planning | A | [P01-Context-Constraints.md](../03-domains/data-ml-ai/P01-Context/P01-Context-Constraints.md) |
+| `MLA-P02` | PROMPT 2 — Problem Framing: the metric is a decision about c | operational | planning | A | [P02-Problem-Framing.md](../03-domains/data-ml-ai/P02-Problem-Framing/P02-Problem-Framing.md) |
+| `MLA-P03` | PROMPT 3 — Data Assessment: the leakage register is the deli | operational | diagnostic | A | [P03-Data-Assessment.md](../03-domains/data-ml-ai/P03-Data/P03-Data-Assessment.md) |
+| `MLA-P04` | PROMPT 4 — Approach Design: a baseline you can beat, and the | operational | planning | A | [P04-Approach-Design.md](../03-domains/data-ml-ai/P04-Approach/P04-Approach-Design.md) |
+| `MLA-P05` | PROMPT 5 — Implementation: reproducible, or the number is a  | operational | implementation | B | [P05-Implementation.md](../03-domains/data-ml-ai/P05-Implementation/P05-Implementation.md) |
+| `MLA-P06` | PROMPT 6 — Evaluation: the test set is touched once | operational | diagnostic | A | [P06-Evaluation.md](../03-domains/data-ml-ai/P06-Evaluation/P06-Evaluation.md) |
+| `MLA-P07` | PROMPT 7 — Deployment & Monitoring: design the wrong answer  | operational | implementation | C | [P07-Deployment-Monitoring.md](../03-domains/data-ml-ai/P07-Deployment-Monitoring/P07-Deployment-Monitoring.md) |
+| `MLA-P08` | PROMPT 8 — Data / ML / AI Master Orchestrator | operational | orchestration | A | [P08-Data-ML-AI-Orchestrator.md](../03-domains/data-ml-ai/P08-Orchestrator/P08-Data-ML-AI-Orchestrator.md) |
 
 ## `03-domains/database`
 
