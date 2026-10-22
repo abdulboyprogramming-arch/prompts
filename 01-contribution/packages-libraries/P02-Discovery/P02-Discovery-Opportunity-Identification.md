@@ -34,6 +34,7 @@ Out of scope: designing the API, deciding the version, or proposing features the
 - `{{RELEASE_HISTORY}}` — the changelog and the tags. Regressions cluster near recent releases, and a fix that was reverted is a candidate with its history already written.
 - `{{DOWNSTREAM_SEARCH}}` — how to search code that depends on this package: a package registry's dependents page, a code-search engine, or a local clone of a well-known consumer.
 - `{{SEMVER_POLICY}}` — the versioning rule, so a candidate can state whether its fix is shippable in a patch.
+- `PACKAGE_CONTEXT.md` — written by `PKG-P01`; read it before starting rather than re-deriving it.
 
 ## 4. Workflow
 

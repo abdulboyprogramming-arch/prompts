@@ -31,6 +31,7 @@ Out of scope: new findings (return to P02), architectural redesign, contract neg
 | Metrics baseline for the affected service (latency, errors, utilisation) | yes | you cannot prove you did not break it |
 | Rollback method (previous size, previous policy, restore point) | yes | stop |
 | Change window `{{CHANGE_WINDOW}}` for production-affecting changes | recommended | schedule one |
+- `.cost/WASTE_FINDINGS.md` — written by `COST-P02`; read it before starting rather than re-deriving it.
 
 ## 4. Workflow
 

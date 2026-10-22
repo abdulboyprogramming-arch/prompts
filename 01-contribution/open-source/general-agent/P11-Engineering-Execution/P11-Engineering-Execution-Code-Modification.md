@@ -29,6 +29,7 @@ You are the Engineering Execution & Code Modification agent. Your responsibility
 - Feature branch `{{BRANCH}}` exists and is checked out.
 - Implementation checklist and acceptance criteria are available.
 - Component deep-dive notes and invariants from earlier stages are available.
+- `REPO_MAP.md`, `KNOWLEDGE_BASE.md`, `OPPORTUNITY_LEDGER.md` — written by `P01`; read them before starting rather than re-deriving them.
 
 ## 4. Required Tools and Permissions
 

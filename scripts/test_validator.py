@@ -28,6 +28,7 @@ import textwrap
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from validate_library import (  # noqa: E402
+    check_community,
     check_documented_counts,
     check_readme_counts,
     check_system_readmes,
@@ -203,6 +204,35 @@ DOC_CASES = [
 ]
 
 
+COMMUNITY_CASES = [
+    (
+        "all community files present and linked passes",
+        {"LICENSE": "MIT", "CONTRIBUTING.md": "See CODE_OF_CONDUCT.md and SECURITY.md.",
+         ".github/CODE_OF_CONDUCT.md": "x", ".github/SECURITY.md": "y",
+         "README.md": "Read CONTRIBUTING.md."},
+        False,
+    ),
+    (
+        "a missing code of conduct is an error",
+        {"LICENSE": "MIT", "CONTRIBUTING.md": "See CODE_OF_CONDUCT.md and SECURITY.md.",
+         ".github/SECURITY.md": "y", "README.md": "Read CONTRIBUTING.md."},
+        True,
+    ),
+    (
+        "a conduct policy nobody links is an error",
+        {"LICENSE": "MIT", "CONTRIBUTING.md": "Nothing here.", ".github/CODE_OF_CONDUCT.md": "x",
+         ".github/SECURITY.md": "y", "README.md": "Read CONTRIBUTING.md."},
+        True,
+    ),
+    (
+        "a README that never points at CONTRIBUTING is an error",
+        {"LICENSE": "MIT", "CONTRIBUTING.md": "See CODE_OF_CONDUCT.md and SECURITY.md.",
+         ".github/CODE_OF_CONDUCT.md": "x", ".github/SECURITY.md": "y", "README.md": "Hello."},
+        True,
+    ),
+]
+
+
 def main() -> int:
     failures = 0
     for name, readme, stages, expect_error in CASES:
@@ -247,7 +277,17 @@ def main() -> int:
                 failures += 1
                 print("       detail missing from the message")
 
-    total = len(CASES) + len(COUNT_CASES) + len(DOC_CASES)
+    for name, texts, expect_error in COMMUNITY_CASES:
+        errors = check_community([], texts)
+        got_error = bool(errors)
+        good = got_error == expect_error
+        print(f"{'ok  ' if good else 'FAIL'} {name} (expected {'error' if expect_error else 'no error'})")
+        if not good:
+            failures += 1
+            for e in errors:
+                print(f"       got: {e}")
+
+    total = len(CASES) + len(COUNT_CASES) + len(DOC_CASES) + len(COMMUNITY_CASES)
     print(f"\n{total - failures}/{total} cases passed")
     return 1 if failures else 0
 

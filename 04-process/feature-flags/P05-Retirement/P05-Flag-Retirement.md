@@ -29,6 +29,8 @@ Out of scope: deleting an operational kill-switch that is still needed (retire o
 
 - `{{REPO_PATH}}` at `{{BASE_REF}}`, worked on `{{BRANCH}}`; `{{FLAG_ID}}` to retire.
 - Evidence the winning state is permanent: exposure at the winning value for the declared period, no targeting exemptions in use, and no open experiment depending on the losing state. For a kill-switch being retired, the operator's agreement that the control is obsolete (`{{APPROVER}}` if the control was approved by someone).
+- `.flags/ROLLOUT_LOG.md` — written by `FF-P03`; read it before starting rather than re-deriving it.
+- `.flags/SWITCH_LOG.md` — written by `FF-P04`; read it before starting rather than re-deriving it.
 
 ## 4. Workflow
 

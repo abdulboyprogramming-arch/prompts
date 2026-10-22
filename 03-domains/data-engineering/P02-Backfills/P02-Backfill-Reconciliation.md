@@ -31,6 +31,7 @@ Out of scope: changing the transformation logic itself (that is a code change, r
 - `{{DOWNSTREAM_CONSUMERS}}` — dashboards, reports, exports, models, invoices, and partner feeds that read this table.
 - `{{WAREHOUSE}}` — determines partitioning, cost, and whether the write is atomic.
 - `{{APPROVER}}` — required: this changes historical facts.
+- `.data/PIPELINE_AUDIT.md` — written by `DE-P01`; read it before starting rather than re-deriving it.
 
 ## 4. Workflow
 

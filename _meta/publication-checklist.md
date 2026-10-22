@@ -2,8 +2,8 @@
 
 **Purpose:** the gate that must pass before this repository becomes public, and the list of things only the owner can do in GitHub settings.
 
-**Audited:** 2026-10-21 (v2.22.0) · **Auditor:** repository maintainer (agent-assisted, evidence below)
-**Previous audit:** v2.21.1 — re-audited after six changes: the prose lint closed to zero, `TASKS.md` landed, two chat prompts were added, `P06` was differentiated across three variants, a multi-agent run was documented, and the gate list moved into `scripts/check_all.py`.
+**Audited:** 2026-10-22 (v2.22.0) · **Auditor:** repository maintainer (agent-assisted, evidence below)
+**Previous audit:** 2026-10-21 — six changes: the prose lint closed to zero, `TASKS.md` landed, two chat prompts were added, `P06` was differentiated across three variants, a multi-agent run was documented, and the gate list moved into `scripts/check_all.py`. This pass added composition checking, community-file links, the release-readiness page, and the repository configuration record.
 
 ---
 
@@ -23,13 +23,14 @@
 
 | # | Check | Method | Result |
 |---|-------|--------|--------|
-| 1 | Structural validation | `python3 scripts/validate_library.py` | **PASS** — 461 Markdown files, 364 prompts, **0 errors / 0 warnings** |
+| 1 | Structural validation | `python3 scripts/validate_library.py` | **PASS** — 458 Markdown files, 364 prompts, **0 errors / 0 warnings** |
 | 2 | Maturity honesty | validator rules | **PASS** — 228 operational, 5 draft, 131 skeleton; no label exceeds body; no system README outranks its stages |
 | 3 | Executed-prompt count is generated | `scripts/evidence_report.py --check` | **PASS** — `_meta/evidence-levels.md` matches the registry: **3 of 228 operational prompts executed (1.3%)**, stated in the file the README links |
 | 4 | Catalog current | `--catalog` + `git diff` | **PASS** — regenerates with no diff |
 | 5 | Gallery current | `generate_gallery.py --check` | **PASS** — "up to date", 364 prompts |
 | 6 | Duplication | `find_overlaps.py --check` (shingle 0.55) and `--metric combined` (0.75) | **PASS** — highest shingle 0.18; highest combined 0.68, which is the known and *decided* contribution-variant case (`01-contribution/VARIANTS.md`) |
-| 7 | Tooling has tests | `test_validator.py`, `test_overlaps.py`, `test_prose_lint.py`, `test_task_index.py` | **PASS** — 14/14, 13/13, 12/12, 17/17 |
+| 6b | Composition | `scripts/check_prompt_contract.py` | **PASS** — 0 errors across 52 systems and 239 dependency links; 82 links (34%) still name a concept instead of the upstream artifact, all in skeletons and reported in `_meta/conformance-report.md` |
+| 7 | Tooling has tests | `test_validator.py`, `test_overlaps.py`, `test_prose_lint.py`, `test_task_index.py`, `test_contract.py` | **PASS** — 18/18, 13/13, 12/12, 17/17, 14/14 |
 | 8 | Prose lint | `lint_prose.py --check` | **PASS** — **0 findings at baseline 0**. The ratchet is now a gate: a new vague qualifier fails CI |
 | 9 | Relative links | validator, all links incl. `Depends on` | **PASS** — 0 broken |
 | 10 | Secrets in tree | `ghp_*`, `github_pat_*`, `AKIA*`, private-key headers | **PASS** — 0 hits |
@@ -38,11 +39,15 @@
 | 13 | Absolute / environment paths | `/home/user`, sandbox hosts, `arena/<id>` branch names | **PASS** — 0 hits in content (the only match is this checklist's own grep string) |
 | 14 | Tracked build artefacts | `git ls-files` | **PASS** — no `__pycache__`, `.pyc`, `node_modules`, `.env` |
 | 15 | Repository size | `git ls-files`, `du` | **PASS** — 471 tracked files, 4.2 MB; largest 112 KB |
-| 16 | Required community files | `.github/` listing | **PASS** — SECURITY, CODE_OF_CONDUCT, PR template, issue templates |
-| 17 | Licences | `LICENSE`, `LICENSE-CONTENT`, README section | **PASS** — MIT for code, CC BY 4.0 for content, SPDX-detectable |
-| 18 | Every prompt has a home | `generate_task_index.py --check` | **PASS** — 21 tasks, 364 prompts routed, 0 unrouted |
-| 19 | One gate list | `scripts/check_all.py` | **PASS** — CI runs that script and nothing else; a local pass is the same run |
-| 20 | Counts agree with the tree | `find` + `git ls-tree` | **PASS** — 461 Markdown files, 364 prompts, 213/5/146 by maturity, in all four places they appear |
+| 16 | Community files exist and are linked | validator `check_community` | **PASS** — `LICENSE`, `CONTRIBUTING.md`, `.github/CODE_OF_CONDUCT.md`, `.github/SECURITY.md` present, and each is linked from the document that should point at it |
+| 17 | Counts in prose are checked | validator `check_documented_counts` | **PASS** — `PROJECT-STATUS.md` and this file are compared against the tree on every run |
+| 18 | Licences | `LICENSE`, `LICENSE-CONTENT`, README section | **PASS** — MIT for code, CC BY 4.0 for content, SPDX-detectable |
+| 19 | Every prompt has a home | `generate_task_index.py --check` | **PASS** — 21 tasks, 364 prompts routed, 0 unrouted |
+| 20 | One gate list | `scripts/check_all.py` | **PASS** — CI runs that script and nothing else; a local pass is the same run |
+| 21 | Counts agree with the tree | validator `check_documented_counts` + `check_readme_counts` | **PASS** — 458 Markdown files, 364 prompts, 228/5/131 by maturity, checked mechanically wherever they appear |
+| 22 | Repository settings are decided | `_meta/repository-configuration.md` | **PASS** — description, topics, merge policy, security features and sponsorship decision recorded with the commands; **not yet applied** |
+
+Twenty-two gates. Six are new in this pass: composition (6b), community files and their links (16), prose counts (17), and the three that close the gap between what the documents claim and what the tree contains (15, 21, 22).
 
 ## 2. What a reader sees first
 

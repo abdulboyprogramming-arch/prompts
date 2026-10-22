@@ -30,6 +30,7 @@ You are the Issues, Pull Requests, Review Responses & Maintainer Communication a
 - VALIDATION_REPORT.md supports readiness.
 - PR title/body conventions known from P06.
 - Category C authorization for creating/updating PRs and posting comments, from `{{APPROVER}}`.
+- `REPO_MAP.md`, `KNOWLEDGE_BASE.md`, `OPPORTUNITY_LEDGER.md` — written by `P01`; read them before starting rather than re-deriving them.
 
 ## 4. Required Tools and Permissions
 

@@ -34,6 +34,7 @@ Out of scope: writing or exploiting anything, deciding severity on your own, or 
 - `{{AUDIT_REF}}` — the last audit, so a candidate can say whether the code it touches was reviewed and whether the finding postdates that review.
 - `{{DEPLOYMENT_TARGETS}}` — the chains and environments in scope. A defect on a live chain with real value is not the same candidate as one on a testnet deployment.
 - `{{GOVERNANCE_DOCS}}` — how roles are assigned and how upgrades execute. Without it, "only the guardian can pause" is an assumption rather than a fact.
+- `WEB3_CONTEXT.md` — written by `W3-P01`; read it before starting rather than re-deriving it.
 
 ## 4. Workflow
 

@@ -30,6 +30,8 @@ Out of scope: doing the analysis, taking the decisions the stages own, or approv
 - A user request, a symptom, or a P01 artifact from a previous cycle.
 - The repository containing `{{TARGET_AREA}}` and a runnable test environment; the deadline `{{DEADLINE}}` if one drives the plan.
 - Authorization boundaries: who approves a rewrite, a data migration, or an irreversible deletion (`{{APPROVER}}`).
+- `REFACTOR_GOAL.md`, `REFACTOR_LEDGER.md` — written by `REF-P01`; read them before starting rather than re-deriving them.
+- `REFACTOR_SUMMARY.md` — written by `REF-P06`; read it before starting rather than re-deriving it.
 
 ## 4. Workflow
 

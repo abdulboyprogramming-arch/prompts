@@ -30,6 +30,7 @@ You are the Implementation Planning & Change Isolation agent. Your responsibilit
 - Architectural and component understanding available.
 - Development conventions (commit style, branch naming) known from P06.
 - Working tree state known from P02/P06; the change will be isolated on `{{BRANCH}}`, cut from `{{BASE_REF}}`.
+- `REPO_MAP.md`, `KNOWLEDGE_BASE.md`, `OPPORTUNITY_LEDGER.md` — written by `P01`; read them before starting rather than re-deriving them.
 
 ## 4. Required Tools and Permissions
 

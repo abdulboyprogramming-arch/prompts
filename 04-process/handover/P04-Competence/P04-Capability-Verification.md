@@ -30,6 +30,7 @@ Out of scope: fixing the system or the documentation (that is follow-up work), a
 - `HANDOVER_STATE.md` and `HANDOVER_SCOPE.md` (acceptance criteria) — the exercises are derived from the claims and the criteria.
 - `{{HANDOVER_RECEIVER}}` available for the sessions, with their real accounts from P03.
 - `{{TARGET_ENV}}` — a non-production environment for anything destructive; `{{REPO_PATH}}` for code-level exercises; `{{APPROVER}}` for any exercise that must touch production (rehearsed inside a change window, never improvised).
+- `ACCESS_TRANSFER.md` — written by `HAND-P03`; read it before starting rather than re-deriving it.
 
 ## 4. Workflow
 

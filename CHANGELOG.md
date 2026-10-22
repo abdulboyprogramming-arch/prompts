@@ -87,6 +87,28 @@ Two decisions are recorded rather than made by omission. `P01` and `P08` stay un
 
 What remains is execution. Eighteen stages that have never been run are eighteen hypotheses about what a maintainer will accept — `WEB-P02`/`WEB-P07` and `PKG-P02`/`PKG-P07` are the cheapest to test, because their output can be judged against a public issue tracker.
 
+### New — composition is checked, not assumed
+
+The validator has always asked whether each prompt is well formed **on its own**. Nothing asked whether two prompts in a sequence agree on the artifact between them, which is the property that makes this a library of systems rather than 364 separate documents.
+
+`scripts/check_prompt_contract.py` now does, and it treats the things that break a sequence as errors: a `Depends on:` that names no prompt (checked against tokens rather than against the identifiers that happen to exist, or the check could never fail), two stages in one system claiming to produce the same file unless one says *updates* or is an orchestrator, and a cycle in a system's dependency graph. Fourteen fixtures in `scripts/test_contract.py` pin each rule, including the parenthetical case — `none (companion: GEN-P02)` is not a dependency.
+
+It found three real defects on the first run, all in `02-engineering/from-scratch`: `FS-P02` claimed to produce `VISION.md`, which `FS-P01` owns; `FS-P07` claimed `README.md`, which `FS-P04` scaffolds. Both now say *updates*, which is what they do.
+
+**The measured part matters more than the gate.** Of 239 dependency links between stages, **116 (49%) named a concept where the artifact has a filename** — *"the rollout evidence"* instead of `.flags/ROLLOUT_LOG.md`. Each of those prompts is individually correct, and an agent running the sequence has to invent the mapping. Twenty-six operational prompts now name the upstream file in their prerequisites; the count is **82 (34%)**, and every remaining link is a skeleton without a prerequisites section, so the rest of the burndown is part of promoting them. `_meta/conformance-report.md` is generated, checked for staleness in CI, and lists every remaining link by system.
+
+### New — community files are checked, and one of them was unlinked
+
+`.github/CODE_OF_CONDUCT.md` existed and nothing pointed at it. A conduct policy that no document links is a file, not a policy — GitHub shows it in its own UI, and a contributor reading the repository never learns it applies. The same was true of `.github/SECURITY.md`.
+
+`check_community` now requires `LICENSE`, `CONTRIBUTING.md`, the code of conduct and the security policy to exist **and** to be reachable from `README.md` and `CONTRIBUTING.md`. Four fixtures (validator self-tests now 18/18). `CONTRIBUTING.md` gained a *Community and conduct* section, and `README.md`'s contributing section was rewritten: it had been telling readers that `validate_library.py` was the gate and that 165 of 235 prompts were skeletons, both of which stopped being true several releases ago.
+
+### New — `_meta/release-readiness.md` and `_meta/repository-configuration.md`
+
+The first answers "what still blocks a release" in one page: what is tested and at which level, the three kinds of check the repository performs, five external blockers in the order they must be cleared, four things that are deliberately *not* blockers, and the four things that would make the library trustable rather than merely clean. Its one-line status is the sentence to use in any announcement.
+
+The second records the settings GitHub asks for — description, ten topics, merge policy, security features, social preview — with the commands that apply them and the reason for each. It also records the **sponsorship decision**: not now, with four reasons, and the trigger for revisiting (`repository-configuration.md` §6).
+
 ### New — a worked multi-agent run, and the three rules it forced (#109)
 
 `WF-MULTIAGENT` said "freeze the interfaces first" and "audit for cross-agent interference". Neither was demonstrated, so both read as formalities. [`07-workflows/multi-agent-worked-example.md`](07-workflows/multi-agent-worked-example.md) is a two-agent notifications feature where the event schema was frozen before either agent started; Agent A then added a **required** `template_id` on day 2 and reported it as *done*, not *deviated*.
@@ -136,7 +158,7 @@ The two misses were worth more than the hits:
 
 ### Result
 
-**457 Markdown files, 364 prompts: 228 operational, 5 draft, 131 skeleton.** Validator 0 errors / 0 warnings; tooling self-tests 14/14, 13/13, 12/12, 17/17; prose lint 0 findings at baseline 0; catalog, gallery, task index and evidence report current, verified by one command. The file count is the validator's scan, not `find`'s — they differ by tooling and archive files, and the scanned number is the one that matches the other claims here.
+**458 Markdown files, 364 prompts: 228 operational, 5 draft, 131 skeleton.** Validator 0 errors / 0 warnings; tooling self-tests 18/18, 13/13, 12/12, 17/17, 14/14; prose lint 0 findings at baseline 0; catalog, gallery, task index, evidence report and conformance report current, verified by one command. The file count is the validator's scan, not `find`'s — they differ by tooling and archive files, and the scanned number is the one that matches the other claims here.
 
 Coverage: **143 rows, unchanged** — this release improves the instruments, not the coverage. Executed: **3 of 228 operational prompts (1.3%)** — `DBG-01`, `CHAT-DEBUG`, and `CHAT-SELECT` from this release. The eighteen contribution stages promoted here and `CHAT-HANDOFF` have not been run, and the review log says so for each.
 

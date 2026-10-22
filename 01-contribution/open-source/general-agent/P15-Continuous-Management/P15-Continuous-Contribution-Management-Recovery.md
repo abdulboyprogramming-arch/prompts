@@ -28,6 +28,7 @@ You are the Continuous Contribution Management, Monitoring & Recovery agent. You
 
 - Durable artifacts from prior stages exist.
 - At least one contribution cycle has begun or is about to begin; maintenance effort is capped at `{{TIME_BUDGET}}`.
+- `REPO_MAP.md`, `KNOWLEDGE_BASE.md`, `OPPORTUNITY_LEDGER.md` — written by `P01`; read them before starting rather than re-deriving them.
 
 ## 4. Required Tools and Permissions
 

@@ -87,8 +87,9 @@ Full detail in `CHANGELOG.md`. Summary:
 4. **Reviews are self-assessments** by the authoring agent, recorded in `_meta/review-log.md`. Independence is not claimed.
 5. **Workflows are untested compositions.** Artifact-name compatibility is maintained by convention and checked by the validator's link rules, not by execution. The multi-agent run documented in 2.22.0 is constructed, not observed.
 6. **The duplicate metric cannot see the differentiation that matters.** `P06` now asks for different evidence in each contribution variant, and its vocabulary overlap barely moved; the instrument measures words, not standards of proof.
-7. **The chat prompts are barely executed.** `CHAT-DEBUG` and `CHAT-SELECT` have tabletop records; `CHAT-MODE`, `CHAT-REVIEW`, `CHAT-DESIGN` and `CHAT-HANDOFF` have none. The `CHAT-SELECT` run scored 4 of 6 routes against the generated index, which is the only measurement in the library with ground truth outside the prompt.
-8. **No prompt has been run by an engineer other than its author**, so the library measures its own writing, not its usefulness.
+7. **Composition is checked, but only half-named.** Of 239 dependency links between stages, 82 (34%) still describe the upstream artifact by concept rather than by filename, so an agent moving from one prompt to the next must invent the mapping. All 82 are in skeletons without a prerequisites section, which is why the fix is part of promoting them. `_meta/conformance-report.md` lists every one.
+8. **The chat prompts are barely executed.** `CHAT-DEBUG` and `CHAT-SELECT` have tabletop records; `CHAT-MODE`, `CHAT-REVIEW`, `CHAT-DESIGN` and `CHAT-HANDOFF` have none. The `CHAT-SELECT` run scored 4 of 6 routes against the generated index, which is the only measurement in the library with ground truth outside the prompt.
+9. **No prompt has been run by an engineer other than its author**, so the library measures its own writing, not its usefulness.
 
 ## 8. Next actions, in order
 
@@ -100,6 +101,14 @@ Completed since this list was written: **conversational mode — any prompt usab
 4. **Promote `03-domains/frontend`** — accessibility and state management are named but lack pass criteria; `PERF-BUDGET-01` covers budgets from the outside.
 5. **Close the 27 partial coverage rows** — the largest clusters are testing depth, observability at the on-call level, and governance evidence.
 6. **Consolidate the input vocabulary** (backlog #26) — cosmetic until a run sheet is reused across systems, then it becomes friction.
+
+## 8a. Release readiness
+
+The full answer is [`_meta/release-readiness.md`](_meta/release-readiness.md); the short version:
+
+- **Content: ready.** 0 validator errors and warnings, 0 prose findings, all counts and links machine-checked, community files present and now linked.
+- **Infrastructure: five external blockers**, in order — Actions billing, branch protection, repository metadata (recorded with commands in [`repository-configuration.md`](_meta/repository-configuration.md)), security features, visibility. None of them is an edit to this repository.
+- **Trust: the real gap.** 3 of 228 operational prompts have been executed, all tabletop, all by the author.
 
 ## 9. How to resume
 

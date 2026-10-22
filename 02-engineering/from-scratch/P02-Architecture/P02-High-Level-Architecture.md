@@ -6,7 +6,7 @@
 **Execution mode:** planning  
 **Risk class:** A  
 **Depends on:** FS-P01  
-**Produces:** `VISION.md`, `ARCHITECTURE.md`  
+**Produces:** `ARCHITECTURE.md`, plus updates to `VISION.md`  
 
 ---
 

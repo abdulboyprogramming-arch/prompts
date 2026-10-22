@@ -248,21 +248,22 @@ No prompt may silently escalate its own category. [`00-core/safety-and-security/
 ## Contributing and validating
 
 ```bash
-python3 scripts/validate_library.py            # must report 0 errors
-python3 scripts/validate_library.py --catalog  # regenerate _meta/CATALOG.md
+python3 scripts/check_all.py        # every gate, in the order CI runs them
+python3 scripts/check_all.py --fix  # regenerate catalog, gallery, task index, evidence first
 ```
 
-The validator checks metadata completeness, identifier uniqueness, version/maturity consistency, required sections, broken links (Markdown and backticked paths), empty sections, risk-class honesty, and README status overclaims. CI runs it on every pull request and fails if `_meta/CATALOG.md` is stale (`.github/workflows/validate-library.yml`).
+`scripts/check_all.py` is the authoritative list: CI runs that script and nothing else, so a local pass is the same run a pull request gets. It covers metadata and section completeness, identifier uniqueness, version/maturity consistency, broken links, empty sections, risk-class honesty, status overclaims, prose quality, duplicate detection, catalog/gallery/task-index currency, and the counts in the README and in `PROJECT-STATUS.md`.
 
-Read [`CONTRIBUTING.md`](CONTRIBUTING.md) before adding a system, and [`AGENTS.md`](AGENTS.md) if you are an AI agent working in this repository.
+Read [`CONTRIBUTING.md`](CONTRIBUTING.md) before adding a system — it also points at the [Code of Conduct](.github/CODE_OF_CONDUCT.md) and the [security policy](.github/SECURITY.md). Read [`AGENTS.md`](AGENTS.md) if you are an AI agent working in this repository.
 
 ## Known limitations
 
-- **165 of 235 prompts are skeleton outlines.** They are labelled as such everywhere.
-- **No prompt has been empirically tested against a real repository and recorded.** `operational` means structurally complete and reviewed, not proven in practice.
-- **Mobile, database, embedded, desktop/CLI, dependency management, governance, and multi-agent orchestration have no dedicated systems yet.** They are prioritised in the backlog.
-- **Reviews are self-assessments** recorded in [`_meta/review-log.md`](_meta/review-log.md); independent verification has not been performed.
-- CI validates the library on pull requests; it does not test prompts empirically (no such harness exists).
+- **131 of 364 prompts are skeleton outlines.** They are labelled as such everywhere, and the task index counts them separately rather than hiding them.
+- **3 of 228 operational prompts have been executed and recorded** — 1.3%. `operational` means structurally complete and reviewed, not proven in practice; [`_meta/evidence-levels.md`](_meta/evidence-levels.md) states the number, and it is generated from a registry.
+- **The prompts have not been compared against a model's output in a controlled study.** The three runs are tabletop evaluations by the author, and each record says so.
+- **Reviews are self-assessments** recorded in [`_meta/review-log.md`](_meta/review-log.md); no second reviewer exists.
+- **27 of 143 coverage rows are partial.** No row is missing; thin ones are named in [`_meta/coverage-matrix.md`](_meta/coverage-matrix.md).
+- CI validates structure and composition on pull requests; it cannot test whether a prompt improves an agent's work.
 
 Coverage per engineering scenario, with an honest status for each: [`_meta/coverage-matrix.md`](_meta/coverage-matrix.md).
 

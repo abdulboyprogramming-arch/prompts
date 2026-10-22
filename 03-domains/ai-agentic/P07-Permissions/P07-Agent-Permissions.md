@@ -33,6 +33,7 @@ Out of scope: reviewing the model's alignment, choosing an agent product, and gr
 - `{{AGENT_CONFIG}}` — the configuration under audit; `{{ENVIRONMENT}}` — developer laptop, CI runner, or production-adjacent host (the same config is a different risk in each).
 - `{{TOOL_INVENTORY}}` — any existing list, which you will verify rather than trust.
 - Credentials in the environment: list *names* only, never values.
+- `SAFETY.md` — written by `AI-P04`; read it before starting rather than re-deriving it.
 
 ## 4. Workflow
 

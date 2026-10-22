@@ -42,6 +42,8 @@ GATES: list[tuple[str, list[str], bool]] = [
     ("prose-lint self-tests", ["scripts/test_prose_lint.py"], False),
     ("prose lint", ["scripts/lint_prose.py", "--check"], False),
     ("task-index self-tests", ["scripts/test_task_index.py"], False),
+    ("contract self-tests", ["scripts/test_contract.py"], False),
+    ("prompt contracts", ["scripts/check_prompt_contract.py", "--check-report"], False),
     ("gallery current", ["scripts/generate_gallery.py", "--check", "--quiet"], False),
     ("task index current", ["scripts/generate_task_index.py", "--check"], False),
     ("evidence report current", ["scripts/evidence_report.py", "--check"], False),
@@ -55,6 +57,7 @@ REGENERATE: list[tuple[str, list[str]]] = [
     ("gallery", ["scripts/generate_gallery.py", "--write"]),
     ("task index", ["scripts/generate_task_index.py", "--write"]),
     ("evidence report", ["scripts/evidence_report.py", "--write"]),
+    ("conformance report", ["scripts/check_prompt_contract.py", "--write-report"]),
 ]
 
 

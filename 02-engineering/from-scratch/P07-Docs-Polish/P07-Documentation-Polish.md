@@ -6,7 +6,7 @@
 **Execution mode:** implementation  
 **Risk class:** B  
 **Depends on:** FS-P06  
-**Produces:** `README.md`, `FINAL_NOTES.md`  
+**Produces:** `FINAL_NOTES.md`, plus updates to the `README.md` scaffolded in `FS-P04`  
 
 ---
 

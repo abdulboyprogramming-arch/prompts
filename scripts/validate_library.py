@@ -385,6 +385,7 @@ def check(docs: list[Doc]) -> tuple[list[str], list[str]]:
 
     errors.extend(check_readme_counts(docs))
     errors.extend(check_documented_counts(docs))
+    errors.extend(check_community(docs))
 
     for d in docs:
         if d.is_prompt and d.rel.split(os.sep)[0] not in TOOLING_DIRS:
@@ -411,6 +412,46 @@ def check(docs: list[Doc]) -> tuple[list[str], list[str]]:
         )
 
     return errors, warnings
+
+
+# Files a public repository is expected to have, and the documents that must
+# point at them. A code of conduct that exists in `.github/` and is linked from
+# nowhere is a file, not a policy: GitHub shows it in the UI, and nothing in the
+# repository tells a contributor it applies to them.
+COMMUNITY_FILES = {
+    "LICENSE": "the licence GitHub reads to label the repository",
+    "CONTRIBUTING.md": "the contribution guide GitHub links in the new-issue UI",
+    ".github/CODE_OF_CONDUCT.md": "the conduct policy GitHub links in its UI",
+    ".github/SECURITY.md": "the private disclosure route GitHub surfaces",
+}
+COMMUNITY_LINKS = [
+    ("CONTRIBUTING.md", "CODE_OF_CONDUCT", "the code of conduct"),
+    ("CONTRIBUTING.md", "SECURITY.md", "the security policy"),
+    ("README.md", "CONTRIBUTING.md", "the contribution guide"),
+]
+
+
+def check_community(docs: list[Doc], texts: dict[str, str] | None = None) -> list[str]:
+    """The community files must exist and be reachable from the documents that matter."""
+    errors: list[str] = []
+    for rel, why in COMMUNITY_FILES.items():
+        if texts is not None:
+            if rel not in texts:
+                errors.append(f"{rel} is missing — {why}")
+        elif not os.path.exists(os.path.join(ROOT, rel)):
+            errors.append(f"{rel} is missing — {why}")
+
+    for rel, needle, label in COMMUNITY_LINKS:
+        if texts is not None:
+            text = texts.get(rel)
+        else:
+            path = os.path.join(ROOT, rel)
+            text = open(path, encoding="utf-8").read() if os.path.exists(path) else None
+        if text is None:
+            continue
+        if needle not in text:
+            errors.append(f"{rel} does not mention {label} — a policy nobody is pointed at is a file, not a policy")
+    return errors
 
 
 # A row in the README's per-system table looks like:

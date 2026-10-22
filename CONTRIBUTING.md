@@ -46,6 +46,12 @@ This repository is a curated library, not a collection bin. Contributions are ju
 - Do not instruct an agent to use tools or credentials it may not have.
 - Keep prompts proportional: a 40-line task does not need 300 lines.
 
+## Community and conduct
+
+This project follows the [Code of Conduct](.github/CODE_OF_CONDUCT.md). It is short and it is enforced: argue about the artifact, bring evidence, disagree with the design rather than the person.
+
+Found a security problem? Do not open an issue. Follow the [security policy](.github/SECURITY.md), which routes the report privately.
+
 ## Validation
 
 ```bash

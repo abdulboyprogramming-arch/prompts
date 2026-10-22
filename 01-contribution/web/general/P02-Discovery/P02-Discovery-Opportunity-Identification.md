@@ -34,6 +34,7 @@ Out of scope: fixing anything, ranking by your own taste, or proposing architect
 - `{{RUN_COMMAND}}` — how to start the app locally. Discovery without a running app produces hypotheses; say which ones are unobserved.
 - `{{BASELINE_BROWSERS}}` — the supported engines and the declared `browserslist`, so a finding can name the engine it affects.
 - `{{A11Y_TARGET}}` — the conformance level the project claims. A gap is measured against the project's claim, not against your standard.
+- `WEB_CONTEXT.md` — written by `WEB-P01`; read it before starting rather than re-deriving it.
 
 ## 4. Workflow
 

@@ -33,6 +33,8 @@ Out of scope: performing a new deletion of live data (that is `PRIV-P02`), decid
 - `{{SUBJECT_SCOPE}}` — the subject identifier(s) used by the earlier deletion, the request record, and the timestamp of the deletion.
 - `{{RETENTION_DAYS}}` — the stated retention for backups and logs, which determines what "gone" can mean there.
 - `{{APPROVER}}` — for remediation that changes retention or deletes further data.
+- `.privacy/DATA_MAP.md`, `.privacy/PRIVACY_LEDGER.md` — written by `PRIV-P01`; read them before starting rather than re-deriving them.
+- `.privacy/REQUEST_LOG.md` — written by `PRIV-P02`; read it before starting rather than re-deriving it.
 
 ## 4. Workflow
 
