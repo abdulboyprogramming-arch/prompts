@@ -29,7 +29,7 @@ prompts by situation.
 | [06-interactive — conversations that clarify a request](#06-interactive--conversations-that-clarify-a-request) | 4 | Use when the request is vague and needs to be scoped first. |
 | [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 13 | Composed sequences that route between systems and stop at human gates. |
 
-*Maturity across the library: 265 operational, 5 draft, 94 skeleton, 364 total.*
+*Maturity across the library: 273 operational, 5 draft, 86 skeleton, 364 total.*
 
 ---
 
@@ -373,14 +373,14 @@ Stack-specific practice: data, AI, and the domains still being built out.
 
 | ID | Prompt | Use it for | Maturity | Risk |
 |---|---|---|---|---|
-| `FE-P01` | [Context & Stack](03-domains/frontend/P01-Context/P01-Context-Stack.md) | Understand the product context, users, and frontend technical stack before designing or coding UI. | skeleton | C |
-| `FE-P02` | [UX & Interaction Goals](03-domains/frontend/P02-UX-Goals/P02-UX-Interaction-Goals.md) | Define the interaction goals, key flows, and UI states that the implementation must support. | skeleton | B |
-| `FE-P03` | [Frontend Architecture](03-domains/frontend/P03-Architecture/P03-Frontend-Architecture.md) | Design a clean component and boundary structure for the work. | skeleton | B |
-| `FE-P04` | [Implementation](03-domains/frontend/P04-Implementation/P04-Implementation.md) | Implement the UI according to architecture, UX goals, and project conventions. | skeleton | B |
-| `FE-P05` | [State & Data](03-domains/frontend/P05-State-Data/P05-State-Data.md) | Ensure client state, server data fetching, caching, and synchronization are correct and maintainable. | skeleton | B |
-| `FE-P06` | [Quality & Accessibility](03-domains/frontend/P06-Quality/P06-Quality-Accessibility.md) | Raise the implementation to a professional quality bar. | skeleton | B |
-| `FE-P07` | [Polish & Handoff](03-domains/frontend/P07-Polish/P07-Polish-Handoff.md) | Finish the slice so it is review-ready and pleasant to use. | skeleton | B |
-| `FE-P08` | [Frontend Master Orchestrator](03-domains/frontend/P08-Orchestrator/P08-Frontend-Orchestrator.md) | Runs the frontend system end to end: gates, routing, and final acceptance. | skeleton | A |
+| `FE-P01` | [Context & Stack: what the browser is actually being asked to do](03-domains/frontend/P01-Context/P01-Context-Stack.md) | FE_CONTEXT.md answering five questions <br>**Inputs:** `PROJECT_PATH, BROWSER_SUPPORT, DESIGN_SYSTEM, ANALYTICS_EXPORT` | operational | A |
+| `FE-P02` | [UX & Interaction Goals: the state matrix, written before the components](03-domains/frontend/P02-UX-Goals/P02-UX-Interaction-Goals.md) | FE_UX_GOALS.md containing <br>**Inputs:** `PROJECT_PATH, DESIGNS, ANALYTICS_EXPORT, COPY_OWNER` | operational | A |
+| `FE-P03` | [Frontend Architecture: who owns the data, where state lives, what renders where](03-domains/frontend/P03-Architecture/P03-Frontend-Architecture.md) | FE_ARCHITECTURE.md containing <br>**Inputs:** `PROJECT_PATH, TEAM_STRUCTURE, EXISTING_ADR` | operational | A |
+| `FE-P04` | [Implementation: every state a user can reach, not just the one in the demo](03-domains/frontend/P04-Implementation/P04-Implementation.md) | connected as mapped, rendering every state ID assigned to it. <br>**Inputs:** `PROJECT_PATH, DESIGN_SYSTEM, UX_GOALS_PATH` | operational | B |
+| `FE-P05` | [State & Data: stale responses, double submits, and the cache that lies](03-domains/frontend/P05-State-Data/P05-State-Data.md) | FE_STATE_DATA.md and the implementation behind it <br>**Inputs:** `PROJECT_PATH, API_SCHEMA, STATE_OWNERSHIP_MAP` | operational | B |
+| `FE-P06` | [Quality & Accessibility: the checks that come back with evidence](03-domains/frontend/P06-Quality/P06-Quality-Accessibility.md) | Residual gaps with impact and what would close them. <br>**Inputs:** `PROJECT_PATH, TARGET_URL, BROWSER_MATRIX, BUDGETS` | operational | C |
+| `FE-P07` | [Polish & Handoff: the long string, the slow connection, and the honest note](03-domains/frontend/P07-Polish/P07-Polish-Handoff.md) | rough edges, and copy that a user can act on. <br>**Inputs:** `PROJECT_PATH, DESIGN_REFERENCE, COPY_OWNER` | operational | B |
+| `FE-P08` | [Frontend Master Orchestrator: the gates between seven stages](03-domains/frontend/P08-Orchestrator/P08-Frontend-Orchestrator.md) | FE_RUN.md containing the stage ledger (ran, skipped, blocked), each gate's verdict and evidence, every open question with its owner, and the final decision: hand… <br>**Inputs:** `PROJECT_PATH, SCOPE, START_STAGE` | operational | A |
 
 ### games · 10 prompts
 

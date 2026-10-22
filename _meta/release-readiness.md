@@ -20,7 +20,7 @@ This page answers one question honestly: **if this went public tomorrow, what wo
 | Community files | Licence (dual), contributing, code of conduct, security policy, issue templates, PR template | **Ready** |
 | Repository configuration | Documented in [`repository-configuration.md`](repository-configuration.md), not yet applied | **Action, not debt** |
 | CI | The workflow is correct and runs one command; it cannot run on this account because of Actions billing | **Blocked outside the repo** |
-| Empirical evidence | 26 of 265 operational prompts executed (9.8%), all by the author, none by a second reader; batch 0 complete, batch 2 begun | **The real gap** |
+| Empirical evidence | 26 of 273 operational prompts executed (9.5%), all by the author, none by a second reader; batch 0 complete, batch 2 begun | **The real gap** |
 | Contributor readiness | Templates and gates are in place; the first external PR is untested | **Unknown by definition** |
 
 ## 2. What has been tested, by batch
@@ -51,7 +51,7 @@ The queue and the per-batch targets are in [`execution-batches.md`](execution-ba
 2. **Compositional** — do two prompts in a sequence agree on the artifact between them. Machine-checked for 239 links; 92 still rely on prose that names a concept rather than a file, 82 of them without naming the file at all.
 3. **Empirical** — does following the prompt produce a better result than not following it. **Fourteen prompts, author-evaluated, none by a second reader.** Nothing here can be automated inside a repository without model access and a scoring sheet, which is backlog #83/#91.
 
-Only the third is evidence of usefulness, and it is 9.8%.
+Only the third is evidence of usefulness, and it is 9.5%.
 
 ## 4. Blockers, in the order they must be cleared
 
@@ -93,7 +93,7 @@ Release readiness is not a feeling, so it is written as tests. **Mandatory** cri
 | 3 | Every prompt composes with its neighbours | `check_prompt_contract.py`, 0 errors; no cycle; no two writers | Mandatory | **met** |
 | 4 | No secrets, no personal data, no absolute paths | publication checklist rows 10–13 | Mandatory | **met** |
 | 5 | Licence, contributing, conduct, security policy exist **and** are linked | validator `check_community` | Mandatory | **met** |
-| 6 | Execution claims are generated from a registry, never hand-maintained | `evidence_report.py --check` | Mandatory | **met** — 26 of 265, 9.8% |
+| 6 | Execution claims are generated from a registry, never hand-maintained | `evidence_report.py --check` | Mandatory | **met** — 26 of 273, 9.5% |
 | 7 | Every gate that can be tested has a self-test | seven suites, 106 cases total | Mandatory | **met** |
 | 8 | Every document that quotes a total is covered by a rule | `DOC_TOTAL_FILES` list; `evidence_report.py --check` scans every page for the executed ratio | Mandatory | **met** for the file count in 4 documents and for the executed ratio everywhere; other totals are still prose, corrected by hand |
 | 9 | At least one batch fully executed and written up | batch 0: 8 of 8 | Mandatory | **met** |

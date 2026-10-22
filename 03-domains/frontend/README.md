@@ -1,6 +1,6 @@
 # Frontend Domain System
 
-**Status:** Skeleton — 8 stage outlines (skeleton 8). The stages name a sensible sequence but lack the evidence rules, verification, and failure handling that this library requires of `operational`. Treat the system as a plan, not a procedure; see [`_meta/ROADMAP-AND-BACKLOG.md`](../../_meta/ROADMAP-AND-BACKLOG.md).
+**Status:** Operational — 8 developed stages (`FE-P01` … `FE-P08`). Each stage states its inputs, decision rules, verification, failure handling and handover. None of these eight has been executed against a real application yet: they are developed to the standard, not empirically tested — see [`_meta/evidence.json`](../../_meta/evidence.json) for the prompts that have run.
 **Entry Point:** [`P08-Orchestrator/P08-Frontend-Orchestrator.md`](P08-Orchestrator/P08-Frontend-Orchestrator.md)
 
 A multi-stage system for building, improving, or extending frontend applications with strong attention to UX, architecture, state, accessibility, and quality.
@@ -23,6 +23,25 @@ Works for:
 | FE-P06 | Quality & Accessibility | Tests, a11y, responsiveness, performance basics |
 | FE-P07 | Polish & Handoff | Visual polish, edge cases, and review readiness |
 | FE-P08 | Master Orchestrator | Coordinates the full frontend process |
+
+## What each stage gates on
+
+`FE-P01` records the stack as installed and the render mode per route, because both
+decide where state may live. `FE-P02` writes a state matrix with no blank cells — loading,
+empty, error, partial, permission-denied, success, offline — because an undesigned state
+is improvised in code. `FE-P03` assigns exactly one owner to every piece of state and a
+boundary to every failure region. `FE-P04` implements the matrix cell by cell and logs
+every deviation. `FE-P05` makes the cache honest: keys that carry their parameters,
+invalidation per mutation, races handled, and a session boundary that is cleared on
+logout. `FE-P06` produces checks with artifacts — automated scanning is the floor, not the
+result. `FE-P07` runs the long-string, translation, zoom and slow-network passes, then
+writes the honest note about what was not tested.
+
+Two related prompts live outside this system and are cited rather than duplicated:
+[`A11Y-01`](../../04-process/accessibility-audit/ACCESSIBILITY-AUDIT.md) for a formal
+WCAG 2.2 AA conformance audit, and
+[`PERF-BUDGET-01`](../../05-scenarios/performance-budget/PERFORMANCE-BUDGET.md) for a
+standing performance budget and CI gate.
 
 ## Principles
 
