@@ -115,7 +115,7 @@ Four reasons, in order of weight:
 
 1. **The work is not funding-shaped yet.** Sponsorship pays for sustained maintenance. This repository has one author, three executed prompts, and a release cadence measured in days. Money would introduce an obligation (responsiveness, a roadmap) that the project cannot honestly meet, and the library's entire posture is that claims should match evidence.
 2. **A sponsorship button changes what a reader expects.** "Give me money" on a page that also says *"operational means structurally reviewed, not proven"* invites the reader to ask what they are paying for. The honest answer today is "a well-organised library with self-reviewed prompts", which is a good thing to give away and a bad thing to sell.
-3. **It creates a second audience.** Sponsors read updates; contributors read the changelog. One maintainer serving two audiences splits attention away from execution, which is the actual bottleneck (25 of 241).
+3. **It creates a second audience.** Sponsors read updates; contributors read the changelog. One maintainer serving two audiences splits attention away from execution, which is the actual bottleneck (25 of 249).
 4. **It is trivially reversible.** Adding `FUNDING.yml` later takes one commit. Leaving it out now costs nothing.
 
 **What to do instead, if someone offers money:** a single line in the README pointing at the backlog's *empirical test harness* item — "the most useful contribution is a run of any prompt against a real repository, written up in `_meta/empirical-evaluation-NN.md`". That converts enthusiasm into the thing that is actually missing.

@@ -2,6 +2,33 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.24.0] — 2026-10-22
+
+The game-development family is complete: seven skeletons became operational stages,
+and the system now enforces the one rule that keeps game projects from failing late.
+
+### Completed — `03-domains/games`, eight stages
+
+`GD-P01` writes the fantasy as one sentence with a counter-example that fails it and
+three falsifiers a playtest can settle. `GD-P02` turns it into a loop with a stated
+cycle time, and requires feedback and a failure mode for every mechanic. `GD-P03`
+sets the tuning pipeline and a frame budget in milliseconds, on the argument that
+iteration speed is the product. `GD-P04` builds one loop end to end and refuses the
+second. `GD-P05` adds systems one at a time with their numbers in data. `GD-P06`
+produces content against a manifest with a ranked polish list. `GD-P07` judges the
+falsifiers with observations and forbids the facilitator from explaining the game.
+
+`GD-P08` sequences them so content never starts before a loop is playable, and a
+refuted falsifier returns the run to design rather than forward to more content.
+
+Why the order matters: games fail by building volume before learning whether the
+loop is worth the volume. The falsifier chain from `GD-P01` to `GD-P07` is the
+mechanism that makes that failure visible early, and it is the one thing these
+stages are built around.
+
+Library: **364 prompts — 249 operational, 5 draft, 110 skeleton**; 25 executed
+(10.0%), all author-run, none independent.
+
 ## [2.23.1] — 2026-10-22
 
 Three contribution systems finished, and their entry stage executed against a real package.

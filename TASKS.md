@@ -13,7 +13,7 @@ library is reachable from at least one task: a prompt added without a home fails
 |---|---|
 | Prompts indexed | 364 |
 | Rows listed individually | 409 (a prompt can answer more than one task) |
-| Of those, `operational` | 284 |
+| Of those, `operational` | 292 |
 
 Not sure which task is yours? [`QUICKSTART.md`](QUICKSTART.md) routes five common situations,
 [`06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md`](06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md)
@@ -359,10 +359,16 @@ Vertical slice first, then systems, then content — with a playable build at ev
 
 | ID | Prompt | Where | Use it for | Maturity |
 |---|---|---|---|---|
+| `GD-P01` | [Vision & Player Fantasy: the sentence the whole game has to keep](03-domains/games/P01-Vision/P01-Vision-Player-Fantasy.md) | `P01-Vision` | GAME_VISION.md containing | operational |
+| `GD-P02` | [Game Design: the loop that delivers the fantasy, and nothing else](03-domains/games/P02-Design/P02-Game-Design.md) | `P02-Design` | GAME_DESIGN.md containing | operational |
+| `GD-P03` | [Technical Architecture: the smallest engine that can be tuned](03-domains/games/P03-Architecture/P03-Technical-Architecture.md) | `P03-Architecture` | GAME_ARCHITECTURE.md containing | operational |
+| `GD-P04` | [Vertical Slice: one loop, built end to end, judged in a playtest](03-domains/games/P04-Vertical-Slice/P04-Vertical-Slice.md) | `P04-Vertical-Slice` | run from GD-P03, the cut list, and the acceptance questions the playtest must answer. | operational |
+| `GD-P05` | [Core Systems: build the systems the loop proved it needs](03-domains/games/P05-Systems/P05-Core-Systems.md) | `P05-Systems` | SYSTEMS_PLAN.md and the systems it lists, each with | operational |
+| `GD-P06` | [Content & Polish: volume where the loop is proven, cut where it is not](03-domains/games/P06-Content-Polish/P06-Content-Polish.md) | `P06-Content-Polish` | each item meeting the acceptance state the design named. | operational |
+| `GD-P07` | [Playtest & Validation: the fantasy sentence meets a player](03-domains/games/P07-Playtest-Validate/P07-Playtest-Validate.md) | `P07-Playtest-Validate` | PLAYTEST_REPORT.md containing | operational |
+| `GD-P08` | [Game Development Master Orchestrator](03-domains/games/P08-Orchestrator/P08-Game-Development-Orchestrator.md) | `P08-Orchestrator` | GAME_RUN.md and the stage artifacts. | operational |
 | `GD-P09` | [Save Data Migration and Compatibility](03-domains/games/P09-Save-Migration/P09-Save-Migration.md) | `P09-Save-Migration` | A versioned save schema, forward migrations for every supported source version, a corruption-resistant read path, and tested… | operational |
 | `GD-P10` | [Multiplayer Netcode and Determinism](03-domains/games/P10-Netcode/P10-Netcode.md) | `P10-Netcode` | A diagnosis with measured numbers (latency, jitter, tick alignment, rollback depth), a corrected simulation or replication design… | operational |
-
-*Plus **8** `skeleton` prompts in these homes — a defensible stage sequence without verification or failure handling. Use them to structure a human-led session, not to drive an agent: [03-domains](GALLERY.md#03-domains--domain-specific-engineering).*
 
 ## I am building on a blockchain
 
