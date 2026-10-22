@@ -8,7 +8,8 @@ timestamps below were read from the API, not reconstructed.
 
 | # | Title | Branch → base | Purpose | Status | Reviewer | Checks | Merge commit | Owner reviewed in person |
 |---|-------|---------------|---------|--------|----------|--------|--------------|--------------------------|
-| 14 | Gate runner: restore the catalog on failure, self-test the runner; code-review P01-P03 v1.1.0 | `arena/a1d4cfce-prompts` → `main` | Fix the gate runner leaving `_meta/CATALOG.md` rewritten when it failed; add the runner's missing self-test; guard the published executed-prompt ratio against drift; CR-P02/P03 v1.1.0 | **open**, not merged | none recorded — the API refuses a review request from the pull request's author (`422`), so the owner reviews by comment or by explicit instruction | no CI: runs on this branch and its predecessor concluded `failure` with **0 steps**, blocked by account billing (`publication-decision.md` §5); local `check_all.py` 16/16 | — | **no** — awaiting the owner |
+| 14 | Gate runner: restore the catalog on failure, self-test the runner; code-review P01-P03 v1.1.0 | `arena/a1d4cfce-prompts` → `main` | Two gate defects (catalog rewritten on failure; executed ratio checked in one file) | **merged** 2026-10-22 14:11:42Z as `a6d849a`, squash | none — author cannot review own PR | CI failed at startup, 0 steps; local 14/14 before merge | `a6d849a` | **no** |
+| 15 | 2.23.0 — performance system completed and run on the gate suite (−25% suite time) | `arena/a1d4cfce-prompts` → `main` | Complete the seven-stage performance family and execute it on the repo's own gate suite; merge the duplicate detector's two invocations into one process | **open**, not merged | none — API refuses a review request from the author (`422`); assigned + `needs-review` | CI: no step has ever executed (billing); local 14/14, 112 self-test cases | — | **no** |
 
 ## Closed without merging
 
