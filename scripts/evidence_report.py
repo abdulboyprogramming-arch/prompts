@@ -175,6 +175,11 @@ def published_claims(c: dict[str, int]) -> list[str]:
     """
     import re
     pattern = re.compile(r"\b(\d+) of " + str(c["operational"]) + r"\b")
+    # The denominator is checked as well as the numerator. Scanning only for the
+    # current total cannot see a page that still says "24 of 228" — the number of
+    # prompts grew, the sentence did not, and the gate stayed green. The form
+    # "N of M operational" is unambiguous, so it is safe to police.
+    both = re.compile(r"\b(\d+) of (\d+) operational\b")
     findings: list[str] = []
     for dirpath, dirnames, filenames in os.walk(ROOT):
         dirnames[:] = [d for d in dirnames if not d.startswith(".") and not is_archive(d)]
@@ -199,6 +204,12 @@ def published_claims(c: dict[str, int]) -> list[str]:
                         findings.append(
                             f"{rel}:{lineno}: says {m.group(0)}; the registry says "
                             f"{c['operational_evaluated']} of {c['operational']}"
+                        )
+                for m in both.finditer(line):
+                    if int(m.group(2)) != c["operational"]:
+                        findings.append(
+                            f"{rel}:{lineno}: says {m.group(0)}; the library has "
+                            f"{c['operational']} operational prompts"
                         )
     return findings
 

@@ -2,6 +2,41 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.23.1] — 2026-10-22
+
+Three contribution systems finished, and their entry stage executed against a real package.
+
+### Completed — `packages-libraries`, `web/general`, `web3/general` are operational
+
+Six skeletons closed the gap that made three systems "mixed" no matter how good
+their middle was: the entry stage that establishes context and the orchestrator
+that gates the rest. Each `P01` is written around what makes its domain hard —
+consumers you cannot see, an app you must run, state you cannot undeploy — and
+each `P08` gates every stage on the previous stage's artefact rather than its
+summary. All three systems are now operational end to end; none has been run
+against a third-party project, and each README says so.
+
+### Tested — `PKG-P01` against `sindresorhus/p-map`
+
+Executed against the real package at `v7.1.1`, chosen because it has no changelog,
+no lockfile, a compound test script and a published surface smaller than the tree.
+That found four defects, three of them High, and v1.1.0 fixes them: bundled scripts
+must be decomposed, the shipped surface must come from a packing command, install
+reproducibility must be stated, and a verification item that cannot pass is
+recorded as `partial` rather than dropped. The retest passes five of six checks
+with the sixth recorded. Recorded in
+[`_meta/empirical-evaluation-14.md`](_meta/empirical-evaluation-14.md).
+
+### Fixed — the published-count scan could not see a stale denominator
+
+It checked the numerator against the current total, so a page still saying
+"24 of 228" passed after the library grew to 241. The `N of M operational` form is
+now checked against the library's actual total, with two cases covering it.
+
+Library: **364 prompts — 241 operational, 5 draft, 118 skeleton**; **25 executed**
+(10.4%), all author-run, none independent, and one system (`language-design`) still
+eight skeletons.
+
 ## [2.23.0] — 2026-10-22
 
 Two defects fixed in the instruments, one family completed and then run on the repository itself.
