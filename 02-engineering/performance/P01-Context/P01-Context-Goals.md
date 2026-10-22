@@ -18,7 +18,7 @@ Clarify what “good performance” means for this system and what constraints a
 
 ## Workflow
 1. Understand the system’s purpose, users, and critical workflows.
-2. Identify performance-related goals (latency, throughput, resource usage, scalability, cold start, etc.).
+2. Identify performance-related goals (latency, throughput, resource usage, scalability, cold start).
 3. Note existing SLAs, SLOs, budgets, or user-reported pain points.
 4. Write `PERF_CONTEXT.md` containing:
    - System overview and critical paths

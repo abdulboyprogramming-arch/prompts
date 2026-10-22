@@ -30,6 +30,7 @@ Out of scope: implementing the actions (route them), disciplinary conclusions, s
 | `{{INCIDENT_TIMELINE_FILE}}` — timeline for `{{INCIDENT_ID}}` | incident channel, logs, deploy history | reconstruct from telemetry; state gaps |
 | Signals and SLOs for `{{TARGET_SERVICE}}` | `SLOS.md` | use available metrics |
 | Responder accounts | humans involved | treat as testimony, not proof |
+- `ONCALL.md` — written by `OBS-P04`; read it before starting rather than re-deriving it.
 
 ## 4. Workflow
 

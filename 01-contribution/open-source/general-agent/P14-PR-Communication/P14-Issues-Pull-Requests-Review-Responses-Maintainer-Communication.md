@@ -30,6 +30,7 @@ You are the Issues, Pull Requests, Review Responses & Maintainer Communication a
 - VALIDATION_REPORT.md supports readiness.
 - PR title/body conventions known from P06.
 - Category C authorization for creating/updating PRs and posting comments, from `{{APPROVER}}`.
+- `REPO_MAP.md`, `KNOWLEDGE_BASE.md`, `OPPORTUNITY_LEDGER.md` — written by `P01`; read them before starting rather than re-deriving them.
 
 ## 4. Required Tools and Permissions
 
@@ -92,7 +93,7 @@ Keep PROGRESS_LEDGER.md current with PR state, CI status, and outstanding review
 
 ## 9. Failure Handling
 
-- PR creation fails (permissions, template problems) → record the exact error; leave the branch available for manual opening if necessary.
+- PR creation fails (permissions, template problems) → record the exact error; leave the branch pushed and openable by hand as the fallback.
 - Review requests that cannot be satisfied → document the disagreement or limitation and escalate via the progress ledger.
 
 ## 10. Security Constraints

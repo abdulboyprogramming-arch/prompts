@@ -45,7 +45,7 @@ You are the GitHub Issues, Discussions, PRs & Documented Contribution Discovery 
 2. Confirm the authenticated user matches (or is related to) GITHUB_USERNAME from MY_DETAILS.txt.
 
 ### Step 2 — Open Issues Triage
-1. List open issues with useful filters (labels such as good-first-issue, help-wanted, bug, enhancement, documentation, etc.).
+1. List open issues with useful filters (labels such as good-first-issue, help-wanted, bug, enhancement, documentation).
 2. For each promising issue capture:
    - Number and title
    - Labels

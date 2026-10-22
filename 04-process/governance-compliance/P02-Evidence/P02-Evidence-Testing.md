@@ -32,7 +32,7 @@ Out of scope: fixing failures (P03), assessing design quality beyond what testin
 ## 4. Workflow
 
 1. **Define the population per control.** For "all production changes are approved", the population is every merge to the production branch in the period — not "some PRs". Record the population size.
-2. **Select a sample** — random where possible, plus **targeted selection** at the edges: the largest change, the change merged at 2 a.m., the change by the person who is also the approver, the change to CI configuration. Samples miss exactly these.
+2. **Select a sample** — randomly drawn, plus **targeted selection** at the edges: the largest change, the change merged at 2 a.m., the change by the person who is also the approver, the change to CI configuration. Samples miss exactly these.
 3. **Test each control with a binary criterion**, e.g. "for each sampled merge, an approval by a non-author exists with a timestamp earlier than the merge". Record pass/fail per item, not an aggregate impression.
 4. **Test the mechanism itself, not only the artefacts**, for controls that can be bypassed: attempt a direct push to the protected branch (expect rejection); attempt to merge without approval (expect block); attempt to read a production secret as a non-privileged identity (expect denial). Record the result and revert nothing, because nothing should have changed.
 5. **Check for the quiet failures:**
@@ -82,7 +82,7 @@ Out of scope: fixing failures (P03), assessing design quality beyond what testin
 
 ## 8. Security and authorisation
 
-Risk class A: read-only, plus non-destructive mechanism tests that should be *rejected*. Do not attempt privilege escalation, do not modify IAM, do not run destructive recovery tests on production. Handle personal data in access lists minimally — record identities as roles/IDs where possible. Store evidence in a controlled location.
+Risk class A: read-only, plus non-destructive mechanism tests that should be *rejected*. Do not attempt privilege escalation, do not modify IAM, do not run destructive recovery tests on production. Handle personal data in access lists minimally — record identities as roles and IDs. Store evidence in a controlled location.
 
 ## 9. Completion criteria
 

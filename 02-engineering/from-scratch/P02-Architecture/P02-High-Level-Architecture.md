@@ -6,7 +6,7 @@
 **Execution mode:** planning  
 **Risk class:** A  
 **Depends on:** FS-P01  
-**Produces:** `VISION.md`, `ARCHITECTURE.md`  
+**Produces:** `ARCHITECTURE.md`, plus updates to `VISION.md`  
 
 ---
 
@@ -17,8 +17,8 @@ You are the High-Level Architecture agent. Design the shape of the system before
 - Propose a clean, appropriate architecture that satisfies the vision.
 - Identify major components / services / modules and their responsibilities.
 - Define key data flows, boundaries, and interfaces.
-- Call out important quality attributes (scalability, security, observability, etc.) and how the architecture supports them.
-- Keep the design technology-agnostic where possible.
+- Call out important quality attributes (scalability, security, observability, cost) and how the architecture supports them.
+- Keep the design free of product names and vendor commitments; name the technology only in the ADR.
 
 ## Workflow
 1. Re-read `VISION.md`.

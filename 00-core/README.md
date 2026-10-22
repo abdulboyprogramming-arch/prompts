@@ -4,7 +4,7 @@ Shared substrate for every system in this library: authorisation categories, sec
 
 Most of these files are **reference primitives, not task prompts.** They are meant to be read by the agent (or pasted ahead of a system prompt), not run on their own, and therefore carry no identifier, maturity, or execution-mode metadata.
 
-The exception is `prompt-engineering/PROMPT-FORGE.md` and `PROMPT-REGRESSION.md` (`GEN-P01`, `GEN-P02`) and the four `conversational/` prompts (`CHAT-MODE`, `CHAT-REVIEW`, `CHAT-DEBUG`, `CHAT-DESIGN`): these are **executable prompts** with full metadata, because generating a prompt and running one in a chat window are both tasks with an artifact and a check. They appear in the catalog.
+The exception is `prompt-engineering/PROMPT-FORGE.md` and `PROMPT-REGRESSION.md` (`GEN-P01`, `GEN-P02`) and the six `conversational/` prompts (`CHAT-MODE`, `CHAT-REVIEW`, `CHAT-DEBUG`, `CHAT-DESIGN`, `CHAT-SELECT`, `CHAT-HANDOFF`): these are **executable prompts** with full metadata, because generating a prompt and running one in a chat window are both tasks with an artifact and a check. They appear in the catalog.
 
 ## Contents
 
@@ -19,7 +19,7 @@ The exception is `prompt-engineering/PROMPT-FORGE.md` and `PROMPT-REGRESSION.md`
 | [`prompt-engineering/STAGE-PROMPT-TEMPLATE.md`](prompt-engineering/STAGE-PROMPT-TEMPLATE.md) | Pointer to the canonical authoring standard |
 | [`prompt-engineering/PROMPT-FORGE.md`](prompt-engineering/PROMPT-FORGE.md) | **GEN-P01** — build a runnable prompt from a user's description (compose / interview / improve / decompose / port) |
 | [`prompt-engineering/PROMPT-REGRESSION.md`](prompt-engineering/PROMPT-REGRESSION.md) | **GEN-P02** — prove a prompt change is an improvement: fixtures, runs, rubric score, defect classification |
-| [`conversational/`](conversational/README.md) | **Chat mode** — run any prompt in a chat window with no repository access, plus chat-native review, debugging, and design |
+| [`conversational/`](conversational/README.md) | **Chat mode** — run any prompt in a chat window with no repository access, plus chat-native selection, review, debugging, design, and handoff |
 
 ## Authority
 

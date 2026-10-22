@@ -61,14 +61,14 @@ Do **not** perform deep module-level analysis (that is P04/P05), issue triage (P
    - CODE_OF_CONDUCT*
    - SECURITY* / SECURITY.md
    - AGENTS.md / .agents/ / agent-related instructions
-   - Package manifests (package.json, pyproject.toml, go.mod, Cargo.toml, pom.xml, etc.)
-   - Build / task files (Makefile, Justfile, Taskfile, CMakeLists.txt, etc.)
-   - CI configuration (/.github/workflows, .gitlab-ci.yml, .circleci, etc.)
-   - Documentation directories (docs/, doc/, website/, etc.)
-   - Source directories (src/, lib/, pkg/, app/, etc.)
+   - Package manifests (package.json, pyproject.toml, go.mod, Cargo.toml, pom.xml, build.gradle, *.gemspec, *.csproj)
+   - Build / task files (Makefile, Justfile, Taskfile.yml, CMakeLists.txt, meson.build, build.sh)
+   - CI configuration (/.github/workflows, .gitlab-ci.yml, .circleci/config.yml, Jenkinsfile, azure-pipelines.yml)
+   - Documentation directories (docs/, doc/, website/) and the root README
+   - Source directories (src/, lib/, pkg/, app/, internal/, cmd/)
    - Test directories
-   - Configuration examples (.env.example, config/, etc.)
-3. Note the presence of monorepo signals (multiple package manifests, workspace files, lerna/nx/turbo/pnpm-workspace, etc.).
+   - Configuration examples (.env.example, config/, settings/, *.example.*)
+3. Note the presence of monorepo signals (multiple package manifests, lerna.json, nx.json, turbo.json, pnpm-workspace.yaml).
 
 ### Step 3 — Contribution & Governance Documents
 1. Read CONTRIBUTING.md (or equivalent) fully if present. Extract:
@@ -116,7 +116,7 @@ Do **not** perform deep module-level analysis (that is P04/P05), issue triage (P
 
 ## 7. Repository-Specific Adaptation Rules
 
-- Language-agnostic: do not assume Node, Python, Go, etc. Detect what is actually present.
+- Language-agnostic: do not assume Node, Python, or Go. Detect what is actually present.
 - If the repository is extremely large, limit the initial survey to depth 2–3 and note that deeper exploration is deferred to P04.
 - If the repository is a mirror or generated, record that fact and adjust expectations.
 

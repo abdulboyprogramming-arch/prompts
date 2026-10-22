@@ -49,7 +49,7 @@ Out of scope: legal advice on adequacy decisions or transfer mechanisms — name
 
 3. **Use infrastructure as the evidence.** Read the IaC, the provider configuration, and the SDK initialisation in the code rather than asking and trusting the answer. A region in a Terraform variable, a `us-east-1` in an SDK constructor, a hard-coded endpoint in a mobile client, and a CDN configuration are all `verified` facts. A wiki page is not.
 
-4. **Find the flows nobody designed.** Ask for each: does it *have* to cross the border? The recurring offenders are: an error tracker created by a developer in a free tier with a US endpoint; a log drain to a vendor whose primary region is elsewhere; a CDN that terminates TLS and sees payloads; an email provider that stores message bodies; a support tool that syncs records; a failover that routes to another region; a developer downloading a production dump; and an analytics SDK in a mobile app sending device identifiers directly to a third country.
+4. **Find the flows nobody designed.** Ask for each: does it *have* to cross the border? The recurring offenders are: an error tracker created by a developer in a free tier with a US endpoint; a log drain to a vendor whose primary region is elsewhere; a CDN that terminates TLS and sees payloads; an email provider that stores message bodies. Then: a support tool that syncs records; a failover that routes to another region; a developer downloading a production dump; and an analytics SDK in a mobile app sending device identifiers directly to a third country.
 
 5. **Distinguish the three levels of exposure**, because they need different remedies:
    - **Stored outside** — the data rests in a non-permitted location. This is the hardest and needs migration or deletion.
@@ -60,7 +60,7 @@ Out of scope: legal advice on adequacy decisions or transfer mechanisms — name
 
 7. **Name the violations precisely.** "We may not be compliant" is not actionable. "Session replay captures form field values and stores them in `eu-central-1` and `us-east-1`; the contract requires EU-only storage; 4% of sessions contain an email address" is.
 
-8. **Enforce by configuration, not by promise.** Region constraints in IaC (provider-level policies where available), an approved-vendor list in CI that rejects an unapproved SDK endpoint, private endpoints so traffic does not traverse public routes, a lint rule for hard-coded endpoints, a regional deployment check in the pipeline, and an access policy for production data that excludes non-permitted countries. Add at least one automated check and prove it catches a deliberate violation.
+8. **Enforce by configuration, not by promise.** Region constraints in IaC (provider-level policies where available), an approved-vendor list in CI that rejects an unapproved SDK endpoint, private endpoints so traffic does not traverse public routes. Also a lint rule for hard-coded endpoints, a regional deployment check in the pipeline, and an access policy for production data that excludes non-permitted countries. Add at least one automated check and prove it catches a deliberate violation.
 
 9. **Handle backups and disaster recovery honestly.** A backup in another region for resilience is a residency decision, not a technical default. If the resilience requirement and the residency requirement conflict, say so and route it to `{{APPROVER}}` — `05-scenarios/disaster-recovery/` needs the answer, because its account-loss path assumes data can be copied elsewhere.
 

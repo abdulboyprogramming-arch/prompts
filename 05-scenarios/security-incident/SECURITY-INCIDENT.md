@@ -57,7 +57,7 @@ Out of scope: legal advice, regulatory interpretation, law-enforcement liaison (
 7. **Document the artefacts** in an evidence index: name, source, timestamp range, hash, storage location, and who has access.
 8. **Preserve in a way that survives**: rotating logs must be copied, short-retention audit logs must be exported, and ephemeral instances must be snapshotted before termination.
 
-### Stage 3 — Contain (without tipping off, where possible)
+### Stage 3 — Contain (and avoid tipping off the attacker)
 
 9. **Choose a containment strategy deliberately:**
 
@@ -68,7 +68,7 @@ Out of scope: legal advice, regulatory interpretation, law-enforcement liaison (
    | Selective containment (one credential, one path) | Scope is understood | May leave other footholds |
 
 10. **Contain at the identity layer first**: revoke sessions and tokens, disable compromised accounts, rotate service credentials — in dependency order, because rotating the wrong key first can blind your monitoring.
-11. **Contain at the network and data layer** as needed: block the source, egress restrictions, read-only mode for affected systems, disable the vulnerable endpoint or feature.
+11. **Contain at the network and data layer**:  block the source, egress restrictions, read-only mode for affected systems, disable the vulnerable endpoint or feature.
 12. **Verify the containment actually works** (attempt the blocked access yourself, or observe the denial in logs). A "blocked" rule that never matched is common.
 13. **Do not destroy the instance you need** for forensics; isolate it instead of terminating it.
 

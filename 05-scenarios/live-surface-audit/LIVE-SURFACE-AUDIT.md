@@ -34,7 +34,7 @@ Out of scope: exploitation, authentication bypass attempts, load testing, vulner
 
 ## 4. Workflow
 
-1. **Establish the rules of engagement before the first request.** Whose system is it, what is authorised (read-only GET/HEAD, or active probes), what is forbidden (POST/PUT/DELETE, credential stuffing, fuzzing, load), what rate is polite (a small number of sequential requests with a delay), how you identify yourself (`User-Agent` naming you and a contact), and when you stop (any sign of instability, any authentication prompt, any personal data). Write this down before proceeding.
+1. **Establish the rules of engagement before the first request.** Whose system is it, what is authorised (read-only GET/HEAD, or active probes), what is forbidden (POST/PUT/DELETE, credential stuffing, fuzzing, load), what rate is polite (a small number of sequential requests with a delay), and how you identify yourself (`User-Agent` naming you and a contact). Decide when you stop: any sign of instability, any authentication prompt, any personal data. Write this down before proceeding.
 
 2. **Record the baseline:** timestamp, resolved IP(s), TLS certificate subject/issuer/validity, the response to a single `HEAD /` with status, headers, and TTFB. Everything later is compared to this.
 

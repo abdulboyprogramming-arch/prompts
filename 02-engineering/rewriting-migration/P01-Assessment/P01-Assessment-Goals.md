@@ -19,7 +19,7 @@ Clarify the reasons for rewriting or migrating and define clear success criteria
 ## Workflow
 1. Examine the existing system (structure, pain points, technology constraints, business drivers).
 2. Write `MIGRATION_GOALS.md` containing:
-   - Drivers for the rewrite/migration (technical, business, team, performance, etc.)
+   - Drivers for the rewrite/migration (technical, business, team, performance)
    - Desired outcomes
    - Explicit non-goals
    - Success criteria and parity requirements

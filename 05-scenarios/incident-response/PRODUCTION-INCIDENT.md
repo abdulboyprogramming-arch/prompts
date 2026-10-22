@@ -107,4 +107,4 @@ Risk class C. Reading production telemetry is normal during an incident; **any**
 
 Deliverables: restored service, incident timeline, evidence snapshot, and a postmortem brief.
 
-Handover: `04-process/observability-reliability/` OBS-P05 for the postmortem; `07-workflows/production-incident.md` for the full incident procedure; prevention work routes to testing, release engineering, or refactoring as appropriate.
+Handover: `04-process/observability-reliability/` OBS-P05 for the postmortem; `07-workflows/production-incident.md` for the full incident procedure; prevention work routes to testing, release engineering, or refactoring, and the postmortem names which.

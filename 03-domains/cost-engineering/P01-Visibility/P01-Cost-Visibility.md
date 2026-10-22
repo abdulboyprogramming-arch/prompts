@@ -68,7 +68,7 @@ Out of scope: changing resources, choosing savings (P02).
 ## 7. Failure handling
 
 - **No resource-level billing export** → work from the invoice's service breakdown, mark attribution as unavailable, and make "enable billing export with tags" the first recommendation.
-- **Tags absent or inconsistent** → attribute via naming and IaC where possible, quantify the remainder, and recommend a tagging standard (P04).
+- **Tags absent or inconsistent** → attribute by naming convention and IaC resource addresses, quantify the unattributable remainder, and recommend a tagging standard (P04).
 - **Multiple accounts/providers** → produce one map per account and a combined total with the split stated; cross-account transfer costs are a common hidden item.
 - **Figures look implausible** (a service costing more than its usage implies) → chase the mechanism: orphaned resources, duplicate environments, misconfigured replication, or a runaway job. This is often the largest single finding.
 - **Only a partial period is available** → annualise with an explicit method, and mark it.

@@ -32,6 +32,8 @@ Out of scope: model selection without a task, embedding-model training, and gene
 - `{{REPO_PATH}}` with the ingestion, chunking, embedding, and query code; `{{CORPUS_SCOPE}}` — the documents, versions, and whether they change.
 - `{{EVAL_SET}}` — if none exists, build one: **60–150 questions**, at minimum 30% unanswerable from the corpus, 20% requiring two documents, and 10% with a near-miss distractor.
 - `{{EMBEDDING_MODEL}}`, `{{CHUNK_STRATEGY}}`, `{{LATENCY_BUDGET}}` — the variables the ablation will move.
+- `EVAL_PLAN.md` — written by `AI-P03`; read it before starting rather than re-deriving it.
+- `SAFETY.md` — written by `AI-P04`; read it before starting rather than re-deriving it.
 
 ## 4. Workflow
 

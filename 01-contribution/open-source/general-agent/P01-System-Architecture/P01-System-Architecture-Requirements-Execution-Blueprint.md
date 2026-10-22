@@ -147,7 +147,7 @@ Maintain the knowledge base with verified facts and evidence references. Avoid p
 ## 9. Contribution Discovery Requirements
 
 ### 9.1 Documented Opportunities
-- Open issues (especially those labeled for contribution, good-first-issue, help-wanted, etc.)
+- Open issues, filtered by label — `good first issue`, `help wanted`, `bug`, `enhancement`
 - Issues assigned to the configured identity
 - Unassigned bugs and feature requests
 - Stale or abandoned issues

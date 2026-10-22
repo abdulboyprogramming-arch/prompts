@@ -33,10 +33,12 @@ Out of scope: performing a new deletion of live data (that is `PRIV-P02`), decid
 - `{{SUBJECT_SCOPE}}` — the subject identifier(s) used by the earlier deletion, the request record, and the timestamp of the deletion.
 - `{{RETENTION_DAYS}}` — the stated retention for backups and logs, which determines what "gone" can mean there.
 - `{{APPROVER}}` — for remediation that changes retention or deletes further data.
+- `.privacy/DATA_MAP.md`, `.privacy/PRIVACY_LEDGER.md` — written by `PRIV-P01`; read them before starting rather than re-deriving them.
+- `.privacy/REQUEST_LOG.md` — written by `PRIV-P02`; read it before starting rather than re-deriving it.
 
 ## 4. Workflow
 
-1. **Use the existing map, then challenge it.** Take `PRIV-P01`'s data map as the baseline and add the locations it usually misses: the analytics warehouse's raw event table, the log platform with a longer retention than the application, the error tracker, the search index, the cache, the message queue's dead-letter topic, the support tool's attachment storage, the data science notebook's extracted CSV, and the backup chain.
+1. **Use the existing map, then challenge it.** Take `PRIV-P01`'s data map as the baseline, then add the locations it usually misses. Those are: the analytics warehouse's raw event table, the log platform with a longer retention than the application, the error tracker, the search index, the cache, the message queue's dead-letter topic, the support tool's attachment storage, the data science notebook's extracted CSV, and the backup chain.
 
 2. **Classify each location by what "deleted" can mean there**, because they are not the same act:
 

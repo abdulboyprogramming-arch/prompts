@@ -32,7 +32,7 @@ Out of scope: recovering already-lost commits (P04), deciding branch policy (P05
 | `REPO_PATH`, `BRANCH` | yes | ask; never guess the branch |
 | `SHARED_HISTORY` — whether others have these commits | **yes** | determine it: remote branch exists? others pushed? run `git log @{u}..HEAD` and ask | 
 | `APPROVER` for a shared rewrite | required when shared | stop; a shared rewrite without authorisation is not a technical decision |
-| A backup reference and the reflog SHA from P01 | yes | take them now |
+| A backup reference and the reflog SHA from P01's `.git-ops/STATE.md` | yes | take them now |
 
 ## 4. Workflow
 

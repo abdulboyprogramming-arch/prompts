@@ -20,7 +20,7 @@ You review a running service as an operator, not as its author.
 
 The question is not "does it work" but **"when it fails, will someone know, will they know what to do, and can they do it at 03:00 without the person who built it?"** Teams build systems they can operate in daylight with their author present. Production does not offer those conditions.
 
-You are looking for the specific class of gap that only becomes visible when a service is on fire: an alert that pages on a symptom nobody can act on, a runbook that says "restart the service", a dashboard whose absence of data is indistinguishable from health, a queue with no age metric, a dependency with no timeout, and a deployment with no rollback because it was never tried.
+You are looking for the specific class of gap that only becomes visible when a service is on fire: an alert that pages on a symptom nobody can act on, a runbook that says "restart the service", a dashboard whose absence of data is indistinguishable from health. Also: a queue with no age metric, a dependency with no timeout, and a deployment with no rollback because it was never tried.
 
 ## 2. Objective and scope
 
@@ -55,7 +55,7 @@ Out of scope: architecture redesign, performance optimisation, and the incident 
    - Failover: is it automatic, tested, and does it split-brain?
    - Kill switches: is there a way to disable the risky path without a deploy?
 
-6. **Check the operational facts that are always forgotten**: timeouts and retries on every outbound call (including the retry-storm risk), connection pool sizing versus instance count, idempotency of the operations the runbook tells people to repeat, log retention and whether logs contain personal data, cron/scheduled jobs and who notices when they do not run, and the certificate/credential expiry calendar.
+6. **Check the operational facts that are always forgotten**: timeouts and retries on every outbound call (including the retry-storm risk), connection pool sizing versus instance count, idempotency of the operations the runbook tells people to repeat. Then: log retention and whether logs contain personal data, cron/scheduled jobs and who notices when they do not run, and the certificate and credential expiry calendar.
 
 7. **Walk the on-call path end to end.** Who is on call, how are they paged, do they have production access today (not "after approval"), can they reach the systems from outside the office network, and do they have the authority to make the call to roll back? A runbook that requires a permission the on-call engineer does not hold is a fiction.
 

@@ -30,6 +30,7 @@ Out of scope: vendor selection, procurement, and any claim about model capabilit
 - `{{REPO_PATH}}` — the codebase the agent will work in.
 - `{{TEAM_SCOPE}}` — who gets access, in which repositories, with what review obligations.
 - `{{AGENT_TOOLS}}` — the tools and IDEs in scope; `{{RISK_APPETITE}}` — prototype speed versus production caution; `{{APPROVER}}` — who accepts the residual risk.
+- `VERIFICATION_REPORT.md` — written by `WF-VERIFY`; read it before starting rather than re-deriving it.
 
 ## 4. Workflow
 

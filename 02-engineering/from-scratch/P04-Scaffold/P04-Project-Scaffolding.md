@@ -16,7 +16,7 @@ You are the Project Scaffolding agent. Create a clean, professional foundation f
 ## Objective
 - Initialize the repository structure.
 - Set up package manifests, dependency management, and basic configuration.
-- Add essential tooling (formatter, linter, test runner, editorconfig, etc.).
+- Add essential tooling (formatter, linter, test runner, `.editorconfig`, CI workflow).
 - Create a minimal but meaningful CI skeleton.
 - Establish a clear, conventional directory layout.
 

@@ -654,3 +654,135 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 - Finding 3: no rule for a user claim that conflicts with evidence ("we bumped nothing", while a version differs). Added: a contradiction is evidence — record both and test the difference rather than accepting the reassuring account.
 - Also learned about the stop rule: escalation here is not a count of failed experiments but a **scope change** — the search moved outside what the user can paste. Recorded in the write-up as a partial gap; the prompt's stop rule is still count-based.
 - Deduction: this is the author evaluating the author's prompt, so the run demonstrates followability and defect discovery, not effectiveness. `CHAT-MODE`, `CHAT-REVIEW`, `CHAT-DESIGN` remain unexecuted.
+
+### `00-core/conversational/CHAT-SELECT.md`, `CHAT-HANDOFF.md` — the problems after the first success
+- **2026-10-21 · specialised · 88/100 · operational (new)**
+- Problem: two gaps that only appear once chat mode works. Selection still assumed a human who knows the library, and continuity assumed the conversation would stay open. A chat model can do neither: it cannot read 364 files, and it cannot remember beyond the window.
+- `CHAT-SELECT` decision worth keeping: **the label is the honesty mechanism.** A route is `observed` only when the user pasted `TASKS.md` or `GALLERY.md`; otherwise it is `inferred` and says so on the card. Without that, a plausible-sounding route inherits the authority of the index it never read. It also returns **one** prompt with a falsifier ("if the job also fails when run alone, this is `DBG-01`, not `FLAKE-01`") rather than a menu, because a menu returns the work to the person who asked.
+- `CHAT-HANDOFF` decision worth keeping: **a summary is the wrong artifact.** Summaries keep conclusions and drop disproved hypotheses, so the next conversation re-proposes an eliminated theory with fresh confidence and the user pays for the same dead end twice. The packet carries the eliminations, the label on every fact, the rejected decisions with reasons, the redaction statement, and a mandatory restatement from the receiving conversation before work resumes.
+- Design detail: the sixty-line bound is a truncation guard, not a style preference — a long packet is truncated from the bottom, which silently deletes the constraints, so the constraints go at the top.
+- Deductions: neither prompt has been executed. `CHAT-SELECT` is the cheaper of the two to test (two people, the same situation, compare the routing cards); that is the next evidence entry.
+
+### Library capability — the prose lint closes (2.22.0)
+- **2026-10-21 · tooling · n/a**
+- Change: 171 findings to 0. `_meta/prose-lint-baseline.json` now records `0`, so `--check` is a hard gate rather than a ratchet, and the script's own docstring says so.
+- Method worth recording: every replacement named items instead of gesturing at them, and the 24 long sentences were split at clause boundaries rather than abbreviated. A burndown that shortens by deleting content would have lowered the number and raised the ambiguity, which is the failure the lint exists to catch.
+- Lesson from the first pass: replacing `where possible` with another hedge (`where the platform allows`) would have passed the lint and changed nothing. The rule that kept it honest was reading each line's meaning before editing it — the find-and-replace version of this job is a way to score zero badly.
+
+### Library capability — task index (2.22.0)
+- **2026-10-21 · tooling · n/a**
+- Change: `scripts/generate_task_index.py` generates `TASKS.md` from 21 task definitions, and CI fails when a prompt belongs to no task or the file is stale. `scripts/test_task_index.py` pins 15 cases, including the prefix rule that must not match a sibling directory and the "unrouted prompt is reported, not dropped" property.
+- Finding: the first run reported **13 prompts with no home**, including all five `observability-reliability` stages. A hand-written index would have left them out silently; the coverage check is what made the gap visible, which is the argument for generating the index rather than curating it.
+- Limitation, stated in the file: homes are directory prefixes, so routing is coarse — a prompt is assigned by where it lives, not by what it says. The test pins the matching rules, and the falsifier is a mis-routed prompt a reader notices.
+
+### `01-contribution/*/P06` — the first differentiation pass (#107)
+- **2026-10-21 · specialised · 89/100 · operational (3 stages promoted)**
+- Problem: `VARIANTS.md` ruled that an overlapping stage must state its domain difference or be deleted, and blocked promotion until it did. Seven stages in each of three systems were the same file with different nouns.
+- Method: one stage across all three variants, as the record prescribes. `P06 Validation` was chosen because the difference is sharpest there and because validation is where a wrong evidence standard does the most damage.
+- Design detail worth keeping: **each file names the characteristic failure it exists to catch** — *works in the author's browser*, *works in the test suite and drains the contract*, *works here and breaks a consumer's build*. Naming the failure is what makes three files non-interchangeable, more than any amount of domain vocabulary.
+- Measurement, and the honest reading of it: pairwise vocabulary overlap went 0.20–0.28 → 0.22–0.27, with one pair rising. The `P06` outlines were two paragraphs each, so they were never the source of the 0.63–0.68 similarity at the top of `VARIANTS.md`; rewriting an outline into a developed prompt also multiplies the denominator. The pass is justified by what the files now require, not by the metric. That distinction is written into `VARIANTS.md` so the next pass is not judged by a number that cannot see it.
+- Deductions: none of the three has been executed. They are `operational` in the library's sense — structurally reviewed with evidence rules — and the review log says plainly that no run exists.
+
+### `07-workflows/multi-agent-worked-example.md` — a run where every suite was green (#109)
+- **2026-10-21 · documentation · n/a · `WF-MULTIAGENT` promoted to v1.1.0**
+- Problem: the orchestration workflow required frozen interfaces and an interference audit, and demonstrated neither. A rule with no worked failure behind it is a formality.
+- Design of the example: the drift is **a required field added under a `done` report**. Deliberately chosen because it passes every check an individual agent can run — A's suite asserts the field exists, B's asserts the frozen payload renders — and fails only at the seam. The seam test asserts on the *rendered email body*, not on event delivery, because an event-arrived assertion would have passed and shipped blank emails.
+- Decision worth keeping: recovery **versions** the interface rather than reverting it. The consumer already depended on v1; a revert would have been a second unreviewed break. The fixing agent built its test from the producer's serialised payload, not from the plan text — a copy of the schema is where drift lives.
+- Honest detail kept in the file: the audit that would have caught the change in twelve minutes was **defined and skipped**, because both agents reported done. That is the real mechanism, and softening it would have produced a tutorial instead of a record.
+- Deductions: constructed run, not an observed incident; two agents only, and it says so. Three-agent drift is worse and is not shown.
+
+### `00-core/conversational/CHAT-SELECT.md` — execution 03, with a scoring key (v1.1.0)
+- **2026-10-21 · third executed prompt · six situations · tabletop · evaluator = prompt author**
+- Method: six situations routed by following the prompt as written, then every routing card scored against the generated `TASKS.md`, where a prompt's home is a fact rather than the evaluator's opinion. This is the first record in the library whose score is not entirely self-referential — the prompt is graded against an artifact it does not control.
+- Outcome: **4 of 6 cards named the prompt the index assigns to the situation's task.** Both misses were task-level hits and prompt-level misses, which is the failure a reader would experience as "helpful but not right".
+- Defect 1, symptom versus heading: "our nightly export stopped producing files" reads as *broken now* and the index files the relevant prompt under *running the work*. A model that translates silently returns a correct route in a vocabulary the user does not recognise. 1.1.0 requires both to be named, and the first move stated.
+- Defect 2, the falsifier separated the wrong pair: every card had a falsifier, and four of six separated two *tasks* — work the classification step had already done. The realistic ambiguity is within a task: control map versus standards conformance for one security questionnaire. The falsifier now has to separate the two candidate prompts, and the verification table checks it.
+- Index defect found by the same run: `JOBS-01` was reachable only from *running the work*, although a job that stops firing is the most common form of breakage. Background jobs became a home of both tasks, two `test_task_index.py` cases pin the multi-home behaviour (17/17), and the generator comment now states that overlapping homes must be true of both descriptions.
+- Honest limits: the author wrote the situations, chose the questions, and knew the index, so the run tests the instrument rather than compliance with it; six situations are a smoke test, not a benchmark. `GEN-P02` describes what a real one would need.
+- Follow-up: repeat with two evaluators and situations written by someone who has not read `TASKS.md`; the same scoring key works, and disagreement between the two cards is the measurement.
+
+### `01-contribution/*/P03` — the second differentiation pass, and the measurement that finally moved (#107)
+- **2026-10-21 · specialised · 90/100 · operational (3 stages promoted)**
+- Problem: `P03` was the highest-similarity stage in the library after `P07` — the three variants were the same "choose an opportunity, write `SELECTED_WORK.md`" outline with different nouns, and `VARIANTS.md` blocks promotion until a stage states its domain difference.
+- Method: one stage across all three variants. The rule for the pass was that each variant had to select with a **different instrument**, not describe the same ranking with different adjectives. That constraint is what produced three unrelated procedures: a claim register with a proof artifact and a design owner; a reversibility tier with an approval gate; a surface cost ledger with a semver expectation.
+- Design detail worth keeping: each stage names **the sentence that disqualifies a candidate** — *no owner for the decision*, *no approval, no tier 2 or 3*, *adds a promise you must keep*. A stage whose disqualifier cannot be written in one sentence has not decided anything.
+- Measurement: combined similarity fell 0.54–0.68 → 0.36–0.38 across all three pairs, with every component moving the same way. The contrast with `P06` (where combined similarity *rose*, 0.26–0.28 → 0.31–0.36 because shared structure went to the standard ten sections) is the finding: **content differentiation inside a shared skeleton cannot move this metric; procedure differentiation can.**
+- Correction recorded in `VARIANTS.md`: the pass-1 measurement compared vocabulary figures computed with a different function from the pair table's, so "barely moved" was reached by comparing two things. Recomputed on both sides with the tool's own functions, `P06`'s vocabulary fell and its combined score rose. The conclusion held; the arithmetic did not, and the record now says so.
+- Deductions: none of the three has been executed. `W3-P03`'s approval gate and `PKG-P03`'s ledger are reasoned, not observed; a real contribution would test whether a maintainer accepts the gate as helpful or as friction.
+
+### `01-contribution/*/P02` and `P07` — passes 3 and 4 (#107)
+- **2026-10-21 · specialised · 89/100 · operational (6 stages promoted)**
+- `P07`, the highest-similarity pair in the library: differentiated by **reader** rather than by content. The web PR is a viewing instruction, the web3 PR is a risk disclosure opening with four facts, the package PR is a release note written before the description because the changelog entry is the acceptance test. Combined 0.63–0.68 → 0.32–0.35.
+- `P02`, the more interesting pass: the three outlines used one word for three search spaces. Discovery here is a browser walk with an observation per candidate; there it is a five-part trust-boundary map with a failure class per candidate; for a library it is a downstream search for workarounds, copies, and pinned majors, with a witness per candidate. Combined 0.56–0.65 → 0.29–0.32.
+- Design detail worth keeping: all three now reject the same shape of candidate — one with no evidence — but each names a different kind of evidence. That is what makes them non-interchangeable without making them stop being discovery.
+- Decision recorded rather than deferred: `P01` and `P08` are left undifferentiated. Their similarity is already 0.15–0.46 and their content is genuinely the same job in every language; forcing a difference would produce adjectives. `P04` and `P05` remain open.
+- Deductions: none of the six has been executed. The web and package stages are the cheapest to test against a real repository; the web3 stage's trust-boundary map is the one most likely to be judged too slow by a maintainer.
+
+### `01-contribution/*/P04` and `P05` — passes 5 and 6, closing #107
+- **2026-10-21 · specialised · 89/100 · operational (6 stages promoted)**
+- `P05`: the same verb hid three disciplines — state coverage and native semantics (web), no new surface with append-only storage (web3), and an exported surface where every line is a promise (packages). Combined 0.40–0.61 → 0.29–0.33.
+- `P04`: each plan protects something different — a state × breakpoint matrix, a deployment sequence with halt conditions, an allowed surface delta with release choreography. Combined 0.19–0.51 → 0.32–0.33.
+- Recorded decision, not an omission: `P01` and `P08` stay undifferentiated. Their combined similarity was already 0.15–0.46 and their content is genuinely the same job in any language; a pass would have produced adjectives where the rule asks for instruments.
+- Consequence carried into every README: the three systems remain `mixed`, not `operational`. Six of eight stages are developed; the first and last are not, and a system that cannot start or orchestrate itself is still not safe unattended.
+- Deductions: eighteen rewritten stages, zero executions. The differentiation is a claim about intent and evidence standard, and only a real repository can test whether a maintainer accepts these procedures.
+
+### Library capability — prose counts are checked (2.22.0)
+- **2026-10-21 · tooling · n/a**
+- Change: `check_documented_counts()` compares the maturity triplets in `PROJECT-STATUS.md` and `_meta/publication-checklist.md` against the tree, and fails with both numbers. Four fixtures in `test_validator.py` (now 14/14), including a document that has no maturity line and must be ignored rather than failed.
+- Why after the README gate: that gate covered the table a visitor meets first; this one covers the sentences a contributor meets first. Promoting prompts moved the operational count 213 → 216 → 222 → 228 in a single release, and each step required four manual edits. A number maintained by hand beside a number generated by script is a claim waiting to become false.
+- Limitation: only the two documents with a fixed maturity-line shape are checked. The quickstart's executed ratio and the README's prose counts are not, because they appear in several phrasings; the honest fix there is a single generated include, which is a larger change than this release warrants.
+
+### Library capability — composition and community checks (2.22.0)
+- **2026-10-22 · tooling · n/a**
+- Change: `scripts/check_prompt_contract.py` checks that prompts compose — dependencies resolve, no two non-orchestrator stages own one artifact, no cycles — and reports how many dependency links name a concept instead of the upstream file. `scripts/check_community()` in the validator requires the four community files **and** the links that point at them.
+- Defects found on the first run, not by reading: `FS-P02` claimed `VISION.md` that `FS-P01` owns; `FS-P07` claimed the `README.md` that `FS-P04` scaffolds; `.github/CODE_OF_CONDUCT.md` and `SECURITY.md` existed with nothing linking them; `README.md` still told readers that `validate_library.py` was the gate and that 165 of 235 prompts were skeletons.
+- The measurement worth carrying: **116 of 239 stage-to-stage links (49%) named a concept rather than a filename.** Twenty-six operational prompts were fixed mechanically by naming the upstream artifact in their prerequisites. That is a real integration gap rather than a stylistic one: an agent moving between prompts must invent the mapping, and invented mappings are where artifacts get re-derived under a second name.
+- **The metric itself was defective, and a review of the script found it rather than a reading of the repository.** The flow check treated a link as satisfied if the artifact's stem appeared anywhere in the downstream prompt. `PKG-P04` passed because it declares `{{SELECTED_WORK}}` as an *input placeholder*; `PLAN.md` passed against any text containing "planning". Of 157 links called satisfied, 30 were stem-only. The check now strips `{{…}}` and requires the filename, which moved the honest figure to 112 of 239 (47%); the 21 operational prompts it exposed were given explicit filenames, leaving 92 (38%) — 10 stem-only, 82 absent. Four fixtures pin the three-way distinction (19/19).
+- The lesson about self-testing: the first version of `dependencies()` returned only identifiers that already existed, which made the "unknown dependency" check unfalsifiable — it passed on a fixture that named a prompt which does not exist. A check whose failure mode cannot be constructed is not a check, and the fixture wrote itself once the rule was stated.
+
+### Execution — `CHAT-REVIEW` against `scripts/check_prompt_contract.py` (2.22.0)
+- **2026-10-22 · execution · the prompt's author, who also wrote the target** · record `_meta/empirical-evaluation-04.md`
+- Target: the composition gate itself, asked for in the "is this safe to merge" intent the prompt names. Window: whole file, no callers, no fixtures.
+- Findings: two defects and two risks. The flow metric accepted a **stem** match, so a link counted as naming `SELECTED_WORK.md` because the prompt declares `{{SELECTED_WORK}}` as an input, and `PLAN.md` counted against any text containing *planning*; 30 of 157 "named" links were of that kind. The check also required *any* upstream artifact rather than all of them (20 pairs affected).
+- Consequence: the honest figure moved from **34% unnamed to 46% do not cite a filename**, then to **38%** after 21 more operational prompts were given explicit filenames. The repository had been quoting the looser number as its integration claim.
+- Prompt changes (v1.1.0): a published number is the correctness question and comes first; ask about the standard as well as the framework; the not-assessed list must name the definitions the review assumed. New verification rows for both.
+- The finding about the practice, not the prompt: four runs, four prompts changed. Structural review had passed all four.
+
+### Library capability — totals in prose (2.22.0)
+- **2026-10-22 · tooling · n/a**
+- Change: `check_stated_totals()` compares "N Markdown files", "N prompt files" and "all N prompts" against the scanner in the four documents a reader arrives through. Five fixtures, validator self-tests 23/23.
+- Found immediately: two documents said 458 Markdown files where the tree held 462, the quickstart offered "all 362 prompts", and the social-preview guidance promised 213 operational prompts and two executed. Every one of those numbers had been true when written; the tree moved and the sentences did not.
+- The design decision worth keeping: the rule covers three phrasings and not the word "prompts" alone. *"228 prompts carry that label"* is a statement about the operational subset, and a gate that flags it teaches the reader to ignore the gate. A check that cannot distinguish a subset from a total is a check that will be switched off.
+- Changelog numbers are excluded on purpose. They were true on their release date, and the falsification would be the edit.
+
+### Execution — batch 0 complete (2.22.0, second pass)
+- **2026-10-22 · executions · the prompt's author throughout** · records `_meta/empirical-evaluation-05.md` … `-09.md`
+- Five runs finished the batch: `CHAT-MODE` (adapting `GIT-P03`), `CHAT-DESIGN` (a real ADR on this repository's tooling), `CHAT-HANDOFF` (packet + five-question reconstruction), `GEN-P01` (forged `REQ-CHANGE-01` for the requirements-change gap), `GEN-P02` (ran it against a real git fixture). Batch 0 is 8 of 8; library total 9 of 228 (3.9%).
+- Defects found, all fixed to v1.1.0 the same session: a stop-condition prerequisite with no rule (`CHAT-MODE`); no status-quo option, a traffic-shaped `SCALE`, no ADR destination (`CHAT-DESIGN`); no label for a generated number, no restatement template (`CHAT-HANDOFF`); a contradictory score/maturity pair, no no-operator rule, no method for the overlap test (`GEN-P01`); an unenforceable "fresh session" rule, no budget rule, no trace format (`GEN-P02`).
+- The prompt under test earned its own defect: `REQ-CHANGE-01` accepted a change that weakens a security control with only a product approver, and the safeguard appeared in 1 of 2 runs of the same input. Fixed in v0.2.0; decision remains **do not ship** for want of the second run.
+- Repository defect found while measuring, not by reading: **two CI workflows**, the older one missing the composition gate. Deleted; `validate.yml` is now the only one, and the claim it supports is true.
+- The plan document was also wrong: it described B0 as eight conversational prompts and listed `CHAT-ASK`, which has never existed. B0 is eight identified prompts across `conversational/` and `prompt-engineering/`. Corrected in `execution-batches.md` §5, with the error kept as a note.
+- What this batch cannot claim: no run by a second person, no isolation in the `GEN-P02` runs, and no end-to-end system execution. The batch is complete in executions, empty in independent verification.
+
+### Execution — `git-operations` stages 1–2 as a system (2.22.0, third pass)
+- **2026-10-22 · executions · the prompt's author** · record `_meta/empirical-evaluation-10.md`
+- Built a real fixture (`/tmp/gitops`): a rename on `main`, a capability plus config change on `feature` with one commit that exists nowhere else, a lockfile both sides touched, no remote. Ran `GIT-P01` (state) then `GIT-P02` (conflict) in order, P02 consuming P01's `.git-ops/STATE.md`.
+- Both stages held: unpushed commit identified, backup branch recorded, direction of "ours" stated, both intents preserved (old symbol gone by grep, tests pass, no markers, history unrewritten).
+- Defects: **High** — `GIT-P02`'s "regenerate lockfiles, never hand-merge" rule keys on conflict type, and git **auto-merged the lockfile in silence**, so the rule never fired; **Medium** — `GIT-P01` recommended `git stash create`, which returns an unreachable SHA that expires, for a snapshot whose purpose is to be findable. Both fixed to v1.1.0, plus a `.git-ops/` location rule the two stages needed and neither had.
+- Scope claim kept honest: two stages of five, merge only (no rebase), no package manager, so the repaired lockfile rule was verified only against the fixture's absence of one.
+
+### Execution — git-operations stages 3–5 and the security-control retest (2.22.0)
+- **2026-10-22 · executions · the prompt's author** · record `_meta/empirical-evaluation-11.md`
+- `GIT-P03`: three unpublished commits squashed and reworded; tree hash identical before and after (`d5143b7d`), backup branch preserved the original, no prompt defect.
+- `GIT-P04`: a commit made unreachable with `reset --hard` recovered from the reflog with an identical tree (`6477a541`); no prompt defect.
+- `GIT-P05`: conventions produced for the fixture; **Medium** defect fixed — the generated-code rule never told the operator to scan what is committed, and a `.pyc` had survived four earlier stages invisibly. Also an unobservable-CI fact now has a `not observable` option.
+- `REQ-CHANGE-01` v0.2.0 retested with three runs: 3 of 3 name the security-control owner and block on the missing signature, so the 1-of-2 instability recorded earlier does not recur. Residual Low defect left unfixed and recorded: two labels (`ACCEPTED WITH CONDITION`, `DEFERRED`) for the same input, because the vocabulary has no defined conditioned state.
+- `git-operations` is now executed end to end across two records; the publication decision treats that as satisfying the letter and not the spirit.
+
+### Publication preparation (2.22.0) — state, scope of the checks, and the landing-page problem
+- **2026-10-22 · audit · maintainer (agent-assisted)**
+- Repository is **private**, default branch `main` at `060ffe5` (v2.21.1), no description, no topics, Discussions off, wiki off, squash-only, auto-delete on, MIT detected.
+- **Material finding:** publishing now exposes `main` (v2.21.1, 431 prompt files, README claiming 165 of 235 skeletons and a single workflow without the composition gate) as the landing page, while everything verified this session lives on the unmerged PR branch. All refs become readable when a repository goes public, so the branch and PR #12 are visible too — but a visitor reads `main`.
+- Secret scan extended: the earlier claim covered a squashed checkout; the clone was unshallowed and all **62 commits across all refs plus every tag** were scanned for `ghp_`, `github_pat_`, `gho_`, `AKIA`, private-key headers and `sk-` — 0 hits. Tree, PR body and issue comments also 0.
+- Content hygiene: 1 sandbox path (`/home/user/prompts`) found in `_meta/empirical-evaluation-08.md` and replaced with a placeholder; the checklist's row 13 claim was corrected to describe the remaining session branch names accurately rather than asserting zero hits.
+- Actions: the workflow fails at startup with 0 steps. GitHub-hosted standard runners are free for public repositories, so the billing blockage may end at the moment of publication; this cannot be verified while the repository is private and was not assumed.

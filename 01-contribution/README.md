@@ -2,16 +2,16 @@
 
 Prompt systems for adding value to existing projects (open-source or private): choosing what to contribute, understanding the target, implementing safely, and communicating with maintainers.
 
-> **System maturity is not uniform.** Only `open-source/general-agent/` is developed to the library standard. The four other systems in this folder are **stage skeletons**: they outline a sensible sequence but do not yet contain the verification, evidence, and failure-handling rules required before an agent should run them unsupervised. See `_meta/prompt-authoring-standard.md` and `_meta/ROADMAP-AND-BACKLOG.md`.
+> **System maturity is not uniform.** Only `open-source/general-agent/` is developed to the library standard end to end. The four other systems are mostly **stage skeletons**: they outline a sensible sequence but do not yet contain the verification, evidence, and failure-handling rules required before an agent should run them unsupervised. Each of the three contribution variants has six developed stages — `P02` through `P07` — and none of them makes the surrounding system safe to run unattended, because `P01` context and `P08` orchestration are still outlines. See `_meta/prompt-authoring-standard.md` and `_meta/ROADMAP-AND-BACKLOG.md`.
 
 ## Systems
 
 | Path | What it does | Stages | Maturity |
 |------|--------------|-------:|----------|
 | [`open-source/general-agent/`](open-source/general-agent/README.md) | End-to-end autonomous open-source contribution: bootstrap → recon → architecture → opportunity discovery → implementation → QA → publication → PR communication → recovery | 16 | **Operational** |
-| [`packages-libraries/`](packages-libraries/README.md) | Contributing to packages and libraries where API compatibility matters | 8 | Skeleton |
-| [`web/general/`](web/general/README.md) | Contributing to web projects (framework-agnostic) | 8 | Skeleton |
-| [`web3/general/`](web3/general/README.md) | Contributing to web3 projects | 8 | Skeleton |
+| [`packages-libraries/`](packages-libraries/README.md) | Contributing to packages and libraries where API compatibility matters | 8 | Mixed — 6 operational |
+| [`web/general/`](web/general/README.md) | Contributing to web projects (framework-agnostic) | 8 | Mixed — 6 operational |
+| [`web3/general/`](web3/general/README.md) | Contributing to web3 projects | 8 | Mixed — 6 operational |
 | [`language-design/`](language-design/README.md) | Designing or extending a programming language | 8 | Skeleton |
 
 ## Why three near-identical systems exist

@@ -18,7 +18,7 @@ Define what better looks like in measurable or clearly observable terms.
 
 ## Workflow
 1. Translate stakeholder pain into outcome statements.
-2. Define leading/lagging indicators where possible (cycle time, error rate, lead time, satisfaction, cost of delay, etc.).
+2. Define leading and lagging indicators (cycle time, error rate, lead time, satisfaction, cost of delay).
 3. Set explicit non-goals to prevent scope drift.
 4. Write `DESIRED_OUTCOMES.md`.
 

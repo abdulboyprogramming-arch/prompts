@@ -150,7 +150,7 @@ Risk class D. Every recovery action that modifies data requires a named approver
 - [ ] Evidence preserved before rotation.
 - [ ] Loss type characterised and window bounded.
 - [ ] Blast radius including downstream copies identified.
-- [ ] Routes enumerated; chosen route justified and reversible where possible.
+- [ ] Routes enumerated; chosen route justified, with its irreversibility stated.
 - [ ] Backup verified by an actual restore to a side instance.
 - [ ] Merge applied with counts, preserving post-incident legitimate writes.
 - [ ] Invariants reconciled with numbers.

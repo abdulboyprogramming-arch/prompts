@@ -8,6 +8,7 @@
 **Risk class:** B (inspects queues and writes fixes; re-running jobs against production data is C)
 **Depends on:** none
 **Produces:** `.jobs/DIAGNOSIS.md`, a job safety checklist, idempotency and overlap fixes
+**Gallery:** Diagnose why background work duplicates, drops, loops, or fails silently — and make every job safe to re-run.
 **Inputs:** TARGET_SERVICE, JOB_SCOPE (optional: SCHEDULER, QUEUE_BACKEND, INCIDENT_REF, TARGET_ENV)
 **Est. effort:** 1–4 h
 

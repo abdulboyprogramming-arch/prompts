@@ -25,7 +25,7 @@ Out of scope: changing findings because they are awkward, reviewing the author r
 
 ## 3. Prerequisites and inputs
 
-- `{{REVIEW_FINDINGS_FILE}}` (ranked, evidenced).
+- `{{REVIEW_FINDINGS_FILE}}` — `REVIEW_FINDINGS.md` from `CR-P03` (ranked, evidenced).
 - The PR interface (inline comments, summary review) and any project convention for review tone.
 - `AUTHOR_CONTEXT` if supplied (new contributor, first change in this area, or under deadline) — it changes framing, not content; here `{{AUTHOR_CONTEXT}}`.
 

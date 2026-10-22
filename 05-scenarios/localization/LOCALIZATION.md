@@ -44,7 +44,7 @@ Out of scope: translation quality review by a native speaker (required, but a se
 
 5. **Design for text expansion**: German and Finnish run 30–40% longer than English, and CJK can be shorter but needs different line breaking. Fixed-width buttons, single-line table cells, and absolutely positioned labels break first. Test with pseudo-localisation (accented characters plus 40% expansion) before any real translation exists.
 
-6. **Verify the right-to-left case properly**: `dir="rtl"` on the document, logical CSS properties (`margin-inline-start`, not `margin-left`), mirrored icons where direction is meaningful (back arrows) and **not** mirrored where it is not (clock faces, media controls, brand marks), and bidirectional text isolation for user content (a phone number inside Arabic text).
+6. **Verify the right-to-left case in a browser, not by reading the CSS**: `dir="rtl"` on the document, logical CSS properties (`margin-inline-start`, not `margin-left`), and mirrored icons where direction is meaningful (back arrows) but **not** where it is not (clock faces, media controls, brand marks). Then check bidirectional text isolation for user content such as a phone number inside Arabic text.
 
 7. **Handle names, addresses, and personal data**: name fields cannot assume first/last, address formats differ by country, and honourifics are not universal. Truncation and initials are locale-specific.
 

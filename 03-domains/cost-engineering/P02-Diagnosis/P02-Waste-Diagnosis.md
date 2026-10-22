@@ -48,7 +48,7 @@ Out of scope: implementing savings (P03), judging whether the product is worth i
    | Chatty service calls | N+1 across a network boundary | Batch, cache |
 
 3. **Quantify each finding in money per month**, showing the calculation (unit price × quantity × hours). If the saving is partial, state the fraction and why.
-4. **Measure utilisation properly** — p95 and p99, not averages; averages hide the idle hours and the peaks. Record the measurement window.
+4. **Measure utilisation at p95 and p99, never the average** — averages hide the idle hours and the peaks. averages hide the idle hours and the peaks. Record the measurement window.
 5. **Establish what would break.** For every finding, name the dependency that protects against failure: redundancy, SLA, backup window, compliance requirement, or a consumer nobody documented. A finding that removes required redundancy is not a saving.
 6. **Rank by (saving × confidence) / effort**, and separate:
    - **safe and mechanical** (delete an unattached volume, add a lifecycle rule);

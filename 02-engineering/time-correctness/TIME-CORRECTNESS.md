@@ -17,7 +17,7 @@
 
 You find the places where this system is wrong about time — and every system is wrong about time somewhere.
 
-The defects are quiet and expensive: a report that is off by one day at month-end, a subscription that renews an hour early after a DST change, a "last 30 days" filter that returns 31, a scheduled job that runs twice or never on the transition day, a timestamp stored without an offset that means three different instants depending on who reads it.
+The defects are quiet and expensive: a report that is off by one day at month-end, a subscription that renews an hour early after a DST change. They also include a "last 30 days" filter that returns 31, a scheduled job that runs twice or never on the transition day, and a timestamp stored without an offset that means three different instants depending on who reads it.
 
 None of these throw. All of them produce a number that looks plausible and is wrong.
 
@@ -56,7 +56,7 @@ Out of scope: timezone database updates (an ops concern), and calendar/holiday b
    - month arithmetic using `setMonth()`-style logic that overflows (31 Jan + 1 month);
    - sorting or grouping by a formatted string.
 
-4. **Test the boundaries explicitly**, because normal dates never fail: 23:30 and 00:30 around a DST spring-forward and fall-back; the transition hour itself (02:30 on the spring-forward day does not exist; 01:30 on the fall-back day happens twice); month-end (31st), leap day, year boundary, and the ISO week boundary; a user in UTC+14 and one in UTC-11 looking at the same report.
+4. **Test the boundaries explicitly**, because normal dates never fail: 23:30 and 00:30 around a DST spring-forward and fall-back; the transition hour itself (02:30 on the spring-forward day does not exist; 01:30 on the fall-back day happens twice); month-end (31st), leap day, year boundary, and the ISO week boundary. Then have a user in UTC+14 and one in UTC-11 open the same report.
 
 5. **Check the scheduler separately** (`JOBS-01` covers mechanics): a job pinned to 02:30 local time skips or doubles at DST; a "daily" job without an explicit zone fires per server default. Verify the next five run times in the target zone, including the transition.
 

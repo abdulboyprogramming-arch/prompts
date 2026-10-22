@@ -46,24 +46,24 @@ This repository is a curated library, not a collection bin. Contributions are ju
 - Do not instruct an agent to use tools or credentials it may not have.
 - Keep prompts proportional: a 40-line task does not need 300 lines.
 
+## Community and conduct
+
+This project follows the [Code of Conduct](.github/CODE_OF_CONDUCT.md). It is short and it is enforced: argue about the artifact, bring evidence, disagree with the design rather than the person.
+
+Found a security problem? Do not open an issue. Follow the [security policy](.github/SECURITY.md), which routes the report privately.
+
 ## Validation
 
 ```bash
-python3 scripts/test_validator.py              # the validator's own rules, must pass
-python3 scripts/test_overlaps.py               # the duplicate detector's own tests, must pass
-python3 scripts/test_prose_lint.py             # the prose lint's own tests, must pass
-python3 scripts/lint_prose.py --check          # prose ratchet — must not regress
-python3 scripts/validate_library.py            # must exit 0
-python3 scripts/validate_library.py --catalog  # regenerate the catalog
-python3 scripts/generate_gallery.py --write    # regenerate GALLERY.md
-python3 scripts/generate_gallery.py --check     # what CI runs
+python3 scripts/check_all.py                   # every gate, in the order CI runs them
+python3 scripts/check_all.py --fix             # regenerate catalog, gallery, task index, evidence first
+python3 scripts/check_all.py --quick           # skip the duplicate detector when you are iterating
 python3 scripts/find_overlaps.py --top 10      # is this prompt already written?
 python3 scripts/find_overlaps.py --metric combined --top 10   # reworded clones
-python3 scripts/evidence_report.py --check     # executed-prompt count is current
 python3 scripts/new_prompt.py --system <dir> --identifier <ID> --title "<Title>"  # scaffold
 ```
 
-A pull request that raises the validator's error count will not be merged. If you change a rule in `scripts/validate_library.py`, add or update a fixture in `scripts/test_validator.py` — a rule verified only against today's repository is one edit away from silently checking nothing. Warnings should be justified in the PR description.
+`scripts/check_all.py` is the authoritative list of gates — CI runs that script and nothing else, so a local pass is the same run your pull request will get. A pull request that raises the validator's error count will not be merged. If you change a rule in `scripts/validate_library.py`, add or update a fixture in `scripts/test_validator.py` — a rule verified only against today's repository is one edit away from silently checking nothing. Warnings should be justified in the PR description.
 
 ## Review criteria
 

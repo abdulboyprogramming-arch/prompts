@@ -2,7 +2,7 @@
 
 **Identifier:** CHAT-DESIGN
 **System:** 00-core/conversational
-**Version:** 1.0.0
+**Version:** 1.1.0
 **Maturity:** operational
 **Execution mode:** specialised
 **Risk class:** A — the output is a decision record, not a change
@@ -32,7 +32,7 @@ Out of scope: producing an implementation plan or code; designing a system whose
 
 - `{{DESIGN_QUESTION}}` — the decision in one sentence, phrased as a choice ("should checkout state live in the order service or a separate store?"), not a topic ("how do we do checkout").
 - `{{CONSTRAINTS}}` — the things that actually bound the choice: existing systems, team skills, budget, regulatory obligations, contracts.
-- `{{SCALE}}` — current and expected volume, with a number. "A few thousand orders a day, 10× at peak season" is a design input; "scalable" is not.
+- `{{SCALE}}` — the **load** the decision has to carry, with a number, in whichever sense the decision has one: traffic and expected growth for a service ("a few thousand orders a day, 10× at peak season"); file size, function count, and rate of change for a codebase; prompts added per week for a process. "Scalable" is not an input, and neither is "big".
 - `{{TEAM_SIZE}}` — who will build and operate it. A design the team cannot run is not a design.
 - `{{DEADLINE}}` — when it must exist, which decides whether a reversible v1 is preferable to a correct v2.
 - `{{EXISTING_STACK}}` — the systems the decision must live with: languages, datastores, queueing, deployment target. A design that ignores what already exists is a migration proposal, not a design.
@@ -41,11 +41,13 @@ Out of scope: producing an implementation plan or code; designing a system whose
 
 1. **Sharpen the question first.** Most design questions are too broad to answer. Restate it as a choice between named alternatives, and confirm the restatement before analysing. "We need a better notification system" becomes "do we send notifications from the transaction that creates them, or from a queue that consumes events?"
 
-2. **Separate constraints from preferences, in writing.** Constraints are facts with an owner (a contract requires EU storage; the team has two backend engineers; the mobile app cannot ship before March). Preferences are tastes dressed as constraints ("we like microservices"). Only constraints eliminate options.
+2. **Separate constraints from preferences, in writing.** Constraints are facts with an owner (a contract requires EU storage; the team has two backend engineers; the mobile app cannot ship before March). Preferences are tastes dressed as constraints ("we like microservices"). Only constraints eliminate options. Where the owner is the person asking, record it as an assumption with the date rather than as an owned fact — a decision that only its author has confirmed is not yet a constraint on anyone else.
 
 3. **Establish the scale and the failure tolerance.** Volume, growth, acceptable latency, acceptable data loss, and whether the operation is reversible. A design for 10 requests per second that assumes at-least-once delivery is fine; the same design at 10,000 is a different conversation.
 
-4. **Generate two to four real options, including "do nothing" and the boring one.** An option list that omits the simplest choice is a rationalisation. For each option record: what it is in two sentences, what it costs to build, what it costs to operate, what it makes hard, how it fails, and who has to maintain it.
+4. **Generate two to four real options, including "do nothing" and the boring one.** An option list that omits the simplest choice is a rationalisation.
+
+   **If the thing already exists, one option must be the current state**, described with the same costs as the others — including the cost of the work already sunk into it. An option list that omits the status quo produces recommendations for work that is already done, and the reader only finds out when they go to do it. For each option record: what it is in two sentences, what it costs to build, what it costs to operate, what it makes hard, how it fails, and who has to maintain it.
 
 5. **Apply the constraints as eliminations, not weights.** A scoring matrix with invented weights is false precision. State which constraints eliminate which options outright; then compare what remains on the dimensions that matter.
 
@@ -53,7 +55,7 @@ Out of scope: producing an implementation plan or code; designing a system whose
 
 7. **Assess reversibility.** Which decision is expensive to undo, and what would it cost? Prefer the reversible option when information is missing and the cost of being wrong is high; prefer the simple one when both are reversible.
 
-8. **Write the ADR.** Title, status, context, decision, consequences (including the bad ones), alternatives rejected with reasons, and the condition that would reopen it. Six sections, one page. The "condition that would reopen it" is the part everyone omits and the only part that makes it revisitable.
+8. **Write the ADR, and say where it lives.** Title, status, context, decision, consequences (including the bad ones), alternatives rejected with reasons, and the condition that would reopen it. Six sections, one page. The "condition that would reopen it" is the part everyone omits and the only part that makes it revisitable. Name the destination too: the repository's decision directory when it has one, otherwise a path the user can file it under. An ADR with no address becomes a chat message.
 
 9. **State the assumptions you could not verify**, and who can. A design built on an assumed traffic pattern is a bet; name the bet so it can be checked.
 
@@ -77,7 +79,8 @@ Out of scope: producing an implementation plan or code; designing a system whose
 |-------|--------|----------------|
 | Question sharpened | Reply | Restated as a choice between named alternatives |
 | Constraints separated | Reply | Facts with owners versus preferences |
-| Scale stated | Reply | Numbers, or an explicit assumption |
+| Load stated | Reply | A number in whichever sense applies — traffic, size, or rate of change — or an explicit assumption |
+| Current state among the options | ADR | The status quo described with its costs, where the thing already exists |
 | Options count | ADR | Two to four, including do-nothing and the simple one |
 | Cost per option | ADR | Build, operate, maintain, and fail |
 | Eliminations justified | ADR | Constraints applied as eliminations, not weights |

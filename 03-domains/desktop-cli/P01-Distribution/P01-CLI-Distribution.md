@@ -36,7 +36,7 @@ Out of scope: GUI desktop application packaging (separate concerns), and marketi
 
 1. **Decide the install paths and own each one.** A `curl | sh` script is an execution primitive: it must serve a specific version (not `latest`), verify a checksum, and fail closed. A global npm install is convenient and slow, and inherits the user's Node version — if you ship one, say which versions are supported and enforce it at runtime with a clear error.
 
-2. **Build reproducible, static artifacts where possible**: one binary per platform/architecture, with the version embedded (`--version` must print something a bug report can use: version, commit, build date, target triple).
+2. **Build reproducible, static artifacts**: one binary per platform/architecture, with the version embedded (`--version` must print something a bug report can use: version, commit, build date, target triple).
 
 3. **Sign everything, and make verification possible**: cosign/minisign/GPG signatures or platform signing (macOS notarisation, Windows Authenticode). Publish checksums alongside, and make the install script verify them. An unsigned binary triggers a scary OS warning the user will click through.
 

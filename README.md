@@ -4,9 +4,9 @@ A structured collection of prompts for AI coding agents, organised across the en
 
 Every prompt declares what it does, what it may change, how much it can be trusted, and what it will not do. Nothing here claims a capability its files do not have — the repository is validated against that rule on every change.
 
-**[`QUICKSTART.md`](QUICKSTART.md) — start here.** Four situations, the exact prompts in order, and what you should be holding at the end of each. It takes ten minutes and saves an hour of reading this file.
+**[`QUICKSTART.md`](QUICKSTART.md) — start here.** Six situations, the exact prompts in order, and what you should be holding at the end of each. It takes ten minutes and saves an hour of reading this file.
 
-**Browse everything:** [`GALLERY.md`](GALLERY.md) lists all 362 prompts with a direct link and one line on when to use each. It is generated from the prompts themselves and CI fails if it falls out of date, so it cannot drift from the library.
+**Browse everything:** [`TASKS.md`](TASKS.md) indexes the library by the problem you have — 21 tasks from "something is broken right now" to "I only have a chat window" — and [`GALLERY.md`](GALLERY.md) lists all 364 prompts by area with a direct link and one line on when to use each. Both are generated from the prompts themselves and a stale file fails the gate, so neither can drift from the library.
 
 ## Start here
 
@@ -143,7 +143,7 @@ In short: take it, change it, ship it — say where it came from, and do not pre
 | [`04-process/testing-qa/`](04-process/testing-qa/README.md) | 7 | operational |
 | [`04-process/observability-reliability/`](04-process/observability-reliability/README.md) | 5 | operational |
 | [`04-process/release-engineering/`](04-process/release-engineering/README.md) | 4 | operational |
-| [`03-domains/ai-agentic/`](03-domains/ai-agentic/README.md) | 5 | operational |
+| [`03-domains/ai-agentic/`](03-domains/ai-agentic/README.md) | 7 | operational |
 | [`03-domains/database/`](03-domains/database/README.md) | 5 | operational |
 | [`04-process/dependency-management/`](04-process/dependency-management/README.md) | 5 | operational |
 | [`04-process/decommissioning/`](04-process/decommissioning/README.md) | 4 | operational |
@@ -165,7 +165,7 @@ In short: take it, change it, ship it — say where it came from, and do not pre
 | [`02-engineering/access-review/`](02-engineering/access-review/ACCESS-REVIEW.md) | 1 | operational |
 | [`04-process/accessibility-audit/`](04-process/accessibility-audit/ACCESSIBILITY-AUDIT.md) | 1 | operational |
 | [`00-core/prompt-engineering/`](00-core/prompt-engineering/PROMPT-FORGE.md) | 2 | operational (GEN-P01, GEN-P02) |
-| [`00-core/conversational/`](00-core/conversational/README.md) | 4 | operational (chat mode: any prompt, adapted) |
+| [`00-core/conversational/`](00-core/conversational/README.md) | 6 | operational (chat mode: any prompt adapted, plus select, review, debug, design, handoff) |
 | [`04-process/privacy-requests/`](04-process/privacy-requests/README.md) | 4 | operational |
 | [`04-process/git-operations/`](04-process/git-operations/README.md) | 5 | operational |
 | [`04-process/code-review/`](04-process/code-review/README.md) | 6 | operational |
@@ -173,10 +173,12 @@ In short: take it, change it, ship it — say where it came from, and do not pre
 | [`04-process/documentation/`](04-process/documentation/README.md) | 8 | operational |
 | [`04-process/handover/`](04-process/handover/README.md) | 5 | operational |
 | [`04-process/agent-context/`](04-process/agent-context/README.md) | 4 | operational |
-| [`07-workflows/`](07-workflows/README.md) | 12 | mixed (7 operational, 5 draft) |
+| [`07-workflows/`](07-workflows/README.md) | 13 | mixed (8 operational, 5 draft), plus one reference document |
 | [`05-scenarios/`](05-scenarios/README.md) | 42 | mixed (37 operational, 5 skeleton) |
 
-Everything else — backend, frontend, devops-infra, data-ml-ai, the eight game-design stages, architecture-review, from-scratch, migration, project management, research, systems improvement, language design, packages, web/web3 contribution — is a **skeleton**: a defensible sequence of stages with outline prompts. Those folders are useful for structuring a human-led session today; they are not yet safe to hand to an autonomous agent. Promotion order is in [`_meta/ROADMAP-AND-BACKLOG.md`](_meta/ROADMAP-AND-BACKLOG.md); per-scenario coverage with evidence is in [`_meta/coverage-matrix.md`](_meta/coverage-matrix.md).
+Everything else — backend, frontend, devops-infra, data-ml-ai, the eight game-design stages, architecture-review, from-scratch, migration, project management, research, systems improvement, language design, and `P01`/`P08` in packages and web/web3 contribution — is a **skeleton**: a defensible sequence of stages with outline prompts.
+
+Eighteen stages are the exception, and they are six stages across three variants: `P02` through `P07` in `web/`, `web3/` and `packages-libraries/` are `operational`, and each set does genuinely different work. Selection asks how a candidate is chosen — whether the claim can be proven in a browser and someone owns the design decision, whether the change can be undone if it is wrong, what it costs the public surface — and validation asks what evidence closes it: cross-browser proof, a violating case per invariant, a published-artifact diff. Discovery means a browser walk at three widths in one variant, a trust-boundary map in another, and a downstream search of consumer code in the third. Planning means a state-by-breakpoint matrix, a deployment sequence, and a surface delta. Each stage was rewritten across all three variants, one at a time, so the three systems stopped being one system with three sets of nouns: every pair now sits at 0.29–0.38 combined, from 0.26–0.68 (`01-contribution/VARIANTS.md`). Those folders are useful for structuring a human-led session today; they are not yet safe to hand to an autonomous agent. Promotion order is in [`_meta/ROADMAP-AND-BACKLOG.md`](_meta/ROADMAP-AND-BACKLOG.md); per-scenario coverage with evidence is in [`_meta/coverage-matrix.md`](_meta/coverage-matrix.md).
 
 ## Structure
 
@@ -217,13 +219,18 @@ Quality is scored with [`_meta/quality-rubric.md`](_meta/quality-rubric.md) — 
 
 ## Composing systems
 
-Individual prompts solve a task. Real work is a sequence with handoffs and decisions. [`07-workflows/`](07-workflows/README.md) defines five such sequences, each with explicit gates where a human must decide, failure routing, and acceptance criteria for the whole chain:
+Individual prompts solve a task. Real work is a sequence with handoffs and decisions. [`07-workflows/`](07-workflows/README.md) defines thirteen procedures, each with explicit gates where a human must decide, failure routing, and acceptance criteria for the whole chain:
 
 - [Recover an abandoned or broken project](07-workflows/recover-abandoned-project.md)
 - [Audit → remediate](07-workflows/audit-to-remediation.md)
 - [Production incident](07-workflows/production-incident.md)
 - [Greenfield delivery](07-workflows/greenfield-delivery.md)
 - [Continuous improvement](07-workflows/continuous-improvement.md)
+- [Independent verification](07-workflows/independent-verification.md)
+- [Multi-agent orchestration](07-workflows/multi-agent-orchestration.md) and [a worked run of it](07-workflows/multi-agent-worked-example.md)
+- [Cross-layer integration](07-workflows/cross-layer-integration.md)
+- [Compliance readiness](07-workflows/compliance-readiness.md)
+- [Agent adoption](07-workflows/agent-adoption.md)
 
 Stages exchange state using the [handoff contract](07-workflows/HANDOFF-CONTRACT.md), so a second session or a different agent can continue without replaying the conversation.
 
@@ -241,21 +248,23 @@ No prompt may silently escalate its own category. [`00-core/safety-and-security/
 ## Contributing and validating
 
 ```bash
-python3 scripts/validate_library.py            # must report 0 errors
-python3 scripts/validate_library.py --catalog  # regenerate _meta/CATALOG.md
+python3 scripts/check_all.py        # every gate, in the order CI runs them
+python3 scripts/check_all.py --fix  # regenerate catalog, gallery, task index, evidence first
 ```
 
-The validator checks metadata completeness, identifier uniqueness, version/maturity consistency, required sections, broken links (Markdown and backticked paths), empty sections, risk-class honesty, and README status overclaims. CI runs it on every pull request and fails if `_meta/CATALOG.md` is stale (`.github/workflows/validate-library.yml`).
+`scripts/check_all.py` is the authoritative list: CI runs that script and nothing else, so a local pass is the same run a pull request gets. It covers metadata and section completeness, identifier uniqueness, version/maturity consistency, broken links, empty sections, risk-class honesty, status overclaims, prose quality, duplicate detection, catalog/gallery/task-index currency, and the counts in the README and in `PROJECT-STATUS.md`.
 
-Read [`CONTRIBUTING.md`](CONTRIBUTING.md) before adding a system, and [`AGENTS.md`](AGENTS.md) if you are an AI agent working in this repository.
+Read [`CONTRIBUTING.md`](CONTRIBUTING.md) before adding a system — it also points at the [Code of Conduct](.github/CODE_OF_CONDUCT.md) and the [security policy](.github/SECURITY.md). Read [`AGENTS.md`](AGENTS.md) if you are an AI agent working in this repository.
 
 ## Known limitations
 
-- **165 of 235 prompts are skeleton outlines.** They are labelled as such everywhere.
-- **No prompt has been empirically tested against a real repository and recorded.** `operational` means structurally complete and reviewed, not proven in practice.
-- **Mobile, database, embedded, desktop/CLI, dependency management, governance, and multi-agent orchestration have no dedicated systems yet.** They are prioritised in the backlog.
-- **Reviews are self-assessments** recorded in [`_meta/review-log.md`](_meta/review-log.md); independent verification has not been performed.
-- CI validates the library on pull requests; it does not test prompts empirically (no such harness exists).
+- **131 of 364 prompts are skeleton outlines.** They are labelled as such everywhere, and the task index counts them separately rather than hiding them.
+- **The GitHub Actions workflow does not currently run.** This account's Actions billing is blocked, so `.github/workflows/validate.yml` fails at startup without executing a step. The identical gate list runs locally with `python3 scripts/check_all.py`, which is how every release on this branch was verified — but a green badge is the one thing this repository cannot yet show.
+- **14 of 228 operational prompts have been executed and recorded** — 6.1%. The queue for the rest, in batches, is [`_meta/execution-batches.md`](_meta/execution-batches.md). `operational` means structurally complete and reviewed, not proven in practice; [`_meta/evidence-levels.md`](_meta/evidence-levels.md) states the number, and it is generated from a registry.
+- **The prompts have not been compared against a model's output in a controlled study.** The three runs are tabletop evaluations by the author, and each record says so.
+- **Reviews are self-assessments** recorded in [`_meta/review-log.md`](_meta/review-log.md); no second reviewer exists.
+- **27 of 143 coverage rows are partial.** No row is missing; thin ones are named in [`_meta/coverage-matrix.md`](_meta/coverage-matrix.md).
+- CI validates structure and composition on pull requests; it cannot test whether a prompt improves an agent's work.
 
 Coverage per engineering scenario, with an honest status for each: [`_meta/coverage-matrix.md`](_meta/coverage-matrix.md).
 

@@ -2,7 +2,7 @@
 
 **Identifier:** GIT-P01
 **System:** 04-process/git-operations
-**Version:** 1.0.0
+**Version:** 1.1.0
 **Maturity:** operational
 **Execution mode:** diagnostic
 **Risk class:** A
@@ -49,12 +49,12 @@ Out of scope: fixing anything, resolving conflicts (P02), rewriting history (P03
 5. **Check for stashes** (`git stash list`) and for worktrees (`git worktree list`), because work may live in a different checkout than the one you are looking at.
 6. **Establish recoverability** relative to `{{BASE_REF}}`: `git reflog -n 20` on `{{BRANCH}}`, and note that reflog entries are local and expire (default 90 days for reachable, 30 for unreachable). Record the current SHA of every branch that might be moved.
 7. **Establish what is shared**: which branches exist on the remote, who pushed recently (`git log --format='%an %ae' --since='2 weeks'`), and whether protected-branch rules exist. Anything shared changes the risk class of P03 from B to D.
-8. **Take a safety snapshot before recommending any operation** — cheap and reversible:
-   - `git stash create` (or `git stash push -m "pre-<operation>"`) for uncommitted work;
+8. **Take a safety snapshot before recommending any operation** — cheap and reversible, and every item must be reachable afterwards:
+   - `git stash push -m "pre-<operation>"` for uncommitted work. **Do not use `git stash create` alone:** it returns a commit SHA without storing it in the stash list, so the object is unreachable and expires silently. If a bare SHA was produced, `git stash store -m "pre-<operation>" <sha>` makes it findable;
    - `git diff > /tmp/pre-<operation>.patch` and `git diff --cached >>` for a file-level copy;
    - `git branch backup/<branch>-<timestamp>` for the current commit.
-   Record the exact commands used and where the artifacts live.
-9. **Write `.git-ops/STATE.md`:** branch/SHA/upstream, working tree inventory, unpushed commits, in-progress operation, stashes and worktrees, reflog snapshot with expiry, shared-status assessment, safety snapshots taken, and a recommendation (`safe to proceed` / `proceed only after backup` / `stop — resolve the in-progress operation first`).
+   Record the exact commands used and where the artifacts live — a stash is recorded by its `stash@{n}` ref, not only by a SHA, because the ref is what a later run can find.
+9. **Write `.git-ops/STATE.md`** — a **local working file**: add `.git-ops/` to `.git/info/exclude` and do not commit it, because it describes one machine's state at one moment and a committed copy becomes a merge conflict in the exact situation it exists to describe. Say in the artifact itself where it lives. Contents: branch/SHA/upstream, working tree inventory, unpushed commits, in-progress operation, stashes and worktrees, reflog snapshot with expiry, shared-status assessment, safety snapshots taken, and a recommendation (`safe to proceed` / `proceed only after backup` / `stop — resolve the in-progress operation first`).
 
 ## 5. Decision rules and evidence standard
 

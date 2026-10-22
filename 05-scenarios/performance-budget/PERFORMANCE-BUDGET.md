@@ -49,7 +49,7 @@ Out of scope: deep application profiling (see `05-scenarios/performance-investig
 
 7. **Distinguish lab from field.** Lab numbers (Lighthouse) are reproducible and gameable; field data (RUM, CrUX) is real and sampled. Use lab for the gate and field for the truth, and state both.
 
-8. **Handle the third-party budget separately**: analytics, chat widgets, A/B tools, and payment iframes are usually the largest uncontrolled cost. Give them a byte and main-thread-time budget, load them after interaction where possible, and make adding one a reviewed decision.
+8. **Handle the third-party budget separately**: analytics, chat widgets, A/B tools, and payment iframes are usually the largest uncontrolled cost. Give them a byte and main-thread-time budget, load them after interaction by default, and make adding one a reviewed decision.
 
 9. **Budget the mobile app too** if applicable: startup time, binary size, and memory; the same discipline, different metrics.
 

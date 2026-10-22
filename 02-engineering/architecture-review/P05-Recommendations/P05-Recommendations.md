@@ -25,7 +25,7 @@ Produce concrete, justified recommendations that improve architectural fitness.
    - Rough cost / risk of making the change
    - Possible approaches or patterns
 3. Write `RECOMMENDATIONS.md`.
-4. Prefer recommendations that are actionable and incremental where possible. Distinguish must-do from should-do and could-do.
+4. Prefer recommendations that are actionable and incremental; mark any that require a freeze as such. Distinguish must-do from should-do and could-do.
 
 ## Completion Criteria
 - Clear, justified, prioritized recommendations exist.

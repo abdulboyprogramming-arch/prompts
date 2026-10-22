@@ -82,7 +82,7 @@ Out of scope: transferring access (P03), proving the receiver can operate it (P0
 - **The build or deploy cannot be run here** → record the exact command, where it is expected to run, and mark it *unverified*; state what evidence would settle it.
 - **The sender is unavailable for questions** → reconstruct from `02-engineering/project-recovery/` and label every inference as such; do not present reconstruction as first-hand knowledge.
 - **The system is too large for the time available** → capture the operational brief and the fragile list first (they prevent incidents), then the architecture, then the rest; state what was not captured.
-- **Two sources of truth disagree** (docs vs deployed, two schemas) → record both and name the one that behaviour follows, verified where possible; the disagreement itself is a risk item.
+- **Two sources of truth disagree** (docs vs deployed, two schemas) → record both and name the one that behaviour follows, confirmed by running both sides; the disagreement itself is a risk item.
 - **A secret appears in a document or config** → do not copy it; record the location, notify the owner, and treat rotation as a P03 action.
 
 ## 8. Security and authorisation

@@ -2,7 +2,7 @@
 
 **Identifier:** GEN-P01
 **System:** 00-core/prompt-engineering
-**Version:** 1.0.0
+**Version:** 1.1.0
 **Maturity:** operational
 **Execution mode:** specialised
 **Risk class:** A (read-only; generating text, reading the repository, running validation checks that write nothing). Writing the result into the repository is a separate `B` step the operator authorises.
@@ -74,6 +74,8 @@ From the description, derive and state:
 
 If the description does not yield an artifact or evidence, that is an ambiguity, not a licence to improvise.
 
+**When nobody is there to answer, the default is stated, not silent.** The compose-with-no-operator case is the common one for an agent: `{{INTERVIEW_MAX}}` questions are written out with the default you would use and the reason, the defaults are applied, and the prompt records `assumptions: unconfirmed`. That is different from inventing an answer — an unconfirmed assumption is visible in the output and can be overruled by the next reader.
+
 ### Step 2 — Triage ambiguity, not everything
 
 Ask only questions whose answers change the artifact, the risk class, or the verification method. Maximum `{{INTERVIEW_MAX}}`; each question must be answerable in one line and must come with your default if unanswered.
@@ -86,7 +88,7 @@ In `compose` mode with `{{INTERVIEW_MAX}} = 0`, **state every assumption explici
 
 If `{{REPO_PATH}}` is available, check whether the library already covers this task (search by system and identifier, not by keyword). Then:
 
-- **≥70% overlap** → do not create a competitor. Output: *"This is covered by `<ID>` at `<path>`; here is how to configure it for your case"* plus a patch to that prompt if something is genuinely missing.
+- **≥70% overlap** → do not create a competitor. Judge overlap on four axes, one line each: same artifact, same trigger, same evidence standard, same stop condition. Three of four is substantial overlap; two is a variant; one or none is a new prompt. Write the four lines down — an unstated overlap judgement is a preference, and the step exists to prevent two prompts that solve one problem differently. Output: *"This is covered by `<ID>` at `<path>`; here is how to configure it for your case"* plus a patch to that prompt if something is genuinely missing.
 - **Partial overlap** → produce a *variant* that references the existing prompt and states what it adds.
 - **No overlap** → proceed.
 
@@ -132,6 +134,10 @@ If the requested prompt implies **D** but the description is casual ("just clean
 ### Step 7 — Self-score, and say what is weak
 
 Score the generated prompt against `_meta/quality-rubric.md` (nine dimensions). Report the total and the **two weakest dimensions with the specific change that would raise each**. If the intent was too vague to reach 70, say so plainly instead of padding the prose.
+
+**Report the score before the prompt, not after it.** A reader who meets the block first has already started using it when they reach the line that says the technical specificity is thin.
+
+**The score is design quality; the maturity label is execution evidence, and they are not the same claim.** A generated prompt can score 85 and is still `draft`, because nothing has run it. Say both in the output so the contradiction is not left for the reader to resolve.
 
 ### Step 8 — Emit the artifacts
 

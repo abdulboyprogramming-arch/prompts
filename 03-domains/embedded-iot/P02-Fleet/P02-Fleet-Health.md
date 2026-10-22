@@ -30,6 +30,7 @@ Out of scope: pushing firmware (`IOT-P01`), physical maintenance scheduling, and
 - `{{DEVICE_CLASS}}`, `{{FLEET_SIZE}}`, `{{TELEMETRY_SOURCE}}` — what each device actually sends and how it is stored.
 - `{{HEARTBEAT_WINDOW}}` — the interval within which a healthy device must be heard from; this is the single most important number in the model.
 - `{{TARGET_ENV}}` — production, pilot, or lab; a lab fleet's absence is not an incident.
+- `.ota/OTA_PLAN.md` — written by `IOT-P01`; read it before starting rather than re-deriving it.
 
 ## 4. Workflow
 

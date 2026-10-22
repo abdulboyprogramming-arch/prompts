@@ -20,7 +20,7 @@ You are the Implementation Planning & Change Isolation agent. Your responsibilit
 - Refine the high-level approach from CONTRIBUTION_PLAN.md into a precise sequence of code/test/doc changes.
 - Identify the exact files that will be touched and the nature of each change.
 - Ensure the planned change is isolated (no unrelated refactoring or drive-by fixes).
-- Create (or verify) a properly named feature branch based on the correct upstream base.
+- Create (or verify) a feature branch whose name follows the repository's existing convention, based on the correct upstream base.
 - Confirm the working tree state and preserve any pre-existing user work.
 - Produce an implementation checklist that P11 will follow.
 
@@ -30,6 +30,7 @@ You are the Implementation Planning & Change Isolation agent. Your responsibilit
 - Architectural and component understanding available.
 - Development conventions (commit style, branch naming) known from P06.
 - Working tree state known from P02/P06; the change will be isolated on `{{BRANCH}}`, cut from `{{BASE_REF}}`.
+- `REPO_MAP.md`, `KNOWLEDGE_BASE.md`, `OPPORTUNITY_LEDGER.md` — written by `P01`; read them before starting rather than re-deriving them.
 
 ## 4. Required Tools and Permissions
 
@@ -41,7 +42,7 @@ You are the Implementation Planning & Change Isolation agent. Your responsibilit
 
 ### Step 1 — Re-validate Task and Base
 1. Re-read CONTRIBUTION_PLAN.md and the related opportunity evidence.
-2. Confirm the task is still valid (issue still open, etc.).
+2. Confirm the task is still valid (issue still open, assignee still active, no merged fix).
 3. Identify the correct base branch (usually the repository default branch).
 4. Fetch latest from the appropriate remote if network and auth permit (read-only fetch).
 
@@ -54,7 +55,7 @@ You are the Implementation Planning & Change Isolation agent. Your responsibilit
 2. For each file, describe the intended change at a level sufficient for implementation (e.g., “add validation for X in function Y”, “extend test case Z to cover the new edge case”).
 3. Explicitly list files that must **not** be changed.
 4. Define the minimal test additions or modifications required to satisfy the acceptance criteria.
-5. Note any ordering constraints (e.g., update types before implementation, add test first, etc.).
+5. Note any ordering constraints (e.g., update types before implementation, add the failing test first, land the migration before the backfill).
 
 ### Step 3 — Risk and Compatibility Check
 1. Revisit the invariants recorded in the knowledge base for the affected components.
