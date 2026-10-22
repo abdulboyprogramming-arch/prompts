@@ -819,3 +819,19 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
   duplicate, not a capability.
 - Not claimed: none of the eight has been run against a real application. They are
   developed to the standard, and `_meta/evidence.json` still shows frontend at zero runs.
+
+### Completion — the devops-infra family (2.28.0)
+- **2026-10-22 · authoring review · the prompt's author** · no execution record
+- Promoted `DI-P01` … `DI-P08` from skeleton to operational, organised around two artefacts
+  the outlines did not require: a state design with locking, versioning and a written
+  recovery procedure, and a plan gate with four named failure conditions.
+- `DI-P07` is written so that an environment without a drill environment produces `blocked`
+  findings rather than a pass — the restore drill and the rollback timing are the two checks
+  most often skipped and the two with the worst consequences when skipped.
+- Composition: `03-domains/devops-infra` 6/8 → 8/8 links naming the upstream artifact;
+  library-wide unnamed links 56 → 50 of 245.
+- Deliberate non-duplication: `OBS-P01`–`OBS-P05`, `OPS-01` and `IAC-01` already cover
+  service signals, readiness and unmanaged estates. This family cites them.
+- Not claimed: none of the eight has been run against a real estate. In particular the plan
+  gate has never rejected a real destroy, and no restore has been drilled — `DI-P07` exists
+  precisely to make that gap visible rather than to paper over it.

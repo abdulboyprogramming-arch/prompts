@@ -2,6 +2,56 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.28.0] — 2026-10-22
+
+The infrastructure family was the last domain running on outlines. It is now eight
+procedures built around the two artefacts that make applies safe: locked state, and a plan
+somebody read.
+
+### Completed — `03-domains/devops-infra` (`DI-P01` … `DI-P08`)
+
+Each stage carries declared inputs, decision rules with their evidence, verification
+written as checks, failure handling, and a handover naming the next stage's artifact. Five
+of them take a position the outline did not:
+
+- **`DI-P01`** computes blast radius per workspace and names every resource shared between
+  environments. A staging environment that shares a database with production is not a
+  staging environment, and the document says so rather than implying the promotion path is
+  safe.
+- **`DI-P04`** fails the pipeline on four conditions, not one: a destroy of a resource the
+  architecture marked irreversible, a replacement of stateful infrastructure, a plan over
+  the change-size threshold, and drift. It also requires a **state recovery procedure**
+  written before any of it — a team that has never restored state will restore it for the
+  first time during an incident.
+- **`DI-P05`** reads the plan for four things before approving it: the destroy count, the
+  replacement list, resources whose *address* changed (a rename is a destroy), and
+  `known after apply` values that could be destructive. One change, one verification, one
+  log entry.
+- **`DI-P06`** instruments the platform itself — pipeline staleness, drift age, state lock
+  age, certificate and credential expiry, quota, backup age — because those failures have
+  no customer-facing symptom until they are outages, and the platform team's own changes
+  are usually the least monitored thing in the estate.
+- **`DI-P07`** tests each gate with a fixture designed to fail it, drills the restore with
+  row counts rather than a job status, and times the rollback against the number the
+  architecture claimed. A gate that has never rejected anything is unverified.
+
+### Deliberate non-duplication
+
+`DI-P06` cites `OBS-P01`–`OBS-P05` for service-level signals and `OPS-01` for the readiness
+review, and `DI-P01` hands unmanaged estates to `IAC-01`. Three existing operational
+systems already cover those questions; a fourth competing set was the risk here, not a gap.
+
+### Composition
+
+`03-domains/devops-infra` went from 6 of 8 stage links naming the upstream artifact to 8 of
+8. Library-wide, links that name no artifact fell from 56 to 50 of 245.
+
+### Reconciled
+
+Library 364 prompts — **281 operational**, 5 draft, **78 skeleton**. Evidence: **26 of 281
+executed (9.3%)**, all author-run, none independent. None of the eight has been executed;
+`_meta/evidence.json` still shows the family at zero runs.
+
 ## [2.27.0] — 2026-10-22
 
 The last large domain with no procedure now has one, and it is built around the thing

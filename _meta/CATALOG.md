@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 364 prompts — 0 canonical, 273 operational, 5 draft, 86 skeleton.
+**Totals:** 364 prompts — 0 canonical, 281 operational, 5 draft, 78 skeleton.
 
 ## `00-core`
 
@@ -312,14 +312,14 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
 | ID | Stage | Maturity | Mode | Risk | File |
 |----|-------|----------|------|------|------|
-| `DI-P01` | PROMPT 01 — Context & Constraints | skeleton | implementation | B | [P01-Context-Constraints.md](../03-domains/devops-infra/P01-Context/P01-Context-Constraints.md) |
-| `DI-P02` | PROMPT 02 — Requirements & SLOs | skeleton | planning | C | [P02-Requirements-SLOs.md](../03-domains/devops-infra/P02-Requirements/P02-Requirements-SLOs.md) |
-| `DI-P03` | PROMPT 03 — Architecture | skeleton | planning | C | [P03-Infra-Architecture.md](../03-domains/devops-infra/P03-Architecture/P03-Infra-Architecture.md) |
-| `DI-P04` | PROMPT 04 — IaC & Pipelines | skeleton | implementation | C | [P04-IaC-Pipelines.md](../03-domains/devops-infra/P04-IaC-Pipelines/P04-IaC-Pipelines.md) |
-| `DI-P05` | PROMPT 05 — Implementation | skeleton | implementation | B | [P05-Implementation.md](../03-domains/devops-infra/P05-Implementation/P05-Implementation.md) |
-| `DI-P06` | PROMPT 06 — Observability & Ops | skeleton | implementation | B | [P06-Observability-Ops.md](../03-domains/devops-infra/P06-Observability/P06-Observability-Ops.md) |
-| `DI-P07` | PROMPT 07 — Validation | skeleton | diagnostic | B | [P07-Validation.md](../03-domains/devops-infra/P07-Validation/P07-Validation.md) |
-| `DI-P08` | PROMPT 08 — DevOps & Infrastructure Master Orchestrator | skeleton | orchestration | A | [P08-DevOps-Infra-Orchestrator.md](../03-domains/devops-infra/P08-Orchestrator/P08-DevOps-Infra-Orchestrator.md) |
+| `DI-P01` | PROMPT 1 — Context & Constraints: what breaks, for how many, | operational | planning | A | [P01-Context-Constraints.md](../03-domains/devops-infra/P01-Context/P01-Context-Constraints.md) |
+| `DI-P02` | PROMPT 2 — Requirements & SLOs: numbers that a pipeline step | operational | planning | A | [P02-Requirements-SLOs.md](../03-domains/devops-infra/P02-Requirements/P02-Requirements-SLOs.md) |
+| `DI-P03` | PROMPT 3 — Architecture: the promotion path, and what a bad  | operational | planning | A | [P03-Infra-Architecture.md](../03-domains/devops-infra/P03-Architecture/P03-Infra-Architecture.md) |
+| `DI-P04` | PROMPT 4 — IaC & Pipelines: state layout, plan review, and t | operational | implementation | C | [P04-IaC-Pipelines.md](../03-domains/devops-infra/P04-IaC-Pipelines/P04-IaC-Pipelines.md) |
+| `DI-P05` | PROMPT 5 — Implementation: change the estate in steps you ca | operational | implementation | D | [P05-Implementation.md](../03-domains/devops-infra/P05-Implementation/P05-Implementation.md) |
+| `DI-P06` | PROMPT 6 — Observability & Ops: the signal that fires before | operational | implementation | B | [P06-Observability-Ops.md](../03-domains/devops-infra/P06-Observability/P06-Observability-Ops.md) |
+| `DI-P07` | PROMPT 7 — Validation: prove the gates fire, the restore wor | operational | diagnostic | C | [P07-Validation.md](../03-domains/devops-infra/P07-Validation/P07-Validation.md) |
+| `DI-P08` | PROMPT 8 — DevOps & Infrastructure Master Orchestrator: the  | operational | orchestration | A | [P08-DevOps-Infra-Orchestrator.md](../03-domains/devops-infra/P08-Orchestrator/P08-DevOps-Infra-Orchestrator.md) |
 
 ## `03-domains/embedded-iot`
 

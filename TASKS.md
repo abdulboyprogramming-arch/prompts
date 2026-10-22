@@ -13,7 +13,7 @@ library is reachable from at least one task: a prompt added without a home fails
 |---|---|
 | Prompts indexed | 364 |
 | Rows listed individually | 409 (a prompt can answer more than one task) |
-| Of those, `operational` | 316 |
+| Of those, `operational` | 324 |
 
 Not sure which task is yours? [`QUICKSTART.md`](QUICKSTART.md) routes five common situations,
 [`06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md`](06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md)
@@ -423,6 +423,14 @@ Backend, frontend, mobile, desktop, embedded, data, or ML — each with its own 
 | `MLA-P08` | [Data / ML / AI Master Orchestrator](03-domains/data-ml-ai/P08-Orchestrator/P08-Data-ML-AI-Orchestrator.md) | `P08-Orchestrator` | ML_RUN.md and the stage artifacts. | operational |
 | `DESK-P01` | [CLI Distribution and Updates](03-domains/desktop-cli/P01-Distribution/P01-CLI-Distribution.md) | `P01-Distribution` | A distribution matrix per platform, signed and checksummed artifacts, an update mechanism with verification, a channel policy… | operational |
 | `DESK-P02` | [Terminal UX, Signals, and Exit Codes](03-domains/desktop-cli/P02-Terminal-UX/P02-Terminal-UX.md) | `P02-Terminal-UX` | A specified behaviour matrix (TTY and non-TTY, each signal, each error class), corrected output handling, and tests that exercise… | operational |
+| `DI-P01` | [Context & Constraints: what breaks, for how many, and who can fix it at 3 a.m.](03-domains/devops-infra/P01-Context/P01-Context-Constraints.md) | `P01-Context` | DI_CONTEXT.md answering six questions | operational |
+| `DI-P02` | [Requirements & SLOs: numbers that a pipeline step can fail on](03-domains/devops-infra/P02-Requirements/P02-Requirements-SLOs.md) | `P02-Requirements` | DI_REQUIREMENTS.md containing | operational |
+| `DI-P03` | [Architecture: the promotion path, and what a bad apply can destroy](03-domains/devops-infra/P03-Architecture/P03-Infra-Architecture.md) | `P03-Architecture` | DI_ARCHITECTURE.md containing | operational |
+| `DI-P04` | [IaC & Pipelines: state layout, plan review, and the gate that stops a destroy](03-domains/devops-infra/P04-IaC-Pipelines/P04-IaC-Pipelines.md) | `P04-IaC-Pipelines` | DI_IAC_PIPELINES.md containing | operational |
+| `DI-P05` | [Implementation: change the estate in steps you can stop between](03-domains/devops-infra/P05-Implementation/P05-Implementation.md) | `P05-Implementation` | counts, replacements listed by name), the approver, the time, the result, the verification, and the rollback. | operational |
+| `DI-P06` | [Observability & Ops: the signal that fires before the customer calls](03-domains/devops-infra/P06-Observability/P06-Observability-Ops.md) | `P06-Observability` | DI_OBSERVABILITY.md with | operational |
+| `DI-P07` | [Validation: prove the gates fire, the restore works, and the rollback runs](03-domains/devops-infra/P07-Validation/P07-Validation.md) | `P07-Validation` | DI_VALIDATION.md with | operational |
+| `DI-P08` | [DevOps & Infrastructure Master Orchestrator: the gates between seven stages](03-domains/devops-infra/P08-Orchestrator/P08-DevOps-Infra-Orchestrator.md) | `P08-Orchestrator` | DI_RUN.md containing the stage ledger (ran, skipped, blocked), each gate's verdict and evidence, every open question with its… | operational |
 | `IOT-P01` | [Firmware OTA with Rollback](03-domains/embedded-iot/P01-OTA/P01-Firmware-OTA.md) | `P01-OTA` | A signed, versioned image; an update procedure with an atomic switch and tested rollback; a staged rollout with automatic… | operational |
 | `IOT-P02` | [Fleet Health and Remote Recovery](03-domains/embedded-iot/P02-Fleet/P02-Fleet-Health.md) | `P02-Fleet` | A health model with explicit expectations (what a healthy device reports and how often), a triage method that separates the… | operational |
 | `FE-P01` | [Context & Stack: what the browser is actually being asked to do](03-domains/frontend/P01-Context/P01-Context-Stack.md) | `P01-Context` | FE_CONTEXT.md answering five questions | operational |
@@ -436,8 +444,6 @@ Backend, frontend, mobile, desktop, embedded, data, or ML — each with its own 
 | `MOB-P01` | [Store Release and Phased Rollout](03-domains/mobile/P01-Release/P01-Store-Release.md) | `P01-Release` | A release plan with a signed build, store metadata, a staged rollout, a halt criterion defined *before* the rollout starts, and a… | operational |
 | `MOB-P02` | [Crash Triage and Symbolication](03-domains/mobile/P02-Crashes/P02-Crash-Triage.md) | `P02-Crashes` | A symbolicated, deduplicated crash inventory; a ranking by affected users and business impact (not raw count); a classification… | operational |
 | `MOB-P03` | [API Compatibility with Shipped Clients](03-domains/mobile/P03-Compatibility/P03-Client-Compatibility.md) | `P03-Compatibility` | A client-version matrix (which versions exist, in what proportion), the compatibility contract for each supported version, a… | operational |
-
-*Plus **8** `skeleton` prompts in these homes — a defensible stage sequence without verification or failure handling. Use them to structure a human-led session, not to drive an agent: [03-domains](GALLERY.md#03-domains--domain-specific-engineering).*
 
 ## I need to answer someone outside engineering
 
