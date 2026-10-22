@@ -18,6 +18,8 @@ timestamps below were read from the API, not reconstructed.
 
 ## Merged
 
+Record-only pull requests — the ones whose entire content is this table — cannot record their own merge commit, because it does not exist when they are written. They are listed here instead: #25 (`720687c`, recording #24) and #27 (`ddc2920`, recording #26). The same applies to any later record-only PR, including the one that adds this note.
+
 | # | Title | Merged | Merge commit | Notes |
 |---|-------|--------|--------------|-------|
 | 26 | 2.28.2 — testing-QA stages 3–6: placeholder and empty-section rules made blocking | 2026-10-22 | `1b843a5` | Merged under the standing merge authority. The `validate` check run reports `failure` with **`steps: 0`** — the runner never started a step because Actions billing is not enabled, so it is not a test result and nothing in the repository was gated by it; the local suite was green (0 errors / 0 warnings, 44/44, all gates passed) before merging, and that is the only enforcement evidence that exists |
