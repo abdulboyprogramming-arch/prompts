@@ -13,7 +13,7 @@ library is reachable from at least one task: a prompt added without a home fails
 |---|---|
 | Prompts indexed | 364 |
 | Rows listed individually | 409 (a prompt can answer more than one task) |
-| Of those, `operational` | 308 |
+| Of those, `operational` | 316 |
 
 Not sure which task is yours? [`QUICKSTART.md`](QUICKSTART.md) routes five common situations,
 [`06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md`](06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md)
@@ -425,11 +425,19 @@ Backend, frontend, mobile, desktop, embedded, data, or ML — each with its own 
 | `DESK-P02` | [Terminal UX, Signals, and Exit Codes](03-domains/desktop-cli/P02-Terminal-UX/P02-Terminal-UX.md) | `P02-Terminal-UX` | A specified behaviour matrix (TTY and non-TTY, each signal, each error class), corrected output handling, and tests that exercise… | operational |
 | `IOT-P01` | [Firmware OTA with Rollback](03-domains/embedded-iot/P01-OTA/P01-Firmware-OTA.md) | `P01-OTA` | A signed, versioned image; an update procedure with an atomic switch and tested rollback; a staged rollout with automatic… | operational |
 | `IOT-P02` | [Fleet Health and Remote Recovery](03-domains/embedded-iot/P02-Fleet/P02-Fleet-Health.md) | `P02-Fleet` | A health model with explicit expectations (what a healthy device reports and how often), a triage method that separates the… | operational |
+| `FE-P01` | [Context & Stack: what the browser is actually being asked to do](03-domains/frontend/P01-Context/P01-Context-Stack.md) | `P01-Context` | FE_CONTEXT.md answering five questions | operational |
+| `FE-P02` | [UX & Interaction Goals: the state matrix, written before the components](03-domains/frontend/P02-UX-Goals/P02-UX-Interaction-Goals.md) | `P02-UX-Goals` | FE_UX_GOALS.md containing | operational |
+| `FE-P03` | [Frontend Architecture: who owns the data, where state lives, what renders where](03-domains/frontend/P03-Architecture/P03-Frontend-Architecture.md) | `P03-Architecture` | FE_ARCHITECTURE.md containing | operational |
+| `FE-P04` | [Implementation: every state a user can reach, not just the one in the demo](03-domains/frontend/P04-Implementation/P04-Implementation.md) | `P04-Implementation` | connected as mapped, rendering every state ID assigned to it. | operational |
+| `FE-P05` | [State & Data: stale responses, double submits, and the cache that lies](03-domains/frontend/P05-State-Data/P05-State-Data.md) | `P05-State-Data` | FE_STATE_DATA.md and the implementation behind it | operational |
+| `FE-P06` | [Quality & Accessibility: the checks that come back with evidence](03-domains/frontend/P06-Quality/P06-Quality-Accessibility.md) | `P06-Quality` | Residual gaps with impact and what would close them. | operational |
+| `FE-P07` | [Polish & Handoff: the long string, the slow connection, and the honest note](03-domains/frontend/P07-Polish/P07-Polish-Handoff.md) | `P07-Polish` | rough edges, and copy that a user can act on. | operational |
+| `FE-P08` | [Frontend Master Orchestrator: the gates between seven stages](03-domains/frontend/P08-Orchestrator/P08-Frontend-Orchestrator.md) | `P08-Orchestrator` | FE_RUN.md containing the stage ledger (ran, skipped, blocked), each gate's verdict and evidence, every open question with its… | operational |
 | `MOB-P01` | [Store Release and Phased Rollout](03-domains/mobile/P01-Release/P01-Store-Release.md) | `P01-Release` | A release plan with a signed build, store metadata, a staged rollout, a halt criterion defined *before* the rollout starts, and a… | operational |
 | `MOB-P02` | [Crash Triage and Symbolication](03-domains/mobile/P02-Crashes/P02-Crash-Triage.md) | `P02-Crashes` | A symbolicated, deduplicated crash inventory; a ranking by affected users and business impact (not raw count); a classification… | operational |
 | `MOB-P03` | [API Compatibility with Shipped Clients](03-domains/mobile/P03-Compatibility/P03-Client-Compatibility.md) | `P03-Compatibility` | A client-version matrix (which versions exist, in what proportion), the compatibility contract for each supported version, a… | operational |
 
-*Plus **16** `skeleton` prompts in these homes — a defensible stage sequence without verification or failure handling. Use them to structure a human-led session, not to drive an agent: [03-domains](GALLERY.md#03-domains--domain-specific-engineering).*
+*Plus **8** `skeleton` prompts in these homes — a defensible stage sequence without verification or failure handling. Use them to structure a human-led session, not to drive an agent: [03-domains](GALLERY.md#03-domains--domain-specific-engineering).*
 
 ## I need to answer someone outside engineering
 

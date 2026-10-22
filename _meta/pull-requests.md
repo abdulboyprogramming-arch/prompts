@@ -8,7 +8,7 @@ timestamps below were read from the API, not reconstructed.
 
 | # | Title | Branch → base | Purpose | Status | Reviewer | Checks | Merge commit | Owner reviewed in person |
 |---|-------|---------------|---------|--------|----------|--------|--------------|--------------------------|
-| 21 | 2.26.0 — backend family completed (`BE-P01`…`BE-P08`); prose counts now gated | `arena/d6533a39-prompts` → `main` | Eight skeleton stages developed to operational with per-stage inputs, decision rules, verification and failure handling; `check_documented_counts` extended to read `N operational` in prose after `PROJECT-STATUS.md` was found three releases stale | **open**, not merged | none — the API refuses a review request from the author (`422`); assigned + `needs-review` | CI: no step has ever executed (billing); local 15/15 | — | **no** |
+| 22 | 2.27.0 — frontend family completed (`FE-P01`…`FE-P08`) | `arena/76558291-prompts` → `main` | Eight skeleton stages developed to operational around a state matrix with no blank cells; one owner per piece of state; cache keys that carry their parameters; accessibility scanning as a floor rather than a result, with `A11Y-01` and `PERF-BUDGET-01` cited instead of duplicated | **open**, not merged | none — the API refuses a review request from the author (`422`); assigned + `needs-review` | CI: no step has ever executed (billing); local 15/15 | — | **no** |
 
 ## Closed without merging
 
@@ -21,6 +21,7 @@ timestamps below were read from the API, not reconstructed.
 
 | # | Title | Merged | Merge commit | Notes |
 |---|-------|--------|--------------|-------|
+| 21 | 2.26.0 — backend family completed; prose counts now gated | 2026-10-22 | `a159e24` | Merged under the standing "merge all" authorisation; validator rule added after `PROJECT-STATUS.md` was found three releases stale |
 | 20 | 2.25.1 — `MLA-P03` tested against a committed leakage fixture, v1.1.0 | 2026-10-22 15:08:05Z | `a497cec` | Independent of #18 after merge; a stage run against four planted defects found one |
 | 18 | 2.25.0 — data / ML / AI family completed (`MLA-P01`…`MLA-P08`) | 2026-10-22 15:07:27Z | `0376e12` | Stacked #19 had to be re-opened as #20 after `--delete-branch` removed its base |
 | 17 | 2.24.0 — game-development family completed (`GD-P01`…`GD-P08`) | 2026-10-22 14:51:48Z | `a54a896` | Merged by the agent under an explicit grant for this PR |

@@ -2,6 +2,49 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.27.0] — 2026-10-22
+
+The last large domain with no procedure now has one, and it is built around the thing
+frontend work actually fails on: the states nobody designed.
+
+### Completed — `03-domains/frontend` (`FE-P01` … `FE-P08`)
+
+Eight outlines became operational prompts. Each carries declared inputs, decision rules
+with their evidence, verification written as checks, failure handling, and a handover
+naming the artifact the next stage consumes. Five of them take a position the outline
+did not:
+
+- **`FE-P01`** reads the render mode per route out of the router, and writes down what it
+  forbids: a server-rendered page that reads `localStorage` is a defect that only appears
+  in production. The browser floor comes from `browserslist`, policy or analytics, with
+  the source named.
+- **`FE-P02`** produces a state matrix with no blank cells — loading, empty, error,
+  partial, permission-denied, success, offline — and separates the three "nothing here"
+  cases (no data yet, filter excluded everything, failed to load) that are collapsed into
+  one message everywhere this goes wrong. Copy is specified as intent plus constraints,
+  marked `draft` until a copy owner approves it.
+- **`FE-P03`** assigns exactly one owner to every piece of state and forbids the second
+  copy; URL state is decided per item, and an error boundary is placed per failure region
+  rather than once for the app.
+- **`FE-P05`** makes the cache honest: a query key that omits a filter parameter serves
+  another filter's results, retries apply only to idempotent operations, and the session
+  boundary is cleared on logout and user switch — the most severe defect this stage can
+  ship is another user's data rendered from cache.
+- **`FE-P06`** treats an automated accessibility scan as a floor, not a result, and
+  requires the five checks a scanner cannot make. Where their scope is needed it cites
+  `A11Y-01` and `PERF-BUDGET-01` rather than duplicating them.
+
+### Composition
+
+`03-domains/frontend` went from 4 of 8 stage links naming the upstream artifact to 8 of 8.
+Library-wide, links that name no artifact fell from 60 to 56 of 243.
+
+### Reconciled
+
+Library 364 prompts — **273 operational**, 5 draft, **86 skeleton**. Evidence: **26 of 273
+executed (9.5%)**, all author-run, none independent. None of the eight frontend stages has
+been executed; `_meta/evidence.json` still shows the family at zero runs.
+
 ## [2.26.0] — 2026-10-22
 
 The backend domain was the largest system in the library with no procedure: nine stages,

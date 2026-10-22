@@ -11,10 +11,10 @@ input, which is the property that makes a sequence of prompts a system rather th
 | Measure | Value |
 |---------|------:|
 | Systems with more than one stage | 52 |
-| Dependency links between stages in a system | 241 |
-| Links where the downstream stage never names the upstream artifact | **62** |
+| Dependency links between stages in a system | 243 |
+| Links where the downstream stage never names the upstream artifact | **56** |
 | Links that mention it only by stem, never as a filename | 9 |
-| Links that cite the upstream filename | 170 |
+| Links that cite the upstream filename | 178 |
 
 The second row is the library's real integration claim. The third is what is left of it: a
 link where the downstream prompt says *"the rollout evidence"* instead of naming
@@ -57,7 +57,7 @@ handed the artifact without anyone guessing its name.
 | `03-domains/desktop-cli` | 2 | 2 | 0 | 0 | 0 | 0 |
 | `03-domains/devops-infra` | 8 | 7 | 6 | 0 | 0 | 6 |
 | `03-domains/embedded-iot` | 2 | 3 | 1 | 1 | 0 | 0 |
-| `03-domains/frontend` | 8 | 7 | 6 | 0 | 0 | 6 |
+| `03-domains/frontend` | 8 | 7 | 8 | 8 | 0 | 0 |
 | `03-domains/games` | 10 | 9 | 6 | 5 | 0 | 1 |
 | `03-domains/mobile` | 3 | 4 | 0 | 0 | 0 | 0 |
 | `03-domains/payments` | 3 | 4 | 2 | 2 | 0 | 0 |
@@ -164,17 +164,6 @@ that stage produces but this one never mentions.
 | `DI-P05` | `DI-P04` | `DI_IAC_PIPELINES.md` |
 | `DI-P06` | `DI-P05` | `DI_IMPLEMENTATION_LOG.md` |
 | `DI-P07` | `DI-P06` | `DI_OBSERVABILITY.md` |
-
-### `03-domains/frontend`
-
-| Stage | Depends on | Artifact not named |
-|-------|------------|--------------------|
-| `FE-P02` | `FE-P01` | `FE_CONTEXT.md` |
-| `FE-P03` | `FE-P02` | `FE_UX_GOALS.md` |
-| `FE-P04` | `FE-P03` | `FE_ARCHITECTURE.md` |
-| `FE-P05` | `FE-P04` | `FE_IMPLEMENTATION_LOG.md` |
-| `FE-P06` | `FE-P05` | `FE_STATE_DATA.md` |
-| `FE-P07` | `FE-P06` | `FE_QUALITY.md` |
 
 ### `03-domains/games`
 

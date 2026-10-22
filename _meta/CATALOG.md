@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 364 prompts — 0 canonical, 265 operational, 5 draft, 94 skeleton.
+**Totals:** 364 prompts — 0 canonical, 273 operational, 5 draft, 86 skeleton.
 
 ## `00-core`
 
@@ -332,14 +332,14 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
 | ID | Stage | Maturity | Mode | Risk | File |
 |----|-------|----------|------|------|------|
-| `FE-P01` | PROMPT 01 — Context & Stack | skeleton | implementation | C | [P01-Context-Stack.md](../03-domains/frontend/P01-Context/P01-Context-Stack.md) |
-| `FE-P02` | PROMPT 02 — UX & Interaction Goals | skeleton | planning | B | [P02-UX-Interaction-Goals.md](../03-domains/frontend/P02-UX-Goals/P02-UX-Interaction-Goals.md) |
-| `FE-P03` | PROMPT 03 — Frontend Architecture | skeleton | planning | B | [P03-Frontend-Architecture.md](../03-domains/frontend/P03-Architecture/P03-Frontend-Architecture.md) |
-| `FE-P04` | PROMPT 04 — Implementation | skeleton | implementation | B | [P04-Implementation.md](../03-domains/frontend/P04-Implementation/P04-Implementation.md) |
-| `FE-P05` | PROMPT 05 — State & Data | skeleton | implementation | B | [P05-State-Data.md](../03-domains/frontend/P05-State-Data/P05-State-Data.md) |
-| `FE-P06` | PROMPT 06 — Quality & Accessibility | skeleton | implementation | B | [P06-Quality-Accessibility.md](../03-domains/frontend/P06-Quality/P06-Quality-Accessibility.md) |
-| `FE-P07` | PROMPT 07 — Polish & Handoff | skeleton | implementation | B | [P07-Polish-Handoff.md](../03-domains/frontend/P07-Polish/P07-Polish-Handoff.md) |
-| `FE-P08` | PROMPT 08 — Frontend Master Orchestrator | skeleton | orchestration | A | [P08-Frontend-Orchestrator.md](../03-domains/frontend/P08-Orchestrator/P08-Frontend-Orchestrator.md) |
+| `FE-P01` | PROMPT 1 — Context & Stack: what the browser is actually bei | operational | planning | A | [P01-Context-Stack.md](../03-domains/frontend/P01-Context/P01-Context-Stack.md) |
+| `FE-P02` | PROMPT 2 — UX & Interaction Goals: the state matrix, written | operational | planning | A | [P02-UX-Interaction-Goals.md](../03-domains/frontend/P02-UX-Goals/P02-UX-Interaction-Goals.md) |
+| `FE-P03` | PROMPT 3 — Frontend Architecture: who owns the data, where s | operational | planning | A | [P03-Frontend-Architecture.md](../03-domains/frontend/P03-Architecture/P03-Frontend-Architecture.md) |
+| `FE-P04` | PROMPT 4 — Implementation: every state a user can reach, not | operational | implementation | B | [P04-Implementation.md](../03-domains/frontend/P04-Implementation/P04-Implementation.md) |
+| `FE-P05` | PROMPT 5 — State & Data: stale responses, double submits, an | operational | implementation | B | [P05-State-Data.md](../03-domains/frontend/P05-State-Data/P05-State-Data.md) |
+| `FE-P06` | PROMPT 6 — Quality & Accessibility: the checks that come bac | operational | diagnostic | C | [P06-Quality-Accessibility.md](../03-domains/frontend/P06-Quality/P06-Quality-Accessibility.md) |
+| `FE-P07` | PROMPT 7 — Polish & Handoff: the long string, the slow conne | operational | implementation | B | [P07-Polish-Handoff.md](../03-domains/frontend/P07-Polish/P07-Polish-Handoff.md) |
+| `FE-P08` | PROMPT 8 — Frontend Master Orchestrator: the gates between s | operational | orchestration | A | [P08-Frontend-Orchestrator.md](../03-domains/frontend/P08-Orchestrator/P08-Frontend-Orchestrator.md) |
 
 ## `03-domains/games`
 

@@ -804,3 +804,18 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
   fixtures. It failed on the real file immediately, which is the only useful test of a gate.
 - Not claimed: none of the eight has been executed against a real service. They are
   developed to the standard, and `_meta/evidence.json` still shows backend at zero runs.
+
+### Completion — the frontend family (2.27.0)
+- **2026-10-22 · authoring review · the prompt's author** · no execution record
+- Promoted `FE-P01` … `FE-P08` from skeleton to operational. The system is organised
+  around `FE_UX_GOALS.md`'s state matrix: `FE-P04` implements it cell by cell, `FE-P06`
+  exercises every cell and records how each was triggered, and `FE-P08` reconciles state
+  IDs across matrix, implementation and tests at its gate.
+- Composition: `03-domains/frontend` went from 4 of 8 to 8 of 8 links naming the upstream
+  artifact. Library-wide unnamed links: 60 → 56 of 243.
+- Deliberate non-duplication: `FE-P06` measures the slice and defers the formal WCAG 2.2
+  AA verdict to `A11Y-01` and the standing budget and CI gate to `PERF-BUDGET-01`. Both
+  were written to the standard already; a third accessibility procedure would have been a
+  duplicate, not a capability.
+- Not claimed: none of the eight has been run against a real application. They are
+  developed to the standard, and `_meta/evidence.json` still shows frontend at zero runs.
