@@ -856,3 +856,24 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
   repository until totals are updated and the files are marked `<!-- not-a-prompt -->`.
 - Not claimed: two stages of seven; author-run; the artefacts prove the machinery, not the
   prompts' usefulness to a team that is not this one.
+
+### Execution — testing-QA stages 3-6, and the validator that could not refuse (2.28.2)
+- **2026-10-22 · executions · the prompt's author** · record `_meta/empirical-evaluation-17.md`
+- `QA-P03` probed seven candidate gaps in temporary trees rather than reading the rules; four
+  came back at R1. The plainest: `TODO: finish this` was invisible, `[TODO]` was a warning, and
+  an empty `## 6. Verification` satisfied the rule that requires a verification section. The
+  stage's diagnosis is the one worth keeping — *the validator had the knowledge but not the
+  authority*.
+- `QA-P04` proposed a word-boundary `TODO` scan and then measured it: seven legitimate
+  operational prompts discuss TODOs as a concept and would have been failed. The plan was
+  replaced with a marker-form rule before any code was written, and the strategy file keeps the
+  refuted design on the record.
+- `QA-P05` implemented it: markers and placeholder tokens are errors with `file:line`, an empty
+  required section is an error on a non-skeleton prompt. The first regex dropped the bracketed
+  `[TODO]` form the old code caught; the fixture written from the gap list failed immediately
+  and the regex was fixed. Self-tests 32 → 44; corpus scan 0 hits.
+- `QA-P06` repeated the whole suite three times (identical results, 2.95–3.09 s) and mutated the
+  validator five ways, one per isolated copy: 5 of 5 killed, 0 survived. Two negative controls
+  keep the marker rule from over-firing on prose.
+- Not claimed: four stages of seven (`P07` unrun); author-run; the fixtures show the rules fire,
+  not that a required verification section contains a *good* verification; still no CI.

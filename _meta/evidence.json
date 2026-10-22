@@ -319,6 +319,50 @@
       "result": "PASS after a fix - found an R1 defect: a risk-class-A prompt inviting a deploy produced only a warning, so check_all reported 'All gates passed'. Rule moved to check_risk_class() as an error with five fixtures; retest fails the build (validator exit 1, check_all exit 1), self-tests 27/27 -> 32/32",
       "record": "_meta/empirical-evaluation-16.md",
       "limitations": "author-run; mutations applied in a copy, not the live tree; no end-to-end level exists to test; CI enforcement remains unverifiable because no workflow step has ever executed"
+    },
+    {
+      "identifier": "QA-P03",
+      "title": "Gap Analysis",
+      "path": "04-process/testing-qa/P03-Gap-Analysis/P03-Gap-Analysis.md",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "scope": "ran against this repository at 720687c, probing each candidate gap with a throwaway tree through validate_library.check() rather than reading the rules",
+      "result": "PASS - seven gaps recorded with evidence, four at R1: unbracketed TODO/FIXME were silent, placeholder hits only warned, and an empty required section satisfied the required-section rule; four further rules existed with no fixture. Root cause stated as 'the validator had the knowledge but not the authority'",
+      "record": "_meta/empirical-evaluation-17.md",
+      "limitations": "author-run; gaps judged against the validator only, so no gap can be found in a rule that was never written; the two .qa artefacts themselves changed the file total and broke the count gates until updated"
+    },
+    {
+      "identifier": "QA-P04",
+      "title": "Strategy and Prioritisation",
+      "path": "04-process/testing-qa/P04-Strategy/P04-Strategy-Prioritization.md",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "scope": "turned the gap list into a unit-level test strategy with an order, non-goals, numeric targets and a data strategy, then measured its own central design assumption against the live corpus",
+      "result": "PASS after correcting the strategy - the proposed word-boundary TODO scan matched seven legitimate operational prompts, so the plan was replaced with a line-opening marker rule before any code was written; strategy section 6 records the refuted design",
+      "record": "_meta/empirical-evaluation-17.md",
+      "limitations": "author-run; targets are self-set and therefore optimistic; no service or end-to-end level exists to test, so the strategy is unit-level by necessity rather than by choice"
+    },
+    {
+      "identifier": "QA-P05",
+      "title": "Implementation",
+      "path": "04-process/testing-qa/P05-Implementation/P05-Implementation.md",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "scope": "implemented two rule changes in scripts/validate_library.py and twelve fixtures in scripts/test_validator.py, then re-measured the whole corpus",
+      "result": "PASS with one self-inflicted defect - the first regex dropped a bracketed form the old code caught; the fixture written from the gap list failed and the regex was fixed. Self-tests 32 -> 44, corpus marker hits 0, validator 0 errors / 0 warnings",
+      "record": ".qa/IMPLEMENTATION_LOG.md",
+      "limitations": "author-run; check() remains the only entry point for these rules so every fixture is whole-document, which is slower and coarser than unit tests; no fenced-code handling was added because no prompt needed it (measured, not assumed)"
+    },
+    {
+      "identifier": "QA-P06",
+      "title": "Validation and Measurement",
+      "path": "04-process/testing-qa/P06-Validation/P06-Validation-Measurement.md",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "scope": "three repeat runs of the validator, self-tests and gate suite with timing, plus five mutations of the validator applied one per isolated copy of the tree",
+      "result": "PASS - identical results across three runs (44/44, all gates passed, 2.95-3.09 s), 5 of 5 mutations killed and 0 survived, covering every R1 behaviour and four previously unfixtured rules",
+      "record": ".qa/VALIDATION.md",
+      "limitations": "author-run in one environment; the mutation harness lives in /tmp and is not committed, so the numbers are reproducible only by re-applying the documented edits; no independent reproduction exists"
     }
   ]
 }

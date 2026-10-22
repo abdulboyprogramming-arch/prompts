@@ -2,6 +2,70 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.28.2] — 2026-10-22
+
+The validator knew about unfinished prompts, empty sections, duplicate identifiers and dead
+links. It could not refuse any of them.
+
+### Found — seven gaps, four at R1 (`QA-P03`)
+
+Running the third stage against this repository, each candidate gap was **probed**, not read:
+a prompt was written into a temporary tree, `validate_library.check()` was called, and the
+messages were compared with what the stage claims to guarantee.
+
+- **G-01.** The placeholder check matched the literals `"[TODO"`, `TBD`, `lorem ipsum` and
+  `<insert`. `TODO: finish this` — the commonest form — and `FIXME: later` produced **nothing**.
+- **G-02.** Every placeholder hit was a **warning**. A prompt containing `[TODO]` passed the
+  build, and `check_all.py` printed "All gates passed".
+- **G-03.** `## 6. Verification` with nothing under it satisfied the required-section check,
+  which exists to require a verification procedure. It warned and passed.
+- **G-04 … G-07.** The body-size overclaim, duplicate-identifier, broken-link and
+  input/placeholder rules fired correctly but had **no fixture**, so nothing would have noticed
+  their deletion.
+
+The stage's own diagnosis: *the validator had the knowledge but not the authority.*
+
+### Corrected before writing code (`QA-P04`)
+
+The strategy's obvious implementation — a word-boundary scan for `TODO` — was measured first.
+It matched **seven legitimate operational prompts** that discuss TODOs as a concept ("a
+component file with a TODO is not an interface"). Written as planned, it would have failed the
+build on correct prompts. The plan was replaced with a marker rule that keys on the *form*: a
+token opening a line, optionally bulleted, either bracketed (`[TODO]`, `[TODO: finish]`) or
+followed by `:`/`-`/`—`. Measured across all 365 prompt-shaped documents: **0 hits**. The
+strategy file records the refuted design rather than silently diverging from it.
+
+### Fixed (`QA-P05`)
+
+- `PLACEHOLDER_MARKER` replaces the literal-token list; findings are **errors** with
+  `file:line`, and `lorem ipsum` / `<insert` are promoted alongside them.
+- An empty **required** section on a non-skeleton prompt is now an **error**; every other empty
+  section stays a warning, because a sparse "Related" section is style, not a missing procedure.
+
+The fixtures caught a defect in the fix itself: the first regex required punctuation after a
+bracketed token and silently dropped `[TODO] finish the handover`, which the old code did
+catch. The fixture written from the gap list failed on its first run; the regex gained a
+bracket branch.
+
+### Validated (`QA-P06`)
+
+Twelve new cases, **32 → 44** self-tests. Three consecutive full runs gave identical output
+(0 errors / 0 warnings, 44/44, all gates passed, 2.95–3.09 s). Five mutations of the validator —
+reverting the marker rule, demoting markers, demoting empty sections, deleting the
+duplicate-identifier rule, demoting the broken-link rule — were applied one per isolated copy of
+the tree: **5 of 5 killed, 0 survived**.
+
+Two negative controls keep the marker rule honest: a prose mention and a mid-line mention must
+produce neither an error nor a warning. Both pass, which is what makes the zero-hit corpus scan
+mean something rather than showing the rule matches nothing.
+
+### Reconciled
+
+Library 364 prompts — **281 operational**, 5 draft, 78 skeleton; 485 Markdown files.
+Evidence: **32 of 281 executed (11.4%)**, all author-run, none independent; `QA-P03` to `QA-P06`
+take batch B2 from 7 to 11 of 68. Nothing here was enforced by CI, because no workflow step has
+ever executed in this repository — the local gate is the only gate.
+
 ## [2.28.1] — 2026-10-22
 
 The library ran its own testing-QA system against itself, and the system found a check that

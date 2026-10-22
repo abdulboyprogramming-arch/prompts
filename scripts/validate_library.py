@@ -74,6 +74,13 @@ DESTRUCTIVE = re.compile(
 )
 INPUT_NAME = re.compile(r"\b[A-Z][A-Z0-9]*(?:_[A-Z0-9]+)*\b")
 PLACEHOLDER = re.compile(r"\{\{\s*([^{}]*?)\s*\}\}")
+# A marker at the start of a line, not the word inside a sentence: existing prompts
+# discuss TODO as a concept and must not be flagged. Bracketed and bulleted forms count.
+PLACEHOLDER_MARKER = re.compile(
+    r"(?im)^[ \t]*(?:[-*+]\s*)?"
+    r"(?:\[\s*(?:TODO|FIXME|TBD|XXX)\b[^\]\n]*\]"      # [TODO], [TODO: finish this]
+    r"|(?:TODO|FIXME|TBD|XXX)\s*[:\-\u2014])"            # TODO:, FIXME - ...
+)
 STATUS_OVERCLAIM = re.compile(r"(production-ready|status:\s*\**\s*operational|complete and ready)", re.IGNORECASE)
 
 
@@ -350,11 +357,34 @@ def check(docs: list[Doc]) -> tuple[list[str], list[str]]:
                 warnings.append(f"{d.rel}: referenced path does not exist -> {span}")
 
         if d.is_prompt and not is_archive(d.rel):
-            for token in ("[TODO", "TBD", "lorem ipsum", "<insert"):
-                if token.lower() in d.text.lower():
-                    warnings.append(f"{d.rel}: placeholder token '{token}' present")
+            # An unfinished prompt is the library's central failure: the reader is handed a
+            # procedure that stops halfway. Until 2.28.2 this looked for "[TODO" and a few
+            # literals, so "TODO: finish this" — the most common form — was invisible, and
+            # the hits it did find were only warnings.
+            #
+            # Matching the word would be wrong: seven existing prompts legitimately discuss
+            # TODO as a concept ("a component file with a TODO is not an interface"). The
+            # marker is what distinguishes them, so the pattern keys on a token that opens a
+            # line, optionally bulleted, either bracketed (`[TODO]`, `[TODO: finish]`) or
+            # followed by a colon or dash (`TODO:`).
+            for m in PLACEHOLDER_MARKER.finditer(d.text):
+                line_no = d.text[: m.start()].count("\n") + 1
+                errors.append(
+                    f"{d.rel}:{line_no}: placeholder marker '{m.group(0).strip()}' — an "
+                    "unfinished prompt cannot be labelled operational"
+                )
+            for token in ("lorem ipsum", "<insert"):
+                if token in d.text.lower():
+                    errors.append(f"{d.rel}: placeholder token '{token}' present")
 
-        # Empty sections (a deeper sub-heading means the section has content)
+        # Empty sections (a deeper sub-heading means the section has content).
+        #
+        # A required section that is *empty* used to be a warning, which meant the
+        # required-section rule was satisfied by the heading alone: "## 6. Verification"
+        # followed by nothing contains the substring "verification", so the prompt looked
+        # like it had a verification step. It had a heading. Required sections are now
+        # blocking when empty; every other empty section stays a warning, because a sparse
+        # "Related" section is style, not a missing procedure.
         lines = d.text.splitlines()
         for i, ln in enumerate(lines):
             m = H2_RE.match(ln)
@@ -364,16 +394,18 @@ def check(docs: list[Doc]) -> tuple[list[str], list[str]]:
             j = i + 1
             while j < len(lines) and not lines[j].strip():
                 j += 1
-            if j >= len(lines):
-                warnings.append(f"{d.rel}: empty section '{m.group(1)}'")
+            empty = j >= len(lines) or lines[j].strip() == "---"
+            if not empty and lines[j].startswith("#"):
+                empty = len(lines[j]) - len(lines[j].lstrip("#")) <= level
+            if not empty:
                 continue
-            nxt = lines[j]
-            if nxt.strip() == "---":
-                warnings.append(f"{d.rel}: empty section '{m.group(1)}'")
-            elif nxt.startswith("#"):
-                nlevel = len(nxt) - len(nxt.lstrip("#"))
-                if nlevel <= level:
-                    warnings.append(f"{d.rel}: empty section '{m.group(1)}'")
+            title = m.group(1).lower()
+            required = any(n in title for _, needles in REQUIRED_SECTIONS for n in needles)
+            message = f"{d.rel}: empty section '{m.group(1)}'"
+            if required and d.is_prompt and d.maturity not in (None, "skeleton"):
+                errors.append(message + " — a required section needs content, not a heading")
+            else:
+                warnings.append(message)
 
     # Status-overclaim check per system folder (two levels below a top category).
     systems: dict[str, list[Doc]] = defaultdict(list)

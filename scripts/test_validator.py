@@ -28,6 +28,8 @@ import textwrap
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from validate_library import (  # noqa: E402
+    MIN_BODY,
+    check,
     check_community,
     check_documented_counts,
     check_readme_counts,
@@ -338,6 +340,131 @@ def risk_doc(root: str, risk: str, extra: str):
 
 
 
+# --- Whole-document rules -------------------------------------------------------------
+# These rules live inside `check()`, which also compares the tree against the status
+# documents. A fixture therefore builds a throwaway tree and keeps only the messages whose
+# path starts with `sys/`, so a claim in the real README cannot colour the result.
+
+PROMPT = """\
+# A prompt
+
+**Identifier:** {ident}
+**System:** testcase/system
+**Version:** 1.0.0
+**Maturity:** {maturity}
+**Execution mode:** diagnostic
+**Risk class:** A
+**Depends on:** none
+**Produces:** nothing
+**Inputs:** {inputs}
+{tail}
+"""
+
+BODY = "Read `{{TARGET}}` and report what you find. " + "Body sentence for the stage. " * 60
+
+REQUIRED_TAIL = """\
+## 6. Verification
+
+- run it and record the result.
+
+## 7. Failure handling
+
+- if it cannot run, say so.
+
+## 8. Completion criteria
+
+- [ ] done.
+"""
+
+
+def prompt_messages(root: str, ident="AA-P01", maturity="operational",
+                    inputs="TARGET", tail="", files=None):
+    """Write one prompt (or an explicit file map) into a tree and return its messages."""
+    os.makedirs(os.path.join(root, "sys", "P01"), exist_ok=True)
+    text = PROMPT.format(ident=ident, maturity=maturity, inputs=inputs, tail=tail)
+    with open(os.path.join(root, "sys", "P01", "P01-A.md"), "w", encoding="utf-8") as fh:
+        fh.write(text)
+    for rel, content in (files or {}).items():
+        path = os.path.join(root, rel)
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        with open(path, "w", encoding="utf-8") as fh:
+            fh.write(content)
+    errors, warnings = check(load(root))
+    mine = lambda xs: [x for x in xs if x.startswith("sys/")]
+    return mine(errors), mine(warnings)
+
+
+
+# (name, kwargs for prompt_messages, expect_error, expect_warning)
+DOC_CASES_PROMPT = [
+    (
+        "a marker at the start of a line is an error, not a warning",
+        dict(tail=BODY + "\n## 6. Verification\n\nTODO: fill this in\n" + REQUIRED_TAIL),
+        True, False,
+    ),
+    (
+        "a bulleted marker is an error",
+        dict(tail=BODY + "\n- FIXME: revisit this stage\n" + REQUIRED_TAIL),
+        True, False,
+    ),
+    (
+        "the bracketed markdown-checkbox form is still caught",
+        dict(tail=BODY + "\n[TODO] finish the handover\n" + REQUIRED_TAIL),
+        True, False,
+    ),
+    (
+        "the word in prose is not a marker and must not be flagged",
+        dict(tail=BODY + "\nA component file with a TODO is not an interface.\n" + REQUIRED_TAIL),
+        False, False,
+    ),
+    (
+        "a sentence naming TODO comments mid-line is not a marker",
+        dict(tail=BODY + "\nSearch for TODO comments in the diff.\n" + REQUIRED_TAIL),
+        False, False,
+    ),
+    (
+        "an empty required section is an error, not a heading that satisfies the rule",
+        dict(tail=BODY + "\n## 6. Verification\n\n## 7. Failure handling\n\n- nothing.\n\n"
+             "## 8. Completion criteria\n\n- [ ] done.\n"),
+        True, False,
+    ),
+    (
+        "an empty non-required section stays a warning",
+        dict(tail=BODY + REQUIRED_TAIL + "\n## 9. Related\n\n## 10. Notes\n\nText.\n"),
+        False, True,
+    ),
+    (
+        "a body shorter than the minimum cannot be labelled operational",
+        dict(tail="Short, but it names `{{TARGET}}`.\n"),
+        True, False,
+    ),
+    (
+        "a duplicate identifier is an error naming both files",
+        dict(tail=BODY + REQUIRED_TAIL,
+             files={"sys/P02/P02-B.md": PROMPT.format(
+            ident="AA-P01", maturity="operational", inputs="TARGET",
+            tail=BODY + REQUIRED_TAIL)}),
+        True, False,
+    ),
+    (
+        "a broken relative link is an error",
+        dict(tail=BODY + "\nSee [gone](nope.md).\n" + REQUIRED_TAIL),
+        True, False,
+    ),
+    (
+        "an undeclared placeholder is an error",
+        dict(tail=BODY + "\nUse {{NOT_DECLARED}} here.\n" + REQUIRED_TAIL),
+        True, False,
+    ),
+    (
+        "an input declared but never used is a warning, not an error",
+        dict(inputs="TARGET UNUSED_INPUT", tail=BODY + REQUIRED_TAIL),
+        False, True,
+    ),
+]
+
+
+
 def main() -> int:
     failures = 0
     for name, readme, stages, expect_error in CASES:
@@ -425,8 +552,25 @@ def main() -> int:
                 failures += 1
                 print("       detail missing from the message")
 
+
+    # Whole-document rules. GAPS.md G-01..G-07: three of these could not stop a build
+    # and four had no fixture at all.
+    for name, kwargs, expect_error, expect_warning in DOC_CASES_PROMPT:
+        with tempfile.TemporaryDirectory() as root:
+            errors, warnings = prompt_messages(root, **kwargs)
+        good = bool(errors) == expect_error and bool(warnings) == expect_warning
+        print(f"{'ok  ' if good else 'FAIL'} {name} "
+              f"(expected {'error' if expect_error else 'no error'}, "
+              f"{'warning' if expect_warning else 'no warning'})")
+        if not good:
+            failures += 1
+            for e in errors:
+                print(f"       error: {e}")
+            for w in warnings:
+                print(f"       warning: {w}")
+
     total = (len(CASES) + len(COUNT_CASES) + len(DOC_CASES) + len(TOTAL_CASES)
-             + len(COMMUNITY_CASES) + len(RISK_CASES))
+             + len(COMMUNITY_CASES) + len(RISK_CASES) + len(DOC_CASES_PROMPT))
     print(f"\n{total - failures}/{total} cases passed")
     return 1 if failures else 0
 
