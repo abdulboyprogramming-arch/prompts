@@ -2,7 +2,7 @@
 
 **Purpose:** the gate that must pass before this repository becomes public, and the list of things only the owner can do in GitHub settings.
 
-**Audited:** 2026-10-22 (v2.22.0) · **Auditor:** repository maintainer (agent-assisted, evidence below)
+**Audited:** 2026-10-22 (v2.28.4, re-measured end to end) · **Auditor:** repository maintainer (agent-assisted, evidence below)
 **Previous audit:** 2026-10-21 — six changes: the prose lint closed to zero, `TASKS.md` landed, two chat prompts were added, `P06` was differentiated across three variants, a multi-agent run was documented, and the gate list moved into `scripts/check_all.py`. This pass added composition checking, community-file links, the release-readiness page, and the repository configuration record.
 
 ---
@@ -12,7 +12,7 @@
 | Question | Answer |
 |---|---|
 | Is the **content** safe to publish? | **Yes.** No secrets in the tree or in reachable history, no personal data in prompts, no absolute paths, links resolve, licence files present. |
-| Is it **ready** to publish? | **Content yes, infrastructure not yet.** Four things block a good launch, and none is in the repository: CI cannot run (GitHub Actions billing), branch protection is unset, the repository description/topics are unset, and the repository is private. |
+| Is it **ready** to publish? | **Content yes, infrastructure not yet.** Two of the four blockers from the last audit are cleared: the description and topics are now set (verified through the API, 2026-10-22). What remains is outside the repository — CI cannot run (GitHub Actions billing), branch protection is unset, and the repository is private. |
 | Anything in the repository to fix first? | No. Every automated gate passes; see §1. |
 
 **What must happen before you flip it public is listed in §5.** Everything else here is evidence.
@@ -28,26 +28,28 @@
 | 3 | Executed-prompt count is generated | `scripts/evidence_report.py --check` | **PASS** — `_meta/evidence-levels.md` matches the registry: **33 of 281 operational prompts executed (11.7%)**, stated in the file the README links |
 | 4 | Catalog current | `--catalog` + `git diff` | **PASS** — regenerates with no diff |
 | 5 | Gallery current | `generate_gallery.py --check` | **PASS** — "up to date", 364 prompts |
-| 6 | Duplication | `find_overlaps.py --check` (shingle 0.55) and `--metric combined` (0.75) | **PASS** — highest shingle 0.18; highest combined 0.68, which is the known and *decided* contribution-variant case (`01-contribution/VARIANTS.md`) |
-| 6b | Composition | `scripts/check_prompt_contract.py` | **PASS** — 0 errors across 52 systems and 239 dependency links; 147 cite the upstream filename, 10 mention it only by stem, 82 name no artifact — 92 (38%) do not cite a filename, all in skeletons and listed in `_meta/conformance-report.md` |
-| 7 | Tooling has tests | `test_validator.py`, `test_overlaps.py`, `test_prose_lint.py`, `test_task_index.py`, `test_contract.py` | **PASS** — 23/23, 13/13, 12/12, 17/17, 19/19 |
-| 8 | Prose lint | `lint_prose.py --check` | **PASS** — **0 findings at baseline 0**. The ratchet is now a gate: a new vague qualifier fails CI |
+| 6 | Duplication | `find_overlaps.py --check` (shingle 0.55) and `--metric combined` (0.75) | **PASS** — highest shingle 0.17; highest combined 0.56 (`03-domains/backend` vs `03-domains/frontend` orchestrators). Re-measured 2.28.4: the earlier row said 0.18 and 0.68, and the 0.68 pair is no longer the top one |
+| 6b | Composition | `scripts/check_prompt_contract.py` | **PASS** — 0 errors across 52 systems and 245 dependency links; 186 cite the upstream filename, 9 mention it only by stem, 50 name no artifact — 59 (24%) do not cite a filename, all in skeletons and listed in `_meta/conformance-report.md` |
+| 7 | Tooling has tests | seven `scripts/test_*.py` files | **PASS** — 136 cases: validator 44/44, contract 19/19, evidence 17/17, overlaps 17/17, task index 17/17, prose 12/12, gate runner 10/10 |
+| 8 | Prose lint | `lint_prose.py --check` | **PASS** — **0 findings across 364 prompt files, baseline 0**. The summary line used to report the number of files *with findings* as if it were the number scanned, so a clean corpus printed a zero file count; fixed in 2.28.4 |
 | 9 | Relative links | validator, all links incl. `Depends on` | **PASS** — 0 broken |
 | 10 | Secrets in tree | `ghp_*`, `github_pat_*`, `AKIA*`, private-key headers | **PASS** — 0 hits |
-| 11 | Secrets in reachable history | `git log --all -p` over the same patterns | **PASS** — 0 hits. *Caveat:* this sandbox checkout presents a single squashed commit, so the scan covers the tree and that commit; the pre-existing remote history was scanned in the 2.13.0 audit and is unchanged since. |
+| 11 | Secrets in reachable history | `git fetch --unshallow`, then `git log --all -p` over the same patterns | **PASS** — 0 hits across **61 commits and 22 tags** on every ref, plus the tree. Re-run in 2.28.4 with the checkout unshallowed, so the earlier caveat about a squashed single-commit checkout no longer applies |
 | 12 | Personal data in prompts | emails, customer identifiers, internal hostnames | **PASS** — none. `examples` use `example.com` and invented names |
-| 13 | Absolute / environment paths | `/home/user`, sandbox hosts, `arena/<id>` branch names | **PASS** — 1 sandbox path found in `_meta/empirical-evaluation-08.md` on 2026-10-22 and replaced with a placeholder; session branch names still appear in three execution records, deliberately, because they identify which checkout a run happened in |
+| 13 | Absolute / environment paths | `/home/user`, sandbox hosts, `arena/<id>` branch names | **PASS** — one more sandbox path was found in `.qa/VALIDATION.md` in 2.28.4 and replaced with a neutral description. Session branch names still appear in three execution records, deliberately, because they identify which checkout a run happened in |
 | 14 | Tracked build artefacts | `git ls-files` | **PASS** — no `__pycache__`, `.pyc`, `node_modules`, `.env` |
-| 15 | Repository size | `git ls-files`, `du` | **PASS** — 513 tracked files, 3.6 MB of file content; largest 120 KB (`GALLERY.md`). Re-measured 2026-10-22: the earlier row said 471 files, 4.2 MB and a 112 KB largest file, and all three had drifted. |
+| 15 | Repository size | `git ls-files`, `du` | **PASS** — 529 tracked files, 4.35 MB of file content; largest 135 KB (`CHANGELOG.md`, then `GALLERY.md` at 125 KB). Re-measured 2.28.4 |
 | 16 | Community files exist and are linked | validator `check_community` | **PASS** — `LICENSE`, `CONTRIBUTING.md`, `.github/CODE_OF_CONDUCT.md`, `.github/SECURITY.md` present, and each is linked from the document that should point at it |
 | 17 | Counts in prose are checked | validator `check_documented_counts` | **PASS** — `PROJECT-STATUS.md` and this file are compared against the tree on every run |
 | 18 | Licences | `LICENSE`, `LICENSE-CONTENT`, README section | **PASS** — MIT for code, CC BY 4.0 for content, SPDX-detectable |
 | 19 | Every prompt has a home | `generate_task_index.py --check` | **PASS** — 21 tasks, 364 prompts routed, 0 unrouted |
 | 20 | One gate list | `scripts/check_all.py` | **PASS** — CI runs that script and nothing else; a local pass is the same run |
-| 21 | Counts agree with the tree | validator `check_documented_counts`, `check_stated_totals`, `check_readme_counts` | **PASS** — 485 Markdown files, 364 prompts, 265/5/94 by maturity; the file and prompt totals are compared on every run in the four documents that quote them |
-| 22 | Repository settings are decided | `_meta/repository-configuration.md` | **PASS** — description, topics, merge policy, security features and sponsorship decision recorded with the commands; **not yet applied** |
+| 21 | Counts agree with the tree | validator `check_documented_counts`, `check_stated_totals`, `check_readme_counts` | **PASS** — 485 Markdown files, 364 prompts, **281 operational / 5 draft / 78 skeleton**; the file and prompt totals are compared on every run in the four documents that quote them. The earlier row said 265/5/94, which had drifted |
+| 22 | Repository settings are decided | `_meta/repository-configuration.md`, `gh api repos/...` | **PARTIAL** — description and all ten topics are now **applied** (verified through the API on 2026-10-22); branch protection, security features and social preview are recorded with the commands and **not applied** |
 
-Twenty-two gates. Six are new in this pass: composition (6b), community files and their links (16), prose counts (17), and the three that close the gap between what the documents claim and what the tree contains (15, 21, 22).
+| 23 | Every version has a release | `gh api repos/.../releases` | **PASS** — 23 releases, `v2.13.0` → `v2.28.3`, each tagged at that version's merge commit and carrying its changelog entry. Twelve were created in 2.28.4 after a seven-version gap |
+
+Twenty-three gates. Six are new in the earlier pass: composition (6b), community files and their links (16), prose counts (17), and the three that close the gap between what the documents claim and what the tree contains (15, 21, 22).
 
 ## 2. What a reader sees first
 
@@ -66,10 +68,10 @@ Checked against the tree, not against intention:
 
 These are already stated in the repository. They must not be softened in marketing language, release notes, or a launch post.
 
-1. **Thirty-two prompts have been executed and recorded** (`DBG-01` `-01`; `CHAT-DEBUG` `-02`; `CHAT-SELECT` `-03`; `CHAT-REVIEW` `-04`; `CHAT-MODE` `-05`; `CHAT-DESIGN` `-06`; `CHAT-HANDOFF` `-07`; `GEN-P01` `-08`; `GEN-P02` `-09`; `GIT-P01` to `GIT-P05` `-10`, `-11`; `CR-P01` to `CR-P03` `-12`; `PERF-P01` to `PERF-P07` `-13`; `PKG-P01` `-14`; `MLA-P03` `-15`). 255 are labelled `operational`, which means *structurally complete and reviewed*, not *proven in use*. `_meta/evidence-levels.md` states 33 of 281 — 11.7% — with a generated number, and the review log names what is still unrun by anyone else, and the contribution variants completed in 2.23.1 have procedures but no recorded execution.
+1. **Thirty-three prompts have been executed and recorded** (`DBG-01` `-01`; `CHAT-DEBUG` `-02`; `CHAT-SELECT` `-03`; `CHAT-REVIEW` `-04`; `CHAT-MODE` `-05`; `CHAT-DESIGN` `-06`; `CHAT-HANDOFF` `-07`; `GEN-P01` `-08`; `GEN-P02` `-09`; `GIT-P01` to `GIT-P05` `-10`, `-11`; `CR-P01` to `CR-P03` `-12`; `PERF-P01` to `PERF-P07` `-13`; `PKG-P01` `-14`; `MLA-P03` `-15`). 281 are labelled `operational`, which means *structurally complete and reviewed*, not *proven in use*. `_meta/evidence-levels.md` states 33 of 281 — 11.7% — with a generated number, and the review log names what is still unrun by anyone else, and the contribution variants completed in 2.23.1 have procedures but no recorded execution.
 2. **Reviews are author self-assessments**, scored in `_meta/review-log.md`. No second reviewer exists.
 3. **78 skeleton prompts** are named sequences without verification or failure handling — useful as human checklists, unsafe to run unattended.
-4. **Coverage is 116 adequate / 27 partial / 0 missing** dimension rows. No row is missing; 27 are thin, and the matrix names what is thin.
+4. **Coverage is 122 adequate / 21 partial / 0 missing** dimension rows. No row is missing; 21 are thin, and the matrix names what is thin.
 5. **The `01-contribution` variants are differentiated, and unexecuted.** Six stages across three systems now do different work, and every duplicate score is 0.29–0.38 combined. `P01` and `P08` remain outlines by recorded decision. None of the eighteen rewritten stages has been run, and the review log says so for each.
 6. **The library cannot make an agent honest.** It defines constraints and evidence rules; a model may still ignore them. `07-workflows/independent-verification.md` and `05-scenarios/ai-output-verification/` exist for exactly that reason.
 
@@ -85,7 +87,7 @@ These are already stated in the repository. They must not be softened in marketi
 
 ## 5. What only you can do — blocking, in order
 
-Nothing here can be done from the repository, and I cannot do any of it: `gh` returns 403 on repository settings, topics, and Actions with the current token scope.
+Nothing here can be done from the repository, and I cannot do any of it: `gh` returns 403 on repository settings and Actions with the current token scope. The description and topics were set by the owner in the GitHub UI, not through the API — **verified** by reading them back on 2026-10-22.
 
 ### 5.1 Fix GitHub Actions billing — **blocking everything else**
 
@@ -107,19 +109,23 @@ Consequences today: PR checks show red without running, the badge is meaningless
 | Disallow force pushes and deletions | on |
 | Allow yourself to bypass while solo | yes (direct pushes during setup) |
 
-### 5.3 Repository description, topics, and social preview
+### 5.3 Repository description and topics — **done**
 
-| Field | Suggested |
+| Field | State |
 |---|---|
-| Description | "364 prompts for AI coding agents, organised across the engineering lifecycle. Every prompt declares its scope, risk class, and what it will not do — and the repository is validated against those claims in CI." |
-| Topics | `ai-agents`, `prompt-engineering`, `llm`, `coding-agents`, `software-engineering`, `code-review`, `incident-response`, `documentation`, `migration`, `developer-tools` |
-| Social preview | 1280×640 — title, one-line claim, and the honest numbers: 364 prompts · 281 operational · 17 executed |
+| Description | **set** — *"300+ engineering prompts with evidence rules, failure handling, and a definition of done — for humans and coding agents. Audited by a repo, not a vibe."* The brief's version said `364`; "300+" is accurate and does not go stale as the library grows. Setting it through the API returns 403, so the owner applied it in the UI |
+| Topics | **set, all ten** — `prompts`, `prompt-engineering`, `ai-agents`, `llm`, `engineering`, `code-review`, `incident-response`, `software-engineering`, `developer-tools`, `playbook` |
+| Social preview | not set; 1280×640, suggested content: title, one-line claim, 364 prompts · 281 operational · 33 executed |
 
-### 5.4 Merge settings and branch cleanup
+### 5.4 Make the repository public — the last step
+
+Settings → General → **Danger Zone** → Change visibility → Public. The API refuses this with `403 Resource not accessible by integration`, and no repository change can substitute for it. Do this **after** 5.1, so the first thing a visitor sees is a working check rather than a red X.
+
+### 5.5 Merge settings and branch cleanup
 
 Squash-only; automatically delete head branches.
 
-### 5.5 Security features
+### 5.6 Security features
 
 | Feature | Why |
 |---|---|
@@ -128,9 +134,11 @@ Squash-only; automatically delete head branches.
 | Code scanning (CodeQL, Python) | the scripts are stdlib-only but they run in CI on every PR |
 | Private vulnerability reporting | `SECURITY.md` points at it; without it the promise is empty |
 
-### 5.6 Then, and only then, make it public
+### 5.7 Then, and only then, flip the switch
 
-After the above, in this order: publish → confirm the first Actions run is green on `main` → check `GALLERY.md` renders with working links → confirm the **Security** tab shows `SECURITY.md` → confirm the community-standards checklist is complete → create the release for the current tag.
+Order: fix billing (5.1) → confirm a real `validate` run executes and passes → publish (5.4) → re-run `validate` on `main` and confirm it stays green under the public runner allowance → check `GALLERY.md` renders with working links → confirm the **Security** tab shows `SECURITY.md` → confirm the community-standards checklist is complete.
+
+Releases already exist for every version (gate 23), so no release needs creating at publication time; `v2.28.3` is current.
 
 ## 6. Post-publication gate
 
@@ -144,4 +152,4 @@ After the above, in this order: publish → confirm the first Actions run is gre
 
 ---
 
-**Bottom line:** the repository is publishable. What stops it being a *good* launch is the Actions billing failure, which turns the project's strongest property — machine-enforced honesty — into a broken badge.
+**Bottom line (re-measured 2.28.4):** the content is publishable and nothing in the tree blocks it — 23 of 23 gate rows pass, 10 of them re-measured today, and the three that do not (22 partial, and the two unobservable CI rows) are GitHub settings rather than files. What stops it being a *good* launch is the Actions billing failure, which turns the project's strongest property — machine-enforced honesty — into a broken badge, and the fact that a public visitor would arrive at a repository whose central claim ("the validator fails the build") is only true on the owner's laptop.

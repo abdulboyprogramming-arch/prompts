@@ -2,6 +2,56 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.28.4] — 2026-10-22
+
+A publication-readiness audit, re-measured rather than re-read. The verdict did not change; four of
+the numbers in the verdict did.
+
+### Re-measured — the publication checklist
+
+All 23 gate rows were re-run. The content gate passes; ten rows had drifted and are corrected:
+test counts (23/23 → **136 cases** across seven files), composition (239 links / 92 uncited →
+**245 / 59, i.e. 24%**), duplication (top combined 0.68 → **0.56**), repository size (513 files /
+3.6 MB → **529 / 4.35 MB**), maturity (265/5/94 → **281/5/78**), and the executed-prompt count.
+
+A new gate row records the releases: **23, `v2.13.0` → `v2.28.3`**, each tagged at its merge commit.
+
+### Two of the four blockers cleared
+
+The repository description and all ten topics are set — verified through the API, applied by the
+owner in the UI because the integration token gets `403`. What remains is outside the repository:
+Actions billing, branch protection, and visibility.
+
+### Coverage matrix — six rows re-assessed, and a floor stated
+
+Five domain systems completed after the last full assessment (performance 2.23.0, games 2.24.0,
+backend 2.26.0, frontend 2.27.0, devops-infra 2.28.0) each closed a row that still called them
+skeletons, and `CAPACITY-01`/`DR-01` closed the note on production-critical platforms.
+Dimension rows: **116 adequate / 27 partial → 122 / 21**. The other 21 partial rows were **not**
+re-reviewed, and the matrix now says so — the adequate count is a floor, not a fresh audit.
+
+### Fixed — a gate whose summary read like it scanned nothing
+
+`lint_prose.py --check` on a clean corpus printed *"0 findings across 0 prompt files"*: the number
+after "across" was the count of files **with findings**, not files scanned. It now reports the 364
+it actually read. The gate was working; its sentence was misleading, which for a project whose
+product is honesty is the same defect in a cheaper form.
+
+### Verified — history is clean under an unshallowed clone
+
+`git fetch --unshallow` brought 61 commits and 22 tags into the checkout; the secret scan over
+`git log --all -p` returns **0 hits** for `ghp_`, `github_pat_`, `AKIA`, private-key headers and
+`sk-` patterns, and no `.env`, key or credential file has ever been tracked. This replaces the
+standing caveat that the scan only covered a squashed checkout. One sandbox path was still leaking
+in `.qa/VALIDATION.md` and is gone.
+
+### Reconciled
+
+Library 364 prompts — **281 operational**, 5 draft, 78 skeleton; 485 Markdown files.
+Evidence: **33 of 281 executed (11.7%)**, all author-run, none independent.
+**Publication status: content ready; not public.** Visibility still requires the owner (Settings →
+Danger Zone). CI still requires billing: run `39836004571` reported `steps: 0`.
+
 ## [2.28.3] — 2026-10-22
 
 The testing-QA system was run to its end: seven stages, one repository, every handoff a file the

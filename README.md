@@ -263,7 +263,7 @@ Read [`CONTRIBUTING.md`](CONTRIBUTING.md) before adding a system — it also poi
 - **33 of 281 operational prompts have been executed and recorded** — 11.7%. The queue for the rest, in batches, is [`_meta/execution-batches.md`](_meta/execution-batches.md). `operational` means structurally complete and reviewed, not proven in practice; [`_meta/evidence-levels.md`](_meta/evidence-levels.md) states the number, and it is generated from a registry.
 - **The prompts have not been compared against a model's output in a controlled study.** The three runs are tabletop evaluations by the author, and each record says so.
 - **Reviews are self-assessments** recorded in [`_meta/review-log.md`](_meta/review-log.md); no second reviewer exists.
-- **27 of 143 coverage rows are partial.** No row is missing; thin ones are named in [`_meta/coverage-matrix.md`](_meta/coverage-matrix.md).
+- **21 of 143 coverage rows are partial.** No row is missing; thin ones are named in [`_meta/coverage-matrix.md`](_meta/coverage-matrix.md). That count is partly fresh: six rows were re-assessed in 2.28.4, the rest date from the 2026-10-21 review.
 - CI validates structure and composition on pull requests; it cannot test whether a prompt improves an agent's work.
 
 Coverage per engineering scenario, with an honest status for each: [`_meta/coverage-matrix.md`](_meta/coverage-matrix.md).
