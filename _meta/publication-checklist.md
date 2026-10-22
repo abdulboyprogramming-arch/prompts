@@ -23,9 +23,9 @@
 
 | # | Check | Method | Result |
 |---|-------|--------|--------|
-| 1 | Structural validation | `python3 scripts/validate_library.py` | **PASS** — 474 Markdown files, 364 prompts, **0 errors / 0 warnings** |
+| 1 | Structural validation | `python3 scripts/validate_library.py` | **PASS** — 476 Markdown files, 364 prompts, **0 errors / 0 warnings** |
 | 2 | Maturity honesty | validator rules | **PASS** — 257 operational, 5 draft, 102 skeleton; no label exceeds body; no system README outranks its stages |
-| 3 | Executed-prompt count is generated | `scripts/evidence_report.py --check` | **PASS** — `_meta/evidence-levels.md` matches the registry: **25 of 257 operational prompts executed (9.7%)**, stated in the file the README links |
+| 3 | Executed-prompt count is generated | `scripts/evidence_report.py --check` | **PASS** — `_meta/evidence-levels.md` matches the registry: **26 of 257 operational prompts executed (10.1%)**, stated in the file the README links |
 | 4 | Catalog current | `--catalog` + `git diff` | **PASS** — regenerates with no diff |
 | 5 | Gallery current | `generate_gallery.py --check` | **PASS** — "up to date", 364 prompts |
 | 6 | Duplication | `find_overlaps.py --check` (shingle 0.55) and `--metric combined` (0.75) | **PASS** — highest shingle 0.18; highest combined 0.68, which is the known and *decided* contribution-variant case (`01-contribution/VARIANTS.md`) |
@@ -44,7 +44,7 @@
 | 18 | Licences | `LICENSE`, `LICENSE-CONTENT`, README section | **PASS** — MIT for code, CC BY 4.0 for content, SPDX-detectable |
 | 19 | Every prompt has a home | `generate_task_index.py --check` | **PASS** — 21 tasks, 364 prompts routed, 0 unrouted |
 | 20 | One gate list | `scripts/check_all.py` | **PASS** — CI runs that script and nothing else; a local pass is the same run |
-| 21 | Counts agree with the tree | validator `check_documented_counts`, `check_stated_totals`, `check_readme_counts` | **PASS** — 474 Markdown files, 364 prompts, 257/5/102 by maturity; the file and prompt totals are compared on every run in the four documents that quote them |
+| 21 | Counts agree with the tree | validator `check_documented_counts`, `check_stated_totals`, `check_readme_counts` | **PASS** — 476 Markdown files, 364 prompts, 257/5/102 by maturity; the file and prompt totals are compared on every run in the four documents that quote them |
 | 22 | Repository settings are decided | `_meta/repository-configuration.md` | **PASS** — description, topics, merge policy, security features and sponsorship decision recorded with the commands; **not yet applied** |
 
 Twenty-two gates. Six are new in this pass: composition (6b), community files and their links (16), prose counts (17), and the three that close the gap between what the documents claim and what the tree contains (15, 21, 22).
@@ -58,7 +58,7 @@ Checked against the tree, not against intention:
 | `README.md` top | Links `QUICKSTART.md` before anything else — the reader gets a task, not a table of contents |
 | `QUICKSTART.md` | Six paths (chat-only / broken / inherited / shipping / proof / new), chat-first because that reader has the fewest tools; each with ordered prompts and the artifact you end with; opens with what the library **cannot** do |
 | Maturity legend | In the README above the fold; `operational` defined as *structurally reviewed*, not proven |
-| `_meta/evidence-levels.md` | Generated; states 9.7% executed (25 of 257); linked from the README and the quickstart |
+| `_meta/evidence-levels.md` | Generated; states 10.1% executed (26 of 257); linked from the README and the quickstart |
 | `GALLERY.md` | 364 prompts by area, generated; `TASKS.md` indexes the same prompts by problem and fails the build if a prompt has no home |
 | Limitations | Stated in README, quickstart, `PROJECT-STATUS.md`, and §3 below — four places, consistent |
 
@@ -66,7 +66,7 @@ Checked against the tree, not against intention:
 
 These are already stated in the repository. They must not be softened in marketing language, release notes, or a launch post.
 
-1. **Twenty-five prompts have been executed and recorded** (`DBG-01` `-01`; `CHAT-DEBUG` `-02`; `CHAT-SELECT` `-03`; `CHAT-REVIEW` `-04`; `CHAT-MODE` `-05`; `CHAT-DESIGN` `-06`; `CHAT-HANDOFF` `-07`; `GEN-P01` `-08`; `GEN-P02` `-09`; `GIT-P01` to `GIT-P05` `-10`, `-11`; `CR-P01` to `CR-P03` `-12`; `PERF-P01` to `PERF-P07` `-13`; `PKG-P01` `-14`). 241 are labelled `operational`, which means *structurally complete and reviewed*, not *proven in use*. `_meta/evidence-levels.md` states 25 of 257 — 9.7% — with a generated number, and the review log names what is still unrun by anyone else, and the contribution variants completed in 2.23.1 have procedures but no recorded execution.
+1. **Twenty-six prompts have been executed and recorded** (`DBG-01` `-01`; `CHAT-DEBUG` `-02`; `CHAT-SELECT` `-03`; `CHAT-REVIEW` `-04`; `CHAT-MODE` `-05`; `CHAT-DESIGN` `-06`; `CHAT-HANDOFF` `-07`; `GEN-P01` `-08`; `GEN-P02` `-09`; `GIT-P01` to `GIT-P05` `-10`, `-11`; `CR-P01` to `CR-P03` `-12`; `PERF-P01` to `PERF-P07` `-13`; `PKG-P01` `-14`; `MLA-P03` `-15`). 241 are labelled `operational`, which means *structurally complete and reviewed*, not *proven in use*. `_meta/evidence-levels.md` states 26 of 257 — 10.1% — with a generated number, and the review log names what is still unrun by anyone else, and the contribution variants completed in 2.23.1 have procedures but no recorded execution.
 2. **Reviews are author self-assessments**, scored in `_meta/review-log.md`. No second reviewer exists.
 3. **102 skeleton prompts** are named sequences without verification or failure handling — useful as human checklists, unsafe to run unattended.
 4. **Coverage is 116 adequate / 27 partial / 0 missing** dimension rows. No row is missing; 27 are thin, and the matrix names what is thin.

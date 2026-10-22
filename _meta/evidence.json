@@ -286,6 +286,17 @@
       "result": "four defects in v1.0.0, three of them High: bundled scripts were never decomposed, the shipped surface was never recorded although a later stage validates it, and one verification item was unachievable when the versioning policy is unstated with no honest route for that. v1.1.0 fixes all four and the retest passes five of six checks with the sixth recorded as partial",
       "record": "_meta/empirical-evaluation-14.md",
       "limitations": "one target, npm only, chosen and graded by the prompt's author; stages P02-P08 not run, so the system is partially tested end to end"
+    },
+    {
+      "identifier": "MLA-P03",
+      "title": "Data Assessment",
+      "path": "03-domains/data-ml-ai/P03-Data/P03-Data-Assessment.md",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author (conflict of interest recorded; the fixture was built by the author who knew where the traps were)",
+      "scope": "run against a purpose-built churn fixture of 1,200 account-months with three planted leakage paths, one of them statistically perfect but structurally innocent, and a random-split defect",
+      "result": "v1.0.0 missed the statistically perfect leak because the procedure was schema-first, and had no honest state for a check with no pipeline to hold it. v1.1.0 adds a label-determinism scan (categorical levels at 0 or 100 percent, numeric columns by threshold separation) and a 'pending - no pipeline yet' state; the retest found all four planted defects and labelled every mitigation pending rather than prevented",
+      "record": "_meta/empirical-evaluation-15.md",
+      "limitations": "one fixture, one domain, built by the prompt author; the other seven stages of the family remain unexecuted, so the system is partially tested end to end; the fixture is not committed"
     }
   ]
 }
