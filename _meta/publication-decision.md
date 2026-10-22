@@ -73,4 +73,23 @@ Already in the README and checked in this pass:
 
 > **Publish as an experimental, actively-developed library whose structure is machine-checked and whose procedures are largely unproven.** Every claim above is reproducible from this checkout; none of it requires the reader to trust the author.
 
+## 8. Landing page: which state a visitor sees
+
+Verified 2026-10-22 against the API, and it changes the order of operations:
+
+| | Default branch `main` | Unmerged PR branch |
+|---|---|---|
+| Commit | `060ffe5` — v2.21.1 | `ab695a1` — 2.22.0 work |
+| Prompt files | 431 | 364 |
+| README says | "165 of 235 prompts are skeleton" | 131 of 364, 228 operational, 14 executed |
+| Workflows | `validate-library.yml` only, no composition gate | `validate.yml` calling `check_all.py` |
+| Diff vs the other | 213 files, +7,696 / −976 | — |
+
+Every ref becomes readable when a repository goes public, so the PR branch and PR #12 are visible too. **But a visitor lands on `main`,** so publishing now puts v2.21.1 at the front door with counts the branch has since corrected and a workflow that lacks the gate this work is about.
+
+Two honest routes, and the choice belongs to the owner:
+
+1. **Merge PR #12 first, then publish.** The front door is the verified state. Requires the merge authorisation that is on hold.
+2. **Publish now, merge later.** Acceptable, and the repository is not dishonest — v2.21.1 was its own accurate release — but the first impression is a weaker, older tree, and the improvement arrives after launch.
+
 **PR #12 stays open and unmerged pending the owner's instruction.**
