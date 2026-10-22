@@ -134,16 +134,26 @@ def lint_text(text: str) -> list[dict]:
     return findings
 
 
-def collect() -> dict[str, list[dict]]:
+def collect() -> tuple[dict[str, list[dict]], int]:
+    """Return findings per file, and how many files were actually read.
+
+    The second value exists because the summary used to report `len(per_file)` as
+    "across N prompt files" — the number of files *with* findings. On a clean corpus
+    that printed "0 findings across 0 prompt files", which reads like a gate that
+    scanned nothing. A gate's summary should say what it scanned, not only what it
+    found.
+    """
     docs = load(ROOT)
     out: dict[str, list[dict]] = {}
+    scanned = 0
     for d in docs:
         if not d.is_prompt or is_archive(d.rel) or d.rel.split(os.sep)[0] in {"_meta", "archive"}:
             continue
+        scanned += 1
         findings = lint_text(d.text)
         if findings:
             out[d.rel.replace(os.sep, "/")] = findings
-    return out
+    return out, scanned
 
 
 def main() -> int:
@@ -167,7 +177,7 @@ def main() -> int:
         print(f"\n{len(findings)} finding(s)")
         return 0
 
-    per_file = collect()
+    per_file, scanned = collect()
     total = sum(len(v) for v in per_file.values())
     kinds: dict[str, int] = {}
     for fs in per_file.values():
@@ -190,10 +200,11 @@ def main() -> int:
             "total": total,
             "baseline": baseline.get("total", 0),
             "by_kind": kinds,
+            "scanned": scanned,
             "files": {k: len(v) for k, v in sorted(per_file.items(), key=lambda kv: -len(kv[1]))[:args.top]},
         }, indent=2))
     else:
-        print(f"{total} findings across {len(per_file)} prompt files (baseline {baseline.get('total', 0)})")
+        print(f"{total} findings across {scanned} prompt files (baseline {baseline.get('total', 0)})")
         print("  " + ", ".join(f"{k}={v}" for k, v in sorted(kinds.items(), key=lambda kv: -kv[1])))
         print()
         for rel, fs in sorted(per_file.items(), key=lambda kv: -len(kv[1]))[:args.top]:

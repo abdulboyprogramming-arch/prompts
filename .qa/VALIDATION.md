@@ -5,7 +5,7 @@
 **Cycle:** 2.28.2
 **Prompt:** `04-process/testing-qa/P06-Validation/P06-Validation-Measurement.md`
 **Subject:** the validator changes and 12 fixtures recorded in `.qa/IMPLEMENTATION_LOG.md`
-**Environment:** local sandbox, Python 3, repository at `/home/user/prompts`
+**Environment:** local sandbox, Python 3, a checkout of this repository
 **Status of this document:** every number below came from a command run in this cycle. No result is
 simulated or carried over from an earlier cycle.
 

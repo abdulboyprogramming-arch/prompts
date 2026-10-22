@@ -894,4 +894,20 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
   three are guards that were never red.
 - Not claimed: independence; the orchestrator is author-run work checking author-run work; CI
   enforcement is still unobservable (`steps: 0`).
+### Audit — publication readiness re-measured, and a sentence that undersold a gate (2.28.4)
+- **2026-10-22 · audit · the prompt's author** · record `_meta/publication-checklist.md`, `_meta/coverage-matrix.md`
+- Re-ran all 23 publication gate rows instead of trusting the last audit. Ten had drifted; all
+  are corrected, and a new row covers releases (23, each at its merge commit).
+- Description and topics are set (verified through the API), so the blocker list drops from four
+  to three: billing, branch protection, visibility — none of them a repository file.
+- Coverage matrix: six rows re-assessed because completed systems (performance, games, backend,
+  frontend, devops-infra) and two scenario prompts had overtaken their notes. 122/21 adequate/
+  partial from 116/27. The remaining 21 were not re-reviewed and the file now says so.
+- **Defect:** `lint_prose.py` printed the number of files *with findings* as the number scanned, so
+  a clean corpus read "0 findings across 0 prompt files" — the strongest-sounding gate in the suite
+  sounding like it scanned nothing. Fixed; the summary now names the 364 files read.
+- History: unshallowed the clone (61 commits, 22 tags) and re-ran the secret scan — 0 hits; this
+  removes the standing caveat. One sandbox path in `.qa/VALIDATION.md` removed.
+- Not claimed: publication. Visibility, branch protection and CI remain owner-only; no public URL
+  can be tested until the repository is flipped.
 

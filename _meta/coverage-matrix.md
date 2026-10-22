@@ -1,6 +1,6 @@
 # Coverage Matrix
 
-**Version:** 1.6.0 · **Last assessed:** 2026-10-21 (post-2.22.0: task index, prose lint at zero, chat selection and handoff) · **Method:** evidence review of every prompt file; a scenario counts as covered only when an existing prompt addresses its distinctive requirements, constraints, and verification — not because a related prompt exists.
+**Version:** 1.7.0 · **Last assessed:** 2026-10-22 (2.28.4). Six rows were re-assessed because their notes had been overtaken by systems completed after 2.22.0 — frontend, backend, devops-infra, games and performance all moved from skeleton to operational, and `CAPACITY-01`/`DR-01` closed the note on production-critical platforms. **The other 21 partial rows were not re-reviewed**, so the adequate count is a floor, not a full audit; the previous full assessment was 2026-10-21 (post-2.22.0) · **Method:** evidence review of every prompt file; a scenario counts as covered only when an existing prompt addresses its distinctive requirements, constraints, and verification — not because a related prompt exists.
 
 **Status vocabulary**
 
@@ -63,7 +63,7 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Growing product | Adequate | audit, testing, release, observability systems |
 | Enterprise system | **Adequate** | `GOV-P01..P03` (new) — claim-to-mechanism map, evidence testing with mechanism bypass tests, readiness decision with four-way responses |
 | Legacy system | Partial | `legacy-code` skeleton; audit + recovery cover much of the need |
-| Production-critical platform | Partial | release/observability adequate; no capacity planning or DR exercise prompt |
+| Production-critical platform | Adequate | release/observability plus `CAPACITY-01` (what runs out first) and `DR-01` (prove the restore, not the backup) — re-assessed in 2.28.4: the earlier note said no capacity or DR prompt existed, and both now do |
 
 ## 4. Project state
 
@@ -94,10 +94,10 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 
 | Area | Status | Evidence / gap |
 |------|--------|----------------|
-| Frontend | Partial | `03-domains/frontend` skeleton; `A11Y-01` provides the accessibility conformance method, `PERF-BUDGET-01` the performance gate, `I18N-01` the localisation correctness method |
-| Backend / APIs | Partial | `backend` skeleton except `API-VER-01` (versioning, contracts, sunset); cross-cutting backend failures covered by `TENANCY-01`, `JOBS-01`, `EMAIL-01`, `TIME-01`, `INTEG-01` |
+| Frontend | Adequate | `03-domains/frontend` operational, eight stages `FE-P01`–`FE-P08` (2.27.0), with `A11Y-01` for accessibility conformance, `PERF-BUDGET-01` for the performance gate and `I18N-01` for localisation correctness |
+| Backend / APIs | Adequate | `03-domains/backend` operational, eight stages `BE-P01`–`BE-P08` (2.26.0) plus `API-VER-01`; cross-cutting backend failures covered by `TENANCY-01`, `JOBS-01`, `EMAIL-01`, `TIME-01`, `INTEG-01` |
 | Databases | Adequate | `DB-P01..P05` (schema truth, migration design, pre-flight drills, execution/reconciliation, rollback and verification) |
-| Infrastructure | Partial | `devops-infra` skeleton; `IAC-01` provides drift detection and adoption, `05-scenarios/deployment-target/` the provisioning path |
+| Infrastructure | Adequate | `03-domains/devops-infra` operational, eight stages `DI-P01`–`DI-P08` (2.28.0); `IAC-01` covers drift detection and adoption, `05-scenarios/deployment-target/` the provisioning path |
 | Security | Adequate | `security-hardening` (assessment/remediation), `SEC-ROT-01` (rotation as a drilled capability) |
 | Testing | Adequate | `testing-qa` (7 stages) plus `TESTDATA-01` for the data the suite runs against — classification into synthetic / anonymised / pseudonymised / real copy, generators that emit awkward data, isolation, and a CI guard against fixtures holding real records |
 | AI / LLM | Adequate | `ai-agentic` `AI-P01..P07`; P06 adds grounded retrieval with ACL-leakage and abstention measurement, P07 adds the engineering agent's own permission surface (MCP servers, shell, egress, credential inheritance) |
@@ -111,9 +111,9 @@ Legend for evidence: `[system:stage]` refers to identifiers in `_meta/CATALOG.md
 | Mobile | **Adequate** | `MOB-P01..P03` (new) — store release with a pre-declared halt criterion, crash triage with symbolication and consequence ranking, client-version compatibility and deprecation schedule |
 | Embedded / firmware | **Adequate** | `IOT-P01..P02` (new) — atomic OTA with trial boot and automatic rollback, power-cut testing, fleet silence classification and bounded recovery ladder |
 | Desktop / CLI | **Adequate** | `DESK-P01..P02` (new) — distribution as a trust boundary, signed updates, terminal contract (exit codes, streams, signals, TTY) |
-| Games | Partial | 7 game-design stages remain skeleton; `GD-P09` (save migration) and `GD-P10` (netcode/determinism) are operational |
+| Games | Adequate | `03-domains/games` operational, ten stages `GD-P01`–`GD-P10` (2.24.0), including save migration and netcode/determinism |
 | Blockchain / smart contracts | **Adequate** | `CHAIN-P01..P04` (new) — threat model with exploit-path ranking, key custody tiers and drilled rotation, upgrade with storage-layout diff and fork rehearsal, exploit response with containment-first ordering |
-| Performance | Partial | audit and incident touch it; `performance` skeleton; `PERF-BUDGET-01` covers budgets and `BUILD-01` build/CI time |
+| Performance | Adequate | `02-engineering/performance` operational, seven stages (2.23.0), and run end to end against this repository; `PERF-BUDGET-01` covers budgets and `BUILD-01` build/CI time |
 | Supply chain integrity | **Adequate** | `SUPPLY-01`: delivery chain with evidence per link, lockfile enforcement, install-script execution, dependency confusion, CI trust boundaries, digest pinning, provenance verified once, SBOM queried before it is needed |
 | Licence obligations | **Adequate** | `LIC-01`: distribution perimeter first, obligation families rather than labels, outbound/inbound compatibility, generated notices with versions, disposition with owner and expiry, CI gate |
 | Standards conformance | **Adequate** | `STD-01`: verbatim requirement set, applicability with justification, claimed/practised/evidenced/enforced separation, periodic controls dated, honest position; `WF-COMPLY` sequences the response |
@@ -252,14 +252,14 @@ Counts are computed from the tables above; they are not estimates.
 
 | Status | Dimension rows | Workflow rows |
 |--------|---------------:|--------------:|
-| Adequate | 116 | 10 |
-| Partial | 27 | 5 |
+| Adequate | 122 | 10 |
+| Partial | 21 | 5 |
 | Missing | 0 | 0 |
 | Defective | 0 | 0 |
 | Indirect | 0 | 0 |
 | **Total assessed** | **143** | **15** |
 
-**Reading this honestly:** roughly 81% of assessed dimension rows are adequate (116 of 143). The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
+**Reading this honestly:** roughly 85% of assessed dimension rows are adequate (122 of 143). The remainder are mostly *partial* — a prompt exists but a stage, verification, or failure path is missing — and those are named in the evidence column rather than hidden in a percentage.
 
 **Closed in 2.21.0:** conversational mode — using the library in a chat window with the capability delta made explicit (`CHAT-MODE`, `CHAT-REVIEW`, `CHAT-DEBUG`, `CHAT-DESIGN`). This was a genuine gap: 358 prompts assumed repository access, and nothing stated what degrades when it is absent.
 
