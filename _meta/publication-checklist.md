@@ -25,7 +25,7 @@
 |---|-------|--------|--------|
 | 1 | Structural validation | `python3 scripts/validate_library.py` | **PASS** — 485 Markdown files, 364 prompts, **0 errors / 0 warnings** |
 | 2 | Maturity honesty | validator rules | **PASS** — 281 operational, 5 draft, 78 skeleton; no label exceeds body; no system README outranks its stages |
-| 3 | Executed-prompt count is generated | `scripts/evidence_report.py --check` | **PASS** — `_meta/evidence-levels.md` matches the registry: **32 of 281 operational prompts executed (11.4%)**, stated in the file the README links |
+| 3 | Executed-prompt count is generated | `scripts/evidence_report.py --check` | **PASS** — `_meta/evidence-levels.md` matches the registry: **33 of 281 operational prompts executed (11.7%)**, stated in the file the README links |
 | 4 | Catalog current | `--catalog` + `git diff` | **PASS** — regenerates with no diff |
 | 5 | Gallery current | `generate_gallery.py --check` | **PASS** — "up to date", 364 prompts |
 | 6 | Duplication | `find_overlaps.py --check` (shingle 0.55) and `--metric combined` (0.75) | **PASS** — highest shingle 0.18; highest combined 0.68, which is the known and *decided* contribution-variant case (`01-contribution/VARIANTS.md`) |
@@ -58,7 +58,7 @@ Checked against the tree, not against intention:
 | `README.md` top | Links `QUICKSTART.md` before anything else — the reader gets a task, not a table of contents |
 | `QUICKSTART.md` | Six paths (chat-only / broken / inherited / shipping / proof / new), chat-first because that reader has the fewest tools; each with ordered prompts and the artifact you end with; opens with what the library **cannot** do |
 | Maturity legend | In the README above the fold; `operational` defined as *structurally reviewed*, not proven |
-| `_meta/evidence-levels.md` | Generated; states 11.4% executed (32 of 281); linked from the README and the quickstart |
+| `_meta/evidence-levels.md` | Generated; states 11.7% executed (33 of 281); linked from the README and the quickstart |
 | `GALLERY.md` | 364 prompts by area, generated; `TASKS.md` indexes the same prompts by problem and fails the build if a prompt has no home |
 | Limitations | Stated in README, quickstart, `PROJECT-STATUS.md`, and §3 below — four places, consistent |
 
@@ -66,7 +66,7 @@ Checked against the tree, not against intention:
 
 These are already stated in the repository. They must not be softened in marketing language, release notes, or a launch post.
 
-1. **Thirty-two prompts have been executed and recorded** (`DBG-01` `-01`; `CHAT-DEBUG` `-02`; `CHAT-SELECT` `-03`; `CHAT-REVIEW` `-04`; `CHAT-MODE` `-05`; `CHAT-DESIGN` `-06`; `CHAT-HANDOFF` `-07`; `GEN-P01` `-08`; `GEN-P02` `-09`; `GIT-P01` to `GIT-P05` `-10`, `-11`; `CR-P01` to `CR-P03` `-12`; `PERF-P01` to `PERF-P07` `-13`; `PKG-P01` `-14`; `MLA-P03` `-15`). 255 are labelled `operational`, which means *structurally complete and reviewed*, not *proven in use*. `_meta/evidence-levels.md` states 32 of 281 — 11.4% — with a generated number, and the review log names what is still unrun by anyone else, and the contribution variants completed in 2.23.1 have procedures but no recorded execution.
+1. **Thirty-two prompts have been executed and recorded** (`DBG-01` `-01`; `CHAT-DEBUG` `-02`; `CHAT-SELECT` `-03`; `CHAT-REVIEW` `-04`; `CHAT-MODE` `-05`; `CHAT-DESIGN` `-06`; `CHAT-HANDOFF` `-07`; `GEN-P01` `-08`; `GEN-P02` `-09`; `GIT-P01` to `GIT-P05` `-10`, `-11`; `CR-P01` to `CR-P03` `-12`; `PERF-P01` to `PERF-P07` `-13`; `PKG-P01` `-14`; `MLA-P03` `-15`). 255 are labelled `operational`, which means *structurally complete and reviewed*, not *proven in use*. `_meta/evidence-levels.md` states 33 of 281 — 11.7% — with a generated number, and the review log names what is still unrun by anyone else, and the contribution variants completed in 2.23.1 have procedures but no recorded execution.
 2. **Reviews are author self-assessments**, scored in `_meta/review-log.md`. No second reviewer exists.
 3. **78 skeleton prompts** are named sequences without verification or failure handling — useful as human checklists, unsafe to run unattended.
 4. **Coverage is 116 adequate / 27 partial / 0 missing** dimension rows. No row is missing; 27 are thin, and the matrix names what is thin.

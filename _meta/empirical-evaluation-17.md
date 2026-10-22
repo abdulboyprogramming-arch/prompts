@@ -107,5 +107,45 @@ The repeats were identical, so nothing was re-run to make a red result green.
   proves the corpus is clean today. Neither proves a future prompt will be well written.
 - **No CI enforcement.** No workflow step has ever executed in this repository (`steps: 0`,
   billing). The local gate is the only gate, before and after this run.
-- **`P07` (Orchestrator) was not run.** The system's composition test stops at four of seven
-  stages; the ledger records `P07` as not started.
+
+---
+
+## 8. `QA-P07` — the composition run, and what it found about the system itself
+
+`QA-P07` was run afterwards, over the six stages it orchestrates, against `ab1528b` (main, 2.28.2).
+It is the first stage in this library whose subject is the *set* of other stages rather than a
+single procedure, so its output is a check on the engagement, not another artefact.
+
+| The orchestrator's own check | Result |
+|---|---|
+| All `.qa/` artifacts present | pass — seven of seven |
+| R1 risk map agreed at P01 | **partial** — the map was produced and used, but the mandatory human checkpoint cannot happen when author and approver are the same person |
+| Red→green evidence for every new test | **partial** — 6 fixtures are killed by a mutation, 3 have a pre-fix probe that was silent or warned, 3 are guards with no prior red state |
+| Mutations reverted | pass — the tree is clean; every mutation ran in a separate `/tmp` copy |
+| Suite deterministic, 3× | pass — 44/44 and all gates on three runs, 2.89–2.93 s |
+| CI enforcement | **not observable** — run `39836004571` failed with `steps: 0`; the runner never started a step |
+| Targets measured, not assumed | pass — 12 of 12 new cases, 4/4 R1 behaviours, 7/7 gaps, 0/5 mutations surviving |
+| Ledger current | **failed, then fixed** — it still said `P02` in progress and `P03`–`P06` not started, three releases after they had run |
+
+Two of those results are worth more than the six passes.
+
+**The mandatory checkpoint is structurally unavailable to a solo author.** `QA-P07` requires the
+R1 list to be agreed before the engagement continues, and correctly so — the list decides what
+counts as a defect. In this repository the person who writes the risk map also approves it. The
+stage did not "pass" that check; it recorded that the check cannot pass here, which is the right
+outcome and the reason the independence gap is the library's binding limit rather than a footnote.
+
+**The ledger had gone stale.** A record that says six stages are unstarted after all six have
+shipped is the same defect class the whole engagement is about: a claim that drifted from reality
+and was caught by a reader rather than by a test. No gate compares `.qa/QA_LEDGER.md` against the
+existence of its artefacts. That is a real gap and it is now stated rather than fixed by a
+mechanical check nobody asked for — a ledger gate would pass on a ledger that lists the right
+filenames in the wrong states.
+
+**Third finding: the orchestrator's own completion criterion is too narrow.** "Working tree
+contains only test/CI changes and `.qa/` artifacts" does not anticipate that a rule change requires
+updating twelve record files to keep the counts honest. The run passes the criterion's *intent*
+(no production code was touched) without matching its letter. The wording should say "test, CI and
+record changes", and that correction is deferred to a release that touches the prompt itself rather
+than smuggled into this record.
+
