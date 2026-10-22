@@ -36,7 +36,7 @@ FACTS
  - 52 multi-stage systems, 239 dependency links; 92 (38%) do not cite the upstream
    filename, 82 name no artifact.  [observed: check_prompt_contract.py]
  - 4 prompts have recorded runs: DBG-01, CHAT-DEBUG, CHAT-SELECT, CHAT-REVIEW.  [observed: evidence.json]
- - All 14 gates pass locally; CI cannot run (Actions billing).  [observed locally; CI blocked = reported by GitHub API]
+ - All gates pass locally; CI cannot run (Actions billing). The count was 14 at the time of this run and is 15 after `test_check_all.py` was added in `-12`; the packet is left as written, since a handoff records what was true when it was written.  [observed locally; CI blocked = reported by GitHub API]
  - _.github/workflows holds TWO workflows_ (validate.yml runs check_all.py; validate-library.yml
    re-lists 12 commands and skips the composition gate).  [observed; contradicts the docs]
  - The owner has not said when PR #12 may merge.  [unknown]

@@ -2,7 +2,7 @@
 
 **Identifier:** CR-P03
 **System:** 04-process/code-review
-**Version:** 1.0.0
+**Version:** 1.1.0
 **Maturity:** operational
 **Execution mode:** diagnostic
 **Risk class:** A
@@ -32,7 +32,7 @@ Out of scope: writing the fix (unless trivial), rewriting the author's style, in
 
 1. **Work the risk surface first**, in order: correctness → security/authorisation → data integrity → concurrency → error handling → performance at expected volume → tests → maintainability → style.
 2. **For each candidate finding, write the consequence before the comment.** "This returns 403 before checking ownership, so any authenticated user can read another tenant's invoice" — then the suggestion. If you cannot state a consequence, it is a preference, and preferences go in a separate, clearly-labelled section or nowhere.
-3. **Verify each finding before recording it.** Run the failing case, trace the branch, or cite both lines that contradict. A finding you cannot demonstrate is a question, not a finding — label it as such.
+3. **Verify each finding before recording it, and record how.** Run the failing case, trace the branch, or cite both lines that contradict. A finding you cannot demonstrate is a question, not a finding — label it as such. **The demonstration goes in the findings table**: the command and its output, or the two line references and what they contradict. A finding whose evidence is the reviewer's assurance cannot be rechecked by the author, who is the only reader who matters.
 4. **Check the categories that reviews routinely miss:**
 
    | Category | What to check |
@@ -69,6 +69,7 @@ Out of scope: writing the fix (unless trivial), rewriting the author's style, in
 | Risk surface reviewed first | notes | order followed |
 | Every finding has a consequence | inspect | no bare preferences in findings |
 | Findings verified | reproduction or citation | evidence per finding |
+| Demonstration recorded | findings table | each finding carries the command, output, or two conflicting lines that established it |
 | Category checklist worked | inspect | each considered |
 | Tests probed | scratch-copy mutation | result recorded |
 | Severity consistent | read-through | blocker means harmful |

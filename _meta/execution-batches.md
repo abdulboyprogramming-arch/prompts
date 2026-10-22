@@ -18,7 +18,7 @@ Three kinds of test are available, and only the first can be done alone:
 | **B — Adversarial fixture** | The prompt's failure handling fires on the input it was written for | a constructed fixture | anything with a decision rule or a refusal |
 | **C — Independent run** | The prompt works for a reader who is not its author | a second person | everything; this is the only kind that tests *usefulness* |
 
-**Kind C is the one that counts and the only one that cannot be manufactured here.** Everything below is A and B, run by the author, and recorded as such. A library where 4 of 228 prompts have been executed is a library with 4 data points, not a tested library; this file makes the remaining work queueable rather than vague.
+**Kind C is the one that counts and the only one that cannot be manufactured here.** Everything below is A and B, run by the author, and recorded as such. The few prompts that have been executed are data points, not a tested library; this file makes the remaining work queueable rather than vague.
 
 ---
 
@@ -96,7 +96,7 @@ The next executable task in this batch is a re-run by a second person, and there
 
 ## 6. Honest status
 
-- **14 of 228 operational prompts executed (6.1%).** Stated in [`evidence-levels.md`](evidence-levels.md), generated from the registry, and checked in CI so it cannot drift.
+- **17 of 228 operational prompts executed (7.5%).** Stated in [`evidence-levels.md`](evidence-levels.md), generated from the registry, and checked in CI so it cannot drift.
 - **0 runs by a second person**, which is the only kind that tests usefulness.
 - **Batch 0 complete (8 of 8); batch 2 at 5 of 68**, all five `git-operations` stages. The two `git-operations` runs are the first execution of two stages of one system as a unit, which is a weaker test than the system run criterion 11 asks for and is recorded as partial.
 - **B2 is the cheapest ten runs** and the target already exists in this checkout.

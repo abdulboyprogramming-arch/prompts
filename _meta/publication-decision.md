@@ -2,7 +2,7 @@
 
 **Question:** can this repository be published publicly *now*, honestly, without waiting for full validation?
 
-**Answer: yes** for publication as an experimental, actively-developed library, with one honesty fix applied in this pass (the CI claim) and no repository-side blocker remaining. **No** for any claim that the prompts are validated, proven, or production-ready — 11 of 228 have been executed, all by the author, none by a second person.
+**Answer: yes** for publication as an experimental, actively-developed library, with one honesty fix applied in this pass (the CI claim) and no repository-side blocker remaining. **No** for any claim that the prompts are validated, proven, or production-ready — 17 of 228 have been executed, all by the author, none by a second person.
 
 ---
 
@@ -12,7 +12,7 @@
 |---|---|---|
 | Test | Can a stranger read this, use it, and understand exactly how far it has been proven? | Does each procedure work when someone else runs it? |
 | Evidence needed | licence, no secrets, usage instructions, accurate status, policies, checks that pass | independent runs, per-prompt evidence, end-to-end systems |
-| Current state | **met** (§2) | 11 of 228 executed (4.8%); 0 independent runs |
+| Current state | **met** (§2) | 17 of 228 executed (7.5%); 0 independent runs |
 
 Conflating them is what turns readiness into an endless cycle: full validation of 228 procedures needs months and other people, while publication needs a truthful snapshot. The library's own rule applies — label the claim and ship the evidence.
 
@@ -27,7 +27,7 @@ Conflating them is what turns readiness into an endless cycle: full validation o
 | Installation and usage instructions | README "Start here" routing table, maturity legend, structure, composition; `QUICKSTART.md` for six situations | met |
 | Accurate project status | counts and maturity are gate-checked against the tree; execution ratio generated from `_meta/evidence.json`; limitations stated in README and `release-readiness.md` | met |
 | Contribution and conduct policies | `CONTRIBUTING.md`, `.github/CODE_OF_CONDUCT.md`, `.github/SECURITY.md` exist **and** are linked (validator `check_community`) | met |
-| Required validation checks | 14 gates pass locally; 84 self-test cases pass; composition 0 errors | met |
+| Required validation checks | 16 gates pass locally; 106 self-test cases pass; composition 0 errors | met |
 
 **One accuracy defect was found and fixed in this pass**, which is why this list is not "we assumed": the README asserted that CI fails when a generated file is stale, and `PROJECT-STATUS.md` described the workflow as running. Neither is true on this account (§5). Both now state the billing block and the local equivalent.
 
@@ -47,7 +47,7 @@ Conflating them is what turns readiness into an endless cycle: full validation o
 
 | # | Item | Evidence | Reason it can wait |
 |---|---|---|---|
-| 1 | Execute the remaining operational prompts | 11 of 228 (4.8%); batch 0 complete (8 of 8), batch 2 at 2+3 of 68 | Publication claims an audit, not a validation; the ratio is published and generated |
+| 1 | Execute the remaining operational prompts | 17 of 228 (7.5%); batch 0 complete (8 of 8), batch 2 at 2+3 of 68 | Publication claims an audit, not a validation; the ratio is published and generated |
 | 2 | **Any run by someone other than the author** | 0 of 228 | The only thing that would justify a stronger claim; cannot be manufactured here, and its absence is stated in README, `release-readiness.md` and `evidence-levels.md` |
 | 3 | One continuous end-to-end system run | `git-operations` stages 1–5 executed, but across two sittings (`-10.md`, `-11.md`) | The letter is satisfied; the spirit is a second incident from one record |
 | 4 | `REQ-CHANGE-01` vocabulary fix and ship decision | `-11.md` §4 | Not part of the published library |
@@ -57,7 +57,8 @@ Conflating them is what turns readiness into an endless cycle: full validation o
 ## 5. The Actions billing blocker, verified
 
 - **What is blocked:** the workflow job. `gh run list` shows `failure` in 3–4 s; `gh api .../jobs` returns a job with an empty `steps` array and no log; `gh api repos/…/actions/permissions` is refused to the integration (403).
-- **What it affects:** a **correctness** check (the 14-gate run on every push and PR) and, indirectly, any GitHub-native security feature that depends on Actions, such as CodeQL. It does not affect secret scanning alerts on the repository itself.
+- **The cause, in GitHub's own words (2026-10-22, run `39763331642`):** the check-run annotation reads *"The job was not started because recent account payments have failed or your spending limit needs to be increased."* That is a billing state on the account, not a defect in the workflow: the same run also carries a runner-image notice, so the workflow was parsed and a runner was selected. Only the owner can clear it, in **Settings → Billing & plans**.
+- **What it affects:** a **correctness** check (the 15-gate run on every push and PR) and, indirectly, any GitHub-native security feature that depends on Actions, such as CodeQL. It does not affect secret scanning alerts on the repository itself.
 - **Safe alternative, and its limits:** `python3 scripts/check_all.py --verbose` runs the identical gate list locally; the 2026-10-22 baseline is captured verbatim in `_meta/baseline/2026-10-22-baseline.txt`, and every commit on this branch was gated with it before push. This **verifies the same checks** but does not provide the thing CI actually provides: an independent guard that cannot be skipped by the person pushing. Naming it as a replacement would be a false claim; it is a substitute for the *checks*, not for the *enforcement*.
 
 ## 6. What the published status must say
@@ -65,7 +66,7 @@ Conflating them is what turns readiness into an endless cycle: full validation o
 Already in the README and checked in this pass:
 
 - 364 prompts: **228 operational, 5 draft, 131 skeleton** — with `operational` defined as structurally reviewed, not proven.
-- **11 of 228 executed (4.8%)**, all by the author, none independently.
+- **17 of 228 executed (7.5%)**, all by the author, none independently.
 - Composition measured, not assumed: 92 of 239 stage links (38%) do not cite the upstream filename.
 - CI does not run; the local gate does.
 
@@ -92,4 +93,6 @@ Two honest routes, and the choice belongs to the owner:
 1. **Merge PR #12 first, then publish.** The front door is the verified state. Requires the merge authorisation that is on hold.
 2. **Publish now, merge later.** Acceptable, and the repository is not dishonest — v2.21.1 was its own accurate release — but the first impression is a weaker, older tree, and the improvement arrives after launch.
 
-**PR #12 stays open and unmerged pending the owner's instruction.**
+**PR #12 merged on 2026-10-22** (squash, `1dc6f25`, branch deleted). It was later shown that every commit in the
+repository carried an `arena-agent` co-author trailer; history was rewritten the same day and `main` now reads
+`3a62a6b`. See the review log.
