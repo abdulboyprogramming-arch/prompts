@@ -103,6 +103,16 @@ def main() -> int:
     ok("a recorded-count line is still checked",
        len(scan({"_meta/x.md": "14 of 228 have been recorded.\n"})) == 1)
 
+    # A stale denominator: the prompt count grew, the sentence did not. The
+    # numerator is correct here, so only a denominator check can catch it.
+    stale_den = scan({"README.md": "17 of 200 operational prompts executed\n"})
+    ok("a stale denominator is reported when the numerator is right",
+       len(stale_den) == 1 and "operational prompts" in stale_den[0], str(stale_den))
+    ok("the current denominator and numerator pass together",
+       scan({"README.md": "17 of 228 operational prompts executed\n"}) == [])
+    ok("a denominator over another total is not flagged",
+       scan({"README.md": "3 of 68 batches executed\n"}) == [])
+
     # The generated file is compared byte for byte, so scanning it would double-report.
     ok("the generated report is exempt",
        scan({"_meta/evidence-levels.md": "| executed | 14 |\n14 of 228\n"}) == [])

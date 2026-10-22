@@ -1,6 +1,6 @@
 # General Web Contribution System
 
-**Maturity: two skeletons, six operational.** Stages `P02`–`P07` are developed, and each one asks for evidence the others do not: discovery is a walk of the running app at three widths, selection refuses a visual change with no owner of the decision, planning is a state-by-breakpoint matrix, implementation builds those states with native semantics, validation carries the browser matrix and the not-run list, and communication gives the reviewer a reproduction recipe. `P01` (context) and `P08` (orchestrator) remain outlines, so the system as a whole is **mixed**, not operational, and running it unattended is not supported.
+**Maturity: operational, eight stages.** Each stage asks for evidence the others do not: context gets the app running and records the port, discovery is a walk of the running app at three widths, selection refuses a visual change with no owner of the decision, planning is a state-by-breakpoint matrix, implementation builds those states with native semantics, validation carries the browser matrix and the not-run list, communication gives the reviewer a reproduction recipe, and the orchestrator stops the chain when the app will not start. **What is still missing is proof, not procedure:** no run has been executed against a third-party project, and the browser matrix has never been exercised on more than one engine.
 
 **Intended use today:** as a human-supervised checklist for contributing to a web project.
 **Not yet ready for:** unattended autonomous contribution.

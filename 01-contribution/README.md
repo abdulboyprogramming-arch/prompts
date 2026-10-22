@@ -2,7 +2,7 @@
 
 Prompt systems for adding value to existing projects (open-source or private): choosing what to contribute, understanding the target, implementing safely, and communicating with maintainers.
 
-> **System maturity is not uniform.** Only `open-source/general-agent/` is developed to the library standard end to end. The four other systems are mostly **stage skeletons**: they outline a sensible sequence but do not yet contain the verification, evidence, and failure-handling rules required before an agent should run them unsupervised. Each of the three contribution variants has six developed stages — `P02` through `P07` — and none of them makes the surrounding system safe to run unattended, because `P01` context and `P08` orchestration are still outlines. See `_meta/prompt-authoring-standard.md` and `_meta/ROADMAP-AND-BACKLOG.md`.
+> **System maturity is not uniform.** `open-source/general-agent/` (sixteen stages), `packages-libraries/`, `web/general/` and `web3/general/` are operational end to end, and `language-design/` is still eight skeletons. Operational means the procedure, the evidence rules and the failure handling exist; none of these four systems has been run against a third-party project, so none of them is proven. See `_meta/prompt-authoring-standard.md` and `_meta/ROADMAP-AND-BACKLOG.md`.
 
 ## Systems
 
@@ -22,7 +22,7 @@ Prompt systems for adding value to existing projects (open-source or private): c
 
 - **You have a specific repository and want the agent to find and land a contribution** → `open-source/general-agent/` (start at `P16` orchestrator, or `P03` if you only want reconnaissance).
 - **The value you add is an API surface others depend on** → `packages-libraries/`.
-- **The change is UI/browser-facing** → `web/general/`, but read the skeleton warning first.
+- **The change is UI/browser-facing** → `web/general/`, and get the app running before you select anything.
 - **The work is language/semantics design** → `language-design/`.
 
 ## What "skeleton" means in practice

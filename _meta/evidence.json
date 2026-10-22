@@ -275,6 +275,17 @@
       "date": "2026-10-22",
       "evaluator": "the prompt's author (conflict of interest recorded)",
       "record": "_meta/empirical-evaluation-13.md"
+    },
+    {
+      "identifier": "PKG-P01",
+      "title": "Context & Package Understanding",
+      "path": "01-contribution/packages-libraries/P01-Context/P01-Context-Package-Understanding.md",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "scope": "executed against the real package sindresorhus/p-map at v7.1.1, a repository with no changelog, no lockfile, a compound test script and a published surface smaller than the tree",
+      "result": "four defects in v1.0.0, three of them High: bundled scripts were never decomposed, the shipped surface was never recorded although a later stage validates it, and one verification item was unachievable when the versioning policy is unstated with no honest route for that. v1.1.0 fixes all four and the retest passes five of six checks with the sixth recorded as partial",
+      "record": "_meta/empirical-evaluation-14.md",
+      "limitations": "one target, npm only, chosen and graded by the prompt's author; stages P02-P08 not run, so the system is partially tested end to end"
     }
   ]
 }

@@ -8,10 +8,10 @@ CI fails if this file is stale, so the numbers below cannot drift from the regis
 | Claim | Count |
 |-------|------:|
 | Prompt files in the library | 364 |
-| Labelled `operational` (structurally reviewed) | 235 |
-| `operational` prompts with a recorded execution | 24 |
-| `operational` prompts with no recorded execution | 211 |
-| Share of `operational` prompts demonstrated | 10.2% |
+| Labelled `operational` (structurally reviewed) | 241 |
+| `operational` prompts with a recorded execution | 25 |
+| `operational` prompts with no recorded execution | 216 |
+| Share of `operational` prompts demonstrated | 10.4% |
 
 `operational` means the artifact meets the authoring standard and survived a structural
 review against the quality rubric. It does **not** mean the prompt has been run against a
@@ -45,6 +45,7 @@ real repository. Exactly one column above measures execution, and it is the smal
 | `PERF-P05` Optimization Design | 2026-10-22 | the prompt's author (conflict of interest recorded) | choose between merging the two gates and rewriting the detector's core loop | both were planned, and the plan required byte-identical output before either could be kept: every metric's report and the JSON were diffed against the pre-change version | [`empirical-evaluation-13.md`](../_meta/empirical-evaluation-13.md) | the prediction was written before the change and was off by 0.26 s on the first attempt, which is recorded rather than revised |
 | `PERF-P06` Implementation & Validation | 2026-10-22 | the prompt's author (conflict of interest recorded) | implement the multi-metric pass, the inverted index, and the merged gate; then measure and verify correctness | suite median 3.40 s to 2.56 s (-25%); all four metric reports and the JSON output byte-identical to the pre-change version; 112 self-test cases pass, up from 106, with 4 new cases for the failure rule and 2 for the scan | [`empirical-evaluation-13.md`](../_meta/empirical-evaluation-13.md) | one machine, one corpus; the correctness evidence is the repository's own suite plus a diff of the detector's output, not an independent measurement |
 | `PERF-P07` Performance Orchestrator | 2026-10-22 | the prompt's author (conflict of interest recorded) | coordinate the six stages against one target and record the gates between them | all six stages ran in order and each gate passed; the orchestrator's own rule stopped the chain once the second optimisation reached the noise floor of the harness | [`empirical-evaluation-13.md`](../_meta/empirical-evaluation-13.md) | a single run of the sequence; the orchestrator was not exercised on a blocked stage |
+| `PKG-P01` Context & Package Understanding | 2026-10-22 | the prompt's author (conflict of interest recorded) | executed against the real package sindresorhus/p-map at v7.1.1, a repository with no changelog, no lockfile, a compound test script and a published surface smaller than the tree | four defects in v1.0.0, three of them High: bundled scripts were never decomposed, the shipped surface was never recorded although a later stage validates it, and one verification item was unachievable when the versioning policy is unstated with no honest route for that. v1.1.0 fixes all four and the retest passes five of six checks with the sixth recorded as partial | [`empirical-evaluation-14.md`](../_meta/empirical-evaluation-14.md) | one target, npm only, chosen and graded by the prompt's author; stages P02-P08 not run, so the system is partially tested end to end |
 
 ## How to add an execution
 
