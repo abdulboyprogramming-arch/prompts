@@ -29,7 +29,7 @@ prompts by situation.
 | [06-interactive — conversations that clarify a request](#06-interactive--conversations-that-clarify-a-request) | 4 | Use when the request is vague and needs to be scoped first. |
 | [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 13 | Composed sequences that route between systems and stop at human gates. |
 
-*Maturity across the library: 249 operational, 5 draft, 110 skeleton, 364 total.*
+*Maturity across the library: 257 operational, 5 draft, 102 skeleton, 364 total.*
 
 ---
 
@@ -323,14 +323,14 @@ Stack-specific practice: data, AI, and the domains still being built out.
 
 | ID | Prompt | Use it for | Maturity | Risk |
 |---|---|---|---|---|
-| `ML-P01` | [Context & Constraints](03-domains/data-ml-ai/P01-Context/P01-Context-Constraints.md) | Understand the product context, users, and constraints for the data/ML/AI work. | skeleton | B |
-| `ML-P02` | [Problem Framing](03-domains/data-ml-ai/P02-Problem-Framing/P02-Problem-Framing.md) | Define the learning/prediction task and what success means. | skeleton | B |
-| `ML-P03` | [Data Assessment](03-domains/data-ml-ai/P03-Data/P03-Data-Assessment.md) | Inventory available data and assess fitness for the framed problem. | skeleton | B |
-| `ML-P04` | [Approach Design](03-domains/data-ml-ai/P04-Approach/P04-Approach-Design.md) | Select a practical modeling/pipeline approach and strong baselines. | skeleton | B |
-| `ML-P05` | [Implementation](03-domains/data-ml-ai/P05-Implementation/P05-Implementation.md) | Build the data pipeline, features, and model/code paths cleanly. | skeleton | B |
-| `ML-P06` | [Evaluation](03-domains/data-ml-ai/P06-Evaluation/P06-Evaluation.md) | Evaluate model/pipeline quality rigorously and analyze failures. | skeleton | B |
-| `ML-P07` | [Deployment & Monitoring](03-domains/data-ml-ai/P07-Deployment-Monitoring/P07-Deployment-Monitoring.md) | Prepare for safe launch and ongoing quality monitoring. | skeleton | C |
-| `ML-P08` | [Data / ML / AI Master Orchestrator](03-domains/data-ml-ai/P08-Orchestrator/P08-Data-ML-AI-Orchestrator.md) | Runs the data ml ai system end to end: gates, routing, and final acceptance. | skeleton | C |
+| `MLA-P01` | [Context & Constraints: the decision first, the model never](03-domains/data-ml-ai/P01-Context/P01-Context-Constraints.md) | ML_CONTEXT.md answering four questions <br>**Inputs:** `PROJECT_PATH, DECISION_OWNER, REGULATORY_SCOPE, LATENCY_BUDGET` | operational | A |
+| `MLA-P02` | [Problem Framing: the metric is a decision about costs](03-domains/data-ml-ai/P02-Problem-Framing/P02-Problem-Framing.md) | ML_PROBLEM.md containing <br>**Inputs:** `PROJECT_PATH, SUCCESS_THRESHOLD, EVALUATION_DATA` | operational | A |
+| `MLA-P03` | [Data Assessment: the leakage register is the deliverable](03-domains/data-ml-ai/P03-Data/P03-Data-Assessment.md) | ML_DATA.md containing <br>**Inputs:** `PROJECT_PATH, DATA_CATALOGUE, RETENTION_POLICY` | operational | A |
+| `MLA-P04` | [Approach Design: a baseline you can beat, and the reason you chose the model](03-domains/data-ml-ai/P04-Approach/P04-Approach-Design.md) | ML_APPROACH.md containing <br>**Inputs:** `PROJECT_PATH, COMPUTE_BUDGET, MODEL_CONSTRAINTS` | operational | A |
+| `MLA-P05` | [Implementation: reproducible, or the number is a rumour](03-domains/data-ml-ai/P05-Implementation/P05-Implementation.md) | a scored artefact — runnable from one documented command. <br>**Inputs:** `PROJECT_PATH, COMPUTE_BUDGET, ARTIFACT_STORE` | operational | B |
+| `MLA-P06` | [Evaluation: the test set is touched once](03-domains/data-ml-ai/P06-Evaluation/P06-Evaluation.md) | ML_EVALUATION.md containing <br>**Inputs:** `PROJECT_PATH, SLICE_REPORTING, HUMAN_EVAL_BUDGET` | operational | A |
+| `MLA-P07` | [Deployment & Monitoring: design the wrong answer before shipping the right one](03-domains/data-ml-ai/P07-Deployment-Monitoring/P07-Deployment-Monitoring.md) | ML_DEPLOYMENT.md containing <br>**Inputs:** `PROJECT_PATH, TARGET_ENV, LATENCY_BUDGET, RETRAIN_CADENCE, ONCALL_OWNER` | operational | C |
+| `MLA-P08` | [Data / ML / AI Master Orchestrator](03-domains/data-ml-ai/P08-Orchestrator/P08-Data-ML-AI-Orchestrator.md) | ML_RUN.md and the stage artifacts. <br>**Inputs:** `PROJECT_PATH, SUCCESS_THRESHOLD, TARGET_ENV, HUMAN_EVAL_BUDGET` | operational | A |
 
 ### database · 5 prompts
 

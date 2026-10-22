@@ -13,7 +13,7 @@ library is reachable from at least one task: a prompt added without a home fails
 |---|---|
 | Prompts indexed | 364 |
 | Rows listed individually | 409 (a prompt can answer more than one task) |
-| Of those, `operational` | 292 |
+| Of those, `operational` | 300 |
 
 Not sure which task is yours? [`QUICKSTART.md`](QUICKSTART.md) routes five common situations,
 [`06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md`](06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md)
@@ -405,6 +405,14 @@ Backend, frontend, mobile, desktop, embedded, data, or ML — each with its own 
 | `API-VER-01` | [API Versioning and Consumer Contracts](03-domains/backend/P09-API-Versioning/P09-API-Versioning.md) | `P09-API-Versioning` | A versioning scheme, a consumer inventory, compatibility rules per change type, contract tests, a deprecation and sunset policy… | operational |
 | `DE-P01` | [Pipeline Reliability: make the data trustworthy before it is fast](03-domains/data-engineering/P01-Pipelines/P01-Pipeline-Reliability.md) | `P01-Pipelines` | A pipeline inventory with ownership and schedule, a failure-mode analysis, data tests for the properties that matter, freshness… | operational |
 | `DE-P02` | [Backfill and Reconciliation](03-domains/data-engineering/P02-Backfills/P02-Backfill-Reconciliation.md) | `P02-Backfills` | A scoped backfill plan with a dry run, a reconciliation report proving the new data is correct, a list of affected downstream… | operational |
+| `MLA-P01` | [Context & Constraints: the decision first, the model never](03-domains/data-ml-ai/P01-Context/P01-Context-Constraints.md) | `P01-Context` | ML_CONTEXT.md answering four questions | operational |
+| `MLA-P02` | [Problem Framing: the metric is a decision about costs](03-domains/data-ml-ai/P02-Problem-Framing/P02-Problem-Framing.md) | `P02-Problem-Framing` | ML_PROBLEM.md containing | operational |
+| `MLA-P03` | [Data Assessment: the leakage register is the deliverable](03-domains/data-ml-ai/P03-Data/P03-Data-Assessment.md) | `P03-Data` | ML_DATA.md containing | operational |
+| `MLA-P04` | [Approach Design: a baseline you can beat, and the reason you chose the model](03-domains/data-ml-ai/P04-Approach/P04-Approach-Design.md) | `P04-Approach` | ML_APPROACH.md containing | operational |
+| `MLA-P05` | [Implementation: reproducible, or the number is a rumour](03-domains/data-ml-ai/P05-Implementation/P05-Implementation.md) | `P05-Implementation` | a scored artefact — runnable from one documented command. | operational |
+| `MLA-P06` | [Evaluation: the test set is touched once](03-domains/data-ml-ai/P06-Evaluation/P06-Evaluation.md) | `P06-Evaluation` | ML_EVALUATION.md containing | operational |
+| `MLA-P07` | [Deployment & Monitoring: design the wrong answer before shipping the right one](03-domains/data-ml-ai/P07-Deployment-Monitoring/P07-Deployment-Monitoring.md) | `P07-Deployment-Monitoring` | ML_DEPLOYMENT.md containing | operational |
+| `MLA-P08` | [Data / ML / AI Master Orchestrator](03-domains/data-ml-ai/P08-Orchestrator/P08-Data-ML-AI-Orchestrator.md) | `P08-Orchestrator` | ML_RUN.md and the stage artifacts. | operational |
 | `DESK-P01` | [CLI Distribution and Updates](03-domains/desktop-cli/P01-Distribution/P01-CLI-Distribution.md) | `P01-Distribution` | A distribution matrix per platform, signed and checksummed artifacts, an update mechanism with verification, a channel policy… | operational |
 | `DESK-P02` | [Terminal UX, Signals, and Exit Codes](03-domains/desktop-cli/P02-Terminal-UX/P02-Terminal-UX.md) | `P02-Terminal-UX` | A specified behaviour matrix (TTY and non-TTY, each signal, each error class), corrected output handling, and tests that exercise… | operational |
 | `IOT-P01` | [Firmware OTA with Rollback](03-domains/embedded-iot/P01-OTA/P01-Firmware-OTA.md) | `P01-OTA` | A signed, versioned image; an update procedure with an atomic switch and tested rollback; a staged rollout with automatic… | operational |
@@ -413,7 +421,7 @@ Backend, frontend, mobile, desktop, embedded, data, or ML — each with its own 
 | `MOB-P02` | [Crash Triage and Symbolication](03-domains/mobile/P02-Crashes/P02-Crash-Triage.md) | `P02-Crashes` | A symbolicated, deduplicated crash inventory; a ranking by affected users and business impact (not raw count); a classification… | operational |
 | `MOB-P03` | [API Compatibility with Shipped Clients](03-domains/mobile/P03-Compatibility/P03-Client-Compatibility.md) | `P03-Compatibility` | A client-version matrix (which versions exist, in what proportion), the compatibility contract for each supported version, a… | operational |
 
-*Plus **32** `skeleton` prompts in these homes — a defensible stage sequence without verification or failure handling. Use them to structure a human-led session, not to drive an agent: [03-domains](GALLERY.md#03-domains--domain-specific-engineering).*
+*Plus **24** `skeleton` prompts in these homes — a defensible stage sequence without verification or failure handling. Use them to structure a human-led session, not to drive an agent: [03-domains](GALLERY.md#03-domains--domain-specific-engineering).*
 
 ## I need to answer someone outside engineering
 

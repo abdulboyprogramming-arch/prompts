@@ -2,6 +2,32 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.25.0] — 2026-10-22
+
+The data / ML / AI family is complete: eight skeletons became operational stages.
+
+### Completed — `03-domains/data-ml-ai`, eight stages
+
+The family is built around the two failures in this domain that look like success
+until production. **Leakage**: `MLA-P03`'s deliverable is a register of every path
+from the future into the features, each with a prevention *and* a check that would
+fail if the path reopened — an intention to filter later is how leakage ships.
+**Being wrong in production**: `MLA-P07` requires a defined fallback for each
+failure mode and a numeric rollback trigger with a named owner before the first
+prediction is served.
+
+Around those two, the sequence keeps the metric honest. `MLA-P01` obtains the cost
+of a false positive against a false negative before any modelling; `MLA-P02` derives
+the metric from that ratio and pre-registers the threshold and the baseline, dated,
+before a model exists; `MLA-P04` must measure a baseline — and is required to stop
+and report if the baseline already clears the threshold; `MLA-P05` makes a run
+reproducible or records that the number is not a result; `MLA-P06` touches the
+held-out set once and reports the worst slice before the average, with inter-rater
+agreement for rubric-graded generative output.
+
+Library: **364 prompts — 257 operational, 5 draft, 102 skeleton**; 25 executed
+(9.7%), all author-run, none independent.
+
 ## [2.24.0] — 2026-10-22
 
 The game-development family is complete: seven skeletons became operational stages,
