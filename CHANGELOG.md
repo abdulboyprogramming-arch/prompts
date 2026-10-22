@@ -111,6 +111,22 @@ The first answers "what still blocks a release" in one page: what is tested and 
 
 The second records the settings GitHub asks for — description, ten topics, merge policy, security features, social preview — with the commands that apply them and the reason for each. It also records the **sponsorship decision**: not now, with four reasons, and the trigger for revisiting (`repository-configuration.md` §6).
 
+### Fixed — the security-control defect in the forged prompt, retested
+
+`REQ-CHANGE-01` v0.1.0 accepted a change that weakened a security control with only a product approver, and its safeguard appeared in one of two runs of identical input. v0.2.0 makes the control owner mandatory. **Retested with three runs**: two normal cases and one adversarial, all recorded. 3 of 3 name the security officer, 3 of 3 block on the missing signature, and no baseline file was edited. The instability does not recur.
+
+A residual Low defect is recorded and **not** fixed: the two normal runs labelled the same outcome `ACCEPTED WITH CONDITION` and `DEFERRED`. The vocabulary has three decisions and no defined conditioned state, so both are defensible and a reader cannot tell them apart. Changing a vocabulary invalidates the three runs above and needs its own retest, so it waits.
+
+### New — `git-operations` completed: history repair, recovery, hygiene
+
+Three more stages executed on the same fixture. History repair squashed three unpublished commits into one and **preserved the tree hash exactly** (`d5143b7d`). Recovery restored a commit made unreachable by `git reset --hard`, also with an identical tree (`6477a541`). Hygiene produced conventions that record every rule as `convention-only` where nothing enforces it.
+
+One defect, and it is the kind only execution finds: `GIT-P05` told the operator to state whether generated code is committed, and never to look. A committed `.pyc` had survived P01 (uncommitted work), P02 (conflicts), P03 (history) and P04 (refs) without being noticed by any of them — **nothing in the system scans what is committed.** v1.1.0 adds the scan.
+
+### New — a publication decision, separating publication from validation
+
+[`_meta/publication-decision.md`](_meta/publication-decision.md) answers the question the readiness page kept deferring: **publish, as an experimental library, now** — and not as a validated one. Six publication requirements are met with reproducible evidence; two accuracy defects were found and fixed on the spot (the README claimed CI fails on stale generated files, and `PROJECT-STATUS.md` described the workflow as running, when the job dies before its first step). Three items are classified as fix-before-merge, six as after-publication, and none blocks publication.
+
 ### New — `git-operations` stages 1–2 executed against a real merge conflict
 
 The first process prompts to be run: `GIT-P01` (state and safety check) then `GIT-P02` (conflict resolution), in order, on a purpose-built repository with a rename on one side, a capability change on the other, and one commit that exists nowhere else.

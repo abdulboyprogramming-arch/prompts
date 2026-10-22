@@ -107,7 +107,7 @@
       "date": "2026-10-22",
       "evaluator": "the prompt's author (conflict of interest recorded)",
       "scope": "real execution of the generated REQ-CHANGE-01 against a synthetic git fixture at tag v1.4.0: three pre-registered cases (normal, no-approver, contractual refusal), two runs on the normal case, assertions checked by shell commands",
-      "result": "all three decisions correct and no baseline file edited; one defect found in the prompt under test (a change that weakens a security control was accepted with only a product approver, and the safeguard appeared in 1 of 2 runs of identical input); four defects found in GEN-P02 and fixed in v1.1.0 - the 'fresh session' requirement had no isolation procedure and could be claimed without being met, no budget rule for which case gets the second run, no trace format, and a collision with the library's own evidence convention",
+      "result": "all three decisions correct and no baseline file edited; one defect found in the prompt under test (a change that weakens a security control was accepted with only a product approver, and the safeguard appeared in 1 of 2 runs of identical input); four defects found in GEN-P02 and fixed in v1.1.0 - the 'fresh session' requirement had no isolation procedure and could be claimed without being met, no budget rule for which case gets the second run, no trace format, and a collision with the library's own evidence convention; v0.2.0 retested with three runs (two normal, one adversarial): 3 of 3 name the control owner and block on the missing signature, so the 1-of-2 instability does not recur; a residual vocabulary ambiguity (accepted-with-condition vs deferred) is recorded and unresolved",
       "record": "_meta/empirical-evaluation-09.md",
       "limitations": "no isolation: every run shared one context, so the instability may be an artifact of that; n=1 on two of three cases; rubric score self-assessed"
     },
@@ -132,6 +132,39 @@
       "result": "both intents preserved (grep for the old symbol empty, tests pass, no markers, history unrewritten) and the direction-of-ours rule worked; one High defect found and fixed in v1.1.0 - the regenerate-generated-files rule keys on conflict type, so a lockfile git auto-merged in silence is never checked",
       "record": "_meta/empirical-evaluation-10.md",
       "limitations": "two stages of a five-stage system, not an end-to-end run; no package manager, so the repaired rule could not be tested against a real lockfile; a merge was run, not a rebase, where the direction rule matters most"
+    },
+    {
+      "identifier": "GIT-P03",
+      "title": "History Repair",
+      "path": "04-process/git-operations/P03-History/P03-History-Repair.md",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "scope": "real squash-and-reword of three unpublished commits on a local branch with no remote, backed up first",
+      "result": "tree hash identical before and after (d5143b7d), 3 commits reduced to 1, backup branch preserved the original, other refs untouched, tests pass; no prompt defect found - the stage's classify/backup/mapping/verify sequence is what made the result checkable",
+      "record": "_meta/empirical-evaluation-11.md",
+      "limitations": "local-only rewrite with no remote, so the shared-history authorisation path (risk class D) was not exercised; single-branch, three-commit case"
+    },
+    {
+      "identifier": "GIT-P04",
+      "title": "Recovery: getting lost work back",
+      "path": "04-process/git-operations/P04-Recovery/P04-Recovery.md",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "scope": "a commit made unreachable with git reset --hard HEAD~1, located through the reflog and restored",
+      "result": "content restored with an identical tree hash (6477a541), other refs untouched, no fsck needed; no prompt defect found",
+      "record": "_meta/empirical-evaluation-11.md",
+      "limitations": "recovery happened minutes later, well inside reflog expiry, which is the condition the prompt warns about; no expired-reflog or gc-pruned case"
+    },
+    {
+      "identifier": "GIT-P05",
+      "title": "Hygiene & Collaboration Conventions",
+      "path": "04-process/git-operations/P05-Hygiene/P05-Hygiene-Collaboration.md",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "scope": "conventions produced for a real fixture with one inferred author, no remote, no tags, and a committed bytecode artefact",
+      "result": "trunk-with-tags model, squash default, and every rule's enforcement recorded as convention-only where nothing enforces it; two defects fixed in v1.1.0 - the generated-code rule never told the operator to scan what is committed (a .pyc had survived four stages), and an unobservable CI fact had no 'not observable' option",
+      "record": "_meta/empirical-evaluation-11.md",
+      "limitations": "no hosted remote, so protection rules and red-build history were unobservable by construction; the .gitignore recommendation was not applied, to preserve the artefacts other stages verified"
     }
   ]
 }

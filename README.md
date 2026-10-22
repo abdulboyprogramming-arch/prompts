@@ -6,7 +6,7 @@ Every prompt declares what it does, what it may change, how much it can be trust
 
 **[`QUICKSTART.md`](QUICKSTART.md) — start here.** Six situations, the exact prompts in order, and what you should be holding at the end of each. It takes ten minutes and saves an hour of reading this file.
 
-**Browse everything:** [`TASKS.md`](TASKS.md) indexes the library by the problem you have — 21 tasks from "something is broken right now" to "I only have a chat window" — and [`GALLERY.md`](GALLERY.md) lists all 364 prompts by area with a direct link and one line on when to use each. Both are generated from the prompts themselves and CI fails if either falls out of date, so neither can drift from the library.
+**Browse everything:** [`TASKS.md`](TASKS.md) indexes the library by the problem you have — 21 tasks from "something is broken right now" to "I only have a chat window" — and [`GALLERY.md`](GALLERY.md) lists all 364 prompts by area with a direct link and one line on when to use each. Both are generated from the prompts themselves and a stale file fails the gate, so neither can drift from the library.
 
 ## Start here
 
@@ -259,7 +259,8 @@ Read [`CONTRIBUTING.md`](CONTRIBUTING.md) before adding a system — it also poi
 ## Known limitations
 
 - **131 of 364 prompts are skeleton outlines.** They are labelled as such everywhere, and the task index counts them separately rather than hiding them.
-- **11 of 228 operational prompts have been executed and recorded** — 4.8%. The queue for the rest, in batches, is [`_meta/execution-batches.md`](_meta/execution-batches.md). `operational` means structurally complete and reviewed, not proven in practice; [`_meta/evidence-levels.md`](_meta/evidence-levels.md) states the number, and it is generated from a registry.
+- **The GitHub Actions workflow does not currently run.** This account's Actions billing is blocked, so `.github/workflows/validate.yml` fails at startup without executing a step. The identical gate list runs locally with `python3 scripts/check_all.py`, which is how every release on this branch was verified — but a green badge is the one thing this repository cannot yet show.
+- **14 of 228 operational prompts have been executed and recorded** — 6.1%. The queue for the rest, in batches, is [`_meta/execution-batches.md`](_meta/execution-batches.md). `operational` means structurally complete and reviewed, not proven in practice; [`_meta/evidence-levels.md`](_meta/evidence-levels.md) states the number, and it is generated from a registry.
 - **The prompts have not been compared against a model's output in a controlled study.** The three runs are tabletop evaluations by the author, and each record says so.
 - **Reviews are self-assessments** recorded in [`_meta/review-log.md`](_meta/review-log.md); no second reviewer exists.
 - **27 of 143 coverage rows are partial.** No row is missing; thin ones are named in [`_meta/coverage-matrix.md`](_meta/coverage-matrix.md).

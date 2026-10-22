@@ -770,3 +770,11 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 - Both stages held: unpushed commit identified, backup branch recorded, direction of "ours" stated, both intents preserved (old symbol gone by grep, tests pass, no markers, history unrewritten).
 - Defects: **High** — `GIT-P02`'s "regenerate lockfiles, never hand-merge" rule keys on conflict type, and git **auto-merged the lockfile in silence**, so the rule never fired; **Medium** — `GIT-P01` recommended `git stash create`, which returns an unreachable SHA that expires, for a snapshot whose purpose is to be findable. Both fixed to v1.1.0, plus a `.git-ops/` location rule the two stages needed and neither had.
 - Scope claim kept honest: two stages of five, merge only (no rebase), no package manager, so the repaired lockfile rule was verified only against the fixture's absence of one.
+
+### Execution — git-operations stages 3–5 and the security-control retest (2.22.0)
+- **2026-10-22 · executions · the prompt's author** · record `_meta/empirical-evaluation-11.md`
+- `GIT-P03`: three unpublished commits squashed and reworded; tree hash identical before and after (`d5143b7d`), backup branch preserved the original, no prompt defect.
+- `GIT-P04`: a commit made unreachable with `reset --hard` recovered from the reflog with an identical tree (`6477a541`); no prompt defect.
+- `GIT-P05`: conventions produced for the fixture; **Medium** defect fixed — the generated-code rule never told the operator to scan what is committed, and a `.pyc` had survived four earlier stages invisibly. Also an unobservable-CI fact now has a `not observable` option.
+- `REQ-CHANGE-01` v0.2.0 retested with three runs: 3 of 3 name the security-control owner and block on the missing signature, so the 1-of-2 instability recorded earlier does not recur. Residual Low defect left unfixed and recorded: two labels (`ACCEPTED WITH CONDITION`, `DEFERRED`) for the same input, because the vocabulary has no defined conditioned state.
+- `git-operations` is now executed end to end across two records; the publication decision treats that as satisfying the letter and not the spirit.

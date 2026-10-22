@@ -1,6 +1,6 @@
 # Empirical evaluation 10 — `git-operations` stage 1 and 2 executed as a system
 
-**Prompts:** `GIT-P01` (`04-process/git-operations/P01-State/P01-Repository-State.md`, v1.0.0) and `GIT-P02` (`.../P02-Conflicts/P02-Conflict-Resolution.md`, v1.0.0)
+**Prompts:** `GIT-P01` (`04-process/git-operations/P01-State/P01-State-Safety-Check.md`, v1.0.0) and `GIT-P02` (`.../P02-Conflicts/P02-Conflict-Resolution.md`, v1.0.0)
 **Date:** 2026-10-22 · **Method:** **real execution** on a purpose-built git fixture. Both stages ran in order, P02 consuming P01's artifact, exactly as the system declares.
 **Evaluator:** the prompt's author. Conflict of interest recorded.
 

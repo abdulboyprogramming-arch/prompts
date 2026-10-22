@@ -30,7 +30,7 @@ Batches are ordered by *what a run costs to set up*, not by folder. Each batch b
 |---|---|---:|---|---|
 | **B0** | The eight identified prompts in `00-core/` — six conversational (`CHAT-MODE`, `CHAT-DEBUG`, `CHAT-DESIGN`, `CHAT-HANDOFF`, `CHAT-REVIEW`, `CHAT-SELECT`) plus `GEN-P01` and `GEN-P02` under `prompt-engineering/` | 8 / 8 | a paste, a pasted file, a decision about which prompt to use, or a prompt to forge and test | **8 of 8 executed** (2026-10-22). See §5 — the earlier version of this table said 8 conversational prompts and named `CHAT-ASK`, which does not exist |
 | **B1** | Codebase work: `02-engineering/` | 82 / 38 | this repository for roughly a third of them — the audit, review, and repair prompts, whose subject is a source tree; an application fixture for the rest, which expect routes, schema, or services this repository does not have | 0 recorded |
-| **B2** | Process work: `04-process/` | 92 / 68 | this repository's own history and releases, or a purpose-built fixture when the prompt needs an operation in progress | **2 of 68 recorded** — `GIT-P01` and `GIT-P02` ran as a two-stage system against a real merge conflict (`empirical-evaluation-10.md`) |
+| **B2** | Process work: `04-process/` | 92 / 68 | this repository's own history and releases, or a purpose-built fixture when the prompt needs an operation in progress | **5 of 68 recorded** — all five `git-operations` stages: P01–P02 as a unit in `empirical-evaluation-10.md`, P03–P05 in `-11.md` |
 | **B3** | Incident and scenario rehearsal: `05-scenarios/` | 42 / 37 | a labelled staging directory and a declared fake incident, never the real repository | **1 recorded** — `DBG-01` |
 | **B4** | Contribution systems: `01-contribution/` | 48 / 34 | a *different* repository — a library, a web app, or a protocol, since the prompts are about contributing to someone else's | 0 recorded. The target is the cost here: each system needs a plausible upstream repository |
 | **B5** | Domain work: `03-domains/` | 75 / 35 | synthetic fixtures, one per domain | 0 recorded. The most expensive per prompt and the least valuable to run by the author, because the domain content is what a domain reader would test |
@@ -96,9 +96,9 @@ The next executable task in this batch is a re-run by a second person, and there
 
 ## 6. Honest status
 
-- **11 of 228 operational prompts executed (4.8%).** Stated in [`evidence-levels.md`](evidence-levels.md), generated from the registry, and checked in CI so it cannot drift.
+- **14 of 228 operational prompts executed (6.1%).** Stated in [`evidence-levels.md`](evidence-levels.md), generated from the registry, and checked in CI so it cannot drift.
 - **0 runs by a second person**, which is the only kind that tests usefulness.
-- **Batch 0 complete (8 of 8); batch 2 begun (2 of 68).** The two `git-operations` runs are the first execution of two stages of one system as a unit, which is a weaker test than the system run criterion 11 asks for and is recorded as partial.
+- **Batch 0 complete (8 of 8); batch 2 at 5 of 68**, all five `git-operations` stages. The two `git-operations` runs are the first execution of two stages of one system as a unit, which is a weaker test than the system run criterion 11 asks for and is recorded as partial.
 - **B2 is the cheapest ten runs** and the target already exists in this checkout.
 - **B7 (131 skeletons) is not a testing backlog.** It is a writing backlog; testing an outline measures the outline.
 - **This file is a plan, not evidence.** Nothing in it raises the ratio. The runs it describes are the thing that would.
