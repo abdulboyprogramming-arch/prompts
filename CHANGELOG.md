@@ -2,6 +2,36 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.25.1] — 2026-10-22
+
+One stage of the new ML family was run against data it had to out-think, and it failed first.
+
+### Tested — `MLA-P03` against a committed leakage fixture
+
+The fixture has four planted defects. Three give themselves away — a column populated
+only at cancellation, a status column that is the label, a shuffled split over
+time-ordered data. The fourth is a column with an innocent name measured *after* the
+outcome window, where `max(label=0) = 30` and `min(label=1) = 31`.
+
+**v1.0.0 found three of four.** Its procedure builds the leakage register from the
+schema, and a schema cannot show a statistic. A model trained through that column would
+report near-perfect offline recall and fail on every real account.
+
+v1.1.0 adds a **label-determinism scan** over every column — categorical levels at 0%
+or 100% with at least thirty rows, numeric columns by threshold separation rather than
+by a single pure value, because one of thirty values is pure by chance. It also adds
+`pending — no pipeline yet`: a prevention whose check has nowhere to live is written as
+the assertion `MLA-P05` must implement, and the register may not call it prevented. A
+second defect, found while writing the artifact: v1.0.0's verification had no honest
+state for that case, so it could only be passed by claiming a check that did not exist.
+
+The fixture is committed at [`_meta/fixtures/ml-churn/`](_meta/fixtures/ml-churn/README.md)
+with a fixed seed and byte-identical regeneration, so the run repeats.
+
+Recorded in [`_meta/empirical-evaluation-15.md`](_meta/empirical-evaluation-15.md).
+Library: 364 prompts — 257 operational; **26 executed (10.1%)**, all author-run, none
+independent; the other seven ML stages remain unexecuted.
+
 ## [2.25.0] — 2026-10-22
 
 The data / ML / AI family is complete: eight skeletons became operational stages.
