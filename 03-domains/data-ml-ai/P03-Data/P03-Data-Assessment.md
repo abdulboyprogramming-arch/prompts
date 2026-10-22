@@ -2,7 +2,7 @@
 
 **Identifier:** MLA-P03
 **System:** 03-domains/data-ml-ai
-**Version:** 1.0.0
+**Version:** 1.1.0
 **Maturity:** operational
 **Execution mode:** diagnostic
 **Risk class:** A — profiles data; changes nothing
@@ -55,9 +55,35 @@ cleaning that changes the data of record.
    shortcut list and add what the schema reveals. Common entries: the label written
    at the same time as a feature, a status column updated after the outcome, an
    aggregate that includes future rows, an identifier that encodes the cohort.
+
+2a. **Then scan every column for label determinism, before the register is closed.**
+   The schema step finds the leaks that are visible as structure — a column named
+   `cancel_reason` that is empty for accounts that stayed. It cannot find a column
+   that is structurally innocent and statistically perfect, and that is the leak
+   that ships: a "days since last login" measured after the outcome window, a
+   counter resettled on cancellation, an aggregate that happens to include the
+   event. Run two checks over the whole table and record the result per column:
+
+   - **categorical**: for each level with at least 30 rows, the label rate. A level at
+     0% or 100% is a leak until proven otherwise.
+   - **numeric**: sort by the column and find `max(value | label=0)` and
+     `min(value | label=1)`. If those two do not overlap, the column separates the
+     classes by a threshold and is a leak; a single value that happens to be pure is
+     not, because a numeric column has 30-odd values and one of them will look pure
+     by chance.
+
+   Every column that survives goes in a table in the artifact with its result, so a
+   later reader can see the scan was run rather than assumed.
 3. **Write the prevention for each entry, and how it is checked.** Prevention is code
    or a query constraint, not an intention. The check is a test that would fail if the
    path reopened: a feature-window assertion, a row-count delta, a point-in-time join.
+
+   **When there is no pipeline yet to hold the check** — a static extract, a notebook,
+   a project where `MLA-P05` has not run — the check is still written, as the exact
+   assertion `MLA-P05` must implement, and the entry is marked
+   `pending — no pipeline yet`. It is not marked `mitigated`, and the register may not
+   describe it as prevented. A prevention whose check lives only in prose is an
+   intention with better formatting.
 4. **Design the split around time.** If the decision is made at a point in time, the
    test set must be strictly later than the training set. A random split on time-ordered
    data leaks the future through seasonality and through the features that drift.
@@ -82,7 +108,10 @@ cleaning that changes the data of record.
 ## 6. Verification
 
 - Every source has an owner and a freshness figure.
-- Every register entry names its prevention and the check that proves it.
+- Every register entry names its prevention and the check that proves it, or is marked
+  `pending — no pipeline yet` with the assertion written out.
+- The label-determinism scan has a result recorded for **every** column, categorical
+  and numeric, including the columns that passed.
 - The split is described precisely enough to reproduce, with the time boundaries.
 - Coverage numbers per slice are recorded, including the thin ones.
 - The data version is recorded with the artefact or query used.
@@ -95,6 +124,9 @@ cleaning that changes the data of record.
 - **A leakage path cannot be closed** (the source system overwrites history): record it
   as `unmitigated`, state the expected inflation, and require `MLA-P06` to report both
   the raw and the conservative estimate.
+- **The determinism scan finds a column with no owner and no known meaning:** record it
+  as a leak by default and require the owner to prove it is measured before the
+  prediction time. An unexplained perfect predictor is never a feature.
 - **The data is too small for the task**: quantify it, propose the smallest viable
   scope, and mark the result `indicative` from the outset.
 - **Access is restricted** (PII requiring approval): record the constraint, use the
@@ -110,7 +142,8 @@ basis, not the content.
 ## 9. Completion criteria
 
 - [ ] Source inventory with owner and freshness per source.
-- [ ] Leakage register with prevention and check per entry.
+- [ ] Label-determinism scan recorded per column, with the method used.
+- [ ] Leakage register with prevention and check per entry, or `pending` with the assertion.
 - [ ] Split strategy reproducible, with time boundaries where relevant.
 - [ ] Coverage per slice, including thin slices.
 - [ ] Surviving risks recorded (missingness, label noise, bias, proxies).
