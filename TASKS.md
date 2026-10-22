@@ -13,7 +13,7 @@ library is reachable from at least one task: a prompt added without a home fails
 |---|---|
 | Prompts indexed | 364 |
 | Rows listed individually | 409 (a prompt can answer more than one task) |
-| Of those, `operational` | 300 |
+| Of those, `operational` | 308 |
 
 Not sure which task is yours? [`QUICKSTART.md`](QUICKSTART.md) routes five common situations,
 [`06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md`](06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md)
@@ -402,6 +402,14 @@ Backend, frontend, mobile, desktop, embedded, data, or ML — each with its own 
 
 | ID | Prompt | Where | Use it for | Maturity |
 |---|---|---|---|---|
+| `BE-P01` | [Context & Constraints: who calls this, and what breaks when it stops](03-domains/backend/P01-Context/P01-Context-Constraints.md) | `P01-Context` | BE_CONTEXT.md answering five questions | operational |
+| `BE-P02` | [API / Interface Design: the contract a client can implement without asking](03-domains/backend/P02-API-Design/P02-API-Interface-Design.md) | `P02-API-Design` | BE_API_DESIGN.md containing | operational |
+| `BE-P03` | [Architecture: boundaries you can defend, and the transaction that decides them](03-domains/backend/P03-Architecture/P03-Backend-Architecture.md) | `P03-Architecture` | BE_ARCHITECTURE.md containing | operational |
+| `BE-P04` | [Data & Persistence: the migration that runs while the old code is still serving](03-domains/backend/P04-Data/P04-Data-Persistence.md) | `P04-Data` | BE_DATA.md containing | operational |
+| `BE-P05` | [Implementation: handlers that admit what they do not know](03-domains/backend/P05-Implementation/P05-Implementation.md) | `P05-Implementation` | BE_DATA.md, inside the boundaries in BE_ARCHITECTURE.md. | operational |
+| `BE-P06` | [Reliability & Operability: the failure table, and what the person on call sees](03-domains/backend/P06-Reliability/P06-Reliability-Operability.md) | `P06-Reliability` | BE_RELIABILITY.md containing | operational |
+| `BE-P07` | [Validation: evidence that the contract holds, not a green build](03-domains/backend/P07-Validation/P07-Validation.md) | `P07-Validation` | BE_VALIDATION.md with | operational |
+| `BE-P08` | [Backend Master Orchestrator: the gates between seven stages](03-domains/backend/P08-Orchestrator/P08-Backend-Orchestrator.md) | `P08-Orchestrator` | BE_RUN.md containing the stage ledger (ran, skipped, blocked), each gate's verdict and evidence, every open question with its… | operational |
 | `API-VER-01` | [API Versioning and Consumer Contracts](03-domains/backend/P09-API-Versioning/P09-API-Versioning.md) | `P09-API-Versioning` | A versioning scheme, a consumer inventory, compatibility rules per change type, contract tests, a deprecation and sunset policy… | operational |
 | `DE-P01` | [Pipeline Reliability: make the data trustworthy before it is fast](03-domains/data-engineering/P01-Pipelines/P01-Pipeline-Reliability.md) | `P01-Pipelines` | A pipeline inventory with ownership and schedule, a failure-mode analysis, data tests for the properties that matter, freshness… | operational |
 | `DE-P02` | [Backfill and Reconciliation](03-domains/data-engineering/P02-Backfills/P02-Backfill-Reconciliation.md) | `P02-Backfills` | A scoped backfill plan with a dry run, a reconciliation report proving the new data is correct, a list of affected downstream… | operational |
@@ -421,7 +429,7 @@ Backend, frontend, mobile, desktop, embedded, data, or ML — each with its own 
 | `MOB-P02` | [Crash Triage and Symbolication](03-domains/mobile/P02-Crashes/P02-Crash-Triage.md) | `P02-Crashes` | A symbolicated, deduplicated crash inventory; a ranking by affected users and business impact (not raw count); a classification… | operational |
 | `MOB-P03` | [API Compatibility with Shipped Clients](03-domains/mobile/P03-Compatibility/P03-Client-Compatibility.md) | `P03-Compatibility` | A client-version matrix (which versions exist, in what proportion), the compatibility contract for each supported version, a… | operational |
 
-*Plus **24** `skeleton` prompts in these homes — a defensible stage sequence without verification or failure handling. Use them to structure a human-led session, not to drive an agent: [03-domains](GALLERY.md#03-domains--domain-specific-engineering).*
+*Plus **16** `skeleton` prompts in these homes — a defensible stage sequence without verification or failure handling. Use them to structure a human-led session, not to drive an agent: [03-domains](GALLERY.md#03-domains--domain-specific-engineering).*
 
 ## I need to answer someone outside engineering
 

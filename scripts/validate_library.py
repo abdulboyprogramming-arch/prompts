@@ -500,6 +500,9 @@ def check_readme_counts(docs: list[Doc], readme_text: str | None = None) -> list
 # prompts moved from 213 to 228 during one release, and four documents had to be
 # edited by hand each time. A hand-maintained count beside a generated one is a
 # claim waiting to become false.
+# Any bare "N operational" in a status document is a measurement, wherever it sits.
+PROSE_OPERATIONAL = re.compile(r"(\d+)\s+operational\b")
+
 DOC_MATURITY_LINES = [
     (
         "PROJECT-STATUS.md",
@@ -600,6 +603,7 @@ def check_documented_counts(
             counts[d.maturity] += 1
 
     errors: list[str] = []
+    actual = (counts["operational"], counts["draft"], counts["skeleton"])
     for rel, pattern in DOC_MATURITY_LINES:
         if texts is not None:
             text = texts.get(rel)
@@ -611,13 +615,24 @@ def check_documented_counts(
                     text = fh.read()
         if text is None:
             continue
+        stale: set[int] = set()
         for op, dr, sk in pattern.findall(text):
             claimed = (int(op), int(dr), int(sk))
-            actual = (counts["operational"], counts["draft"], counts["skeleton"])
             if claimed != actual:
                 errors.append(
                     f"{rel}: says {op} operational / {dr} draft / {sk} skeleton but the tree "
                     f"has {actual[0]} / {actual[1]} / {actual[2]} — update the line"
+                )
+                stale.add(int(op))
+        # The triplet is the machine-checked line; the prose around it drifts on its
+        # own. PROJECT-STATUS.md said "213 operational" for several releases after the
+        # tree passed 250, because no rule read that sentence — it looked like a
+        # measurement, so nobody recomputed it.
+        for found in PROSE_OPERATIONAL.findall(text):
+            if int(found) != actual[0] and int(found) not in stale:
+                errors.append(
+                    f"{rel}: prose says {found} operational but the tree has {actual[0]} "
+                    "— update the sentence or drop the number"
                 )
     return errors
 

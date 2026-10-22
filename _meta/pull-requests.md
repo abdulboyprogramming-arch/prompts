@@ -8,23 +8,25 @@ timestamps below were read from the API, not reconstructed.
 
 | # | Title | Branch → base | Purpose | Status | Reviewer | Checks | Merge commit | Owner reviewed in person |
 |---|-------|---------------|---------|--------|----------|--------|--------------|--------------------------|
-| 14 | Gate runner: restore the catalog on failure, self-test the runner; code-review P01-P03 v1.1.0 | `arena/a1d4cfce-prompts` → `main` | Two gate defects (catalog rewritten on failure; executed ratio checked in one file) | **merged** 2026-10-22 14:11:42Z as `a6d849a`, squash | none — author cannot review own PR | CI failed at startup, 0 steps; local 14/14 before merge | `a6d849a` | **no** |
-| 15 | 2.23.0 — performance system completed and run on the gate suite (−25% suite time) | `arena/a1d4cfce-prompts` → `main` | Complete the seven-stage performance family and execute it on the repo's own gate suite; merge the duplicate detector's two invocations into one process | **merged** 2026-10-22 14:22:54Z as `725075d`, squash | none — API refuses a review request from the author (`422`) | CI: no step has ever executed (billing); local 14/14 before merge | `725075d` | **no** |
-| 16 | 2.23.1 — three contribution systems completed, `PKG-P01` executed against a real package | `arena/1feb495e-prompts` → `main` | Close the six skeletons that kept three contribution systems "mixed"; run the entry stage against `p-map` and fix the four defects it exposed | **merged** 2026-10-22 14:28:25Z as `a82731a`, squash | none — API refuses a review request from the author (`422`) | CI: no step has ever executed (billing); local 14/14 before merge | `a82731a` | **no** |
-| 17 | 2.24.0 — game-development family completed | `arena/d7fd2ca8-prompts` → `main` | Seven skeletons (GD-P01…GD-P08) completed to operational; the falsifier chain from vision to playtest is the organising idea | **merged** 2026-10-22 14:51:48Z as `a54a896`, squash | none — API refuses a review request from the author (`422`); assigned + `needs-review` | CI: no step has ever executed (billing); local 14/14, 115 self-test cases | `a54a896` | **no** |
-| 18 | 2.25.0 — data / ML / AI family completed | `arena/d7fd2ca8-prompts` → `main` | Eight skeletons completed: leakage register, pre-registered threshold, measured baseline, reproducible runs, one-shot evaluation, fallback and rollback | **open**, not merged | none — API refuses a review request from the author (`422`); assigned + `needs-review` | CI: no step has ever executed (billing); local 14/14 | — | **no** |
-| 19 | 2.25.1 — `MLA-P03` tested against a committed leakage fixture, v1.1.0 | `arena/d6533a39-prompts` → `arena/d7fd2ca8-prompts` (stacked on #18) | Run the ML data stage against data with four known defects; it missed the statistically perfect leak, so the procedure gained a determinism scan and an honest state for unimplemented checks | **open**, not merged | none — API refuses a review request from the author (`422`); assigned + `needs-review` | CI: no step has ever executed (billing); local 14/14 | — | **no** |
+| 21 | 2.26.0 — backend family completed (`BE-P01`…`BE-P08`); prose counts now gated | `arena/d6533a39-prompts` → `main` | Eight skeleton stages developed to operational with per-stage inputs, decision rules, verification and failure handling; `check_documented_counts` extended to read `N operational` in prose after `PROJECT-STATUS.md` was found three releases stale | **open**, not merged | none — the API refuses a review request from the author (`422`); assigned + `needs-review` | CI: no step has ever executed (billing); local 15/15 | — | **no** |
 
 ## Closed without merging
 
 | # | Title | Closed | Why |
 |---|-------|--------|-----|
+| 19 | 2.25.1 — `MLA-P03` tested against a committed leakage fixture, v1.1.0 | 2026-10-22 | Closed automatically when merging #18 deleted its base branch `arena/d7fd2ca8-prompts`; GitHub cannot reopen a PR whose base is gone. Reopened against `main` as #20, with the same commit rebased. Left closed with a comment linking forward |
 | 13 | Gate runner: restore the catalog on failure, self-test the runner; code-review P01-P03 v1.1.0 | 2026-10-22 | Opened by the owner account, which makes the owner's review impossible: GitHub refuses a review request from the author (`422`) and disables *Approve* on your own pull request. Superseded by #14 from the same content on a fresh branch; nothing in it was reviewed or approved |
 
 ## Merged
 
 | # | Title | Merged | Merge commit | Notes |
 |---|-------|--------|--------------|-------|
+| 20 | 2.25.1 — `MLA-P03` tested against a committed leakage fixture, v1.1.0 | 2026-10-22 15:08:05Z | `a497cec` | Independent of #18 after merge; a stage run against four planted defects found one |
+| 18 | 2.25.0 — data / ML / AI family completed (`MLA-P01`…`MLA-P08`) | 2026-10-22 15:07:27Z | `0376e12` | Stacked #19 had to be re-opened as #20 after `--delete-branch` removed its base |
+| 17 | 2.24.0 — game-development family completed (`GD-P01`…`GD-P08`) | 2026-10-22 14:51:48Z | `a54a896` | Merged by the agent under an explicit grant for this PR |
+| 16 | 2.23.1 — three contribution systems completed; `PKG-P01` executed on a real package | 2026-10-22 14:28:25Z | `a82731a` | — |
+| 15 | 2.23.0 — performance system completed and run on the gate suite (−25% suite time) | 2026-10-22 14:22:54Z | `725075d` | — |
+| 14 | Gate runner: restore the catalog on failure, self-test the runner; code-review P01-P03 v1.1.0 | 2026-10-22 14:11:42Z | `a6d849a` | — |
 | 12 | 2.22.0 — git-operations completed, security-control fix retested, publication decision (hold) | 2026-10-22 09:24:28Z | recorded as `1dc6f25`; the history rewrite that followed changed it to `3a62a6b` | merged under the owner's explicit final authorization |
 | 11 | 2.21.1 — run CHAT-DEBUG, fix the defects it found | 2026-10-21 14:45:29Z | — | pre-record |
 | 10 | v2.21.0 — Conversational mode: the library in a chat window | 2026-10-21 14:42:23Z | — | pre-record |

@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 364 prompts — 0 canonical, 257 operational, 5 draft, 102 skeleton.
+**Totals:** 364 prompts — 0 canonical, 265 operational, 5 draft, 94 skeleton.
 
 ## `00-core`
 
@@ -252,14 +252,14 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
 | ID | Stage | Maturity | Mode | Risk | File |
 |----|-------|----------|------|------|------|
-| `BE-P01` | PROMPT 01 — Context & Constraints | skeleton | implementation | B | [P01-Context-Constraints.md](../03-domains/backend/P01-Context/P01-Context-Constraints.md) |
-| `BE-P02` | PROMPT 02 — API / Interface Design | skeleton | planning | B | [P02-API-Interface-Design.md](../03-domains/backend/P02-API-Design/P02-API-Interface-Design.md) |
-| `BE-P03` | PROMPT 03 — Architecture | skeleton | planning | B | [P03-Backend-Architecture.md](../03-domains/backend/P03-Architecture/P03-Backend-Architecture.md) |
-| `BE-P04` | PROMPT 04 — Data & Persistence | skeleton | implementation | B | [P04-Data-Persistence.md](../03-domains/backend/P04-Data/P04-Data-Persistence.md) |
-| `BE-P05` | PROMPT 05 — Implementation | skeleton | implementation | B | [P05-Implementation.md](../03-domains/backend/P05-Implementation/P05-Implementation.md) |
-| `BE-P06` | PROMPT 06 — Reliability & Operability | skeleton | implementation | B | [P06-Reliability-Operability.md](../03-domains/backend/P06-Reliability/P06-Reliability-Operability.md) |
-| `BE-P07` | PROMPT 07 — Validation | skeleton | diagnostic | C | [P07-Validation.md](../03-domains/backend/P07-Validation/P07-Validation.md) |
-| `BE-P08` | PROMPT 08 — Backend Master Orchestrator | skeleton | orchestration | A | [P08-Backend-Orchestrator.md](../03-domains/backend/P08-Orchestrator/P08-Backend-Orchestrator.md) |
+| `BE-P01` | PROMPT 1 — Context & Constraints: who calls this, and what b | operational | planning | A | [P01-Context-Constraints.md](../03-domains/backend/P01-Context/P01-Context-Constraints.md) |
+| `BE-P02` | PROMPT 2 — API / Interface Design: the contract a client can | operational | planning | A | [P02-API-Interface-Design.md](../03-domains/backend/P02-API-Design/P02-API-Interface-Design.md) |
+| `BE-P03` | PROMPT 3 — Architecture: boundaries you can defend, and the  | operational | planning | A | [P03-Backend-Architecture.md](../03-domains/backend/P03-Architecture/P03-Backend-Architecture.md) |
+| `BE-P04` | PROMPT 4 — Data & Persistence: the migration that runs while | operational | implementation | B | [P04-Data-Persistence.md](../03-domains/backend/P04-Data/P04-Data-Persistence.md) |
+| `BE-P05` | PROMPT 5 — Implementation: handlers that admit what they do  | operational | implementation | B | [P05-Implementation.md](../03-domains/backend/P05-Implementation/P05-Implementation.md) |
+| `BE-P06` | PROMPT 6 — Reliability & Operability: the failure table, and | operational | implementation | B | [P06-Reliability-Operability.md](../03-domains/backend/P06-Reliability/P06-Reliability-Operability.md) |
+| `BE-P07` | PROMPT 7 — Validation: evidence that the contract holds, not | operational | diagnostic | C | [P07-Validation.md](../03-domains/backend/P07-Validation/P07-Validation.md) |
+| `BE-P08` | PROMPT 8 — Backend Master Orchestrator: the gates between se | operational | orchestration | A | [P08-Backend-Orchestrator.md](../03-domains/backend/P08-Orchestrator/P08-Backend-Orchestrator.md) |
 | `API-VER-01` | PROMPT 01 — API Versioning and Consumer Contracts | operational | planning | B | [P09-API-Versioning.md](../03-domains/backend/P09-API-Versioning/P09-API-Versioning.md) |
 
 ## `03-domains/cost-engineering`

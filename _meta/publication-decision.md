@@ -2,7 +2,7 @@
 
 **Question:** can this repository be published publicly *now*, honestly, without waiting for full validation?
 
-**Answer: yes** for publication as an experimental, actively-developed library, with one honesty fix applied in this pass (the CI claim) and no repository-side blocker remaining. **No** for any claim that the prompts are validated, proven, or production-ready — 26 of 257 have been executed, all by the author, none by a second person.
+**Answer: yes** for publication as an experimental, actively-developed library, with one honesty fix applied in this pass (the CI claim) and no repository-side blocker remaining. **No** for any claim that the prompts are validated, proven, or production-ready — 26 of 265 have been executed, all by the author, none by a second person.
 
 ---
 
@@ -12,7 +12,7 @@
 |---|---|---|
 | Test | Can a stranger read this, use it, and understand exactly how far it has been proven? | Does each procedure work when someone else runs it? |
 | Evidence needed | licence, no secrets, usage instructions, accurate status, policies, checks that pass | independent runs, per-prompt evidence, end-to-end systems |
-| Current state | **met** (§2) | 26 of 257 executed (10.1%); 0 independent runs |
+| Current state | **met** (§2) | 26 of 265 executed (9.8%); 0 independent runs |
 
 Conflating them is what turns readiness into an endless cycle: full validation of 228 procedures needs months and other people, while publication needs a truthful snapshot. The library's own rule applies — label the claim and ship the evidence.
 
@@ -47,7 +47,7 @@ Conflating them is what turns readiness into an endless cycle: full validation o
 
 | # | Item | Evidence | Reason it can wait |
 |---|---|---|---|
-| 1 | Execute the remaining operational prompts | 26 of 257 (10.1%); batch 0 complete (8 of 8), batch 2 at 2+3 of 68 | Publication claims an audit, not a validation; the ratio is published and generated |
+| 1 | Execute the remaining operational prompts | 26 of 265 (9.8%); batch 0 complete (8 of 8), batch 2 at 2+3 of 68 | Publication claims an audit, not a validation; the ratio is published and generated |
 | 2 | **Any run by someone other than the author** | 0 of 241 | The only thing that would justify a stronger claim; cannot be manufactured here, and its absence is stated in README, `release-readiness.md` and `evidence-levels.md` |
 | 3 | One continuous end-to-end system run | `git-operations` stages 1–5 executed, but across two sittings (`-10.md`, `-11.md`) | The letter is satisfied; the spirit is a second incident from one record |
 | 4 | `REQ-CHANGE-01` vocabulary fix and ship decision | `-11.md` §4 | Not part of the published library |
@@ -66,7 +66,7 @@ Conflating them is what turns readiness into an endless cycle: full validation o
 Already in the README and checked in this pass:
 
 - 364 prompts: **228 operational, 5 draft, 131 skeleton** — with `operational` defined as structurally reviewed, not proven.
-- **26 of 257 executed (10.1%)**, all by the author, none independently.
+- **26 of 265 executed (9.8%)**, all by the author, none independently.
 - Composition measured, not assumed: 92 of 239 stage links (38%) do not cite the upstream filename.
 - CI does not run; the local gate does.
 

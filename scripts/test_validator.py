@@ -202,6 +202,26 @@ DOC_CASES = [
         "# Notes\n\nNo counts here.\n",
         False,
     ),
+    (
+        "prose elsewhere in the document is checked too, not just the maturity line",
+        ["operational", "operational"],
+        "- Maturity: **2 operational**, **0 draft**, **0 skeleton**.\n"
+        "The honest summary says 1 operational prompt.\n",
+        True,
+    ),
+    (
+        "prose that matches the tree passes",
+        ["operational", "operational"],
+        "- Maturity: **2 operational**, **0 draft**, **0 skeleton**.\n"
+        "Two operational prompts, and one of them is executed.\n",
+        False,
+    ),
+    (
+        "a stale triplet is reported once, not twice",
+        ["operational", "operational", "skeleton"],
+        "- Maturity: **1 operational**, **0 draft**, **1 skeleton**.\n",
+        True,
+    ),
 ]
 
 
@@ -302,6 +322,9 @@ def main() -> int:
             failures += 1
             for e in errors:
                 print(f"       got: {e}")
+        elif name == "a stale triplet is reported once, not twice" and len(errors) != 1:
+            failures += 1
+            print(f"       expected one error, got {len(errors)}")
         elif name.startswith("the error names"):
             if "PROJECT-STATUS.md" not in errors[0] or "tree has 2 / 0 / 1" not in errors[0]:
                 failures += 1

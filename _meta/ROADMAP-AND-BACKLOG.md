@@ -26,7 +26,7 @@ These systems are referenced from the root README and workflows but consist of 2
 |--------|-------:|----------------|--------|
 | ~~`02-engineering/security-hardening`~~ | 7 | **Done in 2.0.0** — authorisation gate, threat model, enforcement matrix, triage, proven remediation | operational |
 | ~~`02-engineering/refactoring`~~ | 7 | **Done in 2.3.0** — measurable target, mutation-proven net, mechanical slices, equivalence + target measurement, old-path removal | done |
-| `03-domains/backend` | 8 | Largest domain by usage; API/data/reliability practice is thin | operational |
+| `03-domains/backend` | 8 | Largest domain by usage; promoted to operational in 2.26.0 with a gate sequence, not yet executed | operational |
 | `03-domains/frontend` | 8 | Accessibility and state management are named but have no pass criteria | operational |
 | `04-process/code-review` | 6 | Reviews are where quality is actually decided | operational |
 | `02-engineering/from-scratch` | 8 | First-contact system for new users; currently advisory | operational |
@@ -42,7 +42,7 @@ Each promotion requires: full required sections, verification that can fail, fai
 |-----|------------------------------------------|-----------------|
 | **Mobile (native + cross-platform)** | No coverage at all, despite `03-domains` listing it as an "area". Offline sync, store review, permissions, and lifecycle differ enough to need dedicated prompts | `03-domains/mobile` (6 stages) |
 | ~~**Database engineering**~~ | **Done in 2.1.0** as `03-domains/database` (5 stages: schema truth, migration design, pre-flight, execution, rollback) | — |
-| **API design & evolution** | Backend P02 exists as an outline; versioning, idempotency, pagination, and error contracts need depth | fold into backend, or `03-domains/api-design` |
+| **API design & evolution** | `BE-P02` now carries idempotency, pagination and the error taxonomy; `API-VER-01` covers versioning. What remains is a worked example against a real public API | fold into backend, or `03-domains/api-design` |
 | ~~**Dependency & toolchain management**~~ | **Done in 2.1.0** as `04-process/dependency-management` (5 stages) | — |
 | **Accessibility & i18n** | Mentioned in frontend skeleton without criteria; WCAG conformance and localisation are engineering disciplines | `03-domains/frontend` sub-system or `05-scenarios/accessibility-audit` |
 | **Data engineering** | `data-ml-ai` conflates pipelines with modelling; ingest/quality/lineage missing | split or extend `03-domains/data-ml-ai` |

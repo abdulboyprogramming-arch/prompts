@@ -11,10 +11,10 @@ input, which is the property that makes a sequence of prompts a system rather th
 | Measure | Value |
 |---------|------:|
 | Systems with more than one stage | 52 |
-| Dependency links between stages in a system | 239 |
-| Links where the downstream stage never names the upstream artifact | **68** |
+| Dependency links between stages in a system | 241 |
+| Links where the downstream stage never names the upstream artifact | **62** |
 | Links that mention it only by stem, never as a filename | 9 |
-| Links that cite the upstream filename | 162 |
+| Links that cite the upstream filename | 170 |
 
 The second row is the library's real integration claim. The third is what is left of it: a
 link where the downstream prompt says *"the rollout evidence"* instead of naming
@@ -49,7 +49,7 @@ handed the artifact without anyone guessing its name.
 | `02-engineering/rewriting-migration` | 8 | 7 | 7 | 0 | 0 | 7 |
 | `02-engineering/security-hardening` | 7 | 7 | 7 | 6 | 1 | 0 |
 | `03-domains/ai-agentic` | 7 | 8 | 7 | 7 | 0 | 0 |
-| `03-domains/backend` | 9 | 8 | 6 | 0 | 0 | 6 |
+| `03-domains/backend` | 9 | 8 | 8 | 8 | 0 | 0 |
 | `03-domains/cost-engineering` | 4 | 5 | 3 | 3 | 0 | 0 |
 | `03-domains/data-engineering` | 2 | 3 | 1 | 1 | 0 | 0 |
 | `03-domains/data-ml-ai` | 8 | 7 | 6 | 5 | 0 | 1 |
@@ -147,17 +147,6 @@ that stage produces but this one never mentions.
 | `RW-P05` | `RW-P04` | `SAFETY_NET.md` |
 | `RW-P06` | `RW-P05` | `MIGRATION_LOG.md` |
 | `RW-P07` | `RW-P06` | `VALIDATION.md` |
-
-### `03-domains/backend`
-
-| Stage | Depends on | Artifact not named |
-|-------|------------|--------------------|
-| `BE-P02` | `BE-P01` | `BE_CONTEXT.md` |
-| `BE-P03` | `BE-P02` | `BE_API_DESIGN.md` |
-| `BE-P04` | `BE-P03` | `BE_ARCHITECTURE.md` |
-| `BE-P05` | `BE-P04` | `BE_DATA.md` |
-| `BE-P06` | `BE-P05` | `BE_IMPLEMENTATION_LOG.md` |
-| `BE-P07` | `BE-P06` | `BE_RELIABILITY.md` |
 
 ### `03-domains/data-ml-ai`
 
