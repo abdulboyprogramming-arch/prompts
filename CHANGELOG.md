@@ -41,6 +41,17 @@ of them take a position the outline did not:
 review, and `DI-P01` hands unmanaged estates to `IAC-01`. Three existing operational
 systems already cover those questions; a fourth competing set was the risk here, not a gap.
 
+### Fixed — a second unguarded count, found by using it
+
+Adding the ninth `N operational` sentence to `PROJECT-STATUS.md` meant editing the phrase
+*"and 281 prompts carry that label"* by hand for the third release running. The rule added
+in 2.26.0 reads `N operational`; this phrasing contains neither word in that order, so the
+sentence was still unguarded — the same class of defect the rule was written to prevent,
+one sentence lower down the same paragraph.
+
+`PROSE_OPERATIONAL` now matches both phrasings, and a fixture asserts that a bare
+*"N prompts carry that label"* is checked against the tree. Self-tests 27/27.
+
 ### Composition
 
 `03-domains/devops-infra` went from 6 of 8 stage links naming the upstream artifact to 8 of

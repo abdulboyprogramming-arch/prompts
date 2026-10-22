@@ -217,6 +217,13 @@ DOC_CASES = [
         False,
     ),
     (
+        "a bare 'N prompts carry that label' is a count and is checked",
+        ["operational", "operational"],
+        "- Maturity: **2 operational**, **0 draft**, **0 skeleton**.\n"
+        "Every prompt declares a maturity, and 5 prompts carry that label.\n",
+        True,
+    ),
+    (
         "a stale triplet is reported once, not twice",
         ["operational", "operational", "skeleton"],
         "- Maturity: **1 operational**, **0 draft**, **1 skeleton**.\n",

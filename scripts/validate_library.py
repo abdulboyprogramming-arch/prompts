@@ -501,7 +501,7 @@ def check_readme_counts(docs: list[Doc], readme_text: str | None = None) -> list
 # edited by hand each time. A hand-maintained count beside a generated one is a
 # claim waiting to become false.
 # Any bare "N operational" in a status document is a measurement, wherever it sits.
-PROSE_OPERATIONAL = re.compile(r"(\d+)\s+operational\b")
+PROSE_OPERATIONAL = re.compile(r"(\d+)\s+operational\b|(\d+)\s+prompts?\s+carry\s+that\s+label")
 
 DOC_MATURITY_LINES = [
     (
@@ -628,7 +628,8 @@ def check_documented_counts(
         # own. PROJECT-STATUS.md said "213 operational" for several releases after the
         # tree passed 250, because no rule read that sentence — it looked like a
         # measurement, so nobody recomputed it.
-        for found in PROSE_OPERATIONAL.findall(text):
+        for match in PROSE_OPERATIONAL.findall(text):
+            found = match[0] or match[1]
             if int(found) != actual[0] and int(found) not in stale:
                 errors.append(
                     f"{rel}: prose says {found} operational but the tree has {actual[0]} "

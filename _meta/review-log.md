@@ -835,3 +835,7 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 - Not claimed: none of the eight has been run against a real estate. In particular the plan
   gate has never rejected a real destroy, and no restore has been drilled — `DI-P07` exists
   precisely to make that gap visible rather than to paper over it.
+- **Defect found by using the tool:** the 2.26.0 prose-count rule reads `N operational`, so
+  the phrase *"N prompts carry that label"* below it stayed unchecked — I edited that number
+  by hand for the third release running. The rule now covers both phrasings, with a fixture
+  (validator self-tests 27/27).
