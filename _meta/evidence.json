@@ -385,6 +385,39 @@
       "result": "FAILED at v0.1.0 then PASSED at v1.1.0 - 0 of 5 criteria at v0.1.0, which adopted both false statements as facts, asked three questions the repository answers and took a stage count from a preference; v1.1.0 adds repository discovery first, a contradiction table, sourced facts, bounded assumptions and lifecycle-derived stage counts",
       "record": "_meta/empirical-evaluation-18.md",
       "limitations": "author-run desk execution against a fixture the author wrote; one prompt of four in the system; the graded brief is not tested downstream, so whether consuming it improves a later stage is unmeasured"
+    },
+    {
+      "identifier": "WIZ-P01",
+      "title": "System Selector Wizard",
+      "path": "06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "scope": "routed 14 fixture requests whose correct destination is defined by the generated TASKS.md index rather than by the author, then re-routed them with v1.1.0",
+      "result": "FAILED at v0.1.0 then PASSED at v1.1.0 - 5 of 14: three requests had no category at all (release, privacy, AI agents), three have two legitimate destinations separated by a condition, four destinations postdate the prompt. v1.1.0 reads the index before classifying, checks capability first, and verifies every path exists: 14 of 14",
+      "record": "_meta/empirical-evaluation-19.md",
+      "limitations": "author-run desk execution; the fixture's request-to-section mapping is a judgement even though the section-to-destination mapping is generated; routing accuracy is not usefulness"
+    },
+    {
+      "identifier": "INT-P02",
+      "title": "Contribution Intake Context Collector",
+      "path": "06-interactive/context-collectors/CONTRIBUTION-INTAKE.md",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "scope": "run against a synthetic upstream with five planted traps: no accepted issue, a refused runtime dependency, a sign-off the contributor may not be entitled to give, a wrong test command, and a copyleft licence",
+      "result": "FAILED at v0.1.0 then PASSED at v1.1.0 - v0.1.0 found 0 of 5 traps because it collects the contributor's intent and never reads the upstream's rules; v1.1.0 reads CONTRIBUTING, the PR policy and the licence first and records authority as verified or unknown",
+      "record": "_meta/empirical-evaluation-19.md",
+      "limitations": "author-run desk execution; the fixture and its grading criteria were both written by the author, so it tests whether the prompt finds what the fixture planted, not whether it asks the right questions in a real project"
+    },
+    {
+      "identifier": "INT-P03",
+      "title": "Greenfield Intake Context Collector",
+      "path": "06-interactive/context-collectors/GREENFIELD-INTAKE.md",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "scope": "run against a fixture request that opens with a technology choice, states one genuine regulatory constraint among four preferences, gives no deadline, and scopes a platform for every team to a 1.5-person team",
+      "result": "FAILED at v0.1.0 then PASSED at v1.1.0 - v0.1.0 scored 1 of 8, recording the proposal as the purpose and the urgency as the plan; v1.1.0 separates problem from proposal, classifies constraints, writes a non-goal with a destination, and names a failure mode",
+      "record": "_meta/empirical-evaluation-19.md",
+      "limitations": "author-run desk execution; every fact in a greenfield brief is user-stated, so the fixture grades structure rather than truth"
     }
   ]
 }

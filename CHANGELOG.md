@@ -2,6 +2,55 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.28.6] — 2026-10-22
+
+`06-interactive` had four prompts and four known gaps. It now has four operational prompts, no
+skeletons, and one result that could be graded against the repository instead of against its author.
+
+### Executed — the router, against the index the repository generates for itself
+
+`WIZ-P01` sends a request to a system. `TASKS.md` is the generated index of 21 situations, each with a
+*Start here* line naming the destination. That makes routing the only behaviour in this library that can
+be scored against ground truth the prompt did not write.
+
+Fourteen requests, each mapped to a section and to the destination that section names:
+
+| | v0.1.0 | v1.1.0 |
+|---|---|---|
+| Correct destination | **5 of 14** | **14 of 14** |
+
+The failures were not vocabulary. Three requests had **no category at all** — the seven categories
+predate release engineering, privacy requests and AI-agentic systems. Three have **two legitimate
+destinations separated by a condition** — a pasted diff needs `CHAT-REVIEW`, not `code-review`; a rota
+change at speed needs `on-call-handover`, not `handover`; a doubled bill needs `cost-engineering`, not
+`performance`. Four destinations **postdate the prompt**.
+
+And one structural defect the score misses: v0.1.0's Role line addresses "the Supercharged Prompt
+Archive" — a name that appears in exactly two files in this repository and in no README, index or
+release. The router was describing a library it could not see.
+
+v1.1.0 reads `TASKS.md` before classifying, checks capability first, carries the five condition-decided
+sections explicitly, verifies every path exists, and adds a **"Do not start here"** line naming the
+plausible-but-wrong destination.
+
+### Executed — the two remaining intakes, against planted traps
+
+- **`INT-P02`** on a synthetic upstream with five traps: no `accepted` issue, a refused runtime
+  dependency, a sign-off the contributor may not be entitled to give, an `npm test` that is really
+  `make check`, and a copyleft licence. **0 of 5 → 5 of 5.** v0.1.0 collected the contributor's intent
+  and never read the project's rules — so every trap was answerable, wrongly, by the person asking.
+- **`INT-P03`** on a request that opens with Kafka, contains one genuine regulatory constraint among
+  four preferences, states no deadline and scopes "every team" to 1.5 engineers. **1 of 8 → 8 of 8.**
+  The single pass was the absence of a mistake, not a decision: the old prompt had nowhere to put a
+  deadline, so it never invented one.
+
+### Reconciled
+
+Library 364 prompts — **285 operational**, 5 draft, 74 skeleton; 491 Markdown files.
+Evidence: **37 of 285 executed (13.0%)**, all author-run, none independent.
+`06-interactive` is now the first system completed by execution rather than by review, and the smallest.
+Three new fixtures committed: `routing-scenario`, `contribution-scenario`, `greenfield-scenario`.
+
 ## [2.28.5] — 2026-10-22
 
 The repository is public. The first thing to say about that is what did **not** change with it.

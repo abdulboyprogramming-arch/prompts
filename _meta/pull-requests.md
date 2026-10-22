@@ -8,6 +8,7 @@ timestamps below were read from the API, not reconstructed.
 
 | # | Title | Branch → base | Purpose | Status | Reviewer | Checks | Merge commit | Owner reviewed in person |
 |---|-------|---------------|---------|--------|----------|--------|--------------|--------------------------|
+| 34 | 2.28.5 — the repository is public; `INT-P01` run, failed 0/5, rebuilt to 5/5 | 2026-10-22 | `815f57c` | Merged under the standing merge authority **after the owner added Repository admin as a bypass actor** on the `Protect default branch` ruleset; the same PR was `BLOCKED` before that, because one approval was required and GitHub forbids self-approval. Three CI runs green (`39846014231`, `39846144167`, `39846320817`, `39846425944`) |
 | 34 | 2.28.5 — the repository is public; `INT-P01` run, failed 0/5, rebuilt to 5/5 | `arena/7c0856d5-prompts` → `main` | Publication verified unauthenticated; first executed CI run in the repository's history; first `06-interactive` execution and its repair | **Open — blocked by the branch ruleset** | CI green (`39846320817`, `validate`, success) | 3 green runs | — | Not mergeable: the *Protect default branch* ruleset requires 1 approving review, GitHub refuses self-approval (`422`) and no bypass actor is configured, so `--admin` is refused too. Owner action: add *Repository admin* as a bypass actor, or set required approvals to 0 (`repository-configuration.md` §4a) |
 
 ## Closed without merging
