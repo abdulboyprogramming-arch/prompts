@@ -36,7 +36,7 @@
 | 10 | Secrets in tree | `ghp_*`, `github_pat_*`, `AKIA*`, private-key headers | **PASS** — 0 hits |
 | 11 | Secrets in reachable history | `git log --all -p` over the same patterns | **PASS** — 0 hits. *Caveat:* this sandbox checkout presents a single squashed commit, so the scan covers the tree and that commit; the pre-existing remote history was scanned in the 2.13.0 audit and is unchanged since. |
 | 12 | Personal data in prompts | emails, customer identifiers, internal hostnames | **PASS** — none. `examples` use `example.com` and invented names |
-| 13 | Absolute / environment paths | `/home/user`, sandbox hosts, `arena/<id>` branch names | **PASS** — 0 hits in content (the only match is this checklist's own grep string) |
+| 13 | Absolute / environment paths | `/home/user`, sandbox hosts, `arena/<id>` branch names | **PASS** — 1 sandbox path found in `_meta/empirical-evaluation-08.md` on 2026-10-22 and replaced with a placeholder; session branch names still appear in three execution records, deliberately, because they identify which checkout a run happened in |
 | 14 | Tracked build artefacts | `git ls-files` | **PASS** — no `__pycache__`, `.pyc`, `node_modules`, `.env` |
 | 15 | Repository size | `git ls-files`, `du` | **PASS** — 471 tracked files, 4.2 MB; largest 112 KB |
 | 16 | Community files exist and are linked | validator `check_community` | **PASS** — `LICENSE`, `CONTRIBUTING.md`, `.github/CODE_OF_CONDUCT.md`, `.github/SECURITY.md` present, and each is linked from the document that should point at it |

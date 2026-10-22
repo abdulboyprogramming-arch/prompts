@@ -19,7 +19,7 @@ STRICTNESS      = production         (default)
 OUTPUT_SHAPE    = single
 INTERVIEW_MAX   = 3                  (default)
 EXISTING_PROMPT = none
-REPO_PATH       = /home/user/prompts
+REPO_PATH       = <repository root>
 ```
 
 ## 2. Step 1 — five intent fields
