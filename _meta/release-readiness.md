@@ -2,7 +2,7 @@
 
 # Release Readiness — what is done, what is checked, and what still blocks
 
-**Date:** 2026-10-22 · **Version under review:** 2.22.0 · **Branch:** `arena/cdb05e8f-prompts` (PR #12, held)
+**Date:** 2026-10-22 · **Version under review:** 2.22.0 · **Branch:** `main` (PR #12 merged, `1dc6f25`; history rewritten the same day, `main` at `3a62a6b`)
 
 This page answers one question honestly: **if this went public tomorrow, what would be wrong with it?** It is written to be uncomfortable, because the alternative — a checklist that says "ready" — is the failure mode the library itself documents.
 
@@ -88,7 +88,7 @@ Release readiness is not a feeling, so it is written as tests. **Mandatory** cri
 
 | # | Criterion | How it is measured | Class | State on 2026-10-22 |
 |---|---|---|---|---|
-| 1 | Every structural gate passes on the tree | `python3 scripts/check_all.py` exits 0 | Mandatory | **met** — 14 gates |
+| 1 | Every structural gate passes on the tree | `python3 scripts/check_all.py` exits 0 | Mandatory | **met** — 15 gates |
 | 2 | Counts quoted in prose equal the tree | validator `check_documented_counts`, `check_stated_totals` | Mandatory | **met** |
 | 3 | Every prompt composes with its neighbours | `check_prompt_contract.py`, 0 errors; no cycle; no two writers | Mandatory | **met** |
 | 4 | No secrets, no personal data, no absolute paths | publication checklist rows 10–13 | Mandatory | **met** |
