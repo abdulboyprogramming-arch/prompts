@@ -8,13 +8,13 @@ timestamps below were read from the API, not reconstructed.
 
 | # | Title | Branch → base | Purpose | Status | Reviewer | Checks | Merge commit | Owner reviewed in person |
 |---|-------|---------------|---------|--------|----------|--------|--------------|--------------------------|
-| 14 | *(to be opened)* Gate runner: restore the catalog on failure, self-test the runner; code-review P01-P03 v1.1.0 | `arena/5b041870-prompts` → `main` | Replacement for #13, opened by the contributor account so the owner can review it | **not yet open** — the sandbox has no credentials for `Abdul-Programing` | to be requested from `abdulboyprogramming-arch` | no CI: Actions is blocked by account billing (`publication-decision.md` §5); local `check_all.py` 16/16 | — | **no** |
+| 14 | Gate runner: restore the catalog on failure, self-test the runner; code-review P01-P03 v1.1.0 | `arena/a1d4cfce-prompts` → `main` | Fix the gate runner leaving `_meta/CATALOG.md` rewritten when it failed; add the runner's missing self-test; guard the published executed-prompt ratio against drift; CR-P02/P03 v1.1.0 | **open**, not merged | none recorded — the API refuses a review request from the pull request's author (`422`), so the owner reviews by comment or by explicit instruction | no CI: runs on this branch and its predecessor concluded `failure` with **0 steps**, blocked by account billing (`publication-decision.md` §5); local `check_all.py` 16/16 | — | **no** — awaiting the owner |
 
 ## Closed without merging
 
 | # | Title | Closed | Why |
 |---|-------|--------|-----|
-| 13 | Gate runner: restore the catalog on failure, self-test the runner; code-review P01-P03 v1.1.0 | 2026-10-22 | Opened by the owner account, which makes the owner's review impossible: GitHub refuses a review request from the author (`422`) and disables *Approve* on your own pull request. Superseded by #14 from the same branch; nothing in it was reviewed or approved |
+| 13 | Gate runner: restore the catalog on failure, self-test the runner; code-review P01-P03 v1.1.0 | 2026-10-22 | Opened by the owner account, which makes the owner's review impossible: GitHub refuses a review request from the author (`422`) and disables *Approve* on your own pull request. Superseded by #14 from the same content on a fresh branch; nothing in it was reviewed or approved |
 
 ## Merged
 
@@ -38,25 +38,29 @@ timestamp; the branch names and review states of those pull requests are not
 recorded here because this file did not exist while they were open. Inventing
 them now would be worse than the gap.
 
-## Contributor and reviewer are two accounts
+## One account, and what it costs
 
-From 2026-10-22 the repository has one account that writes and one that reviews.
-`Abdul-Programing` (id `259543701`, already a collaborator with write access) is
-the contributor: the three commits on this branch are authored and committed by
-it, re-authored on the owner's instruction from the owner's own authorship so the
-history reads consistently. `abdulboyprogramming-arch` reviews and merges.
+The repository has one identity: `abdulboyprogramming-arch`, displayed as
+Abdulrahman Adeeyo. Every commit on `main` and on this branch carries it as
+author and committer.
 
-Two things this arrangement does not do, and must not be read as doing:
+On 2026-10-22 a second account, `Abdul-Programing` (id `259543701`, already a
+collaborator with write access), was tried as the contributor so that the owner
+could review and approve a pull request the owner had not opened. That required
+GitHub device authorisation in the owner's browser; three attempts authenticated
+the owner's own account instead, and the owner then instructed that the split be
+dropped. No commit in the repository now carries that account, and the two-account
+re-authoring was reversed by rewriting the branch before it was pushed anywhere
+that matters.
 
-- It does not make the review independent. Both accounts belong to the same
-  person, so the reviewer is the author's other login. That is a cleaner approval
-  record, not a second opinion.
-- It does not make `Abdul-Programing` the author of the work in the sense of
-  having written it. The changes were produced in a session the owner directed;
-  the contributor account is a role, and this file says so rather than leaving the
-  attribution to be inferred.
+The cost is stated rather than hidden: **a pull request opened by the owner
+cannot be approved by the owner.** GitHub returns `422 Review cannot be requested
+from pull request author` and offers no *Approve* on your own pull request. So
+PR #14 can carry a comment review and an explicit merge instruction, and it does
+not carry an independent approval, because none was possible on this repository
+with one account.
 
-## Standing rules
+## Standing rules## Standing rules
 
 - No pull request is merged before the owner has reviewed it. The one exception,
   PR #12, was authorised in advance and in words.
