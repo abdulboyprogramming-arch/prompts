@@ -39,6 +39,17 @@ executed normally. The failing run is still evidence of the billing block; it is
 the state after publication. The wrong claim was published in this changelog and in PR #34's body
 for roughly half an hour before the pull-request run contradicted it.
 
+### Found — branch protection that no solo maintainer can satisfy
+
+The first merge attempt after publication was refused: *"At least 1 approving review is required by
+reviewers with write access."* The active ruleset (`Protect default branch`, id `25579218`) requires
+one approval, GitHub forbids approving your own pull request, and `bypass_actors` is empty — so
+`--admin` cannot help either. PR #34 carries the work and cannot be merged until the rule changes.
+
+It is the same defect class this repository keeps finding: a control that looks like governance and
+functions as a stop. Two ways out, in [`repository-configuration.md`](_meta/repository-configuration.md)
+§4a — add *Repository admin* as a bypass actor (recommended), or set required approvals to 0.
+
 ### Still not fixed — the security features
 
 Secret scanning, push protection, CodeQL and private vulnerability reporting were meant to be

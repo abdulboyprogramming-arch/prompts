@@ -58,7 +58,10 @@ Only the third is evidence of usefulness, and it is 12.1%.
 Outside the repository, and each is a decision or an account, not an edit:
 
 1. **Security features — now the only urgent item.** Secret scanning, push protection, CodeQL and private vulnerability reporting were meant to be enabled *before* publication. They were not, and the repository is public. All are free for public repositories and all are owner-only settings.
-2. **Branch protection on `main`.** Require `validate`, no force pushes, no deletions, linear history. The dependency is clear: `validate` now has a green run to require (run `39846014231`).
+2. **Branch protection exists and currently blocks all merges.** The active ruleset requires 1 approving
+   review; a solo maintainer cannot approve their own PR (`422`) and no bypass actor is configured, so
+   PR #34 could not be merged even with admin rights. Fix: add *Repository admin* as a bypass actor, or
+   set required approvals to 0. Recorded in [`repository-configuration.md`](repository-configuration.md) §4a.
 3. ~~Actions billing~~ — **resolved by publication.** The first run after the visibility change executed every step and passed. The earlier `steps: 0` failures were real; they described the private-repository state.
 4. ~~Repository metadata~~ — **done**: description and all ten topics applied and verified.
 5. ~~Visibility~~ — **done 2026-10-22**: public, verified unauthenticated (repo 200, README 31 KB, 24 top-level paths, 24 releases).

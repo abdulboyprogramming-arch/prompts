@@ -59,6 +59,36 @@ If you generate one, the acceptance test is: *does the image make a claim the RE
 | CodeQL | **On** for Python | The scripts are the only executable surface |
 | Private vulnerability reporting | **On** | Matches `.github/SECURITY.md` |
 
+## 4a. What actually exists on `main` — measured 2026-10-22
+
+A ruleset named **"Protect default branch"** (id `25579218`) is active on the default branch. It is
+not the configuration §4 recommends, and it changed what "merge yourself" can mean here.
+
+| Rule | Setting | Consequence for a solo maintainer |
+|---|---|---|
+| `deletion` | blocks branch deletion | fine |
+| `non_fast_forward` | blocks force-push | fine, and matches the intent |
+| `required_linear_history` | on | fine — the workflow is squash-only |
+| `pull_request` | **1 approving review required**, thread resolution required, squash only | **blocking**: GitHub refuses an approval on your own pull request (`422`), so with one identity and `bypass_actors: []` (`current_user_can_bypass: never`) nothing can be merged |
+| `required_status_checks` | `validate` | now satisfiable — run `39846014231` was green |
+
+**Measured effect:** PR #34 was blocked at merge with *"At least 1 approving review is required by
+reviewers with write access"*, and `--admin` does not help because no bypass actor is configured.
+The ruleset predates the publication, but earlier merges today succeeded, so something about it
+became enforceable during the session; the state above is what the API reports now.
+
+**Two ways out, both owner-only:**
+
+1. **Recommended:** Settings → Rules → *Protect default branch* → add **Repository admin** as a
+   bypass actor. The protection stays on for everyone else; the single maintainer keeps the ability
+   to merge their own reviewed-by-CI pull requests. This is how a one-person repository gets the
+   benefit of the rule without being locked out by it.
+2. Set *Required approvals* to **0** and rely on `validate` plus linear history. Weaker, but honest
+   about the fact that there is no second reviewer to require.
+
+Recording a rule that nobody can satisfy is the same defect class as a check that cannot fail: it
+looks like governance and functions as a stop.
+
 ## 5. The commands
 
 Run in this order. Each is idempotent.
