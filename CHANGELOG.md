@@ -2,6 +2,47 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.28.3] — 2026-10-22
+
+The testing-QA system was run to its end: seven stages, one repository, every handoff a file the
+next stage reads. The last stage found two things the earlier ones could not.
+
+### Run — `QA-P07`, the orchestrator (`_meta/empirical-evaluation-17.md` §8)
+
+The orchestrator checks the engagement rather than producing another artefact. Six of its eight
+conditions passed: every `.qa/` artefact present, mutations confined to throwaway copies, the suite
+identical across three runs (2.89–2.93 s), targets measured rather than assumed (12 new cases,
+4/4 R1 behaviours, 7/7 gaps, 0/5 mutations surviving).
+
+### Found — the checkpoint cannot be held here
+
+`QA-P07` requires the R1 risk map to be *agreed* before the engagement continues, and that is the
+right rule: the map decides what counts as a defect. In this repository the person who writes the
+map also approves it. The stage recorded that the check could not pass rather than marking it
+green. It is the clearest statement yet of why the independence gap is the binding limit here.
+
+### Fixed — the ledger had gone three releases stale
+
+`.qa/QA_LEDGER.md` still said `QA-P02` in progress and `QA-P03`…`QA-P06` not started, after all six
+had shipped. That is the same defect class as everything this engagement has found: a claim that
+drifted from reality and was caught by a reader, not a test. No gate compares the ledger against
+the existence of its artefacts, and none was added — a filename check would pass on a ledger that
+lists the right files in the wrong states. The ledger is now current and the gap is stated.
+
+### Recorded — `every new test has red→green evidence` is only partial
+
+Of the twelve fixtures added in 2.28.2, six are killed by a mutation, three have a pre-fix probe
+that was silent or warned, and three are guards that were never red — they exist so the new marker
+rule cannot be widened without failing. Twelve would have been a better number to publish. Three
+is the true one.
+
+### Reconciled
+
+Library 364 prompts — **281 operational**, 5 draft, 78 skeleton; 485 Markdown files.
+Evidence: **33 of 281 executed (11.7%)**, all author-run, none independent. Batch B2 12 of 68; the
+testing-QA system is complete at seven of seven stages. CI remains unobserved: run
+`39836004571` reported `steps: 0`.
+
 ## [2.28.2] — 2026-10-22
 
 The validator knew about unfinished prompts, empty sections, duplicate identifiers and dead

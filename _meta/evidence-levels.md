@@ -9,9 +9,9 @@ CI fails if this file is stale, so the numbers below cannot drift from the regis
 |-------|------:|
 | Prompt files in the library | 364 |
 | Labelled `operational` (structurally reviewed) | 281 |
-| `operational` prompts with a recorded execution | 32 |
-| `operational` prompts with no recorded execution | 249 |
-| Share of `operational` prompts demonstrated | 11.4% |
+| `operational` prompts with a recorded execution | 33 |
+| `operational` prompts with no recorded execution | 248 |
+| Share of `operational` prompts demonstrated | 11.7% |
 
 `operational` means the artifact meets the authoring standard and survived a structural
 review against the quality rubric. It does **not** mean the prompt has been run against a
@@ -53,6 +53,7 @@ real repository. Exactly one column above measures execution, and it is the smal
 | `QA-P04` Strategy and Prioritisation | 2026-10-22 | the prompt's author (conflict of interest recorded) | turned the gap list into a unit-level test strategy with an order, non-goals, numeric targets and a data strategy, then measured its own central design assumption against the live corpus | PASS after correcting the strategy - the proposed word-boundary TODO scan matched seven legitimate operational prompts, so the plan was replaced with a line-opening marker rule before any code was written; strategy section 6 records the refuted design | [`empirical-evaluation-17.md`](../_meta/empirical-evaluation-17.md) | author-run; targets are self-set and therefore optimistic; no service or end-to-end level exists to test, so the strategy is unit-level by necessity rather than by choice |
 | `QA-P05` Implementation | 2026-10-22 | the prompt's author (conflict of interest recorded) | implemented two rule changes in scripts/validate_library.py and twelve fixtures in scripts/test_validator.py, then re-measured the whole corpus | PASS with one self-inflicted defect - the first regex dropped a bracketed form the old code caught; the fixture written from the gap list failed and the regex was fixed. Self-tests 32 -> 44, corpus marker hits 0, validator 0 errors / 0 warnings | [`IMPLEMENTATION_LOG.md`](../.qa/IMPLEMENTATION_LOG.md) | author-run; check() remains the only entry point for these rules so every fixture is whole-document, which is slower and coarser than unit tests; no fenced-code handling was added because no prompt needed it (measured, not assumed) |
 | `QA-P06` Validation and Measurement | 2026-10-22 | the prompt's author (conflict of interest recorded) | three repeat runs of the validator, self-tests and gate suite with timing, plus five mutations of the validator applied one per isolated copy of the tree | PASS - identical results across three runs (44/44, all gates passed, 2.95-3.09 s), 5 of 5 mutations killed and 0 survived, covering every R1 behaviour and four previously unfixtured rules | [`VALIDATION.md`](../.qa/VALIDATION.md) | author-run in one environment; the mutation harness lives in /tmp and is not committed, so the numbers are reproducible only by re-applying the documented edits; no independent reproduction exists |
+| `QA-P07` Testing & QA Orchestrator | 2026-10-22 | the prompt's author (conflict of interest recorded) | ran the orchestrator over the six stages it coordinates at ab1528b, checking its own seven verification conditions against the artifacts rather than against the stages' own logs | PASS with two recorded failures - the mandatory P01 checkpoint cannot be held when author and approver are the same person, and the ledger had gone three releases stale (P02 in progress, P03-P06 not started after all six had shipped); CI enforcement remains unobservable (steps: 0). Six of eight checks passed, 12 new cases and 5 of 5 mutations confirmed | [`QA_LEDGER.md`](../.qa/QA_LEDGER.md) | author-run, and the orchestrator is author-run checking author-run work, which is the weakest form of this evidence; three of the twelve fixtures are guards with no prior red state, so 'every new test has red-green evidence' is recorded as partial rather than met |
 
 ## How to add an execution
 

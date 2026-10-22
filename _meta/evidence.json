@@ -363,6 +363,17 @@
       "result": "PASS - identical results across three runs (44/44, all gates passed, 2.95-3.09 s), 5 of 5 mutations killed and 0 survived, covering every R1 behaviour and four previously unfixtured rules",
       "record": ".qa/VALIDATION.md",
       "limitations": "author-run in one environment; the mutation harness lives in /tmp and is not committed, so the numbers are reproducible only by re-applying the documented edits; no independent reproduction exists"
+    },
+    {
+      "identifier": "QA-P07",
+      "title": "Testing & QA Orchestrator",
+      "path": "04-process/testing-qa/P07-Orchestrator/P07-Testing-QA-Orchestrator.md",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "scope": "ran the orchestrator over the six stages it coordinates at ab1528b, checking its own seven verification conditions against the artifacts rather than against the stages' own logs",
+      "result": "PASS with two recorded failures - the mandatory P01 checkpoint cannot be held when author and approver are the same person, and the ledger had gone three releases stale (P02 in progress, P03-P06 not started after all six had shipped); CI enforcement remains unobservable (steps: 0). Six of eight checks passed, 12 new cases and 5 of 5 mutations confirmed",
+      "record": ".qa/QA_LEDGER.md",
+      "limitations": "author-run, and the orchestrator is author-run checking author-run work, which is the weakest form of this evidence; three of the twelve fixtures are guards with no prior red state, so 'every new test has red-green evidence' is recorded as partial rather than met"
     }
   ]
 }

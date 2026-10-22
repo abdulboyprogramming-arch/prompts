@@ -877,3 +877,21 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
   keep the marker rule from over-firing on prose.
 - Not claimed: four stages of seven (`P07` unrun); author-run; the fixtures show the rules fire,
   not that a required verification section contains a *good* verification; still no CI.
+### Execution — testing-QA stage 7, the orchestrator, and a ledger three releases stale (2.28.3)
+- **2026-10-22 · execution · the prompt's author** · record `.qa/QA_LEDGER.md`, `_meta/empirical-evaluation-17.md` §8
+- `QA-P07` checks the engagement rather than writing another artefact. Six of eight conditions
+  passed: seven of seven `.qa/` artifacts present, mutations confined to `/tmp` copies, three
+  identical suite runs at 2.89–2.93 s, targets measured (12 new cases, 4/4 R1, 7/7 gaps, 0/5
+  mutations surviving).
+- **Finding:** the mandatory P01 checkpoint — the R1 map must be *agreed* before continuing —
+  cannot be held when author and approver are the same person. Recorded as partial, not passed.
+- **Defect:** `.qa/QA_LEDGER.md` said `P02` in progress and `P03`–`P06` not started, three
+  releases after all six shipped. Same class as every other defect this system has found: a
+  record that drifted from reality, caught by a reader rather than a test. No ledger gate was
+  added; a filename check would pass on a ledger listing the right files in the wrong states.
+- **Correction of a published number:** the 2.28.2 claim that *every* new test had red→green
+  evidence was too strong. Of twelve fixtures, six have a mutation, three have a pre-fix probe,
+  three are guards that were never red.
+- Not claimed: independence; the orchestrator is author-run work checking author-run work; CI
+  enforcement is still unobservable (`steps: 0`).
+
