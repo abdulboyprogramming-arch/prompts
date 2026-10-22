@@ -14,9 +14,9 @@ This page answers one question honestly: **if this went public tomorrow, what wo
 
 | Dimension | State | Verdict |
 |---|---|---|
-| Structural quality | 0 validator errors, 0 warnings, 0 prose findings across 462 files | **Ready** |
+| Structural quality | 0 validator errors, 0 warnings, 0 prose findings across 485 files | **Ready** |
 | Internal consistency | Counts, links, identifiers, artifact chains, catalog, gallery and task index all machine-checked | **Ready** |
-| Honesty about limits | Every claim about execution is generated from a registry, and the counts quoted in prose are compared against the tree on every run; the ratio is 1.8% | **Ready** |
+| Honesty about limits | Every claim about execution is generated from a registry, and the counts quoted in prose are compared against the tree on every run; the ratio is 11.7% | **Ready** |
 | Community files | Licence (dual), contributing, code of conduct, security policy, issue templates, PR template | **Ready** |
 | Repository configuration | Documented in [`repository-configuration.md`](repository-configuration.md), not yet applied | **Action, not debt** |
 | CI | The workflow is correct and runs one command; it cannot run on this account because of Actions billing | **Blocked outside the repo** |
@@ -104,6 +104,18 @@ Release readiness is not a feeling, so it is written as tests. **Mandatory** cri
 | 14 | CI runs the gates on every pull request | a green check on a PR | Mandatory for publication, blocked externally | **blocked** — Actions billing |
 
 **Read the criteria as a pair.** Criteria 1–10 are satisfied, which means the repository can be published as *an audited library*. Criteria 11–13 are not, which means it cannot be published as *a validated one*. Any announcement has to pick one of those two sentences, and the README already picks the first.
+
+## 7a. Released versions
+
+23 releases exist, `v2.13.0` through `v2.28.3`, each tagged at that version's merge commit.
+`v2.22.0`–`v2.28.3` (twelve versions) were published on 2026-10-22, after a gap in which the
+library advanced seven minor versions without a tag; the backlog was created from the
+`CHANGELOG.md` entry for each version, unedited apart from truncation, so a release note says
+exactly what the changelog says — including the parts that record a defect.
+
+A release tag is a pointer, not a claim. It says *this is the tree as of this change*; it does
+not say the prompts in it are proven. The evidence ratio for every one of these releases is
+stated in `_meta/evidence-levels.md` and has never exceeded 12%.
 
 ## 8. The honest one-line status
 
