@@ -2,6 +2,38 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.23.0] — 2026-10-22
+
+Two defects fixed in the instruments, one family completed and then run on the repository itself.
+
+### Fixed — the gate runner dirtied the tree when it failed
+
+`check_all.py` rewrote `_meta/CATALOG.md` and returned early when the validator
+failed, leaving a generated file modified exactly when the tree was broken.
+Reproduced, then fixed with an unconditional restore in a `finally`, delete-when-absent
+semantics, and a comparison made only after a clean validator run. `scripts/test_check_all.py`
+covers the restore paths and is gate one of fourteen.
+
+### Fixed — the ratio was published fourteen times and checked once
+
+Registering earlier runs moved the executed count from 14 to 17 and every gate
+still passed, because `--check` compared a single generated file. Fourteen hand-written
+copies were still in the tree. `published_claims()` now fails when any page quotes a
+count the registry disagrees with, exempting dated records and lines that measure
+something else with the same denominator.
+
+### Completed — `02-engineering/performance`, and run against this repository
+
+Seven skeletons became an operational system, then ran end to end on the gate
+suite: baseline 3.40 s, bottleneck demonstrated by ablation, two changes, suite
+now **2.56 s (−25%)** with the detector's output byte-identical before and after.
+Gate count falls 15 → 14 by merging two invocations of the same detector into one
+process; self-tests rise to 112 cases. The run is recorded in
+[`_meta/empirical-evaluation-13.md`](_meta/empirical-evaluation-13.md).
+
+Library: **364 prompts — 235 operational, 5 draft, 124 skeleton**; **17 executed**
+(author-run, none independent).
+
 ## [2.22.0] — 2026-10-21
 
 Six changes that were developed together and ship as one release: one measurement closed, one index added, two chat prompts, one differentiation pass, one worked example, and one script that makes the gate list authoritative.
