@@ -839,3 +839,20 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
   the phrase *"N prompts carry that label"* below it stayed unchecked — I edited that number
   by hand for the third release running. The rule now covers both phrasings, with a fixture
   (validator self-tests 27/27).
+
+### Execution — testing-QA stages 1-2, and the gate that could not fail (2.28.1)
+- **2026-10-22 · executions · the prompt's author** · record `_meta/empirical-evaluation-16.md`
+- `QA-P01` produced a ten-behaviour risk map for this repository with four R1 behaviours;
+  the history section, taken from `_meta/review-log.md` because the checkout is shallow,
+  showed the pattern that every recorded defect here was a claim drifting from reality and
+  caught by a reader rather than a test.
+- `QA-P02` measured the suite: 15 gates, 119 cases in 0.29 s, `check_all.py` in 3.04 s,
+  0 errors on the tree, no sleeps or network in tests, CI never executing a step.
+- **R1 defect found:** the risk-class-A rule emitted a *warning* when a read-only prompt
+  invited a deploy, so `check_all.py` passed with the contradiction in place — a control
+  that cannot fail. Moved into `check_risk_class()` as an error with five fixtures
+  (self-tests 27 → 32). Retest: validator exit 1, `check_all` exit 1; real tree unchanged.
+- Second finding, about the target: `.qa/` artefacts fail five gates in a self-validating
+  repository until totals are updated and the files are marked `<!-- not-a-prompt -->`.
+- Not claimed: two stages of seven; author-run; the artefacts prove the machinery, not the
+  prompts' usefulness to a team that is not this one.

@@ -31,6 +31,7 @@ from validate_library import (  # noqa: E402
     check_community,
     check_documented_counts,
     check_readme_counts,
+    check_risk_class,
     check_stated_totals,
     check_system_readmes,
     load,
@@ -290,6 +291,53 @@ COMMUNITY_CASES = [
 ]
 
 
+RISK_CASES = [
+    (
+        "a risk-class-A prompt that invites a destructive action is an error",
+        "A",
+        "\nThe operator will deploy the release to production.\n",
+        True,
+    ),
+    (
+        "the same sentence under risk class B is allowed",
+        "B",
+        "\nThe operator will deploy the release to production.\n",
+        False,
+    ),
+    (
+        "a negated destructive action under risk class A is allowed",
+        "A",
+        "\nYou must not deploy to production; report instead.\n",
+        False,
+    ),
+    (
+        "a risk-class-A prompt with no destructive verb passes",
+        "A",
+        "\nRead the tree and write a report.\n",
+        False,
+    ),
+    (
+        "the message tells the author how to resolve it",
+        "A",
+        "\nThe operator will deploy the release to production.\n",
+        True,
+    ),
+]
+
+
+def risk_doc(root: str, risk: str, extra: str):
+    """One prompt with a given risk class, plus whatever the case appends."""
+    system = os.path.join(root, "testcase", "system")
+    os.makedirs(system, exist_ok=True)
+    body = STAGE.format(n=1, maturity="operational").replace("**Risk class:** A", f"**Risk class:** {risk}")
+    path = os.path.join(system, "P01-Stage.md")
+    with open(path, "w", encoding="utf-8") as fh:
+        fh.write(body + extra)
+    docs = load(root)
+    return next(d for d in docs if d.rel.endswith("P01-Stage.md"))
+
+
+
 def main() -> int:
     failures = 0
     for name, readme, stages, expect_error in CASES:
@@ -359,7 +407,26 @@ def main() -> int:
             for e in errors:
                 print(f"       got: {e}")
 
-    total = len(CASES) + len(COUNT_CASES) + len(DOC_CASES) + len(TOTAL_CASES) + len(COMMUNITY_CASES)
+    # The risk rule was a warning until 2.28.1, so check_all.py passed with a
+    # read-only prompt inviting a deploy. These fixtures pin the blocking behaviour.
+    for name, risk, extra, expect_error in RISK_CASES:
+        with tempfile.TemporaryDirectory() as root:
+            doc = risk_doc(root, risk, extra)
+            errors = check_risk_class(doc)
+        got_error = bool(errors)
+        good = got_error == expect_error
+        print(f"{'ok  ' if good else 'FAIL'} {name} (expected {'error' if expect_error else 'no error'})")
+        if not good:
+            failures += 1
+            for e in errors:
+                print(f"       got: {e}")
+        elif name.startswith("the message tells"):
+            if "without forbidding it" not in errors[0] or "raise the class" not in errors[0]:
+                failures += 1
+                print("       detail missing from the message")
+
+    total = (len(CASES) + len(COUNT_CASES) + len(DOC_CASES) + len(TOTAL_CASES)
+             + len(COMMUNITY_CASES) + len(RISK_CASES))
     print(f"\n{total - failures}/{total} cases passed")
     return 1 if failures else 0
 

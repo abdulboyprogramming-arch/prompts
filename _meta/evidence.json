@@ -296,7 +296,29 @@
       "scope": "run against a purpose-built churn fixture of 1,200 account-months with three planted leakage paths, one of them statistically perfect but structurally innocent, and a random-split defect",
       "result": "v1.0.0 missed the statistically perfect leak because the procedure was schema-first, and had no honest state for a check with no pipeline to hold it. v1.1.0 adds a label-determinism scan (categorical levels at 0 or 100 percent, numeric columns by threshold separation) and a 'pending - no pipeline yet' state; the retest found all four planted defects and labelled every mitigation pending rather than prevented",
       "record": "_meta/empirical-evaluation-15.md",
-      "limitations": "one fixture, one domain, built by the prompt author; the other seven stages of the family remain unexecuted, so the system is partially tested end to end; the fixture is not committed"
+      "limitations": "one fixture, one domain, built by the prompt author; the other seven stages of the family remain unexecuted, so the system is partially tested end to end; the fixture is committed at _meta/fixtures/ml-churn/ and regenerates byte-identically"
+    },
+    {
+      "identifier": "QA-P01",
+      "title": "Testing Context & Quality Goals",
+      "path": "04-process/testing-qa/P01-Context/P01-Context-Goals.md",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "scope": "run against this repository as the target: ten behaviours mapped to R1-R4 with consequences, the failure history taken from _meta/review-log.md, constraints including a CI that has never executed a step",
+      "result": "PASS - produced a risk map of ten behaviours with four at R1, and the run's own history section showed the pattern that every recorded defect in the library was a claim that drifted from reality and was caught by a reader, not a test",
+      "record": "_meta/empirical-evaluation-16.md",
+      "limitations": "author-run; git history unavailable because the checkout is shallow (2 commits), so history came from the repository's own review log; two stages of seven run"
+    },
+    {
+      "identifier": "QA-P02",
+      "title": "Current Test State Assessment",
+      "path": "04-process/testing-qa/P02-Current-State/P02-Current-State-Assessment.md",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "scope": "ran the 15-gate suite and 119 test cases, classified all ten behaviours with deliberate mutations in a throwaway copy, sampled five tests, and measured latency and CI enforcement",
+      "result": "PASS after a fix - found an R1 defect: a risk-class-A prompt inviting a deploy produced only a warning, so check_all reported 'All gates passed'. Rule moved to check_risk_class() as an error with five fixtures; retest fails the build (validator exit 1, check_all exit 1), self-tests 27/27 -> 32/32",
+      "record": "_meta/empirical-evaluation-16.md",
+      "limitations": "author-run; mutations applied in a copy, not the live tree; no end-to-end level exists to test; CI enforcement remains unverifiable because no workflow step has ever executed"
     }
   ]
 }

@@ -2,6 +2,57 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.28.1] — 2026-10-22
+
+The library ran its own testing-QA system against itself, and the system found a check that
+could not fail.
+
+### Tested — `QA-P01` and `QA-P02` against this repository
+
+Two stages of `04-process/testing-qa/` executed on their own codebase: a quality contract
+with ten behaviours mapped and four at R1, then an assessment of what the 15 gates and 119
+test cases actually protect. Every `covered` classification was settled by **mutation** —
+a skeleton relabelled operational, a count changed, a link broken, a placeholder undeclared,
+an identifier duplicated — in a throwaway copy, not by reading the code. Five fired as
+errors. One did not.
+
+### Fixed — a risk-class-A prompt could invite a deploy
+
+Appending *"The agent will deploy the change to production after review."* to a prompt that
+declares `Risk class: A` produced a **warning**. The validator exited 0, and
+`scripts/check_all.py` — the gate every contributor runs and the one CI calls — printed
+**"All gates passed"**.
+
+A class-A prompt tells an agent the work is read-only. A prompt that says so and then
+invites a deploy has licensed the agent to act on a system it was told it could not touch.
+The library already applies the rule this violated — *a test that cannot fail is not a
+test* — to tests. It now applies it to this check:
+
+- the logic moved into `check_risk_class()`, so it can be called directly;
+- it appends to `errors` instead of `warnings`;
+- the message names the three ways out: gate the action in the sentence, raise the class, or
+  state the read-only boundary;
+- five fixtures pin it, including one that asserts the message actually tells the author
+  what to do. Validator self-tests **27 → 32**.
+
+Retest: the same mutation now fails the build (`validator` exit 1, `check_all` exit 1). The
+real tree is unchanged at **0 errors, 0 warnings** — the rule blocks the contradiction
+without blocking anything that exists. The negation escape stays permissive on purpose,
+because a strict version would complain about legitimate prose such as "the pipeline must
+not deploy on Fridays"; that trade-off is recorded rather than hidden.
+
+### Recorded — the QA system fails five gates when run inside this repository
+
+`QA-P01` writes `.qa/` artefacts. Two file-total claims and two unrecognised documents fail
+validation until the totals are updated and the files carry `<!-- not-a-prompt -->`. Correct
+behaviour, and worth knowing before the next engagement against a self-validating target.
+
+### Reconciled
+
+Library 364 prompts — **281 operational**, 5 draft, 78 skeleton; 480 Markdown files.
+Evidence: **28 of 281 executed (10.0%)**, all author-run, none independent. `QA-P01`/`QA-P02`
+are also the first runs recorded from batch B2 since the git-operations stages.
+
 ## [2.28.0] — 2026-10-22
 
 The infrastructure family was the last domain running on outlines. It is now eight

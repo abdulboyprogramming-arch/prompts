@@ -232,6 +232,30 @@ def check_system_readmes(docs: list[Doc]) -> list[str]:
             )
     return errors
 
+def check_risk_class(d: Doc) -> list[str]:
+    """A risk-class-A prompt must not invite an action it says it cannot take.
+
+    A class-A prompt tells an agent the work is read-only. If the same prompt also
+    invites an irreversible action, the agent has been given a licence to act on a
+    system it was told it could not touch. Until 2.28.1 this was a *warning*, which
+    meant `check_all.py` — the one gate every contributor runs — passed with the
+    contradiction in place. A check that cannot fail a build is not a control.
+    """
+    risk = d.meta.get("Risk class")
+    if not risk or risk.strip().upper()[:1] != "A":
+        return []
+    for m in DESTRUCTIVE.finditer(d.text):
+        sent_start = d.text.rfind(". ", 0, m.start())
+        sentence = d.text[max(0, sent_start):m.end()].lower()
+        if not re.search(r"\b(do not|never|must not|avoid|without|not)\b", sentence):
+            return [
+                f"{d.rel}: risk class A but text mentions '{m.group(0)}' without "
+                "forbidding it; gate the action in the sentence, raise the class, or "
+                "state the read-only boundary explicitly"
+            ]
+    return []
+
+
 def check(docs: list[Doc]) -> tuple[list[str], list[str]]:
     errors: list[str] = []
     warnings: list[str] = []
@@ -291,24 +315,11 @@ def check(docs: list[Doc]) -> tuple[list[str], list[str]]:
             primary = mode.split(",")[0].strip().lower()
             if primary not in MODES:
                 errors.append(f"{d.rel}: execution mode '{primary}' not in {sorted(MODES)}")
+
         risk = d.meta.get("Risk class")
-        if risk:
-            code = risk.strip().upper()[:1]
-            if code not in RISK:
-                errors.append(f"{d.rel}: risk class '{risk}' not in A/B/C/D")
-            elif code == "A":
-                hit = None
-                for m in DESTRUCTIVE.finditer(d.text):
-                    sent_start = d.text.rfind(". ", 0, m.start())
-                    sentence = d.text[max(0, sent_start):m.end()].lower()
-                    if not re.search(r"\b(do not|never|must not|avoid|without|not)\b", sentence):
-                        hit = m
-                        break
-                if hit:
-                    warnings.append(
-                        f"{d.rel}: risk class A but text mentions '{hit.group(0)}'; "
-                        "confirm the action is gated or raise the class"
-                    )
+        if risk and risk.strip().upper()[:1] not in RISK:
+            errors.append(f"{d.rel}: risk class '{risk}' not in A/B/C/D")
+        errors.extend(check_risk_class(d))
 
         # Structure (ignore fenced code blocks so templates/examples do not count)
         prose = []
