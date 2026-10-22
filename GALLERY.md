@@ -29,7 +29,7 @@ prompts by situation.
 | [06-interactive — conversations that clarify a request](#06-interactive--conversations-that-clarify-a-request) | 4 | Use when the request is vague and needs to be scoped first. |
 | [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 13 | Composed sequences that route between systems and stop at human gates. |
 
-*Maturity across the library: 273 operational, 5 draft, 86 skeleton, 364 total.*
+*Maturity across the library: 281 operational, 5 draft, 78 skeleton, 364 total.*
 
 ---
 
@@ -353,14 +353,14 @@ Stack-specific practice: data, AI, and the domains still being built out.
 
 | ID | Prompt | Use it for | Maturity | Risk |
 |---|---|---|---|---|
-| `DI-P01` | [Context & Constraints](03-domains/devops-infra/P01-Context/P01-Context-Constraints.md) | Understand the current operational landscape and constraints. | skeleton | B |
-| `DI-P02` | [Requirements & SLOs](03-domains/devops-infra/P02-Requirements/P02-Requirements-SLOs.md) | Define delivery, reliability, and security requirements for the infra/pipeline work. | skeleton | C |
-| `DI-P03` | [Architecture](03-domains/devops-infra/P03-Architecture/P03-Infra-Architecture.md) | Design environment topology and control-plane decisions. | skeleton | C |
-| `DI-P04` | [IaC & Pipelines](03-domains/devops-infra/P04-IaC-Pipelines/P04-IaC-Pipelines.md) | Design infrastructure-as-code layout and CI/CD pipelines that implement the architecture safely. | skeleton | C |
-| `DI-P05` | [Implementation](03-domains/devops-infra/P05-Implementation/P05-Implementation.md) | Apply infrastructure and pipeline changes with minimal blast radius. | skeleton | B |
-| `DI-P06` | [Observability & Ops](03-domains/devops-infra/P06-Observability/P06-Observability-Ops.md) | Ensure the system can be monitored, diagnosed, and operated safely. | skeleton | B |
-| `DI-P07` | [Validation](03-domains/devops-infra/P07-Validation/P07-Validation.md) | Verify safety, correctness, and operational readiness of the changes. | skeleton | B |
-| `DI-P08` | [DevOps & Infrastructure Master Orchestrator](03-domains/devops-infra/P08-Orchestrator/P08-DevOps-Infra-Orchestrator.md) | Runs the devops infra system end to end: gates, routing, and final acceptance. | skeleton | A |
+| `DI-P01` | [Context & Constraints: what breaks, for how many, and who can fix it at 3 a.m.](03-domains/devops-infra/P01-Context/P01-Context-Constraints.md) | DI_CONTEXT.md answering six questions <br>**Inputs:** `PROJECT_PATH, CLOUD_SCOPE, TEAM_OWNERSHIP, INCIDENT_HISTORY` | operational | A |
+| `DI-P02` | [Requirements & SLOs: numbers that a pipeline step can fail on](03-domains/devops-infra/P02-Requirements/P02-Requirements-SLOs.md) | DI_REQUIREMENTS.md containing <br>**Inputs:** `PROJECT_PATH, SLO_TARGETS, COMPLIANCE_SCOPE, ERROR_BUDGET_POLICY` | operational | A |
+| `DI-P03` | [Architecture: the promotion path, and what a bad apply can destroy](03-domains/devops-infra/P03-Architecture/P03-Infra-Architecture.md) | DI_ARCHITECTURE.md containing <br>**Inputs:** `PROJECT_PATH, REGIONS, TENANCY_MODEL, EXISTING_ADR` | operational | A |
+| `DI-P04` | [IaC & Pipelines: state layout, plan review, and the gate that stops a destroy](03-domains/devops-infra/P04-IaC-Pipelines/P04-IaC-Pipelines.md) | DI_IAC_PIPELINES.md containing <br>**Inputs:** `PROJECT_PATH, STATE_BACKEND, PROVIDER_VERSIONS, APPROVER` | operational | C |
+| `DI-P05` | [Implementation: change the estate in steps you can stop between](03-domains/devops-infra/P05-Implementation/P05-Implementation.md) | counts, replacements listed by name), the approver, the time, the result, the verification, and the rollback. <br>**Inputs:** `PROJECT_PATH, TARGET_ENV, APPROVER, CHANGE_WINDOW` | operational | D |
+| `DI-P06` | [Observability & Ops: the signal that fires before the customer calls](03-domains/devops-infra/P06-Observability/P06-Observability-Ops.md) | DI_OBSERVABILITY.md with <br>**Inputs:** `PROJECT_PATH, ALERT_ROUTING, SLO_TARGETS, ONCALL_ROTA` | operational | B |
+| `DI-P07` | [Validation: prove the gates fire, the restore works, and the rollback runs](03-domains/devops-infra/P07-Validation/P07-Validation.md) | DI_VALIDATION.md with <br>**Inputs:** `PROJECT_PATH, TARGET_ENV, DRILL_ENV, DRY_RUN` | operational | C |
+| `DI-P08` | [DevOps & Infrastructure Master Orchestrator: the gates between seven stages](03-domains/devops-infra/P08-Orchestrator/P08-DevOps-Infra-Orchestrator.md) | DI_RUN.md containing the stage ledger (ran, skipped, blocked), each gate's verdict and evidence, every open question with its owner, and the final decision… <br>**Inputs:** `PROJECT_PATH, SCOPE, START_STAGE` | operational | A |
 
 ### embedded-iot · 2 prompts
 

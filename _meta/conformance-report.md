@@ -11,10 +11,10 @@ input, which is the property that makes a sequence of prompts a system rather th
 | Measure | Value |
 |---------|------:|
 | Systems with more than one stage | 52 |
-| Dependency links between stages in a system | 243 |
-| Links where the downstream stage never names the upstream artifact | **56** |
+| Dependency links between stages in a system | 245 |
+| Links where the downstream stage never names the upstream artifact | **50** |
 | Links that mention it only by stem, never as a filename | 9 |
-| Links that cite the upstream filename | 178 |
+| Links that cite the upstream filename | 186 |
 
 The second row is the library's real integration claim. The third is what is left of it: a
 link where the downstream prompt says *"the rollout evidence"* instead of naming
@@ -55,7 +55,7 @@ handed the artifact without anyone guessing its name.
 | `03-domains/data-ml-ai` | 8 | 7 | 6 | 5 | 0 | 1 |
 | `03-domains/database` | 5 | 7 | 4 | 4 | 0 | 0 |
 | `03-domains/desktop-cli` | 2 | 2 | 0 | 0 | 0 | 0 |
-| `03-domains/devops-infra` | 8 | 7 | 6 | 0 | 0 | 6 |
+| `03-domains/devops-infra` | 8 | 7 | 8 | 8 | 0 | 0 |
 | `03-domains/embedded-iot` | 2 | 3 | 1 | 1 | 0 | 0 |
 | `03-domains/frontend` | 8 | 7 | 8 | 8 | 0 | 0 |
 | `03-domains/games` | 10 | 9 | 6 | 5 | 0 | 1 |
@@ -153,17 +153,6 @@ that stage produces but this one never mentions.
 | Stage | Depends on | Artifact not named |
 |-------|------------|--------------------|
 | `MLA-P06` | `MLA-P05` | `ML_IMPLEMENTATION_LOG.md` |
-
-### `03-domains/devops-infra`
-
-| Stage | Depends on | Artifact not named |
-|-------|------------|--------------------|
-| `DI-P02` | `DI-P01` | `DI_CONTEXT.md` |
-| `DI-P03` | `DI-P02` | `DI_REQUIREMENTS.md` |
-| `DI-P04` | `DI-P03` | `DI_ARCHITECTURE.md` |
-| `DI-P05` | `DI-P04` | `DI_IAC_PIPELINES.md` |
-| `DI-P06` | `DI-P05` | `DI_IMPLEMENTATION_LOG.md` |
-| `DI-P07` | `DI-P06` | `DI_OBSERVABILITY.md` |
 
 ### `03-domains/games`
 
