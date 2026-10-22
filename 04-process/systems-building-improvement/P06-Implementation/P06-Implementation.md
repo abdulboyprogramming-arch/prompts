@@ -18,7 +18,7 @@ Apply the designed interventions incrementally and visibly.
 
 ## Workflow
 1. Implement the first high-leverage changes.
-2. Update tooling, docs, automation, or process definitions as needed.
+2. Update the tooling, docs, automation, or process definitions that the approved change list names.
 3. Communicate changes to affected stakeholders.
 4. Record what shipped and what was deferred in `IMPLEMENTATION_LOG.md`.
 

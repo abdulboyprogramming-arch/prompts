@@ -55,7 +55,7 @@ Out of scope: vendor selection, contract negotiation, and cost modelling (`03-do
 
 5. **Handle the timeout ambiguity**: a timeout does not mean the operation did not happen. For anything that moves money or creates resources, design a reconciliation path — query the provider for the state of the operation by your idempotency key before retrying blindly.
 
-6. **Verify webhooks properly**: signature verification with the raw body (not the parsed JSON), timestamp tolerance to bound replay, and a response fast enough to avoid provider retries — do the work asynchronously and acknowledge immediately.
+6. **Verify webhooks at the boundary**: signature verification with the raw body (not the parsed JSON), timestamp tolerance to bound replay, and a response fast enough to avoid provider retries — do the work asynchronously and acknowledge immediately.
 
 7. **Test the sandbox's differences**, then stop trusting it: sandbox APIs often skip rate limits, always succeed, and lag behind production schema. Record every known difference.
 
@@ -96,7 +96,7 @@ Out of scope: vendor selection, contract negotiation, and cost modelling (`03-do
 ## 7. Failure handling
 
 - **The vendor has no idempotency support** → keep your own request log keyed by operation, and reconcile by querying state before retrying; document the residual duplicate risk.
-- **Webhooks cannot be verified** (no signature) → treat the endpoint as public: verify a shared secret, restrict by IP where possible, and never trust the payload for authorisation decisions.
+- **Webhooks cannot be verified** (no signature) → treat the endpoint as public: verify a shared secret, restrict by IP at the proxy, and never trust the payload for authorisation decisions.
 - **The sandbox differs materially** → build contract tests against recorded production responses (sanitised) and test in production-equivalent conditions at low volume.
 - **The vendor deprecates an endpoint with a short window** → treat as a migration (`05-scenarios/platform-migration/`), not a refactor; feature-flag both paths and cut over with evidence.
 - **The integration is blocking and the vendor is down** → the business accepts an outage; state that explicitly and make the status page honest rather than inventing a fallback at 2am.

@@ -26,7 +26,7 @@ Establish reliable ways to measure the relevant performance characteristics and 
    - Test environment and workload description
    - Baseline numbers (with variance if available)
    - Known measurement limitations
-5. Prefer reproducible, automated measurement where possible.
+5. Prefer a reproducible, automated measurement harness over hand-run timings; if you must measure by hand, run each case three times and report the median.
 
 ## Completion Criteria
 - A reliable baseline and measurement method exist.

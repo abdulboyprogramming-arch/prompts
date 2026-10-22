@@ -38,7 +38,7 @@ Out of scope: dry-running it (P03), executing it (P04), verifying afterwards (P0
    | Phase | Contents | Deployed code compatible |
    |-------|----------|--------------------------|
    | 1 Expand | Add nullable columns/tables/indexes; no removals; dual-write if required | Old code unaffected |
-   | 2 Migrate | Backfill in batches; dual-read or dual-write as needed | Old and new both work |
+   | 2 Migrate | Backfill in batches; dual-read or dual-write for the columns that differ | Old and new both work |
    | 3 Switch | Deploy code that reads/writes the new shape; keep old shape written if rollback must remain possible | New code primary |
    | 4 Contract | Remove old columns/constraints/indexes in a later release, only after telemetry shows no use | New code only |
 

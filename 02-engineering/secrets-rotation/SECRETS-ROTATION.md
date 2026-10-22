@@ -84,7 +84,7 @@ Out of scope: secrets management vendor selection, and rotating production crede
 | All consumers exercised | Drill log | Including scheduled jobs |
 | Duration measured | Drill record | Minutes, with bottleneck named |
 | Emergency path | Runbook | Shorter approval path defined |
-| Automation where possible | Config | OIDC/short-lived used where supported |
+| Automation of the credential | Config | OIDC or short-lived tokens wherever the provider supports them |
 
 ## 7. Failure handling
 

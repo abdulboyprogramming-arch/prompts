@@ -38,7 +38,7 @@ Do **not** hunt for defects or opportunities yet (P07/P08). Do **not** modify so
 
 - Filesystem read (Category A).
 - Git read commands.
-- Language-specific inspection tools if available (e.g., `go list`, `npm ls`, `cargo tree`, etc.) — use only if already present.
+- Language-specific inspection tools if available (`go list -m all`, `npm ls`, `cargo tree`, `pip show`) — use only if already present.
 - Optional authenticated `gh` for additional metadata.
 - Write access limited to `.contribution-agent/` artifacts.
 
@@ -59,12 +59,12 @@ Do **not** hunt for defects or opportunities yet (P07/P08). Do **not** modify so
 ### Step 2 — Entry Points and Public Surface
 1. Locate main entry points:
    - CLI binaries / main packages
-   - Library public APIs (exported modules, index files, public headers, etc.)
+   - Library public APIs (exported modules, index files, public headers, `__init__.py` re-exports)
    - Web/API route definitions
    - Plugin or extension points
 2. For each major entry point record:
    - File path
-   - How it is invoked (command, import path, URL pattern, etc.)
+   - How it is invoked (command, import path, URL pattern, event name)
    - High-level responsibility
 3. Note any versioning or stability guarantees mentioned in docs or code comments.
 
@@ -88,14 +88,14 @@ Do **not** hunt for defects or opportunities yet (P07/P08). Do **not** modify so
 4. Identify internal package / workspace relationships in monorepos.
 
 ### Step 5 — Build, Test, and Quality Pipeline
-1. Determine how the project is built (Makefile targets, npm scripts, cargo commands, maven goals, etc.).
+1. Determine how the project is built (Makefile targets, npm scripts, cargo commands, maven goals, Gradle tasks).
 2. Identify the primary test command(s) and test organization.
 3. Locate linter, formatter, type-checker, and static-analysis configuration.
 4. Examine CI workflows (/.github/workflows or equivalent) to understand required checks, matrix strategies, and release automation.
 5. Record the exact commands a contributor is expected to run before submitting a change.
 
 ### Step 6 — Configuration, Environment, and Operational Concerns
-1. Identify configuration mechanisms (env vars, config files, feature flags, etc.).
+1. Identify configuration mechanisms (env vars, config files, feature flags, CLI arguments).
 2. Note required environment variables or secrets (names only; never values).
 3. Capture any database, message-queue, or external-service assumptions.
 4. Note deployment or runtime environment expectations if present.
@@ -103,7 +103,7 @@ Do **not** hunt for defects or opportunities yet (P07/P08). Do **not** modify so
 ### Step 7 — Design Patterns and Architectural Decisions
 1. Look for Architecture Decision Records (ADRs), design docs, or RFCs.
 2. Observe recurring patterns actually present in the code (not just claimed in docs).
-3. Record important invariants or constraints that contributors must respect (thread-safety expectations, error-handling conventions, logging standards, etc.).
+3. Record important invariants or constraints that contributors must respect (thread-safety expectations, error-handling conventions, logging standards, naming rules).
 
 ### Step 8 — Knowledge Base Population
 1. Write structured entries into KNOWLEDGE_BASE.md under clear headings:

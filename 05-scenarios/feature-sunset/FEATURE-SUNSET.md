@@ -39,7 +39,7 @@ Out of scope: deciding *whether* to sunset — that is a product decision you ar
 
 1. **Define the feature as a measurable object.** List its surfaces: routes, API endpoints, UI entry points, background jobs, webhooks, exports, and stored data. Anything you cannot observe, you cannot declare unused.
 
-2. **Measure usage properly, and be suspicious of the easy number.** Distinguish:
+2. **Measure usage at the level that can lie least, and be suspicious of the easy number.** Distinguish:
    - unique **accounts** touching it, not page views;
    - **workflows completed**, not just entry points hit (a click that abandons is not usage);
    - **frequency and recency** — daily users and once-a-quarter users have different needs;

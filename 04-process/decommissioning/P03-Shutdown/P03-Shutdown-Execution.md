@@ -31,6 +31,7 @@ Out of scope: deleting data or infrastructure (P04), migrating consumers (P02).
 | Named approver for Category C actions: `{{APPROVER}}` | yes | stop |
 | A restore path: the artefact can be re-enabled quickly | yes | define one before starting |
 | The escalation path for the "last consumer" case of `{{TARGET_SERVICE}}`, executed no earlier than `{{CHANGE_WINDOW}}` | recommended | stop and get it |
+- `.decommission/DEPRECATION_PLAN.md` — written by `DEC-P02`; read it before starting rather than re-deriving it.
 
 ## 4. Workflow
 

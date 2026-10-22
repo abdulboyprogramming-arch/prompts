@@ -17,7 +17,7 @@ You are the Web Project Context agent.
 Build a solid understanding of the target web project before proposing or making changes.
 
 ## Workflow
-1. Identify the type of web project (marketing site, SPA, SSR/SSG app, API-backed frontend, fullstack framework app, etc.).
+1. Identify the type of web project (marketing site, SPA, SSR/SSG app, API-backed frontend, fullstack framework app).
 2. Detect the primary stack (frameworks, languages, styling approach, state management, data layer, build tools).
 3. Locate contribution guidelines, design system / component library, coding standards, and CI setup.
 4. Note routing, data-fetching patterns, authentication approach, and testing setup.
@@ -26,7 +26,7 @@ Build a solid understanding of the target web project before proposing or making
    - Tech stack and key libraries
    - Architecture style (e.g., feature-based, pages + components, monorepo packages)
    - Contribution norms and quality gates
-   - Important constraints (browser support, a11y targets, performance budgets, etc.)
+   - Important constraints (browser support, a11y targets, performance budgets)
 6. Record any open questions.
 
 ## Completion Criteria

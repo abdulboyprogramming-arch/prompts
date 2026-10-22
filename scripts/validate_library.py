@@ -138,7 +138,7 @@ def is_archive(rel: str) -> bool:
     return rel.split(os.sep)[0] in ARCHIVE_DIRS
 
 
-TOP_LEVEL_DOCS = {"README.md", "AGENTS.md", "CHANGELOG.md", "CONTRIBUTING.md", "PROJECT-STATUS.md", "GALLERY.md", "QUICKSTART.md"}
+TOP_LEVEL_DOCS = {"README.md", "AGENTS.md", "CHANGELOG.md", "CONTRIBUTING.md", "PROJECT-STATUS.md", "GALLERY.md", "QUICKSTART.md", "TASKS.md"}
 
 
 def strip_fences(text: str) -> str:
@@ -383,6 +383,11 @@ def check(docs: list[Doc]) -> tuple[list[str], list[str]]:
                 f"{len(stages)} stages are skeleton"
             )
 
+    errors.extend(check_readme_counts(docs))
+    errors.extend(check_documented_counts(docs))
+    errors.extend(check_stated_totals(docs))
+    errors.extend(check_community(docs))
+
     for d in docs:
         if d.is_prompt and d.rel.split(os.sep)[0] not in TOOLING_DIRS:
             e, w = check_inputs(d)
@@ -408,6 +413,213 @@ def check(docs: list[Doc]) -> tuple[list[str], list[str]]:
         )
 
     return errors, warnings
+
+
+# Files a public repository is expected to have, and the documents that must
+# point at them. A code of conduct that exists in `.github/` and is linked from
+# nowhere is a file, not a policy: GitHub shows it in the UI, and nothing in the
+# repository tells a contributor it applies to them.
+COMMUNITY_FILES = {
+    "LICENSE": "the licence GitHub reads to label the repository",
+    "CONTRIBUTING.md": "the contribution guide GitHub links in the new-issue UI",
+    ".github/CODE_OF_CONDUCT.md": "the conduct policy GitHub links in its UI",
+    ".github/SECURITY.md": "the private disclosure route GitHub surfaces",
+}
+COMMUNITY_LINKS = [
+    ("CONTRIBUTING.md", "CODE_OF_CONDUCT", "the code of conduct"),
+    ("CONTRIBUTING.md", "SECURITY.md", "the security policy"),
+    ("README.md", "CONTRIBUTING.md", "the contribution guide"),
+]
+
+
+def check_community(docs: list[Doc], texts: dict[str, str] | None = None) -> list[str]:
+    """The community files must exist and be reachable from the documents that matter."""
+    errors: list[str] = []
+    for rel, why in COMMUNITY_FILES.items():
+        if texts is not None:
+            if rel not in texts:
+                errors.append(f"{rel} is missing — {why}")
+        elif not os.path.exists(os.path.join(ROOT, rel)):
+            errors.append(f"{rel} is missing — {why}")
+
+    for rel, needle, label in COMMUNITY_LINKS:
+        if texts is not None:
+            text = texts.get(rel)
+        else:
+            path = os.path.join(ROOT, rel)
+            text = open(path, encoding="utf-8").read() if os.path.exists(path) else None
+        if text is None:
+            continue
+        if needle not in text:
+            errors.append(f"{rel} does not mention {label} — a policy nobody is pointed at is a file, not a policy")
+    return errors
+
+
+# A row in the README's per-system table looks like:
+#   | [`02-engineering/codebase-audit/`](02-engineering/codebase-audit/README.md) | 9 | operational |
+README_COUNT_ROW = re.compile(r"^\|\s*\[`([A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*)/`\]\([^)]*\)\s*\|\s*(\d+)\s*\|", re.M)
+
+
+def check_readme_counts(docs: list[Doc], readme_text: str | None = None) -> list[str]:
+    """The README's system table must agree with the number of prompts on disk.
+
+    This is the count that drifts most quietly. It drifted twice in one release:
+    `03-domains/ai-agentic/` said 5 while holding 7, and `07-workflows/` said 12
+    while holding 13. Neither is a lie anyone types; both are what happens when a
+    prompt is added and the table is not revisited. Because the table is the first
+    quantitative claim a reader meets, a stale row is a small, avoidable
+    inaccuracy in the document that asks to be trusted.
+    """
+    text = readme_text
+    if text is None:
+        readme_path = os.path.join(ROOT, "README.md")
+        if not os.path.exists(readme_path):
+            return []
+        with open(readme_path, encoding="utf-8") as fh:
+            text = fh.read()
+
+    errors: list[str] = []
+    for prefix, claimed in README_COUNT_ROW.findall(text):
+        actual = sum(
+            1
+            for d in docs
+            if d.is_prompt
+            and not is_archive(d.rel)
+            and d.rel.replace(os.sep, "/").startswith(prefix + "/")
+        )
+        if int(claimed) != actual:
+            errors.append(
+                f"README.md: table says {claimed} prompts under {prefix}/ but {actual} exist — "
+                "update the row (and the maturity in the same row) to match the tree"
+            )
+    return errors
+
+
+# Maturity lines restated in prose. Each is a hand-maintained sentence, and each
+# drifted every time a batch promoted a prompt: the number of `operational`
+# prompts moved from 213 to 228 during one release, and four documents had to be
+# edited by hand each time. A hand-maintained count beside a generated one is a
+# claim waiting to become false.
+DOC_MATURITY_LINES = [
+    (
+        "PROJECT-STATUS.md",
+        re.compile(r"\*\*(\d+) operational\*\*,\s*\*\*(\d+) draft\*\*,\s*\*\*(\d+) skeleton\*\*"),
+    ),
+    (
+        os.path.join("_meta", "publication-checklist.md"),
+        re.compile(r"(\d+) operational, (\d+) draft, (\d+) skeleton"),
+    ),
+]
+
+
+# (document, pattern, which total it claims). The Maturity triplet was the first
+# claim of this kind to drift, not the last: "458 Markdown files" outlived the two
+# documents that made it 462, and a social-preview line still promised 213
+# operational prompts and two executed. A total in prose is a measurement, so it
+# gets the same treatment as the maturity line.
+# Only phrasings that unambiguously mean the total. "228 prompts carry that label"
+# is a statement about the operational subset, and a rule that cannot tell the two
+# apart produces findings the reader has to dismiss, which is how a gate gets
+# switched off.
+DOC_TOTAL_LINES = [
+    (re.compile(r"(\d+)\s+Markdown files"), "files"),
+    (re.compile(r"(\d+)\s+prompt files"), "prompts"),
+    (re.compile(r"all\s+(\d+)\s+prompts\b"), "prompts"),
+]
+
+DOC_TOTAL_FILES = [
+    "README.md",
+    "PROJECT-STATUS.md",
+    "QUICKSTART.md",
+    os.path.join("_meta", "publication-checklist.md"),
+]
+
+
+def check_stated_totals(
+    docs: list[Doc],
+    texts: dict[str, str] | None = None,
+    totals: dict[str, int] | None = None,
+) -> list[str]:
+    """Totals quoted in prose must equal what the scanner just counted.
+
+    Only the documents a reader arrives through are checked, and not the changelog:
+    a changelog's numbers were true on the release date and rewriting them would be
+    worse than leaving them. `texts` lets the self-tests supply fixtures.
+    """
+    total_files = len(docs)
+    total_prompts = sum(
+        1
+        for d in docs
+        if d.is_prompt and not is_archive(d.rel) and d.rel.split(os.sep)[0] not in TOOLING_DIRS
+    )
+    actual = {"files": total_files, "prompts": total_prompts}
+    if totals is not None:
+        actual.update(totals)
+    errors: list[str] = []
+    for rel in DOC_TOTAL_FILES:
+        if texts is not None:
+            text = texts.get(rel)
+        else:
+            path = os.path.join(ROOT, rel)
+            text = None
+            if os.path.exists(path):
+                with open(path, encoding="utf-8") as fh:
+                    text = fh.read()
+        if text is None:
+            continue
+        for pattern, kind in DOC_TOTAL_LINES:
+            for raw in pattern.findall(text):
+                if int(raw) != actual[kind]:
+                    errors.append(
+                        f"{rel}: says {raw} {kind} but the tree has {actual[kind]} — update the number"
+                    )
+    return errors
+
+
+def check_documented_counts(
+    docs: list[Doc], texts: dict[str, str] | None = None
+) -> list[str]:
+    """Prose counts must match the tree, in the same way the README table must.
+
+    The generated files cannot drift: CI fails if they are stale. The documents a
+    reader actually arrives through can, and did — a maturity line that says 213
+    while the tree holds 228 is the quiet kind of wrong, because it looks like a
+    measurement.
+
+    `texts` maps a path to its content so tests can supply fixtures instead of
+    reading the working tree.
+    """
+    prompts = [
+        d
+        for d in docs
+        if d.is_prompt and not is_archive(d.rel) and d.rel.split(os.sep)[0] not in TOOLING_DIRS
+    ]
+    counts: dict[str, int] = {"operational": 0, "draft": 0, "skeleton": 0}
+    for d in prompts:
+        if d.maturity in counts:
+            counts[d.maturity] += 1
+
+    errors: list[str] = []
+    for rel, pattern in DOC_MATURITY_LINES:
+        if texts is not None:
+            text = texts.get(rel)
+        else:
+            path = os.path.join(ROOT, rel)
+            text = None
+            if os.path.exists(path):
+                with open(path, encoding="utf-8") as fh:
+                    text = fh.read()
+        if text is None:
+            continue
+        for op, dr, sk in pattern.findall(text):
+            claimed = (int(op), int(dr), int(sk))
+            actual = (counts["operational"], counts["draft"], counts["skeleton"])
+            if claimed != actual:
+                errors.append(
+                    f"{rel}: says {op} operational / {dr} draft / {sk} skeleton but the tree "
+                    f"has {actual[0]} / {actual[1]} / {actual[2]} — update the line"
+                )
+    return errors
 
 
 def build_catalog(docs: list[Doc]) -> str:

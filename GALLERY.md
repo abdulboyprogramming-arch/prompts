@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE — do not edit by hand. Run: python3 scripts/generate_gallery.py --write -->
 
-Every prompt in the library — **362** of them — with a direct link and the situation it is for, plus **9** foundational reference documents.
+Every prompt in the library — **364** of them — with a direct link and the situation it is for, plus **9** foundational reference documents.
 Generated from the prompt files, so it cannot drift from them; CI fails if this file is stale.
 
 **Reading the columns**
@@ -15,11 +15,12 @@ Generated from the prompt files, so it cannot drift from them; CI fails if this 
 | **Maturity** | `operational` = complete and reviewable; `draft` = usable with supervision; `skeleton` = outline, not runnable |
 | **Risk** | A = read-only, B = branch changes, C = shared environments, D = destructive |
 
-**Browse by area**
+**Browse by area** — or start from the problem in [`TASKS.md`](TASKS.md), which indexes the same
+prompts by situation.
 
 | Area | Prompts | What it is for |
 |---|---:|---|
-| [00-core — foundations every prompt assumes](#00-core--foundations-every-prompt-assumes) | 6 | Rules and protocols that apply to every other prompt. |
+| [00-core — foundations every prompt assumes](#00-core--foundations-every-prompt-assumes) | 8 | Rules and protocols that apply to every other prompt. |
 | [01-contribution — contributing to open source](#01-contribution--contributing-to-open-source) | 48 | Stage systems for contributing to an unfamiliar project. |
 | [02-engineering — building, auditing, and recovering code](#02-engineering--building-auditing-and-recovering-code) | 82 | Work on an existing codebase: audit, repair, complete, upgrade. |
 | [03-domains — domain-specific engineering](#03-domains--domain-specific-engineering) | 75 | Stack-specific practice: data, AI, and the domains still being built out. |
@@ -28,7 +29,7 @@ Generated from the prompt files, so it cannot drift from them; CI fails if this 
 | [06-interactive — conversations that clarify a request](#06-interactive--conversations-that-clarify-a-request) | 4 | Use when the request is vague and needs to be scoped first. |
 | [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 13 | Composed sequences that route between systems and stop at human gates. |
 
-*Maturity across the library: 208 operational, 5 draft, 149 skeleton, 362 total.*
+*Maturity across the library: 228 operational, 5 draft, 131 skeleton, 364 total.*
 
 ---
 
@@ -36,14 +37,16 @@ Generated from the prompt files, so it cannot drift from them; CI fails if this 
 
 Rules and protocols that apply to every other prompt.
 
-### All prompts in this area · 6 prompts
+### All prompts in this area · 8 prompts
 
 | ID | Prompt | Use it for | Maturity | Risk |
 |---|---|---|---|---|
 | `CHAT-DEBUG` | [Chat Debugging: diagnose from a pasted error, and say what you cannot know](00-core/conversational/CHAT-DEBUG.md) | Something is broken, the only tool you have is a chat window, and you need the next test rather than five guesses. <br>**Inputs:** `SYMPTOM, ERROR_TEXT, LANGUAGE_STACK, RECENT_CHANGE, ALREADY_TRIED` | operational | A |
 | `CHAT-DESIGN` | [Chat Design: thinking architecture through in conversation](00-core/conversational/CHAT-DESIGN.md) | Choosing between two approaches, sizing a design before building it, or writing the decision record afterwards. <br>**Inputs:** `DESIGN_QUESTION, CONSTRAINTS, SCALE, TEAM_SIZE, DEADLINE, EXISTING_STACK` | operational | A |
+| `CHAT-HANDOFF` | [Chat Handoff: carrying a long engagement between conversations](00-core/conversational/CHAT-HANDOFF.md) | One message block, short enough to paste into a new conversation, containing the constraints, the established facts with labels, the decisions and their reasons… <br>**Inputs:** `ENGAGEMENT, PACKET_VERSION, OPEN_QUESTIONS, REDACTED_ITEMS` | operational | A |
 | `CHAT-MODE` | [Conversational Mode: running any prompt in a chat window](00-core/conversational/CHAT-MODE.md) | You want to use this library in ChatGPT, Claude, Gemini, or any chat window — with no repository access, no shell, and no ability to run a test. <br>**Inputs:** `PROMPT_REF, CHAT_MODEL, PROVIDED_CONTEXT, SESSION_LIMIT` | operational | A |
 | `CHAT-REVIEW` | [Chat Code Review: reviewing a paste, with the limits stated](00-core/conversational/CHAT-REVIEW.md) | You paste a function, a file, or a diff into a chat window and want a review that is useful and does not pretend to have read the codebase. <br>**Inputs:** `REVIEW_TARGET, REVIEW_INTENT, LANGUAGE_STACK, RISK_TOLERANCE` | operational | A |
+| `CHAT-SELECT` | [Chat Select: choosing the right prompt inside a conversation](00-core/conversational/CHAT-SELECT.md) | A routing card with one primary prompt, the reason it fits, the one fact that would overturn the choice, what the user should paste next, and the path to read if… <br>**Inputs:** `SITUATION, INDEX_PASTED, ALREADY_TRIED, CONSTRAINT` | operational | A |
 | `GEN-P01` | [The Prompt Forge: build a runnable prompt from a description](00-core/prompt-engineering/PROMPT-FORGE.md) | The prompt — paste-ready, complete, with all ten sections filled for its archetype. <br>**Inputs:** `PROMPT_INTENT, TARGET_AGENT, OPERATING_MODE, DOMAIN, STRICTNESS, OUTPUT_SHAPE, INTERVIEW_MAX, EXISTING_PROMPT, REPO_PATH` | operational | A |
 | `GEN-P02` | [Prompt Regression: prove a prompt change is an improvement](00-core/prompt-engineering/PROMPT-REGRESSION.md) | A fixture set, a run protocol, per-case results, a score against _meta/quality-rubric.md, a comparison to the baseline where one exists, a decision, and the reason… <br>**Inputs:** `PROMPT_PATH, TEST_CASES, BASELINE_RESULTS, TARGET_AGENT, RUNS_PER_CASE, REPO_PATH` | operational | A |
 
@@ -90,12 +93,12 @@ Stage systems for contributing to an unfamiliar project.
 | ID | Prompt | Use it for | Maturity | Risk |
 |---|---|---|---|---|
 | `PKG-P01` | [Context & Package Understanding](01-contribution/packages-libraries/P01-Context/P01-Context-Package-Understanding.md) | Understand the package’s purpose, public API, users, and contribution norms. | skeleton | B |
-| `PKG-P02` | [Discovery & Opportunity Identification](01-contribution/packages-libraries/P02-Discovery/P02-Discovery-Opportunity-Identification.md) | Find valuable, realistic contribution opportunities for the package. | skeleton | A |
-| `PKG-P03` | [Opportunity Selection & Framing](01-contribution/packages-libraries/P03-Selection/P03-Opportunity-Selection-Framing.md) | Select the best opportunity and frame it with explicit compatibility awareness. | skeleton | B |
-| `PKG-P04` | [Planning & API Impact](01-contribution/packages-libraries/P04-Planning/P04-Planning-API-Impact.md) | Plan the change while explicitly considering public API impact and versioning. | skeleton | B |
-| `PKG-P05` | [Implementation](01-contribution/packages-libraries/P05-Implementation/P05-Implementation.md) | Implement the planned change cleanly, preserving public API contracts unless a deliberate breaking change was approved in the plan. | skeleton | B |
-| `PKG-P06` | [Validation & Compatibility](01-contribution/packages-libraries/P06-Validation/P06-Validation-Compatibility.md) | Verify correctness, compatibility expectations, and release readiness signals. | skeleton | C |
-| `PKG-P07` | [PR & Communication](01-contribution/packages-libraries/P07-PR/P07-PR-Communication.md) | Prepare a clear pull request that makes compatibility impact and verification obvious to maintainers. | skeleton | B |
+| `PKG-P02` | [Discovery & Opportunity Identification: read the consumers, not just the code](01-contribution/packages-libraries/P02-Discovery/P02-Discovery-Opportunity-Identification.md) | OPPORTUNITIES.md where each candidate records the consumer evidence (issue, downstream workaround, error message in the wild), the friction it represents, the… <br>**Inputs:** `PROJECT_CONTEXT, ISSUE_TRACKER, RELEASE_HISTORY, DOWNSTREAM_SEARCH, SEMVER_POLICY` | operational | A |
+| `PKG-P03` | [Opportunity Selection & Framing: choose work that does not add a promise you must keep](01-contribution/packages-libraries/P03-Selection/P03-Opportunity-Selection-Framing.md) | SELECTED_WORK.md naming one candidate, its surface cost ledger (symbols added, symbols changed, dependencies added, behaviour changed silently), the semver… <br>**Inputs:** `OPPORTUNITIES, PROJECT_CONVENTIONS, ISSUE_REF, SEMVER_POLICY, SUPPORT_POLICY` | operational | A |
+| `PKG-P04` | [Planning & API Impact: plan the release, not just the patch](01-contribution/packages-libraries/P04-Planning/P04-Planning-API-Impact.md) | PLAN.md with the allowed surface delta (symbols added, changed, removed — and nothing else), the deprecation sequence where a removal is involved, the test layer… <br>**Inputs:** `SELECTED_WORK, SEMVER_EXPECTATION, CHANGELOG_FORMAT, SUPPORT_POLICY, DOWNSTREAM_CONSUMERS` | operational | A |
+| `PKG-P05` | [Implementation: every line you export is a line you support](01-contribution/packages-libraries/P05-Implementation/P05-Implementation.md) | A branch where the exported surface differs from main only by what the plan priced, types are written as the consumer reads them, tests run against the public entry… <br>**Inputs:** `PLAN, SEMVER_EXPECTATION, BUILD_COMMAND, TEST_COMMAND, TYPES_CONFIG` | operational | B |
+| `PKG-P06` | [Validation & Compatibility: prove you did not break anyone's build](01-contribution/packages-libraries/P06-Validation/P06-Validation-Compatibility.md) | VALIDATION.md with the public API surface diff, the runtime and module-format matrix, consumer smoke tests run against the packaged artifact, the semver decision… <br>**Inputs:** `CHANGE_SCOPE, SUPPORTED_RUNTIMES, PREVIOUS_VERSION, TEST_COMMAND, SEMVER_POLICY` | operational | A |
+| `PKG-P07` | [PR & Communication: write the release note first, then the pull request](01-contribution/packages-libraries/P07-PR/P07-PR-Communication.md) | PULL_REQUEST.md opening with the compatibility verdict and the symbol that drives it, a draft changelog entry in the project's format, the consumer-visible change… <br>**Inputs:** `VALIDATION, SEMVER_EXPECTATION, ISSUE_REF, PR_TEMPLATE, CHANGELOG_FORMAT, SUPPORT_POLICY` | operational | B |
 | `PKG-P08` | [Package & Library Contribution Master Orchestrator](01-contribution/packages-libraries/P08-Orchestrator/P08-Package-Contribution-Orchestrator.md) | Runs the packages libraries system end to end: gates, routing, and final acceptance. | skeleton | A |
 
 ### web/general · 8 prompts
@@ -103,12 +106,12 @@ Stage systems for contributing to an unfamiliar project.
 | ID | Prompt | Use it for | Maturity | Risk |
 |---|---|---|---|---|
 | `WEB-P01` | [Context & Project Understanding](01-contribution/web/general/P01-Context/P01-Context-Project-Understanding.md) | Build a solid understanding of the target web project before proposing or making changes. | skeleton | B |
-| `WEB-P02` | [Discovery & Opportunity Identification](01-contribution/web/general/P02-Discovery/P02-Discovery-Opportunity-Identification.md) | Find valuable, realistic contribution opportunities in the web project. | skeleton | A |
-| `WEB-P03` | [Opportunity Selection & Framing](01-contribution/web/general/P03-Opportunity/P03-Opportunity-Selection-Framing.md) | Select the best opportunity for the current context and frame it clearly. | skeleton | B |
-| `WEB-P04` | [Planning & Design](01-contribution/web/general/P04-Planning/P04-Planning-Design.md) | Produce a concrete plan for implementing the selected work while respecting web project conventions. | skeleton | B |
-| `WEB-P05` | [Implementation](01-contribution/web/general/P05-Implementation/P05-Implementation.md) | Implement the planned change cleanly, following the project’s conventions and web best practices. | skeleton | B |
-| `WEB-P06` | [Validation & Quality](01-contribution/web/general/P06-Validation/P06-Validation-Quality.md) | Verify that the change is correct, polished, and meets project quality bars. | skeleton | B |
-| `WEB-P07` | [PR & Communication](01-contribution/web/general/P07-PR-Communication/P07-PR-Communication.md) | Prepare and submit a clear, professional pull request that reviewers will appreciate. | skeleton | B |
+| `WEB-P02` | [Discovery & Opportunity Identification: find what a real browser shows, not what a code read suggests](01-contribution/web/general/P02-Discovery/P02-Discovery-Opportunity-Identification.md) | OPPORTUNITIES.md where every candidate records what was observed, where (URL and viewport), in which engine, what the project's own signals say about it (issue… <br>**Inputs:** `PROJECT_CONTEXT, ISSUE_LABELS, RUN_COMMAND, BASELINE_BROWSERS, A11Y_TARGET` | operational | A |
+| `WEB-P03` | [Opportunity Selection & Framing: choose work you can prove, in a surface you are allowed to change](01-contribution/web/general/P03-Opportunity/P03-Opportunity-Selection-Framing.md) | SELECTED_WORK.md naming one candidate, the user-visible claim it makes, the artifact that will prove the claim, the surfaces it touches, the states in scope, the… <br>**Inputs:** `OPPORTUNITIES, PROJECT_CONVENTIONS, DESIGN_OWNER, ISSUE_REF, BROWSER_SUPPORT` | operational | A |
+| `WEB-P04` | [Planning & Design: plan the states and the breakpoints, or plan to discover them in review](01-contribution/web/general/P04-Planning/P04-Planning-Design.md) | PLAN.md with the surface list, the state-by-breakpoint matrix with a test layer per row, the reuse-or-create decision with its reason, the ordered steps each ending… <br>**Inputs:** `SELECTED_WORK, PROJECT_CONVENTIONS, COMPONENT_LIBRARY, BROWSER_SUPPORT, TEST_COMMAND` | operational | A |
+| `WEB-P05` | [Implementation: build every state the plan named, and no more](01-contribution/web/general/P05-Implementation/P05-Implementation.md) | A branch implementing the plan, with every state from PLAN.md present, native semantics used wherever they exist, the diff limited to the named surfaces, and… <br>**Inputs:** `PLAN, PROJECT_CONVENTIONS, COMPONENT_LIBRARY, DESIGN_TOKENS, TEST_COMMAND` | operational | B |
+| `WEB-P06` | [Validation & Quality: prove the change works in a browser you did not write it in](01-contribution/web/general/P06-Validation/P06-Validation-Quality.md) | VALIDATION.md stating what ran, at which engine and viewport, what it showed, which accessibility criteria were checked and how, and — explicitly — which checks… <br>**Inputs:** `CHANGE_SCOPE, BASELINE_BROWSERS, A11Y_TARGET, TEST_COMMAND, VIEWPORTS` | operational | A |
+| `WEB-P07` | [PR & Communication: give the reviewer a viewing instruction, not a gallery](01-contribution/web/general/P07-PR-Communication/P07-PR-Communication.md) | PULL_REQUEST.md with a one-paragraph summary naming the user-visible change, a numbered reproduction recipe, media labelled with engine and viewport, the states a… <br>**Inputs:** `VALIDATION, BRANCH, PREVIEW_URL, ISSUE_REF, PR_TEMPLATE, A11Y_TARGET` | operational | B |
 | `WEB-P08` | [Web Contribution Master Orchestrator](01-contribution/web/general/P08-Orchestrator/P08-Web-Contribution-Orchestrator.md) | Runs the general system end to end: gates, routing, and final acceptance. | skeleton | A |
 
 ### web3/general · 8 prompts
@@ -116,12 +119,12 @@ Stage systems for contributing to an unfamiliar project.
 | ID | Prompt | Use it for | Maturity | Risk |
 |---|---|---|---|---|
 | `W3-P01` | [Context & Project Understanding](01-contribution/web3/general/P01-Context/P01-Context-Project-Understanding.md) | Build a solid understanding of the target Web3 project before proposing changes. | skeleton | B |
-| `W3-P02` | [Discovery & Opportunity Identification](01-contribution/web3/general/P02-Discovery/P02-Discovery-Opportunity-Identification.md) | Find valuable, realistic contribution opportunities. | skeleton | A |
-| `W3-P03` | [Opportunity Selection & Framing](01-contribution/web3/general/P03-Selection/P03-Opportunity-Selection-Framing.md) | Select the best opportunity and frame it clearly, with explicit risk awareness. | skeleton | B |
-| `W3-P04` | [Planning & Design](01-contribution/web3/general/P04-Planning/P04-Planning-Design.md) | Produce a concrete plan that respects Web3 constraints and project conventions. | skeleton | B |
-| `W3-P05` | [Implementation](01-contribution/web3/general/P05-Implementation/P05-Implementation.md) | Implement the planned change cleanly while preserving security and project conventions. | skeleton | B |
-| `W3-P06` | [Validation & Security Checks](01-contribution/web3/general/P06-Validation/P06-Validation-Security.md) | Verify correctness, safety, and quality of the change. | skeleton | B |
-| `W3-P07` | [PR & Communication](01-contribution/web3/general/P07-PR/P07-PR-Communication.md) | Prepare a clear, professional pull request that helps reviewers assess correctness and risk. | skeleton | B |
+| `W3-P02` | [Discovery & Opportunity Identification: map the trust boundary before you look for bugs](01-contribution/web3/general/P02-Discovery/P02-Discovery-Opportunity-Identification.md) | OPPORTUNITIES.md containing a trust-boundary map (privileged functions, value paths, external calls, oracle and price inputs, upgrade authority), a candidate table… <br>**Inputs:** `PROJECT_CONTEXT, ADVISORIES, AUDIT_REF, DEPLOYMENT_TARGETS, GOVERNANCE_DOCS` | operational | A |
+| `W3-P03` | [Opportunity Selection & Framing: choose work whose failure someone else can undo](01-contribution/web3/general/P03-Selection/P03-Opportunity-Selection-Framing.md) | SELECTED_WORK.md naming one candidate, its reversibility tier, the preconditions that must hold before implementation begins, the invariants the change must… <br>**Inputs:** `OPPORTUNITIES, PROJECT_CONVENTIONS, MAINTAINER_APPROVAL, DEPLOYMENT_TARGETS, AUDIT_REF` | operational | A |
+| `W3-P04` | [Planning & Design: plan the deployment before you plan the diff](01-contribution/web3/general/P04-Planning/P04-Planning-Design.md) | PLAN.md with the changed contracts and functions, the storage decision (append-only, with the slot diff expected), the invariants mapped to the test that will prove… <br>**Inputs:** `SELECTED_WORK, TIER, STORAGE_LAYOUT, DEPLOYMENT_TARGETS, AUDIT_REF` | operational | A |
+| `W3-P05` | [Implementation: add no surface, preserve every invariant, keep the diff reversible](01-contribution/web3/general/P05-Implementation/P05-Implementation.md) | A branch where each touched function is annotated with the invariant it must preserve, storage changes are documented as a slot-level diff, external calls are… <br>**Inputs:** `PLAN, TIER, STORAGE_LAYOUT, FUZZ_TARGETS, FORK_ENDPOINT` | operational | B |
+| `W3-P06` | [Validation & Security: prove the invariants, not the test suite](01-contribution/web3/general/P06-Validation/P06-Validation-Security.md) | VALIDATION.md containing the invariant list with the test that proves each, the access-control matrix, the value-flow review, the analyser findings triaged, and a… <br>**Inputs:** `CHANGE_SCOPE, INVARIANTS, CHAIN_AND_FORK_BLOCK, AUDIT_TOOLS, VALUE_AT_RISK` | operational | A |
+| `W3-P07` | [PR & Communication: lead with what can go wrong, not with what you fixed](01-contribution/web3/general/P07-PR/P07-PR-Communication.md) | PULL_REQUEST.md whose first section is the state change, the tier inherited from W3-P03, the blast radius, and the worst outcome if merged while wrong; then the… <br>**Inputs:** `VALIDATION, TIER, ISSUE_REF, PR_TEMPLATE, AUDIT_REF, DEPLOYMENT_PLAN` | operational | B |
 | `W3-P08` | [Web3 Contribution Master Orchestrator](01-contribution/web3/general/P08-Orchestrator/P08-Web3-Contribution-Orchestrator.md) | Runs the general system end to end: gates, routing, and final acceptance. | skeleton | A |
 
 ## 02-engineering — building, auditing, and recovering code
@@ -630,7 +633,7 @@ One prompt, one session, one pressing situation.
 | `INC-01` | [Production Incident Response](05-scenarios/incident-response/PRODUCTION-INCIDENT.md) | Support stabilisation, diagnosis, and communication during an active incident, producing a timeline that can be used for a postmortem without reconstruction from… <br>**Inputs:** `INCIDENT_ID, TARGET_SERVICE, APPROVER, INCIDENT_START_TIME` | operational | C |
 | `INC-COMMS-01` | [Incident Communications: tell the truth, on time, to the right people](05-scenarios/incident-communications/INCIDENT-COMMUNICATIONS.md) | An incident is live or has just ended and someone must write the customer update, the status-page entry, and the postmortem timeline without guessing or over-promisi <br>**Inputs:** `INCIDENT_SUMMARY, AUDIENCE, APPROVER, TIME_BUDGET` | operational | B |
 | `INTEG-01` | [Third-Party Integration That Survives the Vendor](05-scenarios/third-party-integration/THIRD-PARTY-INTEGRATION.md) | An integration contract (what you depend on, what you assume), a failure-mode matrix with handling per mode, idempotency and retry design, contract tests, and a… <br>**Inputs:** `VENDOR, INTEGRATION_TYPE, CRITICALITY, SANDBOX, WEBHOOK_URL, TARGET_ENV` | operational | B |
-| `JOBS-01` | [Background Jobs That Stop Doing Damage](05-scenarios/background-jobs/BACKGROUND-JOBS.md) | A per-job safety assessment (idempotent? <br>**Inputs:** `TARGET_SERVICE, JOB_SCOPE, SCHEDULER, QUEUE_BACKEND, INCIDENT_REF, TARGET_ENV` | operational | B |
+| `JOBS-01` | [Background Jobs That Stop Doing Damage](05-scenarios/background-jobs/BACKGROUND-JOBS.md) | Diagnose why background work duplicates, drops, loops, or fails silently — and make every job safe to re-run. <br>**Inputs:** `TARGET_SERVICE, JOB_SCOPE, SCHEDULER, QUEUE_BACKEND, INCIDENT_REF, TARGET_ENV` | operational | B |
 | `LEGACY-01` | [Working with Legacy Code](05-scenarios/legacy-code/WORKING-WITH-LEGACY.md) | Change code nobody understands and nobody tested, without turning a small fix into a rewrite. | skeleton | B |
 | `METER-01` | [Usage Metering and Entitlements: count what you bill, enforce what you sold](05-scenarios/usage-metering/USAGE-METERING.md) | You charge by usage, seat, or request — and the number that reaches the invoice has to be reproducible, explainable, and correct across plan changes, outages, and re <br>**Inputs:** `METERED_UNITS, PLAN_MODEL, BILLING_PERIOD, APPROVER` | operational | A |
 | `MONO-01` | [Monorepo Health: builds, boundaries, and ownership](05-scenarios/monorepo/MONOREPO.md) | A package graph with real dependencies (not declared ones), a boundary violation register, an affected-only build/test plan, and an ownership map. <br>**Inputs:** `REPO_PATH, TOOLING, PACKAGE_COUNT, CI_MINUTES, APPROVER` | operational | B |
@@ -648,7 +651,7 @@ One prompt, one session, one pressing situation.
 | `SUPPLY-01` | [Supply Chain: can you prove the thing you deployed is the thing you built?](05-scenarios/supply-chain/SUPPLY-CHAIN.md) | Assess whether a compromised package, a tampered build, or a substituted artifact could reach production — and what evidence you could produce if someone asked. <br>**Inputs:** `REPO_PATH, ARTIFACT_REGISTRY, APPROVER` | operational | A |
 | `SURFACE-01` | [Live Surface Audit — a URL, host, or API from the outside](05-scenarios/live-surface-audit/LIVE-SURFACE-AUDIT.md) | An evidence-backed assessment of the target's externally visible surface — transport, headers, cookies, redirects, error behaviour, discoverability, performance… <br>**Inputs:** `TARGET_URL, AUDIT_AUTHORISATION, PAGE_LIMIT, REPORT_AUDIENCE` | operational | B |
 | `TESTDATA-01` | [Test Data: the fixture that holds a real customer](05-scenarios/test-data/TEST-DATA.md) | A test database seeded from production, a fixture with a real email address, or a screenshot in a pull request — find it, replace it, and stop it coming back. <br>**Inputs:** `REPO_PATH, DATA_CLASS, RETENTION_DAYS, APPROVER` | operational | A |
-| `UPLOAD-01` | [File Uploads and Object Storage](05-scenarios/file-uploads/FILE-UPLOADS.md) | A validated upload path with signed direct-to-storage transfers where appropriate, content verification, size and type limits, lifecycle rules for orphans and… <br>**Inputs:** `STORAGE_BACKEND, USE_CASES, MAX_SIZE, FILE_TYPES, TARGET_ENV, RETENTION` | operational | B |
+| `UPLOAD-01` | [File Uploads and Object Storage](05-scenarios/file-uploads/FILE-UPLOADS.md) | A validated upload path with signed direct-to-storage transfers for files over the size limit of the application server, content verification, size and type limits… <br>**Inputs:** `STORAGE_BACKEND, USE_CASES, MAX_SIZE, FILE_TYPES, TARGET_ENV, RETENTION` | operational | B |
 | `VENDOR-01` | [Vendor Due Diligence: evaluating a supplier before you depend on it](05-scenarios/vendor-due-diligence/VENDOR-DUE-DILIGENCE.md) | Choosing a vendor, or a procurement request arrives — assess what happens if this supplier is breached, fails, raises prices, or disappears. <br>**Inputs:** `VENDOR_NAME, INTENDED_USE, DATA_CLASS, APPROVER, TIME_BUDGET` | operational | A |
 
 ## 06-interactive — conversations that clarify a request
@@ -719,6 +722,6 @@ CI fails when `GALLERY.md` no longer matches the library. To control the wording
 add a `**Gallery:** one line describing when to use this` metadata line to the prompt;
 the generator prefers it over the extracted objective.
 
-Related indexes: [`README.md`](README.md) routes by situation, [`_meta/CATALOG.md`](_meta/CATALOG.md)
-lists metadata for tooling, and [`_meta/coverage-matrix.md`](_meta/coverage-matrix.md) tracks what is
-covered — and what is not.
+Related indexes: [`TASKS.md`](TASKS.md) inverts this page by the problem you have, [`README.md`](README.md)
+routes by situation, [`_meta/CATALOG.md`](_meta/CATALOG.md) lists metadata for tooling, and
+[`_meta/coverage-matrix.md`](_meta/coverage-matrix.md) tracks what is covered — and what is not.

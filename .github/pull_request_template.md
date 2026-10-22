@@ -12,10 +12,9 @@
 
 ## The library's own bar
 
-- [ ] `python3 scripts/validate_library.py` → **0 errors / 0 warnings**
-- [ ] `python3 scripts/validate_library.py --catalog` run, `_meta/CATALOG.md` committed if it changed
-- [ ] `python3 scripts/generate_gallery.py --write` run, `GALLERY.md` committed if it changed
-- [ ] `python3 scripts/find_overlaps.py --check` clean
+- [ ] `python3 scripts/check_all.py` passes — it regenerates nothing, so the generated files must already be committed
+- [ ] New prompt: it has a home in `scripts/generate_task_index.py`, and `TASKS.md` is regenerated
+- [ ] Counts updated wherever they appear (`README.md`, `PROJECT-STATUS.md`, `QUICKSTART.md`, `_meta/publication-checklist.md`)
 - [ ] Any promoter: metadata updated (Version, Maturity), `Est. effort` present, `Inputs:` declared **and used** as `{{PLACEHOLDER}}`s
 - [ ] Any promoter: verification table, failure handling, completion criteria are real, not headings
 - [ ] Indexes updated: system `README.md`, root `README.md` table, `CHANGELOG.md`, `_meta/review-log.md`, `PROJECT-STATUS.md` if counts changed

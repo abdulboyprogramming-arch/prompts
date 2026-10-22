@@ -21,7 +21,7 @@ Collect (or infer with explicit assumptions) the following:
 1. **Project identity**
    - Name / purpose
    - Primary users
-   - Current stage (idea, MVP, production, legacy, etc.)
+   - Current stage (idea, MVP, production, legacy)
 
 2. **Technical context**
    - Stack / languages / frameworks

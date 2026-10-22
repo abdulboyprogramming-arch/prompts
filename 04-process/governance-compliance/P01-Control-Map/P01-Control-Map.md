@@ -78,7 +78,7 @@ Out of scope: testing whether controls operated (P02), remediation (P03), legal 
 
 ## 8. Security and authorisation
 
-Risk class A: read-only. Do not change repository settings, IAM policies, or logging configuration. Do not export access lists containing personal data beyond what the map requires; record role names and counts where possible.
+Risk class A: read-only. Do not change repository settings, IAM policies, or logging configuration. Do not export access lists containing personal data beyond what the map requires; record role names and counts.
 
 ## 9. Completion criteria
 

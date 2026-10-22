@@ -73,7 +73,7 @@ Execute the following stages in order, respecting decision gates and the action-
 - Map entry points, subsystems, build/test pipelines, and key design decisions.
 - Populate KNOWLEDGE_BASE.md with evidence-linked facts.
 
-### Stage 4 — Targeted Component Understanding (P05 logic, as needed)
+### Stage 4 — Targeted Component Understanding (P05 logic, entered when a file is in scope)
 - Deep-dive the components most relevant to likely contribution areas.
 
 ### Stage 5 — Development Conventions (P06 logic)
@@ -116,7 +116,7 @@ Execute the following stages in order, respecting decision gates and the action-
 
 ### Stage 14 — Continuous Management & Recovery (P15 logic)
 - Monitor CI and review feedback.
-- Respond to feedback with additional commits when appropriate.
+- Respond to reviewer feedback with an additional commit that addresses the named comment.
 - Maintain progress state.
 - Decide whether to start another contribution cycle or conclude.
 

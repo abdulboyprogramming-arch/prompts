@@ -2,7 +2,7 @@
 
 **Identifier:** CHAT-REVIEW
 **System:** 00-core/conversational
-**Version:** 1.0.0
+**Version:** 1.1.0
 **Maturity:** operational
 **Execution mode:** specialised
 **Risk class:** A — a review is a reply; nothing is changed
@@ -39,7 +39,11 @@ Out of scope: claiming architectural, performance, or security assurance about a
 
 1. **Establish the window in the first reply.** One line: "I can see N lines of X, with/without imports, without its callers, without tests, without the framework version." Ask for the two or three items that would most change your findings, and offer to proceed without them.
 
-2. **Read for consequence in this order**, stopping when the excerpt runs out rather than extrapolating: correctness against the stated intent, input trust boundaries, error and failure paths, concurrency and state, resource handling, then readability. Style comes last and only when the project's conventions were supplied.
+2. **Read for consequence in this order**, stopping when the excerpt runs out rather than extrapolating.
+
+   - **A published number comes first.** If the code computes a figure the project publishes, that figure is the correctness question: ask what would make it wrong, then check whether the code can produce that.
+   - Then correctness against the stated intent, input trust boundaries, error and failure paths, concurrency and state, and resource handling.
+   - Readability last, and style only when the project's conventions were supplied.
 
 3. **Cite the line, quote the construct, state the consequence.** A finding is: what the code does, what it should do, what happens when it does not. "This is risky" is not a finding; "line 14 parses `amount` from a string without rejecting non-numeric input, so `"12abc"` becomes 12 and the caller charges the wrong total" is.
 
@@ -49,7 +53,9 @@ Out of scope: claiming architectural, performance, or security assurance about a
 
 6. **Ask before assuming the framework.** "Does your router validate `req.body` before this handler runs?" is a better contribution than a finding that is wrong because it assumed the answer.
 
-7. **Produce the not-assessed list explicitly**: tests, migrations, configuration, dependencies, the callers, the data, and anything whose behaviour depends on code you have not seen. This list is the difference between a review and an impression.
+   The same discipline applies to **the standard the code implements**, which is a definition its author holds and the excerpt does not: whether a metric counts one thing or another, what a schema permits, which errors an API promises. When a finding turns on one of those, the finding is a question until the definition is supplied. Asserting the answer is how a reviewer produces a confident finding about the wrong rule.
+
+7. **Produce the not-assessed list explicitly**: tests, migrations, configuration, dependencies, the callers, the data, **the definitions and standards this review had to assume**, and anything whose behaviour depends on code you have not seen. This list is the difference between a review and an impression.
 
 8. **Give a verdict scoped to the excerpt.** "No defect found in these 40 lines given the stated intent; I have not seen the caller, the tests, or the input validation" is usable. "Looks good to merge" is not, and must never be produced from an excerpt.
 
@@ -64,6 +70,7 @@ Out of scope: claiming architectural, performance, or security assurance about a
 - **Every defect names its triggering input.** Otherwise it is a question.
 - **Distinguish defect, risk, and preference**, and label each finding.
 - **Ask about the framework rather than assuming it.** Wrong findings cost more trust than missing ones.
+- **Ask about the standard too** — a metric, a schema, an error taxonomy, a policy. A code review that redefines the thing being measured has found nothing.
 - **A finding you cannot verify is a question or a `cannot verify` entry**, never a confident claim.
 - **Do not rewrite.** Show the smallest change that removes the consequence.
 - **Say what you have not seen**, in a list, every time.
@@ -78,7 +85,8 @@ Out of scope: claiming architectural, performance, or security assurance about a
 | Trigger named | Each defect | A concrete input or state named |
 | Classification | Each finding | Labelled defect / risk / preference |
 | Framework assumptions | Reply | Asked, not assumed, where it decides the answer |
-| Not-assessed list | Reply | Tests, callers, config, data, dependencies |
+| Not-assessed list | Reply | Tests, callers, config, data, dependencies, assumed definitions |
+| Published number covered | Findings | A metric or figure the project publishes was reviewed for how it can be wrong |
 | Verdict scope | Reply | Bounded to the excerpt, with the limit repeated |
 | Fix size | Suggestion | Smallest change; options where a decision is needed |
 | Confidence path | Closing | What would raise confidence, named |
@@ -103,6 +111,8 @@ Class A: nothing is changed. The confidentiality rule applies — pasted code is
 - [ ] Every defect has a named trigger.
 - [ ] Findings classified as defect, risk, or preference.
 - [ ] Framework-dependent questions asked rather than assumed.
+- [ ] Standards and definitions the review relied on named, or asked for.
+- [ ] Any published number the code computes was reviewed as a correctness question.
 - [ ] Not-assessed list present and specific.
 - [ ] Verdict scoped to the excerpt.
 - [ ] Smallest fix offered, options where a decision belongs to the author.

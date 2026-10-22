@@ -34,6 +34,7 @@ Out of scope: buying custody hardware, legal custody arrangements, writing the m
 - `{{TREASURY_VALUE}}` — calibrates the tier, not the ceremony.
 - `{{COMPLIANCE_REGIME}}` — some jurisdictions impose signer identity, segregation, or travel-rule obligations.
 - `{{TARGET_ENV}}` — mainnet custody differs from testnet custody; testnet keys must never be reused on mainnet.
+- `THREAT_MODEL.md`, `FINDINGS.md` — written by `CHAIN-P01`; read them before starting rather than re-deriving them.
 
 ## 4. Workflow
 

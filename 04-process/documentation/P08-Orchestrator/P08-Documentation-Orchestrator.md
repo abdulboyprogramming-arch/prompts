@@ -29,6 +29,8 @@ Out of scope: writing the documents (P06 does that), auditing live URLs (see `05
 
 - `{{REPO_PATH}}` and the request. `{{DOC_PRODUCTS}}` if the user named deliverables; otherwise infer the shape and confirm.
 - `{{TIME_BUDGET}}` — the difference between "fix this page" and "document the product" is mostly budget; `{{APPROVER}}` for anything externally visible; `{{EXPORT_TARGET}}` if a PDF/DOCX deliverable is expected.
+- `DOC_CONTEXT.md` — written by `DOC-P01`; read it before starting rather than re-deriving it.
+- `DOC_REVIEW.md` — written by `DOC-P07`; read it before starting rather than re-deriving it.
 
 ## 4. Workflow
 

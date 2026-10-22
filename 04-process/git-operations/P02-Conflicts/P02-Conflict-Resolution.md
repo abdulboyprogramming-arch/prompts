@@ -2,7 +2,7 @@
 
 **Identifier:** GIT-P02
 **System:** 04-process/git-operations
-**Version:** 1.0.0
+**Version:** 1.1.0
 **Maturity:** operational
 **Execution mode:** implementation
 **Risk class:** B
@@ -28,7 +28,7 @@ Out of scope: deciding that one branch should win wholesale (that is a product d
 | Input | Required | If missing |
 |-------|----------|------------|
 | `REPO_PATH`, `BRANCH`, `BASE_REF` | yes | the merge target is unknown; ask |
-| The in-progress operation from P01 (merge, rebase, cherry-pick) | yes | run P01 first |
+| `.git-ops/STATE.md` from P01: the operation in progress (merge, rebase, cherry-pick) and the pre-operation SHA | yes | run P01 first. `.git-ops/` is local working state, excluded from git by P01, so a second machine will not have it |
 | Build and test commands | yes | conflicts cannot be validated without them |
 | A way to reach the other author | recommended | record it as a risk; semantic conflicts may need them |
 
@@ -47,9 +47,11 @@ Out of scope: deciding that one branch should win wholesale (that is a product d
    | Submodule | gitlink diff | Point to the correct commit; check it exists |
    | Generated/lock file | lockfiles, snapshots | Regenerate from source; never hand-merge |
 
+   **Then list the files both sides touched that merged with no conflict at all.** Git resolves those silently, and a generated file resolved by a text algorithm is the failure this stage exists to prevent: markers absent, tests passing, install different from what either branch intended. Compare `git diff --name-only $(git merge-base HEAD MERGE_HEAD) HEAD` with the same for `MERGE_HEAD`, and check the intersection against the generated-file list.
+
 3. **For each textual conflict, read the three commits**: `git log --merge -p <file>` and `git diff :1:file :2:file` / `:3:file`. State each side's intent in one sentence before editing. If you cannot state the intent, you are not ready to resolve.
 4. **Resolve with intent, not preference.** Keep both behaviours where they compose; where they genuinely conflict, choose with a stated reason and flag it for review. Never resolve by "taking ours" across a file, and never delete a hunk you do not understand.
-5. **Handle lockfiles and generated files by regeneration**: take either version, then run the package manager/build to produce the correct resolved file. Hand-merging a lockfile produces a file that installs differently than either branch intended.
+5. **Handle lockfiles and generated files by regeneration — whether or not they conflicted**: take either version, then run the package manager or build to produce the resolved file. When regeneration is impossible (no package manager, no network, a tool that is not installed), record the file as **unverified** in the artifact with the reason, and do not present the merge as complete without that line. A hand- or tool-merged lockfile installs something neither branch intended, and the clean merge makes it invisible.
 6. **Check for semantic conflicts that git cannot see**: two branches that each compile but contradict each other (one renames a field, the other uses the old name; one changes a default, the other relies on it). Search for the symbols involved across the merged result.
 7. **Complete the operation**: `git add` resolved paths; for a merge `git commit` (with the default message plus a note on non-obvious decisions); for a rebase `git rebase --continue`; if it becomes unmanageable, `git merge --abort` or `git rebase --abort` returns to the recorded pre-operation state — confirm the SHA matches P01's record.
 8. **Verify behaviour, not just the absence of markers**: build, type-check, run the tests, and run the specific tests covering both changed areas. If the suite is weak here, say so and list what is unverified.

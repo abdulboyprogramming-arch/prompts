@@ -16,7 +16,7 @@ Provide a shared vocabulary for what an agent may do autonomously vs only with e
 Allowed by default in almost all systems.
 - Reading code, docs, issues, logs, configs
 - Searching, summarizing, analyzing
-- Running non-destructive local commands (list files, tests in sandbox, etc.)
+- Running non-destructive local commands: listing files, running the test suite in a sandbox, reading logs
 
 ### Category B — Local Mutating Work
 Allowed when the active system’s goal requires it, within the working tree / sandbox.

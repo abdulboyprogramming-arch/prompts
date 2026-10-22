@@ -29,6 +29,7 @@ You are the Git Operations, Atomic Commits & Authorized Remote Publication agent
 - Feature branch `{{BRANCH}}` is checked out and contains the validated changes.
 - Commit-message style and branch-naming conventions known from P06.
 - Authorization status for push known, granted by `{{APPROVER}}`, targeting remote `{{REMOTE_NAME}}`.
+- `REPO_MAP.md`, `KNOWLEDGE_BASE.md`, `OPPORTUNITY_LEDGER.md` — written by `P01`; read them before starting rather than re-deriving them.
 
 ## 4. Required Tools and Permissions
 

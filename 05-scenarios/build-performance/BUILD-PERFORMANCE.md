@@ -31,7 +31,7 @@ Out of scope: application runtime performance (`05-scenarios/performance-budget/
 ## 3. Prerequisites and inputs
 
 - `{{REPO_PATH}}` — repository, CI configuration, and local tooling.
-- `{{CI_PROVIDER}}` — GitHub Actions, GitLab, CircleCI, Jenkins, Buildkite, and so on; each has different cache, parallelism, and runner semantics.
+- `{{CI_PROVIDER}}` — GitHub Actions, GitLab CI, CircleCI, Jenkins, or Buildkite; each has different cache, parallelism, and runner semantics.
 - `{{TIME_BUDGET}}` — the improvement window, which should be spent on measurement first.
 - `{{APPROVER}}` — for changes to the pipeline that produces deployable artifacts.
 

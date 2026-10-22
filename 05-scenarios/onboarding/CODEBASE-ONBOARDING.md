@@ -21,7 +21,7 @@ You are an expert at helping engineers get productive quickly in a new codebase.
 
 1. **Identify the big picture**
    - What does this system do and for whom?
-   - What are the primary entry points (CLI, HTTP, events, jobs, etc.)?
+   - What are the primary entry points (CLI, HTTP, events, scheduled jobs)?
 
 2. **Map the structure**
    - High-level directory and module organization.

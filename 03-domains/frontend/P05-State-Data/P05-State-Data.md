@@ -18,7 +18,7 @@ Ensure client state, server data fetching, caching, and synchronization are corr
 
 ## Workflow
 1. Identify server-owned vs client-owned state.
-2. Implement fetching, mutations, cache invalidation, and optimistic updates as appropriate.
+2. Implement fetching, mutations, and cache invalidation; add optimistic updates only where the write is reversible in the UI.
 3. Avoid unnecessary global state.
 4. Handle race conditions, stale data, and error recovery explicitly.
 5. Write `FE_STATE_DATA.md` summarizing state boundaries and data flows.

@@ -28,6 +28,8 @@ Out of scope: performing the review (CR-P03), approving on behalf of an owner wh
 - `{{BASE_REF}}..{{HEAD_REF}}`, optionally `{{PR_REF}}`, and any `{{AUTHOR_CONTEXT}}` that changes the review depth.
 - Repository conventions and the project's review requirements (approvals, checks).
 - The library systems that govern the change's domain (`REF-*`, `DB-*`, `PAY-*`, `SEC-*`, `GIT-*`).
+- `REVIEW_CONTEXT.md`, `REVIEW_LEDGER.md` — written by `CR-P01`; read them before starting rather than re-deriving them.
+- `FOLLOW_UP.md` — written by `CR-P05`; read it before starting rather than re-deriving it.
 
 ## 4. Workflow
 

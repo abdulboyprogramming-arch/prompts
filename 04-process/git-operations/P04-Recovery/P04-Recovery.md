@@ -31,6 +31,7 @@ Out of scope: rewriting history deliberately (P03), resolving the conflict that 
 |-------|----------|------------|
 | `REPO_PATH` | yes | ask |
 | `LOST_REF` — what is missing (branch name, commit subject, file) | yes | ask the user what disappeared and roughly when |
+| `STATE.md` from P01 — the refs and operation recorded before the damage | helpful | reconstruct from the reflog |
 | `BRANCH` (optional) | helpful | use the current branch |
 | Knowledge of what happened (reset, rebase, force push, deleted branch) | helpful | infer from reflog order |
 

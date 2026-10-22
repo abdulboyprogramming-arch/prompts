@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 362 prompts — 0 canonical, 208 operational, 5 draft, 149 skeleton.
+**Totals:** 364 prompts — 0 canonical, 228 operational, 5 draft, 131 skeleton.
 
 ## `00-core`
 
@@ -14,8 +14,10 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 |----|-------|----------|------|------|------|
 | `CHAT-DEBUG` | Chat Debugging: diagnose from a pasted error, and say what y | operational | specialised | A | [CHAT-DEBUG.md](../00-core/conversational/CHAT-DEBUG.md) |
 | `CHAT-DESIGN` | Chat Design: thinking architecture through in conversation | operational | specialised | A | [CHAT-DESIGN.md](../00-core/conversational/CHAT-DESIGN.md) |
+| `CHAT-HANDOFF` | Chat Handoff: carrying a long engagement between conversatio | operational | specialised | A | [CHAT-HANDOFF.md](../00-core/conversational/CHAT-HANDOFF.md) |
 | `CHAT-MODE` | Conversational Mode: running any prompt in a chat window | operational | specialised | A | [CHAT-MODE.md](../00-core/conversational/CHAT-MODE.md) |
 | `CHAT-REVIEW` | Chat Code Review: reviewing a paste, with the limits stated | operational | specialised | A | [CHAT-REVIEW.md](../00-core/conversational/CHAT-REVIEW.md) |
+| `CHAT-SELECT` | Chat Select: choosing the right prompt inside a conversation | operational | specialised | A | [CHAT-SELECT.md](../00-core/conversational/CHAT-SELECT.md) |
 | `GEN-P01` | PROMPT 01 — The Prompt Forge: build a runnable prompt from a | operational | specialised | A | [PROMPT-FORGE.md](../00-core/prompt-engineering/PROMPT-FORGE.md) |
 | `GEN-P02` | PROMPT 02 — Prompt Regression: prove a prompt change is an i | operational | continuous-improvement | A | [PROMPT-REGRESSION.md](../00-core/prompt-engineering/PROMPT-REGRESSION.md) |
 
@@ -58,12 +60,12 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | ID | Stage | Maturity | Mode | Risk | File |
 |----|-------|----------|------|------|------|
 | `PKG-P01` | PROMPT 01 — Context & Package Understanding | skeleton | implementation | B | [P01-Context-Package-Understanding.md](../01-contribution/packages-libraries/P01-Context/P01-Context-Package-Understanding.md) |
-| `PKG-P02` | PROMPT 02 — Discovery & Opportunity Identification | skeleton | diagnostic | A | [P02-Discovery-Opportunity-Identification.md](../01-contribution/packages-libraries/P02-Discovery/P02-Discovery-Opportunity-Identification.md) |
-| `PKG-P03` | PROMPT 03 — Opportunity Selection & Framing | skeleton | planning | B | [P03-Opportunity-Selection-Framing.md](../01-contribution/packages-libraries/P03-Selection/P03-Opportunity-Selection-Framing.md) |
-| `PKG-P04` | PROMPT 04 — Planning & API Impact | skeleton | planning | B | [P04-Planning-API-Impact.md](../01-contribution/packages-libraries/P04-Planning/P04-Planning-API-Impact.md) |
-| `PKG-P05` | PROMPT 05 — Implementation | skeleton | implementation | B | [P05-Implementation.md](../01-contribution/packages-libraries/P05-Implementation/P05-Implementation.md) |
-| `PKG-P06` | PROMPT 06 — Validation & Compatibility | skeleton | diagnostic | C | [P06-Validation-Compatibility.md](../01-contribution/packages-libraries/P06-Validation/P06-Validation-Compatibility.md) |
-| `PKG-P07` | PROMPT 07 — PR & Communication | skeleton | implementation | B | [P07-PR-Communication.md](../01-contribution/packages-libraries/P07-PR/P07-PR-Communication.md) |
+| `PKG-P02` | PROMPT 02 — Discovery & Opportunity Identification: read the | operational | diagnostic | A | [P02-Discovery-Opportunity-Identification.md](../01-contribution/packages-libraries/P02-Discovery/P02-Discovery-Opportunity-Identification.md) |
+| `PKG-P03` | PROMPT 03 — Opportunity Selection & Framing: choose work tha | operational | planning | A | [P03-Opportunity-Selection-Framing.md](../01-contribution/packages-libraries/P03-Selection/P03-Opportunity-Selection-Framing.md) |
+| `PKG-P04` | PROMPT 04 — Planning & API Impact: plan the release, not jus | operational | planning | A | [P04-Planning-API-Impact.md](../01-contribution/packages-libraries/P04-Planning/P04-Planning-API-Impact.md) |
+| `PKG-P05` | PROMPT 05 — Implementation: every line you export is a line  | operational | implementation | B | [P05-Implementation.md](../01-contribution/packages-libraries/P05-Implementation/P05-Implementation.md) |
+| `PKG-P06` | PROMPT 06 — Validation & Compatibility: prove you did not br | operational | diagnostic | A | [P06-Validation-Compatibility.md](../01-contribution/packages-libraries/P06-Validation/P06-Validation-Compatibility.md) |
+| `PKG-P07` | PROMPT 07 — PR & Communication: write the release note first | operational | implementation | B | [P07-PR-Communication.md](../01-contribution/packages-libraries/P07-PR/P07-PR-Communication.md) |
 | `PKG-P08` | PROMPT 08 — Package & Library Contribution Master Orchestrat | skeleton | orchestration | A | [P08-Package-Contribution-Orchestrator.md](../01-contribution/packages-libraries/P08-Orchestrator/P08-Package-Contribution-Orchestrator.md) |
 
 ## `01-contribution/web/general`
@@ -71,12 +73,12 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | ID | Stage | Maturity | Mode | Risk | File |
 |----|-------|----------|------|------|------|
 | `WEB-P01` | PROMPT 01 — Context & Project Understanding | skeleton | implementation | B | [P01-Context-Project-Understanding.md](../01-contribution/web/general/P01-Context/P01-Context-Project-Understanding.md) |
-| `WEB-P02` | PROMPT 02 — Discovery & Opportunity Identification | skeleton | diagnostic | A | [P02-Discovery-Opportunity-Identification.md](../01-contribution/web/general/P02-Discovery/P02-Discovery-Opportunity-Identification.md) |
-| `WEB-P03` | PROMPT 03 — Opportunity Selection & Framing | skeleton | planning | B | [P03-Opportunity-Selection-Framing.md](../01-contribution/web/general/P03-Opportunity/P03-Opportunity-Selection-Framing.md) |
-| `WEB-P04` | PROMPT 04 — Planning & Design | skeleton | planning | B | [P04-Planning-Design.md](../01-contribution/web/general/P04-Planning/P04-Planning-Design.md) |
-| `WEB-P05` | PROMPT 05 — Implementation | skeleton | implementation | B | [P05-Implementation.md](../01-contribution/web/general/P05-Implementation/P05-Implementation.md) |
-| `WEB-P06` | PROMPT 06 — Validation & Quality | skeleton | diagnostic | B | [P06-Validation-Quality.md](../01-contribution/web/general/P06-Validation/P06-Validation-Quality.md) |
-| `WEB-P07` | PROMPT 07 — PR & Communication | skeleton | implementation | B | [P07-PR-Communication.md](../01-contribution/web/general/P07-PR-Communication/P07-PR-Communication.md) |
+| `WEB-P02` | PROMPT 02 — Discovery & Opportunity Identification: find wha | operational | diagnostic | A | [P02-Discovery-Opportunity-Identification.md](../01-contribution/web/general/P02-Discovery/P02-Discovery-Opportunity-Identification.md) |
+| `WEB-P03` | PROMPT 03 — Opportunity Selection & Framing: choose work you | operational | planning | A | [P03-Opportunity-Selection-Framing.md](../01-contribution/web/general/P03-Opportunity/P03-Opportunity-Selection-Framing.md) |
+| `WEB-P04` | PROMPT 04 — Planning & Design: plan the states and the break | operational | planning | A | [P04-Planning-Design.md](../01-contribution/web/general/P04-Planning/P04-Planning-Design.md) |
+| `WEB-P05` | PROMPT 05 — Implementation: build every state the plan named | operational | implementation | B | [P05-Implementation.md](../01-contribution/web/general/P05-Implementation/P05-Implementation.md) |
+| `WEB-P06` | PROMPT 06 — Validation & Quality: prove the change works in  | operational | diagnostic | A | [P06-Validation-Quality.md](../01-contribution/web/general/P06-Validation/P06-Validation-Quality.md) |
+| `WEB-P07` | PROMPT 07 — PR & Communication: give the reviewer a viewing  | operational | implementation | B | [P07-PR-Communication.md](../01-contribution/web/general/P07-PR-Communication/P07-PR-Communication.md) |
 | `WEB-P08` | PROMPT 08 — Web Contribution Master Orchestrator | skeleton | orchestration | A | [P08-Web-Contribution-Orchestrator.md](../01-contribution/web/general/P08-Orchestrator/P08-Web-Contribution-Orchestrator.md) |
 
 ## `01-contribution/web3/general`
@@ -84,12 +86,12 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | ID | Stage | Maturity | Mode | Risk | File |
 |----|-------|----------|------|------|------|
 | `W3-P01` | PROMPT 01 — Context & Project Understanding | skeleton | implementation | B | [P01-Context-Project-Understanding.md](../01-contribution/web3/general/P01-Context/P01-Context-Project-Understanding.md) |
-| `W3-P02` | PROMPT 02 — Discovery & Opportunity Identification | skeleton | diagnostic | A | [P02-Discovery-Opportunity-Identification.md](../01-contribution/web3/general/P02-Discovery/P02-Discovery-Opportunity-Identification.md) |
-| `W3-P03` | PROMPT 03 — Opportunity Selection & Framing | skeleton | planning | B | [P03-Opportunity-Selection-Framing.md](../01-contribution/web3/general/P03-Selection/P03-Opportunity-Selection-Framing.md) |
-| `W3-P04` | PROMPT 04 — Planning & Design | skeleton | planning | B | [P04-Planning-Design.md](../01-contribution/web3/general/P04-Planning/P04-Planning-Design.md) |
-| `W3-P05` | PROMPT 05 — Implementation | skeleton | implementation | B | [P05-Implementation.md](../01-contribution/web3/general/P05-Implementation/P05-Implementation.md) |
-| `W3-P06` | PROMPT 06 — Validation & Security Checks | skeleton | diagnostic | B | [P06-Validation-Security.md](../01-contribution/web3/general/P06-Validation/P06-Validation-Security.md) |
-| `W3-P07` | PROMPT 07 — PR & Communication | skeleton | implementation | B | [P07-PR-Communication.md](../01-contribution/web3/general/P07-PR/P07-PR-Communication.md) |
+| `W3-P02` | PROMPT 02 — Discovery & Opportunity Identification: map the  | operational | diagnostic | A | [P02-Discovery-Opportunity-Identification.md](../01-contribution/web3/general/P02-Discovery/P02-Discovery-Opportunity-Identification.md) |
+| `W3-P03` | PROMPT 03 — Opportunity Selection & Framing: choose work who | operational | planning | A | [P03-Opportunity-Selection-Framing.md](../01-contribution/web3/general/P03-Selection/P03-Opportunity-Selection-Framing.md) |
+| `W3-P04` | PROMPT 04 — Planning & Design: plan the deployment before yo | operational | planning | A | [P04-Planning-Design.md](../01-contribution/web3/general/P04-Planning/P04-Planning-Design.md) |
+| `W3-P05` | PROMPT 05 — Implementation: add no surface, preserve every i | operational | implementation | B | [P05-Implementation.md](../01-contribution/web3/general/P05-Implementation/P05-Implementation.md) |
+| `W3-P06` | PROMPT 06 — Validation & Security: prove the invariants, not | operational | diagnostic | A | [P06-Validation-Security.md](../01-contribution/web3/general/P06-Validation/P06-Validation-Security.md) |
+| `W3-P07` | PROMPT 07 — PR & Communication: lead with what can go wrong, | operational | implementation | B | [P07-PR-Communication.md](../01-contribution/web3/general/P07-PR/P07-PR-Communication.md) |
 | `W3-P08` | PROMPT 08 — Web3 Contribution Master Orchestrator | skeleton | orchestration | A | [P08-Web3-Contribution-Orchestrator.md](../01-contribution/web3/general/P08-Orchestrator/P08-Web3-Contribution-Orchestrator.md) |
 
 ## `02-engineering`

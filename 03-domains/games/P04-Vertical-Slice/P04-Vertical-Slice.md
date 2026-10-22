@@ -18,7 +18,7 @@ Build the smallest playable slice that proves the core fantasy and loop.
 
 ## Workflow
 1. Implement only what is required for one complete, enjoyable interaction cycle.
-2. Include minimal placeholder art/audio if needed — prioritize feel and clarity.
+2. Include minimal placeholder art and audio rather than waiting on final assets — prioritize feel and clarity.
 3. Ensure the slice is runnable by someone else with short instructions.
 4. Write `VERTICAL_SLICE.md` describing:
    - What is playable

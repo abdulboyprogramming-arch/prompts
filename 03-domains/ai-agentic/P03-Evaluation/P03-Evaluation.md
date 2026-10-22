@@ -37,7 +37,7 @@ Out of scope: production monitoring (P05), guardrail design (P04).
 4. **Choose metrics per task type:** exact match/schema validity for extraction; precision/recall/F1 for classification; rubric-scored correctness for generation; groundedness/citation accuracy for RAG; for agents, task success rate, steps used, and unsafe-action rate. Record how each is computed.
 5. **Set thresholds from evidence.** Baseline the current system first, then set the pass bar. Include a "must never" set (e.g. leaking a secret, calling a destructive tool without confirmation) with a zero-tolerance gate.
 6. **Decide the judge.** If using an LLM judge: pin its model and prompt, calibrate against ≥20 human labels, and record agreement. Report the judge's error rate alongside scores.
-7. **Build the harness.** Deterministic where possible (temperature 0, seeded), parallelisable, cost-accounted, and emitting machine-readable results (JSON) plus a human-readable summary. Fail CI on threshold breach of the must-never set at minimum.
+7. **Build the harness.** Deterministic by default (temperature 0, seeded), parallelisable, cost-accounted, and emitting machine-readable results (JSON) plus a human-readable summary. Fail CI on threshold breach of the must-never set at minimum.
 8. **Baseline and compare.** Run against the current implementation; store results with model version, prompt version, dataset hash, and date. Any change to model/prompt/retrieval must be accompanied by a run.
 9. **Write `EVAL_PLAN.md`:** task classes, dataset composition and sourcing, metrics and computation, thresholds and rationale, judge configuration and agreement, must-never set, harness usage, baseline results, and known limitations.
 10. **Update the ledger.**

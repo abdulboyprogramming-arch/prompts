@@ -59,13 +59,13 @@ Perform a structured inspection:
 1. **Location & Identity**
    - Exact path(s)
    - Module / package name
-   - Language and any special attributes (generated, platform-specific, etc.)
+   - Language and any special attributes (generated, platform-specific, vendored)
 
 2. **Responsibility Statement**
    - One-paragraph description of what this component is for, grounded in code and comments/docs.
 
 3. **Public Contract**
-   - Exported functions, types, classes, endpoints, CLI flags, etc.
+   - Exported functions, types, classes, endpoints, and CLI flags
    - Documented or clearly implied preconditions, postconditions, and error behavior.
    - Stability expectations (if any).
 
@@ -75,7 +75,7 @@ Perform a structured inspection:
    - External library usage that affects behavior
 
 5. **Invariants & Constraints**
-   - Things that must remain true after any change (thread safety, ordering, resource ownership, backward compatibility, etc.)
+   - Things that must remain true after any change (thread safety, ordering, resource ownership, backward compatibility)
    - Error-handling and logging conventions observed.
 
 6. **Test Coverage**
@@ -98,7 +98,7 @@ Perform a structured inspection:
 ## 6. Investigation Methods
 
 - Read the primary source file(s) and their immediately related tests.
-- Follow important imports / includes only as far as needed to understand contracts.
+- Follow imports and includes only as deep as the contract requires — usually one level past the module boundary.
 - Prefer the code’s actual behavior over outdated comments; note discrepancies.
 - When a component is large, focus first on the public surface and the main control-flow paths.
 

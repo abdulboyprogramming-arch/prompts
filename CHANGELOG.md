@@ -2,6 +2,237 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.22.0] — 2026-10-21
+
+Six changes that were developed together and ship as one release: one measurement closed, one index added, two chat prompts, one differentiation pass, one worked example, and one script that makes the gate list authoritative.
+
+### Changed — the prose lint is now a gate, at zero
+
+The corpus was burned down from **171 findings to 0**. Every `etc.`, `as appropriate`, `where possible`, `properly`, and `if needed` that handed a decision back to the reader now names the items or the condition: `(package.json, pyproject.toml, go.mod, Cargo.toml, pom.xml, build.gradle)` instead of `(…, etc.)`, and `start local services on non-public ports when a test requires them` instead of `if needed`. The 24 sentences over 55 words were split at their clause boundaries rather than trimmed of meaning.
+
+Because the baseline now records `0`, the ratchet is a hard gate: a new vague qualifier fails CI. That was the point of writing the lint as a ratchet in 2.20.0 — it made the debt visible and countable, and this release pays it.
+
+### New — `TASKS.md`: the library indexed by the problem
+
+`GALLERY.md` is organised the way the repository is: by area. That is right for maintainers and wrong for a visitor, who arrives with a situation and does not know that "flaky test" lives under `05-scenarios`. **`TASKS.md` inverts the index**: 21 tasks, from *something is broken right now* to *I only have a chat window*, each listing the runnable prompts in it, where they live, and what to paste first.
+
+It carries one enforced property, and that is why it is generated rather than written:
+
+> **Every prompt in the library is reachable from at least one task.**
+
+A prompt added without a home fails the build with its path printed. That check found thirteen prompts with no home the first time it ran — the standalone audits (`time-correctness`, `tenancy-audit`, `access-review`, `secrets-rotation`) and the whole `observability-reliability` system, among others. `skeleton` prompts are counted per task instead of listed, so a task with four runnable prompts and eleven outlines says exactly that.
+
+### New — two chat prompts for the problem after the first success
+
+`00-core/conversational/` grows from four prompts to six, both `operational`.
+
+- **`CHAT-SELECT`** answers "which prompt do I need" inside a window that cannot open the library. It refuses to dress the guess up: a route is `observed` when `TASKS.md` is pasted and `inferred` when it is not, and the card carries the one fact that would overturn the choice. One prompt, not a menu.
+- **`CHAT-HANDOFF`** carries a long engagement between conversations. The design detail worth keeping: **a summary is the wrong artifact**, because it keeps the conclusions and drops the disproved hypotheses — so the next chat proposes the same dead end with fresh confidence. The packet keeps the eliminations, labels every fact, states what was redacted, and requires the receiving conversation to restate the constraints and eliminations before it is allowed to work.
+
+### Changed — `P06 Validation` differentiated across the three contribution variants (#107)
+
+`01-contribution` holds three systems whose stages were the same file with different nouns; `VARIANTS.md` (2.20.0) decided to keep all three but ruled that **any overlapping stage must state what is different about it in its domain**, and blocked promotion until it did. This release does that for the one stage where the difference is sharpest, and promotes all three to `operational`:
+
+| Variant | Validation means | The evidence that convinces a maintainer |
+|---|---|---|
+| `WEB-P06` | It works in engines, viewports, and input methods the author did not use | A screenshot at a named browser and width, or a passing cross-browser job |
+| `W3-P06` | The invariants hold when someone tries to break them | A violating case per invariant, an access-control matrix, a fork run pinned to a block |
+| `PKG-P06` | The published interface did not break a consumer's build | A surface diff against the released version, and an install of the built artifact in a clean environment |
+
+Each names the characteristic failure it exists to catch: *works in the author's browser*, *works in the test suite and drains the contract*, *works here and breaks a consumer's build*.
+
+**The measurement did not cooperate, and that is recorded rather than smoothed over.** Pairwise vocabulary overlap across the three files went from 0.20–0.28 to 0.22–0.27 — one pair rose. The reason is in `VARIANTS.md`: the `P06` outlines were two paragraphs each, so they never contributed the 0.63–0.68 similarity at the top of that record, which comes from the longer `P03` and `P07` stages; and rewriting a short outline into a developed prompt multiplies the denominator. The claim for this pass is the one a reviewer can check by reading, not a number.
+
+### Changed — `P03 Selection` differentiated across the three contribution variants (#107, pass 2)
+
+Pass 1 left the duplicate metric unmoved and said why. Pass 2 was designed to test that explanation, and it did: **if three variants keep the standard ten sections and differ only in what they ask inside them, combined similarity cannot fall.** So this pass replaced the procedure rather than the adjectives, and each variant now selects with an instrument the other two do not have:
+
+| Variant | How work is chosen | What disqualifies a candidate |
+|---|---|---|
+| `WEB-P03` | A **claim register**: the user-visible claim, the artifact that proves it, the surface it touches, and who owns the decision — ranked by proof strength, then by review cost | No owner for a visible change, no assertable claim, no reference |
+| `W3-P03` | A **reversibility tier** from 0 to 3 by asking who can undo the change if it is wrong, with tiers 2 and 3 gated behind recorded maintainer approval *before* code exists | A tier 2 or 3 change with no approval; an invariant that cannot be written |
+| `PKG-P03` | A **surface cost ledger**: symbols added, behaviour changed silently, dependencies inherited, and the support burden the maintainer carries indefinitely | A change that adds a promise the maintainer must keep |
+
+Each names the failure it exists to catch: *picks a visible redesign and hands the maintainer an unauthorised design decision*; *submits a change to a value path described as a small fix*; *adds a convenience option the maintainer supports forever*.
+
+**The measurement moved this time, and the reason is the finding.** Combined similarity fell on all three pairs, from 0.54–0.68 to 0.36–0.38, with shingle, vocabulary, and structure all falling together. `P06` had risen from 0.26–0.28 to 0.31–0.36 for a mechanical reason: an outline has a handful of headings, a developed prompt has the ten the standard requires, and the metric multiplies structure by vocabulary.
+
+The pass also corrected a measurement error from pass 1. Its vocabulary figures had been computed with Jaccard over word sets while the pair table above them used containment, so "barely moved" was reached by comparing two different things. Recomputed on both sides with `find_overlaps.py`'s own functions, `P06`'s vocabulary fell from 0.44–0.47 to 0.37–0.43 and its combined score rose. The conclusion survived; the arithmetic did not, and `01-contribution/VARIANTS.md` now carries the correction rather than a quietly amended table.
+
+### Changed — `P02 Discovery` and `P07 PR` differentiated (#107, passes 3 and 4)
+
+Two more passes, and the metric that pass 2 moved kept moving:
+
+| Stage | What the three variants now do differently | Combined, before → after |
+|---|---|---|
+| `P02 Discovery` | `WEB-P02` walks the running app at three widths with a keyboard; `W3-P02` maps the trust boundary before looking for missing guards; `PKG-P02` searches **consumer code** for wrappers, copies, and pinned old majors | 0.56–0.65 → **0.29–0.32** |
+| `P07 PR` | `WEB-P07` writes a viewing instruction — recipe, labelled media, look-here list; `W3-P07` writes a risk disclosure that opens with four facts; `PKG-P07` writes the release note first, because the changelog entry is the acceptance test for the description | 0.63–0.68 → **0.32–0.35** |
+
+The interesting result is `P02`. The three outlines were not merely similar — they used the same word for three different search spaces, and the only way to differentiate them was to notice that *discovery in a library happens in someone else's repository*. A candidate without a witness is now a hypothesis, kept out of the ranked list, in the same way a web candidate without an observation and a web3 candidate without a boundary are.
+
+`P07` differentiated by **reader**, not by content: a web reviewer checks behaviour, a protocol reviewer prices risk, a library maintainer decides a release. Each description now leads with what its reader decides first.
+
+Every rewritten pair sits at 0.29–0.38 combined, from 0.26–0.68. `P04 Planning` and `P05 Implementation` remain; `P01` and `P08` are deliberately untouched, because planning and implementing a change in a repository genuinely are the same job in any language, and differentiating them would produce adjectives rather than instruments.
+
+### Changed — `P04 Planning` and `P05 Implementation` complete the differentiation (#107, passes 5–6)
+
+The last two passes finish #107: six stages, eighteen files, every variant pair now at 0.29–0.38 combined from a starting 0.26–0.68.
+
+| Stage | `web/general` | `web3/general` | `packages-libraries` | Combined |
+|---|---|---|---|---|
+| `P05 Implementation` | Build every state the plan named; native elements before ARIA before JavaScript | Add no surface, append-only storage, state settled before external calls | Every export is a promise: no accidental exports, entry-point tests, packaging checked | 0.40–0.61 → **0.29–0.33** |
+| `P04 Planning` | The state × breakpoint matrix with a test layer per behaviour | The deployment sequence and storage decision, written before the diff | The allowed surface delta and the release choreography | 0.19–0.51 → **0.32–0.33** |
+
+Two decisions are recorded rather than made by omission. `P01` and `P08` stay undifferentiated: their similarity was already 0.15–0.46 and their content genuinely is the same job in any language, so a pass would have produced adjectives. And the systems stay `mixed` rather than `operational`, because a system whose first and last stages are outlines is not ready to run unattended whatever its middle says.
+
+What remains is execution. Eighteen stages that have never been run are eighteen hypotheses about what a maintainer will accept — `WEB-P02`/`WEB-P07` and `PKG-P02`/`PKG-P07` are the cheapest to test, because their output can be judged against a public issue tracker.
+
+### New — composition is checked, not assumed
+
+The validator has always asked whether each prompt is well formed **on its own**. Nothing asked whether two prompts in a sequence agree on the artifact between them, which is the property that makes this a library of systems rather than 364 separate documents.
+
+`scripts/check_prompt_contract.py` now does, and it treats the things that break a sequence as errors: a `Depends on:` that names no prompt (checked against tokens rather than against the identifiers that happen to exist, or the check could never fail), two stages in one system claiming to produce the same file unless one says *updates* or is an orchestrator, and a cycle in a system's dependency graph. Fourteen fixtures in `scripts/test_contract.py` pin each rule, including the parenthetical case — `none (companion: GEN-P02)` is not a dependency.
+
+It found three real defects on the first run, all in `02-engineering/from-scratch`: `FS-P02` claimed to produce `VISION.md`, which `FS-P01` owns; `FS-P07` claimed `README.md`, which `FS-P04` scaffolds. Both now say *updates*, which is what they do.
+
+**The measured part matters more than the gate.** Of 239 dependency links between stages, **116 (49%) named a concept where the artifact has a filename** — *"the rollout evidence"* instead of `.flags/ROLLOUT_LOG.md`. Forty-six operational prompts now name the upstream file in their prerequisites; **92 (38%) still do not cite a filename, and 82 of those mention the artifact nowhere at all**, so an agent running the sequence has to invent the mapping. Every remaining one is a skeleton without a prerequisites section, which is why the rest of the burndown is part of promoting them. `_meta/conformance-report.md` is generated, checked for staleness in CI, and lists every remaining link by system.
+
+**The metric was wrong before it was right**, which is the part worth reading. The first version counted a link as satisfied if the artifact's *stem* appeared anywhere in the downstream prompt, ignoring its extension. That passed `PKG-P04`, whose only mention of `SELECTED_WORK.md` is the input placeholder `{{SELECTED_WORK}}`, and it passed any prompt containing the word "planning" against `PLAN.md`. Thirty of the 157 links it called satisfied were that kind of match. Tightening it to require the filename — with placeholders stripped first, since a `{{PLACEHOLDER}}` is not a file — moved the honest number from 34% to 46%, and the 21 operational prompts it then exposed were given explicit filenames. A metric that can be satisfied by prose about the thing is a metric that measures prose.
+
+### New — community files are checked, and one of them was unlinked
+
+`.github/CODE_OF_CONDUCT.md` existed and nothing pointed at it. A conduct policy that no document links is a file, not a policy — GitHub shows it in its own UI, and a contributor reading the repository never learns it applies. The same was true of `.github/SECURITY.md`.
+
+`check_community` now requires `LICENSE`, `CONTRIBUTING.md`, the code of conduct and the security policy to exist **and** to be reachable from `README.md` and `CONTRIBUTING.md`. Four fixtures (validator self-tests now 23/23). `CONTRIBUTING.md` gained a *Community and conduct* section, and `README.md`'s contributing section was rewritten: it had been telling readers that `validate_library.py` was the gate and that 165 of 235 prompts were skeletons, both of which stopped being true several releases ago.
+
+### New — `_meta/release-readiness.md` and `_meta/repository-configuration.md`
+
+The first answers "what still blocks a release" in one page: what is tested and at which level, the three kinds of check the repository performs, five external blockers in the order they must be cleared, four things that are deliberately *not* blockers, and the four things that would make the library trustable rather than merely clean. Its one-line status is the sentence to use in any announcement.
+
+The second records the settings GitHub asks for — description, ten topics, merge policy, security features, social preview — with the commands that apply them and the reason for each. It also records the **sponsorship decision**: not now, with four reasons, and the trigger for revisiting (`repository-configuration.md` §6).
+
+### Fixed — the security-control defect in the forged prompt, retested
+
+`REQ-CHANGE-01` v0.1.0 accepted a change that weakened a security control with only a product approver, and its safeguard appeared in one of two runs of identical input. v0.2.0 makes the control owner mandatory. **Retested with three runs**: two normal cases and one adversarial, all recorded. 3 of 3 name the security officer, 3 of 3 block on the missing signature, and no baseline file was edited. The instability does not recur.
+
+A residual Low defect is recorded and **not** fixed: the two normal runs labelled the same outcome `ACCEPTED WITH CONDITION` and `DEFERRED`. The vocabulary has three decisions and no defined conditioned state, so both are defensible and a reader cannot tell them apart. Changing a vocabulary invalidates the three runs above and needs its own retest, so it waits.
+
+### New — `git-operations` completed: history repair, recovery, hygiene
+
+Three more stages executed on the same fixture. History repair squashed three unpublished commits into one and **preserved the tree hash exactly** (`d5143b7d`). Recovery restored a commit made unreachable by `git reset --hard`, also with an identical tree (`6477a541`). Hygiene produced conventions that record every rule as `convention-only` where nothing enforces it.
+
+One defect, and it is the kind only execution finds: `GIT-P05` told the operator to state whether generated code is committed, and never to look. A committed `.pyc` had survived P01 (uncommitted work), P02 (conflicts), P03 (history) and P04 (refs) without being noticed by any of them — **nothing in the system scans what is committed.** v1.1.0 adds the scan.
+
+### New — a publication decision, separating publication from validation
+
+[`_meta/publication-decision.md`](_meta/publication-decision.md) answers the question the readiness page kept deferring: **publish, as an experimental library, now** — and not as a validated one. Six publication requirements are met with reproducible evidence; two accuracy defects were found and fixed on the spot (the README claimed CI fails on stale generated files, and `PROJECT-STATUS.md` described the workflow as running, when the job dies before its first step). Three items are classified as fix-before-merge, six as after-publication, and none blocks publication.
+
+### New — `git-operations` stages 1–2 executed against a real merge conflict
+
+The first process prompts to be run: `GIT-P01` (state and safety check) then `GIT-P02` (conflict resolution), in order, on a purpose-built repository with a rename on one side, a capability change on the other, and one commit that exists nowhere else.
+
+Both held. The state check found the unrecoverable commit and produced the right recommendation; the conflict was resolved by intent rather than by side, with `grep -rn "send("` empty afterwards, the test suite passing, and no history rewritten.
+
+Two defects, one of them serious:
+
+- **High — the generated-file rule never fires in the case that happens.** `GIT-P02` step 5 says never hand-merge a lockfile, and step 2 keys that on conflict type. Git **auto-merged** `requirements.lock` with no marker, so neither step saw it. A lockfile merged by a text algorithm installs something neither branch intended, and the clean merge is exactly what hides it. The prompt now requires listing files both sides touched that merged *cleanly* and checking them against the generated-file list.
+- **Medium — the recommended snapshot is invisible.** `GIT-P01` offered `git stash create`, which returns a SHA without storing it; the object is unreachable and expires. For a snapshot whose entire purpose is to be findable later, that is worse than no snapshot. Replaced with a stored stash and a recorded `stash@{n}`.
+
+Both prompts also gained the rule neither had: `.git-ops/` is local working state, added to `.git/info/exclude`, never committed — because a committed `STATE.md` conflicts in the exact situation it describes. Both to v1.1.0.
+
+### New — batch 0 executed end to end: eight prompts run, eight changed
+
+Part 5 of the brief asked for execution rather than review. Batch 0 — the six conversational prompts plus `GEN-P01` and `GEN-P02` — is now **8 of 8 executed**, in five new records (`_meta/empirical-evaluation-05.md` to `-09.md`), and **every one of the five runs changed the prompt it ran**. The executed total is 9 of 228 (3.9%).
+
+| Run | What it actually did | Defect it found |
+|---|---|---|
+| `CHAT-MODE` | adapted `GIT-P03` (history repair) for a chat window; mapped 4 of 4 prerequisite rows | no rule for a prerequisite that is a **stop condition** — the risk gate was left to the adapter to invent; `SESSION_LIMIT` was declared and consumed by no step |
+| `CHAT-DESIGN` | a real ADR on splitting the composition gate from the validator, with measurements taken during the run | nothing required the **status quo** to be one of the options; `SCALE` presumed traffic volume for a code-structure decision; the ADR had no destination |
+| `CHAT-HANDOFF` | a 48-line packet for this engagement, then a five-question reconstruction answered from the packet alone (5/5) | the four labels had no way to say *generated, true as of a date* — which is what every count in a repository handoff is |
+| `GEN-P01` | forged `REQ-CHANGE-01` for a coverage gap the matrix already named, routed against four existing prompts, self-scored 83/100 | the rubric's operational band and the mandatory `draft` label were left contradictory; no rule for composing with no operator present; the 70% overlap test had no method |
+| `GEN-P02` | ran the forged prompt against a real git fixture at `v1.4.0`: three pre-registered cases, two runs on the normal case, assertions checked by shell commands | the prompt under test accepted a change that **weakens a security control** with only a product approver, and the safeguard appeared in 1 of 2 runs of identical input; `GEN-P02` itself required "fresh sessions" with no way to get them |
+
+**The measurement that matters is not the coverage.** Three of three decisions came out right in `GEN-P02`'s fixture runs, and the same input produced a 68-line artifact and then a 29-line one, with the safety clause present only the first time. Reading the prompt would not have found that; two runs did. The library's own evidence rule — *a run that changes nothing is a run that taught nothing* — is what this batch tested, and it held: five runs, five prompts revised to v1.1.0.
+
+**What batch 0 does not prove.** Every run was performed by the prompt's author, on targets the author chose, graded by the author. `CHAT-HANDOFF`'s cold read was not cold; `GEN-P02`'s "fresh sessions" did not happen and the record says `isolation: unavailable`. Batch 0 is complete in executions and empty in independent verification, and those are different columns.
+
+### Fixed — CI had two workflows, one of them missing the composition gate
+
+`validate.yml` ran `check_all.py --verbose`; `validate-library.yml` re-listed twelve individual commands and did not run the composition gate, so a pull request could go green on the older workflow while the gate was red, and every gate change had to be made twice. The release documentation had been claiming "CI runs that script and nothing else" since the gate list landed. `validate-library.yml` is deleted; `validate.yml` remains the single workflow, and the claim is now true.
+
+### New — the totals in prose are checked, because two of them were wrong
+
+`check_documented_counts` has compared the maturity triplet against the tree since 2.22.0. It did not compare the *totals*, and the totals had drifted: `PROJECT-STATUS.md` and the publication checklist both still said 458 Markdown files when the tree held 462, `QUICKSTART.md` offered "all 362 prompts", and the social-preview guidance promised 213 operational prompts and two executed.
+
+`check_stated_totals` now compares "N Markdown files", "N prompt files" and "all N prompts" in the four documents a reader arrives through. The changelog is deliberately excluded: its numbers were true on their release date, and rewriting them would destroy the record that makes the changelog worth keeping. Five fixtures (validator self-tests now 23/23), including the one that matters most — *"228 prompts carry that label"* is a claim about a subset, and a rule that cannot tell a subset from a total produces findings a reader learns to dismiss.
+
+### New — `CHAT-REVIEW` executed against a real file, and the metric it broke
+
+Part 5 of the brief asked for end-to-end execution, not more structural review. `CHAT-REVIEW` ran, as written, against a file this repository published that morning: `scripts/check_prompt_contract.py`.
+
+It found two defects in the composition metric, both by measurement. The flow check counted a link as satisfied when the artifact's **stem** appeared anywhere downstream, so `PKG-P04` passed on the mere existence of the input placeholder `{{SELECTED_WORK}}`, and any prompt containing the word *planning* passed against `PLAN.md`. Thirty of the 157 links it called satisfied were matches of that kind. The metric had been overstating the library's integration claim, and the number in the previous section of this changelog is the corrected one.
+
+`CHAT-REVIEW` v1.1.0 takes three rules from the run: a published number is the correctness question and comes first; ask about the **standard** (a metric, a schema, an error taxonomy), not only the framework; and the not-assessed list must include the definitions the review had to assume. Record: [`_meta/empirical-evaluation-04.md`](_meta/empirical-evaluation-04.md).
+
+**Executed: 4 of 228 operational prompts (1.8%).** Every one of the four runs changed the prompt it ran, which is the argument for the rest.
+
+### New — `_meta/execution-batches.md`, the queue behind the executed count
+
+228 prompts cannot be tested the same way, and saying so is not a plan. This file says which prompts can be run alone against this repository, in what order, what a run has to leave behind to count, and what has been run so far: seven batches, `B0` (conversational, 4 of 8 recorded) through `B7` (the 131 skeletons, which are not a testing backlog because running an outline measures the outline). It also states the limit plainly — zero runs by a second person, which is the only kind that tests whether a prompt is *useful* rather than merely executable.
+
+### New — a worked multi-agent run, and the three rules it forced (#109)
+
+`WF-MULTIAGENT` said "freeze the interfaces first" and "audit for cross-agent interference". Neither was demonstrated, so both read as formalities. [`07-workflows/multi-agent-worked-example.md`](07-workflows/multi-agent-worked-example.md) is a two-agent notifications feature where the event schema was frozen before either agent started; Agent A then added a **required** `template_id` on day 2 and reported it as *done*, not *deviated*.
+
+Both per-agent suites stayed green, because each built its fixtures from its own copy of the schema, and the seam broke silently: the worker rendered an empty template while the job reported success. The recovery **versioned** the interface (v2 with `template_id` optional, `template` retained) rather than reverting it, because a consumer already depended on v1.
+
+Three rules followed, each traceable to a row of the audit that should have run on day 2:
+
+1. **The frozen interface is a fixture, not a paragraph** — a serialised example in the repository, which the agents' tests read.
+2. **A required field is an interface change**, reported as `deviated`, never as `done`.
+3. **The seam check belongs to the orchestrator and runs before integration**, asserting on the boundary outcome rather than on the handshake.
+
+`WF-MULTIAGENT` v1.1.0 carries all three, with completion criteria and a failure-handling entry for the case where every unit suite is green and the integration fails.
+
+### New — `scripts/check_all.py`, so the gate list has one owner
+
+There were nine gates and three lists of them: the CI workflow, `CONTRIBUTING.md`, and the publication checklist. A contributor could not tell which was authoritative, and a gate added to one list was missing from the others. `scripts/check_all.py` is now the single source — CI runs that script and nothing else, and a local `python3 scripts/check_all.py` is the same run the pull request will get. `--fix` regenerates in dependency order (catalog, gallery, task index, evidence), because running them alphabetically produces a stale file that the next gate then fails.
+
+### New — the counts in prose are checked too
+
+Every generated artefact is guarded: CI fails if the catalog, gallery, task index, or evidence report is stale. The numbers a reader meets **before** those artefacts were not. Promoting prompts in this release moved the operational count from 213 to 228, and four hand-written sentences had to be edited each time — `PROJECT-STATUS.md`, the publication checklist's gate table and limitations section, and the quickstart. That is four chances to miss one, per release, forever.
+
+`scripts/validate_library.py` now compares the maturity lines in `PROJECT-STATUS.md` and `_meta/publication-checklist.md` against the tree and fails with both numbers: *"says 213 operational / 5 draft / 146 skeleton but the tree has 228 / 5 / 131"*. Four fixtures pin it (14/14), including the case where a document has no maturity line at all and must not be treated as a failure.
+
+### New — the README's count table is now checked
+
+The per-system table in `README.md` drifted twice in one release: `03-domains/ai-agentic/` claimed 5 prompts while holding 7, and `07-workflows/` claimed 12 while holding 13. Neither is a lie anyone types — both are what happens when a prompt is added and the table is not revisited. Since that table is the first quantitative claim a reader meets, `scripts/validate_library.py` now compares every row against the tree and fails with the exact row to fix. Four fixtures in `test_validator.py` (10/10) pin the rule, including the case where two rows point at different directories.
+
+### Changed — `CHAT-SELECT` v1.1.0, after a routing run with a scoring key
+
+The third empirical run, and the first with **ground truth outside the prompt**: six situations were routed following `CHAT-SELECT` as written, then each routing card was scored against the generated `TASKS.md`, where "which task owns this prompt" is a fact in the repository rather than the evaluator's opinion. Four of six cards named the prompt the index assigns to the situation's task. Write-up: [`_meta/empirical-evaluation-03.md`](_meta/empirical-evaluation-03.md).
+
+The two misses were worth more than the hits:
+
+| Defect | What it looks like in a real conversation | Fix in 1.1.0 |
+|---|---|---|
+| The prompt equated the user's symptom with the index's heading | "Our nightly export stopped producing files" is *broken now* to the user and *running the work* to the index. A model that silently translates one into the other returns a correct route the user does not recognise | Classify the sentence, then name the index's heading for the same prompt; when they differ, state both and say which to run first |
+| The falsifier was only asked to separate *tasks* | Tasks are coarse; the realistic ambiguity is two prompts inside one task (`GOV-P01` control map versus `STD-01` standards conformance for one security questionnaire). Every card in the run had a falsifier, and four of them separated the wrong pair | The falsifier must separate the two candidate prompts, and the verification row now checks that it does |
+
+**One defect was in the index, not the prompt.** A job that stops firing is the most common form of "something is broken right now", and `JOBS-01` was reachable only from *running the work*. Background jobs are now a home of both tasks, and `JOBS-01` carries an explicit `Gallery` line because both rows had been rendering the clipped fragment "A per-job safety assessment (idempotent?". Two cases in `test_task_index.py` pin multi-home routing (17/17), and the generator comment now says that overlapping homes are deliberate and must be true of both descriptions.
+
+### Also
+
+- `QUICKSTART.md` Path 0 gained both chat prompts and a third rule: a route without the index is `inferred`, never `verified`. Path 0 also moved to the top of the file — the reader with the fewest tools was being served last.
+- `QUICKSTART.md` said "355 prompts" and "four situations". It says 364 and six, which is what the file contains. A count that drifts in the front door is the first lie a library tells.
+- `scripts/test_task_index.py` (17 cases) pins the index's matching rules, the unrouted-prompt report, multi-home routing, the skeleton counting, and the word-boundary clipping.
+
+### Result
+
+**462 Markdown files, 364 prompts: 228 operational, 5 draft, 131 skeleton.** Validator 0 errors / 0 warnings; tooling self-tests 23/23, 13/13, 12/12, 17/17, 19/19; prose lint 0 findings at baseline 0; catalog, gallery, task index, evidence report and conformance report current, verified by one command. The file count is the validator's scan, not `find`'s — they differ by tooling and archive files, and the scanned number is the one that matches the other claims here.
+
+Coverage: **143 rows, unchanged** — this release improves the instruments, not the coverage. Executed: **3 of 228 operational prompts (1.3%)** — `DBG-01`, `CHAT-DEBUG`, and `CHAT-SELECT` from this release. The eighteen contribution stages promoted here and `CHAT-HANDOFF` have not been run, and the review log says so for each.
+
 ## [2.21.1] — 2026-10-21
 
 ### Changed — `CHAT-DEBUG` v1.1.0, after being run

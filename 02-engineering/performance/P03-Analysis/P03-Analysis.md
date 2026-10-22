@@ -18,7 +18,7 @@ Understand the current performance behavior in depth.
 
 ## Workflow
 1. Analyze baseline results and any available profiles, traces, or logs.
-2. Characterize performance across relevant dimensions (load levels, input sizes, platforms, etc.).
+2. Characterize performance across relevant dimensions (load levels, input sizes, platforms).
 3. Write `ANALYSIS.md` containing:
    - Observed performance characteristics
    - Hot paths and resource usage patterns

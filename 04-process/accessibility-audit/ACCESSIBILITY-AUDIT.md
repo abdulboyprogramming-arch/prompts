@@ -43,9 +43,9 @@ Out of scope: legal advice on compliance obligations, and design work — the au
 
 5. **Check the motion and timing criteria** that are usually skipped: pause/stop/hide for anything moving more than five seconds, no content that flashes more than three times per second, and respect for `prefers-reduced-motion`.
 
-6. **Check forms properly**: labels programmatically associated (not just visually adjacent), required fields indicated in text and not by colour alone, errors identified in text with a suggestion, error summary focusable at the top of the form, and autocomplete tokens present for personal data.
+6. **Check the form against each criterion separately**: labels programmatically associated (not just visually adjacent), required fields indicated in text and not by colour alone, errors identified in text with a suggestion, error summary focusable at the top of the form, and autocomplete tokens present for personal data.
 
-7. **Check the four WCAG 2.2 additions** specifically, because they are new and frequently missed: **focus not obscured** (a sticky header must not cover the focused element), **dragging movements** need a single-pointer alternative, **target size** is at least 24×24 CSS px (or adequately spaced), and **redundant entry** is avoided (no re-entering information already provided in the same process).
+7. **Check the four WCAG 2.2 additions** specifically, because they are new and frequently missed. **Focus not obscured**: a sticky header must not cover the focused element. **Dragging movements** need a single-pointer alternative. **Target size** is at least 24×24 CSS px, or has 24 px of clear space around it. **Redundant entry** is avoided: do not re-ask for information already provided in the same process.
 
 8. **Check the states nobody demonstrates**: empty lists, loading skeletons, error pages, session expiry, a very long error message, a table with 500 rows, and the mobile breakpoint. Components pass in the demo state and fail in the states that matter.
 
@@ -111,4 +111,4 @@ Risk class A: read-only testing against an environment you own or are authorised
 
 Artifacts: `.a11y/AUDIT.md`, conformance statement, prioritised remediation list.
 
-Handover: remediation goes to `03-domains/frontend/` (currently a skeleton) or the implementation team; the conformance table becomes the evidence for any accessibility statement published externally; `04-process/testing-qa/` absorbs the reproducible checks (keyboard traversal, contrast thresholds) into CI where they can be automated, and keeps the rest as a manual release checklist, because the automatable third is not the difficult third.
+Handover: remediation goes to `03-domains/frontend/` (currently a skeleton) or the implementation team. The conformance table becomes the evidence for any accessibility statement published externally. `04-process/testing-qa/` absorbs the reproducible checks (keyboard traversal, contrast thresholds) into CI where they can be automated, and keeps the rest as a manual release checklist — the automatable third is not the difficult third.

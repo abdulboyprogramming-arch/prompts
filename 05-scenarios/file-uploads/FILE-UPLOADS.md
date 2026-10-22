@@ -21,7 +21,7 @@ Uploads are a security surface (malware, path traversal, content-type spoofing, 
 
 ## 2. Objective and scope
 
-**Produce:** a validated upload path with signed direct-to-storage transfers where appropriate, content verification, size and type limits, lifecycle rules for orphans and retention, and tests for the attacks.
+**Produce:** a validated upload path with signed direct-to-storage transfers for files over the size limit of the application server, content verification, size and type limits, lifecycle rules for orphans and retention, and tests for the attacks.
 
 Out of scope: media transcoding pipelines (a product concern), and CDN performance tuning.
 

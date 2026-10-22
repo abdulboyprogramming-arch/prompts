@@ -73,7 +73,7 @@ Out of scope: implementing fixes (P06). Installing dependencies is allowed when 
 
 ## 8. Security and authorisation
 
-Risk class B: install dependencies, run builds/tests locally, start local services on non-public ports if needed. Do not deploy, do not use production credentials, do not modify dependencies or manifests, do not run database migrations against any non-throwaway database. Bind any started service to localhost only and stop it when finished.
+Risk class B: install dependencies, run builds/tests locally, start local services on non-public ports when a test requires them. Do not deploy, do not use production credentials, do not modify dependencies or manifests, do not run database migrations against any non-throwaway database. Bind any started service to localhost only and stop it when finished.
 
 ## 9. Completion criteria
 

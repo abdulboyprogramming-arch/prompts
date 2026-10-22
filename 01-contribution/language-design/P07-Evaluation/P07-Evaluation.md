@@ -20,7 +20,7 @@ Assess whether the design and prototype meet the original goals and what should 
 1. Evaluate against vision and requirements.
 2. Assess ergonomics, complexity, consistency, and implementability.
 3. Identify the biggest risks and open design questions.
-4. Write `LANGUAGE_EVALUATION.md` with strengths, weaknesses, and recommended next steps (design changes, more examples, broader implementation, RFCs, etc.).
+4. Write `LANGUAGE_EVALUATION.md` with strengths, weaknesses, and recommended next steps (design changes, more examples, broader implementation, RFCs).
 
 ## Completion Criteria
 - A clear evaluation and forward plan exist.

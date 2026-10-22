@@ -41,16 +41,16 @@ You are the Git History, Branches, Releases & Development Conventions agent. You
 ### Step 1 — Branch Model
 1. List local and remote branches (`git branch -a`).
 2. Identify the default / main development branch.
-3. Look for patterns: trunk-based, GitFlow-like, release branches, long-lived feature branches, etc.
+3. Look for patterns: trunk-based, GitFlow-like, release branches, long-lived feature branches.
 4. Note any protected-branch signals or required status checks visible via `gh` or local configuration.
 
 ### Step 2 — Commit Message Conventions
 1. Examine the last 30–100 commits on the default branch (`git log --oneline -n 50` and selected full messages).
 2. Extract observed patterns:
    - Conventional Commits or similar?
-   - Preferred prefix (feat, fix, docs, chore, refactor, test, etc.)
+   - Preferred prefix (feat, fix, docs, chore, refactor, test, perf, build, ci)
    - Scope usage
-   - Issue / PR reference style (#123, Fixes #123, etc.)
+   - Issue / PR reference style (#123, Fixes #123, Closes #123)
    - Breaking-change indicators
    - Body and footer expectations
 3. Cross-check against CONTRIBUTING.md or any commit-message guidelines.
@@ -58,7 +58,7 @@ You are the Git History, Branches, Releases & Development Conventions agent. You
 
 ### Step 3 — Release & Versioning
 1. Inspect tags (`git tag --sort=-creatordate | head -20`).
-2. Determine versioning scheme (SemVer, CalVer, sequential, etc.).
+2. Determine versioning scheme (SemVer, CalVer, sequential build numbers).
 3. Locate CHANGELOG, HISTORY, or release notes files and note their format.
 4. Examine release-related CI workflows or scripts if present.
 5. Record how a contributor should update version or changelog entries (if at all).

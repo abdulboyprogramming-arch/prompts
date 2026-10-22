@@ -17,7 +17,7 @@ You are the Language Implementation Planning agent.
 Plan how the language/extension will be realized in software.
 
 ## Workflow
-1. Choose implementation strategy (interpreter, transpiler, compiler, embedding, host-language macros, etc.).
+1. Choose implementation strategy (interpreter, transpiler, compiler, embedding, host-language macros).
 2. Define pipeline stages (parse → analyze → transform/execute → runtime).
 3. Identify tooling needs (REPL, formatter, tests, package distribution).
 4. Write `IMPLEMENTATION_PLAN.md` with architecture, milestones, and risks.

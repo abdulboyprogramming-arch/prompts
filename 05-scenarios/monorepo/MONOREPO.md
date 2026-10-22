@@ -50,7 +50,7 @@ Out of scope: migrating between monorepo tools, and publishing strategy for exte
 
 6. **Check versioning and publishing coherence**: fixed (all packages share a version) versus independent. Mixed strategies produce version skew that consumers discover at install time. Internal ranges (workspace protocol versus a caret range) decide whether a published package references a version that exists.
 
-7. **Check ownership**: `CODEOWNERS` or equivalent per package, and whether an uncontested package has no owner. Unowned packages accumulate the changes nobody reviews properly.
+7. **Check ownership**: `CODEOWNERS` or equivalent per package, and whether an uncontested package has no owner. Unowned packages accumulate the changes that nobody is accountable for reviewing.
 
 8. **Check the shared configuration trap**: one root `tsconfig`/`eslint`/`babel` config that every package extends means a root change invalidates every cache entry. That is sometimes correct; it should be a decision, not an accident.
 

@@ -64,7 +64,7 @@ Out of scope: selecting the platform (`05-scenarios/deployment-target/`), rewrit
 
 7. **Execute in this order**, logging timestamps: final data sync → verify target health via temporary hostname → switch DNS or proxy upstream → watch the guardrails for the declared interval → confirm sessions, webhooks, and scheduled jobs on the new host.
 
-8. **Verify the things that only break after a switch**: logins (cookie domain), third-party callbacks arriving at the new host, outgoing email, cron firing once (not twice — **disable the old host's jobs the moment traffic moves**, or every job runs in duplicate), file uploads landing in the right bucket, and the old host no longer receiving traffic.
+8. **Verify the things that only break after a switch**: logins (cookie domain), third-party callbacks arriving at the new host, outgoing email, and cron firing exactly once. **Disable the old host's jobs the moment traffic moves**, or every job runs in duplicate. Then confirm file uploads land in the right bucket and the old host no longer receives traffic.
 
 9. **Keep the old platform warm and reversible** for at least the DNS TTL plus one business day. Do not decommission on the same day the record changed. Record the exact decommission date and what would be lost by then.
 

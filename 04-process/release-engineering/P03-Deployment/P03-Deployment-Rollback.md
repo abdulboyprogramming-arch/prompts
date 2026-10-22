@@ -26,7 +26,7 @@ Out of scope: executing the deployment (Category C, human-authorised), building 
 ## 3. Prerequisites and inputs
 
 - `RELEASE_READINESS.md` (risk class, rollback viability).
-- `CHANGELOG` breaking changes and migration notes.
+- `CHANGELOG.md` breaking changes and migration notes, from `REL-P02`.
 - Deployment target `{{TARGET_ENV}}` for `{{RELEASE_VERSION}}`, including any change window `{{CHANGE_WINDOW}}`; topology, traffic routing, and database migration tooling.
 
 ## 4. Workflow
@@ -38,7 +38,7 @@ Out of scope: executing the deployment (Category C, human-authorised), building 
    - **Feature flag** — decouple deploy from release; ship dark, enable by cohort.
    Record why the alternatives were rejected for this release.
 2. **Sequence schema changes** with expand/contract:
-   - Phase 1 (this release): add new columns/tables/indexes, nullable or defaulted; dual-write if necessary; no reads from the new shape required by old code.
+   - Phase 1 (this release): add new columns, tables, and indexes, nullable or defaulted; dual-write when both shapes must stay current; no reads from the new shape required by old code.
    - Phase 2 (later): deploy code that reads/writes the new shape.
    - Phase 3 (later): remove old fields after telemetry shows zero use.
    A migration that drops or renames anything used by the currently deployed version is a NO-GO.

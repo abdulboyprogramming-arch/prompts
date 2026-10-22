@@ -17,7 +17,7 @@
 
 Agent context rots faster than documentation, because it describes *how to operate* a repository that changes weekly. The failure is silent: the file stays plausible, the commands stop working, and every agent that reads it is now confidently wrong.
 
-Your job is to make drift **detectable by a machine** where possible and **cheap to fix** everywhere else.
+Your job is to make drift **detectable by a machine** for every fact that a script can read, and **cheap to fix** for the rest.
 
 ## 2. Objective and scope
 

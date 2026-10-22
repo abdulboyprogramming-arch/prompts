@@ -27,7 +27,14 @@ import tempfile
 import textwrap
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from validate_library import check_system_readmes, load  # noqa: E402
+from validate_library import (  # noqa: E402
+    check_community,
+    check_documented_counts,
+    check_readme_counts,
+    check_stated_totals,
+    check_system_readmes,
+    load,
+)
 
 
 STAGE = """# PROMPT {n} — Stage {n}
@@ -141,6 +148,121 @@ CASES = [
 ]
 
 
+COUNT_CASES = [
+    (
+        "a README row that matches the tree passes",
+        "| [`testcase/system/`](testcase/system/README.md) | 2 | operational |\n",
+        2,
+        False,
+    ),
+    (
+        "a README row that is one short is an error",
+        "| [`testcase/system/`](testcase/system/README.md) | 1 | operational |\n",
+        2,
+        True,
+    ),
+    (
+        "a README row naming a directory with no prompts is an error",
+        "| [`testcase/empty/`](testcase/empty/README.md) | 1 | operational |\n",
+        2,
+        True,
+    ),
+    (
+        "a row for a different directory is checked against that directory, not this one",
+        "| [`testcase/other/`](testcase/other/README.md) | 1 | operational |\n"
+        "| [`testcase/system/`](testcase/system/README.md) | 2 | operational |\n",
+        2,
+        True,
+    ),
+]
+
+
+DOC_CASES = [
+    (
+        "a maturity line that matches the tree passes",
+        ["operational", "operational", "skeleton"],
+        "- Maturity: **2 operational**, **0 draft**, **1 skeleton**.\n",
+        False,
+    ),
+    (
+        "a maturity line that is stale is an error",
+        ["operational", "operational", "skeleton"],
+        "- Maturity: **1 operational**, **0 draft**, **1 skeleton**.\n",
+        True,
+    ),
+    (
+        "the error names the file and both numbers",
+        ["operational", "operational", "skeleton"],
+        "- Maturity: **9 operational**, **0 draft**, **1 skeleton**.\n",
+        True,
+    ),
+    (
+        "a document with no maturity line is ignored, not failed",
+        ["operational"],
+        "# Notes\n\nNo counts here.\n",
+        False,
+    ),
+]
+
+
+TOTAL_CASES = [
+    (
+        "a file total that matches the scan passes",
+        {"PROJECT-STATUS.md": "**3 Markdown files**, **2 prompt files**.\n"},
+        False,
+    ),
+    (
+        "a stale Markdown file total is an error",
+        {"PROJECT-STATUS.md": "**458 Markdown files**, **2 prompt files**.\n"},
+        True,
+    ),
+    (
+        "a stale prompt total is an error",
+        {"QUICKSTART.md": "All 362 prompts, plus 3 prompt files.\n"},
+        True,
+    ),
+    (
+        "a subset claim is not a total and is not checked",
+        {"PROJECT-STATUS.md": "228 prompts carry that label; 3 Markdown files.\n"},
+        False,
+    ),
+    (
+        "an unchecked document is ignored",
+        {"CHANGELOG.md": "Old release: 457 Markdown files.\n"},
+        False,
+    ),
+]
+
+
+COMMUNITY_CASES = [
+    (
+        "all community files present and linked passes",
+        {"LICENSE": "MIT", "CONTRIBUTING.md": "See CODE_OF_CONDUCT.md and SECURITY.md.",
+         ".github/CODE_OF_CONDUCT.md": "x", ".github/SECURITY.md": "y",
+         "README.md": "Read CONTRIBUTING.md."},
+        False,
+    ),
+    (
+        "a missing code of conduct is an error",
+        {"LICENSE": "MIT", "CONTRIBUTING.md": "See CODE_OF_CONDUCT.md and SECURITY.md.",
+         ".github/SECURITY.md": "y", "README.md": "Read CONTRIBUTING.md."},
+        True,
+    ),
+    (
+        "a conduct policy nobody links is an error",
+        {"LICENSE": "MIT", "CONTRIBUTING.md": "Nothing here.", ".github/CODE_OF_CONDUCT.md": "x",
+         ".github/SECURITY.md": "y", "README.md": "Read CONTRIBUTING.md."},
+        True,
+    ),
+    (
+        "a README that never points at CONTRIBUTING is an error",
+        {"LICENSE": "MIT", "CONTRIBUTING.md": "See CODE_OF_CONDUCT.md and SECURITY.md.",
+         ".github/CODE_OF_CONDUCT.md": "x", ".github/SECURITY.md": "y", "README.md": "Hello."},
+        True,
+    ),
+]
+
+
 def main() -> int:
     failures = 0
     for name, readme, stages, expect_error in CASES:
@@ -155,7 +277,59 @@ def main() -> int:
             failures += 1
             for e in errors:
                 print(f"       got: {e}")
-    total = len(CASES)
+    for name, readme_text, stage_count, expect_error in COUNT_CASES:
+        with tempfile.TemporaryDirectory() as root:
+            docs = build(root, "**Maturity: operational (v1.0.0).** Two stages.\n",
+                         ["operational"] * stage_count)
+            errors = check_readme_counts(docs, readme_text)
+        got_error = bool(errors)
+        ok = got_error == expect_error
+        status = "ok  " if ok else "FAIL"
+        print(f"{status} {name} (expected {'error' if expect_error else 'no error'})")
+        if not ok:
+            failures += 1
+            for e in errors:
+                print(f"       got: {e}")
+    for name, stages, text, expect_error in DOC_CASES:
+        with tempfile.TemporaryDirectory() as root:
+            docs = build(root, "**Maturity: operational (v1.0.0).** Two stages.\n", stages)
+            errors = check_documented_counts(docs, {"PROJECT-STATUS.md": text})
+        got_error = bool(errors)
+        ok = got_error == expect_error
+        status = "ok  " if ok else "FAIL"
+        print(f"{status} {name} (expected {'error' if expect_error else 'no error'})")
+        if not ok:
+            failures += 1
+            for e in errors:
+                print(f"       got: {e}")
+        elif name.startswith("the error names"):
+            if "PROJECT-STATUS.md" not in errors[0] or "tree has 2 / 0 / 1" not in errors[0]:
+                failures += 1
+                print("       detail missing from the message")
+
+    # The stated-totals rule counts the docs it is given, so the fixtures supply a
+    # document list and read their claims against it.
+    for name, texts, expect_error in TOTAL_CASES:
+        errors = check_stated_totals([], texts, totals={"files": 3, "prompts": 2})
+        got_error = bool(errors)
+        good = got_error == expect_error
+        print(f"{'ok  ' if good else 'FAIL'} {name} (expected {'error' if expect_error else 'no error'})")
+        if not good:
+            failures += 1
+            for e in errors:
+                print(f"       got: {e}")
+
+    for name, texts, expect_error in COMMUNITY_CASES:
+        errors = check_community([], texts)
+        got_error = bool(errors)
+        good = got_error == expect_error
+        print(f"{'ok  ' if good else 'FAIL'} {name} (expected {'error' if expect_error else 'no error'})")
+        if not good:
+            failures += 1
+            for e in errors:
+                print(f"       got: {e}")
+
+    total = len(CASES) + len(COUNT_CASES) + len(DOC_CASES) + len(TOTAL_CASES) + len(COMMUNITY_CASES)
     print(f"\n{total - failures}/{total} cases passed")
     return 1 if failures else 0
 

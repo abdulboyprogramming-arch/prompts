@@ -31,6 +31,8 @@ Out of scope: writing new features (that is the implementation being shipped), g
 - `{{PROXY_PATTERN}}` — UUPS, transparent, beacon, or diamond; each has different upgrade authority and selector rules.
 - `{{FORK_BLOCK}}` — a recent block for the rehearsal; `{{TIMELOCK_DELAY}}` — the delay you must wait through; `{{APPROVER}}` — required for class D.
 - Verified source of the **currently deployed** implementation, not the previous commit. Confirm the deployed storage layout from the explorer or a storage dump.
+- `THREAT_MODEL.md`, `FINDINGS.md` — written by `CHAIN-P01`; read them before starting rather than re-deriving them.
+- `KEY_CUSTODY.md` — written by `CHAIN-P02`; read it before starting rather than re-deriving it.
 
 ## 4. Workflow
 

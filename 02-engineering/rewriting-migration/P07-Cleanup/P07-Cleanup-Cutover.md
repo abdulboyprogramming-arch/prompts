@@ -19,7 +19,7 @@ Remove obsolete code, finalize the transition, and leave the system in a clean, 
 ## Workflow
 1. Remove or isolate dead legacy code that is no longer needed.
 2. Update documentation, runbooks, and architecture notes.
-3. Complete any final cutover steps (routing, feature flags, data migration, etc.).
+3. Complete any final cutover steps (routing, feature flags, data migration).
 4. Write `CUTOVER_SUMMARY.md` describing what was delivered, remaining follow-ups, and lessons.
 5. Ensure the repository and operational state are tidy.
 

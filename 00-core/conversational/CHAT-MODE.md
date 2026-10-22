@@ -2,7 +2,7 @@
 
 **Identifier:** CHAT-MODE
 **System:** 00-core/conversational
-**Version:** 1.0.0
+**Version:** 1.1.0
 **Maturity:** operational
 **Execution mode:** specialised
 **Risk class:** A — the output is a reply, not a change to any system
@@ -50,6 +50,8 @@ Out of scope: pretending the chat run equals an agent run; producing artifacts a
 
 2. **Run the prompt's own section 3 as an interrogation.** Every "discover from the repository" step becomes a question with a precise answer shape: not "what is your stack", but "paste your dependency manifest" and "paste the test command and its last output". Ask in one batch, numbered, limited to what changes the answer.
 
+   **A prerequisite that is a stop condition stays a stop condition.** Where section 3 says *required when X → stop*, the interrogation asks for X and the run halts on its absence. Adaptation may not soften a risk gate, and this is the one place where the chat version is allowed to be less capable than the original by design rather than by accident: a risk-class-D rewrite without recorded approval is not a degradation of evidence, it is an unauthorised act with weaker supervision.
+
 3. **Set the paste protocol** before the first request for code. Ask for: the file or function under discussion **with its imports**, the exact error text, the command that produced it, and the versions involved. Refuse to reason about a fragment whose context decides the answer — a function without its caller is a guess.
 
 4. **Redact before pasting.** A chat window is a third party. Require the user to remove credentials, tokens, personal data, customer names, and internal hostnames; keep the structure and change the values. If a secret has already been pasted, say so immediately and recommend rotation (`02-engineering/secrets-rotation/`).
@@ -66,6 +68,8 @@ Out of scope: pretending the chat run equals an agent run; producing artifacts a
    Every factual claim about the user's system carries one. "Verified" is reserved for the case where the user pasted the command **and** its output **and** they match the claim.
 
 6. **Keep the prompt's failure handling, and add chat's own three failures:** context truncation (the model forgets an earlier constraint), accumulation drift (each turn adds a plausible detail nobody supplied), and sycophancy (agreeing with the user's diagnosis). Mitigations: restate the constraints every few turns, keep a running ledger in the reply, and ask the model to argue against the user's hypothesis before confirming it.
+
+   **Use `{{SESSION_LIMIT}}` to decide when.** If a limit was supplied, write the state block (constraints, established facts with labels, decisions, open questions, next action) at the first natural boundary after two-thirds of it, and say which constraints it carries. If no limit was supplied, use five turns. A mitigation with no threshold is a sentence, not a control.
 
 7. **Produce artifacts as message blocks with the library's file names in a header**, so the user can paste them into a file unchanged. A chat run of `DR-01` still ends with `.dr/DR_PLAN.md`; it just arrives in a message.
 
@@ -93,9 +97,10 @@ Out of scope: pretending the chat run equals an agent run; producing artifacts a
 | Delta stated | First message | Three-column table with substitutes named |
 | Interrogation batched | First request | Numbered questions, each with an answer shape |
 | Paste protocol | Before any code | Context, error text, command, versions requested |
+| Stop conditions preserved | Interrogation | Every `required when X → stop` row asked for, and the run halts when it is absent |
 | Redaction | Before any code | Explicit instruction; secrets refused if pasted |
 | Evidence vocabulary | Throughout | Only observed/reported/inferred/unknown used |
-| Context ledger | Replies | Constraints restated periodically in long sessions |
+| Context ledger | Replies | Constraints restated at two-thirds of the stated session limit, or every five turns when none was given |
 | Artifacts named | Output | Library file names in block headers |
 | Self-audit | Final message | Completion criteria marked met / not met / cannot verify |
 | Next actions | Final message | Commands to run outside the chat, named |
@@ -118,6 +123,7 @@ Everything here is class A: a reply is not a change. Two risks remain. First, **
 
 - [ ] Capability delta stated before the work began.
 - [ ] Interrogation replaced discovery, in one batch, with answer shapes.
+- [ ] Stop conditions from the source prompt preserved, not converted into questions with defaults.
 - [ ] Paste protocol set: context, error, command, versions.
 - [ ] Redaction required; secrets refused.
 - [ ] Four-label evidence vocabulary used throughout.
