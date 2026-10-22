@@ -29,7 +29,7 @@ prompts by situation.
 | [06-interactive — conversations that clarify a request](#06-interactive--conversations-that-clarify-a-request) | 4 | Use when the request is vague and needs to be scoped first. |
 | [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 13 | Composed sequences that route between systems and stop at human gates. |
 
-*Maturity across the library: 257 operational, 5 draft, 102 skeleton, 364 total.*
+*Maturity across the library: 265 operational, 5 draft, 94 skeleton, 364 total.*
 
 ---
 
@@ -294,14 +294,14 @@ Stack-specific practice: data, AI, and the domains still being built out.
 | ID | Prompt | Use it for | Maturity | Risk |
 |---|---|---|---|---|
 | `API-VER-01` | [API Versioning and Consumer Contracts](03-domains/backend/P09-API-Versioning/P09-API-Versioning.md) | A versioning scheme, a consumer inventory, compatibility rules per change type, contract tests, a deprecation and sunset policy, and a migration path for anything… <br>**Inputs:** `API_SCOPE, CONSUMERS, CURRENT_VERSION, SUNSET_WINDOW, APPROVER` | operational | B |
-| `BE-P01` | [Context & Constraints](03-domains/backend/P01-Context/P01-Context-Constraints.md) | Understand the service’s role, consumers, and hard constraints. | skeleton | B |
-| `BE-P02` | [API / Interface Design](03-domains/backend/P02-API-Design/P02-API-Interface-Design.md) | Define clear contracts for the backend surface. | skeleton | B |
-| `BE-P03` | [Architecture](03-domains/backend/P03-Architecture/P03-Backend-Architecture.md) | Structure the service for clarity, changeability, and operational health. | skeleton | B |
-| `BE-P04` | [Data & Persistence](03-domains/backend/P04-Data/P04-Data-Persistence.md) | Design data models and persistence changes intentionally. | skeleton | B |
-| `BE-P05` | [Implementation](03-domains/backend/P05-Implementation/P05-Implementation.md) | Implement the service/feature cleanly according to architecture and contracts. | skeleton | B |
-| `BE-P06` | [Reliability & Operability](03-domains/backend/P06-Reliability/P06-Reliability-Operability.md) | Ensure the backend behaves well under failure and is operable in production. | skeleton | B |
-| `BE-P07` | [Validation](03-domains/backend/P07-Validation/P07-Validation.md) | Verify correctness, contract fidelity, and release readiness. | skeleton | C |
-| `BE-P08` | [Backend Master Orchestrator](03-domains/backend/P08-Orchestrator/P08-Backend-Orchestrator.md) | Runs the backend system end to end: gates, routing, and final acceptance. | skeleton | A |
+| `BE-P01` | [Context & Constraints: who calls this, and what breaks when it stops](03-domains/backend/P01-Context/P01-Context-Constraints.md) | BE_CONTEXT.md answering five questions <br>**Inputs:** `PROJECT_PATH, SERVICE_OWNER, TRAFFIC_PROFILE, COMPLIANCE_SCOPE` | operational | A |
+| `BE-P02` | [API / Interface Design: the contract a client can implement without asking](03-domains/backend/P02-API-Design/P02-API-Interface-Design.md) | BE_API_DESIGN.md containing <br>**Inputs:** `PROJECT_PATH, CONSUMER_LIST, EXISTING_CONTRACT` | operational | A |
+| `BE-P03` | [Architecture: boundaries you can defend, and the transaction that decides them](03-domains/backend/P03-Architecture/P03-Backend-Architecture.md) | BE_ARCHITECTURE.md containing <br>**Inputs:** `PROJECT_PATH, TEAM_STRUCTURE, DEPLOYMENT_MODEL` | operational | A |
+| `BE-P04` | [Data & Persistence: the migration that runs while the old code is still serving](03-domains/backend/P04-Data/P04-Data-Persistence.md) | BE_DATA.md containing <br>**Inputs:** `PROJECT_PATH, DATA_CLASSIFICATION, RETENTION_POLICY` | operational | B |
+| `BE-P05` | [Implementation: handlers that admit what they do not know](03-domains/backend/P05-Implementation/P05-Implementation.md) | BE_DATA.md, inside the boundaries in BE_ARCHITECTURE.md. <br>**Inputs:** `PROJECT_PATH, CONTRACT_PATH, DESIGN_PATH` | operational | B |
+| `BE-P06` | [Reliability & Operability: the failure table, and what the person on call sees](03-domains/backend/P06-Reliability/P06-Reliability-Operability.md) | BE_RELIABILITY.md containing <br>**Inputs:** `PROJECT_PATH, SLO_TARGET, ONCALL_ROTA` | operational | B |
+| `BE-P07` | [Validation: evidence that the contract holds, not a green build](03-domains/backend/P07-Validation/P07-Validation.md) | BE_VALIDATION.md with <br>**Inputs:** `PROJECT_PATH, CI_COMMAND, ENVIRONMENT` | operational | C |
+| `BE-P08` | [Backend Master Orchestrator: the gates between seven stages](03-domains/backend/P08-Orchestrator/P08-Backend-Orchestrator.md) | BE_RUN.md containing the stage ledger (ran, skipped, blocked), each gate's verdict and evidence, every open question with its owner, and the final decision: ship… <br>**Inputs:** `PROJECT_PATH, SCOPE, START_STAGE` | operational | A |
 
 ### cost-engineering · 4 prompts
 

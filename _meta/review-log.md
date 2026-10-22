@@ -786,3 +786,21 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 - Secret scan extended: the earlier claim covered a squashed checkout; the clone was unshallowed and all **62 commits across all refs plus every tag** were scanned for `ghp_`, `github_pat_`, `gho_`, `AKIA`, private-key headers and `sk-` — 0 hits. Tree, PR body and issue comments also 0.
 - Content hygiene: 1 sandbox path (`/home/user/prompts`) found in `_meta/empirical-evaluation-08.md` and replaced with a placeholder; the checklist's row 13 claim was corrected to describe the remaining session branch names accurately rather than asserting zero hits.
 - Actions: the workflow fails at startup with 0 steps. GitHub-hosted standard runners are free for public repositories, so the billing blockage may end at the moment of publication; this cannot be verified while the repository is private and was not assumed.
+
+### Completion — the backend family, and a gate for the count nobody recomputed (2.26.0)
+- **2026-10-22 · authoring review · the prompt's author** · no execution record
+- Promoted `BE-P01` … `BE-P08` from skeleton to operational: inputs declared, decision
+  rules tied to evidence, verification written as runnable checks, failure handling per
+  stage, handover naming the artifact the next stage needs. `BE-P09` (`API-VER-01`) was
+  already operational and stays outside the sequence.
+- Composition: `03-domains/backend` went from 6 of 8 links citing the upstream filename to
+  8 of 8. Two were fixed by naming the artifact where the prose said "the design"
+  (`BE-P04` → `BE_ARCHITECTURE.md`, `BE-P06` → `BE_IMPLEMENTATION_LOG.md`); `BE-P08`'s gate
+  table now names the artifact each gate reads.
+- **Defect found by inspection, not by a gate:** `PROJECT-STATUS.md` still claimed 213
+  operational prompts and two executed, three releases after both numbers changed. The
+  maturity triplet was checked; the sentence beside it was prose and was not. Extended
+  `check_documented_counts` to read every `N operational` in the status documents, with two
+  fixtures. It failed on the real file immediately, which is the only useful test of a gate.
+- Not claimed: none of the eight has been executed against a real service. They are
+  developed to the standard, and `_meta/evidence.json` still shows backend at zero runs.

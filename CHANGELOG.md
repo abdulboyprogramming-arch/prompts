@@ -2,6 +2,57 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.26.0] — 2026-10-22
+
+The backend domain was the largest system in the library with no procedure: nine stages,
+one of them developed. It is now eight developed stages behind a gate sequence, and the
+counts that describe the library are enforced in prose, not only in tables.
+
+### Completed — `03-domains/backend` (BE-P01 … BE-P08)
+
+The eight skeleton outlines became operational prompts. Each one gained what the skeleton
+lacked and the standard requires: declared inputs, decision rules with their evidence,
+a verification section written as checks a reader can run, failure handling for the cases
+that actually happen, and a handover naming the artifact the next stage consumes.
+
+Four of them are worth describing because the outlines had no opinion where the answer
+matters:
+
+- **`BE-P02`** writes the error taxonomy before the happy paths, and ties retry semantics
+  to the consumer's behaviour in `BE_CONTEXT.md`: an operation that a consumer retries
+  must be idempotent or carry a key, and the contract has to say which.
+- **`BE-P03`** puts a timeout on every hop in every flow and then does the arithmetic
+  against the caller's budget — the step that turns a diagram into a plan that can fail.
+  External calls never sit inside a database transaction, and the dual-write mechanism is
+  named or the loss window is accepted in writing.
+- **`BE-P04`** states migrations as states rather than statements: expand, backfill,
+  switch, contract, with the deploy that accompanies each and the reverse for each. The
+  index rule is "name the query it serves"; the retention rule is "name the authority".
+- **`BE-P07`** refuses to call a green unit suite validation. Contract conformance per
+  operation and per error code, migrations run forward and back with row counts, fault
+  injection per failure-table row with `not injectable` as an honest alternative, and a
+  residual-risk list that is required rather than optional.
+
+`BE-P08` gates the system: seven gates, each demanding an artifact element, a stale
+artifact failing the gate, and the ledger append-only so a re-run cannot erase the record
+of what was fixed.
+
+### Fixed — a count in prose that no gate could see
+
+`PROJECT-STATUS.md` said **213 operational** prompts and **two executed (1.0%)**. Both
+numbers had been true three releases earlier. The maturity triplet was machine-checked;
+the sentence beside it was not, because it was prose. `check_documented_counts` now reads
+every `N operational` in the two status documents, not just the triplet, and fails on a
+mismatch. Two fixtures cover it, including the case where a stale triplet must produce one
+error rather than two. The gate found the real defect on its first run.
+
+### Reconciled
+
+Library 364 prompts — **265 operational**, 5 draft, **94 skeleton**. Evidence: **26 of 265
+executed (9.8%)**, all author-run, none independent. Composition: 170 of 241 stage links
+now cite the upstream artifact by filename (up from 166), and `03-domains/backend` is the
+newly clean system at 8 of 8.
+
 ## [2.25.1] — 2026-10-22
 
 One stage of the new ML family was run against data it had to out-think, and it failed first.
