@@ -47,6 +47,7 @@ GATES: list[tuple[str, list[str], bool]] = [
     ("prompt contracts", ["scripts/check_prompt_contract.py", "--check-report"], False),
     ("gallery current", ["scripts/generate_gallery.py", "--check", "--quiet"], False),
     ("task index current", ["scripts/generate_task_index.py", "--check"], False),
+    ("evidence report self-tests", ["scripts/test_evidence_report.py"], False),
     ("evidence report current", ["scripts/evidence_report.py", "--check"], False),
     ("duplicate detector (shingle)", ["scripts/find_overlaps.py", "--check", "--top", "5"], True),
     ("duplicate detector (combined)", ["scripts/find_overlaps.py", "--check", "--metric", "combined", "--top", "5"], True),

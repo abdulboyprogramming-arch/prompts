@@ -15,6 +15,7 @@ Usage
     python3 scripts/evidence_report.py            # print the summary
     python3 scripts/evidence_report.py --write    # regenerate _meta/evidence-levels.md
     python3 scripts/evidence_report.py --check    # exit 1 if the generated file is stale
+                                              # or a published count has drifted
 
 Exit codes: 0 ok, 1 stale or invalid registry.
 """
@@ -153,6 +154,48 @@ def render(by_id: dict[str, dict], c: dict[str, int]) -> str:
     return "\n".join(lines)
 
 
+def published_claims(c: dict[str, int]) -> list[str]:
+    """Find hand-written copies of the ratio that no longer match the registry.
+
+    The generated file cannot drift, because `--check` compares it byte for byte.
+    The prose that quotes it can, and did: the README, the quickstart, the status
+    page and the publication documents each restated "14 of 228" while the
+    registry had moved to 17. A reader trusts the prose, not the generator, so
+    the number that is easiest to read is the one that has to be checked.
+
+    Dated records are exempt: `_meta/empirical-evaluation-*.md`, `CHANGELOG.md`
+    and `_meta/review-log.md` say what was true when they were written, and
+    correcting them would be rewriting history. A zeroth count is skipped too:
+    it is only ever used for the independent-run figure, which is a different
+    number that happens to share the denominator.
+
+    Percentages are not scanned. The same files quote the composition figure and
+    the link figure, so a bare percentage cannot be attributed to this ratio
+    without guessing.
+    """
+    import re
+    pattern = re.compile(r"\b(\d+) of " + str(c["operational"]) + r"\b")
+    findings: list[str] = []
+    for dirpath, dirnames, filenames in os.walk(ROOT):
+        dirnames[:] = [d for d in dirnames if not d.startswith(".") and not is_archive(d)]
+        for name in filenames:
+            if not name.endswith(".md") or name in ("CATALOG.md", "evidence-levels.md"):
+                continue
+            path = os.path.join(dirpath, name)
+            rel = os.path.relpath(path, ROOT)
+            if (rel.startswith(os.path.join("_meta", "empirical-evaluation-"))
+                    or rel in ("CHANGELOG.md", os.path.join("_meta", "review-log.md"))):
+                continue
+            for lineno, line in enumerate(open(path, encoding="utf-8", errors="replace"), 1):
+                for m in pattern.finditer(line):
+                    if int(m.group(1)) not in (0, c["operational_evaluated"]):
+                        findings.append(
+                            f"{rel}:{lineno}: says {m.group(0)}; the registry says "
+                            f"{c['operational_evaluated']} of {c['operational']}"
+                        )
+    return findings
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--write", action="store_true", help="regenerate _meta/evidence-levels.md")
@@ -182,6 +225,12 @@ def main() -> int:
         if current != text:
             print("ERROR   _meta/evidence-levels.md is stale. Run: python3 scripts/evidence_report.py --write",
                   file=sys.stderr)
+            return 1
+        stale = published_claims(c)
+        if stale:
+            for s in stale:
+                print(f"ERROR   {s}", file=sys.stderr)
+            print("ERROR   published counts drifted from the registry", file=sys.stderr)
             return 1
         print("Evidence report is current.")
         return 0
