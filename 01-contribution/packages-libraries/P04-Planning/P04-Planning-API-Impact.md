@@ -29,7 +29,7 @@ Out of scope: writing code, deciding the version number, or negotiating with the
 
 ## 3. Prerequisites and inputs
 
-- `{{SELECTED_WORK}}` — from `PKG-P03`: the surface cost ledger, the semver expectation with its driving symbol, and the support burden accepted.
+- `{{SELECTED_WORK}}` — `SELECTED_WORK.md` from `PKG-P03`: the surface cost ledger, the semver expectation with its driving symbol, and the support burden accepted.
 - `{{SEMVER_EXPECTATION}}` — the classification. The plan is checked against it and may not silently escalate it.
 - `{{CHANGELOG_FORMAT}}` — the project's own format and section names, copied from its last three entries.
 - `{{SUPPORT_POLICY}}` — the runtime range, the deprecation window, and whether options are ever removed. It constrains both the sequence and the ship window.

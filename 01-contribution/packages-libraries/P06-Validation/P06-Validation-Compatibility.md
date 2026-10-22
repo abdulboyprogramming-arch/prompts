@@ -29,6 +29,7 @@ Out of scope: publishing, bumping versions in the repository, or changing the AP
 
 ## 3. Prerequisites and inputs
 
+- `IMPLEMENTATION.md` from `PKG-P05` — what was actually built, including every deviation from `PLAN.md`.
 - `{{CHANGE_SCOPE}}` — the files and exported symbols the change touches, from `PKG-P03`.
 - `{{SUPPORTED_RUNTIMES}}` — the versions the project claims (for example Node 18/20/22, Python 3.9–3.12, browsers via a `browserslist` field). Take them from the project's own metadata.
 - `{{PREVIOUS_VERSION}}` — the last published version, so the comparison is against what consumers actually have. Comparing against an earlier commit is not the same test.

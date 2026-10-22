@@ -54,6 +54,7 @@ ARTIFACT = re.compile(r"`([.A-Za-z0-9_/-]+\.(?:md|json|ya?ml|csv|txt))`")
 # A claim of ownership, as opposed to a mention: "updates X" is not "produces X".
 UPDATE_WORD = re.compile(r"\b(update|updates|updated|append|appends|refresh|refreshes|revise|revises)\b", re.I)
 ORCHESTRATOR = re.compile(r"orchestrat", re.I)
+PLACEHOLDER = re.compile(r"\{\{[^}]*\}\}")
 
 
 def system_key(rel: str) -> str:
@@ -140,6 +141,7 @@ def check(docs: list[Doc]) -> tuple[list[str], list[str], dict[str, dict]]:
         # 4. Artifact flow: does a downstream stage name what its upstream produces?
         flow_total = 0
         unreferenced: list[tuple[str, str, str]] = []
+        weak: list[tuple[str, str, str]] = []
         for d in members:
             for up_id in sorted(dependencies(d, known)):
                 up = known.get(up_id)
@@ -150,8 +152,18 @@ def check(docs: list[Doc]) -> tuple[list[str], list[str], dict[str, dict]]:
                     continue
                 flow_total += 1
                 body = d.text.upper()
+                joined = ", ".join(sorted(arts))
                 if not any(a.rsplit(".", 1)[0] in body for a in arts):
-                    unreferenced.append((d.identifier or d.rel, up_id, ", ".join(sorted(arts))))
+                    unreferenced.append((d.identifier or d.rel, up_id, joined))
+                    continue
+                # A stem match is not a citation. `{{SELECTED_WORK}}` is an input
+                # placeholder, not the file `SELECTED_WORK.md`, and "the plan" is
+                # not `PLAN.md`. Placeholders are stripped before the strict test
+                # so an input name shared with a filename cannot pass for a
+                # reference to it.
+                stripped = PLACEHOLDER.sub("", body)
+                if not any(a.upper() in stripped for a in arts):
+                    weak.append((d.identifier or d.rel, up_id, joined))
 
         # 5. A system whose entry stage produces nothing.
         first = members[0]
@@ -171,6 +183,7 @@ def check(docs: list[Doc]) -> tuple[list[str], list[str], dict[str, dict]]:
             "cycles": cycles,
             "flow_links": flow_total,
             "unreferenced": unreferenced,
+            "weak": weak,
         }
 
     return errors, notes, report
@@ -200,6 +213,7 @@ def find_cycles(graph: dict[str, set[str]]) -> list[list[str]]:
 def render_report(report: dict[str, dict]) -> str:
     total_flow = sum(r["flow_links"] for r in report.values())
     total_links = sum(len(r["unreferenced"]) for r in report.values())
+    total_weak = sum(len(r["weak"]) for r in report.values())
     lines = [
         "# Conformance Report — how the prompts compose",
         "",
@@ -216,22 +230,30 @@ def render_report(report: dict[str, dict]) -> str:
         f"| Systems with more than one stage | {sum(1 for r in report.values() if r['stages'] > 1)} |",
         f"| Dependency links between stages in a system | {total_flow} |",
         f"| Links where the downstream stage never names the upstream artifact | **{total_links}** |",
+        f"| Links that mention it only by stem, never as a filename | {total_weak} |",
+        f"| Links that cite the upstream filename | {total_flow - total_links - total_weak} |",
         "",
         "The second row is the library's real integration claim. The third is what is left of it: a",
         "link where the downstream prompt says *\"the rollout evidence\"* instead of naming",
         "`.flags/ROLLOUT_LOG.md` leaves an agent to invent the mapping, and invented mappings are where",
         "artifacts get re-derived under a second name.",
         "",
+        "The fourth row is the honest middle. A stem match is not a citation: `{{SELECTED_WORK}}` is an",
+        "input placeholder, and \"the plan\" is not `PLAN.md`. Those links are counted separately rather",
+        "than as satisfied, because the number that matters is the last row — how many stages could be",
+        "handed the artifact without anyone guessing its name.",
+        "",
         "## Per system",
         "",
-        "| System | Stages | Artifacts | Flow links | Links that name no artifact |",
-        "|--------|-------:|----------:|-----------:|----------------------------:|",
+        "| System | Stages | Artifacts | Flow links | Filename cited | Stem only | No artifact |",
+        "|--------|-------:|----------:|-----------:|---------------:|----------:|------------:|",
     ]
     for system, r in sorted(report.items()):
         if r["stages"] < 2:
             continue
         lines.append(
-            f"| `{system}` | {r['stages']} | {r['artifacts']} | {r['flow_links']} | {len(r['unreferenced'])} |"
+            f"| `{system}` | {r['stages']} | {r['artifacts']} | {r['flow_links']} | "
+            f"{r['flow_links'] - len(r['unreferenced']) - len(r['weak'])} | {len(r['weak'])} | {len(r['unreferenced'])} |"
         )
     lines += ["", "## The specific links that name no artifact", ""]
     lines.append("Grouped by system. Each row is a stage, the stage it depends on, and the artifact")
@@ -245,6 +267,21 @@ def render_report(report: dict[str, dict]) -> str:
         lines.append("| Stage | Depends on | Artifact not named |")
         lines.append("|-------|------------|--------------------|")
         for stage, up, arts in r["unreferenced"]:
+            lines.append(f"| `{stage}` | `{up}` | `{arts}` |")
+        lines.append("")
+    lines += ["## The links that name the artifact only by stem", ""]
+    lines.append("Each of these mentions something that matches a filename's stem — often a `{{PLACEHOLDER}}`")
+    lines.append("that happens to share it — but never the filename itself. Cheap to fix, and worth fixing")
+    lines.append("before the prompts are run back to back.")
+    lines.append("")
+    for system, r in sorted(report.items()):
+        if not r["weak"]:
+            continue
+        lines.append(f"### `{system}`")
+        lines.append("")
+        lines.append("| Stage | Depends on | Artifact matched by stem only |")
+        lines.append("|-------|------------|-------------------------------|")
+        for stage, up, arts in r["weak"]:
             lines.append(f"| `{stage}` | `{up}` | `{arts}` |")
         lines.append("")
     return "\n".join(lines).rstrip() + "\n"
@@ -267,9 +304,13 @@ def main() -> int:
 
     links = sum(r["flow_links"] for r in report.values())
     unnamed = sum(len(r["unreferenced"]) for r in report.values())
+    weak = sum(len(r["weak"]) for r in report.values())
+    cited = links - unnamed - weak
     print()
     print(f"{sum(1 for r in report.values() if r['stages'] > 1)} multi-stage systems; "
-          f"{links} dependency links; {unnamed} of them name no upstream artifact ({_pct(unnamed, links)}).")
+          f"{links} dependency links; {cited} cite the upstream filename, {weak} mention it only by "
+          f"stem, {unnamed} name no artifact ({_pct(unnamed, links)}).")
+    print(f"Links that do not cite a filename: {unnamed + weak} of {links} ({_pct(unnamed + weak, links)}).")
     print(f"Result: {len(errors)} error(s).")
 
     if args.report:
@@ -277,9 +318,12 @@ def main() -> int:
             if r["stages"] < 2:
                 continue
             print()
-            print(f"{system}  ({r['stages']} stages, {r['artifacts']} artifacts, {len(r['unreferenced'])} unnamed)")
+            print(f"{system}  ({r['stages']} stages, {r['artifacts']} artifacts, "
+                  f"{len(r['weak'])} stem-only, {len(r['unreferenced'])} unnamed)")
             for stage, up, arts in r["unreferenced"]:
-                print(f"   {stage} ← {up}   [{arts}]")
+                print(f"   {stage} ← {up}   [not named: {arts}]")
+            for stage, up, arts in r["weak"]:
+                print(f"   {stage} ← {up}   [stem only: {arts}]")
 
     out = os.path.join(ROOT, "_meta", "conformance-report.md")
     rendered = render_report(report)

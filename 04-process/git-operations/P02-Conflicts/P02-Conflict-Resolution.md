@@ -28,7 +28,7 @@ Out of scope: deciding that one branch should win wholesale (that is a product d
 | Input | Required | If missing |
 |-------|----------|------------|
 | `REPO_PATH`, `BRANCH`, `BASE_REF` | yes | the merge target is unknown; ask |
-| The in-progress operation from P01 (merge, rebase, cherry-pick) | yes | run P01 first |
+| `.git-ops/STATE.md` from P01: the operation in progress (merge, rebase, cherry-pick) | yes | run P01 first |
 | Build and test commands | yes | conflicts cannot be validated without them |
 | A way to reach the other author | recommended | record it as a risk; semantic conflicts may need them |
 

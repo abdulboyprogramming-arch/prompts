@@ -29,6 +29,7 @@ Out of scope: writing the exploit; deploying or upgrading a live contract; repla
 
 ## 3. Prerequisites and inputs
 
+- `IMPLEMENTATION.md` from `W3-P05` — the invariant each touched function must keep, and the storage-layout diff.
 - `{{CHANGE_SCOPE}}` — contracts, functions, and storage touched, from `W3-P03`. Validation without it is an unaudited diff.
 - `{{INVARIANTS}}` — the properties that must remain true, from `W3-P04`. If this list is empty, the change is not ready to validate: an invariant discovered after the fix is usually the fix's own assumption.
 - `{{CHAIN_AND_FORK_BLOCK}}` — the network and block number for fork tests, so a re-run reproduces the same state.

@@ -194,6 +194,48 @@ def main() -> int:
        find_cycles({"A": {"B"}, "B": {"C"}, "C": {"A"}}) != [])
     ok("find_cycles ignores a DAG", find_cycles({"A": {"B"}, "B": set()}) == [])
 
+    # A stem match is not a citation: a placeholder that shares the stem, or the
+    # plain word, must not count as naming the file.
+    _, report = errors_for([
+        {"ident": "TST-P01", "produces": "`SELECTED_WORK.md`"},
+        {"ident": "TST-P02", "depends": "TST-P01", "extra": "- `{{SELECTED_WORK}}` — the selection.\n"},
+    ])
+    r = report["testcase/system"]
+    ok("a placeholder sharing a filename's stem is not a citation",
+       len(r["weak"]) == 1 and r["unreferenced"] == [], str(r["weak"]))
+
+    _, report = errors_for([
+        {"ident": "TST-P01", "produces": "`PLAN.md`"},
+        {"ident": "TST-P02", "depends": "TST-P01", "extra": "- The plan is agreed.\n"},
+    ])
+    r = report["testcase/system"]
+    ok("a prose mention of the stem is not a citation", len(r["weak"]) == 1, str(r["weak"]))
+
+    _, report = errors_for([
+        {"ident": "TST-P01", "produces": "`PLAN.md`"},
+        {"ident": "TST-P02", "depends": "TST-P01", "extra": "- Read `PLAN.md` before starting.\n"},
+    ])
+    r = report["testcase/system"]
+    ok("naming the filename counts as a citation",
+       r["weak"] == [] and r["unreferenced"] == [], f"{r['weak']} {r['unreferenced']}")
+
+    # The stem test is why loose matching is not enough in the other direction
+    # either: "PLAN" matches the word "planning" in the template's own header.
+    _, report = errors_for([
+        {"ident": "TST-P01", "produces": "`PLAN.md`"},
+        {"ident": "TST-P02", "depends": "TST-P01"},
+    ])
+    r = report["testcase/system"]
+    ok("a substring of an unrelated word is not a citation", len(r["weak"]) == 1, str(r["weak"]))
+
+    _, report = errors_for([
+        {"ident": "TST-P01", "produces": "`INVENTORY.md`"},
+        {"ident": "TST-P02", "depends": "TST-P01"},
+    ])
+    r = report["testcase/system"]
+    ok("an artifact mentioned nowhere is reported, not failed",
+       len(r["unreferenced"]) == 1, str(r["unreferenced"]))
+
     passed = sum(1 for _, good, _ in RESULTS if good)
     for name, good, detail in RESULTS:
         print(f"{'PASS' if good else 'FAIL'}  {name}" + (f"  ({detail})" if detail and not good else ""))

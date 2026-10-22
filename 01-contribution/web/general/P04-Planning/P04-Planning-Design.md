@@ -29,7 +29,7 @@ Out of scope: writing code, choosing a framework, or reopening the selection. A 
 
 ## 3. Prerequisites and inputs
 
-- `{{SELECTED_WORK}}` — from `WEB-P03`: the claim, surfaces, states, acceptance criteria, and the design owner for anything visible.
+- `{{SELECTED_WORK}}` — `SELECTED_WORK.md` from `WEB-P03`: the claim, surfaces, states, acceptance criteria, and the design owner for anything visible.
 - `{{PROJECT_CONVENTIONS}}` — component structure, styling approach, test placement, and naming. A plan that ignores them produces an implementation that reads as foreign.
 - `{{COMPONENT_LIBRARY}}` — what already exists. The reuse decision is made here, not during implementation.
 - `{{BROWSER_SUPPORT}}` — the engines and widths the project claims, from `browserslist` or the documentation.

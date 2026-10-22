@@ -29,7 +29,7 @@ Out of scope: bumping versions, editing the changelog file itself (the maintaine
 
 ## 3. Prerequisites and inputs
 
-- `{{VALIDATION}}` — the `PKG-P06` report: surface diff, clean-install results, semver verdict.
+- `{{VALIDATION}}` — the `PKG-P06` report (`VALIDATION.md`): surface diff, clean-install results, semver verdict.
 - `{{SEMVER_EXPECTATION}}` — the classification and driving symbol from `PKG-P03`, checked against what validation found.
 - `{{ISSUE_REF}}` — the issue the change answers. Libraries are judged on whether they answered a reported problem, not on whether the change is elegant.
 - `{{PR_TEMPLATE}}` — the project's template, which often asks for a changelog entry and a docs checklist.

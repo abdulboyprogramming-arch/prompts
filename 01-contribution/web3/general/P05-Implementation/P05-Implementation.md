@@ -29,7 +29,7 @@ Out of scope: deploying, upgrading, proposing governance actions, or changing th
 
 ## 3. Prerequisites and inputs
 
-- `{{PLAN}}` — from `W3-P04`: invariants with violating cases, sequencing, and the test strategy per layer.
+- `{{PLAN}}` — `PLAN.md` from `W3-P04`: invariants with violating cases, sequencing, and the test strategy per layer.
 - `{{TIER}}` — the reversibility tier. It constrains what the diff may contain; a tier 1 change that starts touching storage has become tier 2 and the plan is stale.
 - `{{STORAGE_LAYOUT}}` — the deployed layout, from the build artefact or the explorer, not from the source you are editing. Comparing against source hides the changes that have already shipped.
 - `{{FUZZ_TARGETS}}` — the properties the project already fuzzes, so new invariants can be added as properties rather than as one-off tests.

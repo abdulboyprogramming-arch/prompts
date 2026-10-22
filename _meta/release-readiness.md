@@ -39,13 +39,15 @@ The mechanical pass covers **all 364 prompts**, in seven batches by top-level fo
 | `07-workflows/` | 13 | 8 | 0 | 0 | 1 | 0 |
 | **Total** | **364** | **228** | **131** | **3** | **239** | **82** |
 
-The "links naming no artifact" column is the one that is still imperfect: 34%, down from 49% in this release after 26 operational prompts were given an explicit line naming the upstream file. Every remaining row is a `skeleton` without a prerequisites section, so the fix is part of promoting them rather than a separate task. The per-system detail is generated in [`conformance-report.md`](conformance-report.md).
+The "links naming no artifact" column is the one that is still imperfect: **38% do not cite the upstream filename**, down from 49% in this release after 46 operational prompts were given an explicit line naming it. Of the 92, 10 mention the artifact only by stem — usually a `{{PLACEHOLDER}}` that shares it — and 82 do not mention it at all. Every remaining row is a `skeleton` without a prerequisites section, so the fix is part of promoting them rather than a separate task. The per-system detail is generated in [`conformance-report.md`](conformance-report.md).
 
 ## 3. What "tested" does and does not mean here
 
 Three kinds of check exist in this repository, and conflating them is the easiest way to overclaim:
 
 1. **Structural** — does the prompt have the parts the standard requires, with inputs that are declared and used. Machine-checked, all 364 prompts, on every commit.
+The queue and the per-batch targets are in [`execution-batches.md`](execution-batches.md), which also states what a run has to leave behind to count.
+
 2. **Compositional** — do two prompts in a sequence agree on the artifact between them. Machine-checked for 239 links; 82 still rely on prose that names a concept rather than a file.
 3. **Empirical** — does following the prompt produce a better result than not following it. **Three prompts, tabletop, author-evaluated.** Nothing here can be automated inside a repository without model access and a scoring sheet, which is backlog #83/#91.
 

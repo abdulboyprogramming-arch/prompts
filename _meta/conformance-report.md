@@ -13,68 +13,75 @@ input, which is the property that makes a sequence of prompts a system rather th
 | Systems with more than one stage | 52 |
 | Dependency links between stages in a system | 239 |
 | Links where the downstream stage never names the upstream artifact | **82** |
+| Links that mention it only by stem, never as a filename | 10 |
+| Links that cite the upstream filename | 147 |
 
 The second row is the library's real integration claim. The third is what is left of it: a
 link where the downstream prompt says *"the rollout evidence"* instead of naming
 `.flags/ROLLOUT_LOG.md` leaves an agent to invent the mapping, and invented mappings are where
 artifacts get re-derived under a second name.
 
+The fourth row is the honest middle. A stem match is not a citation: `{{SELECTED_WORK}}` is an
+input placeholder, and "the plan" is not `PLAN.md`. Those links are counted separately rather
+than as satisfied, because the number that matters is the last row — how many stages could be
+handed the artifact without anyone guessing its name.
+
 ## Per system
 
-| System | Stages | Artifacts | Flow links | Links that name no artifact |
-|--------|-------:|----------:|-----------:|----------------------------:|
-| `00-core` | 8 | 1 | 0 | 0 |
-| `01-contribution/language-design` | 8 | 7 | 6 | 6 |
-| `01-contribution/open-source/general-agent` | 16 | 3 | 14 | 0 |
-| `01-contribution/packages-libraries` | 8 | 7 | 6 | 0 |
-| `01-contribution/web/general` | 8 | 7 | 6 | 0 |
-| `01-contribution/web3/general` | 8 | 7 | 6 | 0 |
-| `02-engineering` | 4 | 4 | 0 | 0 |
-| `02-engineering/architecture-review` | 7 | 6 | 7 | 6 |
-| `02-engineering/codebase-audit` | 9 | 10 | 9 | 0 |
-| `02-engineering/feature-completion` | 4 | 5 | 3 | 0 |
-| `02-engineering/feature-design-suggestion` | 7 | 6 | 6 | 3 |
-| `02-engineering/from-scratch` | 8 | 8 | 7 | 4 |
-| `02-engineering/patterns-strategies-methods` | 7 | 8 | 5 | 4 |
-| `02-engineering/performance` | 7 | 6 | 5 | 4 |
-| `02-engineering/project-recovery` | 7 | 8 | 6 | 0 |
-| `02-engineering/refactoring` | 7 | 7 | 7 | 0 |
-| `02-engineering/rewriting-migration` | 8 | 7 | 7 | 7 |
-| `02-engineering/security-hardening` | 7 | 7 | 7 | 0 |
-| `03-domains/ai-agentic` | 7 | 8 | 7 | 0 |
-| `03-domains/backend` | 9 | 8 | 6 | 6 |
-| `03-domains/cost-engineering` | 4 | 5 | 3 | 0 |
-| `03-domains/data-engineering` | 2 | 3 | 1 | 0 |
-| `03-domains/data-ml-ai` | 8 | 7 | 6 | 6 |
-| `03-domains/database` | 5 | 7 | 4 | 0 |
-| `03-domains/desktop-cli` | 2 | 2 | 0 | 0 |
-| `03-domains/devops-infra` | 8 | 7 | 6 | 6 |
-| `03-domains/embedded-iot` | 2 | 3 | 1 | 0 |
-| `03-domains/frontend` | 8 | 7 | 6 | 6 |
-| `03-domains/games` | 10 | 9 | 6 | 6 |
-| `03-domains/mobile` | 3 | 4 | 0 | 0 |
-| `03-domains/payments` | 3 | 4 | 2 | 0 |
-| `03-domains/web3` | 4 | 6 | 5 | 0 |
-| `04-process` | 3 | 5 | 0 | 0 |
-| `04-process/agent-context` | 4 | 5 | 3 | 0 |
-| `04-process/code-review` | 6 | 6 | 6 | 0 |
-| `04-process/decommissioning` | 4 | 5 | 3 | 0 |
-| `04-process/dependency-management` | 5 | 6 | 4 | 0 |
-| `04-process/documentation` | 8 | 7 | 10 | 0 |
-| `04-process/feature-flags` | 5 | 5 | 5 | 0 |
-| `04-process/git-operations` | 5 | 5 | 4 | 0 |
-| `04-process/governance-compliance` | 3 | 4 | 2 | 0 |
-| `04-process/handover` | 5 | 5 | 4 | 0 |
-| `04-process/observability-reliability` | 5 | 5 | 4 | 0 |
-| `04-process/privacy-requests` | 4 | 5 | 4 | 0 |
-| `04-process/project-management` | 8 | 7 | 6 | 6 |
-| `04-process/release-engineering` | 4 | 4 | 3 | 0 |
-| `04-process/research-and-development` | 8 | 7 | 6 | 5 |
-| `04-process/systems-building-improvement` | 8 | 7 | 7 | 7 |
-| `04-process/testing-qa` | 7 | 7 | 7 | 0 |
-| `05-scenarios` | 42 | 43 | 0 | 0 |
-| `06-interactive` | 4 | 0 | 0 | 0 |
-| `07-workflows` | 13 | 4 | 1 | 0 |
+| System | Stages | Artifacts | Flow links | Filename cited | Stem only | No artifact |
+|--------|-------:|----------:|-----------:|---------------:|----------:|------------:|
+| `00-core` | 8 | 1 | 0 | 0 | 0 | 0 |
+| `01-contribution/language-design` | 8 | 7 | 6 | 0 | 0 | 6 |
+| `01-contribution/open-source/general-agent` | 16 | 3 | 14 | 14 | 0 | 0 |
+| `01-contribution/packages-libraries` | 8 | 7 | 6 | 6 | 0 | 0 |
+| `01-contribution/web/general` | 8 | 7 | 6 | 6 | 0 | 0 |
+| `01-contribution/web3/general` | 8 | 7 | 6 | 6 | 0 | 0 |
+| `02-engineering` | 4 | 4 | 0 | 0 | 0 | 0 |
+| `02-engineering/architecture-review` | 7 | 6 | 7 | 0 | 1 | 6 |
+| `02-engineering/codebase-audit` | 9 | 10 | 9 | 9 | 0 | 0 |
+| `02-engineering/feature-completion` | 4 | 5 | 3 | 3 | 0 | 0 |
+| `02-engineering/feature-design-suggestion` | 7 | 6 | 6 | 0 | 3 | 3 |
+| `02-engineering/from-scratch` | 8 | 8 | 7 | 1 | 2 | 4 |
+| `02-engineering/patterns-strategies-methods` | 7 | 8 | 5 | 0 | 1 | 4 |
+| `02-engineering/performance` | 7 | 6 | 5 | 0 | 1 | 4 |
+| `02-engineering/project-recovery` | 7 | 8 | 6 | 6 | 0 | 0 |
+| `02-engineering/refactoring` | 7 | 7 | 7 | 7 | 0 | 0 |
+| `02-engineering/rewriting-migration` | 8 | 7 | 7 | 0 | 0 | 7 |
+| `02-engineering/security-hardening` | 7 | 7 | 7 | 6 | 1 | 0 |
+| `03-domains/ai-agentic` | 7 | 8 | 7 | 7 | 0 | 0 |
+| `03-domains/backend` | 9 | 8 | 6 | 0 | 0 | 6 |
+| `03-domains/cost-engineering` | 4 | 5 | 3 | 3 | 0 | 0 |
+| `03-domains/data-engineering` | 2 | 3 | 1 | 1 | 0 | 0 |
+| `03-domains/data-ml-ai` | 8 | 7 | 6 | 0 | 0 | 6 |
+| `03-domains/database` | 5 | 7 | 4 | 4 | 0 | 0 |
+| `03-domains/desktop-cli` | 2 | 2 | 0 | 0 | 0 | 0 |
+| `03-domains/devops-infra` | 8 | 7 | 6 | 0 | 0 | 6 |
+| `03-domains/embedded-iot` | 2 | 3 | 1 | 1 | 0 | 0 |
+| `03-domains/frontend` | 8 | 7 | 6 | 0 | 0 | 6 |
+| `03-domains/games` | 10 | 9 | 6 | 0 | 0 | 6 |
+| `03-domains/mobile` | 3 | 4 | 0 | 0 | 0 | 0 |
+| `03-domains/payments` | 3 | 4 | 2 | 2 | 0 | 0 |
+| `03-domains/web3` | 4 | 6 | 5 | 5 | 0 | 0 |
+| `04-process` | 3 | 5 | 0 | 0 | 0 | 0 |
+| `04-process/agent-context` | 4 | 5 | 3 | 3 | 0 | 0 |
+| `04-process/code-review` | 6 | 6 | 6 | 6 | 0 | 0 |
+| `04-process/decommissioning` | 4 | 5 | 3 | 3 | 0 | 0 |
+| `04-process/dependency-management` | 5 | 6 | 4 | 4 | 0 | 0 |
+| `04-process/documentation` | 8 | 7 | 10 | 10 | 0 | 0 |
+| `04-process/feature-flags` | 5 | 5 | 5 | 5 | 0 | 0 |
+| `04-process/git-operations` | 5 | 5 | 4 | 4 | 0 | 0 |
+| `04-process/governance-compliance` | 3 | 4 | 2 | 2 | 0 | 0 |
+| `04-process/handover` | 5 | 5 | 4 | 4 | 0 | 0 |
+| `04-process/observability-reliability` | 5 | 5 | 4 | 4 | 0 | 0 |
+| `04-process/privacy-requests` | 4 | 5 | 4 | 4 | 0 | 0 |
+| `04-process/project-management` | 8 | 7 | 6 | 0 | 0 | 6 |
+| `04-process/release-engineering` | 4 | 4 | 3 | 3 | 0 | 0 |
+| `04-process/research-and-development` | 8 | 7 | 6 | 0 | 1 | 5 |
+| `04-process/systems-building-improvement` | 8 | 7 | 7 | 0 | 0 | 7 |
+| `04-process/testing-qa` | 7 | 7 | 7 | 7 | 0 | 0 |
+| `05-scenarios` | 42 | 43 | 0 | 0 | 0 | 0 |
+| `06-interactive` | 4 | 0 | 0 | 0 | 0 | 0 |
+| `07-workflows` | 13 | 4 | 1 | 1 | 0 | 0 |
 
 ## The specific links that name no artifact
 
@@ -237,3 +244,54 @@ that stage produces but this one never mentions.
 | `SB-P05` | `SB-P04` | `DIAGNOSIS.md` |
 | `SB-P06` | `SB-P05` | `SYSTEM_DESIGN.md` |
 | `SB-P07` | `SB-P06` | `IMPLEMENTATION_LOG.md` |
+
+## The links that name the artifact only by stem
+
+Each of these mentions something that matches a filename's stem — often a `{{PLACEHOLDER}}`
+that happens to share it — but never the filename itself. Cheap to fix, and worth fixing
+before the prompts are run back to back.
+
+### `02-engineering/architecture-review`
+
+| Stage | Depends on | Artifact matched by stem only |
+|-------|------------|-------------------------------|
+| `AR-P06` | `AR-P05` | `RECOMMENDATIONS.md` |
+
+### `02-engineering/feature-design-suggestion`
+
+| Stage | Depends on | Artifact matched by stem only |
+|-------|------------|-------------------------------|
+| `FD-P03` | `FD-P02` | `PROBLEM.md` |
+| `FD-P05` | `FD-P04` | `DESIGN.md` |
+| `FD-P06` | `FD-P04` | `DESIGN.md` |
+
+### `02-engineering/from-scratch`
+
+| Stage | Depends on | Artifact matched by stem only |
+|-------|------------|-------------------------------|
+| `FS-P03` | `FS-P01` | `VISION.md` |
+| `FS-P03` | `FS-P02` | `ARCHITECTURE.md` |
+
+### `02-engineering/patterns-strategies-methods`
+
+| Stage | Depends on | Artifact matched by stem only |
+|-------|------------|-------------------------------|
+| `PS-P03` | `PS-P02` | `PROBLEM.md` |
+
+### `02-engineering/performance`
+
+| Stage | Depends on | Artifact matched by stem only |
+|-------|------------|-------------------------------|
+| `PERF-P05` | `PERF-P04` | `BOTTLENECKS.md` |
+
+### `02-engineering/security-hardening`
+
+| Stage | Depends on | Artifact matched by stem only |
+|-------|------------|-------------------------------|
+| `SEC-P07` | `SEC-P06` | `VERIFICATION.md` |
+
+### `04-process/research-and-development`
+
+| Stage | Depends on | Artifact matched by stem only |
+|-------|------------|-------------------------------|
+| `RD-P07` | `RD-P06` | `ANALYSIS.md` |

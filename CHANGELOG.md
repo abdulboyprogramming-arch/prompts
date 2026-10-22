@@ -95,7 +95,9 @@ The validator has always asked whether each prompt is well formed **on its own**
 
 It found three real defects on the first run, all in `02-engineering/from-scratch`: `FS-P02` claimed to produce `VISION.md`, which `FS-P01` owns; `FS-P07` claimed `README.md`, which `FS-P04` scaffolds. Both now say *updates*, which is what they do.
 
-**The measured part matters more than the gate.** Of 239 dependency links between stages, **116 (49%) named a concept where the artifact has a filename** — *"the rollout evidence"* instead of `.flags/ROLLOUT_LOG.md`. Each of those prompts is individually correct, and an agent running the sequence has to invent the mapping. Twenty-six operational prompts now name the upstream file in their prerequisites; the count is **82 (34%)**, and every remaining link is a skeleton without a prerequisites section, so the rest of the burndown is part of promoting them. `_meta/conformance-report.md` is generated, checked for staleness in CI, and lists every remaining link by system.
+**The measured part matters more than the gate.** Of 239 dependency links between stages, **116 (49%) named a concept where the artifact has a filename** — *"the rollout evidence"* instead of `.flags/ROLLOUT_LOG.md`. Forty-six operational prompts now name the upstream file in their prerequisites; **92 (38%) still do not cite a filename, and 82 of those mention the artifact nowhere at all**, so an agent running the sequence has to invent the mapping. Every remaining one is a skeleton without a prerequisites section, which is why the rest of the burndown is part of promoting them. `_meta/conformance-report.md` is generated, checked for staleness in CI, and lists every remaining link by system.
+
+**The metric was wrong before it was right**, which is the part worth reading. The first version counted a link as satisfied if the artifact's *stem* appeared anywhere in the downstream prompt, ignoring its extension. That passed `PKG-P04`, whose only mention of `SELECTED_WORK.md` is the input placeholder `{{SELECTED_WORK}}`, and it passed any prompt containing the word "planning" against `PLAN.md`. Thirty of the 157 links it called satisfied were that kind of match. Tightening it to require the filename — with placeholders stripped first, since a `{{PLACEHOLDER}}` is not a file — moved the honest number from 34% to 46%, and the 21 operational prompts it then exposed were given explicit filenames. A metric that can be satisfied by prose about the thing is a metric that measures prose.
 
 ### New — community files are checked, and one of them was unlinked
 
@@ -108,6 +110,20 @@ It found three real defects on the first run, all in `02-engineering/from-scratc
 The first answers "what still blocks a release" in one page: what is tested and at which level, the three kinds of check the repository performs, five external blockers in the order they must be cleared, four things that are deliberately *not* blockers, and the four things that would make the library trustable rather than merely clean. Its one-line status is the sentence to use in any announcement.
 
 The second records the settings GitHub asks for — description, ten topics, merge policy, security features, social preview — with the commands that apply them and the reason for each. It also records the **sponsorship decision**: not now, with four reasons, and the trigger for revisiting (`repository-configuration.md` §6).
+
+### New — `CHAT-REVIEW` executed against a real file, and the metric it broke
+
+Part 5 of the brief asked for end-to-end execution, not more structural review. `CHAT-REVIEW` ran, as written, against a file this repository published that morning: `scripts/check_prompt_contract.py`.
+
+It found two defects in the composition metric, both by measurement. The flow check counted a link as satisfied when the artifact's **stem** appeared anywhere downstream, so `PKG-P04` passed on the mere existence of the input placeholder `{{SELECTED_WORK}}`, and any prompt containing the word *planning* passed against `PLAN.md`. Thirty of the 157 links it called satisfied were matches of that kind. The metric had been overstating the library's integration claim, and the number in the previous section of this changelog is the corrected one.
+
+`CHAT-REVIEW` v1.1.0 takes three rules from the run: a published number is the correctness question and comes first; ask about the **standard** (a metric, a schema, an error taxonomy), not only the framework; and the not-assessed list must include the definitions the review had to assume. Record: [`_meta/empirical-evaluation-04.md`](_meta/empirical-evaluation-04.md).
+
+**Executed: 4 of 228 operational prompts (1.8%).** Every one of the four runs changed the prompt it ran, which is the argument for the rest.
+
+### New — `_meta/execution-batches.md`, the queue behind the executed count
+
+228 prompts cannot be tested the same way, and saying so is not a plan. This file says which prompts can be run alone against this repository, in what order, what a run has to leave behind to count, and what has been run so far: seven batches, `B0` (conversational, 4 of 8 recorded) through `B7` (the 131 skeletons, which are not a testing backlog because running an outline measures the outline). It also states the limit plainly — zero runs by a second person, which is the only kind that tests whether a prompt is *useful* rather than merely executable.
 
 ### New — a worked multi-agent run, and the three rules it forced (#109)
 
@@ -158,7 +174,7 @@ The two misses were worth more than the hits:
 
 ### Result
 
-**458 Markdown files, 364 prompts: 228 operational, 5 draft, 131 skeleton.** Validator 0 errors / 0 warnings; tooling self-tests 18/18, 13/13, 12/12, 17/17, 14/14; prose lint 0 findings at baseline 0; catalog, gallery, task index, evidence report and conformance report current, verified by one command. The file count is the validator's scan, not `find`'s — they differ by tooling and archive files, and the scanned number is the one that matches the other claims here.
+**458 Markdown files, 364 prompts: 228 operational, 5 draft, 131 skeleton.** Validator 0 errors / 0 warnings; tooling self-tests 18/18, 13/13, 12/12, 17/17, 19/19; prose lint 0 findings at baseline 0; catalog, gallery, task index, evidence report and conformance report current, verified by one command. The file count is the validator's scan, not `find`'s — they differ by tooling and archive files, and the scanned number is the one that matches the other claims here.
 
 Coverage: **143 rows, unchanged** — this release improves the instruments, not the coverage. Executed: **3 of 228 operational prompts (1.3%)** — `DBG-01`, `CHAT-DEBUG`, and `CHAT-SELECT` from this release. The eighteen contribution stages promoted here and `CHAT-HANDOFF` have not been run, and the review log says so for each.
 

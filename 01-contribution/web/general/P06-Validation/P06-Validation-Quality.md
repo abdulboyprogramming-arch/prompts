@@ -29,6 +29,7 @@ Out of scope: changing the implementation to make a check pass (that returns to 
 
 ## 3. Prerequisites and inputs
 
+- `IMPLEMENTATION.md` from `WEB-P05` — the states built and every deviation from the plan.
 - `{{CHANGE_SCOPE}}` — the files and behaviours the change touches, from `WEB-P03`. Validation without it is a full regression run, which nobody will repeat.
 - `{{BASELINE_BROWSERS}}` — the engines the project supports, taken from its own documentation or `browserslist` config. Do not invent a matrix.
 - `{{A11Y_TARGET}}` — the conformance level the project claims (commonly WCAG 2.2 AA). If none is claimed, say so; it changes what a gap means.

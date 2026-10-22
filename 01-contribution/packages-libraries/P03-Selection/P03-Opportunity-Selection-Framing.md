@@ -29,7 +29,7 @@ Out of scope: deciding the final API shape, bumping versions, or speaking for th
 
 ## 3. Prerequisites and inputs
 
-- `{{OPPORTUNITIES}}` — candidates from `PKG-P02`, each with the evidence that it matters.
+- `{{OPPORTUNITIES}}` — candidates from `PKG-P02`'s `OPPORTUNITIES.md`, each with the evidence that it matters.
 - `{{PROJECT_CONVENTIONS}}` — the contributing guide, the issue template, and any statement about what the project accepts. Libraries differ more than applications here: some refuse new options, some refuse new dependencies, some require a design document before code.
 - `{{ISSUE_REF}}` — the issue or discussion the candidate answers. A library change with no reference competes with the maintainer's own ideas about their API, and that competition is usually lost.
 - `{{SEMVER_POLICY}}` — the project's stated policy, including carve-outs for pre-1.0 releases and deprecated-but-retained exports.

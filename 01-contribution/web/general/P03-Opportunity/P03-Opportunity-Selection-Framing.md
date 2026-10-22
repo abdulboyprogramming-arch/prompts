@@ -29,7 +29,7 @@ Out of scope: choosing an implementation, estimating in days, writing the code, 
 
 ## 3. Prerequisites and inputs
 
-- `{{OPPORTUNITIES}}` — the candidate list from `WEB-P02`, each with the evidence that it matters.
+- `{{OPPORTUNITIES}}` — the candidate list from `WEB-P02`'s `OPPORTUNITIES.md`, each with the evidence that it matters.
 - `{{PROJECT_CONVENTIONS}}` — the contributing guide, the issue or discussion policy, and the stated browser support. Selection against conventions you have not read is a guess with a document attached.
 - `{{DESIGN_OWNER}}` — who owns the visual decision in this project: a designer, a maintainer, a design system, or a documented style guide. If nobody is named, the honest answer is that no visual change is selectable.
 - `{{ISSUE_REF}}` — the issue, discussion, or prior art the candidate answers. A candidate with no reference is a proposal, and proposals need a maintainer's interest before they need code.

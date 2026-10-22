@@ -29,7 +29,7 @@ Out of scope: deploying, executing a governance proposal, publishing a disclosur
 
 ## 3. Prerequisites and inputs
 
-- `{{VALIDATION}}` — the `W3-P06` report: invariants, violating cases, access-control matrix, fork run, and the confidence statement.
+- `{{VALIDATION}}` — the `W3-P06` report (`VALIDATION.md`): invariants, violating cases, access-control matrix, fork run, and the confidence statement.
 - `{{TIER}}` — the reversibility tier from `W3-P03`. It goes in the description; a reviewer who has to infer the tier will assume the worst one.
 - `{{ISSUE_REF}}` — the issue or advisory the change answers, subject to the disclosure rule below.
 - `{{PR_TEMPLATE}}` — the project's template, which often already asks for the security section you were going to add.

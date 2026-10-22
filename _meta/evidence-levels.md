@@ -9,9 +9,9 @@ CI fails if this file is stale, so the numbers below cannot drift from the regis
 |-------|------:|
 | Prompt files in the library | 364 |
 | Labelled `operational` (structurally reviewed) | 228 |
-| `operational` prompts with a recorded execution | 3 |
-| `operational` prompts with no recorded execution | 225 |
-| Share of `operational` prompts demonstrated | 1.3% |
+| `operational` prompts with a recorded execution | 4 |
+| `operational` prompts with no recorded execution | 224 |
+| Share of `operational` prompts demonstrated | 1.8% |
 
 `operational` means the artifact meets the authoring standard and survived a structural
 review against the quality rubric. It does **not** mean the prompt has been run against a
@@ -22,6 +22,7 @@ real repository. Exactly one column above measures execution, and it is the smal
 | Prompt | Date | Evaluator | Scope | Result | Record | Limitations |
 |--------|------|-----------|-------|--------|--------|-------------|
 | `CHAT-DEBUG` Conversational Debugging | 2026-10-20 | the prompt's author (conflict of interest recorded) | tabletop walkthrough of a constructed fixture: a nightly sync failing with 'database is locked' at commit(), where the pasted code is innocent and a second uncommitted connection in unseen code holds the lock | three real prompt defects found and fixed in v1.1.0: no instruction to find other holders of the same resource, a ledger unable to record findings outside the paste, and no rule for contradictions between the user's account and the evidence | [`empirical-evaluation-02.md`](../_meta/empirical-evaluation-02.md) | tabletop by the author, not a live user session; single fixture; database errors name their resource, which makes this lesson unusually easy to teach |
+| `CHAT-REVIEW` Chat Code Review: reviewing a paste, with the limits stated | 2026-10-22 | the prompt's author (conflict of interest recorded, and twice over: the target file was also written by the author) | one real file, scripts/check_prompt_contract.py, reviewed as written with the 'is this safe to merge' intent; the file computes a number the repository publishes | six findings, two of them defects that inflated the library's own integration metric - a stem match satisfying a filename link, and substring matches such as 'planning' satisfying PLAN.md; 30 of 157 links had been scored as named on that basis. Prompt defects fixed in v1.1.0: no rule that a published number is the correctness question, and no rule to ask about the standard as well as the framework | [`empirical-evaluation-04.md`](../_meta/empirical-evaluation-04.md) | author-evaluated on both sides; one small Python file whose window happened to be complete, so the window claim was not tested; no second reader |
 | `CHAT-SELECT` Chat Select: choosing the right prompt inside a conversation | 2026-10-21 | the prompt's author (conflict of interest recorded) | six situations routed with the prompt as written, then each routing card scored against the generated TASKS.md index as external ground truth | 4 of 6 cards named the prompt that TASKS.md assigns to the situation's task; two prompt defects found and fixed in v1.1.0 (no rule for a symptom that the index files under a different heading, and no requirement that the falsifier separate two prompts within a task), plus one index defect (background jobs were not reachable from the broken-now task) | [`empirical-evaluation-03.md`](../_meta/empirical-evaluation-03.md) | tabletop at a keyboard by the author, who wrote the situations and the questions; no live model and no second evaluator, so it tests the instrument and not compliance with it; six situations are a smoke test, not a benchmark |
 | `DBG-01` Systematic Debugging | 2026-10-20 | the prompt's author (conflict of interest recorded) | one synthetic fixture with a hidden mutable-default defect and a green test suite | protocol completed end to end; three real prompt weaknesses found and fixed in v1.2.0 | [`empirical-evaluation-01.md`](../_meta/empirical-evaluation-01.md) | single small fixture, author-evaluated, deterministic defect, familiar stack |
 

@@ -44,6 +44,17 @@
       "result": "4 of 6 cards named the prompt that TASKS.md assigns to the situation's task; two prompt defects found and fixed in v1.1.0 (no rule for a symptom that the index files under a different heading, and no requirement that the falsifier separate two prompts within a task), plus one index defect (background jobs were not reachable from the broken-now task)",
       "record": "_meta/empirical-evaluation-03.md",
       "limitations": "tabletop at a keyboard by the author, who wrote the situations and the questions; no live model and no second evaluator, so it tests the instrument and not compliance with it; six situations are a smoke test, not a benchmark"
+    },
+    {
+      "identifier": "CHAT-REVIEW",
+      "title": "Chat Code Review: reviewing a paste, with the limits stated",
+      "path": "00-core/conversational/CHAT-REVIEW.md",
+      "date": "2026-10-22",
+      "evaluator": "the prompt's author (conflict of interest recorded, and twice over: the target file was also written by the author)",
+      "scope": "one real file, scripts/check_prompt_contract.py, reviewed as written with the 'is this safe to merge' intent; the file computes a number the repository publishes",
+      "result": "six findings, two of them defects that inflated the library's own integration metric - a stem match satisfying a filename link, and substring matches such as 'planning' satisfying PLAN.md; 30 of 157 links had been scored as named on that basis. Prompt defects fixed in v1.1.0: no rule that a published number is the correctness question, and no rule to ask about the standard as well as the framework",
+      "record": "_meta/empirical-evaluation-04.md",
+      "limitations": "author-evaluated on both sides; one small Python file whose window happened to be complete, so the window claim was not tested; no second reader"
     }
   ]
 }

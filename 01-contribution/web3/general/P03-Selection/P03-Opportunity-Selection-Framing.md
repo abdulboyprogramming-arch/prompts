@@ -29,7 +29,7 @@ Out of scope: writing the change, deciding the upgrade mechanism, estimating the
 
 ## 3. Prerequisites and inputs
 
-- `{{OPPORTUNITIES}}` — candidates from `W3-P02`, each with the evidence that it matters.
+- `{{OPPORTUNITIES}}` — candidates from `W3-P02`'s `OPPORTUNITIES.md`, each with the evidence that it matters.
 - `{{PROJECT_CONVENTIONS}}` — the contribution policy, the audit history, and any stated scope limits. Many protocols publish what they accept (tests, tooling, docs) and what they do not (unsolicited feature work), and that statement outranks your judgement about what is useful.
 - `{{MAINTAINER_APPROVAL}}` — whether a maintainer has agreed to this class of change. For tier 2 and tier 3 candidates this input is a precondition, not a formality; absent it, the candidate is a proposal.
 - `{{DEPLOYMENT_TARGETS}}` — the chains and environments the project deploys to. A change that must be deployed to a live chain has a different cost from one that cannot leave a fork.

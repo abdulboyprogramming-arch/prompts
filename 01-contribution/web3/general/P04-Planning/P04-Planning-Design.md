@@ -29,7 +29,7 @@ Out of scope: writing code, executing a deployment, deciding governance, or chan
 
 ## 3. Prerequisites and inputs
 
-- `{{SELECTED_WORK}}` — from `W3-P03`: the candidate, its tier, the invariants with violating cases, and the preconditions that must hold before implementation.
+- `{{SELECTED_WORK}}` — `SELECTED_WORK.md` from `W3-P03`: the candidate, its tier, the invariants with violating cases, and the preconditions that must hold before implementation.
 - `{{TIER}}` — the reversibility tier. It bounds what the plan may propose; a plan that needs a tier 3 action for a tier 1 candidate is a selection finding.
 - `{{STORAGE_LAYOUT}}` — the deployed layout from the artefact or the explorer. Planning a storage change against source alone misses what has already shipped.
 - `{{DEPLOYMENT_TARGETS}}` — the chains and environments, their proxy pattern, and their upgrade delay.

@@ -26,7 +26,7 @@ Out of scope: executing the deployment (Category C, human-authorised), building 
 ## 3. Prerequisites and inputs
 
 - `RELEASE_READINESS.md` (risk class, rollback viability).
-- `CHANGELOG` breaking changes and migration notes.
+- `CHANGELOG.md` breaking changes and migration notes, from `REL-P02`.
 - Deployment target `{{TARGET_ENV}}` for `{{RELEASE_VERSION}}`, including any change window `{{CHANGE_WINDOW}}`; topology, traffic routing, and database migration tooling.
 
 ## 4. Workflow

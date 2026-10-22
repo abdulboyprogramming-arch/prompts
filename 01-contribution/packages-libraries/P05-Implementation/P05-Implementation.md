@@ -29,7 +29,7 @@ Out of scope: publishing, bumping the version, or changing the API shape the pla
 
 ## 3. Prerequisites and inputs
 
-- `{{PLAN}}` — from `PKG-P04`: entry points, deprecation sequence, test layers, and release choreography.
+- `{{PLAN}}` — `PLAN.md` from `PKG-P04`: entry points, deprecation sequence, test layers, and release choreography.
 - `{{SEMVER_EXPECTATION}}` — the classification and driving symbol. The implementation is checked against it: a change that started as a patch and now alters a signature has moved.
 - `{{BUILD_COMMAND}}` — the project's build, so the artefact you test is the artefact a consumer installs.
 - `{{TEST_COMMAND}}` — the repository's own suite, run the way CI runs it.

@@ -29,7 +29,7 @@ Out of scope: arguing that the change should be merged, defending a design decis
 
 ## 3. Prerequisites and inputs
 
-- `{{VALIDATION}}` — the report from `WEB-P06`: what ran, at which engine and width, and the not-run list.
+- `{{VALIDATION}}` — `VALIDATION.md` from `WEB-P06`: what ran, at which engine and width, and the not-run list.
 - `{{BRANCH}}` — the branch name and its commit range, so the description refers to real commits rather than to a plan.
 - `{{PREVIEW_URL}}` — the deployed preview, if the project produces one. A reviewer who can click is a reviewer who will check; if no preview exists, say so and give the local command instead.
 - `{{ISSUE_REF}}` — the issue the change answers, so the description opens with the problem rather than the solution.

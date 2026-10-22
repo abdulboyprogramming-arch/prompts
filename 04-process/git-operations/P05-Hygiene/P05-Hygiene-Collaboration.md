@@ -31,6 +31,7 @@ Out of scope: mandating a model the team will not adopt, and reorganising the re
 | `TEAM_SIZE` | user | infer from recent authors and state the inference |
 | `RELEASE_CADENCE` (optional) | user | infer from tags in `{{REPO_PATH}}`; note if absent |
 | Current practice: branch names, merge method, protection rules | repository, hosting settings | observe from history and mark `observed` |
+| `RECOVERY.md` from P04 — the recoveries recorded in it, which are evidence about this repository's hygiene | repository, if P04 ran | skip; note that recurrence is unknown |
 
 ## 4. Workflow
 
