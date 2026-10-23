@@ -1,11 +1,9 @@
 MARKDOWN PRESENTATION PASS
 ==========================
 
-Reformat the Markdown in a repository without changing what any of it says.
-
-Was: "Format dot md file.txt" -- 133 bytes, one sentence:
-"i need you to properly format and organize the content of all .md file in this
-project monorepo so it can be clean and well presented". Replaced 2026-10-23.
+ARCHIVE -- rewritten in place, 2026-10-23.
+This file was a fragment when it was archived. It is now a complete prompt; the audit in
+AUDIT.md records what was wrong with the fragment, without reproducing it.
 
 --------------------------------------------------------------------------------
 

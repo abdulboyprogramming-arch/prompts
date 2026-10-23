@@ -27,32 +27,32 @@ Why keep them at all: a library that asks others to show their evidence should b
 | `process5(chat2).txt` | ASEOS **v3.0** constitution draft |
 | `process6(chat2).txt` | "Autonomous product evolution and feature invention" draft |
 | `scaffold completion.txt` | ASEOS/EAEOS v4.0 constitution draft |
-| `markdown-formatting-pass.txt` | **Rewritten 2026-10-23** — was `Format dot md file.txt`, one sentence |
-| `deployment-to-a-url.txt` | **Rewritten 2026-10-23** — was `process3(chat1).txt`, seven words |
-| `hackathon-submission.txt` | **Rewritten 2026-10-23** — was `process4(chat1).txt`, five questions |
-| `feature-portfolio-decision.txt` | **Rewritten 2026-10-23** — was `process7(chat2).txt`, eleven wants |
+| `markdown-formatting-pass.txt` | Presentation-only Markdown pass — **complete prompt since 2026-10-23** |
+| `deployment-to-a-url.txt` | First reachable URL — **complete prompt since 2026-10-23** |
+| `hackathon-submission.txt` | Deadline-driven submission — **complete prompt since 2026-10-23** |
+| `feature-portfolio-decision.txt` | Now / next / not-now portfolio — **complete prompt since 2026-10-23** |
 
-## What was replaced on 2026-10-23
+## Rewritten in place on 2026-10-23
 
-Four files in this folder were not prompts. They were fragments — a sentence, a paragraph, seven words —
-that only made sense inside a conversation that has not survived. They have been **replaced in place**
-with prompts that say the same thing properly, and the fragments are gone rather than kept beside their
-replacements.
+Four files in this folder were not prompts. They were fragments — a sentence, a seven-word question, a
+paragraph of wants — that only made sense inside a conversation that has not survived. Each has been
+**rewritten in place**: the fragment is gone rather than kept beside its replacement, the filename now
+names the job, and what sits in the file is a complete prompt with inputs, an ordered procedure, failure
+handling, and a definition of done.
 
-| Was | Was made of | Is now |
-|---|---|---|
-| `Format dot md file.txt` | *"i need you to properly format and organize the content of all .md file…"* — 133 bytes | `markdown-formatting-pass.txt`: a presentation-only pass with a measured baseline, an agreed rule set, batches of ten revertible commits, and the rule that **a file you formatted and a file you fixed are different claims** |
-| `process3(chat1).txt` | *"how will i see it"* — 67 bytes, and "it" is named nowhere | `deployment-to-a-url.txt`: state, audience and spend limit as inputs; the truth about the build established first; names-only secrets; an end-to-end check from outside the machine; an exercised rollback |
-| `process4(chat1).txt` | 315 bytes, five questions in one paragraph | `hackathon-submission.txt`: rules before advice, a backwards absolute-time timeline, a submission inventory, a four-minute demo path, and a real-versus-faked list |
-| `process7(chat2).txt` | 410 bytes, eleven capabilities, no order and no stopping condition | `feature-portfolio-decision.txt`: restate each candidate as a user problem, score on four axes, sort into Now / Next / Not now, treat accounts and payments as their own risk class, then ship one slice end to end |
+| File | What it now does |
+|---|---|
+| `markdown-formatting-pass.txt` | A presentation-only pass: a measured baseline, an agreed rule set, batches of ten revertible commits, and the rule that **a file you reformatted and a file you fixed are different claims** |
+| `deployment-to-a-url.txt` | State, audience and spend limit as inputs; the truth about the build established first; names-only secrets; an end-to-end check from outside the machine; an exercised rollback |
+| `hackathon-submission.txt` | Rules before advice, a backwards absolute-time timeline, a submission inventory, a four-minute demo path, and a real-versus-faked list |
+| `feature-portfolio-decision.txt` | Each candidate restated as a user problem, scored on four axes, sorted into Now / Next / Not now, with accounts and payments as their own risk class, then one slice shipped end to end |
 
-**What that cost, stated plainly:** the before-and-after is gone. Anyone reading this folder now sees
-four competent prompts and cannot tell what they replaced, and the original wording survives only in git
-history and in the audit's descriptions of it. That was a deliberate trade, made by the repository owner
-on 2026-10-23, in exchange for a folder where every file is worth reading. The alternative — keeping the
-fragments beside their replacements in a separate folder — was tried first and rejected as clutter.
+**What that cost, stated plainly:** the original fragments are not reproduced anywhere in this folder. A
+reader who wants to know what was wrong with them gets the audit's description instead of the text, and
+the text itself survives only in git history. That was a deliberate trade, made by the repository owner
+on 2026-10-23, in exchange for a folder where nothing you open is a half-formed note.
 
-The seven files that were always prompts or documents are untouched.
+The seven files that were always documents are untouched.
 
 **The audit is separate and unchanged:** [`AUDIT.md`](AUDIT.md) records seven findings in the long
 files — three unsuperseded constitutions, an instruction that cannot be followed, scope with no stopping

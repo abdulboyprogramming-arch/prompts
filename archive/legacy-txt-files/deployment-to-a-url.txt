@@ -1,11 +1,9 @@
 DEPLOYMENT TO A URL
 ===================
 
-Take an application from "it runs on my machine" to "someone else can open it at a URL".
-
-Was: "process3(chat1).txt" -- 67 bytes, the whole of it:
-"how will i see it". Seven words, and no antecedent anywhere: "it" is not named, nor is where it runs
-now, nor who is meant to see it. Replaced 2026-10-23.
+ARCHIVE -- rewritten in place, 2026-10-23.
+This file was a fragment when it was archived. It is now a complete prompt; the audit in
+AUDIT.md records what was wrong with the fragment, without reproducing it.
 
 --------------------------------------------------------------------------------
 

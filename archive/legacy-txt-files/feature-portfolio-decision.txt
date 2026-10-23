@@ -1,11 +1,9 @@
 FEATURE PORTFOLIO DECISION
 ==========================
 
-Decide what a product builds next -- and, just as importantly, what it does not.
-
-Was: "process7(chat2).txt" -- 410 bytes asking for eleven capabilities at once, with no order and no
-stopping condition ("add every possible feature", "as many as possible"). Eleven candidates, no goal,
-no capacity, no price. Replaced 2026-10-23.
+ARCHIVE -- rewritten in place, 2026-10-23.
+This file was a fragment when it was archived. It is now a complete prompt; the audit in
+AUDIT.md records what was wrong with the fragment, without reproducing it.
 
 --------------------------------------------------------------------------------
 

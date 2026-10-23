@@ -1085,3 +1085,15 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 - Also fixed: the evidence gate failed on a **recorded run output** that quoted a then-true ratio. Fixtures
   are now exempt from the published-count scan, with two regression cases; editing the record would have
   been the alternative, and that is falsification.
+
+### Archive — the fragments are gone from the folder, not just from the filenames (2.32.0)
+- **2026-10-23 · owner request · recorded by the prompt's author**
+- The 2.28.9 cycle replaced four fragment `.txt` files in place but left each prompt opening with the
+  original text quoted, and reproduced the four fragments in the folder README's before-and-after table.
+  The owner read that as "the old rubbish is still there", which is a fair reading of a file whose first
+  four visible lines are the rubbish.
+- Removed: the quoting preambles, the README's quoted column, and the three audit findings that quoted
+  the fragments. Each prompt now opens with what it is and a pointer to `AUDIT.md`.
+- Verified after the edit: no fragment text remains in the folder (`grep`); the four files still carry
+  role, use/do-not-use, inputs, procedure, failure handling, security, done-when and handoff sections.
+- Cost accepted: the original wording survives only in git history, and the audit is weaker for it.
