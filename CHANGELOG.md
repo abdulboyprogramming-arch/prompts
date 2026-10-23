@@ -2,6 +2,58 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.28.9] — 2026-10-23
+
+Two cleanups the previous cycle exposed. Both were directed by the repository owner rather than chosen
+by me, and both trade a little history for a folder that reads properly.
+
+### The archive now contains prompts, not fragments
+
+Four of the eleven `.txt` files in `archive/legacy-txt-files/` were never prompts. They were a sentence,
+a paragraph, and seven words — *"how will i see it"*, with "it" named nowhere — that only made sense
+inside a conversation which has not survived. Last cycle they were rewritten into a separate
+`rewritten/` folder with the originals kept beside them. That folder is gone and the fragments with it:
+the four files are **replaced in place**, renamed for what they do.
+
+| Was | Now |
+|---|---|
+| `Format dot md file.txt` (133 B) | `markdown-formatting-pass.txt` — presentation only, measured baseline, agreed rule set, batches of ten revertible commits |
+| `process3(chat1).txt` (67 B) | `deployment-to-a-url.txt` — state, audience and spend limit; truth about the build first; names-only secrets; a check from outside the machine |
+| `process4(chat1).txt` (315 B) | `hackathon-submission.txt` — rules before advice, absolute-time timeline, submission inventory, demo path, real-versus-faked list |
+| `process7(chat2).txt` (410 B) | `feature-portfolio-decision.txt` — user problem per candidate, four-axis score, Now / Next / Not now, one slice end to end |
+
+**What that cost is recorded rather than glossed:** the before-and-after is gone. The original wording
+survives only in git history and in the audit's quotations of it, and a reader arriving now cannot tell
+what these four files replaced. The archive `README.md` says so plainly, because a folder whose value
+was "here is what we asked for, next to what we should have asked" has just given that up.
+
+The seven long files — three ASEOS constitutions, the issue-creation draft, the change/commit
+instruction, and the two `process` documents — are untouched. `AUDIT.md` still records its seven
+findings, with the two that quoted replaced text marked as quotations.
+
+### One stale branch removed; `main` is now the only branch
+
+`arena/5b041870-prompts` was deleted after checking what it held:
+
+| Check | Result |
+|---|---|
+| Last commit | `e08d01d`, 2026-10-22 13:11 — before the repository's history was rewritten |
+| Author | `Abdul-Programing`, the second account dropped on 2026-10-22 |
+| Pull request | #13, **closed without merging** |
+| Files it has that `main` lacks | **0** |
+| Files `main` has that it lacks | 29 |
+| Merge base with `main` | none — it sits on the pre-rewrite lineage |
+
+Its one substantive change, the catalog restore on the gate runner's failure path, is present in `main`
+(`scripts/check_all.py`, `catalog_is_current`). The branch is recoverable: this working copy still holds
+it at the local ref `refs/tmp/other`, and nothing was force-pushed anywhere.
+
+Every other session branch had already gone, because `delete_branch_on_merge` is on and each was deleted
+when its pull request merged. What remains is `main`, and the branch this cycle is running on.
+
+Counts are unchanged: 364 prompts, 285 operational, 491 Markdown files, validator 0 errors and 0
+warnings.
+
 ## [2.28.8] — 2026-10-23
 
 The repository went public twelve hours ago and three of its documents still described it as private,
@@ -91,8 +143,8 @@ before writing and forbids force-pushing; the scaffold has a non-assumption rule
 
 ### Rewritten — the four short ones, said properly
 
-[`archive/legacy-txt-files/rewritten/`](archive/legacy-txt-files/rewritten/README.md) keeps each original
-verbatim, names why it cannot work as a prompt, and gives a version that could be run:
+`archive/legacy-txt-files/rewritten/` (removed in 2.28.9 — the four files were replaced in place) kept each
+original verbatim, named why it cannot work as a prompt, and gave a version that could be run:
 
 | Original | What it was | Rewrite |
 |---|---|---|

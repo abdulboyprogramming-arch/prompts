@@ -975,7 +975,7 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
   part of finding them.
 - **One self-contradiction**: prohibitions forbid building as proof of correctness, while §11 makes
   "production-ready" the goal — a phrase used fourteen times in the scaffold file.
-- **Four short requests rewritten** into runnable form in `rewritten/`: `01` formatting (presentation-only,
+- **Four short requests rewritten** into runnable form in `rewritten/` (removed in 2.28.9; the four files were replaced in place): `01` formatting (presentation-only,
   batches, revertible), `02` deployment (state/audience/spend, checks first, outside-the-machine check),
   `03` hackathon (rules before advice, backwards absolute-time timeline, inventory, four-minute demo),
   `04` portfolio (user problem, four-axis score, Now/Next/Not-now, one end-to-end slice).
@@ -1008,3 +1008,25 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
   conclusion — but the habit of re-reading state sentences when the state changes.
 - Not claimed: that every state sentence is now current. These were found by grepping seven phrasings
   across the tree; a claim phrased differently would not have been caught.
+### Maintenance — the archive fragments replaced, and the last stale branch removed (2.28.9)
+- **2026-10-23 · archive + repository hygiene · the prompt's author** · at the owner's direction
+- **Four `.txt` files replaced in place.** Last cycle they were rewritten into `rewritten/` with the
+  originals preserved. The owner read that as clutter and asked for the fragments to go. So
+  `Format dot md file.txt`, `process3(chat1).txt`, `process4(chat1).txt` and `process7(chat2).txt` are
+  deleted, `rewritten/` is deleted, and four properly named prompts now occupy their places:
+  `markdown-formatting-pass.txt`, `deployment-to-a-url.txt`, `hackathon-submission.txt`,
+  `feature-portfolio-decision.txt`.
+- **The trade is stated where a reader will meet it**, in `archive/legacy-txt-files/README.md`: the
+  before-and-after is gone, the originals survive only in git history, and the folder can no longer show
+  the distance between what was asked and what should have been asked. That distance was the reason the
+  folder was kept. It is now a folder of prompts and an audit that quotes what they replaced.
+- **Links de-referenced, not silently deleted.** `CHANGELOG.md`, `pull-requests.md`, `review-log.md` and
+  the backlog all pointed into `rewritten/`; those references now name the folder as removed, so the
+  record still says what happened in 2.28.7 and why the path no longer resolves.
+- **One remote branch removed.** `arena/5b041870-prompts` (`e08d01d`, 2026-10-22 13:11, authored by the
+  dropped `Abdul-Programing` account, PR #13 closed not merged, no merge base with `main`) held zero
+  files `main` lacks. Its one substantive change — catalog restore on the gate runner's failure path —
+  is in `main`. Kept locally at `refs/tmp/other` so the deletion is reversible in this workspace.
+  `main` is now the only branch on the remote.
+- Not claimed: that the four replacements are validated prompts. They are archive material with no
+  metadata, no maturity level and no run behind them, and they are not counted in the 364.
