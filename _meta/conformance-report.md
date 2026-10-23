@@ -36,7 +36,7 @@ handed the artifact without anyone guessing its name.
 | `01-contribution/packages-libraries` | 8 | 7 | 6 | 6 | 0 | 0 |
 | `01-contribution/web/general` | 8 | 7 | 6 | 6 | 0 | 0 |
 | `01-contribution/web3/general` | 8 | 7 | 6 | 6 | 0 | 0 |
-| `02-engineering` | 4 | 4 | 0 | 0 | 0 | 0 |
+| `02-engineering` | 5 | 5 | 0 | 0 | 0 | 0 |
 | `02-engineering/architecture-review` | 7 | 6 | 7 | 0 | 1 | 6 |
 | `02-engineering/codebase-audit` | 9 | 10 | 9 | 9 | 0 | 0 |
 | `02-engineering/feature-completion` | 4 | 5 | 3 | 3 | 0 | 0 |

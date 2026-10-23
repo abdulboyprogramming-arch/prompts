@@ -1030,3 +1030,23 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
   `main` is now the only branch on the remote.
 - Not claimed: that the four replacements are validated prompts. They are archive material with no
   metadata, no maturity level and no run behind them, and they are not counted in the 364.
+### New prompt — `PORTFOLIO-01`: the decision between candidate features, which failed 0 of 8 first (2.29.0)
+- **2026-10-23 · build + execution · the prompt's author** · record `_meta/empirical-evaluation-20.md`
+- Backlog #116, the P1 gap the archive audit named: `feature-design-suggestion` designs a feature once it
+  has been chosen; nothing decided *between* candidates. Fixture built first
+  (`_meta/fixtures/portfolio-scenario/`): eleven wants, two people, six weeks, and an app whose theme
+  control saves a cookie nothing reads, whose export serves one format, and which has no accounts.
+- **v0.1.0 scored 0 of 8.** Not sloppiness — structure. It ranked the list it was handed without opening
+  the repository (so two half-built features were proposed as new work) and it had no bucket for a "no",
+  so eleven wants produced an eleven-item order. **v1.0.0 scores 8 of 8** by checking the tree first with
+  file citations, restating every candidate as a user problem, making *Not now* mandatory with a closed
+  list of reasons, giving data-storing candidates a five-part obligations paragraph, and requiring one
+  slice with a failing-first test and a rollback.
+- The run found a fact the criteria did not ask for: the share link already exists (`/r/<token>`), so that
+  candidate is surfacing and revoking, not building. That is the prompt doing the job it was written for.
+- **The fixture's own evidence block was wrong first** — it claimed `settings.html` contained
+  `data-theme`; only `theme.css` does. Caught by running the command and pasting the output. Third
+  fixture correction in this repository, all three caught the same way.
+- Counts move: 365 prompts, 286 operational, 494 files, evidence **38 of 286 (13.3 %)**.
+- Not claimed: that a second reader would score it 8 of 8. The fixture was built to be findable, and the
+  author wrote the prompt, the fixture and the grading table.

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head><link rel="stylesheet" href="/static/theme.css"></head>
+  <body>
+    <h1>Report {{ token }}</h1>
+
+    <!-- Defect: the only cue is a placeholder, so the field has no accessible name. -->
+    <input type="text" name="filter" placeholder="Filter rows">
+
+    <!-- Defect: header cells with no scope; screen readers lose the column mapping. -->
+    <table>
+      <tr><td>Metric</td><td>Value</td></tr>
+      <tr><td>Rows</td><td>12,480</td></tr>
+      <tr><td>Columns</td><td>9</td></tr>
+    </table>
+
+    <!-- Defect: hardcoded English and a hardcoded date format. -->
+    <p>Generated on 03/04/2026. Total rows: 12,480.</p>
+
+    <p><a href="/reports/17/export.csv">Download CSV</a></p>
+  </body>
+</html>

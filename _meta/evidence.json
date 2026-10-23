@@ -418,6 +418,17 @@
       "result": "FAILED at v0.1.0 then PASSED at v1.1.0 - v0.1.0 scored 1 of 8, recording the proposal as the purpose and the urgency as the plan; v1.1.0 separates problem from proposal, classifies constraints, writes a non-goal with a destination, and names a failure mode",
       "record": "_meta/empirical-evaluation-19.md",
       "limitations": "author-run desk execution; every fact in a greenfield brief is user-stated, so the fixture grades structure rather than truth"
+    },
+    {
+      "identifier": "PORTFOLIO-01",
+      "title": "Feature Portfolio Decision",
+      "path": "02-engineering/feature-portfolio/FEATURE-PORTFOLIO.md",
+      "date": "2026-10-23",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "scope": "run against a committed fixture: eleven wanted capabilities, a two-person team with six weeks, and an application whose theme control is half-wired, whose export serves one format, and which has no accounts",
+      "result": "FAILED at v0.1.0 then PASSED at v1.0.0 - v0.1.0 scored 0 of 8, ranking the list it was handed and proposing to build two features the repository already half-contains, with no not-now bucket and no data obligation; v1.0.0 scores 8 of 8 by checking the tree first, restating every candidate as a user problem, making Not now mandatory with a closed list of reasons, and carrying one slice to done",
+      "record": "_meta/empirical-evaluation-20.md",
+      "limitations": "author-run desk execution; the fixture was built to be findable, so it measures whether the procedure reads the code, not whether it finds the right half-features among twenty"
     }
   ]
 }

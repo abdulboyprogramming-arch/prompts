@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE — do not edit by hand. Run: python3 scripts/generate_task_index.py --write -->
 
-**364 prompts**, indexed by the situation you are in. Each task lists the prompts that are
+**365 prompts**, indexed by the situation you are in. Each task lists the prompts that are
 **runnable** — `operational` and `draft`. The `skeleton` outlines are counted per task and linked
 to the gallery, because a wall of outlines would bury the rows that work today.
 
@@ -11,9 +11,9 @@ library is reachable from at least one task: a prompt added without a home fails
 
 | | |
 |---|---|
-| Prompts indexed | 364 |
-| Rows listed individually | 409 (a prompt can answer more than one task) |
-| Of those, `operational` | 328 |
+| Prompts indexed | 365 |
+| Rows listed individually | 410 (a prompt can answer more than one task) |
+| Of those, `operational` | 329 |
 
 Not sure which task is yours? [`QUICKSTART.md`](QUICKSTART.md) routes five common situations,
 [`06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md`](06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md)
@@ -106,9 +106,9 @@ Reconnaissance, then orientation, then a first contribution that survives review
 
 ## I need to change existing code without breaking it
 
-Safety net, smallest change, evidence that nothing else moved.
+Safety net, smallest change, evidence that nothing else moved — and a decision about which change is worth making.
 
-**Start here.** `05-scenarios/quick-fixes/` when the change is small; `02-engineering/refactoring/` when it is not.
+**Start here.** `02-engineering/feature-portfolio/` when the list is longer than the capacity and something has to be said no to; `05-scenarios/quick-fixes/` when the change is small; `02-engineering/refactoring/` when it is not.
 
 | ID | Prompt | Where | Use it for | Maturity |
 |---|---|---|---|---|
@@ -116,6 +116,7 @@ Safety net, smallest change, evidence that nothing else moved.
 | `FC-P02` | [Layer Inventory & Gap Map](02-engineering/feature-completion/P02-Layer-Map/P02-Layer-Gap-Map.md) | `P02-Layer-Map` | Answers: for this feature, which of the fourteen layers already exist, which are missing, and exactly where does each live or… | operational |
 | `FC-P03` | [Layer Implementation](02-engineering/feature-completion/P03-Implementation/P03-Layer-Implementation.md) | `P03-Implementation` | Implement the blocking and required gaps in an order that keeps the system runnable at each step, with tests for each layer's… | operational |
 | `FC-P04` | [End-to-End Acceptance](02-engineering/feature-completion/P04-Acceptance/P04-End-to-End-Acceptance.md) | `P04-Acceptance` | Prove each acceptance statement from .feature/COMPLETION_CONTRACT.md, including the negative and edge cases, and identify what… | operational |
+| `PORTFOLIO-01` | [Feature Portfolio Decision](02-engineering/feature-portfolio/FEATURE-PORTFOLIO.md) | `feature-portfolio` | PORTFOLIO.md containing, in this order — what already exists, a user problem per candidate, a four-axis score per candidate… | operational |
 | `REC-P01` | [Containment & State Preservation](02-engineering/project-recovery/P01-Containment/P01-Containment-State-Preservation.md) | `P01-Containment` | Produce a recoverable starting point and an exact record of it: Git state, uncommitted work, untracked files, running… | operational |
 | `REC-P02` | [Intent Reconstruction & Stopping Point](02-engineering/project-recovery/P02-Reconstruction/P02-Intent-Reconstruction.md) | `P02-Reconstruction` | Answers: what was being built, for whom, to what standard — and what was the author doing when they stopped? | operational |
 | `REC-P03` | [Completeness Audit](02-engineering/project-recovery/P03-Completeness/P03-Completeness-Audit.md) | `P03-Completeness` | Answers: for each requirement, how much of it is real, and what specifically is missing? | operational |

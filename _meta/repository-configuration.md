@@ -14,11 +14,11 @@ The files in this repository are the content. This page is the metadata around i
 |---|---|---|
 | **Repository name** | `prompts` | It is what the thing is. A clever name costs the repository its only free signal: someone searching "engineering prompts" |
 | **Display title** | `Engineering Prompt Library` | The name field in the social preview and the page `<title>` is derived from the repository name; set the *About* description to carry the words |
-| **Description** | `364 engineering prompts with evidence rules, failure handling, and a definition of done — for humans and coding agents. Audited by a repo, not a vibe.` | 158 characters. Names the count, the differentiator (evidence rules), the audience, and the posture. No "supercharge", no "10x" |
+| **Description** | `365 engineering prompts with evidence rules, failure handling, and a definition of done — for humans and coding agents. Audited by a repo, not a vibe.` — **the live field still says 364 and reads "300+" before that**; each release makes it one further behind, and it is owner-only (2.29.0) | 158 characters. Names the count, the differentiator (evidence rules), the audience, and the posture. No "supercharge", no "10x" |
 | **Website** | leave empty until there is a hosted index | A dead link is worse than none |
 | **Topics** | see below | Each topic is a search surface; ten is the maximum GitHub shows |
 
-**Description, shorter variant** (if the field truncates): `364 engineering procedures for humans and coding agents — evidence rules, failure handling, a defined finish.`
+**Description, shorter variant** (if the field truncates): `365 engineering procedures for humans and coding agents — evidence rules, failure handling, a defined finish.`
 
 ## 2. Topics
 
@@ -96,7 +96,7 @@ Run in this order. Each is idempotent.
 ```bash
 # 1. Identity
 gh repo edit abdulboyprogramming-arch/prompts \
-  --description "364 engineering prompts with evidence rules, failure handling, and a definition of done — for humans and coding agents. Audited by a repo, not a vibe."
+  --description "365 engineering prompts with evidence rules, failure handling, and a definition of done — for humans and coding agents. Audited by a repo, not a vibe."
 
 gh repo edit abdulboyprogramming-arch/prompts \
   --add-topic prompts --add-topic prompt-engineering --add-topic ai-agents \

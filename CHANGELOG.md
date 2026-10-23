@@ -2,6 +2,82 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.29.0] — 2026-10-23
+
+The library could design a feature once someone had chosen one. It could not choose. This adds the
+prompt that decides — and it earned its place in the only way this repository accepts: by failing first.
+
+### New — `PORTFOLIO-01`, the decision between candidates (backlog #116)
+
+`02-engineering/feature-portfolio/FEATURE-PORTFOLIO.md`. Inputs: the repository, the product goal, the
+list, and the capacity. It returns `PORTFOLIO.md`: what already exists with a citation per candidate, a
+user problem per candidate, a four-axis score, three buckets, an obligations paragraph for anything that
+stores data, and one slice carried to done.
+
+It exists because the archive said so. `process7(chat2).txt` — since replaced by
+`feature-portfolio-decision.txt` — asked for eleven capabilities with *"add as many as possible"* as the
+only ordering principle. Eleven wants, two people, six weeks, and no procedure that ends in a decision.
+
+### Executed — v0.1.0 scored 0 of 8, and the reason is the interesting part
+
+The first draft was a competent ranking prompt: group, score value against effort, rank, recommend
+three, sequence the rest. Against `_meta/fixtures/portfolio-scenario/` — a Flask app whose theme control
+is half-wired (a cookie nothing reads), whose export serves one format, and which has no accounts — it
+produced a clean table and was wrong eight times.
+
+| | v0.1.0 | v1.0.0 |
+|---|---|---|
+| Criteria met | **0 of 8** | **8 of 8** |
+
+Two structural defects, not sloppiness:
+
+- **It ranked the list it was handed.** It never opened the repository, so "add dark mode" and "add
+  export" were both new work — while 80% of the first and half of the second were already in the tree.
+  No better scoring fixes that; only looking does.
+- **It had nowhere to put a "no".** A value/effort ranking always yields an order, and an order always
+  has room for every row. Eleven items went in; eleven came out.
+
+v1.0.0 checks the tree first and requires a file citation for every "already exists"; restates each
+candidate as a user problem while keeping the user's noun visible; makes *Not now* mandatory with a
+closed list of reasons; gives accounts, personal data and payments their own five-part paragraph
+(stored, where, how long, who reads it, deletion path); and requires one slice with a failing-first
+test and a rollback. Its run put theme, export and accessibility in *Now*, four items in *Not now*
+including sign-in, and found something the criteria did not ask for: the share link already exists, so
+that candidate is a "surface it and let it be revoked" item, not a build.
+
+Record: [`_meta/empirical-evaluation-20.md`](_meta/empirical-evaluation-20.md).
+
+### The fixture earned its keep before the run
+
+The fixture's own evidence block was wrong in its first draft: it claimed `settings.html` contained
+`data-theme`, and `grep` says only `theme.css` does. Third time this repository has had to correct a
+fixture against itself (routing, contribution, greenfield) — and the rule that caught it is the one in
+the prompt: **a claim about the code is a search result, quoted.**
+
+### Records
+
+- `PORTFOLIO-01` added as `operational` on the strength of the run; backlog #116 closed.
+- Counts: **365 prompts**, 286 operational, 74 skeleton, 494 Markdown files.
+- Evidence: **38 of 286 operational executed — 13.3%**, still 0 independent.
+- `TASKS.md` gained the new system under *I need to change existing code without breaking it*;
+  `02-engineering/README.md`, `README.md`, `GALLERY.md`, `_meta/CATALOG.md` updated or regenerated.
+- `publication-checklist.md` §"must not be softened" replaced its hand-maintained list of executions
+  with a pointer at the generated file: that paragraph said "thirty-three" and "281" while the registry
+  said 37 and 285.
+- `repository-configuration.md` records that the live GitHub description still says `364` and is
+  owner-only (`403`), so it is now one release further behind.
+
+### Also — two prompts stopped hardcoding the library's size
+
+`CHAT-SELECT` (v1.1.1) said "a library of 364 prompts"; `SYSTEM-SELECTOR` (v1.1.1) said "364 prompts in
+103 systems". Both were true when written and would have been wrong within a release, which is the same
+defect as the stale prose in 2.28.8 in a smaller form. They now say "several hundred prompts" and "across
+a hundred systems" — a router does not need the count, and a count in a prompt is a fact that decays in
+place.
+
+Backlog #115 — a mechanical Markdown formatting pass — is still open. It was not built this cycle, and
+that is the decision: one prompt with a run behind it is worth more than two with drafts.
+
 ## [2.28.9] — 2026-10-23
 
 Two cleanups the previous cycle exposed. Both were directed by the repository owner rather than chosen

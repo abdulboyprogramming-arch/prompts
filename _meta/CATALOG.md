@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 364 prompts — 0 canonical, 285 operational, 5 draft, 74 skeleton.
+**Totals:** 365 prompts — 0 canonical, 286 operational, 5 draft, 74 skeleton.
 
 ## `00-core`
 
@@ -99,6 +99,7 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | ID | Stage | Maturity | Mode | Risk | File |
 |----|-------|----------|------|------|------|
 | `ACCESS-01` | Access Review: who can still get in, and should they? | operational | audit-remediation | A | [ACCESS-REVIEW.md](../02-engineering/access-review/ACCESS-REVIEW.md) |
+| `PORTFOLIO-01` | Feature Portfolio Decision | operational | planning | A | [FEATURE-PORTFOLIO.md](../02-engineering/feature-portfolio/FEATURE-PORTFOLIO.md) |
 | `SEC-ROT-01` | PROMPT 01 — Secret Rotation: drill it before you need it | operational | implementation | C | [SECRETS-ROTATION.md](../02-engineering/secrets-rotation/SECRETS-ROTATION.md) |
 | `TENANCY-01` | PROMPT 01 — Tenant Isolation Audit | operational | diagnostic | A | [TENANCY-AUDIT.md](../02-engineering/tenancy-audit/TENANCY-AUDIT.md) |
 | `TIME-01` | PROMPT 01 — Time and Date Correctness Audit | operational | diagnostic | A | [TIME-CORRECTNESS.md](../02-engineering/time-correctness/TIME-CORRECTNESS.md) |

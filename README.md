@@ -8,7 +8,7 @@ Every prompt declares what it does, what it may change, how much it can be trust
 
 **[`QUICKSTART.md`](QUICKSTART.md) — start here.** Six situations, the exact prompts in order, and what you should be holding at the end of each. It takes ten minutes and saves an hour of reading this file.
 
-**Browse everything:** [`TASKS.md`](TASKS.md) indexes the library by the problem you have — 21 tasks from "something is broken right now" to "I only have a chat window" — and [`GALLERY.md`](GALLERY.md) lists all 364 prompts by area with a direct link and one line on when to use each. Both are generated from the prompts themselves and a stale file fails the gate, so neither can drift from the library.
+**Browse everything:** [`TASKS.md`](TASKS.md) indexes the library by the problem you have — 21 tasks from "something is broken right now" to "I only have a chat window" — and [`GALLERY.md`](GALLERY.md) lists all 365 prompts by area with a direct link and one line on when to use each. Both are generated from the prompts themselves and a stale file fails the gate, so neither can drift from the library.
 
 ## Start here
 
@@ -107,6 +107,7 @@ Pick the row that matches your situation. Do not read the whole repository first
 | The cloud bill doubled and nobody knows why | [`03-domains/cost-engineering/`](03-domains/cost-engineering/README.md) | Audit → change → guardrails |
 | Someone asks us to delete or export their data | [`04-process/privacy-requests/`](04-process/privacy-requests/README.md) | Specialised, deletion is Category D |
 | I need to restructure code without changing behaviour | [`02-engineering/refactoring/`](02-engineering/refactoring/README.md) | Diagnostic → implementation |
+| There is a list of features and no order in it | [`02-engineering/feature-portfolio/`](02-engineering/feature-portfolio/FEATURE-PORTFOLIO.md) | Decides, and says no |
 | A feature "works" but only in the UI | [`02-engineering/feature-completion/`](02-engineering/feature-completion/README.md) | Implementation |
 | My request is vague and needs intake | [`06-interactive/`](06-interactive/README.md) | Interactive |
 | I only have a chat window, no repository access | [`00-core/conversational/`](00-core/conversational/README.md) | Any prompt, adapted, with the capability delta stated |
@@ -152,6 +153,7 @@ In short: take it, change it, ship it — say where it came from, and do not pre
 | [`04-process/governance-compliance/`](04-process/governance-compliance/README.md) | 3 | operational |
 | [`04-process/licence-compliance/`](04-process/licence-compliance/LICENCE-COMPLIANCE.md) | 1 | operational |
 | [`04-process/standards-conformance/`](04-process/standards-conformance/STANDARDS-CONFORMANCE.md) | 1 | operational |
+| [`02-engineering/feature-portfolio/`](02-engineering/feature-portfolio/FEATURE-PORTFOLIO.md) | 1 | operational |
 | [`02-engineering/feature-completion/`](02-engineering/feature-completion/README.md) | 4 | operational |
 | [`02-engineering/refactoring/`](02-engineering/refactoring/README.md) | 7 | operational |
 | [`03-domains/cost-engineering/`](03-domains/cost-engineering/README.md) | 4 | operational |
@@ -260,10 +262,10 @@ Read [`CONTRIBUTING.md`](CONTRIBUTING.md) before adding a system — it also poi
 
 ## Known limitations
 
-- **74 of 364 prompts are skeleton outlines**, and 5 more are drafts — 79 files that are not ready to run. They are labelled as such everywhere, and the task index counts them separately rather than hiding them.
+- **74 of 365 prompts are skeleton outlines**, and 5 more are drafts — 79 files that are not ready to run. They are labelled as such everywhere, and the task index counts them separately rather than hiding them.
 - **CI runs, and the badge reports what it finds.** `.github/workflows/validate.yml` executes every gate on every push and pull request; pull-request run [`39903440904`](https://github.com/abdulboyprogramming-arch/prompts/actions/runs/39903440904) completed steps 1–5, including *Every gate* and the clean-regeneration check, in 13 seconds. Until the repository was published on 2026-10-22 the runs failed at startup with `steps: 0` on Actions billing, and this line said so; the earlier failures are recorded in [`_meta/publication-checklist.md`](_meta/publication-checklist.md) §5.1 and are not evidence about the current state.
-- **37 of 285 operational prompts have been executed and recorded** — 13.0%. The queue for the rest, in batches, is [`_meta/execution-batches.md`](_meta/execution-batches.md). `operational` means structurally complete and reviewed, not proven in practice; [`_meta/evidence-levels.md`](_meta/evidence-levels.md) states the number, and it is generated from a registry.
-- **No run has been graded by anyone other than the author.** The 37 records are desk evaluations by the person who wrote the prompt, and each record says so. There is no controlled study, and no second reader.
+- **38 of 286 operational prompts have been executed and recorded** — 13.3%. The queue for the rest, in batches, is [`_meta/execution-batches.md`](_meta/execution-batches.md). `operational` means structurally complete and reviewed, not proven in practice; [`_meta/evidence-levels.md`](_meta/evidence-levels.md) states the number, and it is generated from a registry.
+- **No run has been graded by anyone other than the author.** The 38 records are desk evaluations by the person who wrote the prompt, and each record says so. There is no controlled study, and no second reader.
 - **Reviews are self-assessments** recorded in [`_meta/review-log.md`](_meta/review-log.md); no second reviewer exists.
 - **21 of 143 coverage rows are partial.** No row is missing; thin ones are named in [`_meta/coverage-matrix.md`](_meta/coverage-matrix.md). That count is partly fresh: six rows were re-assessed in 2.28.4, the rest date from the 2026-10-21 review.
 - CI validates structure and composition on pull requests; it cannot test whether a prompt improves an agent's work.
