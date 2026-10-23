@@ -7,7 +7,8 @@
 
 **Posture:** these files are **provenance, not guidance**. The seven long ones are untouched; the four
 short ones were **replaced in place** on 2026-10-23 (see [`README.md`](README.md)) and are no longer
-fragments. The findings below are notes about the record, kept so that a reader in two years can tell
+fragments. Those four are not quoted here either: the owner asked for the fragments to be removed, so
+this audit describes them rather than reproducing them. The findings below are notes about the record, kept so that a reader in two years can tell
 what these documents were, what they got wrong, and which parts were good enough to survive into the
 library. Findings F-03 and F-07 quote or describe text that has since been replaced — the quotes are the
 record of what was there.
@@ -67,13 +68,12 @@ checkable.
 |---|---|
 | `process1(chat1).txt:1` | *"ADDITIONALS (AS MANY AS POSSIBLE)"* |
 | `process6(chat2).txt:31` | *"Never wait for feature requests. / Invent the future."* |
-| `process7(chat2).txt:1` | *"Add many more features… as many as possible… all possible features… that ever exist in the world"* |
 | `scaffold completion.txt:3464` | *"Repeat it until the system reaches a stable production-ready state."* |
 
 **Consequence:** none of these can terminate. A run either stops arbitrarily and claims completeness, or
-never stops. `process7` has since been replaced by `feature-portfolio-decision.txt`, which turns the same
-ambition into a portfolio with an explicit *not now* list — the ambition was reasonable and only the
-instruction was unusable.
+never stops. The fourth file that carried this instruction was replaced in place by
+`feature-portfolio-decision.txt`, which turns the same ambition into a portfolio with an explicit *not
+now* list — the ambition was reasonable and only the instruction was unusable.
 
 ### F-04 — Safety instructions that the library now forbids
 
@@ -108,9 +108,10 @@ anything production-ready on the strength of a passing build.
 
 ### F-06 — Provenance is missing on the two most specific files
 
-`process7(chat2).txt` ends with a copy-paste marker, `[ PROMPT FROM PROCESS 5]`, and both `process4` and
-`process7` refer to *"it"* and *"this software"* without ever naming the project. `scaffold completion.txt`
-quotes *"`{{PROJECT_NAME}}`"* — a template variable that was never filled in.
+The two replaced fragments referred to *"it"* and *"this software"* without ever naming the project, and
+`scaffold completion.txt` carries *"`{{PROJECT_NAME}}`"* — a template variable that was never filled in.
+(`feature-portfolio-decision.txt` still ends with a copy-paste marker, `[ PROMPT FROM PROCESS 5]`, which is
+left in place because it is part of what that file was.)
 
 **Consequence:** these are fragments of a conversation about a specific, unnamed project. Kept as
 history that is fine; the risk is a reader treating them as general-purpose prompts and running them
@@ -121,13 +122,13 @@ rather than prompts.
 
 ### F-07 — The folder's own README described all twelve as "prompts"
 
-`process3`, `process4` and `process7` are single turns in a chat: `process3` is seven words with no
-antecedent for *"it"*. Calling them prompts is the same class of error the library spends its time
-correcting — a label that flatters the content.
+The three replaced files were single turns in a chat — one of them seven words with no antecedent for
+*"it"*. Calling them prompts was the same class of error the library spends its time correcting — a label
+that flatters the content.
 
 **Correction applied:** the three turn files were replaced with real prompts and renamed for what they
 do (`deployment-to-a-url.txt`, `hackathon-submission.txt`, `feature-portfolio-decision.txt`), and
-`README.md` records what each one used to be. The label problem is gone because the content is no longer
+`README.md` describes what each one does now. The fragments are not reproduced in this folder. The label problem is gone because the content is no longer
 a fragment, not because the label was softened.
 
 ## 3. What I did not change, and why

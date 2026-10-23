@@ -2,6 +2,30 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.32.0] — 2026-10-23
+
+The archive's four replaced prompts still opened by quoting the fragments they replaced — a sentence, a
+seven-word question, a paragraph of wants — and the folder's README reproduced the same text in a
+before-and-after table. The owner's instruction was blunt: those fragments were scratch notes typed while
+working out what he wanted, and he does not want to see them in the repository.
+
+### Removed — the fragments are no longer reproduced anywhere in the archive
+
+- The four prompts keep their content and lose the quoting preamble; each now opens with two lines saying
+  it was rewritten in place on 2026-10-23 and that `AUDIT.md` describes what it replaced.
+- `archive/legacy-txt-files/README.md`: the "was / is now" table no longer quotes, and the section is
+  rewritten around what each file **does** rather than what it **was**.
+- `AUDIT.md`: findings F-03, F-06 and F-07 describe the fragments instead of quoting them. The long
+  files' own quoted lines stay — those are the audit's evidence about documents that are still here.
+
+**What this costs, stated plainly:** the original wording now survives only in git history. An audit that
+quotes nothing is weaker evidence than one that quotes, and this is a deliberate trade made by the owner,
+not an oversight. `AUDIT.md` says so in its posture paragraph.
+
+**What did not change:** the four files were already complete prompts — inputs, an ordered procedure,
+failure handling, security, a definition of done, and a handoff — and the other seven files, which are
+documents rather than fragments, are untouched.
+
 ## [2.31.0] — 2026-10-23
 
 `PR-01` was 57 lines: summarise, structure, title, follow the template, be nice to the reviewer. Written
