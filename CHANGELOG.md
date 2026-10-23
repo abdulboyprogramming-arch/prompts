@@ -2,6 +2,72 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.28.7] — 2026-10-23
+
+No prompt in the library changed. The twelve `.txt` files in `archive/legacy-txt-files/` were read end to
+end — 18,835 lines of the requests this library came from — and what they got wrong was written down.
+Three of them are not prompts at all.
+
+### Audited — the originals, unedited
+
+[`archive/legacy-txt-files/AUDIT.md`](archive/legacy-txt-files/AUDIT.md) records seven findings. Three are
+structural: **three unsuperseded constitutions** (ASEOS v2.0 in `process1`, v3.0 in `process5`, an
+unversioned fourth in `scaffold completion` — roughly 270 KB that disagree with each other and none of
+which says it replaces the last), **an instruction that cannot be executed** ("READ EVERY FILE LINE BY
+LINE" across a whole repository, which does not terminate and produces confident completion claims
+instead), and **scope with no stopping condition** ("AS MANY AS POSSIBLE", "repeat until stable", "every
+feature that could ever exist").
+
+Four are safety rules the library now forbids: the scaffold file authorises routine work with no
+permission at line 307 and says "DO NOT ASK ME" at 4447; `code changes` instructs a push to `main`;
+`issue creation` files issues across eight classes with no approval step anywhere before §10. And one is
+self-contradictory: the scaffold's prohibitions forbid building as proof of correctness while its §11
+defines "production-ready" as the goal — a word used fourteen times.
+
+The audit also says what is good, because not everything here was a mistake: `issue creation`'s eight-way
+classification and its duplicate check are better than most intake systems; `code changes` inspects git
+before writing and forbids force-pushing; the scaffold has a non-assumption rule the library still uses.
+
+### Rewritten — the four short ones, said properly
+
+[`archive/legacy-txt-files/rewritten/`](archive/legacy-txt-files/rewritten/README.md) keeps each original
+verbatim, names why it cannot work as a prompt, and gives a version that could be run:
+
+| Original | What it was | Rewrite |
+|---|---|---|
+| `Format dot md file.txt` (133 B) | "properly format and organize all .md" | a presentation-only pass with a baseline measurement, an agreed rule set, batches of ten revertible commits, and the rule that *a file you formatted and a file you fixed are different claims* |
+| `process3(chat1).txt` (67 B) | "how will i see it" — no antecedent | a deployment guide with state, audience, spend limit, checks first, names-only secrets, an end-to-end check from outside the machine |
+| `process4(chat1).txt` (315 B) | five hackathon questions in one paragraph | rules before advice, a backwards absolute-time plan, a submission inventory, a four-minute demo path |
+| `process7(chat2).txt` (410 B) | eleven capabilities, no order, no stopping condition | a portfolio decision: restate as a user problem, score on four axes, Now / Next / Not-now, one end-to-end slice |
+
+The `README` in that folder names the shared defect once: each request says **what** to do in terms only
+a human with the surrounding context can interpret, and the model supplies the missing state confidently
+rather than failing. That is why the rewrites are longer than the originals — the length is the context
+that never reached the page.
+
+### Recorded, not filled — two gaps
+
+Three of the four rewrites map onto a current prompt: `01` → `DOC-P07`, `02` → `DEPLOY-01`, `03` →
+`HACK-01`. Two do not:
+
+1. **No prompt performs a mechanical Markdown formatting pass.** `DOC-P07` publishes and reviews
+   documentation; it does not restyle it without touching prose.
+2. **No prompt decides between candidate features.** `feature-design-suggestion` stages two through eight
+   design a feature once it has been chosen, and they are still skeletons.
+
+Both are backlog candidates, not additions — naming a gap on the strength of a good draft is the thing
+this cycle exists to stop doing.
+
+### Corrected — the parent README
+
+The archive README called all twelve files "prompts". Three of them are turns in a conversation
+(`process3`, `process4`, `process7`) that refer to "it" without ever naming the project. The table now
+carries a column saying which is which.
+
+Not claimed: that these rewrites are validated prompts. They carry `<!-- not-a-prompt -->`, they are not
+counted, and nothing in that folder has been run against a fixture. File counts are unchanged at 491
+Markdown files and 364 prompts.
+
 ## [2.28.6] — 2026-10-22
 
 `06-interactive` had four prompts and four known gaps. It now has four operational prompts, no

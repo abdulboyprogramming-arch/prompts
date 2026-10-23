@@ -957,3 +957,30 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
   judgement even though the section-to-destination mapping is generated; nothing tests whether these
   briefs improve the systems that consume them.
 
+### Audit — the archive, read end to end: twelve files, four rewrites, three that were never prompts (2.28.7)
+- **2026-10-23 · audit + rewrite · the prompt's author** · record `archive/legacy-txt-files/AUDIT.md`
+- The twelve `.txt` files in `archive/legacy-txt-files/` are 18,835 lines and had never been read past
+  their headings. Read in full this cycle. Originals left byte-identical; the audit and the four rewrites
+  are new documents beside them, both marked `<!-- not-a-prompt -->` so no count moves.
+- **Three files are chat turns, not prompts.** `process3` is seven words — *"how will i see it"* — with no
+  antecedent for "it". `process4` and `process7` are mid-session replies to a project that is never named.
+  The archive README had been calling all twelve "prompts"; that is the finding that made the rest of the
+  audit worth doing, because a folder that mislabels its contents cannot be used as evidence of anything.
+- **Three unsuperseded constitutions** (v2.0 in `process1`, v3.0 in `process5`, an unversioned fourth in
+  `scaffold completion`), ~270 KB, disagreeing, none marked replaced.
+- **Two files are unsafe against the library's own rules**: the scaffold grants routine work without
+  permission (`:307`) and says "DO NOT ASK ME" (`:4447`); `code changes` instructs a push to `main`
+  (`:392`). `issue creation` files issues across eight classes with no approval gate before §10. These are
+  archived, not run, and the library's `AGENTS.md` now forbids all four behaviours — which is the useful
+  part of finding them.
+- **One self-contradiction**: prohibitions forbid building as proof of correctness, while §11 makes
+  "production-ready" the goal — a phrase used fourteen times in the scaffold file.
+- **Four short requests rewritten** into runnable form in `rewritten/`: `01` formatting (presentation-only,
+  batches, revertible), `02` deployment (state/audience/spend, checks first, outside-the-machine check),
+  `03` hackathon (rules before advice, backwards absolute-time timeline, inventory, four-minute demo),
+  `04` portfolio (user problem, four-axis score, Now/Next/Not-now, one end-to-end slice).
+- **Two gaps named, not filled:** no prompt does mechanical Markdown formatting; no prompt decides *between*
+  candidate features (`feature-design-suggestion` stages 2–8 are skeletons and assume the choice is made).
+- Not claimed: that the rewrites are validated prompts — no fixture run; that three of the four are
+  improvements at all, since `DOC-P07`, `DEPLOY-01` and `HACK-01` already cover them and here serve only
+  as the destination a reader is sent to.
