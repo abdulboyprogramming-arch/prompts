@@ -81,12 +81,14 @@ PR #14 can carry a comment review and an explicit merge instruction, and it does
 not carry an independent approval, because none was possible on this repository
 with one account.
 
-## Standing rules## Standing rules
+## Standing rules
 
 - No pull request is merged before the owner has reviewed it. The one exception,
   PR #12, was authorised in advance and in words.
 - No review is ever written, approved or dismissed in the owner's name by an
   agent. The 422 above is the API enforcing the same rule that the brief states:
   an agent running as the owner cannot review the owner's pull request.
-- A check that did not run is recorded as not run. CI has never executed a step
-  on this repository.
+- A check that did not run is recorded as not run. *Corrected 2026-10-23 (2.28.8): this
+  rule read "CI has never executed a step on this repository", which was true until the
+  repository was published on 2026-10-22. Run `39846014231` was the first to execute every
+  step; every run since has.*

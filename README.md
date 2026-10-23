@@ -1,5 +1,7 @@
 # Software Engineering Prompt Library
 
+[![validate](https://github.com/abdulboyprogramming-arch/prompts/actions/workflows/validate.yml/badge.svg)](https://github.com/abdulboyprogramming-arch/prompts/actions/workflows/validate.yml)
+
 A structured collection of prompts for AI coding agents, organised across the engineering lifecycle: understanding a codebase, deciding what to build, implementing it safely, verifying it, shipping it, and running it in production.
 
 Every prompt declares what it does, what it may change, how much it can be trusted, and what it will not do. Nothing here claims a capability its files do not have — the repository is validated against that rule on every change.
@@ -258,10 +260,10 @@ Read [`CONTRIBUTING.md`](CONTRIBUTING.md) before adding a system — it also poi
 
 ## Known limitations
 
-- **131 of 364 prompts are skeleton outlines.** They are labelled as such everywhere, and the task index counts them separately rather than hiding them.
-- **The GitHub Actions workflow does not currently run.** This account's Actions billing is blocked, so `.github/workflows/validate.yml` fails at startup without executing a step. The identical gate list runs locally with `python3 scripts/check_all.py`, which is how every release on this branch was verified — but a green badge is the one thing this repository cannot yet show.
+- **74 of 364 prompts are skeleton outlines**, and 5 more are drafts — 79 files that are not ready to run. They are labelled as such everywhere, and the task index counts them separately rather than hiding them.
+- **CI runs, and the badge reports what it finds.** `.github/workflows/validate.yml` executes every gate on every push and pull request; pull-request run [`39903440904`](https://github.com/abdulboyprogramming-arch/prompts/actions/runs/39903440904) completed steps 1–5, including *Every gate* and the clean-regeneration check, in 13 seconds. Until the repository was published on 2026-10-22 the runs failed at startup with `steps: 0` on Actions billing, and this line said so; the earlier failures are recorded in [`_meta/publication-checklist.md`](_meta/publication-checklist.md) §5.1 and are not evidence about the current state.
 - **37 of 285 operational prompts have been executed and recorded** — 13.0%. The queue for the rest, in batches, is [`_meta/execution-batches.md`](_meta/execution-batches.md). `operational` means structurally complete and reviewed, not proven in practice; [`_meta/evidence-levels.md`](_meta/evidence-levels.md) states the number, and it is generated from a registry.
-- **The prompts have not been compared against a model's output in a controlled study.** The three runs are tabletop evaluations by the author, and each record says so.
+- **No run has been graded by anyone other than the author.** The 37 records are desk evaluations by the person who wrote the prompt, and each record says so. There is no controlled study, and no second reader.
 - **Reviews are self-assessments** recorded in [`_meta/review-log.md`](_meta/review-log.md); no second reviewer exists.
 - **21 of 143 coverage rows are partial.** No row is missing; thin ones are named in [`_meta/coverage-matrix.md`](_meta/coverage-matrix.md). That count is partly fresh: six rows were re-assessed in 2.28.4, the rest date from the 2026-10-21 review.
 - CI validates structure and composition on pull requests; it cannot test whether a prompt improves an agent's work.

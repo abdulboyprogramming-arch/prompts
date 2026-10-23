@@ -90,13 +90,16 @@ These are already stated in the repository. They must not be softened in marketi
 
 Nothing here can be done from the repository, and I cannot do any of it: `gh` returns 403 on repository settings and Actions with the current token scope. The description and topics were set by the owner in the GitHub UI, not through the API — **verified** by reading them back on 2026-10-22.
 
-### 5.1 Fix GitHub Actions billing — **blocking everything else**
+### 5.1 ~~Fix GitHub Actions billing~~ — **resolved 2026-10-22 by publication**
 
-Every workflow run fails in ~3 seconds with:
+*Corrected in 2.28.8: this heading read "**blocking everything else**" and the section below described
+the repository as it was before it went public. The failure it documents was real; it is not current.*
+
+While the repository was private, every workflow run failed in ~3 seconds with:
 
 > The job was not started because recent account payments have failed or your spending limit needs to be increased.
 
-Consequences today: PR checks show red without running, the badge is meaningless, and the repository's central claim — *"the validator fails the build if a README over-claims"* — is enforced only when a human runs it locally. Before publishing, this must work, because a visitor's first impression of a CI-enforced project is a red X.
+Consequences at the time: PR checks showed red without running, the badge was meaningless, and the repository's central claim — *"the validator fails the build if a README over-claims"* — is enforced only when a human runs it locally. Before publishing, this must work, because a visitor's first impression of a CI-enforced project is a red X.
 
 **Where:** GitHub → Settings → **Billing & plans** → Actions. Either add a payment method or set a spending limit above $0.
 
@@ -151,7 +154,7 @@ Squash-only; automatically delete head branches.
 
 ### 5.7 Then, and only then, flip the switch
 
-**Reality check:** the intended order was billing first, then publish. The repository was published first, so a visitor today sees a red check that never ran a step. The remaining sequence is: fix billing (5.1) → trigger one `validate` run and confirm steps execute → confirm `GALLERY.md` and the prompt folders render through the GitHub UI → enable branch protection → enable secret scanning and private vulnerability reporting (§5.6).
+**Reality check:** the intended order was billing first, then publish. The repository was published first, and a visitor arriving between the two saw a red check that never ran a step. *Corrected in 2.28.8*: that window closed within the hour — the first run after the visibility change executed every step. What remains of the sequence is the last item only: **enable secret scanning and private vulnerability reporting (§5.6)**, which is owner-only and still returns `403` from the API. Billing (5.1), the check run, and branch protection are done.
 
 Releases already exist for every version (gate 23), so no release needs creating at publication time; `v2.28.3` is current.
 
@@ -167,4 +170,4 @@ Releases already exist for every version (gate 23), so no release needs creating
 
 ---
 
-**Bottom line (re-measured 2.28.4):** the content is publishable and nothing in the tree blocks it — 23 of 23 gate rows pass, 10 of them re-measured today, and the three that do not (22 partial, and the two unobservable CI rows) are GitHub settings rather than files. What stops it being a *good* launch is the Actions billing failure, which turns the project's strongest property — machine-enforced honesty — into a broken badge, and the fact that a public visitor would arrive at a repository whose central claim ("the validator fails the build") is only true on the owner's laptop.
+**Bottom line (re-measured 2.28.8):** the content is publishable and nothing in the tree blocks it — 23 of 23 gate rows pass. *Rewritten in 2.28.8*: this paragraph said the Actions billing failure turned the project's strongest property into a broken badge, and that "the validator fails the build" was true only on the owner's laptop. Both are now false statements about a public repository — CI executes every gate on every pull request, and the badge at the top of the README reports it. The two things still missing are owner-only switches: the four security settings (§5.6), and the second sentence of the repository description.
