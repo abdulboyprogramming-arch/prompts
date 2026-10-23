@@ -429,6 +429,17 @@
       "result": "FAILED at v0.1.0 then PASSED at v1.0.0 - v0.1.0 scored 0 of 8, ranking the list it was handed and proposing to build two features the repository already half-contains, with no not-now bucket and no data obligation; v1.0.0 scores 8 of 8 by checking the tree first, restating every candidate as a user problem, making Not now mandatory with a closed list of reasons, and carrying one slice to done",
       "record": "_meta/empirical-evaluation-20.md",
       "limitations": "author-run desk execution; the fixture was built to be findable, so it measures whether the procedure reads the code, not whether it finds the right half-features among twenty"
+    },
+    {
+      "identifier": "ONBOARD-01",
+      "title": "Codebase Onboarding — Taking Over a System You Did Not Build",
+      "path": "05-scenarios/onboarding/CODEBASE-ONBOARDING.md",
+      "date": "2026-10-23",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "scope": "run against a six-file application built 'with an AI' and handed over by a sender who cannot answer questions, with a required-but-undocumented environment, a schema that disagrees with its models, a Dockerfile that cannot start, no tests, personal data with no deletion path, and a hardcoded payment-key placeholder",
+      "result": "FAILED at v0.1.0 then PASSED at v1.0.0 - the skeleton scored 0 of 9, producing a description of the codebase that noticed 'no tests' and 'a placeholder key' but never ran anything, reconciled nothing and issued no verdict; v1.0.0 scores 9 of 9 by executing the start procedure, reconciling objects against the schema (the absence of a column is the finding), trying the deployment artifact, mapping personal data, reading the authorship, ranking the untested surface, making and reverting a change, and issuing a conditional verdict",
+      "record": "_meta/empirical-evaluation-21.md",
+      "limitations": "author-run desk execution on a six-file fixture small enough to read completely; flask was installed into a throwaway virtualenv to execute the start procedure, but no database was available, so query paths ended in a 500 and the schema check was by reading schema.sql rather than a live database"
     }
   ]
 }

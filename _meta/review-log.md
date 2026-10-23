@@ -1050,3 +1050,22 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 - Counts move: 365 prompts, 286 operational, 494 files, evidence **38 of 286 (13.3 %)**.
 - Not claimed: that a second reader would score it 8 of 8. The fixture was built to be findable, and the
   author wrote the prompt, the fixture and the grading table.
+### Promotion — `ONBOARD-01`: a skeleton that described codebases, run and rebuilt into one that tests them (2.30.0)
+- **2026-10-23 · build + execution · the prompt's author** · record `_meta/empirical-evaluation-21.md`
+- Triggered by a direct question: does the library cover a project built with an AI, handed to someone who
+  codes by hand, where the sender cannot answer questions? The honest answer was *in pieces, and the
+  prompt that names the case was a 55-line skeleton*. `handover/` assumes a sender who knows the system;
+  `project-recovery/` assumes it is broken; `documentation/` assumes someone understands it.
+- **v0.1.0 (the skeleton) scored 0 of 9.** It produced a good description — entry points, blueprints,
+  models, "no tests", "a placeholder key" — and never executed anything, so it missed the schema/route
+  mismatch, the container command that cannot start the app, and the fact that `/reports/<id>` takes the
+  user id from the URL with no authentication.
+- **v1.0.0 scored 9 of 9**, with the start procedure actually executed (virtualenv, server, `/health`),
+  a change made and reverted in a copy, and a conditional verdict C1–C7.
+- The load-bearing rule added: **an absence is the finding** — `grep user_id app/schema.sql` printing
+  nothing is evidence, and the first version's "read them side by side" instruction is how an absence gets
+  skimmed past.
+- Also corrected in passing: `PROJECT-STATUS.md`'s skeleton inventory still listed four `06-interactive`
+  stages that have been operational since 2.28.6.
+- Not claimed: that six files is six hundred; the "cut in this order" rule for a large repository under a
+  tight budget is argued in the prompt and was never exercised.

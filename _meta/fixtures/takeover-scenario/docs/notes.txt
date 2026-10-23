@@ -1,0 +1,7 @@
+notes
+
+- claude said the export needs a library but i forget which
+- login was working at some point? i think i removed it
+- the reports page sometimes shows nothing, usually after a new account
+- deployed once with render, there was a command
+- ask claude to fix the export before launch

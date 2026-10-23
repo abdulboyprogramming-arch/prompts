@@ -13,7 +13,7 @@ library is reachable from at least one task: a prompt added without a home fails
 |---|---|
 | Prompts indexed | 365 |
 | Rows listed individually | 410 (a prompt can answer more than one task) |
-| Of those, `operational` | 329 |
+| Of those, `operational` | 331 |
 
 Not sure which task is yours? [`QUICKSTART.md`](QUICKSTART.md) routes five common situations,
 [`06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md`](06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md)
@@ -101,8 +101,9 @@ Reconnaissance, then orientation, then a first contribution that survives review
 | `AUDIT-P07` | [Findings Synthesis & Prioritisation](02-engineering/codebase-audit/P07-Findings/P07-Findings-Synthesis-Prioritization.md) | `P07-Findings` | Answers: which findings are real, how severe, how confident, and what should be done first? | operational |
 | `AUDIT-P08` | [Improvement Roadmap & Final Report](02-engineering/codebase-audit/P08-Roadmap/P08-Improvement-Roadmap-Report.md) | `P08-Roadmap` | Answers: what should be done, in what order, why that order, and what happens if nothing is done? | operational |
 | `AUDIT-P09` | [Deep Codebase Audit Master Orchestrator](02-engineering/codebase-audit/P09-Orchestrator/P09-Deep-Codebase-Audit-Orchestrator.md) | `P09-Orchestrator` | Deliver a complete, internally consistent audit: scope contract → structure → architecture → quality → tests/dependencies →… | operational |
+| `ONBOARD-01` | [Codebase Onboarding — Taking Over a System You Did Not Build](05-scenarios/onboarding/CODEBASE-ONBOARDING.md) | `onboarding` | ONBOARDING.md containing, in this order — a verified start procedure, a runtime map, a model-versus-schema reconciliation, a… | operational |
 
-*Plus **10** `skeleton` prompts in these homes — a defensible stage sequence without verification or failure handling. Use them to structure a human-led session, not to drive an agent: [01-contribution](GALLERY.md#01-contribution--contributing-to-open-source), [02-engineering](GALLERY.md#02-engineering--building-auditing-and-recovering-code), [05-scenarios](GALLERY.md#05-scenarios--single-session-high-urgency-situations).*
+*Plus **9** `skeleton` prompts in these homes — a defensible stage sequence without verification or failure handling. Use them to structure a human-led session, not to drive an agent: [01-contribution](GALLERY.md#01-contribution--contributing-to-open-source), [02-engineering](GALLERY.md#02-engineering--building-auditing-and-recovering-code), [05-scenarios](GALLERY.md#05-scenarios--single-session-high-urgency-situations).*
 
 ## I need to change existing code without breaking it
 
@@ -283,8 +284,7 @@ What the receiver can do unaided, not what the sender explained.
 | `HAND-P03` | [Access, Credentials, and Revocation](04-process/handover/P03-Access/P03-Access-and-Credential-Transfer.md) | `P03-Access` | ACCESS_TRANSFER.md — every identity, role, and secret relevant to the system, its before/after holder, the transfer mechanism… | operational |
 | `HAND-P04` | [Capability Verification by the Receiver](04-process/handover/P04-Competence/P04-Capability-Verification.md) | `P04-Competence` | CAPABILITY_REPORT.md — the exercise list, who performed what, evidence of success or the exact point of failure, the assistance… | operational |
 | `HAND-P05` | [Acceptance and Closeout](04-process/handover/P05-Acceptance/P05-Acceptance-Closeout.md) | `P05-Acceptance` | HANDOVER_ACCEPTANCE.md — the verdict against the P01 acceptance criteria, the condition list with owners and dates, confirmation… | operational |
-
-*Plus **1** `skeleton` prompt in these homes — a defensible stage sequence without verification or failure handling. Use them to structure a human-led session, not to drive an agent: [00-core](GALLERY.md#00-core--foundations-every-prompt-assumes), [04-process](GALLERY.md#04-process--delivering-software-responsibly), [05-scenarios](GALLERY.md#05-scenarios--single-session-high-urgency-situations).*
+| `ONBOARD-01` | [Codebase Onboarding — Taking Over a System You Did Not Build](05-scenarios/onboarding/CODEBASE-ONBOARDING.md) | `onboarding` | ONBOARDING.md containing, in this order — a verified start procedure, a runtime map, a model-versus-schema reconciliation, a… | operational |
 
 ## Something costs too much or runs too slowly
 

@@ -24,9 +24,9 @@
 
 | # | Check | Method | Result |
 |---|-------|--------|--------|
-| 1 | Structural validation | `python3 scripts/validate_library.py` | **PASS** — 494 Markdown files, 365 prompts, **0 errors / 0 warnings** |
-| 2 | Maturity honesty | validator rules | **PASS** — 286 operational, 5 draft, 74 skeleton; no label exceeds body; no system README outranks its stages |
-| 3 | Executed-prompt count is generated | `scripts/evidence_report.py --check` | **PASS** — `_meta/evidence-levels.md` matches the registry: **38 of 286 operational prompts executed (13.0%)**, stated in the file the README links |
+| 1 | Structural validation | `python3 scripts/validate_library.py` | **PASS** — 498 Markdown files, 365 prompts, **0 errors / 0 warnings** |
+| 2 | Maturity honesty | validator rules | **PASS** — 287 operational, 5 draft, 73 skeleton; no label exceeds body; no system README outranks its stages |
+| 3 | Executed-prompt count is generated | `scripts/evidence_report.py --check` | **PASS** — `_meta/evidence-levels.md` matches the registry: **39 of 287 operational prompts executed (13.0%)**, stated in the file the README links |
 | 4 | Catalog current | `--catalog` + `git diff` | **PASS** — regenerates with no diff |
 | 5 | Gallery current | `generate_gallery.py --check` | **PASS** — "up to date", 365 prompts |
 | 6 | Duplication | `find_overlaps.py --check` (shingle 0.55) and `--metric combined` (0.75) | **PASS** — highest shingle 0.17; highest combined 0.56 (`03-domains/backend` vs `03-domains/frontend` orchestrators). Re-measured 2.28.4: the earlier row said 0.18 and 0.68, and the 0.68 pair is no longer the top one |
@@ -45,7 +45,7 @@
 | 18 | Licences | `LICENSE`, `LICENSE-CONTENT`, README section | **PASS** — MIT for code, CC BY 4.0 for content, SPDX-detectable |
 | 19 | Every prompt has a home | `generate_task_index.py --check` | **PASS** — 21 tasks, 365 prompts routed, 0 unrouted |
 | 20 | One gate list | `scripts/check_all.py` | **PASS** — CI runs that script and nothing else; a local pass is the same run |
-| 21 | Counts agree with the tree | validator `check_documented_counts`, `check_stated_totals`, `check_readme_counts` | **PASS** — 494 Markdown files, 365 prompts, **286 operational / 5 draft / 74 skeleton**; the file and prompt totals are compared on every run in the four documents that quote them. The earlier row said 265/5/94, which had drifted |
+| 21 | Counts agree with the tree | validator `check_documented_counts`, `check_stated_totals`, `check_readme_counts` | **PASS** — 498 Markdown files, 365 prompts, **287 operational / 5 draft / 73 skeleton**; the file and prompt totals are compared on every run in the four documents that quote them. The earlier row said 265/5/94, which had drifted |
 | 22 | Repository settings are decided | `_meta/repository-configuration.md`, `gh api repos/...` | **PARTIAL** — description and all ten topics are now **applied** (verified through the API on 2026-10-22); branch protection, security features and social preview are recorded with the commands and **not applied** |
 
 | 23 | Every version has a release | `gh api repos/.../releases` | **PASS** — 23 releases, `v2.13.0` → `v2.28.3`, each tagged at that version's merge commit and carrying its changelog entry. Twelve were created in 2.28.4 after a seven-version gap |
@@ -61,7 +61,7 @@ Checked against the tree, not against intention:
 | `README.md` top | Links `QUICKSTART.md` before anything else — the reader gets a task, not a table of contents |
 | `QUICKSTART.md` | Six paths (chat-only / broken / inherited / shipping / proof / new), chat-first because that reader has the fewest tools; each with ordered prompts and the artifact you end with; opens with what the library **cannot** do |
 | Maturity legend | In the README above the fold; `operational` defined as *structurally reviewed*, not proven |
-| `_meta/evidence-levels.md` | Generated; states 13.3% executed (38 of 286); linked from the README and the quickstart |
+| `_meta/evidence-levels.md` | Generated; states 13.6% executed (39 of 287); linked from the README and the quickstart |
 | `GALLERY.md` | 365 prompts by area, generated; `TASKS.md` indexes the same prompts by problem and fails the build if a prompt has no home |
 | Limitations | Stated in README, quickstart, `PROJECT-STATUS.md`, and §3 below — four places, consistent |
 
@@ -69,7 +69,7 @@ Checked against the tree, not against intention:
 
 These are already stated in the repository. They must not be softened in marketing language, release notes, or a launch post.
 
-1. **Thirty-eight prompts have been executed and recorded**, against 286 labelled `operational` — 13.3%. `operational` means *structurally complete and reviewed*, not *proven in use*. The list of executions, with dates, scope and limitations, is generated from the registry in [`evidence-levels.md`](evidence-levels.md); it is not maintained here, because a hand-kept list of executions is a list that drifts (this paragraph said "thirty-three" and "281" while the registry said 37 and 285).
+1. **Thirty-nine prompts have been executed and recorded**, against 287 labelled `operational` — 13.6%. `operational` means *structurally complete and reviewed*, not *proven in use*. The list of executions, with dates, scope and limitations, is generated from the registry in [`evidence-levels.md`](evidence-levels.md); it is not maintained here, because a hand-kept list of executions is a list that drifts (this paragraph said "thirty-three" and "281" while the registry said 37 and 285).
 2. **Reviews are author self-assessments**, scored in `_meta/review-log.md`. No second reviewer exists.
 3. **74 skeleton prompts** are named sequences without verification or failure handling — useful as human checklists, unsafe to run unattended.
 4. **Coverage is 122 adequate / 21 partial / 0 missing** dimension rows. No row is missing; 21 are thin, and the matrix names what is thin.
@@ -123,7 +123,7 @@ The earlier failing runs — `39836004571`, `39840703180`, both `steps: 0` with 
 |---|---|
 | Description | **set** — *"300+ engineering prompts with evidence rules, failure handling, and a definition of done — for humans and coding agents. Audited by a repo, not a vibe."* The brief's version said `364`; "300+" is accurate and does not go stale as the library grows. Setting it through the API returns 403, so the owner applied it in the UI |
 | Topics | **set, all ten** — `prompts`, `prompt-engineering`, `ai-agents`, `llm`, `engineering`, `code-review`, `incident-response`, `software-engineering`, `developer-tools`, `playbook` |
-| Social preview | not set; 1280×640, suggested content: title, one-line claim, 365 prompts · 286 operational · 33 executed |
+| Social preview | not set; 1280×640, suggested content: title, one-line claim, 365 prompts · 287 operational · 33 executed |
 
 ### 5.4 Make the repository public — **done, 2026-10-22**
 

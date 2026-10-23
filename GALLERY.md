@@ -29,7 +29,7 @@ prompts by situation.
 | [06-interactive — conversations that clarify a request](#06-interactive--conversations-that-clarify-a-request) | 4 | Use when the request is vague and needs to be scoped first. |
 | [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 13 | Composed sequences that route between systems and stop at human gates. |
 
-*Maturity across the library: 286 operational, 5 draft, 74 skeleton, 365 total.*
+*Maturity across the library: 287 operational, 5 draft, 73 skeleton, 365 total.*
 
 ---
 
@@ -638,7 +638,7 @@ One prompt, one session, one pressing situation.
 | `LEGACY-01` | [Working with Legacy Code](05-scenarios/legacy-code/WORKING-WITH-LEGACY.md) | Change code nobody understands and nobody tested, without turning a small fix into a rewrite. | skeleton | B |
 | `METER-01` | [Usage Metering and Entitlements: count what you bill, enforce what you sold](05-scenarios/usage-metering/USAGE-METERING.md) | You charge by usage, seat, or request — and the number that reaches the invoice has to be reproducible, explainable, and correct across plan changes, outages, and re <br>**Inputs:** `METERED_UNITS, PLAN_MODEL, BILLING_PERIOD, APPROVER` | operational | A |
 | `MONO-01` | [Monorepo Health: builds, boundaries, and ownership](05-scenarios/monorepo/MONOREPO.md) | A package graph with real dependencies (not declared ones), a boundary violation register, an affected-only build/test plan, and an ownership map. <br>**Inputs:** `REPO_PATH, TOOLING, PACKAGE_COUNT, CI_MINUTES, APPROVER` | operational | B |
-| `ONBOARD-01` | [Codebase Onboarding](05-scenarios/onboarding/CODEBASE-ONBOARDING.md) | Join an unfamiliar codebase and need to become useful quickly: entry points, build, data flow, where the traps are. | skeleton | B |
+| `ONBOARD-01` | [Codebase Onboarding — Taking Over a System You Did Not Build](05-scenarios/onboarding/CODEBASE-ONBOARDING.md) | ONBOARDING.md containing, in this order — a verified start procedure, a runtime map, a model-versus-schema reconciliation, a deployment check, a secret and… <br>**Inputs:** `REPO_PATH, RECEIVER_ROLE, SENDER_CONTEXT, ENV_ACCESS, TIME_BUDGET` | operational | A |
 | `ONCALL-01` | [On-Call Shift Handover](05-scenarios/on-call-handover/ONCALL-HANDOVER.md) | SHIFT_HANDOVER.md for the window — open and recent incidents, silences and their expiry, changes and deployments in flight, expiring certificates/tokens/quota… <br>**Inputs:** `TARGET_SERVICE, SHIFT_WINDOW, TARGET_ENV, INCIDENT_REF, ONCALL_ROTA` | operational | B |
 | `OPS-01` | [Operational Readiness: would the on-call engineer survive this system?](05-scenarios/operational-readiness/OPERATIONAL-READINESS.md) | Before a launch, or after a painful incident — test whether this service can be operated at 03:00 by someone who did not build it. <br>**Inputs:** `SERVICE_SCOPE, SLO_TARGETS, APPROVER, TIME_BUDGET` | operational | A |
 | `PERF-01` | [Performance Investigation](05-scenarios/performance-investigation/PERFORMANCE-INVESTIGATION.md) | Something is slow: measure before optimising, find the bottleneck, and decide whether to fix, budget, or accept it. | skeleton | B |
