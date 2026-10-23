@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 365 prompts — 0 canonical, 287 operational, 5 draft, 73 skeleton.
+**Totals:** 365 prompts — 0 canonical, 288 operational, 5 draft, 72 skeleton.
 
 ## `00-core`
 
@@ -597,7 +597,7 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `PERF-BUDGET-01` | PROMPT 01 — Performance Budgets and Core Web Vitals | operational | implementation | B | [PERFORMANCE-BUDGET.md](../05-scenarios/performance-budget/PERFORMANCE-BUDGET.md) |
 | `PERF-01` | Performance Investigation Prompt | skeleton | specialised | B | [PERFORMANCE-INVESTIGATION.md](../05-scenarios/performance-investigation/PERFORMANCE-INVESTIGATION.md) |
 | `HOSTMIG-01` | Move a Running Service to Another Platform | operational | implementation | D | [PLATFORM-MIGRATION.md](../05-scenarios/platform-migration/PLATFORM-MIGRATION.md) |
-| `PR-01` | Write a Strong Pull Request Prompt | skeleton | specialised | B | [WRITE-STRONG-PR.md](../05-scenarios/pr-authoring/WRITE-STRONG-PR.md) |
+| `PR-01` | Write a Strong Pull Request — a description a reviewer can a | operational | diagnostic | A | [WRITE-STRONG-PR.md](../05-scenarios/pr-authoring/WRITE-STRONG-PR.md) |
 | `QUICK-01` | Safe Quick-Fix Prompt | skeleton | specialised | B | [SAFE-QUICK-FIX.md](../05-scenarios/quick-fixes/SAFE-QUICK-FIX.md) |
 | `SECINC-01` | Security Incident Response | operational | specialised | D | [SECURITY-INCIDENT.md](../05-scenarios/security-incident/SECURITY-INCIDENT.md) |
 | `SUPPLY-01` | Supply Chain: can you prove the thing you deployed is the th | operational | audit-remediation | A | [SUPPLY-CHAIN.md](../05-scenarios/supply-chain/SUPPLY-CHAIN.md) |

@@ -1,0 +1,1255 @@
+diff --git a/05-scenarios/README.md b/05-scenarios/README.md
+index 2d59428..37be7f0 100644
+--- a/05-scenarios/README.md
++++ b/05-scenarios/README.md
+@@ -46,10 +46,10 @@ High-utility prompts for a specific situation, usable in one session. Lighter th
+ | [`quick-fixes/SAFE-QUICK-FIX.md`](quick-fixes/SAFE-QUICK-FIX.md) | A small, contained fix with minimal blast radius | skeleton |
+ | [`performance-investigation/PERFORMANCE-INVESTIGATION.md`](performance-investigation/PERFORMANCE-INVESTIGATION.md) | Something is slow and you need a diagnosis, not an optimisation project | skeleton |
+ | [`legacy-code/WORKING-WITH-LEGACY.md`](legacy-code/WORKING-WITH-LEGACY.md) | Changing code nobody understands, without a rewrite | skeleton |
+-| [`onboarding/CODEBASE-ONBOARDING.md`](onboarding/CODEBASE-ONBOARDING.md) | You have just been handed an unfamiliar codebase | skeleton |
++| [`onboarding/CODEBASE-ONBOARDING.md`](onboarding/CODEBASE-ONBOARDING.md) | You have just been handed an unfamiliar codebase — evidence, traps, data map, takeover verdict | **operational** |
+ | [`pr-authoring/WRITE-STRONG-PR.md`](pr-authoring/WRITE-STRONG-PR.md) | Preparing a change for review | skeleton |
+ 
+-The five skeleton prompts have useful structure but no verification or failure handling. Treat them as scaffolds for a supervised session.
++The four remaining skeleton prompts have useful structure but no verification or failure handling. Treat them as scaffolds for a supervised session.
+ 
+ ## Scenario or system?
+ 
+diff --git a/05-scenarios/onboarding/CODEBASE-ONBOARDING.md b/05-scenarios/onboarding/CODEBASE-ONBOARDING.md
+index e59fcb8..a463de7 100644
+--- a/05-scenarios/onboarding/CODEBASE-ONBOARDING.md
++++ b/05-scenarios/onboarding/CODEBASE-ONBOARDING.md
+@@ -1,55 +1,209 @@
+-# Codebase Onboarding Prompt
++# Codebase Onboarding — Taking Over a System You Did Not Build
+ 
+-**Identifier:** ONBOARD-01  
+-**System:** 05-scenarios/onboarding  
+-**Version:** 0.1.0  
+-**Maturity:** skeleton  
+-**Execution mode:** specialised  
+-**Risk class:** B  
+-**Depends on:** none  
+-**Produces:** an onboarding map with run commands, architecture sketch, and a first safe change  
+-**Gallery:** Join an unfamiliar codebase and need to become useful quickly: entry points, build, data flow, where the traps are.  
+-
+-**Use when:** You need to rapidly understand an unfamiliar codebase.
++**Identifier:** ONBOARD-01
++**System:** 05-scenarios/onboarding
++**Version:** 1.0.0
++**Maturity:** operational
++**Execution mode:** diagnostic
++**Risk class:** A — read-only analysis, plus one rehearsed change in a scratch copy
++**Depends on:** none. Feeds `04-process/handover/` (`HAND-P02` state capture, `HAND-P04` capability verification) when a formal transfer follows; `02-engineering/project-recovery/` when the system is broken rather than merely unknown
++**Produces:** `ONBOARDING.md` — a verified mental model, a trap register, a data map, and a takeover verdict
++**Inputs:** REPO_PATH, RECEIVER_ROLE (optional: SENDER_CONTEXT, ENV_ACCESS, TIME_BUDGET)
++**Est. effort:** 3–6 h for a small application; 2–3 days for anything with a database and a deployment
+ 
+ ---
+ 
+-## Role
+-You are an expert at helping engineers get productive quickly in a new codebase.
+-
+-## Instructions
+-
+-1. **Identify the big picture**
+-   - What does this system do and for whom?
+-   - What are the primary entry points (CLI, HTTP, events, scheduled jobs)?
+-
+-2. **Map the structure**
+-   - High-level directory and module organization.
+-   - Core domain vs infrastructure vs interface layers.
+-   - Key data models and flows.
+-
+-3. **Locate the most important code**
+-   - Critical business logic
+-   - Authentication / authorization
+-   - Main user or system journeys
+-   - Configuration and environment handling
+-
+-4. **Understand development workflow**
+-   - How to build, run, and test locally
+-   - Important scripts and make targets
+-   - Coding conventions and contribution norms
+-
+-5. **Highlight risks and hotspots**
+-   - Complex or fragile areas
+-   - Missing tests
+-   - Technical debt that new contributors should know about
+-
+-6. **Produce a practical onboarding brief**
+-   - One-page mental model
+-   - “Start here” reading list (specific files)
+-   - First useful tasks a new contributor could take on
+-
+-## Output Style
+-- Prioritize signal over exhaustive detail.
+-- Use concrete file paths and examples.
+-- Make the mental model memorable and useful.
++## 1. Role and mandate
++
++You are the engineer taking over a system you did not write, from someone who cannot explain it.
++
++That last clause is the whole job. In the ordinary onboarding, a colleague answers questions; here the
++sender is present and willing and has no idea what is in the repository — the code was produced with an
++AI assistant from descriptions of behaviour, and the person handing it over cannot say why anything is
++the way it is. So the questions that a colleague would answer have to be answered by the code, and every
++answer has to be a command whose output you can paste.
++
++**The rule that governs everything below: the code is the source of truth and the notes are claims.**
++Notes, commit messages, TODOs and the sender's recollection are all evidence *about* the system, and all
++of them are sometimes wrong. Where a note and the code disagree, the code wins and the disagreement is a
++finding, because whoever is misinformed will act on the wrong one.
++
++**The output is not a description. It is a verdict.** The receiver asked a question — *can I continue
++from here?* — and the answer is `continue`, `continue with conditions`, or `stop`, with each condition
++tied to a numbered finding and to what would clear it.
++
++## 2. Objective and scope
++
++**Produce:** `ONBOARDING.md` containing, in this order — a verified start procedure, a runtime map, a
++model-versus-schema reconciliation, a deployment check, a secret and placeholder inventory, a personal
++data map, an authorship read, the untested surface ranked by blast radius, one rehearsed safe change, and
++the verdict.
++
++**Out of scope:** fixing what you find (that is follow-up work with its own approval), and any change to
++production. The one change this prompt allows is small, reversible, and in a copy.
++
++## 3. Prerequisites and inputs
++
++| Input | Required | What it is |
++|---|---|---|
++| `{{REPO_PATH}}` | yes | the repository as handed over, including branches and any notes |
++| `{{RECEIVER_ROLE}}` | yes | who is taking over and how they work — *"a developer who codes by hand and did not build this"*. It sets the depth: a receiver who will rewrite needs the traps; one who will maintain needs the runbooks |
++| `{{SENDER_CONTEXT}}` | yes | what the sender says, quoted. It is evidence, not fact, and it is often the source of the most misleading sentence in the repository |
++| `{{ENV_ACCESS}}` | optional | whether you can reach a real environment. Without it, say which findings are unverified rather than guessing |
++| `{{TIME_BUDGET}}` | optional | how long the receiver has before they must be productive. It decides what to cut, not what to claim |
++
++## 4. Workflow
++
++1. **Say what you will accept as evidence.** Before reading anything, state the rule: a claim about the
++   system is written with the command that produced it. A sentence with no command is marked
++   *unverified*. This is the difference between an onboarding document and an impression.
++
++2. **Start it from a clean checkout, using only what is written down.** Follow the repository's own
++   instructions. Every step you had to guess — an environment variable, a port, a service that was not
++   running, a dependency that is not declared — is a **finding**, not something to quietly fix on the way
++   past. If it cannot start at all, that is finding #1 and the verdict starts at *conditions*.
++
++   Record the exact sequence that worked: install, configure, run, and the URL or output that proves it.
++   **A start procedure you have not executed is a rumour.**
++
++3. **Map the runtime with citations.** Entry points (HTTP routes, CLI commands, jobs, event handlers),
++   what each one calls, the data stores it touches, and the external services it depends on. One line per
++   item, each with `file:line`. If there is a route with no caller and no test, say so — it is either dead
++   or load-bearing and nobody knows which.
++
++4. **Reconcile the objects against the schema.** Where the code defines models, dataclasses, or typed
++   queries, compare them to `schema.sql`, migrations, or the live database. **This is where
++   AI-assisted code fails most often**: an object with a field that no table has, a column with no
++   object, a query that works on the author's database and cannot work on a fresh one. Any mismatch is a
++   defect with a named failing operation.
++
++5. **Try the deployment artifacts, or say why you cannot.** Build the container, or read the CI
++   configuration, or follow the deploy script. "It deployed once" is a memory. A `Dockerfile` that
++   cannot run the app is a finding even when the app runs on a laptop.
++
++6. **Inventory secrets and placeholders, by name only.** Every credential the code expects, where it is
++   read from, and its class: **live**, **placeholder**, or **unknown**. A placeholder committed to a
++   repository that was ever public is one careless commit from a live key — report it as a finding with
++   the rotation question attached, and never paste the value.
++
++7. **Map the personal data.** What the system collects about people, where it lands (table, file, bucket,
++   third party), who can read it, how long it stays, and how it is deleted. The sender cannot answer this
++   and it is the question most likely to become a legal one. If the answer is "emails in `users` and
++   nothing deletes them", that is the finding.
++
++8. **Read the authorship.** What does the code say about how it was built? Duplicated helpers with
++   different behaviour, two implementations of the same function with one commented out, a declared
++   dependency that is never imported, wholesale patterns applied inconsistently, notes that describe work
++   that was never finished. This is not blame — it tells the receiver **what to trust and what to
++   distrust**, which is the difference between inheriting a system and inheriting a guess.
++
++9. **Rank the untested surface by blast radius.** Name what has no test at all, then the three paths where
++   a defect would cost the most — money, personal data, data loss, or silent wrongness. "No tests" is a
++   fact; "no tests on the payment path" is a risk.
++
++10. **Make one small change, and roll it back.** Choose the smallest real change that proves the
++    development loop works — a config value, a log line, a route that returns one more field. Run the
++    tests that exist (if none, run the app and exercise the path by hand). Then revert it and confirm you
++    are back where you started. **A receiver who has not reverted something does not know the way back.**
++    In a copy, never in production.
++
++11. **Write the verdict.** One of three, with the reasons numbered against the findings:
++    - **Continue** — the system starts, the loop works, no finding is a live hazard.
++    - **Continue with conditions** — list each condition, the finding it answers, who owns it, and what
++      evidence clears it. Most takeovers land here, and that is not a failure.
++    - **Stop** — a live credential, personal data with no owner or deletion path, or a system that cannot
++      be run from the repository at all. Say which.
++
++12. **Write `ONBOARDING.md`** with the sections above, and hand the conditions to whoever owns the work.
++
++## 5. Decision rules and evidence standard
++
++- **The code is the source of truth; notes, comments and recollection are claims.** State the
++  disagreement rather than resolving it silently.
++- **An unexecuted instruction is a rumour.** Start, build, deploy and revert are procedures to be run,
++  not to be transcribed.
++- **An absence is the finding.** `grep` printing nothing where a column should be is exactly as much
++  evidence as grep printing a line.
++- **Blame is not a category.** The authorship section exists to say what to trust, not who to be annoyed
++  with. AI-assisted code is not worse code; it is code whose author cannot explain it, which changes what
++  must be written down.
++- **Every finding has a consequence**: what breaks, for whom, and how you would notice. A finding without
++  a consequence is a style note.
++- **The verdict is about the evidence, not the vibes.** "It feels fine" is what the prompt exists to
++  replace.
++
++## 6. Verification
++
++| Check | Method | Pass condition |
++|---|---|---|
++| Start procedure works | clean checkout, follow only the written steps | app runs; every guessed step is listed as a finding |
++| Runtime map is complete | cross-check routes/entry points against the code | every entry point has a `file:line` and its store |
++| Model/schema reconciled | diff objects against schema or live database | every mismatch named with the failing operation, or "none found" after checking |
++| Deployment artifact exercised | build, or documented reason it could not be | result recorded, not assumed |
++| Secrets inventoried | search + read | every expected credential named and classified; no value quoted |
++| Personal data mapped | schema + code paths | collected, stored, readable-by, retained, deletion — all five |
++| Authorship read | diff of duplicates, dead deps, comments | at least the duplicated and abandoned code named |
++| Untested surface ranked | search for tests | absence stated and the three highest-blast-radius paths named |
++| Change made and reverted | run it | both directions observed, evidence quoted |
++| Verdict issued | read the last section | one of three, conditions numbered against findings |
++
++## 7. Failure handling
++
++- **The application cannot start, and the cause is not in the repository** (a missing service, a private
++  package, a database that only exists on someone's laptop) → finding #1, verdict *continue with
++  conditions*, and name the exact missing thing. Do not substitute a guess for the missing service.
++- **There is no schema and no migrations** (the database exists only in production) → dump the schema
++  read-only if authorised; otherwise record it as the largest single unknown, because every query in the
++  codebase is a claim about a structure nobody has written down.
++- **A credential looks live** → do not test it, do not paste it, and stop the corresponding line of
++  investigation: report it, recommend rotation, and continue elsewhere.
++- **The sender's notes contradict the code** → report both, quote the note, cite the line. The receiver
++  needs to know which document lied, not just which is right.
++- **The repository is too large to read in the budget** → follow the money and the personal data first,
++  then the entry points on the critical path; say explicitly what was not read. A partial map with its
++  edges stated is useful; a complete-sounding map that skipped the payment path is not.
++- **The system is broken rather than unknown** → this is `02-engineering/project-recovery/`, which
++  preserves and repairs. Say so, and hand over the findings already gathered.
++
++## 8. Security and authorisation
++
++Risk class A: read-only, plus one reverted change in a copy. Do not test credentials, do not connect to
++production with write access, and do not export personal data to your own machine — count records, do not
++copy them. Quote secret **names** and locations, never values; if a value appears in a note or a commit,
++report its presence without reproducing it. The change in step 10 is confined to a scratch copy or a
++feature branch with no deployment.
++
++## 9. Completion criteria
++
++- [ ] Start procedure executed and written; every guessed prerequisite listed as a finding.
++- [ ] Runtime map with `file:line` for every entry point.
++- [ ] Model/schema reconciliation done, with mismatches named or "none" after checking.
++- [ ] Deployment artifact exercised, or the reason it could not be recorded.
++- [ ] Secrets named and classified; no value quoted.
++- [ ] Personal data map complete: collected, stored, readable-by, retention, deletion.
++- [ ] Authorship read: duplicated code, abandoned implementations, dead dependencies named.
++- [ ] Untested surface ranked, with the three highest-blast-radius paths.
++- [ ] One change made and reverted, with evidence.
++- [ ] Verdict issued, with conditions numbered against findings.
++- [ ] `ONBOARDING.md` written.
++
++## 10. Handoff
++
++Conditions that are engineering work go to the system that owns them (`project-recovery` for repair,
++`security-hardening` for credential and access findings, `04-process/documentation/` when the gap is the
++document rather than the code). If a formal transfer follows — access, revocation, acceptance — continue
++in `04-process/handover/`, whose `HAND-P04` tests the receiver against the same evidence this prompt
++produces.
++
++## 11. Testing and known limitations
++
++- **Executed** against `_meta/fixtures/takeover-scenario/` — a six-file Flask app built "with an AI",
++  handed over by a sender who cannot answer questions, with a hardcoded key placeholder, a schema that
++  disagrees with its models, a Dockerfile that cannot run, no tests, and personal data. Record:
++  `_meta/empirical-evaluation-21.md`. The previous version (v0.1.0, a skeleton) scored **0 of 9**; this
++  version scored **9 of 9** on the same fixture.
++- **Author-run, and the fixture is small.** Reading six files is not reading six hundred. The failure mode
++  this prompt most needs to survive — a large repository and a tight budget — is handled by the *cut in
++  this order* rule in §7 and has not been exercised.
++- **Not tested:** a real takeover with a live environment, where the deployment check can actually build
++  and the change can be deployed and rolled back end to end.
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+index 17d5b43..1b52b2f 100644
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -2,6 +2,60 @@
+ 
+ All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
+ 
++## [2.30.0] — 2026-10-23
++
++The prompt whose gallery line is *"join an unfamiliar codebase … where the traps are"* was a 55-line
++skeleton. It is the prompt the commonest handover of 2026 asks for — a product built with an AI by
++someone who cannot describe the code, handed to a developer who works by hand — and it described
++codebases instead of testing them.
++
++### Promoted — `ONBOARD-01`, from description to verdict (skeleton → operational)
++
++Run first as it was, against `_meta/fixtures/takeover-scenario/`: six files, no README, a required
++environment documented nowhere, a schema that disagrees with its models, a Dockerfile that cannot start,
++no tests, emails stored with no deletion path, and a payment key as a module constant.
++
++| | v0.1.0 (the skeleton, as written) | v1.0.0 |
++|---|---|---|
++| Criteria met | **0 of 9** | **9 of 9** |
++
++The skeleton produced a clean, competent **description**: entry points, blueprints, data objects, inline
++SQL, and a risk list that did mention "no tests" and "a placeholder key". It never ran anything. So it did
++not notice that the report route queries a column the schema does not create, that the container command
++cannot start the app, that `grep -n user_id app/schema.sql` prints nothing, or that `/reports/<id>` takes
++the user id from the URL and there is no authentication at all.
++
++v1.0.0 executes: the start procedure (real — `flask` installed into a throwaway virtualenv, server run,
++`/health` returning `{"ok": true}`), the schema reconciliation, the deployment artifact, the secret
++inventory, the personal-data map, the authorship read, a change **and its revert** in a copy, and a
++verdict. It returned *continue with conditions*, C1–C7, each tied to a finding.
++
++The rule that does the work is one line of the prompt: **an absence is the finding.** `grep` printing
++nothing where a column should be is exactly as much evidence as grep printing a line, and a document that
++only reports what it saw will always miss the defect that matters.
++
++Record: [`_meta/empirical-evaluation-21.md`](_meta/empirical-evaluation-21.md).
++
++### Where this sits in the ecosystem
++
++Three systems touch the situation and none of them was it. `04-process/handover/` (5 stages) assumes a
++sender who can answer questions. `02-engineering/project-recovery/` (7 stages) assumes the project is
++broken rather than unknown. `04-process/documentation/` (8 stages) documents a system someone already
++understands. The new gap this closes is the one where the sender is present, willing, and cannot say what
++is in the repository.
++
++### Records
++
++- Counts: **365 prompts**, 287 operational, **73 skeleton** (from 74), 498 Markdown files.
++- Evidence: **39 of 287 operational executed — 13.6%**; still 0 independent.
++- `05-scenarios/README.md` and `QUICKSTART.md` re-labelled the prompt; `PROJECT-STATUS.md` corrected a
++  skeleton inventory that still listed four `06-interactive` stages which have been operational since
++  2.28.6.
++
++Backlog #115 (a mechanical Markdown formatting pass) is still the open gap. `LEGACY-01` remains a
++skeleton and is the nearest neighbour to this one: a codebase that is *hostile* rather than merely
++*unexplained*.
++
+ ## [2.29.0] — 2026-10-23
+ 
+ The library could design a feature once someone had chosen one. It could not choose. This adds the
+diff --git a/GALLERY.md b/GALLERY.md
+index 6c56e1e..7fcae4c 100644
+--- a/GALLERY.md
++++ b/GALLERY.md
+@@ -29,7 +29,7 @@ prompts by situation.
+ | [06-interactive — conversations that clarify a request](#06-interactive--conversations-that-clarify-a-request) | 4 | Use when the request is vague and needs to be scoped first. |
+ | [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 13 | Composed sequences that route between systems and stop at human gates. |
+ 
+-*Maturity across the library: 286 operational, 5 draft, 74 skeleton, 365 total.*
++*Maturity across the library: 287 operational, 5 draft, 73 skeleton, 365 total.*
+ 
+ ---
+ 
+@@ -638,7 +638,7 @@ One prompt, one session, one pressing situation.
+ | `LEGACY-01` | [Working with Legacy Code](05-scenarios/legacy-code/WORKING-WITH-LEGACY.md) | Change code nobody understands and nobody tested, without turning a small fix into a rewrite. | skeleton | B |
+ | `METER-01` | [Usage Metering and Entitlements: count what you bill, enforce what you sold](05-scenarios/usage-metering/USAGE-METERING.md) | You charge by usage, seat, or request — and the number that reaches the invoice has to be reproducible, explainable, and correct across plan changes, outages, and re <br>**Inputs:** `METERED_UNITS, PLAN_MODEL, BILLING_PERIOD, APPROVER` | operational | A |
+ | `MONO-01` | [Monorepo Health: builds, boundaries, and ownership](05-scenarios/monorepo/MONOREPO.md) | A package graph with real dependencies (not declared ones), a boundary violation register, an affected-only build/test plan, and an ownership map. <br>**Inputs:** `REPO_PATH, TOOLING, PACKAGE_COUNT, CI_MINUTES, APPROVER` | operational | B |
+-| `ONBOARD-01` | [Codebase Onboarding](05-scenarios/onboarding/CODEBASE-ONBOARDING.md) | Join an unfamiliar codebase and need to become useful quickly: entry points, build, data flow, where the traps are. | skeleton | B |
++| `ONBOARD-01` | [Codebase Onboarding — Taking Over a System You Did Not Build](05-scenarios/onboarding/CODEBASE-ONBOARDING.md) | ONBOARDING.md containing, in this order — a verified start procedure, a runtime map, a model-versus-schema reconciliation, a deployment check, a secret and… <br>**Inputs:** `REPO_PATH, RECEIVER_ROLE, SENDER_CONTEXT, ENV_ACCESS, TIME_BUDGET` | operational | A |
+ | `ONCALL-01` | [On-Call Shift Handover](05-scenarios/on-call-handover/ONCALL-HANDOVER.md) | SHIFT_HANDOVER.md for the window — open and recent incidents, silences and their expiry, changes and deployments in flight, expiring certificates/tokens/quota… <br>**Inputs:** `TARGET_SERVICE, SHIFT_WINDOW, TARGET_ENV, INCIDENT_REF, ONCALL_ROTA` | operational | B |
+ | `OPS-01` | [Operational Readiness: would the on-call engineer survive this system?](05-scenarios/operational-readiness/OPERATIONAL-READINESS.md) | Before a launch, or after a painful incident — test whether this service can be operated at 03:00 by someone who did not build it. <br>**Inputs:** `SERVICE_SCOPE, SLO_TARGETS, APPROVER, TIME_BUDGET` | operational | A |
+ | `PERF-01` | [Performance Investigation](05-scenarios/performance-investigation/PERFORMANCE-INVESTIGATION.md) | Something is slow: measure before optimising, find the bottleneck, and decide whether to fix, budget, or accept it. | skeleton | B |
+diff --git a/PROJECT-STATUS.md b/PROJECT-STATUS.md
+index 1648133..059c206 100644
+--- a/PROJECT-STATUS.md
++++ b/PROJECT-STATUS.md
+@@ -31,13 +31,13 @@ archive/         Legacy .txt source material, retained for provenance
+ 
+ Run `python3 scripts/validate_library.py` for live numbers. At the time of writing:
+ 
+-- **494 Markdown files**, **365 prompt files**.
+-- Maturity: **286 operational**, **5 draft**, **74 skeleton**.
++- **498 Markdown files**, **365 prompt files**.
++- Maturity: **287 operational**, **5 draft**, **73 skeleton**.
+ - **0 validation errors, 0 warnings**.
+ - Operational systems: open-source contribution agent (16), codebase audit (9), project recovery (7), security hardening (7), testing & QA (7), refactoring (7), database (5), cost engineering (4), privacy requests (3), payments (3), git operations (5), code review (6), feature flags (5), documentation (8), handover (5), hackathon sprint (1), agent context (4), deployment (2), dev environment (1), on-call handover (1), dependency management (5), decommissioning (4), governance and compliance (3), observability & reliability (5), release engineering (4), AI/agentic (5), feature completion (4), independent verification (1), plus licence compliance, standards conformance, automation of described tasks, client-side secrets, supply chain, data residency, feature sunset, incident communications, operational readiness, build performance, AI-output verification, debugging, incident response, flaky-test triage, failed-fix escalation, data-loss recovery, disaster recovery, security incident response, time correctness, third-party integration, file uploads, localisation, infrastructure as code, performance budgets, monorepo health, API versioning, and desktop/CLI (2 stages).
+ - Every prompt declares identifier, system, version, maturity, execution mode, and risk class.
+ 
+-**The honest summary:** about three quarters of the prompt files are developed to the standard (286 operational, 73%); the rest are outlines that name a sensible stage sequence but lack verification, evidence rules, and failure handling. Thirty-two prompts have been executed and recorded — all by their author, none by a second reader — which is 13.0% of the operational library. That ratio is generated from the registry, and the validator now fails the build if any count in this file or the publication checklist, including prose counts, disagrees with the tree.
++**The honest summary:** about three quarters of the prompt files are developed to the standard (287 operational, 73%); the rest are outlines that name a sensible stage sequence but lack verification, evidence rules, and failure handling. Thirty-two prompts have been executed and recorded — all by their author, none by a second reader — which is 13.0% of the operational library. That ratio is generated from the registry, and the validator now fails the build if any count in this file or the publication checklist, including prose counts, disagrees with the tree.
+ 
+ ## 4. Standards that now govern the repository
+ 
+@@ -81,8 +81,8 @@ Full detail in `CHANGELOG.md`. Summary:
+ 
+ ## 7. Known weaknesses (do not paper over)
+ 
+-1. **Little empirical testing.** Thirty-eight prompts have a recorded run — `DBG-01` (`_meta/empirical-evaluation-01.md`), `CHAT-DEBUG` (`-02`), `CHAT-SELECT` (`-03`), `CHAT-REVIEW` (`-04`), `CHAT-MODE` (`-05`), `CHAT-DESIGN` (`-06`), `CHAT-HANDOFF` (`-07`), `GEN-P01` (`-08`), `GEN-P02` (`-09`), `GIT-P01` to `GIT-P05` (`-10`, `-11`), `CR-P01` to `CR-P03` (`-12`) `PERF-P01` to `PERF-P07` (`-13`), `PKG-P01` (`-14`), `MLA-P03` (`-15`), `QA-P01`/`QA-P02` (`-16`, a two-stage composition run against this repository), `QA-P03` to `QA-P06` (`-17`, the rest of that system: seven gaps found, two rules made blocking, twelve fixtures added), `QA-P07` (`-17` §8, the orchestrator run over the six stages it coordinates), `INT-P01` (`-18`, the first `06-interactive` run, failed at v0.1.0 and passed at v1.1.0), and `WIZ-P01`/`INT-P02`/`INT-P03` (`-19`, completing that system: 5 of 14, 0 of 5 and 1 of 8 before their rebuilds). Two of the nine single-stage runs were executed against a real repository and one against a real git fixture; the rest are desk runs. `operational` means structurally reviewed, not proven in use — and 286 prompts carry that label; [`_meta/evidence-levels.md`](_meta/evidence-levels.md) reports 38 of 286, which is 13.3%.
+-2. **74 skeletons.** Nine families and nine single prompts: `02-engineering/` (architecture-review 7, feature-design-suggestion 7, from-scratch 8, patterns-strategies-methods 7, rewriting-migration 8); `04-process/` (project-management 8, research-and-development 8, systems-building-improvement 8); `01-contribution/language-design` (8); five single `05-scenarios` prompts; and four `06-interactive` stages. The games (2.24.0), data/ML/AI (2.25.0), backend (2.26.0), frontend (2.27.0) and devops-infra (2.28.0) domain families are now operational.
++1. **Little empirical testing.** Thirty-nine prompts have a recorded run — `DBG-01` (`_meta/empirical-evaluation-01.md`), `CHAT-DEBUG` (`-02`), `CHAT-SELECT` (`-03`), `CHAT-REVIEW` (`-04`), `CHAT-MODE` (`-05`), `CHAT-DESIGN` (`-06`), `CHAT-HANDOFF` (`-07`), `GEN-P01` (`-08`), `GEN-P02` (`-09`), `GIT-P01` to `GIT-P05` (`-10`, `-11`), `CR-P01` to `CR-P03` (`-12`) `PERF-P01` to `PERF-P07` (`-13`), `PKG-P01` (`-14`), `MLA-P03` (`-15`), `QA-P01`/`QA-P02` (`-16`, a two-stage composition run against this repository), `QA-P03` to `QA-P06` (`-17`, the rest of that system: seven gaps found, two rules made blocking, twelve fixtures added), `QA-P07` (`-17` §8, the orchestrator run over the six stages it coordinates), `INT-P01` (`-18`, the first `06-interactive` run, failed at v0.1.0 and passed at v1.1.0), and `WIZ-P01`/`INT-P02`/`INT-P03` (`-19`, completing that system: 5 of 14, 0 of 5 and 1 of 8 before their rebuilds). Two of the nine single-stage runs were executed against a real repository and one against a real git fixture; the rest are desk runs. `operational` means structurally reviewed, not proven in use — and 287 prompts carry that label; [`_meta/evidence-levels.md`](_meta/evidence-levels.md) reports 39 of 287, which is 13.6%.
++2. **73 skeletons, in nine families and four single prompts.** `02-engineering/`: architecture-review 7, feature-design-suggestion 7, from-scratch 8, patterns-strategies-methods 7, rewriting-migration 8 = 37. `04-process/`: project-management 8, research-and-development 8, systems-building-improvement 8 = 24. `01-contribution/language-design` 8. Four single `05-scenarios` prompts: legacy-code, performance-investigation, pr-authoring, quick-fixes. *(Corrected in 2.30.0: this line said "nine single prompts" and listed "four `06-interactive` stages", which have been operational since 2.28.6.)* The games (2.24.0), data/ML/AI (2.25.0), backend (2.26.0), frontend (2.27.0) and devops-infra (2.28.0) domain families are operational.
+ 3. **Coverage is complete at the row level, which is not the same as depth.** Every row of `_meta/coverage-matrix.md` has a prompt; **21 of 143 dimension rows are still partial**. Six rows were re-assessed in 2.28.4 because they had been overtaken by completed systems; the other 21 were not re-reviewed, so the adequate count is a floor, not a fresh audit. A named prompt is not a solved problem.
+ 4. **Reviews are self-assessments** by the authoring agent, recorded in `_meta/review-log.md`. Independence is not claimed.
+ 5. **Workflows are untested compositions.** Artifact-name compatibility is maintained by convention and checked by the validator's link rules, not by execution. The multi-agent run documented in 2.22.0 is constructed, not observed.
+@@ -108,7 +108,7 @@ The full answer is [`_meta/release-readiness.md`](_meta/release-readiness.md); t
+ 
+ - **Content: ready.** 0 validator errors and warnings, 0 prose findings, all counts and links machine-checked, community files present and now linked.
+ - **Infrastructure: two external items left, both owner-only.** *Corrected in 2.28.8*: this line said "five external blockers" and listed Actions billing, branch protection, metadata and visibility alongside security. Re-measured against the live repository on 2026-10-23: billing cleared with publication (every run since executes all steps), the ruleset exists with an admin bypass, topics and description were applied in the UI, and the repository is public. What remains cannot be done from a token: **the four security settings** (secret scanning, push protection, CodeQL, private vulnerability reporting — all `403` from the API) and **the second sentence of the description** ("Audited by a repo, not a vibe.", also `403`). Both are recorded with the exact UI path in [`repository-configuration.md`](_meta/repository-configuration.md).
+-- **Trust: the real gap.** 38 of 286 operational prompts have been executed, all by the author, none by a second reader. Batch 0 is complete and has no independent verification.
++- **Trust: the real gap.** 39 of 287 operational prompts have been executed, all by the author, none by a second reader. Batch 0 is complete and has no independent verification.
+ 
+ ## 9. How to resume
+ 
+diff --git a/QUICKSTART.md b/QUICKSTART.md
+index f30d03c..d31bace 100644
+--- a/QUICKSTART.md
++++ b/QUICKSTART.md
+@@ -57,7 +57,7 @@ Inherited repo, abandoned project, a contractor's code, or an agent's half-finis
+ | Step | Prompt | You end with |
+ |---|---|---|
+ | 1 | [`02-engineering/project-recovery/`](02-engineering/project-recovery/README.md) — whole system, 7 stages | Containment, a working build, and a written state |
+-| 2 | [`05-scenarios/onboarding/`](05-scenarios/onboarding/CODEBASE-ONBOARDING.md) — for a codebase that runs but is unknown | A mental model backed by evidence |
++| 2 | [`05-scenarios/onboarding/`](05-scenarios/onboarding/CODEBASE-ONBOARDING.md) — for a codebase that runs but is unknown, including one somebody built with an AI and cannot explain | A mental model backed by evidence, the traps named, and a takeover verdict with conditions |
+ | 3 | [`02-engineering/tenancy-audit/`](02-engineering/tenancy-audit/TENANCY-AUDIT.md) or [`05-scenarios/client-secrets/`](05-scenarios/client-secrets/CLIENT-SIDE-SECRETS.md) — if it handles customer data or ships to browsers | The two leaks that hurt most, checked |
+ | 4 | [`04-process/handover/`](04-process/handover/README.md) — if you are inheriting formally | Capability-tested access, not just credentials |
+ 
+diff --git a/README.md b/README.md
+index 95faebe..b9a7370 100644
+--- a/README.md
++++ b/README.md
+@@ -262,10 +262,10 @@ Read [`CONTRIBUTING.md`](CONTRIBUTING.md) before adding a system — it also poi
+ 
+ ## Known limitations
+ 
+-- **74 of 365 prompts are skeleton outlines**, and 5 more are drafts — 79 files that are not ready to run. They are labelled as such everywhere, and the task index counts them separately rather than hiding them.
++- **73 of 365 prompts are skeleton outlines**, and 5 more are drafts — 79 files that are not ready to run. They are labelled as such everywhere, and the task index counts them separately rather than hiding them.
+ - **CI runs, and the badge reports what it finds.** `.github/workflows/validate.yml` executes every gate on every push and pull request; pull-request run [`39903440904`](https://github.com/abdulboyprogramming-arch/prompts/actions/runs/39903440904) completed steps 1–5, including *Every gate* and the clean-regeneration check, in 13 seconds. Until the repository was published on 2026-10-22 the runs failed at startup with `steps: 0` on Actions billing, and this line said so; the earlier failures are recorded in [`_meta/publication-checklist.md`](_meta/publication-checklist.md) §5.1 and are not evidence about the current state.
+-- **38 of 286 operational prompts have been executed and recorded** — 13.3%. The queue for the rest, in batches, is [`_meta/execution-batches.md`](_meta/execution-batches.md). `operational` means structurally complete and reviewed, not proven in practice; [`_meta/evidence-levels.md`](_meta/evidence-levels.md) states the number, and it is generated from a registry.
+-- **No run has been graded by anyone other than the author.** The 38 records are desk evaluations by the person who wrote the prompt, and each record says so. There is no controlled study, and no second reader.
++- **39 of 287 operational prompts have been executed and recorded** — 13.6%. The queue for the rest, in batches, is [`_meta/execution-batches.md`](_meta/execution-batches.md). `operational` means structurally complete and reviewed, not proven in practice; [`_meta/evidence-levels.md`](_meta/evidence-levels.md) states the number, and it is generated from a registry.
++- **No run has been graded by anyone other than the author.** The 39 records are desk evaluations by the person who wrote the prompt, and each record says so. There is no controlled study, and no second reader.
+ - **Reviews are self-assessments** recorded in [`_meta/review-log.md`](_meta/review-log.md); no second reviewer exists.
+ - **21 of 143 coverage rows are partial.** No row is missing; thin ones are named in [`_meta/coverage-matrix.md`](_meta/coverage-matrix.md). That count is partly fresh: six rows were re-assessed in 2.28.4, the rest date from the 2026-10-21 review.
+ - CI validates structure and composition on pull requests; it cannot test whether a prompt improves an agent's work.
+diff --git a/TASKS.md b/TASKS.md
+index d45bf2f..12ca7c2 100644
+--- a/TASKS.md
++++ b/TASKS.md
+@@ -13,7 +13,7 @@ library is reachable from at least one task: a prompt added without a home fails
+ |---|---|
+ | Prompts indexed | 365 |
+ | Rows listed individually | 410 (a prompt can answer more than one task) |
+-| Of those, `operational` | 329 |
++| Of those, `operational` | 331 |
+ 
+ Not sure which task is yours? [`QUICKSTART.md`](QUICKSTART.md) routes five common situations,
+ [`06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md`](06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md)
+@@ -101,8 +101,9 @@ Reconnaissance, then orientation, then a first contribution that survives review
+ | `AUDIT-P07` | [Findings Synthesis & Prioritisation](02-engineering/codebase-audit/P07-Findings/P07-Findings-Synthesis-Prioritization.md) | `P07-Findings` | Answers: which findings are real, how severe, how confident, and what should be done first? | operational |
+ | `AUDIT-P08` | [Improvement Roadmap & Final Report](02-engineering/codebase-audit/P08-Roadmap/P08-Improvement-Roadmap-Report.md) | `P08-Roadmap` | Answers: what should be done, in what order, why that order, and what happens if nothing is done? | operational |
+ | `AUDIT-P09` | [Deep Codebase Audit Master Orchestrator](02-engineering/codebase-audit/P09-Orchestrator/P09-Deep-Codebase-Audit-Orchestrator.md) | `P09-Orchestrator` | Deliver a complete, internally consistent audit: scope contract → structure → architecture → quality → tests/dependencies →… | operational |
++| `ONBOARD-01` | [Codebase Onboarding — Taking Over a System You Did Not Build](05-scenarios/onboarding/CODEBASE-ONBOARDING.md) | `onboarding` | ONBOARDING.md containing, in this order — a verified start procedure, a runtime map, a model-versus-schema reconciliation, a… | operational |
+ 
+-*Plus **10** `skeleton` prompts in these homes — a defensible stage sequence without verification or failure handling. Use them to structure a human-led session, not to drive an agent: [01-contribution](GALLERY.md#01-contribution--contributing-to-open-source), [02-engineering](GALLERY.md#02-engineering--building-auditing-and-recovering-code), [05-scenarios](GALLERY.md#05-scenarios--single-session-high-urgency-situations).*
++*Plus **9** `skeleton` prompts in these homes — a defensible stage sequence without verification or failure handling. Use them to structure a human-led session, not to drive an agent: [01-contribution](GALLERY.md#01-contribution--contributing-to-open-source), [02-engineering](GALLERY.md#02-engineering--building-auditing-and-recovering-code), [05-scenarios](GALLERY.md#05-scenarios--single-session-high-urgency-situations).*
+ 
+ ## I need to change existing code without breaking it
+ 
+@@ -283,8 +284,7 @@ What the receiver can do unaided, not what the sender explained.
+ | `HAND-P03` | [Access, Credentials, and Revocation](04-process/handover/P03-Access/P03-Access-and-Credential-Transfer.md) | `P03-Access` | ACCESS_TRANSFER.md — every identity, role, and secret relevant to the system, its before/after holder, the transfer mechanism… | operational |
+ | `HAND-P04` | [Capability Verification by the Receiver](04-process/handover/P04-Competence/P04-Capability-Verification.md) | `P04-Competence` | CAPABILITY_REPORT.md — the exercise list, who performed what, evidence of success or the exact point of failure, the assistance… | operational |
+ | `HAND-P05` | [Acceptance and Closeout](04-process/handover/P05-Acceptance/P05-Acceptance-Closeout.md) | `P05-Acceptance` | HANDOVER_ACCEPTANCE.md — the verdict against the P01 acceptance criteria, the condition list with owners and dates, confirmation… | operational |
+-
+-*Plus **1** `skeleton` prompt in these homes — a defensible stage sequence without verification or failure handling. Use them to structure a human-led session, not to drive an agent: [00-core](GALLERY.md#00-core--foundations-every-prompt-assumes), [04-process](GALLERY.md#04-process--delivering-software-responsibly), [05-scenarios](GALLERY.md#05-scenarios--single-session-high-urgency-situations).*
++| `ONBOARD-01` | [Codebase Onboarding — Taking Over a System You Did Not Build](05-scenarios/onboarding/CODEBASE-ONBOARDING.md) | `onboarding` | ONBOARDING.md containing, in this order — a verified start procedure, a runtime map, a model-versus-schema reconciliation, a… | operational |
+ 
+ ## Something costs too much or runs too slowly
+ 
+diff --git a/_meta/CATALOG.md b/_meta/CATALOG.md
+index 333432a..3bdb171 100644
+--- a/_meta/CATALOG.md
++++ b/_meta/CATALOG.md
+@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
+ execution mode, and risk class. `skeleton` rows are structural outlines and
+ are not ready to run. See `_meta/prompt-authoring-standard.md`.
+ 
+-**Totals:** 365 prompts — 0 canonical, 286 operational, 5 draft, 74 skeleton.
++**Totals:** 365 prompts — 0 canonical, 287 operational, 5 draft, 73 skeleton.
+ 
+ ## `00-core`
+ 
+@@ -592,7 +592,7 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
+ | `I18N-01` | PROMPT 01 — Localisation Correctness | operational | implementation | B | [LOCALIZATION.md](../05-scenarios/localization/LOCALIZATION.md) |
+ | `MONO-01` | PROMPT 01 — Monorepo Health: builds, boundaries, and ownersh | operational | audit-remediation | B | [MONOREPO.md](../05-scenarios/monorepo/MONOREPO.md) |
+ | `ONCALL-01` | On-Call Shift Handover | operational | specialised | B | [ONCALL-HANDOVER.md](../05-scenarios/on-call-handover/ONCALL-HANDOVER.md) |
+-| `ONBOARD-01` | Codebase Onboarding Prompt | skeleton | specialised | B | [CODEBASE-ONBOARDING.md](../05-scenarios/onboarding/CODEBASE-ONBOARDING.md) |
++| `ONBOARD-01` | Codebase Onboarding — Taking Over a System You Did Not Build | operational | diagnostic | A | [CODEBASE-ONBOARDING.md](../05-scenarios/onboarding/CODEBASE-ONBOARDING.md) |
+ | `OPS-01` | Operational Readiness: would the on-call engineer survive th | operational | audit-remediation | A | [OPERATIONAL-READINESS.md](../05-scenarios/operational-readiness/OPERATIONAL-READINESS.md) |
+ | `PERF-BUDGET-01` | PROMPT 01 — Performance Budgets and Core Web Vitals | operational | implementation | B | [PERFORMANCE-BUDGET.md](../05-scenarios/performance-budget/PERFORMANCE-BUDGET.md) |
+ | `PERF-01` | Performance Investigation Prompt | skeleton | specialised | B | [PERFORMANCE-INVESTIGATION.md](../05-scenarios/performance-investigation/PERFORMANCE-INVESTIGATION.md) |
+diff --git a/_meta/conformance-report.md b/_meta/conformance-report.md
+index 3f77f9d..aeb233e 100644
+--- a/_meta/conformance-report.md
++++ b/_meta/conformance-report.md
+@@ -79,7 +79,7 @@ handed the artifact without anyone guessing its name.
+ | `04-process/research-and-development` | 8 | 7 | 6 | 0 | 1 | 5 |
+ | `04-process/systems-building-improvement` | 8 | 7 | 7 | 0 | 0 | 7 |
+ | `04-process/testing-qa` | 7 | 7 | 7 | 7 | 0 | 0 |
+-| `05-scenarios` | 42 | 43 | 0 | 0 | 0 | 0 |
++| `05-scenarios` | 42 | 44 | 0 | 0 | 0 | 0 |
+ | `06-interactive` | 4 | 3 | 0 | 0 | 0 | 0 |
+ | `07-workflows` | 13 | 4 | 1 | 1 | 0 | 0 |
+ 
+diff --git a/_meta/empirical-evaluation-21.md b/_meta/empirical-evaluation-21.md
+new file mode 100644
+index 0000000..a99d7d1
+--- /dev/null
++++ b/_meta/empirical-evaluation-21.md
+@@ -0,0 +1,123 @@
++<!-- not-a-prompt -->
++
++# Empirical Evaluation 21 — a skeleton that describes a system, replaced by a procedure that tests one
++
++**Date:** 2026-10-23
++**Prompt:** `ONBOARD-01` (Codebase Onboarding) v0.1.0 → v1.0.0
++**System:** `05-scenarios/onboarding` — promoted from skeleton this cycle
++**Evaluator:** the author of the prompt (conflict of interest recorded)
++**Method:** both versions run as written against a committed fixture, with the start, the change and the
++revert actually executed rather than described.
++
++---
++
++## 1. Why this prompt
++
++The prompt's own gallery line was: *"Join an unfamiliar codebase and need to become useful quickly:
++entry points, build, data flow, where the traps are."* It was a 55-line skeleton, and it is the prompt the
++commonest handover of 2026 asks for: a founder, analyst or designer built a working product with an AI
++assistant, cannot describe the code, and is handing it to a developer who works by hand.
++
++Three systems touch that situation and none of them was it. `04-process/handover/` (5 stages, operational)
++assumes a sender who knows the system and can answer questions; it even names the *agent → human* type,
++where "state exists only in artifacts, some stale". `02-engineering/project-recovery/` (7 stages,
++operational) assumes the project is **broken** rather than merely unknown. `04-process/documentation/`
++(8 stages, operational) writes documents about a system someone already understands. The gap is the case
++where the system works, the sender is present, and the sender cannot answer.
++
++## 2. The fixture
++
++`_meta/fixtures/takeover-scenario/` — six Python files, a schema, a Dockerfile, no tests, no README, and
++a `docs/notes.txt` of the builder's scraps. Every trap is planted with a command beside it in
++`REQUEST.md`, and the grading table (nine requirements) was written before either version was run.
++Both prompt outputs are stored verbatim beside it: `runs/v0.1.0-output.md` and `runs/v1.0.0-output.md`.
++
++| Trap | How it is planted |
++|---|---|
++| Two required environment variables, documented nowhere | `config.py` raises `ConfigError` naming each in turn |
++| A payment key as a module constant | `PAYMENTS_KEY = "sk_test_EXAMPLE_REPLACE_ME"` with a TODO above it |
++| **Schema disagrees with the models** | `models.py` has `Report.user_id`; `schema.sql` creates `reports` without it, and the route queries that column |
++| A Dockerfile that cannot run | `CMD python app/main.py` against package-relative imports |
++| Personal data with no deletion path | `users.email`, no delete anywhere |
++| AI-shaped authorship | `_fmt_date` twice with different formats; a commented-out second `export`; `requests` declared and never imported |
++| No tests | nothing matching `test*` |
++
++## 3. Run 1 — v0.1.0: **0 of 9**
++
++The skeleton's six instructions — big picture, structure, important code, workflow, risks, brief — produce
++a competent **description** of a codebase. That is what it produced: a clean brief naming the entry point,
++the two blueprints, the data objects, the inline SQL, and a risk list that included "no tests" and
++"`PAYMENTS_KEY` is defined in `config.py` as a placeholder string".
++
++| # | Criterion | v0.1.0 | Why |
++|---|---|---|---|
++| 1 | Start procedure that works from a clean checkout, both variables named | **FAIL** | the right command appears, and both variables are named — in a different section, with no sequence. Followed in order, the first attempt exits with `ConfigError` |
++| 2 | Hardcoded key reported as a finding | **FAIL** | a bullet in "risks": no consequence, no action, no statement that a placeholder in a once-public repository is one commit from live |
++| 3 | Schema/model mismatch identified | **FAIL** | it says to read `models.py` and `schema.sql` "side by side" — and never notices `reports` has no `user_id` |
++| 4 | Dockerfile defect identified | **FAIL** | "the Dockerfile exists but has not been verified" — which is an absence of work, not a finding |
++| 5 | Absence of tests stated **with the three riskiest paths** | **FAIL** | states "no tests"; names no path and no blast radius |
++| 6 | Data-flow map with where personal data lands | **FAIL** | never mentions that email addresses are stored |
++| 7 | Authorship section | **FAIL** | not a step in the skeleton |
++| 8 | One change with a rollback, performed | **FAIL** | "first useful tasks" proposes a test suite and a data-access refactor — neither is a safe first change, neither has a rollback |
++| 9 | Verdict | **FAIL** | never asked |
++
++**The diagnosis:** the skeleton describes; it never executes. Everything that mattered in this repository
++— does it start, does the schema match the model, does the container run, where does personal data land —
++is a **claim that needs a command**, and the procedure had no step that ran anything. A description written
++by reading is exactly as reliable as the reader's guess about which of two contradicting files is right,
++and here there are two of those.
++
++## 4. Run 2 — v1.0.0: **9 of 9**
++
++The rewrite changes the product from a description to a **verdict with evidence**:
++
++1. **Step 2 executes the start procedure** and makes every guessed step a finding. Result: F1 (two
++   variables, no documentation) and F2 (`python -m app.main` from the root; `python app/main.py` raises
++   `ImportError: attempted relative import with no known parent package`).
++2. **Step 4 reconciles objects against the schema.** `grep -n user_id app/schema.sql` prints nothing —
++   and the prompt's own rule, *an absence is the finding*, is what turns that empty output into F4.
++3. **Step 5 tries the deployment artifact.** `CMD python app/main.py` plus the import error above gives
++   F5: the image builds and cannot start.
++4. **Step 6 classifies secrets.** F6: `PAYMENTS_KEY` is a module constant, not an environment read, so the
++   fix is a code change rather than a settings change.
++5. **Step 7 maps personal data** — collected, stored, readable-by, retention, deletion — producing F7:
++   emails stored, nothing deletes them.
++6. **Step 8 reads the authorship** and turns it into guidance: two `_fmt_date` implementations with
++   different formats, an abandoned `export`, and a declared-but-unused `requests` — which is what the
++   sender's note *"the export needs a library"* was about.
++7. **Step 9 ranks the untested surface by blast radius**: `/reports/<user_id>` first, because it is
++   personal data behind **no authentication at all** (F8), then export, then the payment path.
++8. **Step 10 makes and reverts a change** in a copy: `/health` returns a version, the server shows it,
++   the file is restored, the server shows the original.
++9. **Step 11 issues the verdict**: *continue with conditions*, with seven numbered conditions (C1–C7),
++   each tied to a finding and to what clears it.
++
++Run 2 found **eight findings** where run 1 found a shape, including the one that decides the first week of
++work: `GET /reports/<user_id>` takes the user id from the URL and there is no authentication, so anyone
++who reaches the service reads anyone's reports by changing a number.
++
++## 5. What this evaluation does not show
++
++- **Six files is not six hundred.** The fixture is small enough to read completely, so the "cut in this
++  order" rule in §7 of the prompt — follow the money and the personal data first — was never needed. That
++  path is argued, not exercised.
++- **The environment was manufactured.** The run installed `flask==3.0.3` into a throwaway virtualenv to
++  execute the start procedure. That is a real execution, not a simulated one, but it is not the receiver's
++  environment: no database was available, so every query path ended in a 500 and the schema reconciliation
++  was done by reading `schema.sql`, not by inspecting a live database.
++- **One desk execution, author-run.** Same limitation as every record in this library: the author wrote the
++  prompt, the fixture and the grading table.
++- **The verdict is a judgement.** The prompt's rules make the *findings* checkable; whether C1 and C2 are
++  enough to justify "continue" is the author's product opinion.
++- **No downstream run.** Nothing here shows that `04-process/handover/` (`HAND-P04`) is easier after this
++  prompt's output — the handoff is asserted, not measured.
++
++## 6. Status
++
++| Prompt | Before | After |
++|---|---|---|
++| `ONBOARD-01` | v0.1.0, skeleton, 55 lines, `NOT TESTED` | **v1.0.0, operational, `TESTED — PASS`** (0 of 9 → 9 of 9) |
++
++The library's skeleton count falls from 74 to 73. `05-scenarios/legacy-code/WORKING-WITH-LEGACY.md`
++(`LEGACY-01`) remains a skeleton and is the nearest neighbour: it covers a codebase that is hostile, which
++is a different problem from one that is merely unexplained.
+diff --git a/_meta/evidence-levels.md b/_meta/evidence-levels.md
+index 1d6b079..cb32288 100644
+--- a/_meta/evidence-levels.md
++++ b/_meta/evidence-levels.md
+@@ -8,10 +8,10 @@ CI fails if this file is stale, so the numbers below cannot drift from the regis
+ | Claim | Count |
+ |-------|------:|
+ | Prompt files in the library | 365 |
+-| Labelled `operational` (structurally reviewed) | 286 |
+-| `operational` prompts with a recorded execution | 38 |
++| Labelled `operational` (structurally reviewed) | 287 |
++| `operational` prompts with a recorded execution | 39 |
+ | `operational` prompts with no recorded execution | 248 |
+-| Share of `operational` prompts demonstrated | 13.3% |
++| Share of `operational` prompts demonstrated | 13.6% |
+ 
+ `operational` means the artifact meets the authoring standard and survived a structural
+ review against the quality rubric. It does **not** mean the prompt has been run against a
+@@ -42,6 +42,7 @@ real repository. Exactly one column above measures execution, and it is the smal
+ | `INT-P02` Contribution Intake Context Collector | 2026-10-22 | the prompt's author (conflict of interest recorded) | run against a synthetic upstream with five planted traps: no accepted issue, a refused runtime dependency, a sign-off the contributor may not be entitled to give, a wrong test command, and a copyleft licence | FAILED at v0.1.0 then PASSED at v1.1.0 - v0.1.0 found 0 of 5 traps because it collects the contributor's intent and never reads the upstream's rules; v1.1.0 reads CONTRIBUTING, the PR policy and the licence first and records authority as verified or unknown | [`empirical-evaluation-19.md`](../_meta/empirical-evaluation-19.md) | author-run desk execution; the fixture and its grading criteria were both written by the author, so it tests whether the prompt finds what the fixture planted, not whether it asks the right questions in a real project |
+ | `INT-P03` Greenfield Intake Context Collector | 2026-10-22 | the prompt's author (conflict of interest recorded) | run against a fixture request that opens with a technology choice, states one genuine regulatory constraint among four preferences, gives no deadline, and scopes a platform for every team to a 1.5-person team | FAILED at v0.1.0 then PASSED at v1.1.0 - v0.1.0 scored 1 of 8, recording the proposal as the purpose and the urgency as the plan; v1.1.0 separates problem from proposal, classifies constraints, writes a non-goal with a destination, and names a failure mode | [`empirical-evaluation-19.md`](../_meta/empirical-evaluation-19.md) | author-run desk execution; every fact in a greenfield brief is user-stated, so the fixture grades structure rather than truth |
+ | `MLA-P03` Data Assessment | 2026-10-22 | the prompt's author (conflict of interest recorded; the fixture was built by the author who knew where the traps were) | run against a purpose-built churn fixture of 1,200 account-months with three planted leakage paths, one of them statistically perfect but structurally innocent, and a random-split defect | v1.0.0 missed the statistically perfect leak because the procedure was schema-first, and had no honest state for a check with no pipeline to hold it. v1.1.0 adds a label-determinism scan (categorical levels at 0 or 100 percent, numeric columns by threshold separation) and a 'pending - no pipeline yet' state; the retest found all four planted defects and labelled every mitigation pending rather than prevented | [`empirical-evaluation-15.md`](../_meta/empirical-evaluation-15.md) | one fixture, one domain, built by the prompt author; the other seven stages of the family remain unexecuted, so the system is partially tested end to end; the fixture is committed at _meta/fixtures/ml-churn/ and regenerates byte-identically |
++| `ONBOARD-01` Codebase Onboarding — Taking Over a System You Did Not Build | 2026-10-23 | the prompt's author (conflict of interest recorded) | run against a six-file application built 'with an AI' and handed over by a sender who cannot answer questions, with a required-but-undocumented environment, a schema that disagrees with its models, a Dockerfile that cannot start, no tests, personal data with no deletion path, and a hardcoded payment-key placeholder | FAILED at v0.1.0 then PASSED at v1.0.0 - the skeleton scored 0 of 9, producing a description of the codebase that noticed 'no tests' and 'a placeholder key' but never ran anything, reconciled nothing and issued no verdict; v1.0.0 scores 9 of 9 by executing the start procedure, reconciling objects against the schema (the absence of a column is the finding), trying the deployment artifact, mapping personal data, reading the authorship, ranking the untested surface, making and reverting a change, and issuing a conditional verdict | [`empirical-evaluation-21.md`](../_meta/empirical-evaluation-21.md) | author-run desk execution on a six-file fixture small enough to read completely; flask was installed into a throwaway virtualenv to execute the start procedure, but no database was available, so query paths ended in a 500 and the schema check was by reading schema.sql rather than a live database |
+ | `PERF-P01` Context & Goals | 2026-10-22 | the prompt's author (conflict of interest recorded) | set the goals for this repository's own gate suite: the number that matters is the wall-clock time of `scripts/check_all.py`, which every contributor runs before pushing | one measurable goal with a source (the gate suite's own runtime), three critical paths and a non-goals list; the goal was written before any measurement, which is what made the later 25% claim checkable | [`empirical-evaluation-13.md`](../_meta/empirical-evaluation-13.md) | one system, one goal; the traffic analogy does not transfer to a local gate runner |
+ | `PERF-P02` Measurement Setup | 2026-10-22 | the prompt's author (conflict of interest recorded) | build a three-run median harness over the gate suite and a per-gate breakdown, and record the environment | suite median 3.40 s (3.34-3.67), per-gate breakdown captured for 15 gates; the spread across three runs was 9.7%, just inside the prompt's own 10% soundness rule, which the report had to state rather than hide | [`empirical-evaluation-13.md`](../_meta/empirical-evaluation-13.md) | single machine, single workload; no CI runner to compare against because Actions is blocked by billing |
+ | `PERF-P03` Analysis | 2026-10-22 | the prompt's author (conflict of interest recorded) | attribute the 3.40 s across gates and sweep one dimension | two gates ran the same detector over the same corpus; together they owned 54% of gate time (1.74 s of 3.20 s), and the remaining 13 gates totalled 1.46 s | [`empirical-evaluation-13.md`](../_meta/empirical-evaluation-13.md) | attribution is per-process wall clock, so interpreter startup is included in every gate |
+diff --git a/_meta/evidence.json b/_meta/evidence.json
+index 48b2bb2..e5ea6d9 100644
+--- a/_meta/evidence.json
++++ b/_meta/evidence.json
+@@ -429,6 +429,17 @@
+       "result": "FAILED at v0.1.0 then PASSED at v1.0.0 - v0.1.0 scored 0 of 8, ranking the list it was handed and proposing to build two features the repository already half-contains, with no not-now bucket and no data obligation; v1.0.0 scores 8 of 8 by checking the tree first, restating every candidate as a user problem, making Not now mandatory with a closed list of reasons, and carrying one slice to done",
+       "record": "_meta/empirical-evaluation-20.md",
+       "limitations": "author-run desk execution; the fixture was built to be findable, so it measures whether the procedure reads the code, not whether it finds the right half-features among twenty"
++    },
++    {
++      "identifier": "ONBOARD-01",
++      "title": "Codebase Onboarding — Taking Over a System You Did Not Build",
++      "path": "05-scenarios/onboarding/CODEBASE-ONBOARDING.md",
++      "date": "2026-10-23",
++      "evaluator": "the prompt's author (conflict of interest recorded)",
++      "scope": "run against a six-file application built 'with an AI' and handed over by a sender who cannot answer questions, with a required-but-undocumented environment, a schema that disagrees with its models, a Dockerfile that cannot start, no tests, personal data with no deletion path, and a hardcoded payment-key placeholder",
++      "result": "FAILED at v0.1.0 then PASSED at v1.0.0 - the skeleton scored 0 of 9, producing a description of the codebase that noticed 'no tests' and 'a placeholder key' but never ran anything, reconciled nothing and issued no verdict; v1.0.0 scores 9 of 9 by executing the start procedure, reconciling objects against the schema (the absence of a column is the finding), trying the deployment artifact, mapping personal data, reading the authorship, ranking the untested surface, making and reverting a change, and issuing a conditional verdict",
++      "record": "_meta/empirical-evaluation-21.md",
++      "limitations": "author-run desk execution on a six-file fixture small enough to read completely; flask was installed into a throwaway virtualenv to execute the start procedure, but no database was available, so query paths ended in a 500 and the schema check was by reading schema.sql rather than a live database"
+     }
+   ]
+ }
+diff --git a/_meta/execution-batches.md b/_meta/execution-batches.md
+index 69a3ee9..df80b39 100644
+--- a/_meta/execution-batches.md
++++ b/_meta/execution-batches.md
+@@ -96,7 +96,7 @@ The next executable task in this batch is a re-run by a second person, and there
+ 
+ ## 6. Honest status
+ 
+-- **38 of 286 operational prompts executed (13.3%).** Stated in [`evidence-levels.md`](evidence-levels.md), generated from the registry, and checked in CI so it cannot drift.
++- **39 of 287 operational prompts executed (13.6%).** Stated in [`evidence-levels.md`](evidence-levels.md), generated from the registry, and checked in CI so it cannot drift.
+ - **0 runs by a second person**, which is the only kind that tests usefulness.
+ - **Batch 0 complete (8 of 8); batch 2 at 12 of 68**, the five `git-operations` stages plus the complete seven-stage testing-QA run. The two `git-operations` runs are the first execution of two stages of one system as a unit, which is a weaker test than the system run criterion 11 asks for and is recorded as partial. The testing-QA run is the strongest composition evidence in the library so far — seven stages, one system, every handoff a file the next stage reads — and it is still author-run.
+ - **B2 is the cheapest ten runs** and the target already exists in this checkout.
+diff --git a/_meta/fixtures/takeover-scenario/REQUEST.md b/_meta/fixtures/takeover-scenario/REQUEST.md
+new file mode 100644
+index 0000000..16590e7
+--- /dev/null
++++ b/_meta/fixtures/takeover-scenario/REQUEST.md
+@@ -0,0 +1,62 @@
++<!-- not-a-prompt -->
++
++# Takeover fixture — an app someone built with an AI, handed to a person who codes by hand
++
++**Purpose:** a fixed input for running `ONBOARD-01` (Codebase Onboarding). It exists so the desirable
++behaviour is visible in the output: the system reconstructed from the code rather than from a story, the
++traps found and named, the run instructions verified by running them, and a verdict about whether the
++receiver can continue without asking anyone.
++
++**Why this fixture:** the commonest handover in 2026 is not agency-to-client. It is a founder, analyst,
++or designer who built a working product with an AI assistant, has no mental model of the code, cannot
++answer questions about it, and is handing it to a developer who works by hand. The sender is present and
++willing — and has no idea what is in the repository.
++
++**The sender's message, verbatim:**
++
++> This is my app. I built it with Claude over about three weeks. It runs on my laptop and I have
++> deployed it once but I don't remember how. There are some notes in docs/. I want you to take it over
++> and keep going — I can't answer technical questions, I just described what I wanted and it built it.
++> I need to know it's safe for a real developer to continue.
++
++## The repository
++
++`app/` — six Python files, a schema, a Dockerfile, no tests, no README. Its ground truth is deliberately
++uneven; each fact below is checked by the command beside it.
++
++| # | Fact | Command that shows it |
++|---|---|---|
++| 1 | The entry point is `python -m app.main` from the repository root, and it **requires** `APP_ENV` and `DATABASE_URL` — without them it exits with a message | `grep -n "APP_ENV\|DATABASE_URL" app/config.py` |
++| 2 | A **hardcoded payment key placeholder** sits in `config.py` | `grep -n "PAYMENTS_KEY" app/config.py` |
++| 3 | `schema.sql` creates `reports` **without** `user_id`; `models.py` has `user_id` — the report query cannot work against a fresh database | `grep -n "user_id" app/schema.sql app/models.py` |
++| 4 | The **Dockerfile cannot run** the app: `CMD python app/main.py` breaks the package-relative imports | `grep -n "CMD" app/Dockerfile` |
++| 5 | `requests` is declared and **never imported**; `psycopg2` is declared and used | `grep -rn "import requests" app/ ; grep -n "requirements" -A5 app/requirements.txt` |
++| 6 | **No tests exist** | `find . -name "test*" -o -name "*_test.py"` |
++| 7 | User **email addresses are stored** in `users`, so the app holds personal data | `grep -n "email" app/models.py app/schema.sql` |
++| 8 | **AI authorship is visible** in the code: `_fmt_date` is duplicated in two modules with different formats, and a commented-out second implementation of `export` sits beside the live one | `grep -rn "_fmt_date\|# def export" app/` |
++| 9 | The builder's notes are scraps, not documentation | `cat docs/notes.txt` |
++
++## What a passing onboarding must contain
++
++| # | Requirement | Why this repository forces it |
++|---|---|---|
++| 1 | **Start-up instructions that work from a clean checkout**, with the two required variables named | the app exits without them and nothing says so |
++| 2 | **The hardcoded key reported as a finding**, not as a config line | a placeholder in a repo that has been public is one commit away from a real one |
++| 3 | **The schema/model mismatch identified as a defect**, with the failing query named | it is the reason the app "sometimes doesn't show reports" |
++| 4 | **The Dockerfile defect identified**, with what breaks and why | "it deployed once" and cannot do it again |
++| 5 | **The absence of tests stated, with the three riskiest untested paths named** | upload, export, payment webhook |
++| 6 | **A data-flow map saying where personal data enters and where it lands** | email addresses in `users` |
++| 7 | **An authorship section**: what the code says about how it was built, and which patterns are AI-shaped (duplication, two implementations, dead dependency) | the receiver has to decide what to keep |
++| 8 | **A first safe change with a rollback, actually performed or explicitly rehearsed** | "safe to continue" is a claim that needs a test |
++| 9 | **A verdict** — continue, continue with conditions, or stop — tied to the evidence above | the sender asked exactly this question |
++
++## Grading
++
++`PASS` requires all nine. `FAIL` on any of: no runnable start instructions; the key, the schema mismatch or
++the Dockerfile defect missed; tests claimed rather than their absence noted; no data-flow map; no
++authorship section; no first change; or a verdict without conditions.
++
++**Grading source:** the commands above are the grading, and the receiver is expected to run them. Each
++one was run against the fixture when it was written, and its output is what the table says — the trap in
++this fixture is that `grep user_id app/schema.sql` prints **nothing**, and an absence is the easiest
++thing for a reader to skim past.
+diff --git a/_meta/fixtures/takeover-scenario/app/Dockerfile b/_meta/fixtures/takeover-scenario/app/Dockerfile
+new file mode 100644
+index 0000000..f25a199
+--- /dev/null
++++ b/_meta/fixtures/takeover-scenario/app/Dockerfile
+@@ -0,0 +1,6 @@
++FROM python:3.12-slim
++WORKDIR /srv
++COPY . /srv
++RUN pip install -r app/requirements.txt
++EXPOSE 8080
++CMD python app/main.py
+diff --git a/_meta/fixtures/takeover-scenario/app/__init__.py b/_meta/fixtures/takeover-scenario/app/__init__.py
+new file mode 100644
+index 0000000..e69de29
+diff --git a/_meta/fixtures/takeover-scenario/app/config.py b/_meta/fixtures/takeover-scenario/app/config.py
+new file mode 100644
+index 0000000..38b71bb
+--- /dev/null
++++ b/_meta/fixtures/takeover-scenario/app/config.py
+@@ -0,0 +1,20 @@
++"""Configuration, read at import time."""
++import os
++
++
++class ConfigError(RuntimeError):
++    pass
++
++
++def load_config():
++    env = os.environ.get("APP_ENV")
++    dsn = os.environ.get("DATABASE_URL")
++    if not env:
++        raise ConfigError("APP_ENV is not set (use 'dev' or 'prod')")
++    if not dsn:
++        raise ConfigError("DATABASE_URL is not set")
++    return {"APP_ENV": env, "DATABASE_URL": dsn, "DEBUG": env == "dev"}
++
++
++# TODO: move to environment before this goes anywhere near production.
++PAYMENTS_KEY = "sk_test_EXAMPLE_REPLACE_ME"
+diff --git a/_meta/fixtures/takeover-scenario/app/main.py b/_meta/fixtures/takeover-scenario/app/main.py
+new file mode 100644
+index 0000000..db1f1aa
+--- /dev/null
++++ b/_meta/fixtures/takeover-scenario/app/main.py
+@@ -0,0 +1,20 @@
++"""Reportwright-lite. Entry point: python -m app.main"""
++from flask import Flask
++
++from .config import load_config
++from .routes import bp
++from .routes.export import export_bp
++
++app = Flask(__name__)
++app.register_blueprint(bp)
++app.register_blueprint(export_bp)
++
++
++def create():
++    cfg = load_config()
++    app.config.update(cfg)
++    return app
++
++
++if __name__ == "__main__":
++    create().run(host="0.0.0.0", port=8080)
+diff --git a/_meta/fixtures/takeover-scenario/app/models.py b/_meta/fixtures/takeover-scenario/app/models.py
+new file mode 100644
+index 0000000..c63ac3d
+--- /dev/null
++++ b/_meta/fixtures/takeover-scenario/app/models.py
+@@ -0,0 +1,23 @@
++"""Plain data objects. There is no ORM; queries are written by hand."""
++from dataclasses import dataclass
++from datetime import datetime
++
++
++@dataclass
++class User:
++    id: int
++    email: str
++    plan: str
++    created_at: datetime
++
++
++@dataclass
++class Report:
++    id: int
++    user_id: int
++    payload: str
++    created_at: datetime
++
++
++def _fmt_date(value):
++    return value.strftime("%d/%m/%Y")
+diff --git a/_meta/fixtures/takeover-scenario/app/requirements.txt b/_meta/fixtures/takeover-scenario/app/requirements.txt
+new file mode 100644
+index 0000000..7813aa9
+--- /dev/null
++++ b/_meta/fixtures/takeover-scenario/app/requirements.txt
+@@ -0,0 +1,3 @@
++flask==3.0.3
++psycopg2-binary==2.9.9
++requests==2.32.3
+diff --git a/_meta/fixtures/takeover-scenario/app/routes/__init__.py b/_meta/fixtures/takeover-scenario/app/routes/__init__.py
+new file mode 100644
+index 0000000..ed6050c
+--- /dev/null
++++ b/_meta/fixtures/takeover-scenario/app/routes/__init__.py
+@@ -0,0 +1,32 @@
++"""HTTP routes. Queries are inline SQL strings."""
++import os
++
++from flask import Blueprint, jsonify
++
++bp = Blueprint("main", __name__)
++
++
++@bp.get("/reports/<int:user_id>")
++def reports_for_user(user_id):
++    # Fails against a fresh database: reports has no user_id column (see schema.sql).
++    sql = "SELECT id, user_id, payload FROM reports WHERE user_id = %s"
++    rows = _query(sql, (user_id,))
++    return jsonify([{"id": r[0], "user_id": r[1], "payload": r[2]} for r in rows])
++
++
++@bp.get("/health")
++def health():
++    return {"ok": True}
++
++
++def _query(sql, params):
++    import psycopg2
++
++    dsn = os.environ["DATABASE_URL"]
++    with psycopg2.connect(dsn) as conn, conn.cursor() as cur:
++        cur.execute(sql, params)
++        return cur.fetchall()
++
++
++def _fmt_date(value):
++    return value.strftime("%Y-%m-%d")
+diff --git a/_meta/fixtures/takeover-scenario/app/routes/export.py b/_meta/fixtures/takeover-scenario/app/routes/export.py
+new file mode 100644
+index 0000000..ab4de59
+--- /dev/null
++++ b/_meta/fixtures/takeover-scenario/app/routes/export.py
+@@ -0,0 +1,24 @@
++"""CSV export for one report."""
++import csv
++import io
++
++from flask import Blueprint, Response
++
++from . import _query
++
++export_bp = Blueprint("export", __name__)
++
++
++@export_bp.get("/reports/<int:report_id>/export.csv")
++def export(report_id):
++    rows = _query("SELECT id, payload FROM reports WHERE id = %s", (report_id,))
++    buf = io.StringIO()
++    writer = csv.writer(buf)
++    writer.writerow(["id", "payload"])
++    writer.writerows(rows)
++    return Response(buf.getvalue(), mimetype="text/csv")
++
++
++# def export(report_id, fmt="xlsx"):
++#     # earlier version, kept in case the CSV one is wrong
++#     ...
+diff --git a/_meta/fixtures/takeover-scenario/app/schema.sql b/_meta/fixtures/takeover-scenario/app/schema.sql
+new file mode 100644
+index 0000000..5ff02e7
+--- /dev/null
++++ b/_meta/fixtures/takeover-scenario/app/schema.sql
+@@ -0,0 +1,13 @@
++-- Schema as deployed. See models.py for the objects the code expects.
++CREATE TABLE users (
++    id          SERIAL PRIMARY KEY,
++    email       TEXT NOT NULL,
++    plan        TEXT NOT NULL DEFAULT 'free',
++    created_at  TIMESTAMP NOT NULL DEFAULT now()
++);
++
++CREATE TABLE reports (
++    id          SERIAL PRIMARY KEY,
++    payload     TEXT NOT NULL,
++    created_at  TIMESTAMP NOT NULL DEFAULT now()
++);
+diff --git a/_meta/fixtures/takeover-scenario/docs/notes.txt b/_meta/fixtures/takeover-scenario/docs/notes.txt
+new file mode 100644
+index 0000000..a2985df
+--- /dev/null
++++ b/_meta/fixtures/takeover-scenario/docs/notes.txt
+@@ -0,0 +1,7 @@
++notes
++
++- claude said the export needs a library but i forget which
++- login was working at some point? i think i removed it
++- the reports page sometimes shows nothing, usually after a new account
++- deployed once with render, there was a command
++- ask claude to fix the export before launch
+diff --git a/_meta/fixtures/takeover-scenario/runs/v0.1.0-output.md b/_meta/fixtures/takeover-scenario/runs/v0.1.0-output.md
+new file mode 100644
+index 0000000..091d46a
+--- /dev/null
++++ b/_meta/fixtures/takeover-scenario/runs/v0.1.0-output.md
+@@ -0,0 +1,45 @@
++# Onboarding brief — v0.1.0 run
++
++## Big picture
++Reportwright-lite is a small Flask service for producing and exporting CSV reports. Its users are
++whoever holds an account row; there is no authentication in the repository, so access control is by
++deployment. Entry points: the Flask app (`app/main.py`) with two blueprints — reports and export — and a
++`/health` route.
++
++## Structure
++- `app/main.py` — application factory and runner
++- `app/config.py` — environment configuration
++- `app/models.py` — data objects (`User`, `Report`)
++- `app/routes/__init__.py` — report routes and the query helper
++- `app/routes/export.py` — CSV export
++- `app/schema.sql` — database schema
++- `docs/notes.txt` — the author's notes
++
++The layering is thin: routes contain SQL directly, so there is no repository or service layer.
++
++## Most important code
++- `routes/__init__.py::reports_for_user` — the main read path.
++- `routes/export.py::export` — the export path.
++- `config.py::load_config` — configuration and environment handling; it requires `APP_ENV` and
++  `DATABASE_URL`.
++
++## Development workflow
++- Install: `pip install -r app/requirements.txt`
++- Run: `python -m app.main` from the repository root.
++- Tests: none are present. There is no Makefile and no CI configuration.
++
++## Risks and hotspots
++- No tests anywhere in the repository.
++- SQL is written inline in the routes, so a schema change has no compile-time check.
++- `PAYMENTS_KEY` is defined in `config.py` as a placeholder string.
++- The Dockerfile exists but has not been verified.
++- `docs/notes.txt` mentions a login that no longer exists and an export that "needs a library".
++
++## Start here
++1. `app/main.py` -> `app/config.py` -> `app/routes/__init__.py` -> `app/routes/export.py`
++2. `app/models.py` and `app/schema.sql` side by side.
++
++## First useful tasks
++- Add a test suite around `reports_for_user` and `export`.
++- Replace the inline SQL with a small data-access module.
++- Verify the Dockerfile builds and runs.
+diff --git a/_meta/fixtures/takeover-scenario/runs/v1.0.0-output.md b/_meta/fixtures/takeover-scenario/runs/v1.0.0-output.md
+new file mode 100644
+index 0000000..d2c50a7
+--- /dev/null
++++ b/_meta/fixtures/takeover-scenario/runs/v1.0.0-output.md
+@@ -0,0 +1,123 @@
++# ONBOARDING.md — v1.0.0 run, 2026-10-23
++
++Repository: `_meta/fixtures/takeover-scenario` · Receiver: a developer who codes by hand and did not
++build this · Sender: the builder, non-technical, cannot answer questions.
++**Evidence rule:** every claim below is followed by the command that produced it. Anything I could not
++run is marked *unverified*.
++
++## 1. Start procedure (executed, not transcribed)
++
++```
++python3 -m venv /tmp/takev && /tmp/takev/bin/pip install -r app/requirements.txt
++APP_ENV=dev DATABASE_URL=postgresql://localhost/example /tmp/takev/bin/python -m app.main
++curl -s http://127.0.0.1:8080/health      # -> {"ok": true}
++```
++
++**Findings:**
++- **F1 — two environment variables are required and nothing says so.** `APP_ENV=dev DATABASE_URL=... python -m app.main` → `ConfigError: APP_ENV is not set (use 'dev' or 'prod')`; with only `APP_ENV`, `ConfigError: DATABASE_URL is not set`. There is no README, no `.env.example`, no comment in the run path. *Consequence:* a receiver's first attempt fails and looks like a broken app.
++- **F2 — the working directory matters.** `python -m app.main` works from the repository root; `python app/main.py` fails with `ImportError: attempted relative import with no known parent package`. The Dockerfile uses the second form.
++- **F3 — `psycopg2-binary` is declared, and the code imports `psycopg2` lazily inside `_query`** (`app/routes/__init__.py:23`), so the app starts with no database and fails only when a route is exercised: `/reports/1` → `500`.
++
++## 2. Runtime map
++
++| Entry point | What it does | Store / dependency |
++|---|---|---|
++| `GET /health` (`app/routes/__init__.py:18`) | liveness | none |
++| `GET /reports/<user_id>` (`app/routes/__init__.py:12`) | lists reports for a user | Postgres, inline SQL |
++| `GET /reports/<report_id>/export.csv` (`app/routes/export.py:12`) | exports one report | Postgres, inline SQL |
++| `create()` at import (`app/main.py:17`) | builds the app from `load_config()` | env |
++
++Calls: routes → `_query()` → `psycopg2.connect(DATABASE_URL)`. There is no service or repository layer,
++no jobs, no queue, no auth middleware. Two blueprints, four routes including `/static`.
++
++## 3. Model vs schema — a defect that guarantees a broken page
++
++`app/models.py:17` declares `Report.user_id`. `app/schema.sql` creates `reports` with **id, payload,
++created_at** — no `user_id`:
++
++```
++$ python3 -c "...re.findall(r'CREATE TABLE reports \((.*?)\);', schema)..."  -> id, payload, created_at
++$ grep -n user_id app/schema.sql   -> (nothing)
++$ grep -n user_id app/models.py    -> 17:    user_id: int
++```
++
++- **F4 — `GET /reports/<user_id>` cannot work on a fresh database.** Its query is
++  `SELECT id, user_id, payload FROM reports WHERE user_id = %s` (`app/routes/__init__.py:14`) against a
++  table with no such column. This explains the sender's note: *"the reports page sometimes shows nothing,
++  usually after a new account"* — the author's database has the column; `schema.sql` does not.
++  *Consequence:* every new environment is broken in a way that looks like a data problem.
++
++## 4. Deployment artifact
++
++```
++$ grep -n CMD app/Dockerfile   -> 6:CMD python app/main.py
++$ python app/main.py           -> ImportError: attempted relative import with no known parent package
++```
++
++- **F5 — the image builds and cannot run.** The `COPY . /srv` and `pip install -r app/requirements.txt`
++  lines are correct; the `CMD` is not. The image would start, crash immediately, and be restarted by the
++  platform — the shape of failure that looks like a platform problem.
++
++## 5. Secrets and placeholders
++
++| Name | Where | Class |
++|---|---|---|
++| `PAYMENTS_KEY` | `app/config.py:20`, value `sk_test_EXAMPLE_REPLACE_ME` | **placeholder committed to the repository** |
++
++- **F6 — a payment key is a module-level constant with a placeholder value, and a `TODO` above it**
++  (`# TODO: move to environment before this goes anywhere near production`). Placeholder today; one
++  careless commit from live, and nothing in the code or the deployment reads it from the environment, so
++  the "fix" is a code change, not a settings change. *Action:* rotate if this repository was ever public
++  with a real value; move to `os.environ`; add a startup check that refuses a key that is not set.
++
++## 6. Personal data
++
++- **F7 — email addresses are stored and nothing deletes them.** `users(email TEXT NOT NULL)`
++  (`app/schema.sql:4`), `User.email` (`app/models.py:9`). Collected at signup (the path no longer exists
++  in the code — see F8), stored in `users`, readable by anything with `DATABASE_URL`, retained
++  indefinitely; **no deletion path exists in code or schema**. *Consequence:* a deletion request cannot be
++  honoured without writing one.
++
++## 7. Authorship read — what to trust
++
++| Signal | Location | Reading |
++|---|---|---|
++| `_fmt_date` implemented twice, differently | `models.py:22` (`%d/%m/%Y`), `routes/__init__.py:31` (`%Y-%m-%d`) | two date formats in one app; whichever is unused is a trap |
++| A second `export()` commented out, "in case the CSV one is wrong" | `routes/export.py:22` | an abandoned implementation kept as insurance |
++| `requests` declared, never imported | `requirements.txt:3` | dependency rot; the sender's note "the export needs a library" is this |
++| Login referenced in notes, no auth code anywhere | `docs/notes.txt` | a feature that was removed or never existed — the risk is assuming it exists |
++
++- **F8 — there is no authentication.** No session, login, or user resolution; `/reports/<user_id>` takes
++  the user id from the URL. Anyone who reaches the service reads any user's reports by changing a number.
++  This is the finding that most changes what the receiver must do first.
++
++## 8. Untested surface
++
++No test files exist (`find . -name "test*" -o -name "*_test.py"` → nothing). Ranked by blast radius:
++1. **`/reports/<user_id>`** — no auth, personal data, and currently broken (F4, F8).
++2. **`export.csv`** — same data, different door, no test.
++3. **`PAYMENTS_KEY` usage path** — declared and unused today; when it is used, it will be the first
++   money-touching code in the repository.
++
++## 9. Change made, and reverted (in a copy)
++
++Changed `/health` to return `{"ok": true, "version": "1.0.0"}`, restarted, `curl` → version present;
++restored the file, restarted, `curl` → `{"ok": true}`. The loop works and the way back is one file copy.
++
++## 10. Verdict
++
++**Continue with conditions.** The app runs, the loop works, and the code is small enough to read in a day.
++It is not safe to continue until these are cleared:
++
++| # | Condition | Answers | Owner | Cleared by |
++|---|---|---|---|---|
++| C1 | Decide the auth model, or put the service behind something that authenticates | F8 | receiver + product owner | a written decision; `/reports/<id>` unreachable without it |
++| C2 | Reconcile `schema.sql` with `models.py` and rebuild a fresh database | F4 | receiver | a fresh database on which `/reports/<id>` returns rows |
++| C3 | Move `PAYMENTS_KEY` to the environment and confirm it was never live | F6 | receiver / owner | code change + rotation check |
++| C4 | Write the run instructions into a README, with the two variables | F1, F2 | receiver | a stranger starts the app from the README alone |
++| C5 | Fix the Dockerfile `CMD` and deploy once | F5 | receiver | image runs and serves `/health` |
++| C6 | Write the deletion path for `users.email` | F7 | receiver | a tested deletion |
++| C7 | Add tests for the three paths in §8 | §8 | receiver | tests that fail before the fix |
++
++To the sender's question — *is it safe for a real developer to continue?* — the honest answer is **yes,
++with C1 and C2 first**. Both are days, not weeks, and both are made cheaper by the code being small.
+diff --git a/_meta/publication-checklist.md b/_meta/publication-checklist.md
+index 9a0ae0d..e6fdcf1 100644
+--- a/_meta/publication-checklist.md
++++ b/_meta/publication-checklist.md
+@@ -24,9 +24,9 @@
+ 
+ | # | Check | Method | Result |
+ |---|-------|--------|--------|
+-| 1 | Structural validation | `python3 scripts/validate_library.py` | **PASS** — 494 Markdown files, 365 prompts, **0 errors / 0 warnings** |
+-| 2 | Maturity honesty | validator rules | **PASS** — 286 operational, 5 draft, 74 skeleton; no label exceeds body; no system README outranks its stages |
+-| 3 | Executed-prompt count is generated | `scripts/evidence_report.py --check` | **PASS** — `_meta/evidence-levels.md` matches the registry: **38 of 286 operational prompts executed (13.0%)**, stated in the file the README links |
++| 1 | Structural validation | `python3 scripts/validate_library.py` | **PASS** — 498 Markdown files, 365 prompts, **0 errors / 0 warnings** |
++| 2 | Maturity honesty | validator rules | **PASS** — 287 operational, 5 draft, 73 skeleton; no label exceeds body; no system README outranks its stages |
++| 3 | Executed-prompt count is generated | `scripts/evidence_report.py --check` | **PASS** — `_meta/evidence-levels.md` matches the registry: **39 of 287 operational prompts executed (13.0%)**, stated in the file the README links |
+ | 4 | Catalog current | `--catalog` + `git diff` | **PASS** — regenerates with no diff |
+ | 5 | Gallery current | `generate_gallery.py --check` | **PASS** — "up to date", 365 prompts |
+ | 6 | Duplication | `find_overlaps.py --check` (shingle 0.55) and `--metric combined` (0.75) | **PASS** — highest shingle 0.17; highest combined 0.56 (`03-domains/backend` vs `03-domains/frontend` orchestrators). Re-measured 2.28.4: the earlier row said 0.18 and 0.68, and the 0.68 pair is no longer the top one |
+@@ -45,7 +45,7 @@
+ | 18 | Licences | `LICENSE`, `LICENSE-CONTENT`, README section | **PASS** — MIT for code, CC BY 4.0 for content, SPDX-detectable |
+ | 19 | Every prompt has a home | `generate_task_index.py --check` | **PASS** — 21 tasks, 365 prompts routed, 0 unrouted |
+ | 20 | One gate list | `scripts/check_all.py` | **PASS** — CI runs that script and nothing else; a local pass is the same run |
+-| 21 | Counts agree with the tree | validator `check_documented_counts`, `check_stated_totals`, `check_readme_counts` | **PASS** — 494 Markdown files, 365 prompts, **286 operational / 5 draft / 74 skeleton**; the file and prompt totals are compared on every run in the four documents that quote them. The earlier row said 265/5/94, which had drifted |
++| 21 | Counts agree with the tree | validator `check_documented_counts`, `check_stated_totals`, `check_readme_counts` | **PASS** — 498 Markdown files, 365 prompts, **287 operational / 5 draft / 73 skeleton**; the file and prompt totals are compared on every run in the four documents that quote them. The earlier row said 265/5/94, which had drifted |
+ | 22 | Repository settings are decided | `_meta/repository-configuration.md`, `gh api repos/...` | **PARTIAL** — description and all ten topics are now **applied** (verified through the API on 2026-10-22); branch protection, security features and social preview are recorded with the commands and **not applied** |
+ 
+ | 23 | Every version has a release | `gh api repos/.../releases` | **PASS** — 23 releases, `v2.13.0` → `v2.28.3`, each tagged at that version's merge commit and carrying its changelog entry. Twelve were created in 2.28.4 after a seven-version gap |
+@@ -61,7 +61,7 @@ Checked against the tree, not against intention:
+ | `README.md` top | Links `QUICKSTART.md` before anything else — the reader gets a task, not a table of contents |
+ | `QUICKSTART.md` | Six paths (chat-only / broken / inherited / shipping / proof / new), chat-first because that reader has the fewest tools; each with ordered prompts and the artifact you end with; opens with what the library **cannot** do |
+ | Maturity legend | In the README above the fold; `operational` defined as *structurally reviewed*, not proven |
+-| `_meta/evidence-levels.md` | Generated; states 13.3% executed (38 of 286); linked from the README and the quickstart |
++| `_meta/evidence-levels.md` | Generated; states 13.6% executed (39 of 287); linked from the README and the quickstart |
+ | `GALLERY.md` | 365 prompts by area, generated; `TASKS.md` indexes the same prompts by problem and fails the build if a prompt has no home |
+ | Limitations | Stated in README, quickstart, `PROJECT-STATUS.md`, and §3 below — four places, consistent |
+ 
+@@ -69,7 +69,7 @@ Checked against the tree, not against intention:
+ 
+ These are already stated in the repository. They must not be softened in marketing language, release notes, or a launch post.
+ 
+-1. **Thirty-eight prompts have been executed and recorded**, against 286 labelled `operational` — 13.3%. `operational` means *structurally complete and reviewed*, not *proven in use*. The list of executions, with dates, scope and limitations, is generated from the registry in [`evidence-levels.md`](evidence-levels.md); it is not maintained here, because a hand-kept list of executions is a list that drifts (this paragraph said "thirty-three" and "281" while the registry said 37 and 285).
++1. **Thirty-nine prompts have been executed and recorded**, against 287 labelled `operational` — 13.6%. `operational` means *structurally complete and reviewed*, not *proven in use*. The list of executions, with dates, scope and limitations, is generated from the registry in [`evidence-levels.md`](evidence-levels.md); it is not maintained here, because a hand-kept list of executions is a list that drifts (this paragraph said "thirty-three" and "281" while the registry said 37 and 285).
+ 2. **Reviews are author self-assessments**, scored in `_meta/review-log.md`. No second reviewer exists.
+ 3. **74 skeleton prompts** are named sequences without verification or failure handling — useful as human checklists, unsafe to run unattended.
+ 4. **Coverage is 122 adequate / 21 partial / 0 missing** dimension rows. No row is missing; 21 are thin, and the matrix names what is thin.
+@@ -123,7 +123,7 @@ The earlier failing runs — `39836004571`, `39840703180`, both `steps: 0` with
+ |---|---|
+ | Description | **set** — *"300+ engineering prompts with evidence rules, failure handling, and a definition of done — for humans and coding agents. Audited by a repo, not a vibe."* The brief's version said `364`; "300+" is accurate and does not go stale as the library grows. Setting it through the API returns 403, so the owner applied it in the UI |
+ | Topics | **set, all ten** — `prompts`, `prompt-engineering`, `ai-agents`, `llm`, `engineering`, `code-review`, `incident-response`, `software-engineering`, `developer-tools`, `playbook` |
+-| Social preview | not set; 1280×640, suggested content: title, one-line claim, 365 prompts · 286 operational · 33 executed |
++| Social preview | not set; 1280×640, suggested content: title, one-line claim, 365 prompts · 287 operational · 33 executed |
+ 
+ ### 5.4 Make the repository public — **done, 2026-10-22**
+ 
+diff --git a/_meta/release-readiness.md b/_meta/release-readiness.md
+index a170f7d..50272d3 100644
+--- a/_meta/release-readiness.md
++++ b/_meta/release-readiness.md
+@@ -20,7 +20,7 @@ This page answers one question honestly: **if this went public tomorrow, what wo
+ | Community files | Licence (dual), contributing, code of conduct, security policy, issue templates, PR template | **Ready** |
+ | Repository configuration | Description and topics applied; branch protection in place with an admin bypass; four security features still unset and owner-only — [`repository-configuration.md`](repository-configuration.md) | **Partly applied** |
+ | CI | **Runs and passes.** Run `39846014231` executed steps 1–11 on a real runner, all green, including `check_all.py` and the clean-regeneration check — the first executed step in the repository's history | **Ready** |
+-| Empirical evidence | 38 of 286 operational prompts executed (13.3%), all by the author, none by a second reader; batch 0 complete, batch 2 begun | **The real gap** |
++| Empirical evidence | 39 of 287 operational prompts executed (13.6%), all by the author, none by a second reader; batch 0 complete, batch 2 begun | **The real gap** |
+ | Contributor readiness | Templates and gates are in place; the first external PR is untested | **Unknown by definition** |
+ 
+ ## 2. What has been tested, by batch
+@@ -51,7 +51,7 @@ The queue and the per-batch targets are in [`execution-batches.md`](execution-ba
+ 2. **Compositional** — do two prompts in a sequence agree on the artifact between them. Machine-checked for 239 links; 92 still rely on prose that names a concept rather than a file, 82 of them without naming the file at all.
+ 3. **Empirical** — does following the prompt produce a better result than not following it. **Fourteen prompts, author-evaluated, none by a second reader.** Nothing here can be automated inside a repository without model access and a scoring sheet, which is backlog #83/#91.
+ 
+-Only the third is evidence of usefulness, and it is 13.3%.
++Only the third is evidence of usefulness, and it is 13.6%.
+ 
+ ## 4. Blockers — re-measured 2026-10-23
+ 
+diff --git a/_meta/review-log.md b/_meta/review-log.md
+index 6a15f22..641bdc5 100644
+--- a/_meta/review-log.md
++++ b/_meta/review-log.md
+@@ -1050,3 +1050,22 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
+ - Counts move: 365 prompts, 286 operational, 494 files, evidence **38 of 286 (13.3 %)**.
+ - Not claimed: that a second reader would score it 8 of 8. The fixture was built to be findable, and the
+   author wrote the prompt, the fixture and the grading table.
++### Promotion — `ONBOARD-01`: a skeleton that described codebases, run and rebuilt into one that tests them (2.30.0)
++- **2026-10-23 · build + execution · the prompt's author** · record `_meta/empirical-evaluation-21.md`
++- Triggered by a direct question: does the library cover a project built with an AI, handed to someone who
++  codes by hand, where the sender cannot answer questions? The honest answer was *in pieces, and the
++  prompt that names the case was a 55-line skeleton*. `handover/` assumes a sender who knows the system;
++  `project-recovery/` assumes it is broken; `documentation/` assumes someone understands it.
++- **v0.1.0 (the skeleton) scored 0 of 9.** It produced a good description — entry points, blueprints,
++  models, "no tests", "a placeholder key" — and never executed anything, so it missed the schema/route
++  mismatch, the container command that cannot start the app, and the fact that `/reports/<id>` takes the
++  user id from the URL with no authentication.
++- **v1.0.0 scored 9 of 9**, with the start procedure actually executed (virtualenv, server, `/health`),
++  a change made and reverted in a copy, and a conditional verdict C1–C7.
++- The load-bearing rule added: **an absence is the finding** — `grep user_id app/schema.sql` printing
++  nothing is evidence, and the first version's "read them side by side" instruction is how an absence gets
++  skimmed past.
++- Also corrected in passing: `PROJECT-STATUS.md`'s skeleton inventory still listed four `06-interactive`
++  stages that have been operational since 2.28.6.
++- Not claimed: that six files is six hundred; the "cut in this order" rule for a large repository under a
++  tight budget is argued in the prompt and was never exercised.

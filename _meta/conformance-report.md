@@ -79,7 +79,7 @@ handed the artifact without anyone guessing its name.
 | `04-process/research-and-development` | 8 | 7 | 6 | 0 | 1 | 5 |
 | `04-process/systems-building-improvement` | 8 | 7 | 7 | 0 | 0 | 7 |
 | `04-process/testing-qa` | 7 | 7 | 7 | 7 | 0 | 0 |
-| `05-scenarios` | 42 | 44 | 0 | 0 | 0 | 0 |
+| `05-scenarios` | 42 | 45 | 0 | 0 | 0 | 0 |
 | `06-interactive` | 4 | 3 | 0 | 0 | 0 | 0 |
 | `07-workflows` | 13 | 4 | 1 | 1 | 0 | 0 |
 

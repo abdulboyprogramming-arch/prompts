@@ -29,7 +29,7 @@ prompts by situation.
 | [06-interactive — conversations that clarify a request](#06-interactive--conversations-that-clarify-a-request) | 4 | Use when the request is vague and needs to be scoped first. |
 | [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 13 | Composed sequences that route between systems and stop at human gates. |
 
-*Maturity across the library: 287 operational, 5 draft, 73 skeleton, 365 total.*
+*Maturity across the library: 288 operational, 5 draft, 72 skeleton, 365 total.*
 
 ---
 
@@ -643,7 +643,7 @@ One prompt, one session, one pressing situation.
 | `OPS-01` | [Operational Readiness: would the on-call engineer survive this system?](05-scenarios/operational-readiness/OPERATIONAL-READINESS.md) | Before a launch, or after a painful incident — test whether this service can be operated at 03:00 by someone who did not build it. <br>**Inputs:** `SERVICE_SCOPE, SLO_TARGETS, APPROVER, TIME_BUDGET` | operational | A |
 | `PERF-01` | [Performance Investigation](05-scenarios/performance-investigation/PERFORMANCE-INVESTIGATION.md) | Something is slow: measure before optimising, find the bottleneck, and decide whether to fix, budget, or accept it. | skeleton | B |
 | `PERF-BUDGET-01` | [Performance Budgets and Core Web Vitals](05-scenarios/performance-budget/PERFORMANCE-BUDGET.md) | Measured baselines for the chosen metrics, budgets derived from user-perceptible thresholds, CI gates that block regressions, and a remediation list for what… <br>**Inputs:** `TARGET_URL, SURFACES, DEVICE_CLASS, NETWORK_PROFILE, BUDGETS, TARGET_ENV` | operational | B |
-| `PR-01` | [Write a Strong Pull Request](05-scenarios/pr-authoring/WRITE-STRONG-PR.md) | Turn a finished change into a pull request a reviewer can approve quickly: scope, evidence, risk, and rollback. | skeleton | B |
+| `PR-01` | [Write a Strong Pull Request — a description a reviewer can approve or reject in twenty minutes](05-scenarios/pr-authoring/WRITE-STRONG-PR.md) | In scope: producing the description for a change that already exists. <br>**Inputs:** `COMMIT_RANGE, DIFF_PATH, BASE_BRANCH, AUTHOR_NOTES, ISSUE_REF, REPO_PATH, TIME_BUDGET` | operational | A |
 | `QUICK-01` | [Safe Quick-Fix](05-scenarios/quick-fixes/SAFE-QUICK-FIX.md) | Fix a small, well-understood defect with the smallest correct diff — and know when the "quick" fix is not safe. | skeleton | B |
 | `RESIDENCY-01` | [Data Residency: where the data actually is, and how you would prove it](05-scenarios/data-residency/DATA-RESIDENCY.md) | A contract, regulator, or customer says data must stay in a region — and you need to find every place it currently goes. <br>**Inputs:** `REPO_PATH, JURISDICTIONS, CONTRACT_CLAUSE, APPROVER` | operational | A |
 | `SECINC-01` | [Security Incident Response](05-scenarios/security-incident/SECURITY-INCIDENT.md) | Detect and confirm → preserve evidence → contain → scope → eradicate → recover → disclose → learn. <br>**Inputs:** `INCIDENT_ID, DISCLOSURE_OWNER, DETECTION_SIGNAL` | operational | D |

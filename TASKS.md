@@ -13,7 +13,7 @@ library is reachable from at least one task: a prompt added without a home fails
 |---|---|
 | Prompts indexed | 365 |
 | Rows listed individually | 410 (a prompt can answer more than one task) |
-| Of those, `operational` | 331 |
+| Of those, `operational` | 332 |
 
 Not sure which task is yours? [`QUICKSTART.md`](QUICKSTART.md) routes five common situations,
 [`06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md`](06-interactive/multi-step-wizards/SYSTEM-SELECTOR.md)
@@ -259,8 +259,7 @@ A review that states what it did not see, and a pull request a maintainer can ac
 | `GIT-P03` | [History Repair](04-process/git-operations/P03-History/P03-History-Repair.md) | `P03-History` | Produce the intended history with the least destructive method, on a branch whose safety has been established. | operational |
 | `GIT-P04` | [Recovery](04-process/git-operations/P04-Recovery/P04-Recovery.md) | `P04-Recovery` | Restore the lost commit, branch, or file, using git's own records, without disturbing unrelated work. | operational |
 | `GIT-P05` | [Hygiene & Collaboration](04-process/git-operations/P05-Hygiene/P05-Hygiene-Collaboration.md) | `P05-Hygiene` | Produce a short, enforceable convention covering branch model, commit granularity, merge strategy, review gates, tags, and the… | operational |
-
-*Plus **1** `skeleton` prompt in these homes — a defensible stage sequence without verification or failure handling. Use them to structure a human-led session, not to drive an agent: [00-core](GALLERY.md#00-core--foundations-every-prompt-assumes), [04-process](GALLERY.md#04-process--delivering-software-responsibly), [05-scenarios](GALLERY.md#05-scenarios--single-session-high-urgency-situations).*
+| `PR-01` | [Write a Strong Pull Request — a description a reviewer can approve or reject in twenty minutes](05-scenarios/pr-authoring/WRITE-STRONG-PR.md) | `pr-authoring` | In scope: producing the description for a change that already exists. | operational |
 
 ## I am handing over a system, or taking one over
 

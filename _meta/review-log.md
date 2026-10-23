@@ -1069,3 +1069,19 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
   stages that have been operational since 2.28.6.
 - Not claimed: that six files is six hundred; the "cut in this order" rule for a large repository under a
   tight budget is argued in the prompt and was never exercised.
+
+### Promotion — `PR-01`: a description a reviewer can act on in twenty minutes (2.31.0)
+- **2026-10-23 · build + execution · the prompt's author** · record `_meta/empirical-evaluation-22.md`
+- Input was a real diff, not a synthetic one: commit `3abe628` (PR #45), 30 files, of which 11 are fixture
+  source and 5 are derived. v0.1.0 scored 5 of 9 and failed exactly where a description earns its keep —
+  no review order, no derived/hand-written separation, one sentence of limitations.
+- v1.0.0 scores 9 of 9 by adding a four-class file triage with a generator per derived file, a
+  what-this-does-not-prove table with a floor of three categories (one of them unflattering), and a
+  self-review pass that tries to reject the PR before it is written.
+- The output of the run is this cycle's own pull-request description; the prompt is tested by the thing it
+  produced.
+- Not claimed: that the description made review faster. There is no second reviewer, and the twenty-minute
+  budget is asserted.
+- Also fixed: the evidence gate failed on a **recorded run output** that quoted a then-true ratio. Fixtures
+  are now exempt from the published-count scan, with two regression cases; editing the record would have
+  been the alternative, and that is falsification.

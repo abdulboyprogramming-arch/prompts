@@ -163,9 +163,11 @@ def published_claims(c: dict[str, int]) -> list[str]:
     registry had moved to 17. A reader trusts the prose, not the generator, so
     the number that is easiest to read is the one that has to be checked.
 
-    Dated records are exempt: `_meta/empirical-evaluation-*.md`, `CHANGELOG.md`
-    and `_meta/review-log.md` say what was true when they were written, and
-    correcting them would be rewriting history. A zeroth count is skipped too:
+    Dated records are exempt: `_meta/empirical-evaluation-*.md`, `CHANGELOG.md`,
+    `_meta/review-log.md` and everything under `_meta/fixtures/` say what was true
+    when they were written, and correcting them would be rewriting history. A
+    fixture is also an input: a test case must not be edited to satisfy today's
+    count. A zeroth count is skipped too:
     it is only ever used for the independent-run figure, which is a different
     number that happens to share the denominator.
 
@@ -190,6 +192,13 @@ def published_claims(c: dict[str, int]) -> list[str]:
             rel = os.path.relpath(path, ROOT)
             if (rel.startswith(os.path.join("_meta", "empirical-evaluation-"))
                     or rel in ("CHANGELOG.md", os.path.join("_meta", "review-log.md"))):
+                continue
+            # A fixture is a frozen input, and anything under `runs/` is a recorded
+            # output — the same dated record as an evaluation, by the same argument.
+            # PR-01's fixture forced this: its v0.1.0 output quotes "39 of 287
+            # operational", which was true when the run happened. The only honest
+            # fixes were to rewrite the record or to exempt it.
+            if rel.startswith(os.path.join("_meta", "fixtures")):
                 continue
             for lineno, line in enumerate(open(path, encoding="utf-8", errors="replace"), 1):
                 # The denominator is shared with other measurements: "165 of 235
