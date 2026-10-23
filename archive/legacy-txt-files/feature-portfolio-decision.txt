@@ -1,0 +1,110 @@
+FEATURE PORTFOLIO DECISION
+==========================
+
+Decide what a product builds next -- and, just as importantly, what it does not.
+
+Was: "process7(chat2).txt" -- 410 bytes asking for eleven capabilities at once, with no order and no
+stopping condition ("add every possible feature", "as many as possible"). Eleven candidates, no goal,
+no capacity, no price. Replaced 2026-10-23.
+
+--------------------------------------------------------------------------------
+
+ROLE
+
+You are deciding what this product should build next. Every item on the candidate list is a candidate,
+not a commitment. Your output is a ranked portfolio with a reason per row and an explicit "not now"
+list.
+
+USE WHEN
+
+  - someone hands you a list of features and expects all of them;
+  - a product feels thin and the answer so far has been "add more";
+  - capacity is smaller than the list, which is always.
+
+DO NOT USE WHEN
+
+  - the feature is already chosen and needs designing -- that is a design job, and this prompt stops
+    before it;
+  - the question is whether to build the product at all.
+
+INPUTS
+
+  {{REPO_PATH}}       the repository, so "we already have that" can be checked rather than assumed
+  {{PRODUCT_GOAL}}    what the product is for and who uses it
+  {{CONSTRAINT}}      team size, and the next date that matters
+  {{CANDIDATES}}      the list
+
+  If {{PRODUCT_GOAL}} is missing, ask for it and stop. A feature list without a goal has no ordering
+  principle, and will be sorted by effort instead -- which is the wrong sort.
+
+PROCEDURE
+
+  1. Establish what exists. For each candidate, find whether some version of it is already present: a
+     partial theme toggle, a settings page, a half-built auth route. Report the evidence. Never propose
+     building something the repository already does -- it is the most common waste in this kind of
+     request.
+
+  2. Restate each candidate as a user problem. Not "PWA" but "a returning user on a phone browser
+     cannot get back to their saved work without re-typing a URL". A candidate that cannot be restated
+     as a problem is either a platform decision or a preference; label it as one and move on.
+
+  3. Score each on four axes, and show the scores. User value (how many users, how often); cost (days
+     of work, and whether it needs new infrastructure); risk (what it can break, and whether it adds a
+     security or privacy obligation); reversibility (how hard it is to undo). Two sentences of
+     justification per row, no more.
+
+  4. Sort into three buckets. Now: high value, low risk, reversible -- at most three items. Next:
+     valuable but expensive, or dependent on Now, sequenced behind its dependency. Not now: with the
+     reason stated -- "no user has asked for it", "the product has no accounts, so sign-in has nothing
+     to hold", "it is a platform, and there is no problem it solves yet".
+
+  5. Name the trap. If any candidate adds accounts, personal data, or a payment, say so explicitly and
+     treat it as a separate decision with its own risk class: what will be stored, where, for how long,
+     who can read it, and what the deletion path is. That is not a feature; it is an obligation with a
+     UI. Do not fold it into a batch of "improvements".
+
+  6. Deliver the first slice end to end. One item from Now, taken all the way: the change, the test, the
+     rollback, and the one sentence a user would notice. A finished small thing beats six half-finished
+     ones, and the portfolio exists to make that choice visible.
+
+WORKED EXAMPLE -- the list that prompted this prompt
+
+  PWA                            a delivery mechanism; useful only once returning users exist   -> Next
+  Sign in with Google or GitHub  personal data + a credential dependency + a deletion duty      -> its
+                                 own decision, and not now while there is no per-user state worth
+                                 protecting
+  Download analysis/report       the cheapest real value on the list: it makes existing work
+                                 portable                                                       -> Now
+  Dark / light / system          a preference; small, reversible, user-visible                   -> Now
+  i18n                           doubles the text surface and adds a translation owner forever  -> Next
+  Accessibility                  not a feature -- a floor. Missing is a defect                   -> Now, as a
+                                                                                                    defect
+  Device-specific "advanced"     an invitation to build something nobody asked for               -> Not now
+  features
+
+  Read as a decision: two are worth doing this month, one is a defect rather than a feature, one is a
+  legal obligation in disguise, and four are speculation.
+
+FAILURE HANDLING
+
+  No stated product goal        -> produce the problem statements only, and stop. Ranking without a goal
+                                   is arbitrary.
+  Every candidate expensive     -> rank by reversibility and propose the cheapest reversible one.
+  The user insists on an item the analysis ranks last -> build it, but put the cost and the risk in the
+                                   record first, so the decision is theirs and is written down.
+
+SECURITY AND PRIVACY
+
+  Any item that stores personal data, adds a third-party identity provider, or moves money changes the
+  product's risk class. It is not an item on a list; it is a new set of obligations. Say so in the
+  portfolio, not after the implementation.
+
+DONE WHEN
+
+  every candidate has a bucket and a reason; the "not now" list is non-empty; any data-collecting item
+  has its own risk paragraph; and one item is delivered end to end.
+
+HANDOFF
+
+  A chosen "Now" item goes to a design stage, which takes the problem statement from step 2 as its
+  input. The "not now" list is kept: it is the answer the next time the same list arrives.

@@ -3,13 +3,14 @@
 # Audit of the archive — what needs correction, and what does not
 
 **Date:** 2026-10-23
-**Scope:** the twelve `.txt` files in this folder, read in full for the first time since they were
-archived. The four short ones are rewritten in [`rewritten/`](rewritten/README.md); this file records
-what is wrong with the rest.
+**Scope:** the `.txt` files in this folder, read in full for the first time since they were archived.
 
-**Posture:** these files are **provenance, not guidance**. Nothing here is edited. The corrections below
-are notes about the record, kept so that a reader in two years can tell what these documents were, what
-they got wrong, and which parts were good enough to survive into the library.
+**Posture:** these files are **provenance, not guidance**. The seven long ones are untouched; the four
+short ones were **replaced in place** on 2026-10-23 (see [`README.md`](README.md)) and are no longer
+fragments. The findings below are notes about the record, kept so that a reader in two years can tell
+what these documents were, what they got wrong, and which parts were good enough to survive into the
+library. Findings F-03 and F-07 quote or describe text that has since been replaced — the quotes are the
+record of what was there.
 
 ---
 
@@ -70,9 +71,9 @@ checkable.
 | `scaffold completion.txt:3464` | *"Repeat it until the system reaches a stable production-ready state."* |
 
 **Consequence:** none of these can terminate. A run either stops arbitrarily and claims completeness, or
-never stops. `process7` is rewritten in [`rewritten/04-feature-portfolio.md`](rewritten/04-feature-portfolio.md)
-as a portfolio decision with an explicit *not now* list, because the ambition was reasonable and only
-the instruction was unusable.
+never stops. `process7` has since been replaced by `feature-portfolio-decision.txt`, which turns the same
+ambition into a portfolio with an explicit *not now* list — the ambition was reasonable and only the
+instruction was unusable.
 
 ### F-04 — Safety instructions that the library now forbids
 
@@ -124,18 +125,22 @@ rather than prompts.
 antecedent for *"it"*. Calling them prompts is the same class of error the library spends its time
 correcting — a label that flatters the content.
 
-**Correction applied:** `README.md` now distinguishes turns from prompts, and the table says which is
-which.
+**Correction applied:** the three turn files were replaced with real prompts and renamed for what they
+do (`deployment-to-a-url.txt`, `hackathon-submission.txt`, `feature-portfolio-decision.txt`), and
+`README.md` records what each one used to be. The label problem is gone because the content is no longer
+a fragment, not because the label was softened.
 
 ## 3. What I did not change, and why
 
-- **The twelve `.txt` files are byte-identical to what was archived.** Editing them would destroy the
-  only thing they are kept for: the difference between what was asked and what the library became.
-- **No new library prompts were created from this audit.** The four rewrites live in `rewritten/` and
-  are marked as archive material. Where a current prompt covers the work, the rewrite points at it;
-  where nothing does (feature portfolio, Markdown hygiene), the gap is named rather than filled with an
-  unvalidated prompt — this repository's rule is that a prompt enters the library with fixture runs, not
-  with good intentions.
+- **The seven long files are byte-identical to what was archived.** Editing them would destroy the only
+  thing they are kept for: the difference between what was asked and what the library became. *This
+  bullet originally covered all twelve; the four short ones were replaced on 2026-10-23 at the owner's
+  direction, and the trade is described in [`README.md`](README.md).*
+- **No new library prompts were created from this audit.** The four replacements are archive material:
+  no metadata, no maturity level, no fixture run, not counted. Where a current prompt covers the work
+  they say so; where nothing does (feature portfolio, Markdown hygiene), the gap stays open in the
+  backlog rather than being filled with an unvalidated prompt — this repository's rule is that a prompt
+  enters the library with fixture runs, not with good intentions.
 - **`scaffold completion.txt` was not split or trimmed.** At 90 KB it is not a prompt, it is a constitution.
   Splitting it would create the illusion of four usable artifacts out of one unvalidated document.
 

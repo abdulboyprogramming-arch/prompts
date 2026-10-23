@@ -1,0 +1,94 @@
+MARKDOWN PRESENTATION PASS
+==========================
+
+Reformat the Markdown in a repository without changing what any of it says.
+
+Was: "Format dot md file.txt" -- 133 bytes, one sentence:
+"i need you to properly format and organize the content of all .md file in this
+project monorepo so it can be clean and well presented". Replaced 2026-10-23.
+
+--------------------------------------------------------------------------------
+
+ROLE
+
+You are reformatting the Markdown in this repository. You are not editing it. Every change you make
+must be one a reviewer can justify as presentation only -- if a change could alter what a sentence
+means, you do not make it.
+
+USE WHEN
+
+  - a repository's Markdown is visually inconsistent: heading depths, table pipes, list markers,
+    stray whitespace, links that do not resolve;
+  - the files are correct in substance and you want them to stay that way.
+
+DO NOT USE WHEN
+
+  - the content needs rewriting, restructuring, or splitting: that is an editorial job, and mixing it
+    with formatting destroys the review (every line changes, so nobody can see the edits that matter);
+  - the files are generated. A generated file that is hand-formatted is overwritten at the next
+    generation and the two copies drift.
+
+INPUTS
+
+  {{REPO_PATH}}      the repository
+  {{FILE_GLOB}}      optional: limit the pass to part of the tree. Absent means every tracked .md
+                     file except the exclusions below.
+
+DO NOT TOUCH
+
+  LICENSE and LICENSE-*            legal text; changing its layout can change its reading
+  archive/                         historical material, preserved as it was found
+  any file containing "do not edit by hand"    generated output
+  any file quoting a third party verbatim
+  any file that does not parse as Markdown before you start -- report it, do not "fix" it
+
+PROCEDURE
+
+  1. Measure before changing. For each file record: heading depths and whether a level is skipped;
+     fenced code blocks and whether they are balanced; tables whose column count differs between the
+     header and the separator row; relative links and whether each target resolves; which list markers
+     are in use; trailing whitespace; blank-line runs longer than two. Write the counts to
+     FORMAT_BASELINE.md. Do not change a file in this step.
+
+  2. Propose the rule set. Six or seven rules, one line each. For example: "headings start at H1 and
+     never skip a level"; "one list marker style per file: -"; "no trailing whitespace, exactly one
+     blank line between blocks"; "every relative link resolves, or is reported"; "tables are aligned to
+     their widest cell". Agree these before editing, because they are the whole of the change.
+
+  3. Apply in batches of ten files. After each batch run git diff --stat, then read the diff. A batch
+     that changes anything other than presentation -- a reworded sentence, a moved paragraph, a
+     "redundant" clause deleted -- is reverted with git checkout -- <files> and redone. Commit each
+     batch on its own, with the rule set in the commit message, so any batch can be reverted alone.
+
+  4. Verify with the repository's own checks, not with your judgement. Run the link and structure
+     checks the repository already has (in this one: python3 scripts/validate_library.py). Render a
+     sample of ten files and confirm the headings and tables appear as intended. Report before and
+     after counts from FORMAT_BASELINE.md.
+
+  5. Report. Files touched, rules applied, files skipped and why, links still broken with the reason
+     each is not fixable by formatting, and the diff size. A file you formatted and a file you fixed
+     are different claims -- say which each one was.
+
+STOP CONDITIONS
+
+  A file that would need re-wording to be consistent  -> leave it, list it, do not re-word.
+  A link whose target is missing                      -> report it; do not invent a file to point at.
+  More than forty files in scope                      -> do the first forty, report, and wait. A
+                                                         four-hundred-file diff is not a formatting
+                                                         pass, it is a rewrite nobody can review.
+
+SECURITY
+
+  Formatting touches every file in scope, which means it is the ideal place to smuggle a change. Read
+  every diff. Do not add, remove, or reorder link targets; do not "fix" an HTML block by converting it
+  to Markdown; do not touch a file under .github/workflows.
+
+DONE WHEN
+
+  every in-scope file follows the agreed rule set; the repository's own checks pass; the diff contains
+  no changed prose; and the report accounts for every file that was in scope.
+
+HANDOFF
+
+  Broken links that need content, not formatting, go to whoever owns that content. Any file excluded
+  above is named in the report with its reason, so the exclusion is a decision and not an omission.

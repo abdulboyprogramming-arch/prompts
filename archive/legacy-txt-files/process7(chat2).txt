@@ -1,3 +1,0 @@
-Add many more features and improvements....as man as possible adding all possible features and implementations for this kind of this software that ever exist in the world. Add PWA, ability for user to create account or sign in with google or github, download analysis or report, white/dark/system default mode, i18n, a11y, device-specific advanced or improved unique features, ...etc.
-
-[ PROMPT FROM PROCESS 5]
