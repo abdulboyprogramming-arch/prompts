@@ -18,14 +18,14 @@ This page answers one question honestly: **if this went public tomorrow, what wo
 | Internal consistency | Counts, links, identifiers, artifact chains, catalog, gallery and task index all machine-checked | **Ready** |
 | Honesty about limits | Every claim about execution is generated from a registry, and the counts quoted in prose are compared against the tree on every run; the ratio is 13.0% | **Ready** |
 | Community files | Licence (dual), contributing, code of conduct, security policy, issue templates, PR template | **Ready** |
-| Repository configuration | Description and topics applied; branch protection and security features still unset — [`repository-configuration.md`](repository-configuration.md) | **Partly applied** |
+| Repository configuration | Description and topics applied; branch protection in place with an admin bypass; four security features still unset and owner-only — [`repository-configuration.md`](repository-configuration.md) | **Partly applied** |
 | CI | **Runs and passes.** Run `39846014231` executed steps 1–11 on a real runner, all green, including `check_all.py` and the clean-regeneration check — the first executed step in the repository's history | **Ready** |
-| Empirical evidence | 37 of 285 operational prompts executed (13.0%), all by the author, none by a second reader; batch 0 complete, batch 2 begun | **The real gap** |
+| Empirical evidence | 38 of 286 operational prompts executed (13.3%), all by the author, none by a second reader; batch 0 complete, batch 2 begun | **The real gap** |
 | Contributor readiness | Templates and gates are in place; the first external PR is untested | **Unknown by definition** |
 
 ## 2. What has been tested, by batch
 
-The mechanical pass covers **all 364 prompts**, in seven batches by top-level folder. It checks what a document can be checked for without running a model: metadata, sections, declared inputs against used placeholders, dependency resolution, artifact ownership, cycles, and whether a downstream stage names what its upstream produces.
+The mechanical pass covered **all 364 prompts then in the library**, in seven batches by top-level folder. It checks what a document can be checked for without running a model: metadata, sections, declared inputs against used placeholders, dependency resolution, artifact ownership, cycles, and whether a downstream stage names what its upstream produces.
 
 | Batch | Prompts | Operational | Skeleton | Executed | Dependency links | Links not citing a filename |
 |---|---:|---:|---:|---:|---:|---:|
@@ -51,7 +51,7 @@ The queue and the per-batch targets are in [`execution-batches.md`](execution-ba
 2. **Compositional** — do two prompts in a sequence agree on the artifact between them. Machine-checked for 239 links; 92 still rely on prose that names a concept rather than a file, 82 of them without naming the file at all.
 3. **Empirical** — does following the prompt produce a better result than not following it. **Fourteen prompts, author-evaluated, none by a second reader.** Nothing here can be automated inside a repository without model access and a scoring sheet, which is backlog #83/#91.
 
-Only the third is evidence of usefulness, and it is 13.0%.
+Only the third is evidence of usefulness, and it is 13.3%.
 
 ## 4. Blockers — re-measured 2026-10-23
 
@@ -86,7 +86,7 @@ Outside the repository, and each is a decision or an account, not an edit.
 
 Stated because each one will be suggested:
 
-- **More prompts.** 364 is already more than anyone can use; the constraint is trust, not coverage.
+- **More prompts.** 365 is already more than anyone can use; the constraint is trust, not coverage.
 - **A website or docs site.** The README, `QUICKSTART.md`, `TASKS.md` and the gallery cover the three ways people arrive. A site would be a second copy of the same content with no gate.
 - **A logo or brand.** The library argues against decoration; a launch asset that says more than the README is a claim the evidence does not support.
 - **Sponsorship.** Recommended against, with reasons, in [`repository-configuration.md`](repository-configuration.md) §6.

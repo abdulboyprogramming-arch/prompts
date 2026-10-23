@@ -2,7 +2,7 @@
 
 <!-- GENERATED FILE — do not edit by hand. Run: python3 scripts/generate_gallery.py --write -->
 
-Every prompt in the library — **364** of them — with a direct link and the situation it is for, plus **9** foundational reference documents.
+Every prompt in the library — **365** of them — with a direct link and the situation it is for, plus **9** foundational reference documents.
 Generated from the prompt files, so it cannot drift from them; CI fails if this file is stale.
 
 **Reading the columns**
@@ -22,14 +22,14 @@ prompts by situation.
 |---|---:|---|
 | [00-core — foundations every prompt assumes](#00-core--foundations-every-prompt-assumes) | 8 | Rules and protocols that apply to every other prompt. |
 | [01-contribution — contributing to open source](#01-contribution--contributing-to-open-source) | 48 | Stage systems for contributing to an unfamiliar project. |
-| [02-engineering — building, auditing, and recovering code](#02-engineering--building-auditing-and-recovering-code) | 82 | Work on an existing codebase: audit, repair, complete, upgrade. |
+| [02-engineering — building, auditing, and recovering code](#02-engineering--building-auditing-and-recovering-code) | 83 | Work on an existing codebase: audit, repair, complete, upgrade. |
 | [03-domains — domain-specific engineering](#03-domains--domain-specific-engineering) | 75 | Stack-specific practice: data, AI, and the domains still being built out. |
 | [04-process — delivering software responsibly](#04-process--delivering-software-responsibly) | 92 | The lifecycle around code: testing, release, observability, dependency and governance. |
 | [05-scenarios — single-session, high-urgency situations](#05-scenarios--single-session-high-urgency-situations) | 42 | One prompt, one session, one pressing situation. |
 | [06-interactive — conversations that clarify a request](#06-interactive--conversations-that-clarify-a-request) | 4 | Use when the request is vague and needs to be scoped first. |
 | [07-workflows — multi-system procedures](#07-workflows--multi-system-procedures) | 13 | Composed sequences that route between systems and stop at human gates. |
 
-*Maturity across the library: 285 operational, 5 draft, 74 skeleton, 364 total.*
+*Maturity across the library: 286 operational, 5 draft, 74 skeleton, 365 total.*
 
 ---
 
@@ -131,11 +131,12 @@ Stage systems for contributing to an unfamiliar project.
 
 Work on an existing codebase: audit, repair, complete, upgrade.
 
-### All prompts in this area · 4 prompts
+### All prompts in this area · 5 prompts
 
 | ID | Prompt | Use it for | Maturity | Risk |
 |---|---|---|---|---|
 | `ACCESS-01` | [Access Review: who can still get in, and should they?](02-engineering/access-review/ACCESS-REVIEW.md) | A quarterly access review, a leaver, an incident, or an audit question — establish what access exists today, who still needs it, and remove the rest with proof. <br>**Inputs:** `SYSTEM_SCOPE, REVIEW_PERIOD, APPROVER, TIME_BUDGET` | operational | A |
+| `PORTFOLIO-01` | [Feature Portfolio Decision](02-engineering/feature-portfolio/FEATURE-PORTFOLIO.md) | PORTFOLIO.md containing, in this order — what already exists, a user problem per candidate, a four-axis score per candidate, three buckets (*Now*, *Next*, *Not… <br>**Inputs:** `REPO_PATH, PRODUCT_GOAL, CANDIDATES, CONSTRAINT, DATA_CLASS` | operational | A |
 | `SEC-ROT-01` | [Secret Rotation: drill it before you need it](02-engineering/secrets-rotation/SECRETS-ROTATION.md) | An inventory of every secret with its owner, consumers, blast radius, and rotation mechanism; a per-class runbook; a drill performed on a non-production credential… <br>**Inputs:** `REPO_PATH, TARGET_ENV, SECRET_CLASSES, APPROVER, WINDOW, ONCALL` | operational | C |
 | `TENANCY-01` | [Tenant Isolation Audit](02-engineering/tenancy-audit/TENANCY-AUDIT.md) | An inventory of every data store and channel that holds tenant data, the enforcement mechanism for each, the leak paths found with reproduction steps, and an… <br>**Inputs:** `REPO_PATH, TENANCY_MODEL, DATABASES, CACHE_LAYERS, STORAGE, SEARCH, TARGET_ENV` | operational | A |
 | `TIME-01` | [Time and Date Correctness Audit](02-engineering/time-correctness/TIME-CORRECTNESS.md) | An inventory of time-bearing data and logic, a defect register with reproductions, boundary tests at DST and month-end, and a rule set for the codebase. <br>**Inputs:** `REPO_PATH, PRODUCT_TIME_ZONES, DATABASE, SCHEDULER, TARGET_ENV, REPORTING_PERIODS` | operational | A |

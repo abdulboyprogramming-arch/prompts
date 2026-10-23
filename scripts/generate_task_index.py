@@ -96,15 +96,17 @@ TASKS: list[tuple[str, str, list[str], str]] = [
     ),
     (
         "I need to change existing code without breaking it",
-        "Safety net, smallest change, evidence that nothing else moved.",
+        "Safety net, smallest change, evidence that nothing else moved — and a decision about which change is worth making.",
         [
             "02-engineering/refactoring",
             "02-engineering/feature-completion",
             "02-engineering/feature-design-suggestion",
+            "02-engineering/feature-portfolio",
             "02-engineering/rewriting-migration",
             "02-engineering/project-recovery",
             "05-scenarios/quick-fixes",
         ],
+        "`02-engineering/feature-portfolio/` when the list is longer than the capacity and something has to be said no to; "
         "`05-scenarios/quick-fixes/` when the change is small; `02-engineering/refactoring/` when it is not.",
     ),
     (

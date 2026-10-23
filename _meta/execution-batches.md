@@ -96,7 +96,7 @@ The next executable task in this batch is a re-run by a second person, and there
 
 ## 6. Honest status
 
-- **37 of 285 operational prompts executed (13.0%).** Stated in [`evidence-levels.md`](evidence-levels.md), generated from the registry, and checked in CI so it cannot drift.
+- **38 of 286 operational prompts executed (13.3%).** Stated in [`evidence-levels.md`](evidence-levels.md), generated from the registry, and checked in CI so it cannot drift.
 - **0 runs by a second person**, which is the only kind that tests usefulness.
 - **Batch 0 complete (8 of 8); batch 2 at 12 of 68**, the five `git-operations` stages plus the complete seven-stage testing-QA run. The two `git-operations` runs are the first execution of two stages of one system as a unit, which is a weaker test than the system run criterion 11 asks for and is recorded as partial. The testing-QA run is the strongest composition evidence in the library so far — seven stages, one system, every handoff a file the next stage reads — and it is still author-run.
 - **B2 is the cheapest ten runs** and the target already exists in this checkout.

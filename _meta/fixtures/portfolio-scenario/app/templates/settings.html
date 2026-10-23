@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+  <head><link rel="stylesheet" href="/static/theme.css"></head>
+  <body>
+    <h1>Settings</h1>
+    <form method="post" action="/settings">
+      <label for="theme">Theme</label>
+      <select id="theme" name="theme">
+        <option value="system" {% if theme == "system" %}selected{% endif %}>System</option>
+        <option value="light" {% if theme == "light" %}selected{% endif %}>Light</option>
+        <option value="dark" {% if theme == "dark" %}selected{% endif %}>Dark</option>
+      </select>
+      <button type="submit">Save</button>
+    </form>
+  </body>
+</html>

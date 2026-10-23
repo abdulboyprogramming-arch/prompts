@@ -5,6 +5,12 @@
 
 A structured system for turning vague feature ideas or user needs into clear, well-reasoned, implementable feature proposals.
 
+**Before this system, decide whether the feature should exist.** These stages design a feature once it has been
+chosen. When the input is a *list* of wanted capabilities and capacity for two of them, the step that is missing
+is [`02-engineering/feature-portfolio/`](../feature-portfolio/FEATURE-PORTFOLIO.md) (`PORTFOLIO-01`): it checks the
+repository for half-built versions, restates each candidate as a user problem, and returns one item with a
+reason — which is the input `FD-P01` wants.
+
 ## Stages
 
 | ID | Prompt | Purpose |

@@ -1,0 +1,27 @@
+/* Light is the default; dark follows the OS unless an explicit theme is set. */
+:root {
+  --bg: #ffffff;
+  --fg: #1b1b1b;
+  --accent: #2f6fed;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14161a;
+    --fg: #e8e8e8;
+    --accent: #7aa2ff;
+  }
+}
+
+/* Set by settings.html through a cookie. Nothing currently writes this attribute. */
+[data-theme="dark"] {
+  --bg: #14161a;
+  --fg: #e8e8e8;
+  --accent: #7aa2ff;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: system-ui, sans-serif;
+}

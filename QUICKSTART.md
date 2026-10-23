@@ -1,6 +1,6 @@
 # Quickstart — start being useful in ten minutes
 
-364 prompts is an archive, not a starting point. This page is the starting point: six situations, the exact prompts to run, in order, with what you should be holding at the end of each.
+365 prompts is an archive, not a starting point. This page is the starting point: six situations, the exact prompts to run, in order, with what you should be holding at the end of each.
 
 **Read this instead of the README if you have a job to do today.**
 
@@ -126,4 +126,4 @@ Workflow version: [`07-workflows/compliance-readiness.md`](07-workflows/complian
 
 ---
 
-**Next:** [`README.md`](README.md) for routing by symptom, [`TASKS.md`](TASKS.md) for the library indexed by problem, [`GALLERY.md`](GALLERY.md) for all 364 prompts, [`_meta/ROADMAP-AND-BACKLOG.md`](_meta/ROADMAP-AND-BACKLOG.md) for what is deliberately unfinished.
+**Next:** [`README.md`](README.md) for routing by symptom, [`TASKS.md`](TASKS.md) for the library indexed by problem, [`GALLERY.md`](GALLERY.md) for all 365 prompts, [`_meta/ROADMAP-AND-BACKLOG.md`](_meta/ROADMAP-AND-BACKLOG.md) for what is deliberately unfinished.

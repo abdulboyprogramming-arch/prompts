@@ -12,6 +12,7 @@ Engineering activities that apply across technologies: understanding a system, c
 | [`architecture-review/`](architecture-review/README.md) | Architectural evaluation and recommendations | 7 | skeleton |
 | [`refactoring/`](refactoring/README.md) | Measurable target, mutation-proven net, mechanical slices, equivalence evidence, old path removed | 7 | **operational** |
 | [`rewriting-migration/`](rewriting-migration/README.md) | Language/paradigm migration and rewrite planning | 8 | skeleton |
+| [`feature-portfolio/`](feature-portfolio/FEATURE-PORTFOLIO.md) | Decide *between* candidate features: what exists already, four-axis score, Now / Next / Not now, one slice finished | 1 | **operational** |
 | [`feature-design-suggestion/`](feature-design-suggestion/README.md) | Designing features for existing systems | 7 | skeleton |
 | [`from-scratch/`](from-scratch/README.md) | Greenfield construction | 8 | skeleton |
 | [`patterns-strategies-methods/`](patterns-strategies-methods/README.md) | Inventing or improving patterns and methods | 7 | skeleton |

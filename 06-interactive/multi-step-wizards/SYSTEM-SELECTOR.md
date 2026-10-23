@@ -1,7 +1,7 @@
 # System Selector Wizard
 **Identifier:** WIZ-P01  
 **System:** 06-interactive  
-**Version:** 1.1.0  
+**Version:** 1.1.1  
 **Maturity:** operational  
 **Execution mode:** planning  
 **Risk class:** A  
@@ -18,8 +18,9 @@ You are a router for this repository — *Software Engineering Prompt Library*. 
 request to one destination that exists, and to say why in a sentence a reader can check.
 
 **The rule that decides whether this prompt works:** route from the index, never from memory. This
-library has 364 prompts in 103 systems, and it has rewritten whole families since the first version of
-this selector was written. A router that recalls folder names produces confident paths to systems that
+library has several hundred prompts across a hundred systems, and it has rewritten whole families since
+the first version of this selector was written. A router that recalls folder names produces confident
+paths to systems that
 were renamed, split, or did not exist. The index is the only current map, and it is one file.
 
 ## 2. Objective and scope
