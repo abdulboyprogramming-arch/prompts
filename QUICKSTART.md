@@ -57,7 +57,7 @@ Inherited repo, abandoned project, a contractor's code, or an agent's half-finis
 | Step | Prompt | You end with |
 |---|---|---|
 | 1 | [`02-engineering/project-recovery/`](02-engineering/project-recovery/README.md) — whole system, 7 stages | Containment, a working build, and a written state |
-| 2 | [`05-scenarios/onboarding/`](05-scenarios/onboarding/CODEBASE-ONBOARDING.md) — for a codebase that runs but is unknown | A mental model backed by evidence |
+| 2 | [`05-scenarios/onboarding/`](05-scenarios/onboarding/CODEBASE-ONBOARDING.md) — for a codebase that runs but is unknown, including one somebody built with an AI and cannot explain | A mental model backed by evidence, the traps named, and a takeover verdict with conditions |
 | 3 | [`02-engineering/tenancy-audit/`](02-engineering/tenancy-audit/TENANCY-AUDIT.md) or [`05-scenarios/client-secrets/`](05-scenarios/client-secrets/CLIENT-SIDE-SECRETS.md) — if it handles customer data or ships to browsers | The two leaks that hurt most, checked |
 | 4 | [`04-process/handover/`](04-process/handover/README.md) — if you are inheriting formally | Capability-tested access, not just credentials |
 

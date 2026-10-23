@@ -6,7 +6,7 @@ Every prompt in the library, grouped by system, with its declared maturity,
 execution mode, and risk class. `skeleton` rows are structural outlines and
 are not ready to run. See `_meta/prompt-authoring-standard.md`.
 
-**Totals:** 365 prompts — 0 canonical, 286 operational, 5 draft, 74 skeleton.
+**Totals:** 365 prompts — 0 canonical, 287 operational, 5 draft, 73 skeleton.
 
 ## `00-core`
 
@@ -592,7 +592,7 @@ are not ready to run. See `_meta/prompt-authoring-standard.md`.
 | `I18N-01` | PROMPT 01 — Localisation Correctness | operational | implementation | B | [LOCALIZATION.md](../05-scenarios/localization/LOCALIZATION.md) |
 | `MONO-01` | PROMPT 01 — Monorepo Health: builds, boundaries, and ownersh | operational | audit-remediation | B | [MONOREPO.md](../05-scenarios/monorepo/MONOREPO.md) |
 | `ONCALL-01` | On-Call Shift Handover | operational | specialised | B | [ONCALL-HANDOVER.md](../05-scenarios/on-call-handover/ONCALL-HANDOVER.md) |
-| `ONBOARD-01` | Codebase Onboarding Prompt | skeleton | specialised | B | [CODEBASE-ONBOARDING.md](../05-scenarios/onboarding/CODEBASE-ONBOARDING.md) |
+| `ONBOARD-01` | Codebase Onboarding — Taking Over a System You Did Not Build | operational | diagnostic | A | [CODEBASE-ONBOARDING.md](../05-scenarios/onboarding/CODEBASE-ONBOARDING.md) |
 | `OPS-01` | Operational Readiness: would the on-call engineer survive th | operational | audit-remediation | A | [OPERATIONAL-READINESS.md](../05-scenarios/operational-readiness/OPERATIONAL-READINESS.md) |
 | `PERF-BUDGET-01` | PROMPT 01 — Performance Budgets and Core Web Vitals | operational | implementation | B | [PERFORMANCE-BUDGET.md](../05-scenarios/performance-budget/PERFORMANCE-BUDGET.md) |
 | `PERF-01` | Performance Investigation Prompt | skeleton | specialised | B | [PERFORMANCE-INVESTIGATION.md](../05-scenarios/performance-investigation/PERFORMANCE-INVESTIGATION.md) |

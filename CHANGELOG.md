@@ -2,6 +2,60 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.30.0] — 2026-10-23
+
+The prompt whose gallery line is *"join an unfamiliar codebase … where the traps are"* was a 55-line
+skeleton. It is the prompt the commonest handover of 2026 asks for — a product built with an AI by
+someone who cannot describe the code, handed to a developer who works by hand — and it described
+codebases instead of testing them.
+
+### Promoted — `ONBOARD-01`, from description to verdict (skeleton → operational)
+
+Run first as it was, against `_meta/fixtures/takeover-scenario/`: six files, no README, a required
+environment documented nowhere, a schema that disagrees with its models, a Dockerfile that cannot start,
+no tests, emails stored with no deletion path, and a payment key as a module constant.
+
+| | v0.1.0 (the skeleton, as written) | v1.0.0 |
+|---|---|---|
+| Criteria met | **0 of 9** | **9 of 9** |
+
+The skeleton produced a clean, competent **description**: entry points, blueprints, data objects, inline
+SQL, and a risk list that did mention "no tests" and "a placeholder key". It never ran anything. So it did
+not notice that the report route queries a column the schema does not create, that the container command
+cannot start the app, that `grep -n user_id app/schema.sql` prints nothing, or that `/reports/<id>` takes
+the user id from the URL and there is no authentication at all.
+
+v1.0.0 executes: the start procedure (real — `flask` installed into a throwaway virtualenv, server run,
+`/health` returning `{"ok": true}`), the schema reconciliation, the deployment artifact, the secret
+inventory, the personal-data map, the authorship read, a change **and its revert** in a copy, and a
+verdict. It returned *continue with conditions*, C1–C7, each tied to a finding.
+
+The rule that does the work is one line of the prompt: **an absence is the finding.** `grep` printing
+nothing where a column should be is exactly as much evidence as grep printing a line, and a document that
+only reports what it saw will always miss the defect that matters.
+
+Record: [`_meta/empirical-evaluation-21.md`](_meta/empirical-evaluation-21.md).
+
+### Where this sits in the ecosystem
+
+Three systems touch the situation and none of them was it. `04-process/handover/` (5 stages) assumes a
+sender who can answer questions. `02-engineering/project-recovery/` (7 stages) assumes the project is
+broken rather than unknown. `04-process/documentation/` (8 stages) documents a system someone already
+understands. The new gap this closes is the one where the sender is present, willing, and cannot say what
+is in the repository.
+
+### Records
+
+- Counts: **365 prompts**, 287 operational, **73 skeleton** (from 74), 498 Markdown files.
+- Evidence: **39 of 287 operational executed — 13.6%**; still 0 independent.
+- `05-scenarios/README.md` and `QUICKSTART.md` re-labelled the prompt; `PROJECT-STATUS.md` corrected a
+  skeleton inventory that still listed four `06-interactive` stages which have been operational since
+  2.28.6.
+
+Backlog #115 (a mechanical Markdown formatting pass) is still the open gap. `LEGACY-01` remains a
+skeleton and is the nearest neighbour to this one: a codebase that is *hostile* rather than merely
+*unexplained*.
+
 ## [2.29.0] — 2026-10-23
 
 The library could design a feature once someone had chosen one. It could not choose. This adds the

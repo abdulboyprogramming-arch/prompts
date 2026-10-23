@@ -46,10 +46,10 @@ High-utility prompts for a specific situation, usable in one session. Lighter th
 | [`quick-fixes/SAFE-QUICK-FIX.md`](quick-fixes/SAFE-QUICK-FIX.md) | A small, contained fix with minimal blast radius | skeleton |
 | [`performance-investigation/PERFORMANCE-INVESTIGATION.md`](performance-investigation/PERFORMANCE-INVESTIGATION.md) | Something is slow and you need a diagnosis, not an optimisation project | skeleton |
 | [`legacy-code/WORKING-WITH-LEGACY.md`](legacy-code/WORKING-WITH-LEGACY.md) | Changing code nobody understands, without a rewrite | skeleton |
-| [`onboarding/CODEBASE-ONBOARDING.md`](onboarding/CODEBASE-ONBOARDING.md) | You have just been handed an unfamiliar codebase | skeleton |
+| [`onboarding/CODEBASE-ONBOARDING.md`](onboarding/CODEBASE-ONBOARDING.md) | You have just been handed an unfamiliar codebase — evidence, traps, data map, takeover verdict | **operational** |
 | [`pr-authoring/WRITE-STRONG-PR.md`](pr-authoring/WRITE-STRONG-PR.md) | Preparing a change for review | skeleton |
 
-The five skeleton prompts have useful structure but no verification or failure handling. Treat them as scaffolds for a supervised session.
+The four remaining skeleton prompts have useful structure but no verification or failure handling. Treat them as scaffolds for a supervised session.
 
 ## Scenario or system?
 
