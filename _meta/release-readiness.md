@@ -20,7 +20,7 @@ This page answers one question honestly: **if this went public tomorrow, what wo
 | Community files | Licence (dual), contributing, code of conduct, security policy, issue templates, PR template | **Ready** |
 | Repository configuration | Description and topics applied; branch protection in place with an admin bypass; four security features still unset and owner-only — [`repository-configuration.md`](repository-configuration.md) | **Partly applied** |
 | CI | **Runs and passes.** Run `39846014231` executed steps 1–11 on a real runner, all green, including `check_all.py` and the clean-regeneration check — the first executed step in the repository's history | **Ready** |
-| Empirical evidence | 39 of 287 operational prompts executed (13.6%), all by the author, none by a second reader; batch 0 complete, batch 2 begun | **The real gap** |
+| Empirical evidence | 40 of 288 operational prompts executed (13.9%), all by the author, none by a second reader; batch 0 complete, batch 2 begun | **The real gap** |
 | Contributor readiness | Templates and gates are in place; the first external PR is untested | **Unknown by definition** |
 
 ## 2. What has been tested, by batch
@@ -51,7 +51,7 @@ The queue and the per-batch targets are in [`execution-batches.md`](execution-ba
 2. **Compositional** — do two prompts in a sequence agree on the artifact between them. Machine-checked for 239 links; 92 still rely on prose that names a concept rather than a file, 82 of them without naming the file at all.
 3. **Empirical** — does following the prompt produce a better result than not following it. **Fourteen prompts, author-evaluated, none by a second reader.** Nothing here can be automated inside a repository without model access and a scoring sheet, which is backlog #83/#91.
 
-Only the third is evidence of usefulness, and it is 13.6%.
+Only the third is evidence of usefulness, and it is 13.9%.
 
 ## 4. Blockers — re-measured 2026-10-23
 

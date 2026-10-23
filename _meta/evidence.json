@@ -440,6 +440,17 @@
       "result": "FAILED at v0.1.0 then PASSED at v1.0.0 - the skeleton scored 0 of 9, producing a description of the codebase that noticed 'no tests' and 'a placeholder key' but never ran anything, reconciled nothing and issued no verdict; v1.0.0 scores 9 of 9 by executing the start procedure, reconciling objects against the schema (the absence of a column is the finding), trying the deployment artifact, mapping personal data, reading the authorship, ranking the untested surface, making and reverting a change, and issuing a conditional verdict",
       "record": "_meta/empirical-evaluation-21.md",
       "limitations": "author-run desk execution on a six-file fixture small enough to read completely; flask was installed into a throwaway virtualenv to execute the start procedure, but no database was available, so query paths ended in a 500 and the schema check was by reading schema.sql rather than a live database"
+    },
+    {
+      "identifier": "PR-01",
+      "title": "Write a Strong Pull Request — a description a reviewer can approve or reject in twenty minutes",
+      "path": "05-scenarios/pr-authoring/WRITE-STRONG-PR.md",
+      "date": "2026-10-23",
+      "evaluator": "the prompt's author (conflict of interest recorded)",
+      "scope": "both versions run against the real 30-file diff of commit 3abe628 (PR #45): a prompt rewrite, an eleven-file fixture, five regenerated indexes and a counts ripple, with eleven fixture files and five derived files competing for the reviewer's attention",
+      "result": "FAILED at v0.1.0 then PASSED at v1.0.0 - the 57-line skeleton produced a description an experienced engineer would sign but scored 5 of 9, with no review order, no separation of derived from hand-written files, and one thin sentence where a list of what the change does not prove belongs; v1.0.0 scores 9 of 9 by triaging every file into behaviour/evidence/derived/record with a named generator per derived file, making 'what this does not prove' a four-row table with a floor of three categories, running a self-review pass that tries to reject the PR, and distinguishing a commit revert from retracting a tag or release",
+      "record": "_meta/empirical-evaluation-22.md",
+      "limitations": "author-run and author-graded against author-written requirements; one diff shape (a 30-file mixed-concern PR); the twenty-minute review budget is asserted rather than measured; no second reviewer exists to show the description made review faster"
     }
   ]
 }

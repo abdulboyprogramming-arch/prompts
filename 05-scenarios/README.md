@@ -47,9 +47,9 @@ High-utility prompts for a specific situation, usable in one session. Lighter th
 | [`performance-investigation/PERFORMANCE-INVESTIGATION.md`](performance-investigation/PERFORMANCE-INVESTIGATION.md) | Something is slow and you need a diagnosis, not an optimisation project | skeleton |
 | [`legacy-code/WORKING-WITH-LEGACY.md`](legacy-code/WORKING-WITH-LEGACY.md) | Changing code nobody understands, without a rewrite | skeleton |
 | [`onboarding/CODEBASE-ONBOARDING.md`](onboarding/CODEBASE-ONBOARDING.md) | You have just been handed an unfamiliar codebase — evidence, traps, data map, takeover verdict | **operational** |
-| [`pr-authoring/WRITE-STRONG-PR.md`](pr-authoring/WRITE-STRONG-PR.md) | Preparing a change for review | skeleton |
+| [`pr-authoring/WRITE-STRONG-PR.md`](pr-authoring/WRITE-STRONG-PR.md) | Preparing a change for review — review order, derived files, what it does not prove | **operational** |
 
-The four remaining skeleton prompts have useful structure but no verification or failure handling. Treat them as scaffolds for a supervised session.
+The three remaining skeleton prompts have useful structure but no verification or failure handling. Treat them as scaffolds for a supervised session.
 
 ## Scenario or system?
 

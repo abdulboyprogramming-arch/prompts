@@ -2,6 +2,64 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.31.0] — 2026-10-23
+
+`PR-01` was 57 lines: summarise, structure, title, follow the template, be nice to the reviewer. Written
+against a real change it produces a description a competent engineer would sign — which is the problem,
+because the diff cannot tell a reviewer **where to look**, **what was regenerated**, or **what the change
+does not prove**, and the skeleton asked for none of those.
+
+### Promoted — `PR-01`, tested on this repository's own 30-file PR (skeleton → operational)
+
+The test input is real: the diff of commit `3abe628` (PR #45) — a prompt rewritten, an eleven-file fixture
+added, five indexes regenerated, a counts ripple. Of the thirty files, **eleven are fixture source and five
+are derived**, so a reviewer reading in file order spends their twenty minutes badly. That is the job of
+the description, and it is invisible from the diff.
+
+| | v0.1.0 | v1.0.0 |
+|---|---|---|
+| Requirements met | **5 of 9** | **9 of 9** |
+
+v0.1.0 passes on the product claim, the reproduction block, the counts and the title, and fails on the
+three things that make a review cheap:
+
+- **no review order** — the eleven fixture files and five generated indexes are offered as equals;
+- **no separation of derived from hand-written** — five index files are called "regenerated" without
+  naming a generator, so a reviewer cannot tell whether they were regenerated or hand-edited;
+- **one sentence** where the list of what the change does not prove belongs.
+
+v1.0.0 adds three steps that do the work: **triage every file into behaviour / evidence / derived /
+record** with a named generator per derived file (so derived files are spot-checked, not read); make
+**"what this does not prove" a four-row table** — scale, environment, independence, doubt — with a floor of
+three categories and at least one unflattering ("has been reviewed" is banned by name); and **reject your
+own PR first**, a self-review against the diff for stray files, secrets, unsupported claims, unregenerated
+derived files and placeholders, where a finding is either fixed or stated.
+
+The other steps close smaller holes: notes are claims and the diff is the fact, so an item in the notes
+that the diff does not contain is disclosed rather than dropped; rollback distinguishes reverting a commit
+from retracting a tag, a release, or a published document; and the reviewer brief is capped at six lines
+because it is a routing decision, not a summary.
+
+Record: [`_meta/empirical-evaluation-22.md`](_meta/empirical-evaluation-22.md). The body this prompt
+produced is the description used for this cycle's own pull request — the output is shipped as the PR that
+ships the prompt.
+
+### Fixed — the evidence gate was policing records instead of claims
+
+`evidence_report.py --check` scans published prose for the executed-prompt ratio. When a recorded run
+output under `_meta/fixtures/…/runs/` quoted "39 of 287 operational" — true when that run happened — the
+gate failed, and the only honest fixes were to rewrite the record or to exempt it. Fixtures are now exempt
+on the same argument the evaluations and the changelog already were: a fixture is a frozen input, and a
+recorded output is a dated record. Two regression cases pin the new boundary, including one that proves a
+page *outside* the fixtures tree is still checked.
+
+### Records
+
+- Counts: **365 prompts**, 288 operational, **72 skeleton** (from 73), 503 Markdown files.
+- Evidence: **40 of 288 operational executed — 13.9%**; still 0 independent.
+- `05-scenarios/README.md` re-labelled; `PROJECT-STATUS.md` inventory now reads three single scenario
+  skeletons, not four.
+
 ## [2.30.0] — 2026-10-23
 
 The prompt whose gallery line is *"join an unfamiliar codebase … where the traps are"* was a 55-line

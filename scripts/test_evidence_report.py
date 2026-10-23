@@ -11,7 +11,8 @@ The cases below pin the scan's shape rather than the current numbers:
 
   * a count that disagrees with the registry is reported, with file and line;
   * a count that agrees is not reported;
-  * dated records are exempt, because correcting them would rewrite history;
+  * dated records are exempt, because correcting them would rewrite history —
+    and a fixture is both an input and, under `runs/`, a dated record;
   * a zeroth count, which is only ever the independent-run figure, is skipped,
     and that skip does not swallow an ordinary stale count.
 
@@ -89,6 +90,13 @@ def main() -> int:
        scan({"_meta/empirical-evaluation-09.md": "9 of 228 at the time.\n"}) == [])
     ok("the changelog is exempt", scan({"CHANGELOG.md": "4 of 228 in this release.\n"}) == [])
     ok("the review log is exempt", scan({"_meta/review-log.md": "library total 9 of 228\n"}) == [])
+
+    # A fixture is frozen input and a recorded run is a dated record.
+    ok("a recorded fixture run is exempt",
+       scan({"_meta/fixtures/pr-scenario/runs/v0.1.0-output.md":
+             "39 of 287 operational prompts executed\n"}) == [])
+    ok("a page outside the fixtures tree is still checked",
+       len(scan({"_meta/x.md": "14 of 288 operational prompts executed\n"})) == 1)
 
     # The one skip: zero counts the independent-run figure, a different metric
     # that happens to share the denominator.
