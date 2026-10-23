@@ -984,3 +984,27 @@ All systems listed as `skeleton` in `_meta/CATALOG.md` are unreviewed. Review or
 - Not claimed: that the rewrites are validated prompts — no fixture run; that three of the four are
   improvements at all, since `DOC-P07`, `DEPLOY-01` and `HACK-01` already cover them and here serve only
   as the destination a reader is sent to.
+### Correction — seven stale statements about CI and merge state, in the documents a visitor reads first (2.28.8)
+- **2026-10-23 · records reconciliation · the prompt's author** · evidence read from the GitHub API, not memory
+- Triggered by reading the README's *Known limitations* against the live repository: it said the Actions
+  workflow "does not currently run" and that "a green badge is the one thing this repository cannot yet
+  show". Both became false when publication cleared the billing block on 2026-10-22.
+- **Verified before correcting**, `gh api .../actions/runs/39903440904/jobs`: job `validate` completed
+  **success**, steps 1–5 all `success` (`Set up job`, `checkout@v4`, `setup-python@v5`, *Every gate*,
+  *The tree must be unchanged by a regeneration*), 13 s. The push run `39903471493` on the same commit
+  also passed. The badge now reports this live.
+- Six more claims were stale in the same way: "131 of 364 prompts are skeleton outlines" (the tree has
+  **74** skeleton and 5 drafts), "the **three** runs are tabletop evaluations" (there are **37**),
+  `PROJECT-STATUS.md` "five external blockers" (two remain, both `403` and owner-only),
+  `release-readiness.md` "branch protection currently blocks all merges" — five releases after the bypass
+  was added and six PRs had merged through it — and its criterion 14 "blocked — Actions billing", and
+  `publication-checklist.md`'s "blocking everything else" heading plus its bottom line asserting a
+  billing failure "stops it being a good launch".
+- **Corrections are dated and the errors stay visible.** `publication-decision.md` is a decision record,
+  so it was not rewritten at all; it gained a status banner naming which of its items have resolved.
+- **What this cost and what it says:** the validator checks counts, identifiers, links, sections and
+  maturity overclaims. A sentence describing CI status is none of those, and no rule reads it. Seven
+  stale statements survived five releases. The fix is not a new gate — a gate cannot see a workflow's
+  conclusion — but the habit of re-reading state sentences when the state changes.
+- Not claimed: that every state sentence is now current. These were found by grepping seven phrasings
+  across the tree; a claim phrased differently would not have been caught.

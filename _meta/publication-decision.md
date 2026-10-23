@@ -1,5 +1,11 @@
 # Publication Decision — 2.22.0, 2026-10-22
 
+> **Status on 2026-10-23 (added in 2.28.8, decision record left as written):** this was the
+> pre-publication analysis. Items 1 and 2 of §3 have since been resolved — CI executes every
+> step (`39846014231` onward) and branch protection exists with an admin bypass. The reasoning
+> below is preserved because the judgement, not the state, is what this record is for. Current
+> state: [`release-readiness.md`](release-readiness.md).
+
 **Question:** can this repository be published publicly *now*, honestly, without waiting for full validation?
 
 **Answer: yes** for publication as an experimental, actively-developed library, with one honesty fix applied in this pass (the CI claim) and no repository-side blocker remaining. **No** for any claim that the prompts are validated, proven, or production-ready — 37 of 285 have been executed, all by the author, none by a second person.

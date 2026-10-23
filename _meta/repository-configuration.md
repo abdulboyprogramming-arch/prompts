@@ -44,7 +44,7 @@ If you generate one, the acceptance test is: *does the image make a claim the RE
 
 | Setting | Value | Reason |
 |---|---|---|
-| Visibility | **Public** | The point. Do it after branch protection and the CI billing fix |
+| Visibility | **Public — done 2026-10-22** | Was "do it after branch protection and the CI billing fix"; both were resolved before publication and the visibility change is verified unauthenticated (2.28.8 note) |
 | Social preview | as above | — |
 | Features → Discussions | **On** | The best place for "is there a prompt for X" without an issue; also gives the routing conversation a home |
 | Features → Wiki | Off | Documentation belongs in the repository, versioned with the prompts |

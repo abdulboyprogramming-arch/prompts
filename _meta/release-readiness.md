@@ -53,18 +53,34 @@ The queue and the per-batch targets are in [`execution-batches.md`](execution-ba
 
 Only the third is evidence of usefulness, and it is 13.0%.
 
-## 4. Blockers, in the order they must be cleared
+## 4. Blockers — re-measured 2026-10-23
 
-Outside the repository, and each is a decision or an account, not an edit:
+Outside the repository, and each is a decision or an account, not an edit.
 
-1. **Security features — now the only urgent item.** Secret scanning, push protection, CodeQL and private vulnerability reporting were meant to be enabled *before* publication. They were not, and the repository is public. All are free for public repositories and all are owner-only settings.
-2. **Branch protection exists and currently blocks all merges.** The active ruleset requires 1 approving
-   review; a solo maintainer cannot approve their own PR (`422`) and no bypass actor is configured, so
-   PR #34 could not be merged even with admin rights. Fix: add *Repository admin* as a bypass actor, or
-   set required approvals to 0. Recorded in [`repository-configuration.md`](repository-configuration.md) §4a.
-3. ~~Actions billing~~ — **resolved by publication.** The first run after the visibility change executed every step and passed. The earlier `steps: 0` failures were real; they described the private-repository state.
-4. ~~Repository metadata~~ — **done**: description and all ten topics applied and verified.
-5. ~~Visibility~~ — **done 2026-10-22**: public, verified unauthenticated (repo 200, README 31 KB, 24 top-level paths, 24 releases).
+**Two remain, both owner-only and both `403` from the API:**
+
+1. **The four security settings.** Secret scanning, push protection, CodeQL and private vulnerability
+   reporting were meant to be enabled *before* publication. They were not, and the repository is public.
+   All are free for public repositories and all are owner-only switches:
+   Settings → Code security and analysis. `PUT /vulnerability-alerts` returns
+   `403 Resource not accessible by integration`.
+2. **The second sentence of the description.** The description reads *"364 engineering prompts with
+   evidence rules, failure handling, and a definition of done — for humans and coding agents."*; the
+   intended text adds *"Audited by a repo, not a vibe."* `PATCH /repos/...` returns the same `403`.
+
+**Four that were on this list and are done:**
+
+3. ~~Branch protection blocks all merges~~ — **cleared 2026-10-22** after the owner added *Repository
+   admin* as a bypass actor; six pull requests have merged through it since. *(This item read "currently
+   blocks all merges" until 2.28.8, five releases after it stopped being true — a state document that no
+   rule re-reads drifts like any other.)*
+4. ~~Actions billing~~ — **resolved by publication.** The first run after the visibility change executed
+   every step and passed. The earlier `steps: 0` failures were real; they described the private-repository
+   state.
+5. ~~Repository metadata~~ — **done**: description and all ten topics applied in the UI and verified by
+   reading them back on 2026-10-23.
+6. ~~Visibility~~ — **done 2026-10-22**: public, verified unauthenticated (repo 200, README 31 KB, 24
+   top-level paths, 24 releases).
 
 ## 5. What is *not* a blocker, and why
 
@@ -104,17 +120,18 @@ Release readiness is not a feeling, so it is written as tests. **Mandatory** cri
 | 11 | At least one system executed end to end | an evidence record spanning every stage of one system | Desirable | **partial** — all five `git-operations` stages ran, but across two records (`-10.md`, `-11.md`), not one continuous incident |
 | 12 | At least three runs by someone other than the author | evidence entries whose evaluator is not the author | Desirable — and the single biggest gap | **not met**, 0 of 3 |
 | 13 | A second reader can resume from the documentation alone | a stranger follows `QUICKSTART.md` and reports | Desirable | **untested** |
-| 14 | CI runs the gates on every pull request | a green check on a PR | Mandatory for publication, blocked externally | **blocked** — Actions billing |
+| 14 | CI runs the gates on every pull request | a green check on a PR | Mandatory for publication | **met** — *corrected 2.28.8*: this row read "blocked — Actions billing" while publication had already cleared it. Run `39846014231` was the first to execute every step; `39903440904` (2026-10-23) is the latest |
 
 **Read the criteria as a pair.** Criteria 1–10 are satisfied, which means the repository can be published as *an audited library*. Criteria 11–13 are not, which means it cannot be published as *a validated one*. Any announcement has to pick one of those two sentences, and the README already picks the first.
 
 ## 7a. Released versions
 
-23 releases exist, `v2.13.0` through `v2.28.3`, each tagged at that version's merge commit.
+26 releases exist, `v2.13.0` through `v2.28.7`, each tagged at that version's merge commit.
 `v2.22.0`–`v2.28.3` (twelve versions) were published on 2026-10-22, after a gap in which the
-library advanced seven minor versions without a tag; the backlog was created from the
-`CHANGELOG.md` entry for each version, unedited apart from truncation, so a release note says
-exactly what the changelog says — including the parts that record a defect.
+library advanced seven minor versions without a tag; `v2.28.4`–`v2.28.7` were each published as
+they landed. The backlog was created from the `CHANGELOG.md` entry for each version, unedited
+apart from truncation, so a release note says exactly what the changelog says — including the
+parts that record a defect.
 
 A release tag is a pointer, not a claim. It says *this is the tree as of this change*; it does
 not say the prompts in it are proven. The evidence ratio for every one of these releases is

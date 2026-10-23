@@ -2,6 +2,67 @@
 
 All notable changes to this prompt library. Versions refer to the library as a whole; individual prompts carry their own versions.
 
+## [2.28.8] — 2026-10-23
+
+The repository went public twelve hours ago and three of its documents still described it as private,
+unmerged and unenforced. No prompt changed. What changed is what the repository says about itself, and
+every correction below was measured against the live repository rather than remembered.
+
+### Corrected — the README told visitors CI does not run
+
+It said: *"The GitHub Actions workflow does not currently run… fails at startup without executing a
+step… a green badge is the one thing this repository cannot yet show."* That was true until the
+visibility change cleared the Actions billing block. Pull-request run
+[`39903440904`](https://github.com/abdulboyprogramming-arch/prompts/actions/runs/39903440904) executed
+steps 1–5 — checkout, setup-python, *Every gate*, the clean-regeneration check — and passed in 13
+seconds; every run before and since has done the same.
+
+The line now says that, names the run, and keeps the older failure visible instead of deleting it. A
+**validation badge** was added under the title, because the one thing the README said it could not show
+now exists.
+
+Two more claims in the same list were wrong:
+
+| Said | Is | How it went stale |
+|---|---|---|
+| "131 of 364 prompts are skeleton outlines" | **74** skeleton, plus 5 drafts | Nothing recomputes prose. Systems were completed over nine releases and the number was never revisited |
+| "**The three** runs are tabletop evaluations by the author" | **37** recorded runs | The sentence was written when there were three; it survived thirty-four more |
+
+### Corrected — four state documents described the pre-publication repository
+
+| Document | Said | Now |
+|---|---|---|
+| `PROJECT-STATUS.md` §8a | "five external blockers — Actions billing, branch protection, metadata, security, visibility" | two left, both owner-only: the four security settings and the second sentence of the description |
+| `PROJECT-STATUS.md` §10 | the workflow "currently fails at startup… Actions billing is blocked" | it executes, with the run that first proved it |
+| `release-readiness.md` §4 | branch protection "currently blocks all merges" — five releases after the owner added a bypass | cleared, with the six merges that went through it |
+| `release-readiness.md` row 14 | CI gate "**blocked** — Actions billing" | **met** |
+| `publication-checklist.md` §5.1 | "**blocking everything else**" | resolved by publication; the failure text kept as history |
+| `publication-checklist.md` §5.7, bottom line | "a visitor today sees a red check that never ran a step"; "what stops it being a good launch is the Actions billing failure" | both false; the two remaining items are owner-only switches |
+| `pull-requests.md` standing rules | "CI has never executed a step on this repository" | corrected where it stood |
+| `repository-configuration.md` | visibility "do it after branch protection and the CI billing fix" | done, dated |
+
+`publication-decision.md` is a decision record, so it was **not** rewritten: it carries a dated status
+banner saying which of its items have since resolved, and the reasoning below it is left as written.
+
+### Fixed
+
+`_meta/pull-requests.md` had a duplicated heading — `## Standing rules## Standing rules` — rendering as
+one run-on line on GitHub.
+
+### What this says about the library
+
+The validator caught none of this. It checks counts, identifiers, links, sections and overclaims about
+maturity, and a sentence about CI status is none of those. Seven stale statements survived five
+releases in the documents a visitor reads first, which is a sharper comment on prose claims than any of
+them individually: the generated files cannot drift because a gate regenerates them, and these could.
+
+The correction is not a new gate. A rule cannot read a workflow's conclusion offline, and adding a
+check that only *looks* like enforcement would repeat the mistake. What is recorded instead is the
+habit — re-read the sentences that describe state when the state changes, and date the correction so
+the error stays visible.
+
+Counts are unchanged: 364 prompts, 285 operational, 491 Markdown files, validator 0 errors and 0 warnings.
+
 ## [2.28.7] — 2026-10-23
 
 No prompt in the library changed. The twelve `.txt` files in `archive/legacy-txt-files/` were read end to
